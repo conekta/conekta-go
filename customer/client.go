@@ -1,7 +1,7 @@
 package customer
 
 import (
-	conekta "github.com/conekta/conekta-go"
+	conekta "github.com/conekta-go"
 )
 
 // New creates a new customer
