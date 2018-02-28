@@ -35,7 +35,3 @@ func getAPIError(b []byte) *Error {
 	json.Unmarshal(b, &e)
 	return &e
 }
-
-func (e *Error) Error() string {
-	return "Conekta response error"
-}

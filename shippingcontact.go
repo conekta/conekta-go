@@ -12,6 +12,7 @@ type ShippingContact struct {
 	ParentID       string   `json:"parent_id,omitempty"`
 	Address        *Address `json:"address,omitempty"`
 	Deleted        bool     `json:"deleted,omitempty"`
+	Default        bool     `json:"default,omitempty"`
 }
 
 // ShippingContactParams is the set of parameters that can be used when creating or updating a shipping contact.

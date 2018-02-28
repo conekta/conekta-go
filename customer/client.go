@@ -23,13 +23,20 @@ func Update(id string, p *conekta.CustomerParams) (*conekta.Customer, *conekta.E
 // Find gets a customer by id
 func Find(id string) (*conekta.Customer, *conekta.Error) {
 	cust := &conekta.Customer{}
-	err := conekta.MakeRequest("GET", "/customers/"+id, &conekta.CustomerParams{}, cust)
+	err := conekta.MakeRequest("GET", "/customers/"+id, &conekta.EmptyParams{}, cust)
 	return cust, err
 }
 
 // Delete deletes a customer
 func Delete(id string) (*conekta.Customer, *conekta.Error) {
 	cust := &conekta.Customer{}
-	err := conekta.MakeRequest("DELETE", "/customers/"+id, &conekta.CustomerParams{}, cust)
+	err := conekta.MakeRequest("DELETE", "/customers/"+id, &conekta.EmptyParams{}, cust)
 	return cust, err
+}
+
+// All gets all customers
+func All() (*conekta.CustomerList, *conekta.Error) {
+	cl := &conekta.CustomerList{}
+	err := conekta.MakeRequest("GET", "/customers", &conekta.EmptyParams{}, cl)
+	return cl, err
 }
