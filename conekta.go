@@ -24,6 +24,18 @@ type ListMeta struct {
 	NextPageURL string `json:"next_page_url,omitempty"`
 }
 
+// Address represents a Conekta common Adress
+type Address struct {
+	Street1     string `json:"street1,omitempty"`
+	Street2     string `json:"street2,omitempty"`
+	City        string `json:"city,omitempty"`
+	State       string `json:"state,omitempty"`
+	Country     string `json:"country,omitempty"`
+	PostalCode  string `json:"postal_code,omitempty"`
+	Object      string `json:"object,omitempty"`
+	Residential bool   `json:"residential,omitempty"`
+}
+
 // EmptyParams is used in requests that don't need params
 type EmptyParams struct{}
 

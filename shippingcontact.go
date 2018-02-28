@@ -23,17 +23,6 @@ type ShippingContactParams struct {
 	Address        *Address `json:"address,omitempty"`
 }
 
-// Address represents a Conekta shipping address.
-type Address struct {
-	Street1     string `json:"street1,omitempty"`
-	Street2     string `json:"street2,omitempty"`
-	City        string `json:"city,omitempty"`
-	State       string `json:"state,omitempty"`
-	Country     string `json:"country,omitempty"`
-	PostalCode  string `json:"postal_code,omitempty"`
-	Residential string `json:"residential,omitempty"`
-}
-
 // ShippingContactList is a list of shipping contact.
 type ShippingContactList struct {
 	ListMeta

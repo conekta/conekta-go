@@ -22,12 +22,12 @@ type Customer struct {
 // CustomerParams is the set of parameters that can be used when creating or updating a customer.
 // For details see https://developers.conekta.com/api#create-customer and https://developers.conekta.com/api#update-customer.
 type CustomerParams struct {
-	Name             string                   `json:"name,omitempty"`
-	Phone            string                   `json:"phone,omitempty"`
-	Email            string                   `json:"email,omitempty"`
-	PaymentSources   []*PaymentSourceParams   `json:"payment_sources,omitempty"`
-	Corporate        bool                     `json:"corporate,omitempty"`
-	ShippingContacts []*ShippingContactParams `json:"shipping_contacts,omitempty"`
+	Name             string                       `json:"name,omitempty"`
+	Phone            string                       `json:"phone,omitempty"`
+	Email            string                       `json:"email,omitempty"`
+	PaymentSources   []*PaymentSourceCreateParams `json:"payment_sources,omitempty"`
+	Corporate        bool                         `json:"corporate,omitempty"`
+	ShippingContacts []*ShippingContactParams     `json:"shipping_contacts,omitempty"`
 }
 
 // CustomerList is a list of customers
