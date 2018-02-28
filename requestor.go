@@ -10,13 +10,12 @@ import (
 
 // RequestAPI returns Conekta API response
 func RequestAPI(method string, url string, params ParamsConverter) ([]byte, *Error) {
-	dp := defaultParams
-	requestURL := BuildURL(url, dp)
+	requestURL := BuildURL(url)
 
 	client := &http.Client{}
 	req, _ := http.NewRequest(method, requestURL, bytes.NewBuffer(params.Bytes()))
 
-	setHeaders(req, dp)
+	setHeaders(req)
 
 	res, err := client.Do(req)
 
@@ -36,26 +35,26 @@ func RequestAPI(method string, url string, params ParamsConverter) ([]byte, *Err
 }
 
 // BuildURL returns base api plus endpoint passed
-func BuildURL(url string, p *conektaParams) string {
-	return p.apiBase + url
+func BuildURL(url string) string {
+	return apiBase + url
 }
 
 // setHeader set req object (htttp.Request) with conekta required headers to auth and identify request
-func setHeaders(r *http.Request, p *conektaParams) *http.Request {
-	r.Header.Set("Accept", "application/vnd.conekta-v"+p.apiVersion+"+json")
-	r.Header.Set("Accept-Language", p.locale)
-	r.Header.Set("User-Agent", "Conekta/v1 GoBindings/"+p.version)
-	r.Header.Set("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(p.apiKey)))
+func setHeaders(r *http.Request) *http.Request {
+	r.Header.Set("Accept", "application/vnd.conekta-v"+apiVersion+"+json")
+	r.Header.Set("Accept-Language", Locale)
+	r.Header.Set("User-Agent", "Conekta/v1 GoBindings/"+version)
+	r.Header.Set("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(APIKey)))
 	r.Header.Set("Content-Type", "application/json")
 	return r
 }
 
-// New creates a new Conekta POST request,
-// it takes a reference struct of conekta's models like
+// MakeRequest creates a new Conekta request,
+// it takes a method, endpoint, parameters and a reference struct of conekta's models like
 // &conekta.Customer{} and fills it with the response
 // if the response has a Conekta's error it returns it and keep empty the Conekta model
-func New(v interface{}, p ParamsConverter, endpoint string) *Error {
-	res, err := RequestAPI("POST", endpoint, p)
+func MakeRequest(method string, endpoint string, p ParamsConverter, v interface{}) *Error {
+	res, err := RequestAPI(method, endpoint, p)
 	if err != nil {
 		return err
 	}

@@ -4,10 +4,32 @@ import (
 	conekta "github.com/conekta/conekta-go"
 )
 
-// New creates a new customer
+// Create creates a new customer
 // For details see https://developers.conekta.com/api#create-customer
-func New(p *conekta.CustomerParams) (*conekta.Customer, *conekta.Error) {
+func Create(p *conekta.CustomerParams) (*conekta.Customer, *conekta.Error) {
 	cust := &conekta.Customer{}
-	err := conekta.New(cust, p, "/customers")
+	err := conekta.MakeRequest("POST", "/customers", p, cust)
+	return cust, err
+}
+
+// Update updates a customer
+// For details see https://developers.conekta.com/api#update-customer
+func Update(id string, p *conekta.CustomerParams) (*conekta.Customer, *conekta.Error) {
+	cust := &conekta.Customer{}
+	err := conekta.MakeRequest("PUT", "/customers/"+id, p, cust)
+	return cust, err
+}
+
+// Find gets a customer by id
+func Find(id string) (*conekta.Customer, *conekta.Error) {
+	cust := &conekta.Customer{}
+	err := conekta.MakeRequest("GET", "/customers/"+id, &conekta.CustomerParams{}, cust)
+	return cust, err
+}
+
+// Delete deletes a customer
+func Delete(id string) (*conekta.Customer, *conekta.Error) {
+	cust := &conekta.Customer{}
+	err := conekta.MakeRequest("DELETE", "/customers/"+id, &conekta.CustomerParams{}, cust)
 	return cust, err
 }
