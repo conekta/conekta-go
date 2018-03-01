@@ -46,6 +46,7 @@ func setHeaders(r *http.Request) *http.Request {
 	r.Header.Set("User-Agent", "Conekta/v1 GoBindings/"+version)
 	r.Header.Set("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(APIKey)))
 	r.Header.Set("Content-Type", "application/json")
+	r.Header.Set("agent", "Conekta JavascriptBindings/1.0.0")
 	return r
 }
 

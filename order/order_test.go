@@ -1,0 +1,116 @@
+package order
+
+import (
+	"testing"
+
+	conekta "github.com/conekta/conekta-go"
+	"github.com/stretchr/testify/assert"
+)
+
+func init() {
+	conekta.APIKey = conekta.TestKey
+}
+
+func TestOrderCreate(t *testing.T) {
+	op := &conekta.OrderParams{}
+	ord, err := Create(op.Mock())
+
+	assert.Equal(t, len(op.DiscountLines), ord.DiscountLines.Total)
+	assert.Equal(t, op.DiscountLines[0].Amount, ord.DiscountLines.Data[0].Amount)
+	assert.Equal(t, op.DiscountLines[0].Code, ord.DiscountLines.Data[0].Code)
+	assert.Equal(t, op.DiscountLines[0].Type, ord.DiscountLines.Data[0].Type)
+	assert.NotEqual(t, nil, ord.DiscountLines.Data[0].ID)
+
+	assert.Equal(t, len(op.TaxLines), ord.TaxLines.Total)
+	assert.Equal(t, op.TaxLines[0].Amount, ord.TaxLines.Data[0].Amount)
+	assert.Equal(t, op.TaxLines[0].Description, ord.TaxLines.Data[0].Description)
+	assert.NotEqual(t, nil, ord.TaxLines.Data[0].ID)
+
+	assert.Equal(t, len(op.LineItems), ord.LineItems.Total)
+	assert.Equal(t, op.LineItems[0].Name, ord.LineItems.Data[0].Name)
+	assert.Equal(t, op.LineItems[0].Quantity, ord.LineItems.Data[0].Quantity)
+	assert.Equal(t, op.LineItems[0].UnitPrice, ord.LineItems.Data[0].UnitPrice)
+	assert.NotEqual(t, nil, ord.LineItems.Data[0].ID)
+
+	assert.Equal(t, op.ShippingContact.Phone, ord.ShippingContact.Phone)
+	assert.Equal(t, op.ShippingContact.Receiver, ord.ShippingContact.Receiver)
+	assert.Equal(t, op.ShippingContact.BetweenStreets, ord.ShippingContact.BetweenStreets)
+	assert.NotEqual(t, nil, ord.ShippingContact.ID)
+
+	//shipping address
+	assert.Equal(t, op.ShippingContact.Address.Street1, ord.ShippingContact.Address.Street1)
+	assert.Equal(t, op.ShippingContact.Address.Street2, ord.ShippingContact.Address.Street2)
+	assert.Equal(t, op.ShippingContact.Address.PostalCode, ord.ShippingContact.Address.PostalCode)
+
+	assert.Equal(t, op.CustomerInfo.Name, ord.CustomerInfo.Name)
+	assert.Equal(t, op.CustomerInfo.Email, ord.CustomerInfo.Email)
+	assert.Equal(t, op.CustomerInfo.Phone, ord.CustomerInfo.Phone)
+	assert.NotEqual(t, nil, ord.CustomerInfo.ID)
+
+	assert.Equal(t, op.Currency, ord.Currency)
+	assert.NotEqual(t, nil, ord.ID)
+
+	assert.Equal(t, "shipping_line", ord.ShippingLines.Data[0].Object)
+	assert.Equal(t, "discount_line", ord.DiscountLines.Data[0].Object)
+	assert.Equal(t, "tax_line", ord.TaxLines.Data[0].Object)
+	assert.Equal(t, "line_item", ord.LineItems.Data[0].Object)
+	assert.Equal(t, "shipping_contact", ord.ShippingContact.Object)
+	assert.Equal(t, "shipping_address", ord.ShippingContact.Address.Object)
+	assert.Equal(t, "customer_info", ord.CustomerInfo.Object)
+	assert.Equal(t, "order", ord.Object)
+
+	assert.Nil(t, err)
+}
+
+func TestOxxoOrderCreate(t *testing.T) {
+	op := &conekta.OrderParams{}
+	ord, err := Create(op.OxxoMock())
+
+	t.Log(ord)
+
+	assert.Equal(t, len(op.DiscountLines), ord.DiscountLines.Total)
+	assert.Equal(t, op.DiscountLines[0].Amount, ord.DiscountLines.Data[0].Amount)
+	assert.Equal(t, op.DiscountLines[0].Code, ord.DiscountLines.Data[0].Code)
+	assert.Equal(t, op.DiscountLines[0].Type, ord.DiscountLines.Data[0].Type)
+	assert.NotEqual(t, nil, ord.DiscountLines.Data[0].ID)
+
+	assert.Equal(t, len(op.TaxLines), ord.TaxLines.Total)
+	assert.Equal(t, op.TaxLines[0].Amount, ord.TaxLines.Data[0].Amount)
+	assert.Equal(t, op.TaxLines[0].Description, ord.TaxLines.Data[0].Description)
+	assert.NotEqual(t, nil, ord.TaxLines.Data[0].ID)
+
+	assert.Equal(t, len(op.LineItems), ord.LineItems.Total)
+	assert.Equal(t, op.LineItems[0].Name, ord.LineItems.Data[0].Name)
+	assert.Equal(t, op.LineItems[0].Quantity, ord.LineItems.Data[0].Quantity)
+	assert.Equal(t, op.LineItems[0].UnitPrice, ord.LineItems.Data[0].UnitPrice)
+	assert.NotEqual(t, nil, ord.LineItems.Data[0].ID)
+
+	assert.Equal(t, op.ShippingContact.Phone, ord.ShippingContact.Phone)
+	assert.Equal(t, op.ShippingContact.Receiver, ord.ShippingContact.Receiver)
+	assert.Equal(t, op.ShippingContact.BetweenStreets, ord.ShippingContact.BetweenStreets)
+	assert.NotEqual(t, nil, ord.ShippingContact.ID)
+
+	//shipping address
+	assert.Equal(t, op.ShippingContact.Address.Street1, ord.ShippingContact.Address.Street1)
+	assert.Equal(t, op.ShippingContact.Address.Street2, ord.ShippingContact.Address.Street2)
+	assert.Equal(t, op.ShippingContact.Address.PostalCode, ord.ShippingContact.Address.PostalCode)
+
+	assert.Equal(t, op.CustomerInfo.Name, ord.CustomerInfo.Name)
+	assert.Equal(t, op.CustomerInfo.Email, ord.CustomerInfo.Email)
+	assert.Equal(t, op.CustomerInfo.Phone, ord.CustomerInfo.Phone)
+	assert.NotEqual(t, nil, ord.CustomerInfo.ID)
+
+	assert.Equal(t, op.Currency, ord.Currency)
+	assert.NotEqual(t, nil, ord.ID)
+
+	assert.Equal(t, "shipping_line", ord.ShippingLines.Data[0].Object)
+	assert.Equal(t, "discount_line", ord.DiscountLines.Data[0].Object)
+	assert.Equal(t, "tax_line", ord.TaxLines.Data[0].Object)
+	assert.Equal(t, "line_item", ord.LineItems.Data[0].Object)
+	assert.Equal(t, "shipping_contact", ord.ShippingContact.Object)
+	assert.Equal(t, "shipping_address", ord.ShippingContact.Address.Object)
+	assert.Equal(t, "customer_info", ord.CustomerInfo.Object)
+	assert.Equal(t, "order", ord.Object)
+
+	assert.Nil(t, err)
+}
