@@ -7,6 +7,7 @@ type LineItems struct {
 	Name      string `json:"name,omitempty"`
 	UnitPrice int    `json:"unit_price,omitempty"`
 	Quantity  int    `json:"quantity,omitempty"`
+	Deleted   bool   `json:"deleted,omitempty"`
 }
 
 //LineItemsParams should be response wrapper for api line_items endpoint

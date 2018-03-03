@@ -16,6 +16,10 @@ func RequestAPI(method string, url string, params ParamsConverter) ([]byte, *Err
 	req, _ := http.NewRequest(method, requestURL, bytes.NewBuffer(params.Bytes()))
 
 	setHeaders(req)
+	//TODO: FIX ME make a more readable way to distinguish between a tokenize request from others
+	if url == "/tokens" {
+		setAdditionalHeaders(req)
+	}
 
 	res, err := client.Do(req)
 
@@ -46,7 +50,17 @@ func setHeaders(r *http.Request) *http.Request {
 	r.Header.Set("User-Agent", "Conekta/v1 GoBindings/"+version)
 	r.Header.Set("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(APIKey)))
 	r.Header.Set("Content-Type", "application/json")
-	r.Header.Set("agent", "Conekta JavascriptBindings/1.0.0")
+
+	return r
+}
+
+// setAdditionalHeaders set req object (htttp.Request) with conekta required headers for CONEKTAJS
+func setAdditionalHeaders(r *http.Request) *http.Request {
+	r.Header.Set("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(PubliAPIKey)))
+	r.Header.Set("Conekta-Client-User-Agent", "{\"agent\":\"Conekta JavascriptBindings/0.3.0\"}")
+	r.Header.Set("RaiseHtmlError", "false")
+	r.Header.Set("Accept", "application/vnd.conekta-v0.3.0+json")
+
 	return r
 }
 

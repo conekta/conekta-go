@@ -103,7 +103,6 @@ func (p *DiscountLinesParams) Mock() *DiscountLinesParams {
 func (p *ShippingLinesParams) Mock() *ShippingLinesParams {
 	p.Amount = 1
 	p.Carrier = "Carrier"
-	p.Description = "Linea de envio"
 	p.Method = "Fedex"
 	p.TrackingNumber = "123000000001"
 	return p
@@ -130,6 +129,25 @@ func (p *OrderParams) Mock() *OrderParams {
 	return p
 }
 
+// MockWithoutCharges fills OrderParams with dummy data
+func (p *OrderParams) MockWithoutCharges() *OrderParams {
+	cp := &CustomerParams{}
+	li := &LineItemsParams{}
+	tl := &TaxLinesParams{}
+	sc := &ShippingContactParams{}
+	dl := &DiscountLinesParams{}
+	sl := &ShippingLinesParams{}
+
+	p.Currency = "MXN"
+	p.CustomerInfo = cp.MockMinimal()
+	p.LineItems = append(p.LineItems, li.Mock())
+	p.TaxLines = append(p.TaxLines, tl.Mock())
+	p.ShippingContact = sc.Mock()
+	p.DiscountLines = append(p.DiscountLines, dl.Mock())
+	p.ShippingLines = append(p.ShippingLines, sl.Mock())
+	return p
+}
+
 // OxxoMock fills OrderParams with dummy data
 func (p *OrderParams) OxxoMock() *OrderParams {
 	cp := &CustomerParams{}
@@ -148,5 +166,39 @@ func (p *OrderParams) OxxoMock() *OrderParams {
 	p.ShippingContact = sc.Mock()
 	p.DiscountLines = append(p.DiscountLines, dl.Mock())
 	p.ShippingLines = append(p.ShippingLines, sl.Mock())
+	return p
+}
+
+// MockWithoutDiscountLines fills OrderParams with dummy data
+func (p *OrderParams) MockWithoutDiscountLines() *OrderParams {
+	cp := &CustomerParams{}
+	li := &LineItemsParams{}
+	tl := &TaxLinesParams{}
+	sc := &ShippingContactParams{}
+	sl := &ShippingLinesParams{}
+
+	p.Currency = "MXN"
+	p.CustomerInfo = cp.MockMinimal()
+	p.LineItems = append(p.LineItems, li.Mock())
+	p.TaxLines = append(p.TaxLines, tl.Mock())
+	p.ShippingContact = sc.Mock()
+	p.ShippingLines = append(p.ShippingLines, sl.Mock())
+	return p
+}
+
+//Mock Fills token api response
+func (p *TokenParams) Mock() *TokenParams {
+	cp := &CardParams{}
+	p.Card = cp.Mock()
+	return p
+}
+
+//Mock fills TokenParams with dummy data
+func (p *CardParams) Mock() *CardParams {
+	p.Number = "4242424242424242"
+	p.Name = "Eduardo Enriquez"
+	p.ExpMonth = "12"
+	p.ExpYear = "2020"
+	p.Cvc = "123"
 	return p
 }

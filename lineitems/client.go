@@ -16,7 +16,7 @@ func Create(id string, p *conekta.LineItemsParams) (*conekta.LineItems, *conekta
 // For details see https://developers.conekta.com/api#update-Order
 func Update(orderID string, id string, p *conekta.LineItemsParams) (*conekta.LineItems, *conekta.Error) {
 	li := &conekta.LineItems{}
-	err := conekta.MakeRequest("PUT", "/orders/"+id+"/line_items/"+id, p, li)
+	err := conekta.MakeRequest("PUT", "/orders/"+orderID+"/line_items/"+id, p, li)
 	return li, err
 }
 

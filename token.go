@@ -1,13 +1,18 @@
 package conekta
 
-//TokenParams should be a struct of tokenization response
-type TokenParams struct {
+//CardParams should be a struct of tokenization response
+type CardParams struct {
 	Number       string              `json:"number,omitempty"`
 	Name         string              `json:"name,omitempty"`
 	ExpYear      string              `json:"exp_year,omitempty"`
 	ExpMonth     string              `json:"exp_month,omitempty"`
 	Cvc          string              `json:"cvc,omitempty"`
 	TokenAddress *TokenAddressParams `json:"address,omitempty"`
+}
+
+//TokenParams should be a struct of tokenization response
+type TokenParams struct {
+	Card *CardParams `json:"card,omitempty"`
 }
 
 //TokenAddressParams token return address as submodel of TokenParams
@@ -22,10 +27,15 @@ type TokenAddressParams struct {
 
 //Token is used when user tries to tokenize
 type Token struct {
-	ID       string `json:"id,omitempty"`
-	Object   string `json:"object,omitempty"`
-	Used     bool   `json:"used,omitempty"`
-	Livemode bool   `json:"livemode,omitempty"`
+	ID                 string `json:"id,omitempty"`
+	Object             string `json:"object,omitempty"`
+	Used               bool   `json:"used,omitempty"`
+	Livemode           bool   `json:"livemode,omitempty"`
+	Type               string `json:"type,omitempty"`
+	Message            string `json:"message,omitempty"`
+	MessageToPurchaser string `json:"message_to_purchaser,omitempty"`
+	ErrorCode          string `json:"error_code,omitempty"`
+	Param              string `json:"param,omitempty"`
 }
 
 //TokenList is a list of Token's

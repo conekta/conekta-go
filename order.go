@@ -3,6 +3,7 @@ package conekta
 //OrderParams returns api response object filled
 type OrderParams struct {
 	Currency        string                 `json:"currency,omitempty"`
+	PreAuth         bool                   `json:"pre_authorize,omitempty"`
 	CustomerInfo    *CustomerParams        `json:"customer_info,omitempty"`
 	LineItems       []*LineItemsParams     `json:"line_items,omitempty"`
 	TaxLines        []*TaxLinesParams      `json:"tax_lines,omitempty"`
@@ -23,6 +24,7 @@ type Order struct {
 	Currency        string             `json:"currency,omitempty"`
 	CreatedAt       int                `json:"created_at,omitempty"`
 	UpdatedAt       int                `json:"updated_at,omitempty"`
+	PreAuth         bool               `json:"pre_authorize,omitempty"`
 	Metadata        struct{}           `json:"metadata,omitempty"`
 	CustomerInfo    *Customer          `json:"customer_info,omitempty"`
 	ShippingContact *ShippingContact   `json:"shipping_contact,omitempty"`
@@ -30,7 +32,7 @@ type Order struct {
 	TaxLines        *TaxLinesList      `json:"tax_lines,omitempty"`
 	ShippingLines   *ShippingLinesList `json:"shipping_lines,omitempty"`
 	DiscountLines   *DiscountLinesList `json:"discount_lines,omitempty"`
-	ChargeParams    *ChargesList       `json:"charge,omitempty"`
+	Charges         *ChargesList       `json:"charges,omitempty"`
 }
 
 // Bytes converts a ChargeParams to []byte

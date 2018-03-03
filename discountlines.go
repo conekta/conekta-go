@@ -15,6 +15,7 @@ type DiscountLines struct {
 	Object   string `json:"object,omitempty"`
 	ID       string `json:"id,omitempty"`
 	ParentID string `json:"parent_id,omitempty"`
+	Deleted  bool   `json:"deleted,omitempty"`
 }
 
 //DiscountLinesList is a list of DiscountLines
@@ -24,6 +25,6 @@ type DiscountLinesList struct {
 }
 
 // Bytes converts a ChargeParams to []byte
-func (c *DiscountLines) Bytes() []byte {
+func (c *DiscountLinesParams) Bytes() []byte {
 	return paramsToBytes(c)
 }

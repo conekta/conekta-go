@@ -13,6 +13,7 @@ type TaxLines struct {
 	Amount      int    `json:"amount,omitempty"`
 	ParentID    string `json:"parent_id,omitempty"`
 	Object      string `json:"object,omitempty"`
+	Deleted     bool   `json:"deleted,omitempty"`
 }
 
 //TaxLinesList is a list of shippingLines

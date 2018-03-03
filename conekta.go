@@ -3,6 +3,9 @@ package conekta
 // TestKey is Conekta test key
 const TestKey = "key_ZLy4aP2szht1HqzkCezDEA"
 
+// TestPublic is Conekta test public key
+const TestPublic = "key_OfWoJc2fw6oEydKspmyr76Q"
+
 const (
 	apiBase    = "https://api.conekta.io"
 	apiVersion = "2.0.0"
@@ -12,6 +15,10 @@ const (
 // APIKey is Conekta private_key
 // For details see https://developers.conekta.com/api#authentication
 var APIKey string
+
+// PubliAPIKey is Conekta private_key
+// For details see https://developers.conekta.com/api#authentication
+var PubliAPIKey string
 
 // Locale is a settings for localization language
 var Locale string
