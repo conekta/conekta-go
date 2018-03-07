@@ -5,9 +5,9 @@ import (
 )
 
 // Create creates a new order
-func Create(p *conekta.OrderParams) (*conekta.Order, *conekta.Error) {
+func Create(p *conekta.OrderParams, customHeaders ...interface{}) (*conekta.Order, *conekta.Error) {
 	ord := &conekta.Order{}
-	err := conekta.MakeRequest("POST", "/orders", p, ord)
+	err := conekta.MakeRequest("POST", "/orders", p, ord, customHeaders...)
 	return ord, err
 }
 
