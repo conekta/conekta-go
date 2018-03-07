@@ -6,20 +6,17 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
+	"reflect"
 )
 
 // RequestAPI returns Conekta API response
-func RequestAPI(method string, url string, params ParamsConverter) ([]byte, *Error) {
+func RequestAPI(method string, url string, params ParamsConverter, customHeaders ...interface{}) ([]byte, *Error) {
 	requestURL := BuildURL(url)
 
 	client := &http.Client{}
 	req, _ := http.NewRequest(method, requestURL, bytes.NewBuffer(params.Bytes()))
 
-	setHeaders(req)
-	//TODO: FIX ME make a more readable way to distinguish between a tokenize request from others
-	if url == "/tokens" {
-		setAdditionalHeaders(req)
-	}
+	setHeaders(req, customHeaders...)
 
 	res, err := client.Do(req)
 
@@ -44,23 +41,23 @@ func BuildURL(url string) string {
 }
 
 // setHeader set req object (htttp.Request) with conekta required headers to auth and identify request
-func setHeaders(r *http.Request) *http.Request {
+func setHeaders(r *http.Request, customHeaders ...interface{}) *http.Request {
 	r.Header.Set("Accept", "application/vnd.conekta-v"+apiVersion+"+json")
 	r.Header.Set("Accept-Language", Locale)
 	r.Header.Set("User-Agent", "Conekta/v1 GoBindings/"+version)
 	r.Header.Set("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(APIKey)))
 	r.Header.Set("Content-Type", "application/json")
 
-	return r
-}
-
-// setAdditionalHeaders set req object (htttp.Request) with conekta required headers for CONEKTAJS
-func setAdditionalHeaders(r *http.Request) *http.Request {
-	r.Header.Set("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(PubliAPIKey)))
-	r.Header.Set("Conekta-Client-User-Agent", "{\"agent\":\"Conekta JavascriptBindings/0.3.0\"}")
-	r.Header.Set("RaiseHtmlError", "false")
-	r.Header.Set("Accept", "application/vnd.conekta-v0.3.0+json")
-
+	for _, v := range customHeaders {
+		cht := reflect.TypeOf(v).String()
+		if cht == "map[string]string" {
+			keys := reflect.ValueOf(v).MapKeys()
+			ch := v.(map[string]string)
+			for _, k := range keys {
+				r.Header.Set(k.String(), ch[k.String()])
+			}
+		}
+	}
 	return r
 }
 
@@ -68,8 +65,8 @@ func setAdditionalHeaders(r *http.Request) *http.Request {
 // it takes a method, endpoint, parameters and a reference struct of conekta's models like
 // &conekta.Customer{} and fills it with the response
 // if the response has a Conekta's error it returns it and keep empty the Conekta model
-func MakeRequest(method string, endpoint string, p ParamsConverter, v interface{}) *Error {
-	res, err := RequestAPI(method, endpoint, p)
+func MakeRequest(method string, endpoint string, p ParamsConverter, v interface{}, customHeaders ...interface{}) *Error {
+	res, err := RequestAPI(method, endpoint, p, customHeaders...)
 	if err != nil {
 		return err
 	}
