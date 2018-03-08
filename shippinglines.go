@@ -2,7 +2,7 @@ package conekta
 
 //ShippingLinesParams is the set of parameters that can be used when creating or updating a shipping contact.
 type ShippingLinesParams struct {
-	Amount         int    `json:"amount,omitempty"`
+	Amount         int64  `json:"amount,omitempty"`
 	TrackingNumber string `json:"tracking_number,omitempty"`
 	Carrier        string `json:"carrier,omitempty"`
 	Method         string `json:"method,omitempty"`
@@ -10,7 +10,7 @@ type ShippingLinesParams struct {
 
 //ShippingLines should be nested struct of order
 type ShippingLines struct {
-	Amount         int    `json:"amount,omitempty"`
+	Amount         int64  `json:"amount,omitempty"`
 	Carrier        string `json:"carrier,omitempty"`
 	Method         string `json:"method,omitempty"`
 	TrackingNumber string `json:"tracking_number,omitempty"`

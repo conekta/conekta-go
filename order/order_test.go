@@ -22,7 +22,7 @@ func TestCreate(t *testing.T) {
 	assert.NotEqual(t, nil, ord.DiscountLines.Data[0].ID)
 
 	assert.Equal(t, len(op.TaxLines), ord.TaxLines.Total)
-	assert.Equal(t, op.TaxLines[0].Amount, ord.TaxLines.Data[0].Amount)
+	assert.Equal(t, int64(op.TaxLines[0].Amount), ord.TaxLines.Data[0].Amount)
 	assert.Equal(t, op.TaxLines[0].Description, ord.TaxLines.Data[0].Description)
 	assert.NotEqual(t, nil, ord.TaxLines.Data[0].ID)
 
@@ -55,9 +55,9 @@ func TestCreate(t *testing.T) {
 	assert.NotEqual(t, nil, ord.Charges.Data[0].CreatedAt)
 	assert.Equal(t, "MXN", ord.Charges.Data[0].Currency)
 	assert.Equal(t, "charge", ord.Charges.Data[0].Object)
-	assert.Equal(t, 1151, ord.Charges.Data[0].Amount)
+	assert.Equal(t, int64(1151), ord.Charges.Data[0].Amount)
 	assert.Equal(t, "paid", ord.Charges.Data[0].Status)
-	assert.Equal(t, 328, ord.Charges.Data[0].Fee)
+	assert.Equal(t, int64(328), ord.Charges.Data[0].Fee)
 	assert.NotEqual(t, nil, ord.Charges.Data[0].Description)
 	assert.Equal(t, "", ord.Charges.Data[0].CustomerID)
 	assert.NotEqual(t, nil, ord.Charges.Data[0].OrderID)
@@ -93,7 +93,7 @@ func TestOxxoCreate(t *testing.T) {
 	assert.NotEqual(t, nil, ord.DiscountLines.Data[0].ID)
 	//tax lines
 	assert.Equal(t, len(op.TaxLines), ord.TaxLines.Total)
-	assert.Equal(t, op.TaxLines[0].Amount, ord.TaxLines.Data[0].Amount)
+	assert.Equal(t, int64(op.TaxLines[0].Amount), ord.TaxLines.Data[0].Amount)
 	assert.Equal(t, op.TaxLines[0].Description, ord.TaxLines.Data[0].Description)
 	assert.NotEqual(t, nil, ord.TaxLines.Data[0].ID)
 
@@ -129,9 +129,9 @@ func TestOxxoCreate(t *testing.T) {
 	assert.Equal(t, "MXN", ord.Charges.Data[0].Currency)
 	assert.Equal(t, "charge", ord.Charges.Data[0].Object)
 	assert.Equal(t, "", ord.Charges.Data[0].CustomerID)
-	assert.Equal(t, 1151, ord.Charges.Data[0].Amount)
+	assert.Equal(t, int64(1151), ord.Charges.Data[0].Amount)
 	assert.Equal(t, "pending_payment", ord.Charges.Data[0].Status)
-	assert.Equal(t, 46, ord.Charges.Data[0].Fee)
+	assert.Equal(t, int64(46), ord.Charges.Data[0].Fee)
 	assert.NotEqual(t, nil, ord.Charges.Data[0].Description)
 	assert.Equal(t, "oxxo", ord.Charges.Data[0].PaymentMethod.Type)
 	assert.NotEqual(t, nil, ord.Charges.Data[0].PaymentMethod.Reference)

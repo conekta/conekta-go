@@ -9,7 +9,7 @@ type ChargeParams struct {
 type PaymentMethodParams struct {
 	Type      string `json:"type,omitempty"`
 	TokenID   string `json:"token_id,omitempty"`
-	ExpiresAt int    `json:"expires_at,omitempty"`
+	ExpiresAt int64  `json:"expires_at,omitempty"`
 }
 
 //Charge should be a struct of the api response
@@ -17,12 +17,12 @@ type Charge struct {
 	ID            string         `json:"id,omitempty"`
 	Object        string         `json:"object,omitempty"`
 	Status        string         `json:"status,omitempty"`
-	Amount        int            `json:"amount,omitempty"`
-	Fee           int            `json:"fee,omitempty"`
+	Amount        int64          `json:"amount,omitempty"`
+	Fee           int64          `json:"fee,omitempty"`
 	OrderID       string         `json:"order_id,omitempty"`
 	CustomerID    string         `json:"customer_id,omitempty"`
 	Livemode      bool           `json:"livemode,omitempty"`
-	CreatedAt     int            `json:"created_at,omitempty"`
+	CreatedAt     int64          `json:"created_at,omitempty"`
 	Currency      string         `json:"currency,omitempty"`
 	Description   string         `json:"description,omitempty"`
 	PaymentMethod *PaymentMethod `json:"payment_method,omitempty"`
@@ -33,7 +33,7 @@ type PaymentMethod struct {
 	ID          string          `json:"id,omitempty"`
 	Object      string          `json:"object,omitempty"`
 	Type        string          `json:"type,omitempty"`
-	CreatedAt   int             `json:"created_at,omitempty"`
+	CreatedAt   int64           `json:"created_at,omitempty"`
 	Last4       string          `json:"last4,omitempty"`
 	Bin         string          `json:"bin,omitempty"`
 	ExpMonth    string          `json:"exp_month,omitempty"`
@@ -45,7 +45,7 @@ type PaymentMethod struct {
 	Reference   string          `json:"reference,omitempty"`
 	StoreName   string          `json:"store_name,omitempty"`
 	ServiceName string          `json:"service_name,omitempty"`
-	ExpiresAt   int             `json:"expires_at,omitempty"`
+	ExpiresAt   int64           `json:"expires_at,omitempty"`
 	Description string          `json:"description,omitempty"`
 	Address     *DefaultAddress `json:"address,omitempty"`
 }

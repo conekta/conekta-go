@@ -3,14 +3,14 @@ package conekta
 //DiscountLinesParams is the object to fill after api call
 type DiscountLinesParams struct {
 	Code   string `json:"code,omitempty"`
-	Amount int    `json:"amount,omitempty"`
+	Amount int64  `json:"amount,omitempty"`
 	Type   string `json:"type,omitempty"`
 }
 
 //DiscountLines should be nested struct of order
 type DiscountLines struct {
 	Code     string `json:"code,omitempty"`
-	Amount   int    `json:"amount,omitempty"`
+	Amount   int64  `json:"amount,omitempty"`
 	Type     string `json:"type,omitempty"`
 	Object   string `json:"object,omitempty"`
 	ID       string `json:"id,omitempty"`

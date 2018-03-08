@@ -80,7 +80,7 @@ func (p *PaymentMethodParams) Mock() *PaymentMethodParams {
 // OxxoMock fills PaymentMethodParams with dummy data
 func (p *PaymentMethodParams) OxxoMock() *PaymentMethodParams {
 	p.Type = "oxxo_cash"
-	p.ExpiresAt = int(time.Now().AddDate(0, 0, 1).Unix())
+	p.ExpiresAt = time.Now().AddDate(0, 0, 1).Unix()
 	return p
 }
 

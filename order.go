@@ -18,12 +18,12 @@ type Order struct {
 	ID              string             `json:"id,omitempty"`
 	Object          string             `json:"object,omitempty"`
 	Livemode        bool               `json:"livemode,omitempty"`
-	Amount          int                `json:"amount,omitempty"`
-	AmountRefunded  int                `json:"amount_refunded,omitempty"`
+	Amount          int64              `json:"amount,omitempty"`
+	AmountRefunded  int64              `json:"amount_refunded,omitempty"`
 	PaymentStatus   string             `json:"payment_status,omitempty"`
 	Currency        string             `json:"currency,omitempty"`
-	CreatedAt       int                `json:"created_at,omitempty"`
-	UpdatedAt       int                `json:"updated_at,omitempty"`
+	CreatedAt       int64              `json:"created_at,omitempty"`
+	UpdatedAt       int64              `json:"updated_at,omitempty"`
 	PreAuth         bool               `json:"pre_authorize,omitempty"`
 	Metadata        struct{}           `json:"metadata,omitempty"`
 	CustomerInfo    *Customer          `json:"customer_info,omitempty"`

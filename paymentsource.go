@@ -23,7 +23,7 @@ type PaymentSource struct {
 type PaymentSourceCreateParams struct {
 	TokenID     string `json:"token_id,omitempty"`
 	PaymentType string `json:"type,omitempty"`
-	ExpiresAt   int    `json:"expires_at,omitempty"`
+	ExpiresAt   int64  `json:"expires_at,omitempty"`
 }
 
 // PaymentSourceUpdateParams is the set of parameters that can be used when update a payment source.

@@ -24,7 +24,7 @@ func TestCreate(t *testing.T) {
 	tlp := &conekta.TaxLinesParams{}
 	tl, err := Create(ord.ID, tlp.Mock())
 
-	assert.Equal(t, tl.Amount, 160)
+	assert.Equal(t, tl.Amount, int64(160))
 	assert.Equal(t, tl.Description, "IVA")
 	assert.Nil(t, err)
 }
