@@ -30,24 +30,25 @@ type Charge struct {
 
 //PaymentMethod should be a struct of the api response
 type PaymentMethod struct {
-	ID          string          `json:"id,omitempty"`
-	Object      string          `json:"object,omitempty"`
-	Type        string          `json:"type,omitempty"`
-	CreatedAt   int64           `json:"created_at,omitempty"`
-	Last4       string          `json:"last4,omitempty"`
-	Bin         string          `json:"bin,omitempty"`
-	ExpMonth    string          `json:"exp_month,omitempty"`
-	ExpYear     string          `json:"exp_year,omitempty"`
-	Brand       string          `json:"brand,omitempty"`
-	Name        string          `json:"name,omitempty"`
-	ParentID    string          `json:"parent_id,omitempty"`
-	Default     bool            `json:"default,omitempty"`
-	Reference   string          `json:"reference,omitempty"`
-	StoreName   string          `json:"store_name,omitempty"`
-	ServiceName string          `json:"service_name,omitempty"`
-	ExpiresAt   int64           `json:"expires_at,omitempty"`
-	Description string          `json:"description,omitempty"`
-	Address     *DefaultAddress `json:"address,omitempty"`
+	ID            string          `json:"id,omitempty"`
+	Object        string          `json:"object,omitempty"`
+	Type          string          `json:"type,omitempty"`
+	CreatedAt     int64           `json:"created_at,omitempty"`
+	Last4         string          `json:"last4,omitempty"`
+	Bin           string          `json:"bin,omitempty"`
+	ExpMonth      string          `json:"exp_month,omitempty"`
+	ExpYear       string          `json:"exp_year,omitempty"`
+	Brand         string          `json:"brand,omitempty"`
+	Name          string          `json:"name,omitempty"`
+	ParentID      string          `json:"parent_id,omitempty"`
+	Default       bool            `json:"default,omitempty"`
+	Reference     string          `json:"reference,omitempty"`
+	StoreName     string          `json:"store_name,omitempty"`
+	ServiceName   string          `json:"service_name,omitempty"`
+	ServiceNumber string          `json:"service_number,omitempty"`
+	ExpiresAt     int64           `json:"expires_at,omitempty"`
+	Description   string          `json:"description,omitempty"`
+	Address       *DefaultAddress `json:"address,omitempty"`
 }
 
 //DefaultAddress should be nested struct of PaymentMethod
