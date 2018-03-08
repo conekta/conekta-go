@@ -202,3 +202,11 @@ func (p *CardParams) Mock() *CardParams {
 	p.Cvc = "123"
 	return p
 }
+
+// Mock fills WebhookParams with dummy data
+func (p *WebhookParams) Mock() *WebhookParams {
+	p.URL = "c.testgowebhook.com"
+	p.DevelopmentEnabled = true
+	p.ProductionEnabled = false
+	return p
+}
