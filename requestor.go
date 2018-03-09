@@ -10,7 +10,7 @@ import (
 )
 
 // RequestAPI returns Conekta API response
-func RequestAPI(method string, url string, params ParamsConverter, customHeaders ...interface{}) ([]byte, *Error) {
+func RequestAPI(method string, url string, params ParamsConverter, customHeaders ...interface{}) ([]byte, error) {
 	requestURL := BuildURL(url)
 
 	client := &http.Client{}
@@ -65,7 +65,7 @@ func setHeaders(r *http.Request, customHeaders ...interface{}) *http.Request {
 // it takes a method, endpoint, parameters and a reference struct of conekta's models like
 // &conekta.Customer{} and fills it with the response
 // if the response has a Conekta's error it returns it and keep empty the Conekta model
-func MakeRequest(method string, endpoint string, p ParamsConverter, v interface{}, customHeaders ...interface{}) *Error {
+func MakeRequest(method string, endpoint string, p ParamsConverter, v interface{}, customHeaders ...interface{}) error {
 	res, err := RequestAPI(method, endpoint, p, customHeaders...)
 	if err != nil {
 		return err

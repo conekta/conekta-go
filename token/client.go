@@ -8,7 +8,7 @@ import (
 
 //Create create discount line insde a order
 // For details see https://developers.conekta.com/api#create-discount-line
-func Create(p *conekta.TokenParams) (*conekta.Token, *conekta.Error) {
+func Create(p *conekta.TokenParams) (*conekta.Token, error) {
 	tk := &conekta.Token{}
 	h := map[string]string{
 		"Authorization":             "Basic " + base64.StdEncoding.EncodeToString([]byte(conekta.PubliAPIKey)),

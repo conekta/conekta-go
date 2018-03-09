@@ -2,6 +2,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ErrorDetails gives especific information about an error
@@ -19,8 +20,8 @@ type Error struct {
 	Details   []ErrorDetails `json:"details,omitempty"`
 }
 
-func getConectionError() *Error {
-	return &Error{
+func getConectionError() Error {
+	return Error{
 		ErrorType: "error.requestor.connection_purchaser",
 		Details: []ErrorDetails{
 			{
@@ -30,8 +31,12 @@ func getConectionError() *Error {
 	}
 }
 
-func getAPIError(b []byte) *Error {
+func getAPIError(b []byte) Error {
 	e := Error{}
 	json.Unmarshal(b, &e)
-	return &e
+	return e
+}
+
+func (e Error) Error() string {
+	return fmt.Sprintf("%v: %v", e.ErrorType, e.Details)
 }

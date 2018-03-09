@@ -13,12 +13,12 @@ func init() {
 	conekta.APIKey = conekta.TestKey
 }
 
-func CreateOrder() (*conekta.Order, *conekta.Error) {
+func CreateOrder() (*conekta.Order, error) {
 	op := &conekta.OrderParams{}
 	ord, err := order.Create(op.Mock())
 	return ord, err
 }
-func CreateOrderWithoutCharges() (*conekta.Order, *conekta.Error) {
+func CreateOrderWithoutCharges() (*conekta.Order, error) {
 	op := &conekta.OrderParams{}
 	ord, err := order.Create(op.MockWithoutCharges())
 	return ord, err
@@ -46,7 +46,7 @@ func TestCreateError(t *testing.T) {
 	ord, _ := CreateOrderWithoutCharges()
 	_, err := Create(ord.ID, &conekta.ChargeParams{})
 	assert.NotNil(t, err)
-	assert.Equal(t, err.ErrorType, "parameter_validation_error")
+	assert.Equal(t, err.(conekta.Error).ErrorType, "parameter_validation_error")
 }
 
 func TestFind(t *testing.T) {
@@ -69,5 +69,5 @@ func TestFindError(t *testing.T) {
 	ord, _ := CreateOrderWithoutCharges()
 	_, err := Find(ord.ID, "123")
 	assert.NotNil(t, err)
-	assert.Equal(t, err.ErrorType, "resource_not_found_error")
+	assert.Equal(t, err.(conekta.Error).ErrorType, "resource_not_found_error")
 }

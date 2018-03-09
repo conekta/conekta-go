@@ -19,7 +19,7 @@ func createCustomer() *conekta.Customer {
 	return cust
 }
 
-func createCustomerSC() (*conekta.ShippingContact, *conekta.Customer, *conekta.Error) {
+func createCustomerSC() (*conekta.ShippingContact, *conekta.Customer, error) {
 	cust := createCustomer()
 	scp := &conekta.ShippingContactParams{}
 	sc, err := Create(cust.ID, scp.Mock())
@@ -38,7 +38,7 @@ func TestCreateFromCustomerError(t *testing.T) {
 	cust := createCustomer()
 	_, err := Create(cust.ID, &conekta.ShippingContactParams{})
 	assert.NotNil(t, err)
-	assert.Equal(t, err.ErrorType, "parameter_validation_error")
+	assert.Equal(t, err.(conekta.Error).ErrorType, "parameter_validation_error")
 }
 
 func TestUpdateFromCustomer(t *testing.T) {
@@ -57,7 +57,7 @@ func TestUpdateFromCustomerError(t *testing.T) {
 	scp.Phone = "12"
 	_, err := Update(cust.ID, sc.ID, scp)
 	assert.NotNil(t, err)
-	assert.Equal(t, err.ErrorType, "parameter_validation_error")
+	assert.Equal(t, err.(conekta.Error).ErrorType, "parameter_validation_error")
 }
 
 func TestFindFromCustomer(t *testing.T) {
@@ -71,7 +71,7 @@ func TestFindFromCustomerError(t *testing.T) {
 	c := createCustomer()
 	_, err := Find(c.ID, "123")
 	assert.NotNil(t, err)
-	assert.Equal(t, err.ErrorType, "resource_not_found_error")
+	assert.Equal(t, err.(conekta.Error).ErrorType, "resource_not_found_error")
 }
 
 func TestDeleteFromCustomer(t *testing.T) {
@@ -85,7 +85,7 @@ func TestDeleteFromCustomerError(t *testing.T) {
 	c := createCustomer()
 	_, err := Delete(c.ID, "123")
 	assert.NotNil(t, err)
-	assert.Equal(t, err.ErrorType, "resource_not_found_error")
+	assert.Equal(t, err.(conekta.Error).ErrorType, "resource_not_found_error")
 }
 
 func TestAllFromCustomer(t *testing.T) {

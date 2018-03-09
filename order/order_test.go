@@ -171,8 +171,7 @@ func TestCapture(t *testing.T) {
 	res, err := Capture(ord.ID)
 	assert.Equal(t, false, res.PreAuth)
 	assert.Equal(t, "paid", res.PaymentStatus)
-	assert.NotEqual(t, nil, err)
-
+	assert.Nil(t, err)
 }
 
 func TestFind(t *testing.T) {
@@ -180,5 +179,5 @@ func TestFind(t *testing.T) {
 	ord, _ := Create(op.Mock())
 	res, err := Find(ord.ID)
 	assert.Equal(t, ord.ID, res.ID)
-	assert.NotEqual(t, nil, err)
+	assert.Nil(t, err)
 }

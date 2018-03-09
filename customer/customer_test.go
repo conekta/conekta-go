@@ -26,7 +26,7 @@ func TestCreate(t *testing.T) {
 func TestCreateError(t *testing.T) {
 	_, err := Create(&conekta.CustomerParams{})
 	assert.NotNil(t, err)
-	assert.Equal(t, err.ErrorType, "parameter_validation_error")
+	assert.Equal(t, err.(conekta.Error).ErrorType, "parameter_validation_error")
 }
 
 func TestUpdate(t *testing.T) {
@@ -46,7 +46,7 @@ func TestUpdateError(t *testing.T) {
 	cp.Email = email
 	_, err := Update(cust.ID, cp)
 	assert.NotNil(t, err)
-	assert.Equal(t, err.ErrorType, "parameter_validation_error")
+	assert.Equal(t, err.(conekta.Error).ErrorType, "parameter_validation_error")
 }
 
 func TestFind(t *testing.T) {
@@ -61,7 +61,7 @@ func TestFind(t *testing.T) {
 func TestFindError(t *testing.T) {
 	_, err := Find("122")
 	assert.NotNil(t, err)
-	assert.Equal(t, err.ErrorType, "resource_not_found_error")
+	assert.Equal(t, err.(conekta.Error).ErrorType, "resource_not_found_error")
 }
 
 func TestDelete(t *testing.T) {
@@ -75,7 +75,7 @@ func TestDelete(t *testing.T) {
 func TestDeleteError(t *testing.T) {
 	_, err := Delete("122")
 	assert.NotNil(t, err)
-	assert.Equal(t, err.ErrorType, "resource_not_found_error")
+	assert.Equal(t, err.(conekta.Error).ErrorType, "resource_not_found_error")
 }
 
 func TestAll(t *testing.T) {

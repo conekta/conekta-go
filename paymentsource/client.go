@@ -6,7 +6,7 @@ import (
 
 // Create creates a new payment source
 // For details see https://developers.conekta.com/api#payment-source.
-func Create(custID string, p *conekta.PaymentSourceCreateParams) (*conekta.PaymentSource, *conekta.Error) {
+func Create(custID string, p *conekta.PaymentSourceCreateParams) (*conekta.PaymentSource, error) {
 	ps := &conekta.PaymentSource{}
 	err := conekta.MakeRequest("POST", "/customers/"+custID+"/payment_sources", p, ps)
 	return ps, err
@@ -14,7 +14,7 @@ func Create(custID string, p *conekta.PaymentSourceCreateParams) (*conekta.Payme
 
 // Update updates a payment source
 // For details see https://developers.conekta.com/api#update-shipping-contact
-func Update(custID string, id string, p *conekta.PaymentSourceUpdateParams) (*conekta.PaymentSource, *conekta.Error) {
+func Update(custID string, id string, p *conekta.PaymentSourceUpdateParams) (*conekta.PaymentSource, error) {
 	ps := &conekta.PaymentSource{}
 	err := conekta.MakeRequest("PUT", "/customers/"+custID+"/payment_sources/"+id, p, ps)
 	return ps, err
@@ -22,21 +22,21 @@ func Update(custID string, id string, p *conekta.PaymentSourceUpdateParams) (*co
 
 // Delete deletes a payment source
 // For details see https://developers.conekta.com/api#delete-payment-source.
-func Delete(custID string, id string) (*conekta.PaymentSource, *conekta.Error) {
+func Delete(custID string, id string) (*conekta.PaymentSource, error) {
 	ps := &conekta.PaymentSource{}
 	err := conekta.MakeRequest("DELETE", "/customers/"+custID+"/payment_sources/"+id, &conekta.EmptyParams{}, ps)
 	return ps, err
 }
 
 // Find gets a payment source
-func Find(custID string, id string) (*conekta.PaymentSource, *conekta.Error) {
+func Find(custID string, id string) (*conekta.PaymentSource, error) {
 	ps := &conekta.PaymentSource{}
 	err := conekta.MakeRequest("GET", "/customers/"+custID+"/payment_sources/"+id, &conekta.EmptyParams{}, ps)
 	return ps, err
 }
 
 // All gets all payment sources from a customer
-func All(custID string) (*conekta.PaymentSourceList, *conekta.Error) {
+func All(custID string) (*conekta.PaymentSourceList, error) {
 	ps := &conekta.PaymentSourceList{}
 	err := conekta.MakeRequest("GET", "/customers/"+custID+"/payment_sources/", &conekta.EmptyParams{}, ps)
 	return ps, err

@@ -12,7 +12,7 @@ import (
 func init() {
 	conekta.APIKey = conekta.TestKey
 }
-func CreateOrderWithoutCharges() (*conekta.Order, *conekta.Error) {
+func CreateOrderWithoutCharges() (*conekta.Order, error) {
 	op := &conekta.OrderParams{}
 	ord, err := order.Create(op.MockWithoutCharges())
 	return ord, err
@@ -37,7 +37,7 @@ func TestCreateError(t *testing.T) {
 	_, err := Create(ord.ID, slp)
 
 	assert.NotNil(t, err)
-	assert.Equal(t, err.ErrorType, "parameter_validation_error")
+	assert.Equal(t, err.(conekta.Error).ErrorType, "parameter_validation_error")
 }
 
 func TestUpdate(t *testing.T) {
@@ -57,7 +57,7 @@ func TestUpdateError(t *testing.T) {
 	_, err := Update(ord.ID, ord.ShippingLines.Data[0].ID, slp)
 
 	assert.NotNil(t, err)
-	assert.Equal(t, err.ErrorType, "parameter_validation_error")
+	assert.Equal(t, err.(conekta.Error).ErrorType, "parameter_validation_error")
 
 }
 
@@ -69,5 +69,5 @@ func TestDelete(t *testing.T) {
 func TestDeleteError(t *testing.T) {
 	ord, _ := CreateOrderWithoutCharges()
 	_, err := Delete(ord.ID, "123")
-	assert.Equal(t, err.ErrorType, "resource_not_found_error")
+	assert.Equal(t, err.(conekta.Error).ErrorType, "resource_not_found_error")
 }
