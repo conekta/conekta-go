@@ -181,3 +181,16 @@ func TestFind(t *testing.T) {
 	assert.Equal(t, ord.ID, res.ID)
 	assert.Nil(t, err)
 }
+
+func TestCancel(t *testing.T) {
+	op := &conekta.OrderParams{}
+	ord, _ := Create(op.OxxoMock())
+	res, err := Cancel(ord.ID)
+
+	assert.NotNil(t, res.ID)
+	assert.Equal(t, ord.ID, res.ID)
+	assert.Equal(t, "canceled", res.PaymentStatus)
+	assert.Equal(t, "canceled", res.Charges.Data[0].Status)
+	assert.Nil(t, err)
+
+}

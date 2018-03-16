@@ -26,6 +26,13 @@ func Capture(id string) (*conekta.Order, error) {
 	return ord, err
 }
 
+// Cancel cancels only a oxxo Order
+func Cancel(orderID string) (*conekta.Order, error) {
+	ord := &conekta.Order{}
+	err := conekta.MakeRequest("POST", "/orders/"+orderID+"/cancel", &conekta.OrderParams{}, ord)
+	return ord, err
+}
+
 // Find gets a order by id
 func Find(id string) (*conekta.Order, error) {
 	ord := &conekta.Order{}
