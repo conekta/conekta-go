@@ -35,6 +35,7 @@ type Token struct {
 	Message            string `json:"message,omitempty"`
 	MessageToPurchaser string `json:"message_to_purchaser,omitempty"`
 	ErrorCode          string `json:"error_code,omitempty"`
+	Code               string `json:"code,omitempty"`
 	Param              string `json:"param,omitempty"`
 }
 

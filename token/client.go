@@ -16,6 +16,19 @@ func Create(p *conekta.TokenParams) (*conekta.Token, error) {
 		"RaiseHtmlError":            "false",
 		"Accept":                    "application/vnd.conekta-v0.3.0+json",
 	}
-	err := conekta.MakeRequest("POST", "/tokens", p, tk, h)
-	return tk, err
+	conekta.MakeRequest("POST", "/tokens", p, tk, h)
+	if tk.Object == "error" {
+		return nil, &conekta.Error{
+			ErrorType: tk.Type,
+			Details: []conekta.ErrorDetails{
+				{
+					Message:            tk.Message,
+					MessageToPurchaser: tk.MessageToPurchaser,
+					Param:              tk.Param,
+					Code:               tk.Code,
+				},
+			},
+		}
+	}
+	return tk, nil
 }
