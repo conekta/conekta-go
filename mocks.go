@@ -186,14 +186,14 @@ func (p *OrderParams) MockWithoutDiscountLines() *OrderParams {
 	return p
 }
 
-//Mock Fills token api response
+// Mock Fills token api response
 func (p *TokenParams) Mock() *TokenParams {
 	cp := &CardParams{}
 	p.Card = cp.Mock()
 	return p
 }
 
-//Mock fills TokenParams with dummy data
+// Mock fills TokenParams with dummy data
 func (p *CardParams) Mock() *CardParams {
 	p.Number = "4242424242424242"
 	p.Name = "Eduardo Enriquez"
@@ -208,5 +208,37 @@ func (p *WebhookParams) Mock() *WebhookParams {
 	p.URL = "c.testgowebhook.com"
 	p.DevelopmentEnabled = true
 	p.ProductionEnabled = false
+	return p
+}
+
+// Mock fills PayeeParams
+func (p *PayeeParams) Mock() *PayeeParams {
+	pba := &PayeeBillingAddressParams{}
+	p.Name = "Eduardo Enriquez"
+	p.Email = "interfaces@conekta.com"
+	p.Phone = "+5255555555"
+	p.BillingAddress = pba.Mock()
+	return p
+}
+
+// Mock fills PayeeBillingAdressParams
+func (p *PayeeBillingAddressParams) Mock() *PayeeBillingAddressParams {
+	p.CompanyName = "Bandai"
+	p.TaxID = "tax123"
+	p.Street1 = "calle 1"
+	p.Street2 = "calle 2"
+	p.Street3 = "calle 3"
+	p.City = "Cuauhtemoc"
+	p.State = "DF"
+	p.Country = "MX"
+	p.PostalCode = "06100"
+	return p
+}
+
+// Mock fills DestinationParams
+func (p *DestinationParams) Mock() *DestinationParams {
+	p.Type = "bank_account"
+	p.AccountNumber = "072225008217746674"
+	p.AccountHolderName = "J D - Radcorp"
 	return p
 }
