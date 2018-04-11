@@ -10,7 +10,7 @@ type PayeeParams struct {
 
 // PayeeBillingAddressParams describes billing address of Payee object
 type PayeeBillingAddressParams struct {
-	CompanyName string `json:"company_id,omitempty"`
+	CompanyName string `json:"company_name,omitempty"`
 	TaxID       string `json:"tax_id,omitempty"`
 	Street1     string `json:"street1,omitempty"`
 	Street2     string `json:"street2,omitempty"`

@@ -242,3 +242,10 @@ func (p *DestinationParams) Mock() *DestinationParams {
 	p.AccountHolderName = "J D - Radcorp"
 	return p
 }
+
+// Mock fills TransferParams
+func (p *TransferParams) Mock() *TransferParams {
+	p.Amount = 5000
+	p.Currency = "MXN"
+	return p
+}
