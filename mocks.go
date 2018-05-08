@@ -249,3 +249,9 @@ func (p *TransferParams) Mock() *TransferParams {
 	p.Currency = "MXN"
 	return p
 }
+
+// Mock fills OrderRefundParams
+func (p *OrderRefundParams) Mock() *OrderRefundParams {
+	p.Reason = OrderRefundRequestedByClient
+	return p
+}

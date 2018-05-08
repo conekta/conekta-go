@@ -48,3 +48,10 @@ func Where(params interface{}) (*conekta.OrderList, error) {
 	err := conekta.MakeRequest("GET", "/orders?"+v.Encode(), &conekta.OrderParams{}, ord)
 	return ord, err
 }
+
+// Refund refund an order
+func Refund(orderID string, params *conekta.OrderRefundParams) (*conekta.Order, error) {
+	ord := &conekta.Order{}
+	err := conekta.MakeRequest("POST", "/orders/"+orderID+"/refund", params, ord)
+	return ord, err
+}

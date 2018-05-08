@@ -209,3 +209,14 @@ func TestCancel(t *testing.T) {
 	assert.Nil(t, err)
 
 }
+
+func TestRefund(t *testing.T) {
+	op := &conekta.OrderParams{}
+	ord, _ := Create(op.Mock())
+
+	rp := &conekta.OrderRefundParams{}
+	res, err := Refund(ord.ID, rp.Mock())
+
+	assert.Equal(t, "refunded", res.PaymentStatus)
+	assert.Nil(t, err)
+}

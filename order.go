@@ -1,5 +1,24 @@
 package conekta
 
+const (
+	// OrderRefundRequestedByClient is a reason for refund
+	OrderRefundRequestedByClient = "requested_by_client"
+	// OrderRefundCannotBeFulfilled is a reason for refund
+	OrderRefundCannotBeFulfilled = "cannot_be_fulfilled"
+	// OrderRefundDuplicatedTransaction is a reason for refund
+	OrderRefundDuplicatedTransaction = "duplicated_transaction"
+	// OrderRefundSuspectedFraud is a reason for refund
+	OrderRefundSuspectedFraud = "suspected_fraud"
+	// OrderRefundOther is a reason for refund
+	OrderRefundOther = "other"
+)
+
+// OrderRefundParams returns api response object filled
+type OrderRefundParams struct {
+	Reason string `json:"reason,omitempty"`
+	Amount int    `json:"amount,omitempty"`
+}
+
 //OrderParams returns api response object filled
 type OrderParams struct {
 	Currency        string                 `json:"currency,omitempty"`
@@ -13,7 +32,7 @@ type OrderParams struct {
 	Charges         []*ChargeParams        `json:"charges,omitempty"`
 }
 
-//Order should be a struct of the api response
+// Order should be a struct of the api response
 type Order struct {
 	ID              string             `json:"id,omitempty"`
 	Object          string             `json:"object,omitempty"`
@@ -35,7 +54,7 @@ type Order struct {
 	Charges         *ChargesList       `json:"charges,omitempty"`
 }
 
-//OrderList is a list of shippingLines
+// OrderList is a list of shippingLines
 type OrderList struct {
 	ListMeta
 	Data []*Order `json:"data,omitempty"`
@@ -43,5 +62,10 @@ type OrderList struct {
 
 // Bytes converts a ChargeParams to []byte
 func (c *OrderParams) Bytes() []byte {
+	return paramsToBytes(c)
+}
+
+// Bytes converts a OrderRefundParams to []byte
+func (c *OrderRefundParams) Bytes() []byte {
 	return paramsToBytes(c)
 }
