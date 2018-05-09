@@ -220,3 +220,30 @@ func TestRefund(t *testing.T) {
 	assert.Equal(t, "refunded", res.PaymentStatus)
 	assert.Nil(t, err)
 }
+
+func TestVoid(t *testing.T) {
+	op := &conekta.OrderParams{
+		PreAuth: true,
+	}
+	ord, _ := Create(op.Mock())
+	res, err := Void(ord.ID)
+
+	assert.Equal(t, "voided", res.PaymentStatus)
+	assert.Nil(t, err)
+}
+
+func TestVoidError(t *testing.T) {
+	op := &conekta.OrderParams{}
+	ord, _ := Create(op.Mock())
+	_, err := Void(ord.ID)
+
+	assert.NotNil(t, err)
+	assert.Equal(t, "precondition_required_error", err.(conekta.Error).ErrorType)
+}
+
+func TestVoidNotFound(t *testing.T) {
+	_, err := Void("123")
+
+	assert.NotNil(t, err)
+	assert.Equal(t, "resource_not_found_error", err.(conekta.Error).ErrorType)
+}

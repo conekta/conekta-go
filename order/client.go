@@ -55,3 +55,10 @@ func Refund(orderID string, params *conekta.OrderRefundParams) (*conekta.Order, 
 	err := conekta.MakeRequest("POST", "/orders/"+orderID+"/refund", params, ord)
 	return ord, err
 }
+
+// Void voids an order
+func Void(orderID string) (*conekta.Order, error) {
+	ord := &conekta.Order{}
+	err := conekta.MakeRequest("POST", "/orders/"+orderID+"/void", &conekta.EmptyParams{}, ord)
+	return ord, err
+}
