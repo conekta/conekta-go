@@ -16,7 +16,7 @@ const (
 // OrderRefundParams returns api response object filled
 type OrderRefundParams struct {
 	Reason string `json:"reason,omitempty"`
-	Amount int    `json:"amount,omitempty"`
+	Amount int64  `json:"amount,omitempty"`
 }
 
 //OrderParams returns api response object filled
