@@ -45,13 +45,19 @@ type Order struct {
 	UpdatedAt       int64              `json:"updated_at,omitempty"`
 	PreAuth         bool               `json:"pre_authorize,omitempty"`
 	Metadata        struct{}           `json:"metadata,omitempty"`
-	CustomerInfo    *Customer          `json:"customer_info,omitempty"`
+	CustomerInfo    *CustomerInfo      `json:"customer_info,omitempty"`
 	ShippingContact *ShippingContact   `json:"shipping_contact,omitempty"`
 	LineItems       *LineItemsList     `json:"line_items,omitempty"`
 	TaxLines        *TaxLinesList      `json:"tax_lines,omitempty"`
 	ShippingLines   *ShippingLinesList `json:"shipping_lines,omitempty"`
 	DiscountLines   *DiscountLinesList `json:"discount_lines,omitempty"`
 	Charges         *ChargesList       `json:"charges,omitempty"`
+}
+
+// CustomerInfo describes customer info
+type CustomerInfo struct {
+	CustomerID string `json:"customer_id,omitempty"`
+	*Customer
 }
 
 // OrderList is a list of shippingLines

@@ -6,7 +6,9 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	conekta "github.com/conekta/conekta-go"
+	"github.com/conekta/conekta-go/customer"
 	"github.com/conekta/conekta-go/order"
+	"github.com/conekta/conekta-go/paymentsource"
 )
 
 func init() {
@@ -40,6 +42,35 @@ func TestCreate(t *testing.T) {
 	assert.Equal(t, "", res.CustomerID)
 	assert.NotEqual(t, nil, res.OrderID)
 	assert.Equal(t, or.ID, res.OrderID)
+}
+
+func TestCreateWithPaymentSource(t *testing.T) {
+	custp := &conekta.CustomerParams{}
+	cust, _ := customer.Create(custp.Mock())
+
+	psp := &conekta.PaymentSourceCreateParams{}
+	ps, _ := paymentsource.Create(cust.ID, psp.Mock())
+
+	cp := &conekta.ChargeParams{
+		PaymentMethodParams: &conekta.PaymentMethodParams{
+			Type:            "card",
+			PaymentSourceID: ps.ID,
+		},
+	}
+
+	op := &conekta.OrderParams{}
+	op.MockWithoutCharges()
+	op.Charges = append(op.Charges, cp)
+	op.CustomerInfo = &conekta.CustomerParams{
+		ID: cust.ID,
+	}
+
+	ord, err := order.Create(op)
+
+	assert.Equal(t, "paid", ord.PaymentStatus)
+	assert.Equal(t, cust.ID, ord.CustomerInfo.CustomerID)
+	assert.NotEqual(t, nil, ord.CreatedAt)
+	assert.Nil(t, err)
 }
 
 func TestCreateError(t *testing.T) {

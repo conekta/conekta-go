@@ -7,9 +7,10 @@ type ChargeParams struct {
 
 //PaymentMethodParams is the object to fill after api call
 type PaymentMethodParams struct {
-	Type      string `json:"type,omitempty"`
-	TokenID   string `json:"token_id,omitempty"`
-	ExpiresAt int64  `json:"expires_at,omitempty"`
+	Type            string `json:"type,omitempty"`
+	TokenID         string `json:"token_id,omitempty"`
+	PaymentSourceID string `json:"payment_source_id,omitempty"`
+	ExpiresAt       int64  `json:"expires_at,omitempty"`
 }
 
 //Charge should be a struct of the api response
