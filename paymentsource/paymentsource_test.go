@@ -34,6 +34,21 @@ func TestCreate(t *testing.T) {
 	assert.Nil(t, err)
 }
 
+func TestCreateWithCardAsPaymentSource(t *testing.T) {
+	cust := createCustomer()
+
+	cardParams := &conekta.CardParams{}
+	psp := &conekta.PaymentSourceCreateParams{
+		PaymentType: "card",
+		CardParams:  cardParams.Mock(),
+	}
+
+	ps, err := Create(cust.ID, psp)
+
+	assert.NotZero(t, ps.ID)
+	assert.Nil(t, err)
+}
+
 func TestCreateError(t *testing.T) {
 	cust := createCustomer()
 	_, err := Create(cust.ID, &conekta.PaymentSourceCreateParams{})
