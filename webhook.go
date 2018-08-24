@@ -51,28 +51,39 @@ type WebhookNotificationDataPreviousAttributes struct {
 
 // WebhookNotificationObject describes webhook object
 type WebhookNotificationObject struct {
-	ID             string         `json:"id,omitempty"`
-	Status         string         `json:"status,omitempty"`
-	Currency       string         `json:"currency,omitempty"`
-	Description    string         `json:"description,omitempty"`
-	FailureCode    string         `json:"failure_code,omitempty"`
-	FailureMessage string         `json:"failure_message,omitempty"`
-	Object         string         `json:"object,omitempty"`
-	PaymentStatus  string         `json:"payment_status,omitempty"`
-	CustomerID     string         `json:"customer_id,omitempty"`
-	OrderID        string         `json:"order_id,omitempty"`
-	CreatedAt      int64          `json:"created_at,omitempty"`
-	UpdatedAt      int64          `json:"updated_at,omitempty"`
-	PaidAt         int64          `json:"paid_at,omitempty"`
-	Fee            int64          `json:"fee,omitempty"`
-	AmountRefunded int64          `json:"amount_refunded,omitempty"`
-	Amount         int64          `json:"amount,omitempty"`
-	Livemode       bool           `json:"livemode,omitempty"`
-	PaymentMethod  *PaymentMethod `json:"payment_method,omitempty"`
-	LineItems      *LineItemsList `json:"line_items,omitempty"`
-	Charges        *ChargesList   `json:"charges,omitempty"`
-	CustomerInfo   *Customer      `json:"customer_info,omitempty"`
-	WebhookLogs    []*WebhookLog  `json:"webhook_logs,omitempty"`
+	ID             string                     `json:"id,omitempty"`
+	Status         string                     `json:"status,omitempty"`
+	Currency       string                     `json:"currency,omitempty"`
+	Description    string                     `json:"description,omitempty"`
+	FailureCode    string                     `json:"failure_code,omitempty"`
+	FailureMessage string                     `json:"failure_message,omitempty"`
+	Object         string                     `json:"object,omitempty"`
+	PaymentStatus  string                     `json:"payment_status,omitempty"`
+	CustomerID     string                     `json:"customer_id,omitempty"`
+	OrderID        string                     `json:"order_id,omitempty"`
+	CreatedAt      int64                      `json:"created_at,omitempty"`
+	UpdatedAt      int64                      `json:"updated_at,omitempty"`
+	PaidAt         int64                      `json:"paid_at,omitempty"`
+	Fee            int64                      `json:"fee,omitempty"`
+	AmountRefunded int64                      `json:"amount_refunded,omitempty"`
+	Amount         int64                      `json:"amount,omitempty"`
+	Livemode       bool                       `json:"livemode,omitempty"`
+	Method         *WebhookNotificationMethod `json:"method,omitempty"`
+	PaymentMethod  *PaymentMethod             `json:"payment_method,omitempty"`
+	LineItems      *LineItemsList             `json:"line_items,omitempty"`
+	Charges        *ChargesList               `json:"charges,omitempty"`
+	CustomerInfo   *Customer                  `json:"customer_info,omitempty"`
+	WebhookLogs    []*WebhookLog              `json:"webhook_logs,omitempty"`
+}
+
+// WebhookNotificationMethod is the inheritance object for Payee webhook
+type WebhookNotificationMethod struct {
+	CreatedAt     int64  `json:"created_at,omitempty"`
+	PayeeID       string `json:"payee_id,omitempty"`
+	Object        string `json:"object,omitempty"`
+	AccountNumber string `json:"account_number,omitempty"`
+	AccountHolder string `json:"account_holder,omitempty"`
+	Bank          string `json:"bank,omitempty"`
 }
 
 // WebhookLog describes webhook log object
