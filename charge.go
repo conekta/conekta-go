@@ -50,6 +50,8 @@ type PaymentMethod struct {
 	ServiceNumber string          `json:"service_number,omitempty"`
 	ExpiresAt     int64           `json:"expires_at,omitempty"`
 	Description   string          `json:"description,omitempty"`
+	AuthCode      int64           `json:"auth_code,omitempty"`
+	Store         string          `json:"store,omitempty"`
 	Address       *DefaultAddress `json:"address,omitempty"`
 }
 
