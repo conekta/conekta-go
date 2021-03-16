@@ -31,6 +31,7 @@ type OrderParams struct {
 	ShippingLines   []*ShippingLinesParams `json:"shipping_lines,omitempty"`
 	Metadata        struct{}               `json:"metadata,omitempty"`
 	Charges         []*ChargeParams        `json:"charges,omitempty"`
+	Checkout        *OrderCheckoutParams   `json:"checkout,omitempty"`
 }
 
 // Order should be a struct of the api response
@@ -53,6 +54,27 @@ type Order struct {
 	ShippingLines   *ShippingLinesList `json:"shipping_lines,omitempty"`
 	DiscountLines   *DiscountLinesList `json:"discount_lines,omitempty"`
 	Charges         *ChargesList       `json:"charges,omitempty"`
+	Checkout        *Checkout          `json:"checkout,omitempty"`
+}
+
+type OrderCheckoutParams struct {
+	Name                       string   `json:"name,omitempty"`
+	Type                       string   `json:"type,omitempty"`
+	Recurrent                  bool     `json:"recurrent,omitempty"`
+	ExpiresAt                  int64    `json:"expires_at,omitempty"`
+	AllowedPaymentMethods      []string `json:"allowed_payment_methods,omitempty"`
+	NeedsShippingContact       bool     `json:"needs_shipping_contact,omitempty"`
+	MonthlyInstallmentsEnabled bool     `json:"monthly_installments_enabled,omitempty"`
+	MonthlyInstallmentsOptions []int64  `json:"monthly_installments_options,omitempty"`
+}
+
+// CustomerInfo describes customer info
+type OrderCustomerInfoParams struct {
+	CustomerID string `json:"customer_id,omitempty"`
+	Name       string `json:"name,omitempty"`
+	Phone      string `json:"phone,omitempty"`
+	Email      string `json:"email,omitempty"`
+	Corporate  bool   `json:"corporate,omitempty"`
 }
 
 // CustomerInfo describes customer info
