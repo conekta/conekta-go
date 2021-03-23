@@ -1,6 +1,7 @@
 package conekta
 
 import (
+	"math/rand"
 	"time"
 )
 
@@ -119,6 +120,33 @@ func (p *ShippingLinesParams) Mock() *ShippingLinesParams {
 	return p
 }
 
+func (p *CheckoutParams) Mock() *CheckoutParams {
+	p.Name = "Payment Link Name"
+	p.Type = "PaymentLink"
+	p.Recurrent = false
+	p.ExpiredAt = time.Now().Unix() + int64(259200) + int64(rand.Float64()*3600)
+	p.AllowedPaymentMethods = []string{"cash", "card", "bank_transfer"}
+	p.NeedsShippingContact = true
+	p.MonthlyInstallmentsEnabled = false
+	p.MonthlyInstallmentsOptions = []int64{3, 6, 9, 12}
+	p.OrderTemplate = &OrderParams{}
+	p.OrderTemplate.Currency = "MXN"
+	p.OrderTemplate.LineItems = []*LineItemsParams{
+		{
+			Name:      "Red Wine",
+			UnitPrice: 1000,
+			Quantity:  10,
+		},
+	}
+	p.OrderTemplate.CustomerInfo = &CustomerParams{
+		Name:  "Juan Perez",
+		Email: "test@conekta.com",
+		Phone: "5566982090",
+	}
+
+	return p
+}
+
 // Mock fills OrderParams with dummy data
 func (p *OrderParams) Mock() *OrderParams {
 	cp := &CustomerParams{}
@@ -137,6 +165,26 @@ func (p *OrderParams) Mock() *OrderParams {
 	p.ShippingContact = sc.Mock()
 	p.DiscountLines = append(p.DiscountLines, dl.Mock())
 	p.ShippingLines = append(p.ShippingLines, sl.Mock())
+	return p
+}
+
+// Mock fills OrderParams with dummy data
+func (p *OrderParams) MockWithCheckout(customerID string) *OrderParams {
+	p.Currency = "MXN"
+	p.CustomerInfo = &CustomerParams{
+		ID: customerID,
+	}
+	p.LineItems = []*LineItemsParams{
+		{
+			Name:      "Box of Cohiba S1s",
+			UnitPrice: 35000,
+			Quantity:  1,
+		},
+	}
+	p.Checkout = &OrderCheckoutParams{
+		ExpiresAt:             time.Now().Unix() + int64(259200) + int64(rand.Float64()*3600),
+		AllowedPaymentMethods: []string{"cash", "card", "bank_transfer"},
+	}
 	return p
 }
 

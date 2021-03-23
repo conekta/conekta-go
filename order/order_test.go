@@ -2,7 +2,9 @@ package order
 
 import (
 	"testing"
+
 	conekta "github.com/conekta/conekta-go"
+	conektaCustomer "github.com/conekta/conekta-go/customer"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -81,6 +83,25 @@ func TestCreate(t *testing.T) {
 	assert.Nil(t, err)
 }
 
+func TestCreateWithCheckout(t *testing.T) {
+	cp := &conekta.CustomerParams{
+		Name:  "James Howlett",
+		Email: "james.howlett@forces.gov",
+	}
+	cus, err := conektaCustomer.Create(cp)
+	op := (&conekta.OrderParams{}).MockWithCheckout(cus.ID)
+	ord, err := Create(op)
+
+	assert.Nil(t, err)
+	assert.NotEmpty(t, ord.ID)
+	assert.ElementsMatch(t, op.Checkout.AllowedPaymentMethods, ord.Checkout.AllowedPaymentMethods)
+	assert.Equal(t, op.Checkout.ExpiresAt, ord.Checkout.ExpiresAt)
+	assert.Equal(t, op.Checkout.MonthlyInstallmentsEnabled, ord.Checkout.MonthlyInstallmentsEnabled)
+	assert.Equal(t, op.Checkout.Recurrent, ord.Checkout.Recurrent)
+	assert.Equal(t, int64(0), ord.Checkout.EmailsSent)
+	assert.Equal(t, int64(0), ord.Checkout.SmsSent)
+}
+
 func TestOxxoCreate(t *testing.T) {
 	op := &conekta.OrderParams{}
 	ord, err := Create(op.OxxoMock())
@@ -128,7 +149,7 @@ func TestOxxoCreate(t *testing.T) {
 	assert.Equal(t, "", ord.Charges.Data[0].CustomerID)
 	assert.Equal(t, int64(50151), ord.Charges.Data[0].Amount)
 	assert.Equal(t, "pending_payment", ord.Charges.Data[0].Status)
-	assert.Equal(t, int64(2036), ord.Charges.Data[0].Fee)
+	assert.Equal(t, int64(2269), ord.Charges.Data[0].Fee)
 	assert.NotEqual(t, nil, ord.Charges.Data[0].Description)
 	assert.Equal(t, "oxxo", ord.Charges.Data[0].PaymentMethod.Type)
 	assert.NotEqual(t, nil, ord.Charges.Data[0].PaymentMethod.Reference)
@@ -205,7 +226,7 @@ func TestCapture(t *testing.T) {
 }
 
 func TestWhere(t *testing.T) {
-	op := &Query{Currency: "MXN"}
+	op := &Query{}
 
 	res, _ := Where(op)
 
