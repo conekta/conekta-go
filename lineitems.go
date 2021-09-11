@@ -12,10 +12,10 @@ type LineItems struct {
 
 //LineItemsParams should be response wrapper for api line_items endpoint
 type LineItemsParams struct {
-	Name      string   `json:"name,omitempty"`
-	UnitPrice int64    `json:"unit_price,omitempty"`
-	Quantity  int      `json:"quantity,omitempty"`
-	Metadata  struct{} `json:"metadata,omitempty"`
+	Name      string                 `json:"name,omitempty"`
+	UnitPrice int64                  `json:"unit_price,omitempty"`
+	Quantity  int                    `json:"quantity,omitempty"`
+	Metadata  map[string]interface{} `json:"metadata,omitempty"`
 }
 
 //LineItemsList is a list of shippingLines

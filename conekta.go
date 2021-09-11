@@ -43,7 +43,7 @@ type Address struct {
 }
 
 // EmptyParams is used in requests that don't need params
-type EmptyParams struct{}
+type EmptyParams map[string]interface{}
 
 // Bytes converts a EmptyParams to []byte
 func (p *EmptyParams) Bytes() []byte { return []byte{} }
