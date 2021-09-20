@@ -12,13 +12,13 @@ func init() {
 	conekta.APIKey = conekta.TestKey
 }
 
-func CreateCustomerTest() (*conekta.Customer, error){
+func CreateCustomerTest() (*conekta.Customer, error) {
 	cus := &conekta.CustomerParams{}
 	c, err := customer.Create(cus.MockCustomerPaymentSource())
 	return c, err
 }
 
-func CreateDeclinedCustomerTest() (*conekta.Customer, error){
+func CreateDeclinedCustomerTest() (*conekta.Customer, error) {
 	cus := &conekta.CustomerParams{}
 	customerParams := cus.MockCustomerPaymentSource()
 	customerParams.PaymentSources[0].TokenID = "tok_test_card_declined"
@@ -28,13 +28,13 @@ func CreateDeclinedCustomerTest() (*conekta.Customer, error){
 
 func CreatePlanTest() (*conekta.Plan, error) {
 	pl := &conekta.PlanParams{}
-        pl.MockPlanCreate()
+	pl.MockPlanCreate()
 	pl.TrialPeriodDays = 0
 	p, err := plan.Create(pl)
 	return p, err
 }
 
-func TestCreate(t *testing.T){
+func TestCreate(t *testing.T) {
 	c, _ := CreateCustomerTest()
 	p, _ := CreatePlanTest()
 
@@ -50,7 +50,7 @@ func TestCreate(t *testing.T){
 	assert.Nil(t, err)
 }
 
-func TestCreateProcessingError(t *testing.T){
+func TestCreateProcessingError(t *testing.T) {
 	c, _ := CreateDeclinedCustomerTest()
 	p, _ := CreatePlanTest()
 
@@ -67,14 +67,12 @@ func TestCreateProcessingError(t *testing.T){
 	assert.Nil(t, err)
 }
 
-
 func TestCreateError(t *testing.T) {
 	cus := &conekta.CustomerParams{}
 	_, err := Create(cus.ID, &conekta.SubscriptionParams{})
 	assert.NotNil(t, err)
 	assert.Equal(t, err.(conekta.Error).ErrorType, "parameter_validation_error")
 }
-
 
 func TestResume(t *testing.T) {
 	c, _ := CreateCustomerTest()
