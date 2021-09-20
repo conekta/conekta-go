@@ -3,6 +3,7 @@ package conekta
 //ChargeParams is the object to fill after api call
 type ChargeParams struct {
 	PaymentMethod *PaymentMethodParams `json:"payment_method,omitempty"`
+	ReferenceID   string               `json:"reference_id,omitempty"`
 }
 
 //PaymentMethodParams is the object to fill after api call
@@ -30,6 +31,7 @@ type Charge struct {
 	Currency            string         `json:"currency,omitempty"`
 	Description         string         `json:"description,omitempty"`
 	PaymentMethod       *PaymentMethod `json:"payment_method,omitempty"`
+	ReferenceID         string         `json:"reference_id,omitempty"`
 }
 
 //PaymentMethod should be a struct of the api response
