@@ -3,7 +3,7 @@ package order
 import (
 	"encoding/json"
 
-	conekta "github.com/conekta/conekta-go"
+	conekta "github.com/conekta/conekta-go/v2"
 	"github.com/google/go-querystring/query"
 )
 

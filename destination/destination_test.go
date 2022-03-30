@@ -3,8 +3,8 @@ package destination
 import (
 	"testing"
 
-	conekta "github.com/conekta/conekta-go"
-	"github.com/conekta/conekta-go/payee"
+	conekta "github.com/conekta/conekta-go/v2"
+	"github.com/conekta/conekta-go/v2/payee"
 	"github.com/stretchr/testify/assert"
 )
 

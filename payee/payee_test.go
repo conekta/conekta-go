@@ -3,7 +3,7 @@ package payee
 import (
 	"testing"
 
-	"github.com/conekta/conekta-go"
+	"github.com/conekta/conekta-go/v2"
 	"github.com/stretchr/testify/assert"
 )
 

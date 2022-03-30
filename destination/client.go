@@ -1,7 +1,7 @@
 package destination
 
 import (
-	conekta "github.com/conekta/conekta-go"
+	conekta "github.com/conekta/conekta-go/v2"
 )
 
 // Create creates a new Payee destination

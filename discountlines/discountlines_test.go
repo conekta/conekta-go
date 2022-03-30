@@ -5,8 +5,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	conekta "github.com/conekta/conekta-go"
-	"github.com/conekta/conekta-go/order"
+	conekta "github.com/conekta/conekta-go/v2"
+	"github.com/conekta/conekta-go/v2/order"
 )
 
 func init() {

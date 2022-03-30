@@ -5,11 +5,12 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	conekta "github.com/conekta/conekta-go"
-	"github.com/conekta/conekta-go/customer"
-	"github.com/conekta/conekta-go/order"
-	"github.com/conekta/conekta-go/paymentsource"
 	"time"
+
+	conekta "github.com/conekta/conekta-go/v2"
+	"github.com/conekta/conekta-go/v2/customer"
+	"github.com/conekta/conekta-go/v2/order"
+	"github.com/conekta/conekta-go/v2/paymentsource"
 )
 
 func init() {

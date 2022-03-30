@@ -1,9 +1,10 @@
 package plan
 
 import (
-	"github.com/conekta/conekta-go"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/conekta/conekta-go/v2"
+	"github.com/stretchr/testify/assert"
 )
 
 func init() {

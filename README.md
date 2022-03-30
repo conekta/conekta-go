@@ -16,9 +16,9 @@ You can import conekta-go directly from github as follows:
 
 ```go
 import (
-  conekta "github.com/conekta/conekta-go"
-  "github.com/conekta/conekta-go/order"
-  "github.com/conekta/conekta-go/customer"
+  conekta "github.com/conekta/conekta-go/v2"
+  "github.com/conekta/conekta-go/v2/order"
+  "github.com/conekta/conekta-go/v2/customer"
   "time"
 )
 ```
@@ -84,7 +84,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 1. Fork the repository
 2. Clone the repository
 ```bash
-    git clone git@github.com:yourUserName/conekta-go.git
+    git clone git@github.com:yourUserName/conekta-go/v2.git
 ```
 3. Create a branch
 ```bash

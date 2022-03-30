@@ -3,8 +3,8 @@ package shippingcontact
 import (
 	"testing"
 
-	"github.com/conekta/conekta-go"
-	"github.com/conekta/conekta-go/customer"
+	"github.com/conekta/conekta-go/v2"
+	"github.com/conekta/conekta-go/v2/customer"
 
 	"github.com/stretchr/testify/assert"
 )

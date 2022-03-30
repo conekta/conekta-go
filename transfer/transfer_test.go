@@ -3,9 +3,9 @@ package transfer
 import (
 	"testing"
 
-	"github.com/conekta/conekta-go"
-	"github.com/conekta/conekta-go/destination"
-	"github.com/conekta/conekta-go/payee"
+	"github.com/conekta/conekta-go/v2"
+	"github.com/conekta/conekta-go/v2/destination"
+	"github.com/conekta/conekta-go/v2/payee"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -3,8 +3,8 @@ package order
 import (
 	"testing"
 
-	conekta "github.com/conekta/conekta-go"
-	conektaCustomer "github.com/conekta/conekta-go/customer"
+	conekta "github.com/conekta/conekta-go/v2"
+	conektaCustomer "github.com/conekta/conekta-go/v2/customer"
 	"github.com/stretchr/testify/assert"
 )
 

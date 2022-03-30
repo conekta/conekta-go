@@ -3,8 +3,8 @@ package taxlines
 import (
 	"testing"
 
-	"github.com/conekta/conekta-go"
-	"github.com/conekta/conekta-go/order"
+	"github.com/conekta/conekta-go/v2"
+	"github.com/conekta/conekta-go/v2/order"
 
 	"github.com/stretchr/testify/assert"
 )

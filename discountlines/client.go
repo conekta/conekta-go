@@ -1,6 +1,6 @@
 package discountlines
 
-import conekta "github.com/conekta/conekta-go"
+import conekta "github.com/conekta/conekta-go/v2"
 
 //Create create discount line insde a order
 // For details see https://developers.conekta.com/api#create-discount-line

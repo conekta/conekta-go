@@ -1,7 +1,7 @@
 package lineitems
 
 import (
-	conekta "github.com/conekta/conekta-go"
+	conekta "github.com/conekta/conekta-go/v2"
 )
 
 //Create function creates a line_item object
