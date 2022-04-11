@@ -1,6 +1,7 @@
 package checkout
 
 import (
+	"sort"
 	"testing"
 
 	conekta "github.com/conekta/conekta-go"
@@ -19,8 +20,11 @@ func TestCreate(t *testing.T) {
 	op := (&conekta.CheckoutParams{}).Mock()
 	checkoutResponse, err := Create(op)
 
+	sort.Strings(op.AllowedPaymentMethods)
+	sort.Strings(checkoutResponse.AllowedPaymentMethods)
+
 	assert.Equal(t, op.AllowedPaymentMethods, checkoutResponse.AllowedPaymentMethods)
-	assert.Equal(t, op.ExpiredAt, checkoutResponse.ExpiredAt)
+	assert.Equal(t, op.ExpiredAt, checkoutResponse.ExpiresAt)
 	assert.Equal(t, op.MonthlyInstallmentsEnabled, checkoutResponse.MonthlyInstallmentsEnabled)
 	assert.Equal(t, []int64(nil), checkoutResponse.AllowedInstallmentOptions)
 	assert.Equal(t, op.Name, checkoutResponse.Name)

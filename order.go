@@ -66,6 +66,10 @@ type OrderCheckoutParams struct {
 	NeedsShippingContact       bool     `json:"needs_shipping_contact,omitempty"`
 	MonthlyInstallmentsEnabled bool     `json:"monthly_installments_enabled,omitempty"`
 	MonthlyInstallmentsOptions []int64  `json:"monthly_installments_options,omitempty"`
+	SuccessUrl                 string   `json:"success_url,omitempty"`
+	FailureUrl                 string   `json:"failure_url,omitempty"`
+	OnDemandEnabled            bool     `json:"on_demand_enabled,omitempty"`
+	RedirectionTime            int64    `json:"redirection_time,omitempty"`
 }
 
 // CustomerInfo describes customer info
