@@ -16,10 +16,10 @@ type ErrorDetails struct {
 
 // Error describes Conekta errors
 type Error struct {
-	ErrorType string           `json:"type,omitempty"`
-	LogID     string           `json:"log_id,omitempty"`
-	Details   []ErrorDetails   `json:"details,omitempty"`
-	Data      json.RawMessage  `json:"data,omitempty"`
+	ErrorType string          `json:"type,omitempty"`
+	LogID     string          `json:"log_id,omitempty"`
+	Details   []ErrorDetails  `json:"details,omitempty"`
+	Data      json.RawMessage `json:"data,omitempty"`
 }
 
 func getConectionError() Error {

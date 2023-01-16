@@ -28,7 +28,7 @@ func CreateOrderWithoutCharges() (*conekta.Order, error) {
 }
 
 func TestCreate(t *testing.T) {
-	cp := &conekta.ChargeParams{}
+	cp := &conekta.ChargeParams{ReferenceID: "reference id"}
 	or, _ := CreateOrderWithoutCharges()
 	res, _ := Create(or.ID, cp.Mock())
 
@@ -44,6 +44,7 @@ func TestCreate(t *testing.T) {
 	assert.Equal(t, "", res.CustomerID)
 	assert.NotEqual(t, nil, res.OrderID)
 	assert.Equal(t, or.ID, res.OrderID)
+	assert.Equal(t, cp.ReferenceID, res.ReferenceID)
 }
 
 func TestCreateWithPaymentSource(t *testing.T) {
@@ -59,6 +60,7 @@ func TestCreateWithPaymentSource(t *testing.T) {
 			Type:                "card",
 			PaymentSourceID:     ps.ID,
 		},
+		ReferenceID: "reference id",
 	}
 
 	op := &conekta.OrderParams{}
@@ -75,6 +77,7 @@ func TestCreateWithPaymentSource(t *testing.T) {
 	assert.Equal(t, int64(3), ord.Charges.Data[0].MonthlyInstallments)
 	assert.NotEqual(t, nil, ord.CreatedAt)
 	assert.Nil(t, err)
+	assert.Equal(t, cp.ReferenceID, ord.Charges.Data[0].ReferenceID)
 }
 
 func TestCreateError(t *testing.T) {

@@ -15,7 +15,7 @@ type Customer struct {
 	DefaultPaymentSourceID   string              `json:"default_payment_source_id,omitempty"`
 	PaymentSources           PaymentSourceList   `json:"payment_sources,omitempty"`
 	ShippingContacts         ShippingContactList `json:"shipping_contacts,omitempty"`
-	Subscription             *Subscription	 	 `json:"subscription,omitempty"`
+	Subscription             *Subscription       `json:"subscription,omitempty"`
 	Deleted                  bool                `json:"deleted,omitempty"`
 }
 

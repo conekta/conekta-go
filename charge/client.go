@@ -1,8 +1,8 @@
 package charge
 
 import (
-	conekta "github.com/conekta/conekta-go"
 	"encoding/json"
+	conekta "github.com/conekta/conekta-go"
 )
 
 //Create charges object sending requesto api

@@ -1,8 +1,8 @@
 package subscription
 
 import (
-	conekta "github.com/conekta/conekta-go"
 	"encoding/json"
+	conekta "github.com/conekta/conekta-go"
 	//"github.com/google/go-querystring/query"
 )
 
@@ -16,7 +16,6 @@ func Create(id string, p *conekta.SubscriptionParams, customHeaders ...interface
 	}
 	return sub, err
 }
-
 
 func Update(id string, p *conekta.SubscriptionParams) (*conekta.Subscription, error) {
 	sub := &conekta.Subscription{}
@@ -55,4 +54,3 @@ func Find(id string) (*conekta.Subscription, error) {
 	err := conekta.MakeRequest("GET", "/customers/"+id+"/subscription", &conekta.EmptyParams{}, subs)
 	return subs, err
 }
-

@@ -29,7 +29,6 @@ type Checkout struct {
 	AllowedInstallmentOptions  []int64  `json:"allowed_installment_options,omitempty"`
 	AllowedPaymentMethods      []string `json:"allowed_payment_methods,omitempty"`
 	EmailsSent                 int64    `json:"emails_sent,omitempty"`
-	ExpiredAt                  int64    `json:"expired_at,omitempty"`
 	ExpiresAt                  int64    `json:"expires_at,omitempty"`
 	Force3dsFlow               bool     `json:"force_3ds_flow,omitempty"`
 	ID                         string   `json:"id,omitempty"`
