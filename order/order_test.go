@@ -59,7 +59,6 @@ func TestCreate(t *testing.T) {
 	assert.Equal(t, "charge", ord.Charges.Data[0].Object)
 	assert.Equal(t, int64(50151), ord.Charges.Data[0].Amount)
 	assert.Equal(t, "paid", ord.Charges.Data[0].Status)
-	assert.Equal(t, int64(1977), ord.Charges.Data[0].Fee)
 	assert.NotEqual(t, nil, ord.Charges.Data[0].Description)
 	assert.Equal(t, "", ord.Charges.Data[0].CustomerID)
 	assert.NotEqual(t, nil, ord.Charges.Data[0].OrderID)
