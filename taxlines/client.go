@@ -4,7 +4,7 @@ import (
 	conekta "github.com/conekta/conekta-go"
 )
 
-//Create create discount line insde a order
+// Create create discount line insde a order
 // For details see https://developers.conekta.com/api#create-discount-line
 func Create(orderID string, p *conekta.TaxLinesParams) (*conekta.TaxLines, error) {
 	cust := &conekta.TaxLines{}
@@ -12,7 +12,7 @@ func Create(orderID string, p *conekta.TaxLinesParams) (*conekta.TaxLines, error
 	return cust, err
 }
 
-//Update create discount line insde a order
+// Update create discount line insde a order
 // For details see https://developers.conekta.com/api#create-discount-line
 func Update(orderID string, id string, p *conekta.TaxLinesParams) (*conekta.TaxLines, error) {
 	cust := &conekta.TaxLines{}
@@ -20,7 +20,7 @@ func Update(orderID string, id string, p *conekta.TaxLinesParams) (*conekta.TaxL
 	return cust, err
 }
 
-//Delete create discount line insde a order
+// Delete create discount line insde a order
 // For details see https://developers.conekta.com/api#create-discount-line
 func Delete(orderID string, id string) (*conekta.TaxLines, error) {
 	tl := &conekta.TaxLines{}

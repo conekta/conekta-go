@@ -9,7 +9,7 @@ const TestPublic = "key_OfWoJc2fw6oEydKspmyr76Q"
 const (
 	apiBase    = "https://api.conekta.io"
 	apiVersion = "2.0.0"
-	version    = "0.0.1"
+	version    = "2.1.1"
 )
 
 // APIKey is Conekta private_key

@@ -19,7 +19,7 @@ type OrderRefundParams struct {
 	Amount int64  `json:"amount,omitempty"`
 }
 
-//OrderParams returns api response object filled
+// OrderParams returns api response object filled
 type OrderParams struct {
 	Currency        string                 `json:"currency,omitempty"`
 	PreAuth         bool                   `json:"pre_authorize,omitempty"`

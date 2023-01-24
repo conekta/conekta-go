@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"reflect"
+	"runtime"
 )
 
 // RequestAPI returns Conekta API response
@@ -44,6 +45,7 @@ func BuildURL(url string) string {
 func setHeaders(r *http.Request, customHeaders ...interface{}) *http.Request {
 	r.Header.Set("Accept", "application/vnd.conekta-v"+apiVersion+"+json")
 	r.Header.Set("Accept-Language", Locale)
+	r.Header.Set("X-Conekta-Client-User-Agent", getConektaClientUserAgent())
 	r.Header.Set("User-Agent", "Conekta/v1 GoBindings/"+version)
 	r.Header.Set("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(APIKey)))
 	r.Header.Set("Content-Type", "application/json")
@@ -59,6 +61,27 @@ func setHeaders(r *http.Request, customHeaders ...interface{}) *http.Request {
 		}
 	}
 	return r
+}
+
+// getConektaClientUserAgent metadata info
+// it looks like
+//
+//	{
+//		'lang': 'go',
+//		'lang_version': runtime.Version(),
+//		'publisher': 'conekta',
+//		'bindings_version': version
+//	}
+func getConektaClientUserAgent() string {
+	data := map[string]string{
+		"lang":             "go",
+		"lang_version":     runtime.Version(),
+		"publisher":        "conekta",
+		"bindings_version": version,
+	}
+
+	r, _ := json.Marshal(data)
+	return string(r)
 }
 
 // MakeRequest creates a new Conekta request,

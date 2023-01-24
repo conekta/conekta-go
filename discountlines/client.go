@@ -2,7 +2,7 @@ package discountlines
 
 import conekta "github.com/conekta/conekta-go"
 
-//Create create discount line insde a order
+// Create create discount line insde a order
 // For details see https://developers.conekta.com/api#create-discount-line
 func Create(orderID string, p *conekta.DiscountLinesParams) (*conekta.DiscountLines, error) {
 	dlp := &conekta.DiscountLines{}

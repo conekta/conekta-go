@@ -335,7 +335,7 @@ func (p *PlanParams) MockPlan() *PlanParams {
 	return p
 }
 
-//Mock fills Update PlanParams
+// Mock fills Update PlanParams
 func (p *PlanParams) MockPlanUpdate() *PlanParams {
 	p.ID = "bronze"
 	p.Amount = 9900
