@@ -6,9 +6,22 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
+	"os/exec"
 	"reflect"
 	"runtime"
 )
+
+const (
+	// UnknownPlatform is the string returned as the system name if we couldn't get
+	// one from `uname`.
+	UnknownPlatform string = "unknown platform"
+)
+
+var encodedConektaUserAgent string
+
+func init() {
+	initUserAgent()
+}
 
 // RequestAPI returns Conekta API response
 func RequestAPI(method string, url string, params ParamsConverter, customHeaders ...interface{}) ([]byte, error) {
@@ -45,8 +58,8 @@ func BuildURL(url string) string {
 func setHeaders(r *http.Request, customHeaders ...interface{}) *http.Request {
 	r.Header.Set("Accept", "application/vnd.conekta-v"+apiVersion+"+json")
 	r.Header.Set("Accept-Language", Locale)
-	r.Header.Set("X-Conekta-Client-User-Agent", getConektaClientUserAgent())
-	r.Header.Set("User-Agent", "Conekta/v1 GoBindings/"+version)
+	r.Header.Set("X-Conekta-Client-User-Agent", encodedConektaUserAgent)
+	r.Header.Set("User-Agent", "Conekta/v2 GoBindings/"+version)
 	r.Header.Set("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(APIKey)))
 	r.Header.Set("Content-Type", "application/json")
 
@@ -63,25 +76,38 @@ func setHeaders(r *http.Request, customHeaders ...interface{}) *http.Request {
 	return r
 }
 
-// getConektaClientUserAgent metadata info
-// it looks like
-//
-//	{
-//		'lang': 'go',
-//		'lang_version': runtime.Version(),
-//		'publisher': 'conekta',
-//		'bindings_version': version
-//	}
-func getConektaClientUserAgent() string {
+func initUserAgent() {
 	data := map[string]string{
+		"bindings_version": version,
 		"lang":             "go",
 		"lang_version":     runtime.Version(),
 		"publisher":        "conekta",
-		"bindings_version": version,
+		"uname":            getUname(),
 	}
 
 	r, _ := json.Marshal(data)
-	return string(r)
+	encodedConektaUserAgent = string(r)
+}
+
+// getUname tries to get an uname from the system, but not that hard. It tries
+// to execute `uname -a`, but swallows any errors in case that didn't work
+// (i.e. non-Unix non-Mac system or some other reason).
+func getUname() string {
+	path, err := exec.LookPath("uname")
+	if err != nil {
+		return UnknownPlatform
+	}
+
+	cmd := exec.Command(path, "-a")
+	var out bytes.Buffer
+	cmd.Stderr = nil // goes to os.DevNull
+	cmd.Stdout = &out
+	err = cmd.Run()
+	if err != nil {
+		return UnknownPlatform
+	}
+
+	return out.String()
 }
 
 // MakeRequest creates a new Conekta request,
