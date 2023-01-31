@@ -1,12 +1,12 @@
 package conekta
 
-//TaxLinesParams should return api object response filled in the struct
+// TaxLinesParams should return api object response filled in the struct
 type TaxLinesParams struct {
 	Description string `json:"description,omitempty"`
 	Amount      int64  `json:"amount,omitempty"`
 }
 
-//TaxLines should be nested struct of order
+// TaxLines should be nested struct of order
 type TaxLines struct {
 	ID          string `json:"id,omitempty"`
 	Description string `json:"description,omitempty"`
@@ -16,7 +16,7 @@ type TaxLines struct {
 	Deleted     bool   `json:"deleted,omitempty"`
 }
 
-//TaxLinesList is a list of shippingLines
+// TaxLinesList is a list of shippingLines
 type TaxLinesList struct {
 	ListMeta
 	Data []*TaxLines `json:"data,omitempty"`

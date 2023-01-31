@@ -6,7 +6,7 @@ type CheckoutRefundParams struct {
 	Amount int64  `json:"amount,omitempty"`
 }
 
-//CheckoutParams returns api response object filled
+// CheckoutParams returns api response object filled
 type CheckoutParams struct {
 	AllowedPaymentMethods      []string     `json:"allowed_payment_methods,omitempty"`
 	ExpiredAt                  int64        `json:"expired_at,omitempty"`

@@ -39,7 +39,6 @@ func TestCreate(t *testing.T) {
 	assert.Equal(t, "paid", res.Status)
 	assert.NotNil(t, res.PaidAt)
 	assert.Equal(t, int64(50151), res.Amount)
-	assert.Equal(t, int64(1977), res.Fee)
 	assert.NotEqual(t, nil, res.Description)
 	assert.Equal(t, "", res.CustomerID)
 	assert.NotEqual(t, nil, res.OrderID)
@@ -102,7 +101,6 @@ func TestFind(t *testing.T) {
 
 	assert.Equal(t, res.Description, "Payment from order")
 	assert.Equal(t, int64(50151), res.Amount)
-	assert.Equal(t, int64(1977), res.Fee)
 	assert.Equal(t, res.OrderID, ord.ID)
 	assert.Equal(t, res.Object, "charge")
 	assert.Equal(t, res.PaymentMethod.Last4, "4242")

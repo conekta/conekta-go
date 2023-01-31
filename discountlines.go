@@ -1,13 +1,13 @@
 package conekta
 
-//DiscountLinesParams is the object to fill after api call
+// DiscountLinesParams is the object to fill after api call
 type DiscountLinesParams struct {
 	Code   string `json:"code,omitempty"`
 	Amount int64  `json:"amount,omitempty"`
 	Type   string `json:"type,omitempty"`
 }
 
-//DiscountLines should be nested struct of order
+// DiscountLines should be nested struct of order
 type DiscountLines struct {
 	Code     string `json:"code,omitempty"`
 	Amount   int64  `json:"amount,omitempty"`
@@ -18,7 +18,7 @@ type DiscountLines struct {
 	Deleted  bool   `json:"deleted,omitempty"`
 }
 
-//DiscountLinesList is a list of DiscountLines
+// DiscountLinesList is a list of DiscountLines
 type DiscountLinesList struct {
 	ListMeta
 	Data []*DiscountLines `json:"data,omitempty"`

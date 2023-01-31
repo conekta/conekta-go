@@ -1,12 +1,12 @@
 package conekta
 
-//ChargeParams is the object to fill after api call
+// ChargeParams is the object to fill after api call
 type ChargeParams struct {
 	PaymentMethod *PaymentMethodParams `json:"payment_method,omitempty"`
 	ReferenceID   string               `json:"reference_id,omitempty"`
 }
 
-//PaymentMethodParams is the object to fill after api call
+// PaymentMethodParams is the object to fill after api call
 type PaymentMethodParams struct {
 	Type                string `json:"type,omitempty"`
 	TokenID             string `json:"token_id,omitempty"`
@@ -15,7 +15,7 @@ type PaymentMethodParams struct {
 	ExpiresAt           int64  `json:"expires_at,omitempty"`
 }
 
-//Charge should be a struct of the api response
+// Charge should be a struct of the api response
 type Charge struct {
 	ID                  string         `json:"id,omitempty"`
 	Object              string         `json:"object,omitempty"`
@@ -34,7 +34,7 @@ type Charge struct {
 	ReferenceID         string         `json:"reference_id,omitempty"`
 }
 
-//PaymentMethod should be a struct of the api response
+// PaymentMethod should be a struct of the api response
 type PaymentMethod struct {
 	ID            string          `json:"id,omitempty"`
 	Object        string          `json:"object,omitempty"`
@@ -59,7 +59,7 @@ type PaymentMethod struct {
 	Address       *DefaultAddress `json:"address,omitempty"`
 }
 
-//DefaultAddress should be nested struct of PaymentMethod
+// DefaultAddress should be nested struct of PaymentMethod
 type DefaultAddress struct {
 	Street1    string `json:"street1,omitempty"`
 	Street2    string `json:"street2,omitempty"`
@@ -70,7 +70,7 @@ type DefaultAddress struct {
 	PostalCode string `json:"postal_code,omitempty"`
 }
 
-//ChargesList is a list of shippingLines
+// ChargesList is a list of shippingLines
 type ChargesList struct {
 	ListMeta
 	Data []*Charge `json:"data,omitempty"`

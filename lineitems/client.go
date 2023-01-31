@@ -4,8 +4,8 @@ import (
 	conekta "github.com/conekta/conekta-go"
 )
 
-//Create function creates a line_item object
-//For more information please see https://developers.conekta.com/api#create-line-item
+// Create function creates a line_item object
+// For more information please see https://developers.conekta.com/api#create-line-item
 func Create(id string, p *conekta.LineItemsParams) (*conekta.LineItems, error) {
 	li := &conekta.LineItems{}
 	err := conekta.MakeRequest("POST", "/orders/"+id+"/line_items", p, li)
