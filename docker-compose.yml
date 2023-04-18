@@ -4,7 +4,7 @@ services:
     image: mockoon/cli:2.4.0
     ports:
       - 3000:3000
-    command: "-d https://raw.githubusercontent.com/conekta/openapi/0f57a58f24e66930a3635551a722355c883a3511/mocks/conekta_api.json  -p 3000 --log-transaction"
+    command: "-d https://raw.githubusercontent.com/conekta/openapi/main/mocks/conekta_api.json  -p 3000 --log-transaction"
     healthcheck:
       test: "wget -qO - http://mockserver:3000/ping"
       interval: 5s
