@@ -16,9 +16,379 @@ servers:
 security:
 - bearerAuth: []
 paths:
-  /antifraud/blacklists:
+  /antifraud/whitelists:
+    get:
+      description: Return all rules
+      operationId: GetRuleWhitelist
+      parameters:
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+      responses:
+        "200":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              schema:
+                $ref: '#/components/schemas/risk_rules_list'
+          description: All the rules
+        "401":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  param: null
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        "500":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have
+                    been notified.
+                  message: There was a runtime error and Conekta engineers have been
+                    notified.
+                  param: null
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      summary: Get a list of whitelisted rules
+      tags:
+      - Antifraud
+    post:
+      operationId: CreateRuleWhitelist
+      parameters:
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create_risk_rules_data'
+      responses:
+        "200":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              schema:
+                $ref: '#/components/schemas/whitelistlist_rule_response'
+          description: successfully registered rule
+        "401":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  param: null
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        "500":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have
+                    been notified.
+                  message: There was a runtime error and Conekta engineers have been
+                    notified.
+                  param: null
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      summary: Create whitelisted rule
+      tags:
+      - Antifraud
+  /antifraud/whitelists/{id}:
     delete:
-      operationId: DeleteBlacklistRule
+      operationId: DeleteRuleWhitelist
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+      responses:
+        "200":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              schema:
+                $ref: '#/components/schemas/deleted_whitelist_rule_response'
+          description: successfully deleted rule
+        "401":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  param: null
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        "404":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  param: null
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could
+                    not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        "500":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have
+                    been notified.
+                  message: There was a runtime error and Conekta engineers have been
+                    notified.
+                  param: null
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      summary: Delete whitelisted rule
+      tags:
+      - Antifraud
+  /antifraud/blacklists:
+    get:
+      description: Return all rules
+      operationId: GetRuleBlacklist
+      parameters:
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+      responses:
+        "200":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              schema:
+                $ref: '#/components/schemas/risk_rules_list'
+          description: All the rules
+        "401":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  param: null
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        "500":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have
+                    been notified.
+                  message: There was a runtime error and Conekta engineers have been
+                    notified.
+                  param: null
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      summary: Get list of blacklisted rules
+      tags:
+      - Antifraud
+    post:
+      operationId: CreateRuleBlacklist
+      parameters:
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create_risk_rules_data'
+        description: requested field for blacklist rule
+        required: true
+      responses:
+        "200":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              schema:
+                $ref: '#/components/schemas/blacklist_rule_response'
+          description: successfully registered rule
+        "401":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  param: null
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        "500":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have
+                    been notified.
+                  message: There was a runtime error and Conekta engineers have been
+                    notified.
+                  param: null
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      summary: Create blacklisted rule
+      tags:
+      - Antifraud
+  /antifraud/blacklists/{id}:
+    delete:
+      operationId: DeleteRuleBlacklist
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
       responses:
         "200":
           content:
@@ -73,72 +443,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: internal server error
-      summary: Delete a blacklisted rule
+      summary: Delete blacklisted rule
       tags:
-      - Blacklist
-    get:
-      description: Return all rules
-      operationId: GetBlacklist
-      responses:
-        "200":
-          content:
-            application/vnd.conekta-v2.1.0+json:
-              schema:
-                $ref: '#/components/schemas/risk_rules_list'
-          description: All the rules
-        "401":
-          content:
-            application/vnd.conekta-v2.1.0+json:
-              example:
-                details:
-                - message: Please include your access key in your request.
-                  param: null
-                  code: conekta.errors.authentication.missing_key
-                log_id: 507f1f77bcf86cd799439011
-                object: error
-                type: authentication_error
-              schema:
-                $ref: '#/components/schemas/error'
-          description: authentication error
-        "500":
-          content:
-            application/vnd.conekta-v2.1.0+json:
-              example:
-                details:
-                - debug_message: There was a runtime error and Conekta engineers have
-                    been notified.
-                  message: There was a runtime error and Conekta engineers have been
-                    notified.
-                  param: null
-                  code: conekta.errors.api.system.general_failure
-                object: error
-                type: api_error
-                log_id: 641b6f2b3cd9a50001515098
-              schema:
-                $ref: '#/components/schemas/error'
-          description: internal server error
-      summary: Get a list of blacklisted rules
-      tags:
-      - Blacklist
-    post:
-      operationId: CreateNewBlacklistRule
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/create_risk_rules_data'
-        description: requested field for blacklist rule
-        required: true
-      responses:
-        "200":
-          content:
-            application/vnd.conekta-v2.1.0+json:
-              schema:
-                $ref: '#/components/schemas/blacklist_rule_response'
-          description: successfully registered rule
-      summary: Create a blacklisted rule
-      tags:
-      - Blacklist
+      - Antifraud
   /orders/{id}/charges:
     post:
       description: Create charge for an existing orden
@@ -6974,41 +7281,6 @@ paths:
       summary: Update Webhook
       tags:
       - Webhooks
-  /antifraud/whitelists:
-    delete:
-      operationId: DeleteRuleWhitelist
-      responses:
-        "200":
-          description: successfully deleted rule
-      summary: Delete a whitelisted rule
-      tags:
-      - Whitelists
-    get:
-      description: Return all rules
-      operationId: GetWhiteList
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/risk_rules_list'
-          description: All the rules
-      summary: Get a list of whitelisted rules
-      tags:
-      - Whitelists
-    post:
-      operationId: CreateNewRuleWhitelist
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/create_risk_rules_data'
-      responses:
-        "200":
-          description: successfully registered rule
-      summary: Create a whitelisted rule
-      tags:
-      - Whitelists
 components:
   examples:
     order_cash:
@@ -7313,14 +7585,6 @@ components:
           quantity: 1
           brand: string
   parameters:
-    id:
-      description: Identifier of the resource
-      example: 6307a60c41de27127515a575
-      in: path
-      name: id
-      required: true
-      schema:
-        type: string
     accept_language:
       description: Use for knowing which language to use
       examples:
@@ -7338,6 +7602,14 @@ components:
         enum:
         - es
         - en
+        type: string
+    id:
+      description: Identifier of the resource
+      example: 6307a60c41de27127515a575
+      in: path
+      name: id
+      required: true
+      schema:
         type: string
     limit:
       description: "The numbers of items to return, the maximum value is 250"
@@ -7744,30 +8016,10 @@ components:
       description: parameter validation error
   schemas:
     risk_rules_list:
-      example:
-        data:
-        - description: secure customer example@example.com
-          id: 2fw8EWJusiRrxdPzT
-          type: email
-          value: email@example.com
-        - description: secure customer example@example.com
-          id: 2fw8EWJusiRrxdPzT
-          type: email
-          value: email@example.com
-        has_more: true
-        object: list
-      properties:
-        has_more:
-          example: true
-          type: boolean
-        object:
-          example: list
-          type: string
-        data:
-          items:
-            $ref: '#/components/schemas/risk_rules_list_data_inner'
-          type: array
-      type: object
+      allOf:
+      - $ref: '#/components/schemas/pagination'
+      - $ref: '#/components/schemas/page'
+      - $ref: '#/components/schemas/risk_rules_list_allOf'
     error:
       allOf:
       - $ref: '#/components/schemas/details'
@@ -7777,14 +8029,21 @@ components:
     create_risk_rules_data:
       properties:
         description:
+          description: Description of the rule
           example: this client's email was verified at 20/09/22 by internal process
           type: string
-        type:
+        field:
+          description: Field to be used for the rule
           example: email | phone | card_token
           type: string
         value:
+          description: Value to be used for the rule
           example: email@example.com | 818081808180 | src_2qUCNd5AyQqfPMBuV
           type: string
+      required:
+      - description
+      - field
+      - value
       type: object
     charge_order_response:
       properties:
@@ -9629,18 +9888,62 @@ components:
       required:
       - object
       type: object
-    blacklist_rule_response:
+    whitelistlist_rule_response:
       properties:
         id:
+          description: Whitelist rule id
           example: 2fw8EWJusiRrxdPzT
           type: string
-        type:
+        field:
+          description: field used for whitelists rule
           example: email
           type: string
         value:
+          description: value used for whitelists rule
           example: email@example.com
           type: string
         description:
+          description: use an description for whitelisted rule
+          example: banned customer example@example.com
+          type: string
+      title: whitelistlist_rule_response
+      type: object
+    deleted_whitelist_rule_response:
+      properties:
+        id:
+          description: Whitelist rule id
+          example: 2fw8EWJusiRrxdPzT
+          type: string
+        field:
+          description: field used for whitelists rule deleted
+          example: email
+          type: string
+        value:
+          description: value used for whitelists rule deleted
+          example: email@example.com
+          type: string
+        description:
+          description: use an description for whitelisted rule
+          example: secure customer example@example.com
+          type: string
+      title: deleted_whitelist_rule_response
+      type: object
+    blacklist_rule_response:
+      properties:
+        id:
+          description: Blacklist rule id
+          example: 2fw8EWJusiRrxdPzT
+          type: string
+        field:
+          description: field used for blacklists rule
+          example: email
+          type: string
+        value:
+          description: value used for blacklists rule
+          example: email@example.com
+          type: string
+        description:
+          description: use an description for blacklisted rule
           example: secure customer example@example.com
           type: string
       title: blacklist_rule_response
@@ -9648,16 +9951,20 @@ components:
     deleted_blacklist_rule_response:
       properties:
         id:
+          description: Blacklist rule id
           example: 2fw8EWJusiRrxdPzT
           type: string
-        type:
+        field:
+          description: field used for blacklists rule deleted
           example: email
           type: string
         value:
+          description: value used for blacklists rule deleted
           example: email@example.com
           type: string
         description:
-          example: secure customer example@example.com
+          description: use an description for blacklisted rule
+          example: banned customer example@example.com
           type: string
       title: deleted_blacklist_rule_response
       type: object
@@ -9765,6 +10072,11 @@ components:
       properties:
         amount:
           example: 500
+          type: integer
+        expires_at:
+          example: 1553273553
+          format: int64
+          nullable: true
           type: integer
         reason:
           example: suspected_fraud
@@ -9894,26 +10206,46 @@ components:
       - $ref: '#/components/schemas/page'
       - $ref: '#/components/schemas/get_webhooks_response_allOf'
       title: get_webhooks_response
-    risk_rules_list_data_inner:
-      example:
-        description: secure customer example@example.com
-        id: 2fw8EWJusiRrxdPzT
-        type: email
-        value: email@example.com
+    risk_rules_list_allOf_data:
       properties:
         id:
-          example: 2fw8EWJusiRrxdPzT
+          description: rule id
+          example: 618c3f2fdb8b8da9be376af9
           type: string
-        type:
+        field:
+          description: field to be used for the rule
           example: email
           type: string
+        created_at:
+          description: rule creation date
+          example: 2021-11-10T21:52:47.339Z
+          type: string
         value:
+          description: value to be used for the rule
           example: email@example.com
           type: string
+        is_global:
+          description: if the rule is global
+          example: false
+          type: boolean
+        is_test:
+          description: if the rule is test
+          example: false
+          type: boolean
         description:
+          description: description of the rule
           example: secure customer example@example.com
           type: string
       type: object
+      example: null
+    risk_rules_list_allOf:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/risk_rules_list_allOf_data'
+          type: array
+      type: object
+      example: null
     error_allOf:
       properties:
         log_id:
@@ -10786,22 +11118,31 @@ components:
       example: null
     charge_response_refunds_data:
       properties:
-        object:
-          example: refund
-          type: string
         amount:
           example: -15000
           format: int64
           type: integer
-        id:
-          example: 6407b5bee1329a000175ba11
+        auth_code:
+          example: "867372"
           type: string
         created_at:
           example: 1678226878
           format: int64
           type: integer
-        auth_code:
-          example: "867372"
+        expires_at:
+          description: refund expiration date
+          example: 1678226878
+          format: int64
+          type: integer
+        id:
+          example: 6407b5bee1329a000175ba11
+          type: string
+        object:
+          example: refund
+          type: string
+        status:
+          description: refund status
+          example: pending
           type: string
       required:
       - amount

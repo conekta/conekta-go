@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**Value** | Pointer to **string** |  | [optional] 
+**Description** | **string** | Description of the rule | 
+**Field** | **string** | Field to be used for the rule | 
+**Value** | **string** | Value to be used for the rule | 
 
 ## Methods
 
 ### NewCreateRiskRulesData
 
-`func NewCreateRiskRulesData() *CreateRiskRulesData`
+`func NewCreateRiskRulesData(description string, field string, value string, ) *CreateRiskRulesData`
 
 NewCreateRiskRulesData instantiates a new CreateRiskRulesData object
 This constructor will assign default values to properties that have it defined,
@@ -46,36 +46,26 @@ and a boolean to check if the value has been set.
 
 SetDescription sets Description field to given value.
 
-### HasDescription
 
-`func (o *CreateRiskRulesData) HasDescription() bool`
+### GetField
 
-HasDescription returns a boolean if a field has been set.
+`func (o *CreateRiskRulesData) GetField() string`
 
-### GetType
+GetField returns the Field field if non-nil, zero value otherwise.
 
-`func (o *CreateRiskRulesData) GetType() string`
+### GetFieldOk
 
-GetType returns the Type field if non-nil, zero value otherwise.
+`func (o *CreateRiskRulesData) GetFieldOk() (*string, bool)`
 
-### GetTypeOk
-
-`func (o *CreateRiskRulesData) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetFieldOk returns a tuple with the Field field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetField
 
-`func (o *CreateRiskRulesData) SetType(v string)`
+`func (o *CreateRiskRulesData) SetField(v string)`
 
-SetType sets Type field to given value.
+SetField sets Field field to given value.
 
-### HasType
-
-`func (o *CreateRiskRulesData) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetValue
 
@@ -96,11 +86,6 @@ and a boolean to check if the value has been set.
 
 SetValue sets Value field to given value.
 
-### HasValue
-
-`func (o *CreateRiskRulesData) HasValue() bool`
-
-HasValue returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

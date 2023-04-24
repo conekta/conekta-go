@@ -117,6 +117,39 @@
     </key>
   </component>
   <component name="RunManager" selected="Go Test.go test conekta-go">
+    <configuration name="TestAntifraudApi in github.com/conekta/conekta-go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="conekta-go" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/conekta/conekta-go" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestAntifraudApi\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestAntifraudApi/CreateRuleWhitelist_success in github.com/conekta/conekta-go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="conekta-go" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/conekta/conekta-go" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestAntifraudApi\E$/^\QCreateRuleWhitelist_success\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestAntifraudApi/GetRuleBlacklist_success in github.com/conekta/conekta-go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="conekta-go" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/conekta/conekta-go" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestAntifraudApi\E$/^\QGetRuleBlacklist_success\E$" />
+      <method v="2" />
+    </configuration>
     <configuration name="TestBlacklistApi/CreateNewBlacklistRule_success in github.com/conekta/conekta-go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="conekta-go" />
       <working_directory value="$PROJECT_DIR$" />
@@ -126,39 +159,6 @@
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
       <pattern value="^\QTestBlacklistApi\E$/^\QCreateNewBlacklistRule_success\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestBlacklistApi/GetBlacklist_success in github.com/conekta/conekta-go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="conekta-go" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="github.com/conekta/conekta-go" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestBlacklistApi\E$/^\QGetBlacklist_success\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestWhitelistsApi/CreateNewRuleWhitelist_success in github.com/conekta/conekta-go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="conekta-go" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="github.com/conekta/conekta-go" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestWhitelistsApi\E$/^\QCreateNewRuleWhitelist_success\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestWhitelistsApi/DeleteRuleWhitelist_success in github.com/conekta/conekta-go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="conekta-go" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="github.com/conekta/conekta-go" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestWhitelistsApi\E$/^\QDeleteRuleWhitelist_success\E$" />
       <method v="2" />
     </configuration>
     <configuration name="go test conekta-go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -174,10 +174,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Go Test.go test conekta-go" />
+        <item itemvalue="Go Test.TestAntifraudApi/CreateRuleWhitelist_success in github.com/conekta/conekta-go" />
+        <item itemvalue="Go Test.TestAntifraudApi/GetRuleBlacklist_success in github.com/conekta/conekta-go" />
+        <item itemvalue="Go Test.TestAntifraudApi in github.com/conekta/conekta-go" />
         <item itemvalue="Go Test.TestBlacklistApi/CreateNewBlacklistRule_success in github.com/conekta/conekta-go" />
-        <item itemvalue="Go Test.TestBlacklistApi/GetBlacklist_success in github.com/conekta/conekta-go" />
-        <item itemvalue="Go Test.TestWhitelistsApi/DeleteRuleWhitelist_success in github.com/conekta/conekta-go" />
-        <item itemvalue="Go Test.TestWhitelistsApi/CreateNewRuleWhitelist_success in github.com/conekta/conekta-go" />
       </list>
     </recent_temporary>
   </component>
@@ -226,6 +226,11 @@
           <url>file://$PROJECT_DIR$/api_webhooks_test.go</url>
           <line>30</line>
           <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/api_antifraud_test.go</url>
+          <line>24</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

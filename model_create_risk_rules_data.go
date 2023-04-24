@@ -20,17 +20,23 @@ var _ MappedNullable = &CreateRiskRulesData{}
 
 // CreateRiskRulesData struct for CreateRiskRulesData
 type CreateRiskRulesData struct {
-	Description *string `json:"description,omitempty"`
-	Type *string `json:"type,omitempty"`
-	Value *string `json:"value,omitempty"`
+	// Description of the rule
+	Description string `json:"description"`
+	// Field to be used for the rule
+	Field string `json:"field"`
+	// Value to be used for the rule
+	Value string `json:"value"`
 }
 
 // NewCreateRiskRulesData instantiates a new CreateRiskRulesData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateRiskRulesData() *CreateRiskRulesData {
+func NewCreateRiskRulesData(description string, field string, value string) *CreateRiskRulesData {
 	this := CreateRiskRulesData{}
+	this.Description = description
+	this.Field = field
+	this.Value = value
 	return &this
 }
 
@@ -42,100 +48,76 @@ func NewCreateRiskRulesDataWithDefaults() *CreateRiskRulesData {
 	return &this
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
+// GetDescription returns the Description field value
 func (o *CreateRiskRulesData) GetDescription() string {
-	if o == nil || IsNil(o.Description) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Description
+
+	return o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 func (o *CreateRiskRulesData) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Description, true
+	return &o.Description, true
 }
 
-// HasDescription returns a boolean if a field has been set.
-func (o *CreateRiskRulesData) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
+// SetDescription sets field value
 func (o *CreateRiskRulesData) SetDescription(v string) {
-	o.Description = &v
+	o.Description = v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *CreateRiskRulesData) GetType() string {
-	if o == nil || IsNil(o.Type) {
+// GetField returns the Field field value
+func (o *CreateRiskRulesData) GetField() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Type
+
+	return o.Field
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetFieldOk returns a tuple with the Field field value
 // and a boolean to check if the value has been set.
-func (o *CreateRiskRulesData) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
+func (o *CreateRiskRulesData) GetFieldOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Field, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *CreateRiskRulesData) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
+// SetField sets field value
+func (o *CreateRiskRulesData) SetField(v string) {
+	o.Field = v
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *CreateRiskRulesData) SetType(v string) {
-	o.Type = &v
-}
-
-// GetValue returns the Value field value if set, zero value otherwise.
+// GetValue returns the Value field value
 func (o *CreateRiskRulesData) GetValue() string {
-	if o == nil || IsNil(o.Value) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Value
+
+	return o.Value
 }
 
-// GetValueOk returns a tuple with the Value field value if set, nil otherwise
+// GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
 func (o *CreateRiskRulesData) GetValueOk() (*string, bool) {
-	if o == nil || IsNil(o.Value) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Value, true
+	return &o.Value, true
 }
 
-// HasValue returns a boolean if a field has been set.
-func (o *CreateRiskRulesData) HasValue() bool {
-	if o != nil && !IsNil(o.Value) {
-		return true
-	}
-
-	return false
-}
-
-// SetValue gets a reference to the given string and assigns it to the Value field.
+// SetValue sets field value
 func (o *CreateRiskRulesData) SetValue(v string) {
-	o.Value = &v
+	o.Value = v
 }
 
 func (o CreateRiskRulesData) MarshalJSON() ([]byte, error) {
@@ -148,15 +130,9 @@ func (o CreateRiskRulesData) MarshalJSON() ([]byte, error) {
 
 func (o CreateRiskRulesData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !IsNil(o.Value) {
-		toSerialize["value"] = o.Value
-	}
+	toSerialize["description"] = o.Description
+	toSerialize["field"] = o.Field
+	toSerialize["value"] = o.Value
 	return toSerialize, nil
 }
 

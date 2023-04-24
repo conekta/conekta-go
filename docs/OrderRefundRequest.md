@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | **int32** |  | 
+**ExpiresAt** | Pointer to **NullableInt64** |  | [optional] 
 **Reason** | **string** |  | 
 
 ## Methods
@@ -46,6 +47,41 @@ and a boolean to check if the value has been set.
 SetAmount sets Amount field to given value.
 
 
+### GetExpiresAt
+
+`func (o *OrderRefundRequest) GetExpiresAt() int64`
+
+GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
+
+### GetExpiresAtOk
+
+`func (o *OrderRefundRequest) GetExpiresAtOk() (*int64, bool)`
+
+GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpiresAt
+
+`func (o *OrderRefundRequest) SetExpiresAt(v int64)`
+
+SetExpiresAt sets ExpiresAt field to given value.
+
+### HasExpiresAt
+
+`func (o *OrderRefundRequest) HasExpiresAt() bool`
+
+HasExpiresAt returns a boolean if a field has been set.
+
+### SetExpiresAtNil
+
+`func (o *OrderRefundRequest) SetExpiresAtNil(b bool)`
+
+ SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
+
+### UnsetExpiresAt
+`func (o *OrderRefundRequest) UnsetExpiresAt()`
+
+UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
 ### GetReason
 
 `func (o *OrderRefundRequest) GetReason() string`

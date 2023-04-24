@@ -15,40 +15,40 @@ import (
 	"encoding/json"
 )
 
-// checks if the DeletedBlacklistRuleResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &DeletedBlacklistRuleResponse{}
+// checks if the DeletedWhitelistRuleResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeletedWhitelistRuleResponse{}
 
-// DeletedBlacklistRuleResponse struct for DeletedBlacklistRuleResponse
-type DeletedBlacklistRuleResponse struct {
-	// Blacklist rule id
+// DeletedWhitelistRuleResponse struct for DeletedWhitelistRuleResponse
+type DeletedWhitelistRuleResponse struct {
+	// Whitelist rule id
 	Id *string `json:"id,omitempty"`
-	// field used for blacklists rule deleted
+	// field used for whitelists rule deleted
 	Field *string `json:"field,omitempty"`
-	// value used for blacklists rule deleted
+	// value used for whitelists rule deleted
 	Value *string `json:"value,omitempty"`
-	// use an description for blacklisted rule
+	// use an description for whitelisted rule
 	Description *string `json:"description,omitempty"`
 }
 
-// NewDeletedBlacklistRuleResponse instantiates a new DeletedBlacklistRuleResponse object
+// NewDeletedWhitelistRuleResponse instantiates a new DeletedWhitelistRuleResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeletedBlacklistRuleResponse() *DeletedBlacklistRuleResponse {
-	this := DeletedBlacklistRuleResponse{}
+func NewDeletedWhitelistRuleResponse() *DeletedWhitelistRuleResponse {
+	this := DeletedWhitelistRuleResponse{}
 	return &this
 }
 
-// NewDeletedBlacklistRuleResponseWithDefaults instantiates a new DeletedBlacklistRuleResponse object
+// NewDeletedWhitelistRuleResponseWithDefaults instantiates a new DeletedWhitelistRuleResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewDeletedBlacklistRuleResponseWithDefaults() *DeletedBlacklistRuleResponse {
-	this := DeletedBlacklistRuleResponse{}
+func NewDeletedWhitelistRuleResponseWithDefaults() *DeletedWhitelistRuleResponse {
+	this := DeletedWhitelistRuleResponse{}
 	return &this
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *DeletedBlacklistRuleResponse) GetId() string {
+func (o *DeletedWhitelistRuleResponse) GetId() string {
 	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
@@ -58,7 +58,7 @@ func (o *DeletedBlacklistRuleResponse) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeletedBlacklistRuleResponse) GetIdOk() (*string, bool) {
+func (o *DeletedWhitelistRuleResponse) GetIdOk() (*string, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *DeletedBlacklistRuleResponse) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *DeletedBlacklistRuleResponse) HasId() bool {
+func (o *DeletedWhitelistRuleResponse) HasId() bool {
 	if o != nil && !IsNil(o.Id) {
 		return true
 	}
@@ -75,12 +75,12 @@ func (o *DeletedBlacklistRuleResponse) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *DeletedBlacklistRuleResponse) SetId(v string) {
+func (o *DeletedWhitelistRuleResponse) SetId(v string) {
 	o.Id = &v
 }
 
 // GetField returns the Field field value if set, zero value otherwise.
-func (o *DeletedBlacklistRuleResponse) GetField() string {
+func (o *DeletedWhitelistRuleResponse) GetField() string {
 	if o == nil || IsNil(o.Field) {
 		var ret string
 		return ret
@@ -90,7 +90,7 @@ func (o *DeletedBlacklistRuleResponse) GetField() string {
 
 // GetFieldOk returns a tuple with the Field field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeletedBlacklistRuleResponse) GetFieldOk() (*string, bool) {
+func (o *DeletedWhitelistRuleResponse) GetFieldOk() (*string, bool) {
 	if o == nil || IsNil(o.Field) {
 		return nil, false
 	}
@@ -98,7 +98,7 @@ func (o *DeletedBlacklistRuleResponse) GetFieldOk() (*string, bool) {
 }
 
 // HasField returns a boolean if a field has been set.
-func (o *DeletedBlacklistRuleResponse) HasField() bool {
+func (o *DeletedWhitelistRuleResponse) HasField() bool {
 	if o != nil && !IsNil(o.Field) {
 		return true
 	}
@@ -107,12 +107,12 @@ func (o *DeletedBlacklistRuleResponse) HasField() bool {
 }
 
 // SetField gets a reference to the given string and assigns it to the Field field.
-func (o *DeletedBlacklistRuleResponse) SetField(v string) {
+func (o *DeletedWhitelistRuleResponse) SetField(v string) {
 	o.Field = &v
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
-func (o *DeletedBlacklistRuleResponse) GetValue() string {
+func (o *DeletedWhitelistRuleResponse) GetValue() string {
 	if o == nil || IsNil(o.Value) {
 		var ret string
 		return ret
@@ -122,7 +122,7 @@ func (o *DeletedBlacklistRuleResponse) GetValue() string {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeletedBlacklistRuleResponse) GetValueOk() (*string, bool) {
+func (o *DeletedWhitelistRuleResponse) GetValueOk() (*string, bool) {
 	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
@@ -130,7 +130,7 @@ func (o *DeletedBlacklistRuleResponse) GetValueOk() (*string, bool) {
 }
 
 // HasValue returns a boolean if a field has been set.
-func (o *DeletedBlacklistRuleResponse) HasValue() bool {
+func (o *DeletedWhitelistRuleResponse) HasValue() bool {
 	if o != nil && !IsNil(o.Value) {
 		return true
 	}
@@ -139,12 +139,12 @@ func (o *DeletedBlacklistRuleResponse) HasValue() bool {
 }
 
 // SetValue gets a reference to the given string and assigns it to the Value field.
-func (o *DeletedBlacklistRuleResponse) SetValue(v string) {
+func (o *DeletedWhitelistRuleResponse) SetValue(v string) {
 	o.Value = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *DeletedBlacklistRuleResponse) GetDescription() string {
+func (o *DeletedWhitelistRuleResponse) GetDescription() string {
 	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
@@ -154,7 +154,7 @@ func (o *DeletedBlacklistRuleResponse) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeletedBlacklistRuleResponse) GetDescriptionOk() (*string, bool) {
+func (o *DeletedWhitelistRuleResponse) GetDescriptionOk() (*string, bool) {
 	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
@@ -162,7 +162,7 @@ func (o *DeletedBlacklistRuleResponse) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *DeletedBlacklistRuleResponse) HasDescription() bool {
+func (o *DeletedWhitelistRuleResponse) HasDescription() bool {
 	if o != nil && !IsNil(o.Description) {
 		return true
 	}
@@ -171,11 +171,11 @@ func (o *DeletedBlacklistRuleResponse) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *DeletedBlacklistRuleResponse) SetDescription(v string) {
+func (o *DeletedWhitelistRuleResponse) SetDescription(v string) {
 	o.Description = &v
 }
 
-func (o DeletedBlacklistRuleResponse) MarshalJSON() ([]byte, error) {
+func (o DeletedWhitelistRuleResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -183,7 +183,7 @@ func (o DeletedBlacklistRuleResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o DeletedBlacklistRuleResponse) ToMap() (map[string]interface{}, error) {
+func (o DeletedWhitelistRuleResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
@@ -200,38 +200,38 @@ func (o DeletedBlacklistRuleResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableDeletedBlacklistRuleResponse struct {
-	value *DeletedBlacklistRuleResponse
+type NullableDeletedWhitelistRuleResponse struct {
+	value *DeletedWhitelistRuleResponse
 	isSet bool
 }
 
-func (v NullableDeletedBlacklistRuleResponse) Get() *DeletedBlacklistRuleResponse {
+func (v NullableDeletedWhitelistRuleResponse) Get() *DeletedWhitelistRuleResponse {
 	return v.value
 }
 
-func (v *NullableDeletedBlacklistRuleResponse) Set(val *DeletedBlacklistRuleResponse) {
+func (v *NullableDeletedWhitelistRuleResponse) Set(val *DeletedWhitelistRuleResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableDeletedBlacklistRuleResponse) IsSet() bool {
+func (v NullableDeletedWhitelistRuleResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableDeletedBlacklistRuleResponse) Unset() {
+func (v *NullableDeletedWhitelistRuleResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableDeletedBlacklistRuleResponse(val *DeletedBlacklistRuleResponse) *NullableDeletedBlacklistRuleResponse {
-	return &NullableDeletedBlacklistRuleResponse{value: val, isSet: true}
+func NewNullableDeletedWhitelistRuleResponse(val *DeletedWhitelistRuleResponse) *NullableDeletedWhitelistRuleResponse {
+	return &NullableDeletedWhitelistRuleResponse{value: val, isSet: true}
 }
 
-func (v NullableDeletedBlacklistRuleResponse) MarshalJSON() ([]byte, error) {
+func (v NullableDeletedWhitelistRuleResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableDeletedBlacklistRuleResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableDeletedWhitelistRuleResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

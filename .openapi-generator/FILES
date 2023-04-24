@@ -4,7 +4,7 @@ AUTHORS.md
 LICENSE
 README.md
 api/openapi.yaml
-api_blacklist.go
+api_antifraud.go
 api_charges.go
 api_customers.go
 api_discounts.go
@@ -20,11 +20,10 @@ api_shippings.go
 api_subscriptions.go
 api_taxes.go
 api_webhooks.go
-api_whitelists.go
 client.go
 conekta.png
 configuration.go
-docs/BlacklistApi.md
+docs/AntifraudApi.md
 docs/BlacklistRuleResponse.md
 docs/ChargeDataPaymentMethodBankTransferResponse.md
 docs/ChargeDataPaymentMethodCardResponse.md
@@ -84,6 +83,7 @@ docs/CustomersApi.md
 docs/CustomersResponse.md
 docs/CustomersResponseAllOf.md
 docs/DeletedBlacklistRuleResponse.md
+docs/DeletedWhitelistRuleResponse.md
 docs/Details.md
 docs/DetailsError.md
 docs/DiscountLinesDataResponse.md
@@ -164,7 +164,8 @@ docs/ProductOrderResponse.md
 docs/ProductOrderResponseAllOf.md
 docs/ProductsApi.md
 docs/RiskRulesList.md
-docs/RiskRulesListDataInner.md
+docs/RiskRulesListAllOf.md
+docs/RiskRulesListAllOfData.md
 docs/ShippingContactsApi.md
 docs/ShippingOrderResponse.md
 docs/ShippingRequest.md
@@ -192,7 +193,7 @@ docs/WebhookRequest.md
 docs/WebhookResponse.md
 docs/WebhookUpdateRequest.md
 docs/WebhooksApi.md
-docs/WhitelistsApi.md
+docs/WhitelistlistRuleResponse.md
 git_push.sh
 go.mod
 go.sum
@@ -253,6 +254,7 @@ model_customer_update_shipping_contacts.go
 model_customers_response.go
 model_customers_response_all_of.go
 model_deleted_blacklist_rule_response.go
+model_deleted_whitelist_rule_response.go
 model_details.go
 model_details_error.go
 model_discount_lines_data_response.go
@@ -325,7 +327,8 @@ model_product_data_response_all_of.go
 model_product_order_response.go
 model_product_order_response_all_of.go
 model_risk_rules_list.go
-model_risk_rules_list_data_inner.go
+model_risk_rules_list_all_of.go
+model_risk_rules_list_all_of_data.go
 model_shipping_order_response.go
 model_shipping_request.go
 model_sms_checkout_request.go
@@ -348,5 +351,6 @@ model_webhook_log.go
 model_webhook_request.go
 model_webhook_response.go
 model_webhook_update_request.go
+model_whitelistlist_rule_response.go
 response.go
 utils.go

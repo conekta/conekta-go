@@ -1,130 +1,130 @@
-# DeletedBlacklistRuleResponse
+# WhitelistlistRuleResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | Blacklist rule id | [optional] 
-**Field** | Pointer to **string** | field used for blacklists rule deleted | [optional] 
-**Value** | Pointer to **string** | value used for blacklists rule deleted | [optional] 
-**Description** | Pointer to **string** | use an description for blacklisted rule | [optional] 
+**Id** | Pointer to **string** | Whitelist rule id | [optional] 
+**Field** | Pointer to **string** | field used for whitelists rule | [optional] 
+**Value** | Pointer to **string** | value used for whitelists rule | [optional] 
+**Description** | Pointer to **string** | use an description for whitelisted rule | [optional] 
 
 ## Methods
 
-### NewDeletedBlacklistRuleResponse
+### NewWhitelistlistRuleResponse
 
-`func NewDeletedBlacklistRuleResponse() *DeletedBlacklistRuleResponse`
+`func NewWhitelistlistRuleResponse() *WhitelistlistRuleResponse`
 
-NewDeletedBlacklistRuleResponse instantiates a new DeletedBlacklistRuleResponse object
+NewWhitelistlistRuleResponse instantiates a new WhitelistlistRuleResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewDeletedBlacklistRuleResponseWithDefaults
+### NewWhitelistlistRuleResponseWithDefaults
 
-`func NewDeletedBlacklistRuleResponseWithDefaults() *DeletedBlacklistRuleResponse`
+`func NewWhitelistlistRuleResponseWithDefaults() *WhitelistlistRuleResponse`
 
-NewDeletedBlacklistRuleResponseWithDefaults instantiates a new DeletedBlacklistRuleResponse object
+NewWhitelistlistRuleResponseWithDefaults instantiates a new WhitelistlistRuleResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *DeletedBlacklistRuleResponse) GetId() string`
+`func (o *WhitelistlistRuleResponse) GetId() string`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *DeletedBlacklistRuleResponse) GetIdOk() (*string, bool)`
+`func (o *WhitelistlistRuleResponse) GetIdOk() (*string, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *DeletedBlacklistRuleResponse) SetId(v string)`
+`func (o *WhitelistlistRuleResponse) SetId(v string)`
 
 SetId sets Id field to given value.
 
 ### HasId
 
-`func (o *DeletedBlacklistRuleResponse) HasId() bool`
+`func (o *WhitelistlistRuleResponse) HasId() bool`
 
 HasId returns a boolean if a field has been set.
 
 ### GetField
 
-`func (o *DeletedBlacklistRuleResponse) GetField() string`
+`func (o *WhitelistlistRuleResponse) GetField() string`
 
 GetField returns the Field field if non-nil, zero value otherwise.
 
 ### GetFieldOk
 
-`func (o *DeletedBlacklistRuleResponse) GetFieldOk() (*string, bool)`
+`func (o *WhitelistlistRuleResponse) GetFieldOk() (*string, bool)`
 
 GetFieldOk returns a tuple with the Field field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetField
 
-`func (o *DeletedBlacklistRuleResponse) SetField(v string)`
+`func (o *WhitelistlistRuleResponse) SetField(v string)`
 
 SetField sets Field field to given value.
 
 ### HasField
 
-`func (o *DeletedBlacklistRuleResponse) HasField() bool`
+`func (o *WhitelistlistRuleResponse) HasField() bool`
 
 HasField returns a boolean if a field has been set.
 
 ### GetValue
 
-`func (o *DeletedBlacklistRuleResponse) GetValue() string`
+`func (o *WhitelistlistRuleResponse) GetValue() string`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *DeletedBlacklistRuleResponse) GetValueOk() (*string, bool)`
+`func (o *WhitelistlistRuleResponse) GetValueOk() (*string, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *DeletedBlacklistRuleResponse) SetValue(v string)`
+`func (o *WhitelistlistRuleResponse) SetValue(v string)`
 
 SetValue sets Value field to given value.
 
 ### HasValue
 
-`func (o *DeletedBlacklistRuleResponse) HasValue() bool`
+`func (o *WhitelistlistRuleResponse) HasValue() bool`
 
 HasValue returns a boolean if a field has been set.
 
 ### GetDescription
 
-`func (o *DeletedBlacklistRuleResponse) GetDescription() string`
+`func (o *WhitelistlistRuleResponse) GetDescription() string`
 
 GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *DeletedBlacklistRuleResponse) GetDescriptionOk() (*string, bool)`
+`func (o *WhitelistlistRuleResponse) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDescription
 
-`func (o *DeletedBlacklistRuleResponse) SetDescription(v string)`
+`func (o *WhitelistlistRuleResponse) SetDescription(v string)`
 
 SetDescription sets Description field to given value.
 
 ### HasDescription
 
-`func (o *DeletedBlacklistRuleResponse) HasDescription() bool`
+`func (o *WhitelistlistRuleResponse) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
 
