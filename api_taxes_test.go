@@ -52,7 +52,7 @@ func TestTaxesApi(t *testing.T) {
 		}
 	})
 	t.Run("OrdersDeleteTaxes success", func(t *testing.T) {
-		tax, response, err := client.TaxesApi.OrdersDeleteTaxes(context.TODO(), "ord_2tUigJ8DgBhbp6w5D", "tax_lin_2tVzVp6AAptCRHhgt").
+		tax, response, err := client.TaxesApi.OrdersDeleteTaxes(context.TODO(), "ord_2tVyWPnCPWbrV37mW", "tax_lin_2tVzVp6AAptCRHhgt").
 			AcceptLanguage("es").
 			Execute()
 		if err != nil {

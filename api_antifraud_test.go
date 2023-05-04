@@ -27,7 +27,7 @@ func TestAntifraudApi(t *testing.T) {
 		}
 	})
 	t.Run("DeleteRuleBlacklist success", func(t *testing.T) {
-		_, response, err := client.AntifraudApi.DeleteRuleBlacklist(context.TODO(), "").
+		_, response, err := client.AntifraudApi.DeleteRuleBlacklist(context.TODO(), "618c3f30db8b8da9be376b1e").
 			Execute()
 		if err != nil {
 			t.Error(err)
@@ -82,7 +82,7 @@ func TestAntifraudApi(t *testing.T) {
 		}
 	})
 	t.Run("DeleteRuleWhitelist success", func(t *testing.T) {
-		_, response, err := client.AntifraudApi.DeleteRuleWhitelist(context.TODO(), "").
+		_, response, err := client.AntifraudApi.DeleteRuleWhitelist(context.TODO(), "618c3f2fdb8b8da9be376afe").
 			Execute()
 		if err != nil {
 			t.Error(err)
