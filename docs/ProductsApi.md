@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## OrdersCreateProduct
 
-> ProductOrderResponse OrdersCreateProduct(ctx, id).Product(product).AcceptLanguage(acceptLanguage).Execute()
+> ProductOrderResponse OrdersCreateProduct(ctx, id).Product(product).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Create Product
 
@@ -34,10 +34,11 @@ func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     product := *openapiclient.NewProduct("Box of Cohiba S1s", int32(1), int32(20000)) // Product | requested field for a product
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProductsApi.OrdersCreateProduct(context.Background(), id).Product(product).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.ProductsApi.OrdersCreateProduct(context.Background(), id).Product(product).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProductsApi.OrdersCreateProduct``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -65,6 +66,7 @@ Name | Type | Description  | Notes
 
  **product** | [**Product**](Product.md) | requested field for a product | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -86,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## OrdersDeleteProduct
 
-> ProductOrderResponse OrdersDeleteProduct(ctx, id, lineItemId).AcceptLanguage(acceptLanguage).Execute()
+> ProductOrderResponse OrdersDeleteProduct(ctx, id, lineItemId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Delete Product
 
@@ -108,10 +110,11 @@ func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     lineItemId := "line_item_2tQ8HkkfbauaKP9Ho" // string | identifier
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProductsApi.OrdersDeleteProduct(context.Background(), id, lineItemId).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.ProductsApi.OrdersDeleteProduct(context.Background(), id, lineItemId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProductsApi.OrdersDeleteProduct``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -140,6 +143,7 @@ Name | Type | Description  | Notes
 
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -161,7 +165,7 @@ Name | Type | Description  | Notes
 
 ## OrdersUpdateProduct
 
-> ProductOrderResponse OrdersUpdateProduct(ctx, id, lineItemId).UpdateProduct(updateProduct).AcceptLanguage(acceptLanguage).Execute()
+> ProductOrderResponse OrdersUpdateProduct(ctx, id, lineItemId).UpdateProduct(updateProduct).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update Product
 
@@ -184,10 +188,11 @@ func main() {
     lineItemId := "line_item_2tQ8HkkfbauaKP9Ho" // string | identifier
     updateProduct := *openapiclient.NewUpdateProduct() // UpdateProduct | requested field for products
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProductsApi.OrdersUpdateProduct(context.Background(), id, lineItemId).UpdateProduct(updateProduct).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.ProductsApi.OrdersUpdateProduct(context.Background(), id, lineItemId).UpdateProduct(updateProduct).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProductsApi.OrdersUpdateProduct``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -217,6 +222,7 @@ Name | Type | Description  | Notes
 
  **updateProduct** | [**UpdateProduct**](UpdateProduct.md) | requested field for products | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 

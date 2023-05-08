@@ -61,11 +61,18 @@ type ApiGetLogByIdRequest struct {
 	ApiService LogsApi
 	id string
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // Use for knowing which language to use
 func (r ApiGetLogByIdRequest) AcceptLanguage(acceptLanguage string) ApiGetLogByIdRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiGetLogByIdRequest) XChildCompanyId(xChildCompanyId string) ApiGetLogByIdRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -131,6 +138,9 @@ func (a *LogsApiService) GetLogByIdExecute(r ApiGetLogByIdRequest) (*LogResponse
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -205,6 +215,7 @@ type ApiGetLogsRequest struct {
 	ctx context.Context
 	ApiService LogsApi
 	acceptLanguage *string
+	xChildCompanyId *string
 	limit *int32
 	search *string
 	next *string
@@ -214,6 +225,12 @@ type ApiGetLogsRequest struct {
 // Use for knowing which language to use
 func (r ApiGetLogsRequest) AcceptLanguage(acceptLanguage string) ApiGetLogsRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiGetLogsRequest) XChildCompanyId(xChildCompanyId string) ApiGetLogsRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -312,6 +329,9 @@ func (a *LogsApiService) GetLogsExecute(r ApiGetLogsRequest) (*LogsResponse, *ht
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

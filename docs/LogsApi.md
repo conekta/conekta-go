@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## GetLogById
 
-> LogResponse GetLogById(ctx, id).AcceptLanguage(acceptLanguage).Execute()
+> LogResponse GetLogById(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Get Log
 
@@ -32,10 +32,11 @@ import (
 func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsApi.GetLogById(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.LogsApi.GetLogById(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.GetLogById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -62,6 +63,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -83,7 +85,7 @@ Name | Type | Description  | Notes
 
 ## GetLogs
 
-> LogsResponse GetLogs(ctx).AcceptLanguage(acceptLanguage).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+> LogsResponse GetLogs(ctx).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
 
 Get List Of Logs
 
@@ -103,6 +105,7 @@ import (
 
 func main() {
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
     limit := int32(56) // int32 | The numbers of items to return, the maximum value is 250 (optional) (default to 20)
     search := "search_example" // string | General order search, e.g. by mail, reference etc. (optional)
     next := "next_example" // string | next page (optional)
@@ -110,7 +113,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsApi.GetLogs(context.Background()).AcceptLanguage(acceptLanguage).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+    resp, r, err := apiClient.LogsApi.GetLogs(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.GetLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -132,6 +135,7 @@ Other parameters are passed through a pointer to a apiGetLogsRequest struct via 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
  **limit** | **int32** | The numbers of items to return, the maximum value is 250 | [default to 20]
  **search** | **string** | General order search, e.g. by mail, reference etc. | 
  **next** | **string** | next page | 

@@ -26,7 +26,7 @@ type RiskRulesList struct {
 	NextPageUrl NullableString `json:"next_page_url,omitempty"`
 	// Url of the previous page.
 	PreviousPageUrl NullableString `json:"previous_page_url,omitempty"`
-	Data []RiskRulesListAllOfData `json:"data,omitempty"`
+	Data []RiskRulesData `json:"data,omitempty"`
 }
 
 // NewRiskRulesList instantiates a new RiskRulesList object
@@ -181,9 +181,9 @@ func (o *RiskRulesList) UnsetPreviousPageUrl() {
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *RiskRulesList) GetData() []RiskRulesListAllOfData {
+func (o *RiskRulesList) GetData() []RiskRulesData {
 	if o == nil || IsNil(o.Data) {
-		var ret []RiskRulesListAllOfData
+		var ret []RiskRulesData
 		return ret
 	}
 	return o.Data
@@ -191,7 +191,7 @@ func (o *RiskRulesList) GetData() []RiskRulesListAllOfData {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RiskRulesList) GetDataOk() ([]RiskRulesListAllOfData, bool) {
+func (o *RiskRulesList) GetDataOk() ([]RiskRulesData, bool) {
 	if o == nil || IsNil(o.Data) {
 		return nil, false
 	}
@@ -207,8 +207,8 @@ func (o *RiskRulesList) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given []RiskRulesListAllOfData and assigns it to the Data field.
-func (o *RiskRulesList) SetData(v []RiskRulesListAllOfData) {
+// SetData gets a reference to the given []RiskRulesData and assigns it to the Data field.
+func (o *RiskRulesList) SetData(v []RiskRulesData) {
 	o.Data = v
 }
 

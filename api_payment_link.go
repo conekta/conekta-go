@@ -110,11 +110,18 @@ type ApiCancelCheckoutRequest struct {
 	ApiService PaymentLinkApi
 	id string
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // Use for knowing which language to use
 func (r ApiCancelCheckoutRequest) AcceptLanguage(acceptLanguage string) ApiCancelCheckoutRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiCancelCheckoutRequest) XChildCompanyId(xChildCompanyId string) ApiCancelCheckoutRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -178,6 +185,9 @@ func (a *PaymentLinkApiService) CancelCheckoutExecute(r ApiCancelCheckoutRequest
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -275,6 +285,7 @@ type ApiCreateCheckoutRequest struct {
 	ApiService PaymentLinkApi
 	checkout *Checkout
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for checkout
@@ -286,6 +297,12 @@ func (r ApiCreateCheckoutRequest) Checkout(checkout Checkout) ApiCreateCheckoutR
 // Use for knowing which language to use
 func (r ApiCreateCheckoutRequest) AcceptLanguage(acceptLanguage string) ApiCreateCheckoutRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiCreateCheckoutRequest) XChildCompanyId(xChildCompanyId string) ApiCreateCheckoutRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -349,6 +366,9 @@ func (a *PaymentLinkApiService) CreateCheckoutExecute(r ApiCreateCheckoutRequest
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.checkout
@@ -438,6 +458,7 @@ type ApiEmailCheckoutRequest struct {
 	id string
 	emailCheckoutRequest *EmailCheckoutRequest
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for sms checkout
@@ -449,6 +470,12 @@ func (r ApiEmailCheckoutRequest) EmailCheckoutRequest(emailCheckoutRequest Email
 // Use for knowing which language to use
 func (r ApiEmailCheckoutRequest) AcceptLanguage(acceptLanguage string) ApiEmailCheckoutRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiEmailCheckoutRequest) XChildCompanyId(xChildCompanyId string) ApiEmailCheckoutRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -515,6 +542,9 @@ func (a *PaymentLinkApiService) EmailCheckoutExecute(r ApiEmailCheckoutRequest) 
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.emailCheckoutRequest
@@ -614,11 +644,18 @@ type ApiGetCheckoutRequest struct {
 	ApiService PaymentLinkApi
 	id string
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // Use for knowing which language to use
 func (r ApiGetCheckoutRequest) AcceptLanguage(acceptLanguage string) ApiGetCheckoutRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiGetCheckoutRequest) XChildCompanyId(xChildCompanyId string) ApiGetCheckoutRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -682,6 +719,9 @@ func (a *PaymentLinkApiService) GetCheckoutExecute(r ApiGetCheckoutRequest) (*Ch
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -778,6 +818,7 @@ type ApiGetCheckoutsRequest struct {
 	ctx context.Context
 	ApiService PaymentLinkApi
 	acceptLanguage *string
+	xChildCompanyId *string
 	limit *int32
 	search *string
 	next *string
@@ -787,6 +828,12 @@ type ApiGetCheckoutsRequest struct {
 // Use for knowing which language to use
 func (r ApiGetCheckoutsRequest) AcceptLanguage(acceptLanguage string) ApiGetCheckoutsRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiGetCheckoutsRequest) XChildCompanyId(xChildCompanyId string) ApiGetCheckoutsRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -886,6 +933,9 @@ func (a *PaymentLinkApiService) GetCheckoutsExecute(r ApiGetCheckoutsRequest) (*
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
 	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -972,6 +1022,7 @@ type ApiSmsCheckoutRequest struct {
 	id string
 	smsCheckoutRequest *SmsCheckoutRequest
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for sms checkout
@@ -983,6 +1034,12 @@ func (r ApiSmsCheckoutRequest) SmsCheckoutRequest(smsCheckoutRequest SmsCheckout
 // Use for knowing which language to use
 func (r ApiSmsCheckoutRequest) AcceptLanguage(acceptLanguage string) ApiSmsCheckoutRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiSmsCheckoutRequest) XChildCompanyId(xChildCompanyId string) ApiSmsCheckoutRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -1049,6 +1106,9 @@ func (a *PaymentLinkApiService) SmsCheckoutExecute(r ApiSmsCheckoutRequest) (*Ch
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.smsCheckoutRequest

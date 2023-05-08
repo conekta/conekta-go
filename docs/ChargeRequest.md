@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | Pointer to **int32** |  | [optional] 
-**ExpiresAt** | Pointer to **int64** | Method expiration date as unix timestamp | [optional] 
 **MonthlyInstallments** | Pointer to **int32** | How many months without interest to apply, it can be 3, 6, 9, 12 or 18 | [optional] 
 **PaymentMethod** | [**ChargeRequestPaymentMethod**](ChargeRequestPaymentMethod.md) |  | 
 **ReferenceId** | Pointer to **string** | Custom reference to add to the charge | [optional] 
@@ -53,31 +52,6 @@ SetAmount sets Amount field to given value.
 `func (o *ChargeRequest) HasAmount() bool`
 
 HasAmount returns a boolean if a field has been set.
-
-### GetExpiresAt
-
-`func (o *ChargeRequest) GetExpiresAt() int64`
-
-GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
-
-### GetExpiresAtOk
-
-`func (o *ChargeRequest) GetExpiresAtOk() (*int64, bool)`
-
-GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExpiresAt
-
-`func (o *ChargeRequest) SetExpiresAt(v int64)`
-
-SetExpiresAt sets ExpiresAt field to given value.
-
-### HasExpiresAt
-
-`func (o *ChargeRequest) HasExpiresAt() bool`
-
-HasExpiresAt returns a boolean if a field has been set.
 
 ### GetMonthlyInstallments
 

@@ -95,6 +95,7 @@ type ApiCreateCustomerPaymentMethodsRequest struct {
 	id string
 	createCustomerPaymentMethodsRequest *CreateCustomerPaymentMethodsRequest
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for customer payment methods
@@ -106,6 +107,12 @@ func (r ApiCreateCustomerPaymentMethodsRequest) CreateCustomerPaymentMethodsRequ
 // Use for knowing which language to use
 func (r ApiCreateCustomerPaymentMethodsRequest) AcceptLanguage(acceptLanguage string) ApiCreateCustomerPaymentMethodsRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiCreateCustomerPaymentMethodsRequest) XChildCompanyId(xChildCompanyId string) ApiCreateCustomerPaymentMethodsRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -174,6 +181,9 @@ func (a *PaymentMethodsApiService) CreateCustomerPaymentMethodsExecute(r ApiCrea
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.createCustomerPaymentMethodsRequest
@@ -263,11 +273,18 @@ type ApiDeleteCustomerPaymentMethodsRequest struct {
 	id string
 	paymentMethodId string
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // Use for knowing which language to use
 func (r ApiDeleteCustomerPaymentMethodsRequest) AcceptLanguage(acceptLanguage string) ApiDeleteCustomerPaymentMethodsRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiDeleteCustomerPaymentMethodsRequest) XChildCompanyId(xChildCompanyId string) ApiDeleteCustomerPaymentMethodsRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -336,6 +353,9 @@ func (a *PaymentMethodsApiService) DeleteCustomerPaymentMethodsExecute(r ApiDele
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -422,6 +442,7 @@ type ApiGetCustomerPaymentMethodsRequest struct {
 	ApiService PaymentMethodsApi
 	id string
 	acceptLanguage *string
+	xChildCompanyId *string
 	limit *int32
 	next *string
 	previous *string
@@ -431,6 +452,12 @@ type ApiGetCustomerPaymentMethodsRequest struct {
 // Use for knowing which language to use
 func (r ApiGetCustomerPaymentMethodsRequest) AcceptLanguage(acceptLanguage string) ApiGetCustomerPaymentMethodsRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiGetCustomerPaymentMethodsRequest) XChildCompanyId(xChildCompanyId string) ApiGetCustomerPaymentMethodsRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -533,6 +560,9 @@ func (a *PaymentMethodsApiService) GetCustomerPaymentMethodsExecute(r ApiGetCust
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
 	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -609,6 +639,7 @@ type ApiUpdateCustomerPaymentMethodsRequest struct {
 	paymentMethodId string
 	updatePaymentMethods *UpdatePaymentMethods
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for customer payment methods
@@ -620,6 +651,12 @@ func (r ApiUpdateCustomerPaymentMethodsRequest) UpdatePaymentMethods(updatePayme
 // Use for knowing which language to use
 func (r ApiUpdateCustomerPaymentMethodsRequest) AcceptLanguage(acceptLanguage string) ApiUpdateCustomerPaymentMethodsRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiUpdateCustomerPaymentMethodsRequest) XChildCompanyId(xChildCompanyId string) ApiUpdateCustomerPaymentMethodsRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -691,6 +728,9 @@ func (a *PaymentMethodsApiService) UpdateCustomerPaymentMethodsExecute(r ApiUpda
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.updatePaymentMethods

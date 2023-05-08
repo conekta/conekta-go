@@ -80,6 +80,7 @@ type ApiOrdersCreateTaxesRequest struct {
 	id string
 	orderTaxRequest *OrderTaxRequest
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for a taxes
@@ -91,6 +92,12 @@ func (r ApiOrdersCreateTaxesRequest) OrderTaxRequest(orderTaxRequest OrderTaxReq
 // Use for knowing which language to use
 func (r ApiOrdersCreateTaxesRequest) AcceptLanguage(acceptLanguage string) ApiOrdersCreateTaxesRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiOrdersCreateTaxesRequest) XChildCompanyId(xChildCompanyId string) ApiOrdersCreateTaxesRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -159,6 +166,9 @@ func (a *TaxesApiService) OrdersCreateTaxesExecute(r ApiOrdersCreateTaxesRequest
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.orderTaxRequest
@@ -237,11 +247,18 @@ type ApiOrdersDeleteTaxesRequest struct {
 	id string
 	taxId string
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // Use for knowing which language to use
 func (r ApiOrdersDeleteTaxesRequest) AcceptLanguage(acceptLanguage string) ApiOrdersDeleteTaxesRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiOrdersDeleteTaxesRequest) XChildCompanyId(xChildCompanyId string) ApiOrdersDeleteTaxesRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -310,6 +327,9 @@ func (a *TaxesApiService) OrdersDeleteTaxesExecute(r ApiOrdersDeleteTaxesRequest
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -398,6 +418,7 @@ type ApiOrdersUpdateTaxesRequest struct {
 	taxId string
 	updateOrderTaxRequest *UpdateOrderTaxRequest
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for taxes
@@ -409,6 +430,12 @@ func (r ApiOrdersUpdateTaxesRequest) UpdateOrderTaxRequest(updateOrderTaxRequest
 // Use for knowing which language to use
 func (r ApiOrdersUpdateTaxesRequest) AcceptLanguage(acceptLanguage string) ApiOrdersUpdateTaxesRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiOrdersUpdateTaxesRequest) XChildCompanyId(xChildCompanyId string) ApiOrdersUpdateTaxesRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -480,6 +507,9 @@ func (a *TaxesApiService) OrdersUpdateTaxesExecute(r ApiOrdersUpdateTaxesRequest
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.updateOrderTaxRequest

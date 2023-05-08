@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **CustomReference** | Pointer to **string** | It is an undefined value. | [optional] 
 **FiscalEntities** | Pointer to [**[]CustomerFiscalEntitiesRequest**](CustomerFiscalEntitiesRequest.md) |  | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
-**PaymentSources** | Pointer to [**[]ConsumerPaymentMethodsRequest**](ConsumerPaymentMethodsRequest.md) | Contains details of the payment methods that the customer has active or has used in Conekta | [optional] 
+**PaymentSources** | Pointer to [**[]CustomerPaymentMethodsRequest**](CustomerPaymentMethodsRequest.md) | Contains details of the payment methods that the customer has active or has used in Conekta | [optional] 
 **ShippingContacts** | Pointer to [**[]CustomerShippingContacts**](CustomerShippingContacts.md) | Contains the detail of the shipping addresses that the client has active or has used in Conekta | [optional] 
 **Subscription** | Pointer to [**SubscriptionRequest**](SubscriptionRequest.md) |  | [optional] 
 
@@ -325,20 +325,20 @@ HasMetadata returns a boolean if a field has been set.
 
 ### GetPaymentSources
 
-`func (o *UpdateCustomer) GetPaymentSources() []ConsumerPaymentMethodsRequest`
+`func (o *UpdateCustomer) GetPaymentSources() []CustomerPaymentMethodsRequest`
 
 GetPaymentSources returns the PaymentSources field if non-nil, zero value otherwise.
 
 ### GetPaymentSourcesOk
 
-`func (o *UpdateCustomer) GetPaymentSourcesOk() (*[]ConsumerPaymentMethodsRequest, bool)`
+`func (o *UpdateCustomer) GetPaymentSourcesOk() (*[]CustomerPaymentMethodsRequest, bool)`
 
 GetPaymentSourcesOk returns a tuple with the PaymentSources field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPaymentSources
 
-`func (o *UpdateCustomer) SetPaymentSources(v []ConsumerPaymentMethodsRequest)`
+`func (o *UpdateCustomer) SetPaymentSources(v []CustomerPaymentMethodsRequest)`
 
 SetPaymentSources sets PaymentSources field to given value.
 

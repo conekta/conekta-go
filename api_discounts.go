@@ -80,6 +80,7 @@ type ApiOrdersCreateDiscountLineRequest struct {
 	id string
 	orderDiscountLinesRequest *OrderDiscountLinesRequest
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for a discount lines
@@ -91,6 +92,12 @@ func (r ApiOrdersCreateDiscountLineRequest) OrderDiscountLinesRequest(orderDisco
 // Use for knowing which language to use
 func (r ApiOrdersCreateDiscountLineRequest) AcceptLanguage(acceptLanguage string) ApiOrdersCreateDiscountLineRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiOrdersCreateDiscountLineRequest) XChildCompanyId(xChildCompanyId string) ApiOrdersCreateDiscountLineRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -159,6 +166,9 @@ func (a *DiscountsApiService) OrdersCreateDiscountLineExecute(r ApiOrdersCreateD
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.orderDiscountLinesRequest
@@ -237,11 +247,18 @@ type ApiOrdersDeleteDiscountLinesRequest struct {
 	id string
 	discountLinesId string
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // Use for knowing which language to use
 func (r ApiOrdersDeleteDiscountLinesRequest) AcceptLanguage(acceptLanguage string) ApiOrdersDeleteDiscountLinesRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiOrdersDeleteDiscountLinesRequest) XChildCompanyId(xChildCompanyId string) ApiOrdersDeleteDiscountLinesRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -310,6 +327,9 @@ func (a *DiscountsApiService) OrdersDeleteDiscountLinesExecute(r ApiOrdersDelete
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -398,6 +418,7 @@ type ApiOrdersUpdateDiscountLinesRequest struct {
 	discountLinesId string
 	updateOrderDiscountLinesRequest *UpdateOrderDiscountLinesRequest
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for a discount lines
@@ -409,6 +430,12 @@ func (r ApiOrdersUpdateDiscountLinesRequest) UpdateOrderDiscountLinesRequest(upd
 // Use for knowing which language to use
 func (r ApiOrdersUpdateDiscountLinesRequest) AcceptLanguage(acceptLanguage string) ApiOrdersUpdateDiscountLinesRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiOrdersUpdateDiscountLinesRequest) XChildCompanyId(xChildCompanyId string) ApiOrdersUpdateDiscountLinesRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -480,6 +507,9 @@ func (a *DiscountsApiService) OrdersUpdateDiscountLinesExecute(r ApiOrdersUpdate
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.updateOrderDiscountLinesRequest

@@ -20,6 +20,8 @@ var _ MappedNullable = &ChargeRequestPaymentMethod{}
 
 // ChargeRequestPaymentMethod Payment method used in the charge. Go to the [payment methods](https://developers.conekta.com/reference/m%C3%A9todos-de-pago) section for more details 
 type ChargeRequestPaymentMethod struct {
+	// Method expiration date as unix timestamp
+	ExpiresAt *int64 `json:"expires_at,omitempty"`
 	Type string `json:"type"`
 	TokenId *string `json:"token_id,omitempty"`
 	PaymentSourceId *string `json:"payment_source_id,omitempty"`
@@ -41,6 +43,38 @@ func NewChargeRequestPaymentMethod(type_ string) *ChargeRequestPaymentMethod {
 func NewChargeRequestPaymentMethodWithDefaults() *ChargeRequestPaymentMethod {
 	this := ChargeRequestPaymentMethod{}
 	return &this
+}
+
+// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
+func (o *ChargeRequestPaymentMethod) GetExpiresAt() int64 {
+	if o == nil || IsNil(o.ExpiresAt) {
+		var ret int64
+		return ret
+	}
+	return *o.ExpiresAt
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChargeRequestPaymentMethod) GetExpiresAtOk() (*int64, bool) {
+	if o == nil || IsNil(o.ExpiresAt) {
+		return nil, false
+	}
+	return o.ExpiresAt, true
+}
+
+// HasExpiresAt returns a boolean if a field has been set.
+func (o *ChargeRequestPaymentMethod) HasExpiresAt() bool {
+	if o != nil && !IsNil(o.ExpiresAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiresAt gets a reference to the given int64 and assigns it to the ExpiresAt field.
+func (o *ChargeRequestPaymentMethod) SetExpiresAt(v int64) {
+	o.ExpiresAt = &v
 }
 
 // GetType returns the Type field value
@@ -141,6 +175,9 @@ func (o ChargeRequestPaymentMethod) MarshalJSON() ([]byte, error) {
 
 func (o ChargeRequestPaymentMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ExpiresAt) {
+		toSerialize["expires_at"] = o.ExpiresAt
+	}
 	toSerialize["type"] = o.Type
 	if !IsNil(o.TokenId) {
 		toSerialize["token_id"] = o.TokenId

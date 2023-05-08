@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## OrdersCreateShipping
 
-> ShippingOrderResponse OrdersCreateShipping(ctx, id).ShippingRequest(shippingRequest).AcceptLanguage(acceptLanguage).Execute()
+> ShippingOrderResponse OrdersCreateShipping(ctx, id).ShippingRequest(shippingRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Create Shipping
 
@@ -34,10 +34,11 @@ func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     shippingRequest := *openapiclient.NewShippingRequest(int64(100)) // ShippingRequest | requested field for a shipping
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ShippingsApi.OrdersCreateShipping(context.Background(), id).ShippingRequest(shippingRequest).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.ShippingsApi.OrdersCreateShipping(context.Background(), id).ShippingRequest(shippingRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ShippingsApi.OrdersCreateShipping``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -65,6 +66,7 @@ Name | Type | Description  | Notes
 
  **shippingRequest** | [**ShippingRequest**](ShippingRequest.md) | requested field for a shipping | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -86,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## OrdersDeleteShipping
 
-> ShippingOrderResponse OrdersDeleteShipping(ctx, id, shippingId).AcceptLanguage(acceptLanguage).Execute()
+> ShippingOrderResponse OrdersDeleteShipping(ctx, id, shippingId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Delete Shipping
 
@@ -108,10 +110,11 @@ func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     shippingId := "ship_lin_2tQ974hSHcsdeSZHG" // string | identifier
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ShippingsApi.OrdersDeleteShipping(context.Background(), id, shippingId).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.ShippingsApi.OrdersDeleteShipping(context.Background(), id, shippingId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ShippingsApi.OrdersDeleteShipping``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -140,6 +143,7 @@ Name | Type | Description  | Notes
 
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -161,7 +165,7 @@ Name | Type | Description  | Notes
 
 ## OrdersUpdateShipping
 
-> ShippingOrderResponse OrdersUpdateShipping(ctx, id, shippingId).ShippingRequest(shippingRequest).AcceptLanguage(acceptLanguage).Execute()
+> ShippingOrderResponse OrdersUpdateShipping(ctx, id, shippingId).ShippingRequest(shippingRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update Shipping
 
@@ -184,10 +188,11 @@ func main() {
     shippingId := "ship_lin_2tQ974hSHcsdeSZHG" // string | identifier
     shippingRequest := *openapiclient.NewShippingRequest(int64(100)) // ShippingRequest | requested field for a shipping
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ShippingsApi.OrdersUpdateShipping(context.Background(), id, shippingId).ShippingRequest(shippingRequest).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.ShippingsApi.OrdersUpdateShipping(context.Background(), id, shippingId).ShippingRequest(shippingRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ShippingsApi.OrdersUpdateShipping``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -217,6 +222,7 @@ Name | Type | Description  | Notes
 
  **shippingRequest** | [**ShippingRequest**](ShippingRequest.md) | requested field for a shipping | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 

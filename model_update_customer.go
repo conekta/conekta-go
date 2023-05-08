@@ -40,7 +40,7 @@ type UpdateCustomer struct {
 	FiscalEntities []CustomerFiscalEntitiesRequest `json:"fiscal_entities,omitempty"`
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// Contains details of the payment methods that the customer has active or has used in Conekta
-	PaymentSources []ConsumerPaymentMethodsRequest `json:"payment_sources,omitempty"`
+	PaymentSources []CustomerPaymentMethodsRequest `json:"payment_sources,omitempty"`
 	// Contains the detail of the shipping addresses that the client has active or has used in Conekta
 	ShippingContacts []CustomerShippingContacts `json:"shipping_contacts,omitempty"`
 	Subscription *SubscriptionRequest `json:"subscription,omitempty"`
@@ -430,9 +430,9 @@ func (o *UpdateCustomer) SetMetadata(v map[string]interface{}) {
 }
 
 // GetPaymentSources returns the PaymentSources field value if set, zero value otherwise.
-func (o *UpdateCustomer) GetPaymentSources() []ConsumerPaymentMethodsRequest {
+func (o *UpdateCustomer) GetPaymentSources() []CustomerPaymentMethodsRequest {
 	if o == nil || IsNil(o.PaymentSources) {
-		var ret []ConsumerPaymentMethodsRequest
+		var ret []CustomerPaymentMethodsRequest
 		return ret
 	}
 	return o.PaymentSources
@@ -440,7 +440,7 @@ func (o *UpdateCustomer) GetPaymentSources() []ConsumerPaymentMethodsRequest {
 
 // GetPaymentSourcesOk returns a tuple with the PaymentSources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCustomer) GetPaymentSourcesOk() ([]ConsumerPaymentMethodsRequest, bool) {
+func (o *UpdateCustomer) GetPaymentSourcesOk() ([]CustomerPaymentMethodsRequest, bool) {
 	if o == nil || IsNil(o.PaymentSources) {
 		return nil, false
 	}
@@ -456,8 +456,8 @@ func (o *UpdateCustomer) HasPaymentSources() bool {
 	return false
 }
 
-// SetPaymentSources gets a reference to the given []ConsumerPaymentMethodsRequest and assigns it to the PaymentSources field.
-func (o *UpdateCustomer) SetPaymentSources(v []ConsumerPaymentMethodsRequest) {
+// SetPaymentSources gets a reference to the given []CustomerPaymentMethodsRequest and assigns it to the PaymentSources field.
+func (o *UpdateCustomer) SetPaymentSources(v []CustomerPaymentMethodsRequest) {
 	o.PaymentSources = v
 }
 

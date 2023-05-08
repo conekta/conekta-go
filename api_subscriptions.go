@@ -135,11 +135,18 @@ type ApiCancelSubscriptionRequest struct {
 	ApiService SubscriptionsApi
 	id string
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // Use for knowing which language to use
 func (r ApiCancelSubscriptionRequest) AcceptLanguage(acceptLanguage string) ApiCancelSubscriptionRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiCancelSubscriptionRequest) XChildCompanyId(xChildCompanyId string) ApiCancelSubscriptionRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -205,6 +212,9 @@ func (a *SubscriptionsApiService) CancelSubscriptionExecute(r ApiCancelSubscript
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -281,6 +291,7 @@ type ApiCreateSubscriptionRequest struct {
 	id string
 	subscriptionRequest *SubscriptionRequest
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for subscriptions
@@ -292,6 +303,12 @@ func (r ApiCreateSubscriptionRequest) SubscriptionRequest(subscriptionRequest Su
 // Use for knowing which language to use
 func (r ApiCreateSubscriptionRequest) AcceptLanguage(acceptLanguage string) ApiCreateSubscriptionRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiCreateSubscriptionRequest) XChildCompanyId(xChildCompanyId string) ApiCreateSubscriptionRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -360,6 +377,9 @@ func (a *SubscriptionsApiService) CreateSubscriptionExecute(r ApiCreateSubscript
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.subscriptionRequest
@@ -448,11 +468,18 @@ type ApiGetAllEventsFromSubscriptionRequest struct {
 	ApiService SubscriptionsApi
 	id string
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // Use for knowing which language to use
 func (r ApiGetAllEventsFromSubscriptionRequest) AcceptLanguage(acceptLanguage string) ApiGetAllEventsFromSubscriptionRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiGetAllEventsFromSubscriptionRequest) XChildCompanyId(xChildCompanyId string) ApiGetAllEventsFromSubscriptionRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -518,6 +545,9 @@ func (a *SubscriptionsApiService) GetAllEventsFromSubscriptionExecute(r ApiGetAl
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -758,11 +788,18 @@ type ApiPauseSubscriptionRequest struct {
 	ApiService SubscriptionsApi
 	id string
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // Use for knowing which language to use
 func (r ApiPauseSubscriptionRequest) AcceptLanguage(acceptLanguage string) ApiPauseSubscriptionRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiPauseSubscriptionRequest) XChildCompanyId(xChildCompanyId string) ApiPauseSubscriptionRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -828,6 +865,9 @@ func (a *SubscriptionsApiService) PauseSubscriptionExecute(r ApiPauseSubscriptio
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -914,11 +954,18 @@ type ApiResumeSubscriptionRequest struct {
 	ApiService SubscriptionsApi
 	id string
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // Use for knowing which language to use
 func (r ApiResumeSubscriptionRequest) AcceptLanguage(acceptLanguage string) ApiResumeSubscriptionRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiResumeSubscriptionRequest) XChildCompanyId(xChildCompanyId string) ApiResumeSubscriptionRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -984,6 +1031,9 @@ func (a *SubscriptionsApiService) ResumeSubscriptionExecute(r ApiResumeSubscript
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1082,6 +1132,7 @@ type ApiUpdateSubscriptionRequest struct {
 	id string
 	subscriptionUpdateRequest *SubscriptionUpdateRequest
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for update a subscription
@@ -1093,6 +1144,12 @@ func (r ApiUpdateSubscriptionRequest) SubscriptionUpdateRequest(subscriptionUpda
 // Use for knowing which language to use
 func (r ApiUpdateSubscriptionRequest) AcceptLanguage(acceptLanguage string) ApiUpdateSubscriptionRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiUpdateSubscriptionRequest) XChildCompanyId(xChildCompanyId string) ApiUpdateSubscriptionRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -1161,6 +1218,9 @@ func (a *SubscriptionsApiService) UpdateSubscriptionExecute(r ApiUpdateSubscript
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.subscriptionUpdateRequest

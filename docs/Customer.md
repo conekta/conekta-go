@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **FiscalEntities** | Pointer to [**[]CustomerFiscalEntitiesRequest**](CustomerFiscalEntitiesRequest.md) |  | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Name** | **string** | Client&#39;s name | 
-**PaymentSources** | Pointer to [**[]ConsumerPaymentMethodsRequest**](ConsumerPaymentMethodsRequest.md) | Contains details of the payment methods that the customer has active or has used in Conekta | [optional] 
+**PaymentSources** | Pointer to [**[]CustomerPaymentMethodsRequest**](CustomerPaymentMethodsRequest.md) | Contains details of the payment methods that the customer has active or has used in Conekta | [optional] 
 **Phone** | **string** | Is the customer&#39;s phone number | 
 **PlanId** | Pointer to **string** | Contains the ID of a plan, which could together with name, email and phone create a client directly to a subscription | [optional] 
 **ShippingContacts** | Pointer to [**[]CustomerShippingContacts**](CustomerShippingContacts.md) | Contains the detail of the shipping addresses that the client has active or has used in Conekta | [optional] 
@@ -265,20 +265,20 @@ SetName sets Name field to given value.
 
 ### GetPaymentSources
 
-`func (o *Customer) GetPaymentSources() []ConsumerPaymentMethodsRequest`
+`func (o *Customer) GetPaymentSources() []CustomerPaymentMethodsRequest`
 
 GetPaymentSources returns the PaymentSources field if non-nil, zero value otherwise.
 
 ### GetPaymentSourcesOk
 
-`func (o *Customer) GetPaymentSourcesOk() (*[]ConsumerPaymentMethodsRequest, bool)`
+`func (o *Customer) GetPaymentSourcesOk() (*[]CustomerPaymentMethodsRequest, bool)`
 
 GetPaymentSourcesOk returns a tuple with the PaymentSources field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPaymentSources
 
-`func (o *Customer) SetPaymentSources(v []ConsumerPaymentMethodsRequest)`
+`func (o *Customer) SetPaymentSources(v []CustomerPaymentMethodsRequest)`
 
 SetPaymentSources sets PaymentSources field to given value.
 

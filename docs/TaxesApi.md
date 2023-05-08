@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## OrdersCreateTaxes
 
-> UpdateOrderTaxResponse OrdersCreateTaxes(ctx, id).OrderTaxRequest(orderTaxRequest).AcceptLanguage(acceptLanguage).Execute()
+> UpdateOrderTaxResponse OrdersCreateTaxes(ctx, id).OrderTaxRequest(orderTaxRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Create Tax
 
@@ -34,10 +34,11 @@ func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     orderTaxRequest := *openapiclient.NewOrderTaxRequest(int64(100), "testing") // OrderTaxRequest | requested field for a taxes
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TaxesApi.OrdersCreateTaxes(context.Background(), id).OrderTaxRequest(orderTaxRequest).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.TaxesApi.OrdersCreateTaxes(context.Background(), id).OrderTaxRequest(orderTaxRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TaxesApi.OrdersCreateTaxes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -65,6 +66,7 @@ Name | Type | Description  | Notes
 
  **orderTaxRequest** | [**OrderTaxRequest**](OrderTaxRequest.md) | requested field for a taxes | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -86,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## OrdersDeleteTaxes
 
-> UpdateOrderTaxResponse OrdersDeleteTaxes(ctx, id, taxId).AcceptLanguage(acceptLanguage).Execute()
+> UpdateOrderTaxResponse OrdersDeleteTaxes(ctx, id, taxId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Delete Tax
 
@@ -108,10 +110,11 @@ func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     taxId := "tax_lin_2tQ974hSHcsdeSZHG" // string | identifier
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TaxesApi.OrdersDeleteTaxes(context.Background(), id, taxId).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.TaxesApi.OrdersDeleteTaxes(context.Background(), id, taxId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TaxesApi.OrdersDeleteTaxes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -140,6 +143,7 @@ Name | Type | Description  | Notes
 
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -161,7 +165,7 @@ Name | Type | Description  | Notes
 
 ## OrdersUpdateTaxes
 
-> UpdateOrderTaxResponse OrdersUpdateTaxes(ctx, id, taxId).UpdateOrderTaxRequest(updateOrderTaxRequest).AcceptLanguage(acceptLanguage).Execute()
+> UpdateOrderTaxResponse OrdersUpdateTaxes(ctx, id, taxId).UpdateOrderTaxRequest(updateOrderTaxRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update Tax
 
@@ -184,10 +188,11 @@ func main() {
     taxId := "tax_lin_2tQ974hSHcsdeSZHG" // string | identifier
     updateOrderTaxRequest := *openapiclient.NewUpdateOrderTaxRequest() // UpdateOrderTaxRequest | requested field for taxes
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TaxesApi.OrdersUpdateTaxes(context.Background(), id, taxId).UpdateOrderTaxRequest(updateOrderTaxRequest).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.TaxesApi.OrdersUpdateTaxes(context.Background(), id, taxId).UpdateOrderTaxRequest(updateOrderTaxRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TaxesApi.OrdersUpdateTaxes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -217,6 +222,7 @@ Name | Type | Description  | Notes
 
  **updateOrderTaxRequest** | [**UpdateOrderTaxRequest**](UpdateOrderTaxRequest.md) | requested field for taxes | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 

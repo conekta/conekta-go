@@ -80,6 +80,7 @@ type ApiCreateCustomerShippingContactsRequest struct {
 	id string
 	customerShippingContacts *CustomerShippingContacts
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for customer shippings contacts
@@ -91,6 +92,12 @@ func (r ApiCreateCustomerShippingContactsRequest) CustomerShippingContacts(custo
 // Use for knowing which language to use
 func (r ApiCreateCustomerShippingContactsRequest) AcceptLanguage(acceptLanguage string) ApiCreateCustomerShippingContactsRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiCreateCustomerShippingContactsRequest) XChildCompanyId(xChildCompanyId string) ApiCreateCustomerShippingContactsRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -159,6 +166,9 @@ func (a *ShippingContactsApiService) CreateCustomerShippingContactsExecute(r Api
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.customerShippingContacts
@@ -248,11 +258,18 @@ type ApiDeleteCustomerShippingContactsRequest struct {
 	id string
 	shippingContactsId string
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // Use for knowing which language to use
 func (r ApiDeleteCustomerShippingContactsRequest) AcceptLanguage(acceptLanguage string) ApiDeleteCustomerShippingContactsRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiDeleteCustomerShippingContactsRequest) XChildCompanyId(xChildCompanyId string) ApiDeleteCustomerShippingContactsRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -321,6 +338,9 @@ func (a *ShippingContactsApiService) DeleteCustomerShippingContactsExecute(r Api
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -409,6 +429,7 @@ type ApiUpdateCustomerShippingContactsRequest struct {
 	shippingContactsId string
 	customerUpdateShippingContacts *CustomerUpdateShippingContacts
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for customer update shippings contacts
@@ -420,6 +441,12 @@ func (r ApiUpdateCustomerShippingContactsRequest) CustomerUpdateShippingContacts
 // Use for knowing which language to use
 func (r ApiUpdateCustomerShippingContactsRequest) AcceptLanguage(acceptLanguage string) ApiUpdateCustomerShippingContactsRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiUpdateCustomerShippingContactsRequest) XChildCompanyId(xChildCompanyId string) ApiUpdateCustomerShippingContactsRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -491,6 +518,9 @@ func (a *ShippingContactsApiService) UpdateCustomerShippingContactsExecute(r Api
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.customerUpdateShippingContacts

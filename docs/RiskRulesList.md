@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **HasMore** | **bool** |  | 
 **NextPageUrl** | Pointer to **NullableString** | URL of the next page. | [optional] 
 **PreviousPageUrl** | Pointer to **NullableString** | Url of the previous page. | [optional] 
-**Data** | Pointer to [**[]RiskRulesListAllOfData**](RiskRulesListAllOfData.md) |  | [optional] 
+**Data** | Pointer to [**[]RiskRulesData**](RiskRulesData.md) |  | [optional] 
 
 ## Methods
 
@@ -141,20 +141,20 @@ HasPreviousPageUrl returns a boolean if a field has been set.
 UnsetPreviousPageUrl ensures that no value is present for PreviousPageUrl, not even an explicit nil
 ### GetData
 
-`func (o *RiskRulesList) GetData() []RiskRulesListAllOfData`
+`func (o *RiskRulesList) GetData() []RiskRulesData`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *RiskRulesList) GetDataOk() (*[]RiskRulesListAllOfData, bool)`
+`func (o *RiskRulesList) GetDataOk() (*[]RiskRulesData, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *RiskRulesList) SetData(v []RiskRulesListAllOfData)`
+`func (o *RiskRulesList) SetData(v []RiskRulesData)`
 
 SetData sets Data field to given value.
 

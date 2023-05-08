@@ -21,8 +21,6 @@ var _ MappedNullable = &ChargeRequest{}
 // ChargeRequest The charges to be made
 type ChargeRequest struct {
 	Amount *int32 `json:"amount,omitempty"`
-	// Method expiration date as unix timestamp
-	ExpiresAt *int64 `json:"expires_at,omitempty"`
 	// How many months without interest to apply, it can be 3, 6, 9, 12 or 18
 	MonthlyInstallments *int32 `json:"monthly_installments,omitempty"`
 	PaymentMethod ChargeRequestPaymentMethod `json:"payment_method"`
@@ -78,38 +76,6 @@ func (o *ChargeRequest) HasAmount() bool {
 // SetAmount gets a reference to the given int32 and assigns it to the Amount field.
 func (o *ChargeRequest) SetAmount(v int32) {
 	o.Amount = &v
-}
-
-// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
-func (o *ChargeRequest) GetExpiresAt() int64 {
-	if o == nil || IsNil(o.ExpiresAt) {
-		var ret int64
-		return ret
-	}
-	return *o.ExpiresAt
-}
-
-// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ChargeRequest) GetExpiresAtOk() (*int64, bool) {
-	if o == nil || IsNil(o.ExpiresAt) {
-		return nil, false
-	}
-	return o.ExpiresAt, true
-}
-
-// HasExpiresAt returns a boolean if a field has been set.
-func (o *ChargeRequest) HasExpiresAt() bool {
-	if o != nil && !IsNil(o.ExpiresAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetExpiresAt gets a reference to the given int64 and assigns it to the ExpiresAt field.
-func (o *ChargeRequest) SetExpiresAt(v int64) {
-	o.ExpiresAt = &v
 }
 
 // GetMonthlyInstallments returns the MonthlyInstallments field value if set, zero value otherwise.
@@ -212,9 +178,6 @@ func (o ChargeRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
-	}
-	if !IsNil(o.ExpiresAt) {
-		toSerialize["expires_at"] = o.ExpiresAt
 	}
 	if !IsNil(o.MonthlyInstallments) {
 		toSerialize["monthly_installments"] = o.MonthlyInstallments

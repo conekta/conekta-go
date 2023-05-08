@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CancelSubscription
 
-> SubscriptionResponse CancelSubscription(ctx, id).AcceptLanguage(acceptLanguage).Execute()
+> SubscriptionResponse CancelSubscription(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Cancel Subscription
 
@@ -37,10 +37,11 @@ import (
 func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SubscriptionsApi.CancelSubscription(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.SubscriptionsApi.CancelSubscription(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsApi.CancelSubscription``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -67,6 +68,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -88,7 +90,7 @@ Name | Type | Description  | Notes
 
 ## CreateSubscription
 
-> SubscriptionResponse CreateSubscription(ctx, id).SubscriptionRequest(subscriptionRequest).AcceptLanguage(acceptLanguage).Execute()
+> SubscriptionResponse CreateSubscription(ctx, id).SubscriptionRequest(subscriptionRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Create Subscription
 
@@ -110,10 +112,11 @@ func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     subscriptionRequest := *openapiclient.NewSubscriptionRequest("f84gdgf5g48r15fd21g8w424fd1") // SubscriptionRequest | requested field for subscriptions
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SubscriptionsApi.CreateSubscription(context.Background(), id).SubscriptionRequest(subscriptionRequest).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.SubscriptionsApi.CreateSubscription(context.Background(), id).SubscriptionRequest(subscriptionRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsApi.CreateSubscription``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -141,6 +144,7 @@ Name | Type | Description  | Notes
 
  **subscriptionRequest** | [**SubscriptionRequest**](SubscriptionRequest.md) | requested field for subscriptions | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -162,7 +166,7 @@ Name | Type | Description  | Notes
 
 ## GetAllEventsFromSubscription
 
-> SubscriptionEventsResponse GetAllEventsFromSubscription(ctx, id).AcceptLanguage(acceptLanguage).Execute()
+> SubscriptionEventsResponse GetAllEventsFromSubscription(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Get Events By Subscription
 
@@ -183,10 +187,11 @@ import (
 func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SubscriptionsApi.GetAllEventsFromSubscription(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.SubscriptionsApi.GetAllEventsFromSubscription(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsApi.GetAllEventsFromSubscription``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -213,6 +218,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -304,7 +310,7 @@ Name | Type | Description  | Notes
 
 ## PauseSubscription
 
-> SubscriptionResponse PauseSubscription(ctx, id).AcceptLanguage(acceptLanguage).Execute()
+> SubscriptionResponse PauseSubscription(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Pause Subscription
 
@@ -325,10 +331,11 @@ import (
 func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SubscriptionsApi.PauseSubscription(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.SubscriptionsApi.PauseSubscription(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsApi.PauseSubscription``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -355,6 +362,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -376,7 +384,7 @@ Name | Type | Description  | Notes
 
 ## ResumeSubscription
 
-> SubscriptionResponse ResumeSubscription(ctx, id).AcceptLanguage(acceptLanguage).Execute()
+> SubscriptionResponse ResumeSubscription(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Resume Subscription
 
@@ -397,10 +405,11 @@ import (
 func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SubscriptionsApi.ResumeSubscription(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.SubscriptionsApi.ResumeSubscription(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsApi.ResumeSubscription``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -427,6 +436,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -448,7 +458,7 @@ Name | Type | Description  | Notes
 
 ## UpdateSubscription
 
-> SubscriptionResponse UpdateSubscription(ctx, id).SubscriptionUpdateRequest(subscriptionUpdateRequest).AcceptLanguage(acceptLanguage).Execute()
+> SubscriptionResponse UpdateSubscription(ctx, id).SubscriptionUpdateRequest(subscriptionUpdateRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update Subscription
 
@@ -470,10 +480,11 @@ func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     subscriptionUpdateRequest := *openapiclient.NewSubscriptionUpdateRequest() // SubscriptionUpdateRequest | requested field for update a subscription
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SubscriptionsApi.UpdateSubscription(context.Background(), id).SubscriptionUpdateRequest(subscriptionUpdateRequest).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.SubscriptionsApi.UpdateSubscription(context.Background(), id).SubscriptionUpdateRequest(subscriptionUpdateRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsApi.UpdateSubscription``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -501,6 +512,7 @@ Name | Type | Description  | Notes
 
  **subscriptionUpdateRequest** | [**SubscriptionUpdateRequest**](SubscriptionUpdateRequest.md) | requested field for update a subscription | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 

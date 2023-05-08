@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ExpiresAt** | Pointer to **int64** | Method expiration date as unix timestamp | [optional] 
 **Type** | **string** |  | 
 **TokenId** | Pointer to **string** |  | [optional] 
 **PaymentSourceId** | Pointer to **string** |  | [optional] 
@@ -26,6 +27,31 @@ will change when the set of required properties is changed
 NewChargeRequestPaymentMethodWithDefaults instantiates a new ChargeRequestPaymentMethod object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetExpiresAt
+
+`func (o *ChargeRequestPaymentMethod) GetExpiresAt() int64`
+
+GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
+
+### GetExpiresAtOk
+
+`func (o *ChargeRequestPaymentMethod) GetExpiresAtOk() (*int64, bool)`
+
+GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpiresAt
+
+`func (o *ChargeRequestPaymentMethod) SetExpiresAt(v int64)`
+
+SetExpiresAt sets ExpiresAt field to given value.
+
+### HasExpiresAt
+
+`func (o *ChargeRequestPaymentMethod) HasExpiresAt() bool`
+
+HasExpiresAt returns a boolean if a field has been set.
 
 ### GetType
 

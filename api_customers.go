@@ -138,6 +138,7 @@ type ApiCreateCustomerRequest struct {
 	ApiService CustomersApi
 	customer *Customer
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for customer
@@ -149,6 +150,12 @@ func (r ApiCreateCustomerRequest) Customer(customer Customer) ApiCreateCustomerR
 // Use for knowing which language to use
 func (r ApiCreateCustomerRequest) AcceptLanguage(acceptLanguage string) ApiCreateCustomerRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiCreateCustomerRequest) XChildCompanyId(xChildCompanyId string) ApiCreateCustomerRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -216,6 +223,9 @@ func (a *CustomersApiService) CreateCustomerExecute(r ApiCreateCustomerRequest) 
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.customer
@@ -305,6 +315,7 @@ type ApiCreateCustomerFiscalEntitiesRequest struct {
 	id string
 	customerFiscalEntitiesRequest *CustomerFiscalEntitiesRequest
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for customer fiscal entities
@@ -316,6 +327,12 @@ func (r ApiCreateCustomerFiscalEntitiesRequest) CustomerFiscalEntitiesRequest(cu
 // Use for knowing which language to use
 func (r ApiCreateCustomerFiscalEntitiesRequest) AcceptLanguage(acceptLanguage string) ApiCreateCustomerFiscalEntitiesRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiCreateCustomerFiscalEntitiesRequest) XChildCompanyId(xChildCompanyId string) ApiCreateCustomerFiscalEntitiesRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -384,6 +401,9 @@ func (a *CustomersApiService) CreateCustomerFiscalEntitiesExecute(r ApiCreateCus
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.customerFiscalEntitiesRequest
@@ -472,11 +492,18 @@ type ApiDeleteCustomerByIdRequest struct {
 	ApiService CustomersApi
 	id string
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // Use for knowing which language to use
 func (r ApiDeleteCustomerByIdRequest) AcceptLanguage(acceptLanguage string) ApiDeleteCustomerByIdRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiDeleteCustomerByIdRequest) XChildCompanyId(xChildCompanyId string) ApiDeleteCustomerByIdRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -542,6 +569,9 @@ func (a *CustomersApiService) DeleteCustomerByIdExecute(r ApiDeleteCustomerByIdR
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -628,11 +658,18 @@ type ApiGetCustomerByIdRequest struct {
 	ApiService CustomersApi
 	id string
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // Use for knowing which language to use
 func (r ApiGetCustomerByIdRequest) AcceptLanguage(acceptLanguage string) ApiGetCustomerByIdRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiGetCustomerByIdRequest) XChildCompanyId(xChildCompanyId string) ApiGetCustomerByIdRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -698,6 +735,9 @@ func (a *CustomersApiService) GetCustomerByIdExecute(r ApiGetCustomerByIdRequest
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -772,6 +812,7 @@ type ApiGetCustomersRequest struct {
 	ctx context.Context
 	ApiService CustomersApi
 	acceptLanguage *string
+	xChildCompanyId *string
 	limit *int32
 	search *string
 	next *string
@@ -781,6 +822,12 @@ type ApiGetCustomersRequest struct {
 // Use for knowing which language to use
 func (r ApiGetCustomersRequest) AcceptLanguage(acceptLanguage string) ApiGetCustomersRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiGetCustomersRequest) XChildCompanyId(xChildCompanyId string) ApiGetCustomersRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -880,6 +927,9 @@ func (a *CustomersApiService) GetCustomersExecute(r ApiGetCustomersRequest) (*Cu
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
 	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -944,6 +994,7 @@ type ApiUpdateCustomerRequest struct {
 	id string
 	updateCustomer *UpdateCustomer
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for customer
@@ -955,6 +1006,12 @@ func (r ApiUpdateCustomerRequest) UpdateCustomer(updateCustomer UpdateCustomer) 
 // Use for knowing which language to use
 func (r ApiUpdateCustomerRequest) AcceptLanguage(acceptLanguage string) ApiUpdateCustomerRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiUpdateCustomerRequest) XChildCompanyId(xChildCompanyId string) ApiUpdateCustomerRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -1023,6 +1080,9 @@ func (a *CustomersApiService) UpdateCustomerExecute(r ApiUpdateCustomerRequest) 
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.updateCustomer
@@ -1113,6 +1173,7 @@ type ApiUpdateCustomerFiscalEntitiesRequest struct {
 	fiscalEntitiesId string
 	customerUpdateFiscalEntitiesRequest *CustomerUpdateFiscalEntitiesRequest
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for customer update fiscal entities
@@ -1124,6 +1185,12 @@ func (r ApiUpdateCustomerFiscalEntitiesRequest) CustomerUpdateFiscalEntitiesRequ
 // Use for knowing which language to use
 func (r ApiUpdateCustomerFiscalEntitiesRequest) AcceptLanguage(acceptLanguage string) ApiUpdateCustomerFiscalEntitiesRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiUpdateCustomerFiscalEntitiesRequest) XChildCompanyId(xChildCompanyId string) ApiUpdateCustomerFiscalEntitiesRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -1195,6 +1262,9 @@ func (a *CustomersApiService) UpdateCustomerFiscalEntitiesExecute(r ApiUpdateCus
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.customerUpdateFiscalEntitiesRequest

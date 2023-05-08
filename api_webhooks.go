@@ -386,11 +386,18 @@ type ApiGetWebhookRequest struct {
 	ApiService WebhooksApi
 	id string
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // Use for knowing which language to use
 func (r ApiGetWebhookRequest) AcceptLanguage(acceptLanguage string) ApiGetWebhookRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiGetWebhookRequest) XChildCompanyId(xChildCompanyId string) ApiGetWebhookRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -454,6 +461,9 @@ func (a *WebhooksApiService) GetWebhookExecute(r ApiGetWebhookRequest) (*Webhook
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -528,6 +538,7 @@ type ApiGetWebhooksRequest struct {
 	ctx context.Context
 	ApiService WebhooksApi
 	acceptLanguage *string
+	xChildCompanyId *string
 	limit *int32
 	search *string
 	next *string
@@ -537,6 +548,12 @@ type ApiGetWebhooksRequest struct {
 // Use for knowing which language to use
 func (r ApiGetWebhooksRequest) AcceptLanguage(acceptLanguage string) ApiGetWebhooksRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiGetWebhooksRequest) XChildCompanyId(xChildCompanyId string) ApiGetWebhooksRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -636,6 +653,9 @@ func (a *WebhooksApiService) GetWebhooksExecute(r ApiGetWebhooksRequest) (*GetWe
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
 	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -700,6 +720,7 @@ type ApiUpdateWebhookRequest struct {
 	id string
 	webhookUpdateRequest *WebhookUpdateRequest
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested fields in order to update a webhook
@@ -711,6 +732,12 @@ func (r ApiUpdateWebhookRequest) WebhookUpdateRequest(webhookUpdateRequest Webho
 // Use for knowing which language to use
 func (r ApiUpdateWebhookRequest) AcceptLanguage(acceptLanguage string) ApiUpdateWebhookRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiUpdateWebhookRequest) XChildCompanyId(xChildCompanyId string) ApiUpdateWebhookRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -779,6 +806,9 @@ func (a *WebhooksApiService) UpdateWebhookExecute(r ApiUpdateWebhookRequest) (*W
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.webhookUpdateRequest

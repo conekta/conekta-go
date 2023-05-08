@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CancelCheckout
 
-> CheckoutResponse CancelCheckout(ctx, id).AcceptLanguage(acceptLanguage).Execute()
+> CheckoutResponse CancelCheckout(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Cancel Payment Link
 
@@ -34,10 +34,11 @@ import (
 func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentLinkApi.CancelCheckout(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.PaymentLinkApi.CancelCheckout(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentLinkApi.CancelCheckout``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -64,6 +65,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -85,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## CreateCheckout
 
-> CheckoutResponse CreateCheckout(ctx).Checkout(checkout).AcceptLanguage(acceptLanguage).Execute()
+> CheckoutResponse CreateCheckout(ctx).Checkout(checkout).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Create Unique Payment Link
 
@@ -104,10 +106,11 @@ import (
 func main() {
     checkout := *openapiclient.NewCheckout([]string{"AllowedPaymentMethods_example"}, int64(1680397724), "Payment Link Name 1594138857", *openapiclient.NewCheckoutOrderTemplate("MXN", []openapiclient.Product{*openapiclient.NewProduct("Box of Cohiba S1s", int32(1), int32(20000))}), false, "PaymentLink") // Checkout | requested field for checkout
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentLinkApi.CreateCheckout(context.Background()).Checkout(checkout).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.PaymentLinkApi.CreateCheckout(context.Background()).Checkout(checkout).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentLinkApi.CreateCheckout``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,6 +133,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **checkout** | [**Checkout**](Checkout.md) | requested field for checkout | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -151,7 +155,7 @@ Name | Type | Description  | Notes
 
 ## EmailCheckout
 
-> CheckoutResponse EmailCheckout(ctx, id).EmailCheckoutRequest(emailCheckoutRequest).AcceptLanguage(acceptLanguage).Execute()
+> CheckoutResponse EmailCheckout(ctx, id).EmailCheckoutRequest(emailCheckoutRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Send an email
 
@@ -171,10 +175,11 @@ func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     emailCheckoutRequest := *openapiclient.NewEmailCheckoutRequest("example@conekta.com") // EmailCheckoutRequest | requested field for sms checkout
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentLinkApi.EmailCheckout(context.Background(), id).EmailCheckoutRequest(emailCheckoutRequest).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.PaymentLinkApi.EmailCheckout(context.Background(), id).EmailCheckoutRequest(emailCheckoutRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentLinkApi.EmailCheckout``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -202,6 +207,7 @@ Name | Type | Description  | Notes
 
  **emailCheckoutRequest** | [**EmailCheckoutRequest**](EmailCheckoutRequest.md) | requested field for sms checkout | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -223,7 +229,7 @@ Name | Type | Description  | Notes
 
 ## GetCheckout
 
-> CheckoutResponse GetCheckout(ctx, id).AcceptLanguage(acceptLanguage).Execute()
+> CheckoutResponse GetCheckout(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Get a payment link by ID
 
@@ -242,10 +248,11 @@ import (
 func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentLinkApi.GetCheckout(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.PaymentLinkApi.GetCheckout(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentLinkApi.GetCheckout``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -272,6 +279,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -293,7 +301,7 @@ Name | Type | Description  | Notes
 
 ## GetCheckouts
 
-> CheckoutsResponse GetCheckouts(ctx).AcceptLanguage(acceptLanguage).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+> CheckoutsResponse GetCheckouts(ctx).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
 
 Get a list of payment links
 
@@ -313,6 +321,7 @@ import (
 
 func main() {
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
     limit := int32(56) // int32 | The numbers of items to return, the maximum value is 250 (optional) (default to 20)
     search := "search_example" // string | General order search, e.g. by mail, reference etc. (optional)
     next := "next_example" // string | next page (optional)
@@ -320,7 +329,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentLinkApi.GetCheckouts(context.Background()).AcceptLanguage(acceptLanguage).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+    resp, r, err := apiClient.PaymentLinkApi.GetCheckouts(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentLinkApi.GetCheckouts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -342,6 +351,7 @@ Other parameters are passed through a pointer to a apiGetCheckoutsRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
  **limit** | **int32** | The numbers of items to return, the maximum value is 250 | [default to 20]
  **search** | **string** | General order search, e.g. by mail, reference etc. | 
  **next** | **string** | next page | 
@@ -367,7 +377,7 @@ Name | Type | Description  | Notes
 
 ## SmsCheckout
 
-> CheckoutResponse SmsCheckout(ctx, id).SmsCheckoutRequest(smsCheckoutRequest).AcceptLanguage(acceptLanguage).Execute()
+> CheckoutResponse SmsCheckout(ctx, id).SmsCheckoutRequest(smsCheckoutRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Send an sms
 
@@ -387,10 +397,11 @@ func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     smsCheckoutRequest := *openapiclient.NewSmsCheckoutRequest("5566982090") // SmsCheckoutRequest | requested field for sms checkout
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentLinkApi.SmsCheckout(context.Background(), id).SmsCheckoutRequest(smsCheckoutRequest).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.PaymentLinkApi.SmsCheckout(context.Background(), id).SmsCheckoutRequest(smsCheckoutRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentLinkApi.SmsCheckout``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -418,6 +429,7 @@ Name | Type | Description  | Notes
 
  **smsCheckoutRequest** | [**SmsCheckoutRequest**](SmsCheckoutRequest.md) | requested field for sms checkout | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 

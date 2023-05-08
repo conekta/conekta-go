@@ -36,7 +36,7 @@ type Customer struct {
 	// Client's name
 	Name string `json:"name"`
 	// Contains details of the payment methods that the customer has active or has used in Conekta
-	PaymentSources []ConsumerPaymentMethodsRequest `json:"payment_sources,omitempty"`
+	PaymentSources []CustomerPaymentMethodsRequest `json:"payment_sources,omitempty"`
 	// Is the customer's phone number
 	Phone string `json:"phone"`
 	// Contains the ID of a plan, which could together with name, email and phone create a client directly to a subscription
@@ -353,9 +353,9 @@ func (o *Customer) SetName(v string) {
 }
 
 // GetPaymentSources returns the PaymentSources field value if set, zero value otherwise.
-func (o *Customer) GetPaymentSources() []ConsumerPaymentMethodsRequest {
+func (o *Customer) GetPaymentSources() []CustomerPaymentMethodsRequest {
 	if o == nil || IsNil(o.PaymentSources) {
-		var ret []ConsumerPaymentMethodsRequest
+		var ret []CustomerPaymentMethodsRequest
 		return ret
 	}
 	return o.PaymentSources
@@ -363,7 +363,7 @@ func (o *Customer) GetPaymentSources() []ConsumerPaymentMethodsRequest {
 
 // GetPaymentSourcesOk returns a tuple with the PaymentSources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Customer) GetPaymentSourcesOk() ([]ConsumerPaymentMethodsRequest, bool) {
+func (o *Customer) GetPaymentSourcesOk() ([]CustomerPaymentMethodsRequest, bool) {
 	if o == nil || IsNil(o.PaymentSources) {
 		return nil, false
 	}
@@ -379,8 +379,8 @@ func (o *Customer) HasPaymentSources() bool {
 	return false
 }
 
-// SetPaymentSources gets a reference to the given []ConsumerPaymentMethodsRequest and assigns it to the PaymentSources field.
-func (o *Customer) SetPaymentSources(v []ConsumerPaymentMethodsRequest) {
+// SetPaymentSources gets a reference to the given []CustomerPaymentMethodsRequest and assigns it to the PaymentSources field.
+func (o *Customer) SetPaymentSources(v []CustomerPaymentMethodsRequest) {
 	o.PaymentSources = v
 }
 

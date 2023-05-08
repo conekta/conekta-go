@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CreateCustomer
 
-> CustomerResponse CreateCustomer(ctx).Customer(customer).AcceptLanguage(acceptLanguage).Execute()
+> CustomerResponse CreateCustomer(ctx).Customer(customer).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Create customer
 
@@ -37,10 +37,11 @@ import (
 func main() {
     customer := *openapiclient.NewCustomer("miguel@gmail.com", "miguel", "+5215555555555") // Customer | requested field for customer
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CustomersApi.CreateCustomer(context.Background()).Customer(customer).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.CustomersApi.CreateCustomer(context.Background()).Customer(customer).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CustomersApi.CreateCustomer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,6 +64,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **customer** | [**Customer**](Customer.md) | requested field for customer | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -84,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## CreateCustomerFiscalEntities
 
-> CreateCustomerFiscalEntitiesResponse CreateCustomerFiscalEntities(ctx, id).CustomerFiscalEntitiesRequest(customerFiscalEntitiesRequest).AcceptLanguage(acceptLanguage).Execute()
+> CreateCustomerFiscalEntitiesResponse CreateCustomerFiscalEntities(ctx, id).CustomerFiscalEntitiesRequest(customerFiscalEntitiesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Create Fiscal Entity
 
@@ -106,10 +108,11 @@ func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     customerFiscalEntitiesRequest := *openapiclient.NewCustomerFiscalEntitiesRequest(*openapiclient.NewCustomerFiscalEntitiesRequestAddress("avenida siempre viva", "06100", "Ciudad de Mexico")) // CustomerFiscalEntitiesRequest | requested field for customer fiscal entities
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CustomersApi.CreateCustomerFiscalEntities(context.Background(), id).CustomerFiscalEntitiesRequest(customerFiscalEntitiesRequest).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.CustomersApi.CreateCustomerFiscalEntities(context.Background(), id).CustomerFiscalEntitiesRequest(customerFiscalEntitiesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CustomersApi.CreateCustomerFiscalEntities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -137,6 +140,7 @@ Name | Type | Description  | Notes
 
  **customerFiscalEntitiesRequest** | [**CustomerFiscalEntitiesRequest**](CustomerFiscalEntitiesRequest.md) | requested field for customer fiscal entities | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -158,7 +162,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCustomerById
 
-> CustomerResponse DeleteCustomerById(ctx, id).AcceptLanguage(acceptLanguage).Execute()
+> CustomerResponse DeleteCustomerById(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Delete Customer
 
@@ -179,10 +183,11 @@ import (
 func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CustomersApi.DeleteCustomerById(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.CustomersApi.DeleteCustomerById(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CustomersApi.DeleteCustomerById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -209,6 +214,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -230,7 +236,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerById
 
-> CustomerResponse GetCustomerById(ctx, id).AcceptLanguage(acceptLanguage).Execute()
+> CustomerResponse GetCustomerById(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Get Customer
 
@@ -251,10 +257,11 @@ import (
 func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CustomersApi.GetCustomerById(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.CustomersApi.GetCustomerById(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CustomersApi.GetCustomerById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -281,6 +288,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -302,7 +310,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomers
 
-> CustomersResponse GetCustomers(ctx).AcceptLanguage(acceptLanguage).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+> CustomersResponse GetCustomers(ctx).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
 
 Get a list of customers
 
@@ -322,6 +330,7 @@ import (
 
 func main() {
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
     limit := int32(56) // int32 | The numbers of items to return, the maximum value is 250 (optional) (default to 20)
     search := "search_example" // string | General order search, e.g. by mail, reference etc. (optional)
     next := "next_example" // string | next page (optional)
@@ -329,7 +338,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CustomersApi.GetCustomers(context.Background()).AcceptLanguage(acceptLanguage).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+    resp, r, err := apiClient.CustomersApi.GetCustomers(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CustomersApi.GetCustomers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -351,6 +360,7 @@ Other parameters are passed through a pointer to a apiGetCustomersRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
  **limit** | **int32** | The numbers of items to return, the maximum value is 250 | [default to 20]
  **search** | **string** | General order search, e.g. by mail, reference etc. | 
  **next** | **string** | next page | 
@@ -376,7 +386,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomer
 
-> CustomerResponse UpdateCustomer(ctx, id).UpdateCustomer(updateCustomer).AcceptLanguage(acceptLanguage).Execute()
+> CustomerResponse UpdateCustomer(ctx, id).UpdateCustomer(updateCustomer).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update customer
 
@@ -398,10 +408,11 @@ func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     updateCustomer := *openapiclient.NewUpdateCustomer() // UpdateCustomer | requested field for customer
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CustomersApi.UpdateCustomer(context.Background(), id).UpdateCustomer(updateCustomer).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.CustomersApi.UpdateCustomer(context.Background(), id).UpdateCustomer(updateCustomer).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CustomersApi.UpdateCustomer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -429,6 +440,7 @@ Name | Type | Description  | Notes
 
  **updateCustomer** | [**UpdateCustomer**](UpdateCustomer.md) | requested field for customer | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -450,7 +462,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomerFiscalEntities
 
-> UpdateCustomerFiscalEntitiesResponse UpdateCustomerFiscalEntities(ctx, id, fiscalEntitiesId).CustomerUpdateFiscalEntitiesRequest(customerUpdateFiscalEntitiesRequest).AcceptLanguage(acceptLanguage).Execute()
+> UpdateCustomerFiscalEntitiesResponse UpdateCustomerFiscalEntities(ctx, id, fiscalEntitiesId).CustomerUpdateFiscalEntitiesRequest(customerUpdateFiscalEntitiesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update  Fiscal Entity
 
@@ -473,10 +485,11 @@ func main() {
     fiscalEntitiesId := "fis_ent_2tQ8HkkfbauaKP9Ho" // string | identifier
     customerUpdateFiscalEntitiesRequest := *openapiclient.NewCustomerUpdateFiscalEntitiesRequest() // CustomerUpdateFiscalEntitiesRequest | requested field for customer update fiscal entities
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CustomersApi.UpdateCustomerFiscalEntities(context.Background(), id, fiscalEntitiesId).CustomerUpdateFiscalEntitiesRequest(customerUpdateFiscalEntitiesRequest).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.CustomersApi.UpdateCustomerFiscalEntities(context.Background(), id, fiscalEntitiesId).CustomerUpdateFiscalEntitiesRequest(customerUpdateFiscalEntitiesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CustomersApi.UpdateCustomerFiscalEntities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -506,6 +519,7 @@ Name | Type | Description  | Notes
 
  **customerUpdateFiscalEntitiesRequest** | [**CustomerUpdateFiscalEntitiesRequest**](CustomerUpdateFiscalEntitiesRequest.md) | requested field for customer update fiscal entities | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 

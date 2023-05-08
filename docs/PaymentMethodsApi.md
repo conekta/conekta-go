@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateCustomerPaymentMethods
 
-> CreateCustomerPaymentMethodsResponse CreateCustomerPaymentMethods(ctx, id).CreateCustomerPaymentMethodsRequest(createCustomerPaymentMethodsRequest).AcceptLanguage(acceptLanguage).Execute()
+> CreateCustomerPaymentMethodsResponse CreateCustomerPaymentMethods(ctx, id).CreateCustomerPaymentMethodsRequest(createCustomerPaymentMethodsRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Create Payment Method
 
@@ -35,10 +35,11 @@ func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     createCustomerPaymentMethodsRequest := openapiclient.CreateCustomerPaymentMethods_request{PaymentMethodCardRequest: openapiclient.NewPaymentMethodCardRequest("card | cash | spei", "tok_32hj4g234as")} // CreateCustomerPaymentMethodsRequest | requested field for customer payment methods
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentMethodsApi.CreateCustomerPaymentMethods(context.Background(), id).CreateCustomerPaymentMethodsRequest(createCustomerPaymentMethodsRequest).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.PaymentMethodsApi.CreateCustomerPaymentMethods(context.Background(), id).CreateCustomerPaymentMethodsRequest(createCustomerPaymentMethodsRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsApi.CreateCustomerPaymentMethods``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -66,6 +67,7 @@ Name | Type | Description  | Notes
 
  **createCustomerPaymentMethodsRequest** | [**CreateCustomerPaymentMethodsRequest**](CreateCustomerPaymentMethodsRequest.md) | requested field for customer payment methods | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -87,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCustomerPaymentMethods
 
-> UpdateCustomerPaymentMethodsResponse DeleteCustomerPaymentMethods(ctx, id, paymentMethodId).AcceptLanguage(acceptLanguage).Execute()
+> UpdateCustomerPaymentMethodsResponse DeleteCustomerPaymentMethods(ctx, id, paymentMethodId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Delete Payment Method
 
@@ -109,10 +111,11 @@ func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     paymentMethodId := "src_2tQ974hSHcsdeSZHG" // string | Identifier of the payment method
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentMethodsApi.DeleteCustomerPaymentMethods(context.Background(), id, paymentMethodId).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.PaymentMethodsApi.DeleteCustomerPaymentMethods(context.Background(), id, paymentMethodId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsApi.DeleteCustomerPaymentMethods``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -141,6 +144,7 @@ Name | Type | Description  | Notes
 
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -162,7 +166,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerPaymentMethods
 
-> GetPaymentMethodResponse GetCustomerPaymentMethods(ctx, id).AcceptLanguage(acceptLanguage).Limit(limit).Next(next).Previous(previous).Search(search).Execute()
+> GetPaymentMethodResponse GetCustomerPaymentMethods(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Next(next).Previous(previous).Search(search).Execute()
 
 Get Payment Methods
 
@@ -183,6 +187,7 @@ import (
 func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
     limit := int32(56) // int32 | The numbers of items to return, the maximum value is 250 (optional) (default to 20)
     next := "next_example" // string | next page (optional)
     previous := "previous_example" // string | previous page (optional)
@@ -190,7 +195,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentMethodsApi.GetCustomerPaymentMethods(context.Background(), id).AcceptLanguage(acceptLanguage).Limit(limit).Next(next).Previous(previous).Search(search).Execute()
+    resp, r, err := apiClient.PaymentMethodsApi.GetCustomerPaymentMethods(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Next(next).Previous(previous).Search(search).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsApi.GetCustomerPaymentMethods``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -217,6 +222,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
  **limit** | **int32** | The numbers of items to return, the maximum value is 250 | [default to 20]
  **next** | **string** | next page | 
  **previous** | **string** | previous page | 
@@ -242,7 +248,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomerPaymentMethods
 
-> UpdateCustomerPaymentMethodsResponse UpdateCustomerPaymentMethods(ctx, id, paymentMethodId).UpdatePaymentMethods(updatePaymentMethods).AcceptLanguage(acceptLanguage).Execute()
+> UpdateCustomerPaymentMethodsResponse UpdateCustomerPaymentMethods(ctx, id, paymentMethodId).UpdatePaymentMethods(updatePaymentMethods).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update Payment Method
 
@@ -265,10 +271,11 @@ func main() {
     paymentMethodId := "src_2tQ974hSHcsdeSZHG" // string | Identifier of the payment method
     updatePaymentMethods := *openapiclient.NewUpdatePaymentMethods() // UpdatePaymentMethods | requested field for customer payment methods
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentMethodsApi.UpdateCustomerPaymentMethods(context.Background(), id, paymentMethodId).UpdatePaymentMethods(updatePaymentMethods).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.PaymentMethodsApi.UpdateCustomerPaymentMethods(context.Background(), id, paymentMethodId).UpdatePaymentMethods(updatePaymentMethods).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsApi.UpdateCustomerPaymentMethods``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -298,6 +305,7 @@ Name | Type | Description  | Notes
 
  **updatePaymentMethods** | [**UpdatePaymentMethods**](UpdatePaymentMethods.md) | requested field for customer payment methods | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 

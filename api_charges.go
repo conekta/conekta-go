@@ -48,6 +48,7 @@ type ApiOrdersCreateChargeRequest struct {
 	id string
 	chargeRequest *ChargeRequest
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for a charge
@@ -59,6 +60,12 @@ func (r ApiOrdersCreateChargeRequest) ChargeRequest(chargeRequest ChargeRequest)
 // Use for knowing which language to use
 func (r ApiOrdersCreateChargeRequest) AcceptLanguage(acceptLanguage string) ApiOrdersCreateChargeRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiOrdersCreateChargeRequest) XChildCompanyId(xChildCompanyId string) ApiOrdersCreateChargeRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -127,6 +134,9 @@ func (a *ChargesApiService) OrdersCreateChargeExecute(r ApiOrdersCreateChargeReq
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.chargeRequest

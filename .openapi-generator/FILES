@@ -6,6 +6,7 @@ README.md
 api/openapi.yaml
 api_antifraud.go
 api_charges.go
+api_companies.go
 api_customers.go
 api_discounts.go
 api_events.go
@@ -19,6 +20,7 @@ api_shipping_contacts.go
 api_shippings.go
 api_subscriptions.go
 api_taxes.go
+api_tokens.go
 api_webhooks.go
 client.go
 conekta.png
@@ -45,7 +47,11 @@ docs/CheckoutRequest.md
 docs/CheckoutResponse.md
 docs/CheckoutsResponse.md
 docs/CheckoutsResponseAllOf.md
-docs/ConsumerPaymentMethodsRequest.md
+docs/CompaniesApi.md
+docs/CompanyFiscalInfoAddressResponse.md
+docs/CompanyFiscalInfoResponse.md
+docs/CompanyPayoutDestinationResponse.md
+docs/CompanyResponse.md
 docs/CreateCustomerFiscalEntitiesResponse.md
 docs/CreateCustomerFiscalEntitiesResponseAllOf.md
 docs/CreateCustomerPaymentMethodsRequest.md
@@ -67,6 +73,7 @@ docs/CustomerInfoResponse.md
 docs/CustomerPaymentMethodRequest.md
 docs/CustomerPaymentMethods.md
 docs/CustomerPaymentMethodsData.md
+docs/CustomerPaymentMethodsRequest.md
 docs/CustomerPaymentMethodsResponse.md
 docs/CustomerResponse.md
 docs/CustomerResponseShippingContacts.md
@@ -94,6 +101,8 @@ docs/EmailCheckoutRequest.md
 docs/ErrorAllOf.md
 docs/EventResponse.md
 docs/EventsApi.md
+docs/GetCompaniesResponse.md
+docs/GetCompaniesResponseAllOf.md
 docs/GetCustomerPaymentMethodDataResponse.md
 docs/GetEventsResponse.md
 docs/GetEventsResponseAllOf.md
@@ -163,9 +172,9 @@ docs/ProductDataResponseAllOf.md
 docs/ProductOrderResponse.md
 docs/ProductOrderResponseAllOf.md
 docs/ProductsApi.md
+docs/RiskRules.md
+docs/RiskRulesData.md
 docs/RiskRulesList.md
-docs/RiskRulesListAllOf.md
-docs/RiskRulesListAllOfData.md
 docs/ShippingContactsApi.md
 docs/ShippingOrderResponse.md
 docs/ShippingRequest.md
@@ -177,6 +186,12 @@ docs/SubscriptionResponse.md
 docs/SubscriptionUpdateRequest.md
 docs/SubscriptionsApi.md
 docs/TaxesApi.md
+docs/Token.md
+docs/TokenCard.md
+docs/TokenCheckout.md
+docs/TokenResponse.md
+docs/TokenResponseCheckout.md
+docs/TokensApi.md
 docs/UpdateCustomer.md
 docs/UpdateCustomerAntifraudInfo.md
 docs/UpdateCustomerFiscalEntitiesResponse.md
@@ -217,7 +232,10 @@ model_checkout_request.go
 model_checkout_response.go
 model_checkouts_response.go
 model_checkouts_response_all_of.go
-model_consumer_payment_methods_request.go
+model_company_fiscal_info_address_response.go
+model_company_fiscal_info_response.go
+model_company_payout_destination_response.go
+model_company_response.go
 model_create_customer_fiscal_entities_response.go
 model_create_customer_fiscal_entities_response_all_of.go
 model_create_customer_payment_methods_request.go
@@ -239,6 +257,7 @@ model_customer_info_response.go
 model_customer_payment_method_request.go
 model_customer_payment_methods.go
 model_customer_payment_methods_data.go
+model_customer_payment_methods_request.go
 model_customer_payment_methods_response.go
 model_customer_response.go
 model_customer_response_shipping_contacts.go
@@ -264,6 +283,8 @@ model_email_checkout_request.go
 model_error.go
 model_error_all_of.go
 model_event_response.go
+model_get_companies_response.go
+model_get_companies_response_all_of.go
 model_get_customer_payment_method_data_response.go
 model_get_events_response.go
 model_get_events_response_all_of.go
@@ -326,9 +347,9 @@ model_product_data_response.go
 model_product_data_response_all_of.go
 model_product_order_response.go
 model_product_order_response_all_of.go
+model_risk_rules.go
+model_risk_rules_data.go
 model_risk_rules_list.go
-model_risk_rules_list_all_of.go
-model_risk_rules_list_all_of_data.go
 model_shipping_order_response.go
 model_shipping_request.go
 model_sms_checkout_request.go
@@ -336,6 +357,11 @@ model_subscription_events_response.go
 model_subscription_request.go
 model_subscription_response.go
 model_subscription_update_request.go
+model_token.go
+model_token_card.go
+model_token_checkout.go
+model_token_response.go
+model_token_response_checkout.go
 model_update_customer.go
 model_update_customer_antifraud_info.go
 model_update_customer_fiscal_entities_response.go

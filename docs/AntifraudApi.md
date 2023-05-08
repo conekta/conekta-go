@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 
 ## DeleteRuleBlacklist
 
-> DeletedBlacklistRuleResponse DeleteRuleBlacklist(ctx, id).AcceptLanguage(acceptLanguage).Execute()
+> DeletedBlacklistRuleResponse DeleteRuleBlacklist(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Delete blacklisted rule
 
@@ -166,10 +166,11 @@ import (
 func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AntifraudApi.DeleteRuleBlacklist(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.AntifraudApi.DeleteRuleBlacklist(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AntifraudApi.DeleteRuleBlacklist``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -196,6 +197,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -217,7 +219,7 @@ Name | Type | Description  | Notes
 
 ## DeleteRuleWhitelist
 
-> DeletedWhitelistRuleResponse DeleteRuleWhitelist(ctx, id).AcceptLanguage(acceptLanguage).Execute()
+> DeletedWhitelistRuleResponse DeleteRuleWhitelist(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Delete whitelisted rule
 
@@ -236,10 +238,11 @@ import (
 func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AntifraudApi.DeleteRuleWhitelist(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.AntifraudApi.DeleteRuleWhitelist(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AntifraudApi.DeleteRuleWhitelist``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -266,6 +269,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 

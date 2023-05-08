@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="08e2c1f5-a2da-430f-b582-5bbf57972aea" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.openapi-generator/FILES" beforeDir="false" afterPath="$PROJECT_DIR$/.openapi-generator/FILES" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/openapi.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/api/openapi.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_antifraud.go" beforeDir="false" afterPath="$PROJECT_DIR$/api_antifraud.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_charges.go" beforeDir="false" afterPath="$PROJECT_DIR$/api_charges.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_customers.go" beforeDir="false" afterPath="$PROJECT_DIR$/api_customers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_discounts.go" beforeDir="false" afterPath="$PROJECT_DIR$/api_discounts.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_events.go" beforeDir="false" afterPath="$PROJECT_DIR$/api_events.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_logs.go" beforeDir="false" afterPath="$PROJECT_DIR$/api_logs.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_orders.go" beforeDir="false" afterPath="$PROJECT_DIR$/api_orders.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_payment_link.go" beforeDir="false" afterPath="$PROJECT_DIR$/api_payment_link.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_payment_methods.go" beforeDir="false" afterPath="$PROJECT_DIR$/api_payment_methods.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_plans.go" beforeDir="false" afterPath="$PROJECT_DIR$/api_plans.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_products.go" beforeDir="false" afterPath="$PROJECT_DIR$/api_products.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_shipping_contacts.go" beforeDir="false" afterPath="$PROJECT_DIR$/api_shipping_contacts.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_shippings.go" beforeDir="false" afterPath="$PROJECT_DIR$/api_shippings.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_subscriptions.go" beforeDir="false" afterPath="$PROJECT_DIR$/api_subscriptions.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_taxes.go" beforeDir="false" afterPath="$PROJECT_DIR$/api_taxes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_webhooks.go" beforeDir="false" afterPath="$PROJECT_DIR$/api_webhooks.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/AntifraudApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/AntifraudApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ChargeRequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ChargeRequest.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ChargeRequestPaymentMethod.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ChargeRequestPaymentMethod.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ChargesApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ChargesApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Customer.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Customer.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CustomersApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CustomersApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/DiscountsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/DiscountsApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/EventsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/EventsApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/LogsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/LogsApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/OrdersApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/OrdersApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/PaymentLinkApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/PaymentLinkApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/PaymentMethodsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/PaymentMethodsApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/PlansApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/PlansApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ProductsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ProductsApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/RiskRulesList.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/RiskRulesList.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ShippingContactsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ShippingContactsApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ShippingsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ShippingsApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/SubscriptionsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/SubscriptionsApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/TaxesApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/TaxesApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/UpdateCustomer.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/UpdateCustomer.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/WebhooksApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/WebhooksApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_charge_request.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_charge_request.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_charge_request_payment_method.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_charge_request_payment_method.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_customer.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_customer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_risk_rules_list.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_risk_rules_list.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_customer.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_customer.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file:///usr/local/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2NQ64GNWqxyzpRE2M6mVmA11UAT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.format.on.save.advertiser.fired&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ezerozen/go/src/github.com/conekta/conekta-go&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Test.TestCompaniesApi/GetCompany_success in github.com/conekta/conekta-go">
+    <configuration name="TestAntifraudApi/CreateRuleWhitelist_success in github.com/conekta/conekta-go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="conekta-go" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/conekta/conekta-go" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestAntifraudApi\E$/^\QCreateRuleWhitelist_success\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestCompaniesApi/GetCompany_success in github.com/conekta/conekta-go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="conekta-go" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/conekta/conekta-go" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestCompaniesApi\E$/^\QGetCompany_success\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestTokensApi in github.com/conekta/conekta-go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="conekta-go" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/conekta/conekta-go" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestTokensApi\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestTokensApi/CreateToken_success in github.com/conekta/conekta-go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="conekta-go" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/conekta/conekta-go" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestTokensApi\E$/^\QCreateToken_success\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go test conekta-go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="conekta-go" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="DIRECTORY" />
+      <package value="github.com/conekta/conekta-go" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.TestCompaniesApi/GetCompany_success in github.com/conekta/conekta-go" />
+        <item itemvalue="Go Test.go test conekta-go" />
+        <item itemvalue="Go Test.TestTokensApi/CreateToken_success in github.com/conekta/conekta-go" />
+        <item itemvalue="Go Test.TestTokensApi in github.com/conekta/conekta-go" />
+        <item itemvalue="Go Test.TestAntifraudApi/CreateRuleWhitelist_success in github.com/conekta/conekta-go" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>

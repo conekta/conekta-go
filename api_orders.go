@@ -120,6 +120,7 @@ type ApiCreateOrderRequest struct {
 	ApiService OrdersApi
 	orderRequest *OrderRequest
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for order
@@ -131,6 +132,12 @@ func (r ApiCreateOrderRequest) OrderRequest(orderRequest OrderRequest) ApiCreate
 // Use for knowing which language to use
 func (r ApiCreateOrderRequest) AcceptLanguage(acceptLanguage string) ApiCreateOrderRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiCreateOrderRequest) XChildCompanyId(xChildCompanyId string) ApiCreateOrderRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -196,6 +203,9 @@ func (a *OrdersApiService) CreateOrderExecute(r ApiCreateOrderRequest) (*OrderRe
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.orderRequest
@@ -284,11 +294,18 @@ type ApiGetOrderByIdRequest struct {
 	ApiService OrdersApi
 	id string
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // Use for knowing which language to use
 func (r ApiGetOrderByIdRequest) AcceptLanguage(acceptLanguage string) ApiGetOrderByIdRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiGetOrderByIdRequest) XChildCompanyId(xChildCompanyId string) ApiGetOrderByIdRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -354,6 +371,9 @@ func (a *OrdersApiService) GetOrderByIdExecute(r ApiGetOrderByIdRequest) (*Order
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -428,6 +448,7 @@ type ApiGetOrdersRequest struct {
 	ctx context.Context
 	ApiService OrdersApi
 	acceptLanguage *string
+	xChildCompanyId *string
 	limit *int32
 	search *string
 	next *string
@@ -437,6 +458,12 @@ type ApiGetOrdersRequest struct {
 // Use for knowing which language to use
 func (r ApiGetOrdersRequest) AcceptLanguage(acceptLanguage string) ApiGetOrdersRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiGetOrdersRequest) XChildCompanyId(xChildCompanyId string) ApiGetOrdersRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -536,6 +563,9 @@ func (a *OrdersApiService) GetOrdersExecute(r ApiGetOrdersRequest) (*GetOrdersRe
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
 	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -600,6 +630,7 @@ type ApiOrderRefundRequest struct {
 	id string
 	orderRefundRequest *OrderRefundRequest
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for a refund
@@ -611,6 +642,12 @@ func (r ApiOrderRefundRequest) OrderRefundRequest(orderRefundRequest OrderRefund
 // Use for knowing which language to use
 func (r ApiOrderRefundRequest) AcceptLanguage(acceptLanguage string) ApiOrderRefundRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiOrderRefundRequest) XChildCompanyId(xChildCompanyId string) ApiOrderRefundRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -679,6 +716,9 @@ func (a *OrdersApiService) OrderRefundExecute(r ApiOrderRefundRequest) (*OrderRe
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.orderRefundRequest
@@ -767,12 +807,19 @@ type ApiOrdersCreateCaptureRequest struct {
 	ApiService OrdersApi
 	id string
 	acceptLanguage *string
+	xChildCompanyId *string
 	orderCaptureRequest *OrderCaptureRequest
 }
 
 // Use for knowing which language to use
 func (r ApiOrdersCreateCaptureRequest) AcceptLanguage(acceptLanguage string) ApiOrdersCreateCaptureRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiOrdersCreateCaptureRequest) XChildCompanyId(xChildCompanyId string) ApiOrdersCreateCaptureRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -844,6 +891,9 @@ func (a *OrdersApiService) OrdersCreateCaptureExecute(r ApiOrdersCreateCaptureRe
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.orderCaptureRequest

@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhook
 
-> WebhookResponse GetWebhook(ctx, id).AcceptLanguage(acceptLanguage).Execute()
+> WebhookResponse GetWebhook(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Get Webhook
 
@@ -171,10 +171,11 @@ import (
 func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WebhooksApi.GetWebhook(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.WebhooksApi.GetWebhook(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhooksApi.GetWebhook``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -201,6 +202,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -222,7 +224,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhooks
 
-> GetWebhooksResponse GetWebhooks(ctx).AcceptLanguage(acceptLanguage).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+> GetWebhooksResponse GetWebhooks(ctx).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
 
 Get List of Webhooks
 
@@ -242,6 +244,7 @@ import (
 
 func main() {
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
     limit := int32(56) // int32 | The numbers of items to return, the maximum value is 250 (optional) (default to 20)
     search := "search_example" // string | General order search, e.g. by mail, reference etc. (optional)
     next := "next_example" // string | next page (optional)
@@ -249,7 +252,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WebhooksApi.GetWebhooks(context.Background()).AcceptLanguage(acceptLanguage).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+    resp, r, err := apiClient.WebhooksApi.GetWebhooks(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhooksApi.GetWebhooks``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -271,6 +274,7 @@ Other parameters are passed through a pointer to a apiGetWebhooksRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
  **limit** | **int32** | The numbers of items to return, the maximum value is 250 | [default to 20]
  **search** | **string** | General order search, e.g. by mail, reference etc. | 
  **next** | **string** | next page | 
@@ -296,7 +300,7 @@ Name | Type | Description  | Notes
 
 ## UpdateWebhook
 
-> WebhookResponse UpdateWebhook(ctx, id).WebhookUpdateRequest(webhookUpdateRequest).AcceptLanguage(acceptLanguage).Execute()
+> WebhookResponse UpdateWebhook(ctx, id).WebhookUpdateRequest(webhookUpdateRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update Webhook
 
@@ -318,10 +322,11 @@ func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     webhookUpdateRequest := *openapiclient.NewWebhookUpdateRequest("https://webhook.site/89277eaa-a8e4-4306-8dc5-f55c80703dc8") // WebhookUpdateRequest | requested fields in order to update a webhook
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WebhooksApi.UpdateWebhook(context.Background(), id).WebhookUpdateRequest(webhookUpdateRequest).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.WebhooksApi.UpdateWebhook(context.Background(), id).WebhookUpdateRequest(webhookUpdateRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhooksApi.UpdateWebhook``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -349,6 +354,7 @@ Name | Type | Description  | Notes
 
  **webhookUpdateRequest** | [**WebhookUpdateRequest**](WebhookUpdateRequest.md) | requested fields in order to update a webhook | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 

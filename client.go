@@ -62,6 +62,8 @@ type APIClient struct {
 
 	ChargesApi ChargesApi
 
+	CompaniesApi CompaniesApi
+
 	CustomersApi CustomersApi
 
 	DiscountsApi DiscountsApi
@@ -87,6 +89,8 @@ type APIClient struct {
 	SubscriptionsApi SubscriptionsApi
 
 	TaxesApi TaxesApi
+
+	TokensApi TokensApi
 
 	WebhooksApi WebhooksApi
 }
@@ -147,6 +151,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	// API Services
 	c.AntifraudApi = (*AntifraudApiService)(&c.common)
 	c.ChargesApi = (*ChargesApiService)(&c.common)
+	c.CompaniesApi = (*CompaniesApiService)(&c.common)
 	c.CustomersApi = (*CustomersApiService)(&c.common)
 	c.DiscountsApi = (*DiscountsApiService)(&c.common)
 	c.EventsApi = (*EventsApiService)(&c.common)
@@ -160,6 +165,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ShippingsApi = (*ShippingsApiService)(&c.common)
 	c.SubscriptionsApi = (*SubscriptionsApiService)(&c.common)
 	c.TaxesApi = (*TaxesApiService)(&c.common)
+	c.TokensApi = (*TokensApiService)(&c.common)
 	c.WebhooksApi = (*WebhooksApiService)(&c.common)
 
 	return c

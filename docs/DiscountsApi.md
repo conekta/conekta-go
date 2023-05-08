@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## OrdersCreateDiscountLine
 
-> DiscountLinesResponse OrdersCreateDiscountLine(ctx, id).OrderDiscountLinesRequest(orderDiscountLinesRequest).AcceptLanguage(acceptLanguage).Execute()
+> DiscountLinesResponse OrdersCreateDiscountLine(ctx, id).OrderDiscountLinesRequest(orderDiscountLinesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Create Discount
 
@@ -34,10 +34,11 @@ func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     orderDiscountLinesRequest := *openapiclient.NewOrderDiscountLinesRequest(int64(500), "123", "loyalty") // OrderDiscountLinesRequest | requested field for a discount lines
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DiscountsApi.OrdersCreateDiscountLine(context.Background(), id).OrderDiscountLinesRequest(orderDiscountLinesRequest).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.DiscountsApi.OrdersCreateDiscountLine(context.Background(), id).OrderDiscountLinesRequest(orderDiscountLinesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DiscountsApi.OrdersCreateDiscountLine``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -65,6 +66,7 @@ Name | Type | Description  | Notes
 
  **orderDiscountLinesRequest** | [**OrderDiscountLinesRequest**](OrderDiscountLinesRequest.md) | requested field for a discount lines | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -86,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## OrdersDeleteDiscountLines
 
-> DiscountLinesResponse OrdersDeleteDiscountLines(ctx, id, discountLinesId).AcceptLanguage(acceptLanguage).Execute()
+> DiscountLinesResponse OrdersDeleteDiscountLines(ctx, id, discountLinesId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Delete Discount
 
@@ -108,10 +110,11 @@ func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     discountLinesId := "dis_lin_2tQ974hSHcsdeSZHG" // string | identifier
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DiscountsApi.OrdersDeleteDiscountLines(context.Background(), id, discountLinesId).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.DiscountsApi.OrdersDeleteDiscountLines(context.Background(), id, discountLinesId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DiscountsApi.OrdersDeleteDiscountLines``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -140,6 +143,7 @@ Name | Type | Description  | Notes
 
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -161,7 +165,7 @@ Name | Type | Description  | Notes
 
 ## OrdersUpdateDiscountLines
 
-> DiscountLinesResponse OrdersUpdateDiscountLines(ctx, id, discountLinesId).UpdateOrderDiscountLinesRequest(updateOrderDiscountLinesRequest).AcceptLanguage(acceptLanguage).Execute()
+> DiscountLinesResponse OrdersUpdateDiscountLines(ctx, id, discountLinesId).UpdateOrderDiscountLinesRequest(updateOrderDiscountLinesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update Discount
 
@@ -184,10 +188,11 @@ func main() {
     discountLinesId := "dis_lin_2tQ974hSHcsdeSZHG" // string | identifier
     updateOrderDiscountLinesRequest := *openapiclient.NewUpdateOrderDiscountLinesRequest() // UpdateOrderDiscountLinesRequest | requested field for a discount lines
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DiscountsApi.OrdersUpdateDiscountLines(context.Background(), id, discountLinesId).UpdateOrderDiscountLinesRequest(updateOrderDiscountLinesRequest).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.DiscountsApi.OrdersUpdateDiscountLines(context.Background(), id, discountLinesId).UpdateOrderDiscountLinesRequest(updateOrderDiscountLinesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DiscountsApi.OrdersUpdateDiscountLines``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -217,6 +222,7 @@ Name | Type | Description  | Notes
 
  **updateOrderDiscountLinesRequest** | [**UpdateOrderDiscountLinesRequest**](UpdateOrderDiscountLinesRequest.md) | requested field for a discount lines | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 

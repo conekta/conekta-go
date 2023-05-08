@@ -97,6 +97,7 @@ type ApiCreatePlanRequest struct {
 	ApiService PlansApi
 	planRequest *PlanRequest
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for plan
@@ -108,6 +109,12 @@ func (r ApiCreatePlanRequest) PlanRequest(planRequest PlanRequest) ApiCreatePlan
 // Use for knowing which language to use
 func (r ApiCreatePlanRequest) AcceptLanguage(acceptLanguage string) ApiCreatePlanRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiCreatePlanRequest) XChildCompanyId(xChildCompanyId string) ApiCreatePlanRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -173,6 +180,9 @@ func (a *PlansApiService) CreatePlanExecute(r ApiCreatePlanRequest) (*PlanRespon
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.planRequest
@@ -404,11 +414,18 @@ type ApiGetPlanRequest struct {
 	ApiService PlansApi
 	id string
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // Use for knowing which language to use
 func (r ApiGetPlanRequest) AcceptLanguage(acceptLanguage string) ApiGetPlanRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiGetPlanRequest) XChildCompanyId(xChildCompanyId string) ApiGetPlanRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -472,6 +489,9 @@ func (a *PlansApiService) GetPlanExecute(r ApiGetPlanRequest) (*PlanResponse, *h
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -557,6 +577,7 @@ type ApiGetPlansRequest struct {
 	ctx context.Context
 	ApiService PlansApi
 	acceptLanguage *string
+	xChildCompanyId *string
 	limit *int32
 	search *string
 	next *string
@@ -566,6 +587,12 @@ type ApiGetPlansRequest struct {
 // Use for knowing which language to use
 func (r ApiGetPlansRequest) AcceptLanguage(acceptLanguage string) ApiGetPlansRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiGetPlansRequest) XChildCompanyId(xChildCompanyId string) ApiGetPlansRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -663,6 +690,9 @@ func (a *PlansApiService) GetPlansExecute(r ApiGetPlansRequest) (*GetPlansRespon
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
 	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -738,6 +768,7 @@ type ApiUpdatePlanRequest struct {
 	id string
 	planUpdateRequest *PlanUpdateRequest
 	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for plan
@@ -749,6 +780,12 @@ func (r ApiUpdatePlanRequest) PlanUpdateRequest(planUpdateRequest PlanUpdateRequ
 // Use for knowing which language to use
 func (r ApiUpdatePlanRequest) AcceptLanguage(acceptLanguage string) ApiUpdatePlanRequest {
 	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiUpdatePlanRequest) XChildCompanyId(xChildCompanyId string) ApiUpdatePlanRequest {
+	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
@@ -815,6 +852,9 @@ func (a *PlansApiService) UpdatePlanExecute(r ApiUpdatePlanRequest) (*PlanRespon
 	}
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
 	}
 	// body params
 	localVarPostBody = r.planUpdateRequest

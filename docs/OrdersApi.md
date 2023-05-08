@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateOrder
 
-> OrderResponse CreateOrder(ctx).OrderRequest(orderRequest).AcceptLanguage(acceptLanguage).Execute()
+> OrderResponse CreateOrder(ctx).OrderRequest(orderRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Create order
 
@@ -36,10 +36,11 @@ import (
 func main() {
     orderRequest := *openapiclient.NewOrderRequest("MXN", openapiclient.order_request_customer_info{CustomerInfo: openapiclient.NewCustomerInfo("DevTest", "test@conekta.com", "5522997233")}, []openapiclient.Product{*openapiclient.NewProduct("Box of Cohiba S1s", int32(1), int32(20000))}) // OrderRequest | requested field for order
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrdersApi.CreateOrder(context.Background()).OrderRequest(orderRequest).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.OrdersApi.CreateOrder(context.Background()).OrderRequest(orderRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.CreateOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -62,6 +63,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderRequest** | [**OrderRequest**](OrderRequest.md) | requested field for order | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -83,7 +85,7 @@ Name | Type | Description  | Notes
 
 ## GetOrderById
 
-> OrderResponse GetOrderById(ctx, id).AcceptLanguage(acceptLanguage).Execute()
+> OrderResponse GetOrderById(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Get Order
 
@@ -104,10 +106,11 @@ import (
 func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrdersApi.GetOrderById(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.OrdersApi.GetOrderById(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.GetOrderById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -134,6 +137,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -155,7 +159,7 @@ Name | Type | Description  | Notes
 
 ## GetOrders
 
-> GetOrdersResponse GetOrders(ctx).AcceptLanguage(acceptLanguage).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+> GetOrdersResponse GetOrders(ctx).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
 
 Get a list of Orders
 
@@ -175,6 +179,7 @@ import (
 
 func main() {
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
     limit := int32(56) // int32 | The numbers of items to return, the maximum value is 250 (optional) (default to 20)
     search := "search_example" // string | General order search, e.g. by mail, reference etc. (optional)
     next := "next_example" // string | next page (optional)
@@ -182,7 +187,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrdersApi.GetOrders(context.Background()).AcceptLanguage(acceptLanguage).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+    resp, r, err := apiClient.OrdersApi.GetOrders(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.GetOrders``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -204,6 +209,7 @@ Other parameters are passed through a pointer to a apiGetOrdersRequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
  **limit** | **int32** | The numbers of items to return, the maximum value is 250 | [default to 20]
  **search** | **string** | General order search, e.g. by mail, reference etc. | 
  **next** | **string** | next page | 
@@ -229,7 +235,7 @@ Name | Type | Description  | Notes
 
 ## OrderRefund
 
-> OrderResponse OrderRefund(ctx, id).OrderRefundRequest(orderRefundRequest).AcceptLanguage(acceptLanguage).Execute()
+> OrderResponse OrderRefund(ctx, id).OrderRefundRequest(orderRefundRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Refund Order
 
@@ -251,10 +257,11 @@ func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     orderRefundRequest := *openapiclient.NewOrderRefundRequest(int32(500), "suspected_fraud") // OrderRefundRequest | requested field for a refund
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrdersApi.OrderRefund(context.Background(), id).OrderRefundRequest(orderRefundRequest).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.OrdersApi.OrderRefund(context.Background(), id).OrderRefundRequest(orderRefundRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.OrderRefund``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -282,6 +289,7 @@ Name | Type | Description  | Notes
 
  **orderRefundRequest** | [**OrderRefundRequest**](OrderRefundRequest.md) | requested field for a refund | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
@@ -303,7 +311,7 @@ Name | Type | Description  | Notes
 
 ## OrdersCreateCapture
 
-> OrderResponse OrdersCreateCapture(ctx, id).AcceptLanguage(acceptLanguage).OrderCaptureRequest(orderCaptureRequest).Execute()
+> OrderResponse OrdersCreateCapture(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).OrderCaptureRequest(orderCaptureRequest).Execute()
 
 Capture Order
 
@@ -324,11 +332,12 @@ import (
 func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
     orderCaptureRequest := *openapiclient.NewOrderCaptureRequest(int64(500)) // OrderCaptureRequest | requested fields for capture order (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrdersApi.OrdersCreateCapture(context.Background(), id).AcceptLanguage(acceptLanguage).OrderCaptureRequest(orderCaptureRequest).Execute()
+    resp, r, err := apiClient.OrdersApi.OrdersCreateCapture(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).OrderCaptureRequest(orderCaptureRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.OrdersCreateCapture``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -355,6 +364,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
  **orderCaptureRequest** | [**OrderCaptureRequest**](OrderCaptureRequest.md) | requested fields for capture order | 
 
 ### Return type
