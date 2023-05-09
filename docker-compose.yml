@@ -10,3 +10,10 @@ services:
       interval: 5s
       timeout: 10s
       retries: 20
+  service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      mockserver:
+        condition: service_healthy
