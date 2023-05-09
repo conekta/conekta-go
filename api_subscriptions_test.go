@@ -10,7 +10,7 @@ import (
 
 func TestSubscriptionsApi(t *testing.T) {
 	cfg := conekta.NewConfiguration()
-	cfg.Host = "localhost:3000"
+	cfg.Host = _basePath
 	cfg.Scheme = "http"
 	client := conekta.NewAPIClient(cfg)
 	t.Run("CreateSubscription success", func(t *testing.T) {

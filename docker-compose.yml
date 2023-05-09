@@ -14,6 +14,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      BASE_PATH: "mockserver:3000"
     depends_on:
       mockserver:
         condition: service_healthy
