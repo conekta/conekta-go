@@ -4,13 +4,89 @@ All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CancelOrder**](OrdersApi.md#CancelOrder) | **Post** /orders/{id}/cancel | Cancel Order
 [**CreateOrder**](OrdersApi.md#CreateOrder) | **Post** /orders | Create order
 [**GetOrderById**](OrdersApi.md#GetOrderById) | **Get** /orders/{id} | Get Order
 [**GetOrders**](OrdersApi.md#GetOrders) | **Get** /orders | Get a list of Orders
+[**OrderCancelRefund**](OrdersApi.md#OrderCancelRefund) | **Delete** /orders/{id}/refunds/{refund_id} | Cancel Refund
 [**OrderRefund**](OrdersApi.md#OrderRefund) | **Post** /orders/{id}/refunds | Refund Order
 [**OrdersCreateCapture**](OrdersApi.md#OrdersCreateCapture) | **Post** /orders/{id}/capture | Capture Order
 [**UpdateOrder**](OrdersApi.md#UpdateOrder) | **Put** /orders/{id} | Update Order
 
+
+
+## CancelOrder
+
+> OrderResponse CancelOrder(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+
+Cancel Order
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/conekta/conekta-go"
+)
+
+func main() {
+    id := "6307a60c41de27127515a575" // string | Identifier of the resource
+    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.OrdersApi.CancelOrder(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.CancelOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CancelOrder`: OrderResponse
+    fmt.Fprintf(os.Stdout, "Response from `OrdersApi.CancelOrder`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Identifier of the resource | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCancelOrderRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
+
+### Return type
+
+[**OrderResponse**](OrderResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/vnd.conekta-v2.1.0+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateOrder
@@ -218,6 +294,83 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetOrdersResponse**](GetOrdersResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/vnd.conekta-v2.1.0+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## OrderCancelRefund
+
+> OrderResponse OrderCancelRefund(ctx, id, refundId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+
+Cancel Refund
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/conekta/conekta-go"
+)
+
+func main() {
+    id := "6307a60c41de27127515a575" // string | Identifier of the resource
+    refundId := "6407b5bee1329a000175ba11" // string | refund identifier
+    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.OrdersApi.OrderCancelRefund(context.Background(), id, refundId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.OrderCancelRefund``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `OrderCancelRefund`: OrderResponse
+    fmt.Fprintf(os.Stdout, "Response from `OrdersApi.OrderCancelRefund`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Identifier of the resource | 
+**refundId** | **string** | refund identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOrderCancelRefundRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+ **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
+
+### Return type
+
+[**OrderResponse**](OrderResponse.md)
 
 ### Authorization
 

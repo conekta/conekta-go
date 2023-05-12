@@ -18,9 +18,11 @@ import (
 // checks if the OrderResponseCharges type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &OrderResponseCharges{}
 
-// OrderResponseCharges struct for OrderResponseCharges
+// OrderResponseCharges The charges associated with the order
 type OrderResponseCharges struct {
+	// Object type, in this case is list
 	Object string `json:"object"`
+	// Indicates if there are more pages to be requested
 	HasMore bool `json:"has_more"`
 	Data []ChargesDataResponse `json:"data,omitempty"`
 }

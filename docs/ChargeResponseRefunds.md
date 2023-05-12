@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **string** |  | 
-**HasMore** | **bool** |  | 
+**Object** | **string** | Object type, in this case is list | 
+**HasMore** | **bool** | Indicates if there are more pages to be requested | 
 **NextPageUrl** | Pointer to **NullableString** | URL of the next page. | [optional] 
 **PreviousPageUrl** | Pointer to **NullableString** | Url of the previous page. | [optional] 
 **Data** | Pointer to [**[]ChargeResponseRefundsData**](ChargeResponseRefundsData.md) |  | [optional] 

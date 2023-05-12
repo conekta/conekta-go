@@ -20,7 +20,9 @@ var _ MappedNullable = &Pagination{}
 
 // Pagination pagination metadata
 type Pagination struct {
+	// Object type, in this case is list
 	Object string `json:"object"`
+	// Indicates if there are more pages to be requested
 	HasMore bool `json:"has_more"`
 }
 

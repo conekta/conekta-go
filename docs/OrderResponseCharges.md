@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **string** |  | 
-**HasMore** | **bool** |  | 
+**Object** | **string** | Object type, in this case is list | 
+**HasMore** | **bool** | Indicates if there are more pages to be requested | 
 **Data** | Pointer to [**[]ChargesDataResponse**](ChargesDataResponse.md) |  | [optional] 
 
 ## Methods

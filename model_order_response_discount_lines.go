@@ -20,7 +20,9 @@ var _ MappedNullable = &OrderResponseDiscountLines{}
 
 // OrderResponseDiscountLines struct for OrderResponseDiscountLines
 type OrderResponseDiscountLines struct {
+	// Object type, in this case is list
 	Object string `json:"object"`
+	// Indicates if there are more pages to be requested
 	HasMore bool `json:"has_more"`
 	Data []DiscountLinesDataResponse `json:"data,omitempty"`
 }

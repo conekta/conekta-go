@@ -32,11 +32,14 @@ type Checkout struct {
 	Name string `json:"name"`
 	// This flag allows you to fill in the shipping information at checkout.
 	NeedsShippingContact *bool `json:"needs_shipping_contact,omitempty"`
+	// This flag allows you to specify if the link will be on demand.
 	OnDemandEnabled NullableBool `json:"on_demand_enabled,omitempty"`
 	OrderTemplate CheckoutOrderTemplate `json:"order_template"`
+	// It is the number of payments that can be made through the link.
 	PaymentsLimitCount *int32 `json:"payments_limit_count,omitempty"`
 	// false: single use. true: multiple payments
 	Recurrent bool `json:"recurrent"`
+	// It is the type of link that will be created. It must be a valid type.
 	Type string `json:"type"`
 }
 

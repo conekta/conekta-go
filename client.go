@@ -92,6 +92,12 @@ type APIClient struct {
 
 	TokensApi TokensApi
 
+	TransactionsApi TransactionsApi
+
+	TransfersApi TransfersApi
+
+	WebhookKeysApi WebhookKeysApi
+
 	WebhooksApi WebhooksApi
 }
 
@@ -102,7 +108,7 @@ func init() {
 
 func initUserAgent() {
 	data := map[string]string{
-		"bindings_version": "6.0.0",
+		"bindings_version": "6.0.1",
 		"lang":             "go",
 		"lang_version":     runtime.Version(),
 		"publisher":        "conekta",
@@ -166,6 +172,9 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.SubscriptionsApi = (*SubscriptionsApiService)(&c.common)
 	c.TaxesApi = (*TaxesApiService)(&c.common)
 	c.TokensApi = (*TokensApiService)(&c.common)
+	c.TransactionsApi = (*TransactionsApiService)(&c.common)
+	c.TransfersApi = (*TransfersApiService)(&c.common)
+	c.WebhookKeysApi = (*WebhookKeysApiService)(&c.common)
 	c.WebhooksApi = (*WebhooksApiService)(&c.common)
 
 	return c

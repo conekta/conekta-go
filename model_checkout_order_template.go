@@ -22,8 +22,10 @@ var _ MappedNullable = &CheckoutOrderTemplate{}
 type CheckoutOrderTemplate struct {
 	// It is the currency in which the order will be created. It must be a valid ISO 4217 currency code.
 	Currency string `json:"currency"`
+	CustomerInfo *CheckoutOrderTemplateCustomerInfo `json:"customer_info,omitempty"`
 	// They are the products to buy. Each contains the \"unit price\" and \"quantity\" parameters that are used to calculate the total amount of the order.
 	LineItems []Product `json:"line_items"`
+	// It is a set of key-value pairs that you can attach to the order. It can be used to store additional information about the order in a structured format.
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 }
 
@@ -68,6 +70,38 @@ func (o *CheckoutOrderTemplate) GetCurrencyOk() (*string, bool) {
 // SetCurrency sets field value
 func (o *CheckoutOrderTemplate) SetCurrency(v string) {
 	o.Currency = v
+}
+
+// GetCustomerInfo returns the CustomerInfo field value if set, zero value otherwise.
+func (o *CheckoutOrderTemplate) GetCustomerInfo() CheckoutOrderTemplateCustomerInfo {
+	if o == nil || IsNil(o.CustomerInfo) {
+		var ret CheckoutOrderTemplateCustomerInfo
+		return ret
+	}
+	return *o.CustomerInfo
+}
+
+// GetCustomerInfoOk returns a tuple with the CustomerInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CheckoutOrderTemplate) GetCustomerInfoOk() (*CheckoutOrderTemplateCustomerInfo, bool) {
+	if o == nil || IsNil(o.CustomerInfo) {
+		return nil, false
+	}
+	return o.CustomerInfo, true
+}
+
+// HasCustomerInfo returns a boolean if a field has been set.
+func (o *CheckoutOrderTemplate) HasCustomerInfo() bool {
+	if o != nil && !IsNil(o.CustomerInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomerInfo gets a reference to the given CheckoutOrderTemplateCustomerInfo and assigns it to the CustomerInfo field.
+func (o *CheckoutOrderTemplate) SetCustomerInfo(v CheckoutOrderTemplateCustomerInfo) {
+	o.CustomerInfo = &v
 }
 
 // GetLineItems returns the LineItems field value
@@ -137,6 +171,9 @@ func (o CheckoutOrderTemplate) MarshalJSON() ([]byte, error) {
 func (o CheckoutOrderTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["currency"] = o.Currency
+	if !IsNil(o.CustomerInfo) {
+		toSerialize["customer_info"] = o.CustomerInfo
+	}
 	toSerialize["line_items"] = o.LineItems
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata

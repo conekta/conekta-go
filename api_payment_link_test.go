@@ -60,7 +60,9 @@ func TestPaymentLinkApi(t *testing.T) {
 			AllowedPaymentMethods: []string{
 				"method",
 			},
-			Name: "FooCheckout",
+			Type:      "PaymentLink",
+			Name:      "FooCheckout",
+			Recurrent: false,
 		}
 		checkout, response, err := client.PaymentLinkApi.CreateCheckout(context.TODO()).
 			Checkout(req).

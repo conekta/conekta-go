@@ -10,11 +10,11 @@ Name | Type | Description | Notes
 **MonthlyInstallmentsOptions** | Pointer to **[]int32** | This field allows you to specify the number of months without interest. | [optional] 
 **Name** | **string** | Reason for charge | 
 **NeedsShippingContact** | Pointer to **bool** | This flag allows you to fill in the shipping information at checkout. | [optional] 
-**OnDemandEnabled** | Pointer to **NullableBool** |  | [optional] 
+**OnDemandEnabled** | Pointer to **NullableBool** | This flag allows you to specify if the link will be on demand. | [optional] 
 **OrderTemplate** | [**CheckoutOrderTemplate**](CheckoutOrderTemplate.md) |  | 
-**PaymentsLimitCount** | Pointer to **int32** |  | [optional] 
+**PaymentsLimitCount** | Pointer to **int32** | It is the number of payments that can be made through the link. | [optional] 
 **Recurrent** | **bool** | false: single use. true: multiple payments | 
-**Type** | **string** |  | 
+**Type** | **string** | It is the type of link that will be created. It must be a valid type. | 
 
 ## Methods
 

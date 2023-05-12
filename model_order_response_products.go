@@ -20,7 +20,9 @@ var _ MappedNullable = &OrderResponseProducts{}
 
 // OrderResponseProducts struct for OrderResponseProducts
 type OrderResponseProducts struct {
+	// Object type, in this case is list
 	Object string `json:"object"`
+	// Indicates if there are more pages to be requested
 	HasMore bool `json:"has_more"`
 	// URL of the next page.
 	NextPageUrl NullableString `json:"next_page_url,omitempty"`
