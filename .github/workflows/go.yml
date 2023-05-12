@@ -6,9 +6,9 @@
 name: go CI
 on:
   push:
-    branches: [ v2 ]
+    branches: [ main ]
   pull_request:
-    branches: [ v2 ]
+    branches: [ main ]
 jobs:
   test:
     runs-on: ubuntu-latest
