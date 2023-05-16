@@ -24,7 +24,7 @@ type OrderResponse struct {
 	Amount *int32 `json:"amount,omitempty"`
 	// The total amount refunded in cents
 	AmountRefunded *int32 `json:"amount_refunded,omitempty"`
-	Channel *ChargeOrderResponseChannel `json:"channel,omitempty"`
+	Channel *ChargeResponseChannel `json:"channel,omitempty"`
 	Charges *OrderResponseCharges `json:"charges,omitempty"`
 	Checkout *OrderResponseCheckout `json:"checkout,omitempty"`
 	// The time at which the object was created in seconds since the Unix epoch
@@ -132,9 +132,9 @@ func (o *OrderResponse) SetAmountRefunded(v int32) {
 }
 
 // GetChannel returns the Channel field value if set, zero value otherwise.
-func (o *OrderResponse) GetChannel() ChargeOrderResponseChannel {
+func (o *OrderResponse) GetChannel() ChargeResponseChannel {
 	if o == nil || IsNil(o.Channel) {
-		var ret ChargeOrderResponseChannel
+		var ret ChargeResponseChannel
 		return ret
 	}
 	return *o.Channel
@@ -142,7 +142,7 @@ func (o *OrderResponse) GetChannel() ChargeOrderResponseChannel {
 
 // GetChannelOk returns a tuple with the Channel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderResponse) GetChannelOk() (*ChargeOrderResponseChannel, bool) {
+func (o *OrderResponse) GetChannelOk() (*ChargeResponseChannel, bool) {
 	if o == nil || IsNil(o.Channel) {
 		return nil, false
 	}
@@ -158,8 +158,8 @@ func (o *OrderResponse) HasChannel() bool {
 	return false
 }
 
-// SetChannel gets a reference to the given ChargeOrderResponseChannel and assigns it to the Channel field.
-func (o *OrderResponse) SetChannel(v ChargeOrderResponseChannel) {
+// SetChannel gets a reference to the given ChargeResponseChannel and assigns it to the Channel field.
+func (o *OrderResponse) SetChannel(v ChargeResponseChannel) {
 	o.Channel = &v
 }
 

@@ -119,6 +119,7 @@ Class | Method | HTTP request | Description
 *AntifraudApi* | [**DeleteRuleWhitelist**](docs/AntifraudApi.md#deleterulewhitelist) | **Delete** /antifraud/whitelists/{id} | Delete whitelisted rule
 *AntifraudApi* | [**GetRuleBlacklist**](docs/AntifraudApi.md#getruleblacklist) | **Get** /antifraud/blacklists | Get list of blacklisted rules
 *AntifraudApi* | [**GetRuleWhitelist**](docs/AntifraudApi.md#getrulewhitelist) | **Get** /antifraud/whitelists | Get a list of whitelisted rules
+*ChargesApi* | [**GetCharges**](docs/ChargesApi.md#getcharges) | **Get** /charges | Get A List of Charges
 *ChargesApi* | [**OrdersCreateCharge**](docs/ChargesApi.md#orderscreatecharge) | **Post** /orders/{id}/charges | Create charge
 *CompaniesApi* | [**GetCompanies**](docs/CompaniesApi.md#getcompanies) | **Get** /companies | Get List of Companies
 *CompaniesApi* | [**GetCompany**](docs/CompaniesApi.md#getcompany) | **Get** /companies/{id} | Get Company
@@ -202,11 +203,12 @@ Class | Method | HTTP request | Description
 - [ChargeDataPaymentMethodCardResponse](docs/ChargeDataPaymentMethodCardResponse.md)
 - [ChargeDataPaymentMethodCashResponse](docs/ChargeDataPaymentMethodCashResponse.md)
 - [ChargeOrderResponse](docs/ChargeOrderResponse.md)
-- [ChargeOrderResponseChannel](docs/ChargeOrderResponseChannel.md)
 - [ChargeOrderResponsePaymentMethod](docs/ChargeOrderResponsePaymentMethod.md)
 - [ChargeRequest](docs/ChargeRequest.md)
 - [ChargeRequestPaymentMethod](docs/ChargeRequestPaymentMethod.md)
 - [ChargeResponse](docs/ChargeResponse.md)
+- [ChargeResponseChannel](docs/ChargeResponseChannel.md)
+- [ChargeResponsePaymentMethod](docs/ChargeResponsePaymentMethod.md)
 - [ChargeResponseRefunds](docs/ChargeResponseRefunds.md)
 - [ChargeResponseRefundsAllOf](docs/ChargeResponseRefundsAllOf.md)
 - [ChargeResponseRefundsData](docs/ChargeResponseRefundsData.md)
@@ -268,6 +270,8 @@ Class | Method | HTTP request | Description
 - [EmailCheckoutRequest](docs/EmailCheckoutRequest.md)
 - [ErrorAllOf](docs/ErrorAllOf.md)
 - [EventResponse](docs/EventResponse.md)
+- [GetChargesResponse](docs/GetChargesResponse.md)
+- [GetChargesResponseAllOf](docs/GetChargesResponseAllOf.md)
 - [GetCompaniesResponse](docs/GetCompaniesResponse.md)
 - [GetCompaniesResponseAllOf](docs/GetCompaniesResponseAllOf.md)
 - [GetCustomerPaymentMethodDataResponse](docs/GetCustomerPaymentMethodDataResponse.md)

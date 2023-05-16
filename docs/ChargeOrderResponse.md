@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | Pointer to **int32** |  | [optional] 
-**Channel** | Pointer to [**ChargeOrderResponseChannel**](ChargeOrderResponseChannel.md) |  | [optional] 
+**Channel** | Pointer to [**ChargeResponseChannel**](ChargeResponseChannel.md) |  | [optional] 
 **CreatedAt** | Pointer to **int64** |  | [optional] 
 **Currency** | Pointer to **string** |  | [optional] 
 **CustomerId** | Pointer to **string** |  | [optional] 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **OrderId** | Pointer to **string** |  | [optional] 
 **PaidAt** | Pointer to **NullableInt32** |  | [optional] 
 **PaymentMethod** | Pointer to [**ChargeOrderResponsePaymentMethod**](ChargeOrderResponsePaymentMethod.md) |  | [optional] 
-**ReferenceId** | Pointer to **NullableString** |  | [optional] 
+**ReferenceId** | Pointer to **NullableString** | Reference ID of the charge | [optional] 
 **Refunds** | Pointer to **[]map[string]interface{}** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 
@@ -71,20 +71,20 @@ HasAmount returns a boolean if a field has been set.
 
 ### GetChannel
 
-`func (o *ChargeOrderResponse) GetChannel() ChargeOrderResponseChannel`
+`func (o *ChargeOrderResponse) GetChannel() ChargeResponseChannel`
 
 GetChannel returns the Channel field if non-nil, zero value otherwise.
 
 ### GetChannelOk
 
-`func (o *ChargeOrderResponse) GetChannelOk() (*ChargeOrderResponseChannel, bool)`
+`func (o *ChargeOrderResponse) GetChannelOk() (*ChargeResponseChannel, bool)`
 
 GetChannelOk returns a tuple with the Channel field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChannel
 
-`func (o *ChargeOrderResponse) SetChannel(v ChargeOrderResponseChannel)`
+`func (o *ChargeOrderResponse) SetChannel(v ChargeResponseChannel)`
 
 SetChannel sets Channel field to given value.
 

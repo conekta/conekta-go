@@ -13,6 +13,21 @@ func TestChargesApi(t *testing.T) {
 	cfg.Host = _basePath
 	cfg.Scheme = "http"
 	client := conekta.NewAPIClient(cfg)
+	t.Run("GetCharges success", func(t *testing.T) {
+		charges, response, err := client.ChargesApi.GetCharges(context.TODO()).
+			Limit(20).
+			AcceptLanguage("es").
+			Execute()
+		if err != nil {
+			t.Error(err)
+		}
+		if response.StatusCode != http.StatusOK {
+			t.Errorf("assertion fail, expected=%v , actual=%v", http.StatusOK, response.StatusCode)
+		}
+		if charges == nil {
+			t.Errorf("assertion fail, expected=%v , actual=%v", "not nil", charges)
+		}
+	})
 	t.Run("OrdersCreateCharge success", func(t *testing.T) {
 		req := conekta.ChargeRequest{
 			Amount: conekta.PtrInt32(1000),

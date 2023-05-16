@@ -21,7 +21,7 @@ var _ MappedNullable = &ChargeOrderResponse{}
 // ChargeOrderResponse struct for ChargeOrderResponse
 type ChargeOrderResponse struct {
 	Amount *int32 `json:"amount,omitempty"`
-	Channel *ChargeOrderResponseChannel `json:"channel,omitempty"`
+	Channel *ChargeResponseChannel `json:"channel,omitempty"`
 	CreatedAt *int64 `json:"created_at,omitempty"`
 	Currency *string `json:"currency,omitempty"`
 	CustomerId *string `json:"customer_id,omitempty"`
@@ -37,6 +37,7 @@ type ChargeOrderResponse struct {
 	OrderId *string `json:"order_id,omitempty"`
 	PaidAt NullableInt32 `json:"paid_at,omitempty"`
 	PaymentMethod *ChargeOrderResponsePaymentMethod `json:"payment_method,omitempty"`
+	// Reference ID of the charge
 	ReferenceId NullableString `json:"reference_id,omitempty"`
 	Refunds []map[string]interface{} `json:"refunds,omitempty"`
 	Status *string `json:"status,omitempty"`
@@ -92,9 +93,9 @@ func (o *ChargeOrderResponse) SetAmount(v int32) {
 }
 
 // GetChannel returns the Channel field value if set, zero value otherwise.
-func (o *ChargeOrderResponse) GetChannel() ChargeOrderResponseChannel {
+func (o *ChargeOrderResponse) GetChannel() ChargeResponseChannel {
 	if o == nil || IsNil(o.Channel) {
-		var ret ChargeOrderResponseChannel
+		var ret ChargeResponseChannel
 		return ret
 	}
 	return *o.Channel
@@ -102,7 +103,7 @@ func (o *ChargeOrderResponse) GetChannel() ChargeOrderResponseChannel {
 
 // GetChannelOk returns a tuple with the Channel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChargeOrderResponse) GetChannelOk() (*ChargeOrderResponseChannel, bool) {
+func (o *ChargeOrderResponse) GetChannelOk() (*ChargeResponseChannel, bool) {
 	if o == nil || IsNil(o.Channel) {
 		return nil, false
 	}
@@ -118,8 +119,8 @@ func (o *ChargeOrderResponse) HasChannel() bool {
 	return false
 }
 
-// SetChannel gets a reference to the given ChargeOrderResponseChannel and assigns it to the Channel field.
-func (o *ChargeOrderResponse) SetChannel(v ChargeOrderResponseChannel) {
+// SetChannel gets a reference to the given ChargeResponseChannel and assigns it to the Channel field.
+func (o *ChargeOrderResponse) SetChannel(v ChargeResponseChannel) {
 	o.Channel = &v
 }
 

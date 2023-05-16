@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | Pointer to **int32** | The total amount to be collected in cents | [optional] 
 **AmountRefunded** | Pointer to **int32** | The total amount refunded in cents | [optional] 
-**Channel** | Pointer to [**ChargeOrderResponseChannel**](ChargeOrderResponseChannel.md) |  | [optional] 
+**Channel** | Pointer to [**ChargeResponseChannel**](ChargeResponseChannel.md) |  | [optional] 
 **Charges** | Pointer to [**OrderResponseCharges**](OrderResponseCharges.md) |  | [optional] 
 **Checkout** | Pointer to [**OrderResponseCheckout**](OrderResponseCheckout.md) |  | [optional] 
 **CreatedAt** | Pointer to **int64** | The time at which the object was created in seconds since the Unix epoch | [optional] 
@@ -95,20 +95,20 @@ HasAmountRefunded returns a boolean if a field has been set.
 
 ### GetChannel
 
-`func (o *OrderResponse) GetChannel() ChargeOrderResponseChannel`
+`func (o *OrderResponse) GetChannel() ChargeResponseChannel`
 
 GetChannel returns the Channel field if non-nil, zero value otherwise.
 
 ### GetChannelOk
 
-`func (o *OrderResponse) GetChannelOk() (*ChargeOrderResponseChannel, bool)`
+`func (o *OrderResponse) GetChannelOk() (*ChargeResponseChannel, bool)`
 
 GetChannelOk returns a tuple with the Channel field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChannel
 
-`func (o *OrderResponse) SetChannel(v ChargeOrderResponseChannel)`
+`func (o *OrderResponse) SetChannel(v ChargeResponseChannel)`
 
 SetChannel sets Channel field to given value.
 

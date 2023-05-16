@@ -21,6 +21,7 @@ var _ MappedNullable = &ChargesDataResponse{}
 // ChargesDataResponse struct for ChargesDataResponse
 type ChargesDataResponse struct {
 	Amount *int32 `json:"amount,omitempty"`
+	Channel *ChargeResponseChannel `json:"channel,omitempty"`
 	CreatedAt *int64 `json:"created_at,omitempty"`
 	Currency *string `json:"currency,omitempty"`
 	CustomerId *string `json:"customer_id,omitempty"`
@@ -34,7 +35,9 @@ type ChargesDataResponse struct {
 	Object *string `json:"object,omitempty"`
 	OrderId *string `json:"order_id,omitempty"`
 	PaidAt NullableInt32 `json:"paid_at,omitempty"`
-	PaymentMethod *ChargeOrderResponsePaymentMethod `json:"payment_method,omitempty"`
+	PaymentMethod *ChargeResponsePaymentMethod `json:"payment_method,omitempty"`
+	// Reference ID of the charge
+	ReferenceId NullableString `json:"reference_id,omitempty"`
 	Refunds NullableChargeResponseRefunds `json:"refunds,omitempty"`
 	Status *string `json:"status,omitempty"`
 }
@@ -86,6 +89,38 @@ func (o *ChargesDataResponse) HasAmount() bool {
 // SetAmount gets a reference to the given int32 and assigns it to the Amount field.
 func (o *ChargesDataResponse) SetAmount(v int32) {
 	o.Amount = &v
+}
+
+// GetChannel returns the Channel field value if set, zero value otherwise.
+func (o *ChargesDataResponse) GetChannel() ChargeResponseChannel {
+	if o == nil || IsNil(o.Channel) {
+		var ret ChargeResponseChannel
+		return ret
+	}
+	return *o.Channel
+}
+
+// GetChannelOk returns a tuple with the Channel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChargesDataResponse) GetChannelOk() (*ChargeResponseChannel, bool) {
+	if o == nil || IsNil(o.Channel) {
+		return nil, false
+	}
+	return o.Channel, true
+}
+
+// HasChannel returns a boolean if a field has been set.
+func (o *ChargesDataResponse) HasChannel() bool {
+	if o != nil && !IsNil(o.Channel) {
+		return true
+	}
+
+	return false
+}
+
+// SetChannel gets a reference to the given ChargeResponseChannel and assigns it to the Channel field.
+func (o *ChargesDataResponse) SetChannel(v ChargeResponseChannel) {
+	o.Channel = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -515,9 +550,9 @@ func (o *ChargesDataResponse) UnsetPaidAt() {
 }
 
 // GetPaymentMethod returns the PaymentMethod field value if set, zero value otherwise.
-func (o *ChargesDataResponse) GetPaymentMethod() ChargeOrderResponsePaymentMethod {
+func (o *ChargesDataResponse) GetPaymentMethod() ChargeResponsePaymentMethod {
 	if o == nil || IsNil(o.PaymentMethod) {
-		var ret ChargeOrderResponsePaymentMethod
+		var ret ChargeResponsePaymentMethod
 		return ret
 	}
 	return *o.PaymentMethod
@@ -525,7 +560,7 @@ func (o *ChargesDataResponse) GetPaymentMethod() ChargeOrderResponsePaymentMetho
 
 // GetPaymentMethodOk returns a tuple with the PaymentMethod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChargesDataResponse) GetPaymentMethodOk() (*ChargeOrderResponsePaymentMethod, bool) {
+func (o *ChargesDataResponse) GetPaymentMethodOk() (*ChargeResponsePaymentMethod, bool) {
 	if o == nil || IsNil(o.PaymentMethod) {
 		return nil, false
 	}
@@ -541,9 +576,51 @@ func (o *ChargesDataResponse) HasPaymentMethod() bool {
 	return false
 }
 
-// SetPaymentMethod gets a reference to the given ChargeOrderResponsePaymentMethod and assigns it to the PaymentMethod field.
-func (o *ChargesDataResponse) SetPaymentMethod(v ChargeOrderResponsePaymentMethod) {
+// SetPaymentMethod gets a reference to the given ChargeResponsePaymentMethod and assigns it to the PaymentMethod field.
+func (o *ChargesDataResponse) SetPaymentMethod(v ChargeResponsePaymentMethod) {
 	o.PaymentMethod = &v
+}
+
+// GetReferenceId returns the ReferenceId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ChargesDataResponse) GetReferenceId() string {
+	if o == nil || IsNil(o.ReferenceId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ReferenceId.Get()
+}
+
+// GetReferenceIdOk returns a tuple with the ReferenceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ChargesDataResponse) GetReferenceIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ReferenceId.Get(), o.ReferenceId.IsSet()
+}
+
+// HasReferenceId returns a boolean if a field has been set.
+func (o *ChargesDataResponse) HasReferenceId() bool {
+	if o != nil && o.ReferenceId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetReferenceId gets a reference to the given NullableString and assigns it to the ReferenceId field.
+func (o *ChargesDataResponse) SetReferenceId(v string) {
+	o.ReferenceId.Set(&v)
+}
+// SetReferenceIdNil sets the value for ReferenceId to be an explicit nil
+func (o *ChargesDataResponse) SetReferenceIdNil() {
+	o.ReferenceId.Set(nil)
+}
+
+// UnsetReferenceId ensures that no value is present for ReferenceId, not even an explicit nil
+func (o *ChargesDataResponse) UnsetReferenceId() {
+	o.ReferenceId.Unset()
 }
 
 // GetRefunds returns the Refunds field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -633,6 +710,9 @@ func (o ChargesDataResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
+	if !IsNil(o.Channel) {
+		toSerialize["channel"] = o.Channel
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -674,6 +754,9 @@ func (o ChargesDataResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PaymentMethod) {
 		toSerialize["payment_method"] = o.PaymentMethod
+	}
+	if o.ReferenceId.IsSet() {
+		toSerialize["reference_id"] = o.ReferenceId.Get()
 	}
 	if o.Refunds.IsSet() {
 		toSerialize["refunds"] = o.Refunds.Get()

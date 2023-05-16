@@ -35,11 +35,12 @@ docs/ChargeDataPaymentMethodBankTransferResponse.md
 docs/ChargeDataPaymentMethodCardResponse.md
 docs/ChargeDataPaymentMethodCashResponse.md
 docs/ChargeOrderResponse.md
-docs/ChargeOrderResponseChannel.md
 docs/ChargeOrderResponsePaymentMethod.md
 docs/ChargeRequest.md
 docs/ChargeRequestPaymentMethod.md
 docs/ChargeResponse.md
+docs/ChargeResponseChannel.md
+docs/ChargeResponsePaymentMethod.md
 docs/ChargeResponseRefunds.md
 docs/ChargeResponseRefundsAllOf.md
 docs/ChargeResponseRefundsData.md
@@ -106,6 +107,8 @@ docs/EmailCheckoutRequest.md
 docs/ErrorAllOf.md
 docs/EventResponse.md
 docs/EventsApi.md
+docs/GetChargesResponse.md
+docs/GetChargesResponseAllOf.md
 docs/GetCompaniesResponse.md
 docs/GetCompaniesResponseAllOf.md
 docs/GetCustomerPaymentMethodDataResponse.md
@@ -241,11 +244,12 @@ model_charge_data_payment_method_bank_transfer_response.go
 model_charge_data_payment_method_card_response.go
 model_charge_data_payment_method_cash_response.go
 model_charge_order_response.go
-model_charge_order_response_channel.go
 model_charge_order_response_payment_method.go
 model_charge_request.go
 model_charge_request_payment_method.go
 model_charge_response.go
+model_charge_response_channel.go
+model_charge_response_payment_method.go
 model_charge_response_refunds.go
 model_charge_response_refunds_all_of.go
 model_charge_response_refunds_data.go
@@ -308,6 +312,8 @@ model_email_checkout_request.go
 model_error.go
 model_error_all_of.go
 model_event_response.go
+model_get_charges_response.go
+model_get_charges_response_all_of.go
 model_get_companies_response.go
 model_get_companies_response_all_of.go
 model_get_customer_payment_method_data_response.go

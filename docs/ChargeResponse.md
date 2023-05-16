@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | Pointer to **int32** |  | [optional] 
+**Channel** | Pointer to [**ChargeResponseChannel**](ChargeResponseChannel.md) |  | [optional] 
 **CreatedAt** | Pointer to **int64** |  | [optional] 
 **Currency** | Pointer to **string** |  | [optional] 
 **CustomerId** | Pointer to **string** |  | [optional] 
@@ -18,7 +19,8 @@ Name | Type | Description | Notes
 **Object** | Pointer to **string** |  | [optional] 
 **OrderId** | Pointer to **string** |  | [optional] 
 **PaidAt** | Pointer to **NullableInt32** |  | [optional] 
-**PaymentMethod** | Pointer to [**ChargeOrderResponsePaymentMethod**](ChargeOrderResponsePaymentMethod.md) |  | [optional] 
+**PaymentMethod** | Pointer to [**ChargeResponsePaymentMethod**](ChargeResponsePaymentMethod.md) |  | [optional] 
+**ReferenceId** | Pointer to **NullableString** | Reference ID of the charge | [optional] 
 **Refunds** | Pointer to [**NullableChargeResponseRefunds**](ChargeResponseRefunds.md) |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 
@@ -65,6 +67,31 @@ SetAmount sets Amount field to given value.
 `func (o *ChargeResponse) HasAmount() bool`
 
 HasAmount returns a boolean if a field has been set.
+
+### GetChannel
+
+`func (o *ChargeResponse) GetChannel() ChargeResponseChannel`
+
+GetChannel returns the Channel field if non-nil, zero value otherwise.
+
+### GetChannelOk
+
+`func (o *ChargeResponse) GetChannelOk() (*ChargeResponseChannel, bool)`
+
+GetChannelOk returns a tuple with the Channel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetChannel
+
+`func (o *ChargeResponse) SetChannel(v ChargeResponseChannel)`
+
+SetChannel sets Channel field to given value.
+
+### HasChannel
+
+`func (o *ChargeResponse) HasChannel() bool`
+
+HasChannel returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -403,20 +430,20 @@ HasPaidAt returns a boolean if a field has been set.
 UnsetPaidAt ensures that no value is present for PaidAt, not even an explicit nil
 ### GetPaymentMethod
 
-`func (o *ChargeResponse) GetPaymentMethod() ChargeOrderResponsePaymentMethod`
+`func (o *ChargeResponse) GetPaymentMethod() ChargeResponsePaymentMethod`
 
 GetPaymentMethod returns the PaymentMethod field if non-nil, zero value otherwise.
 
 ### GetPaymentMethodOk
 
-`func (o *ChargeResponse) GetPaymentMethodOk() (*ChargeOrderResponsePaymentMethod, bool)`
+`func (o *ChargeResponse) GetPaymentMethodOk() (*ChargeResponsePaymentMethod, bool)`
 
 GetPaymentMethodOk returns a tuple with the PaymentMethod field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPaymentMethod
 
-`func (o *ChargeResponse) SetPaymentMethod(v ChargeOrderResponsePaymentMethod)`
+`func (o *ChargeResponse) SetPaymentMethod(v ChargeResponsePaymentMethod)`
 
 SetPaymentMethod sets PaymentMethod field to given value.
 
@@ -426,6 +453,41 @@ SetPaymentMethod sets PaymentMethod field to given value.
 
 HasPaymentMethod returns a boolean if a field has been set.
 
+### GetReferenceId
+
+`func (o *ChargeResponse) GetReferenceId() string`
+
+GetReferenceId returns the ReferenceId field if non-nil, zero value otherwise.
+
+### GetReferenceIdOk
+
+`func (o *ChargeResponse) GetReferenceIdOk() (*string, bool)`
+
+GetReferenceIdOk returns a tuple with the ReferenceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReferenceId
+
+`func (o *ChargeResponse) SetReferenceId(v string)`
+
+SetReferenceId sets ReferenceId field to given value.
+
+### HasReferenceId
+
+`func (o *ChargeResponse) HasReferenceId() bool`
+
+HasReferenceId returns a boolean if a field has been set.
+
+### SetReferenceIdNil
+
+`func (o *ChargeResponse) SetReferenceIdNil(b bool)`
+
+ SetReferenceIdNil sets the value for ReferenceId to be an explicit nil
+
+### UnsetReferenceId
+`func (o *ChargeResponse) UnsetReferenceId()`
+
+UnsetReferenceId ensures that no value is present for ReferenceId, not even an explicit nil
 ### GetRefunds
 
 `func (o *ChargeResponse) GetRefunds() ChargeResponseRefunds`
