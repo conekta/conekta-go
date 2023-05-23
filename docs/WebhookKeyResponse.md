@@ -4,10 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | Pointer to **string** | Unique identifier of the webhook key | [optional] 
 **Active** | Pointer to **bool** | Indicates if the webhook key is active | [optional] 
 **CreatedAt** | Pointer to **int64** | Unix timestamp in seconds with the creation date of the webhook key | [optional] 
 **DeactivatedAt** | Pointer to **NullableInt64** | Unix timestamp in seconds with the deactivation date of the webhook key | [optional] 
-**Id** | Pointer to **string** | Unique identifier of the webhook key | [optional] 
+**PublicKey** | Pointer to **string** | Public key to be used in the webhook | [optional] 
 **Livemode** | Pointer to **bool** | Indicates if the webhook key is in live mode | [optional] 
 **Object** | Pointer to **string** | Object name, value is webhook_key | [optional] 
 
@@ -29,6 +30,31 @@ will change when the set of required properties is changed
 NewWebhookKeyResponseWithDefaults instantiates a new WebhookKeyResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetId
+
+`func (o *WebhookKeyResponse) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *WebhookKeyResponse) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *WebhookKeyResponse) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *WebhookKeyResponse) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -115,30 +141,30 @@ HasDeactivatedAt returns a boolean if a field has been set.
 `func (o *WebhookKeyResponse) UnsetDeactivatedAt()`
 
 UnsetDeactivatedAt ensures that no value is present for DeactivatedAt, not even an explicit nil
-### GetId
+### GetPublicKey
 
-`func (o *WebhookKeyResponse) GetId() string`
+`func (o *WebhookKeyResponse) GetPublicKey() string`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetPublicKey returns the PublicKey field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetPublicKeyOk
 
-`func (o *WebhookKeyResponse) GetIdOk() (*string, bool)`
+`func (o *WebhookKeyResponse) GetPublicKeyOk() (*string, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetPublicKeyOk returns a tuple with the PublicKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetPublicKey
 
-`func (o *WebhookKeyResponse) SetId(v string)`
+`func (o *WebhookKeyResponse) SetPublicKey(v string)`
 
-SetId sets Id field to given value.
+SetPublicKey sets PublicKey field to given value.
 
-### HasId
+### HasPublicKey
 
-`func (o *WebhookKeyResponse) HasId() bool`
+`func (o *WebhookKeyResponse) HasPublicKey() bool`
 
-HasId returns a boolean if a field has been set.
+HasPublicKey returns a boolean if a field has been set.
 
 ### GetLivemode
 

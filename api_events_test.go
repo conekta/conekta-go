@@ -41,4 +41,18 @@ func TestEventsApi(t *testing.T) {
 			t.Errorf("assertion fail, expected=%v , actual=%v", "not nil", events)
 		}
 	})
+	t.Run("ResendWebhook success", func(t *testing.T) {
+		event, response, err := client.EventsApi.ResendWebhook(context.TODO(), "6463d6e35a4c3e001819e760", "webhl_2tsv6NzWJHBWCkqGt").
+			AcceptLanguage("es").
+			Execute()
+		if err != nil {
+			t.Error(err)
+		}
+		if response.StatusCode != http.StatusOK {
+			t.Errorf("assertion fail, expected=%v , actual=%v", http.StatusOK, response.StatusCode)
+		}
+		if event == nil {
+			t.Errorf("assertion fail, expected=%v , actual=%v", "not nil", event)
+		}
+	})
 }

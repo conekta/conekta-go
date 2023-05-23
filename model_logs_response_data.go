@@ -28,7 +28,7 @@ type LogsResponseData struct {
 	LoggableType NullableString `json:"loggable_type,omitempty"`
 	Method *string `json:"method,omitempty"`
 	OauthTokenId NullableString `json:"oauth_token_id,omitempty"`
-	QueryString *map[string]string `json:"query_string,omitempty"`
+	QueryString map[string]interface{} `json:"query_string,omitempty"`
 	Related *string `json:"related,omitempty"`
 	RequestBody map[string]interface{} `json:"request_body,omitempty"`
 	RequestHeaders *map[string]string `json:"request_headers,omitempty"`
@@ -346,19 +346,19 @@ func (o *LogsResponseData) UnsetOauthTokenId() {
 }
 
 // GetQueryString returns the QueryString field value if set, zero value otherwise.
-func (o *LogsResponseData) GetQueryString() map[string]string {
+func (o *LogsResponseData) GetQueryString() map[string]interface{} {
 	if o == nil || IsNil(o.QueryString) {
-		var ret map[string]string
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.QueryString
+	return o.QueryString
 }
 
 // GetQueryStringOk returns a tuple with the QueryString field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsResponseData) GetQueryStringOk() (*map[string]string, bool) {
+func (o *LogsResponseData) GetQueryStringOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.QueryString) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.QueryString, true
 }
@@ -372,9 +372,9 @@ func (o *LogsResponseData) HasQueryString() bool {
 	return false
 }
 
-// SetQueryString gets a reference to the given map[string]string and assigns it to the QueryString field.
-func (o *LogsResponseData) SetQueryString(v map[string]string) {
-	o.QueryString = &v
+// SetQueryString gets a reference to the given map[string]interface{} and assigns it to the QueryString field.
+func (o *LogsResponseData) SetQueryString(v map[string]interface{}) {
+	o.QueryString = v
 }
 
 // GetRelated returns the Related field value if set, zero value otherwise.

@@ -93,4 +93,18 @@ func TestWebhooksApi(t *testing.T) {
 			t.Errorf("assertion fail, expected=%v , actual=%v", "not nil", webhooks)
 		}
 	})
+	t.Run("TestWebhook success", func(t *testing.T) {
+		webhook, response, err := client.WebhooksApi.TestWebhook(context.TODO(), "641b1d5662d7e00001eaa46b").
+			AcceptLanguage("es").
+			Execute()
+		if err != nil {
+			t.Error(err)
+		}
+		if response.StatusCode != http.StatusOK {
+			t.Errorf("assertion fail, expected=%v , actual=%v", http.StatusOK, response.StatusCode)
+		}
+		if webhook == nil {
+			t.Errorf("assertion fail, expected=%v , actual=%v", "not nil", webhook)
+		}
+	})
 }

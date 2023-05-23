@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetEvent**](EventsApi.md#GetEvent) | **Get** /events/{id} | Get Event
 [**GetEvents**](EventsApi.md#GetEvents) | **Get** /events | Get list of Events
+[**ResendWebhook**](EventsApi.md#ResendWebhook) | **Post** /events/{event_id}/webhook_logs/{webhook_log_id}/resend | Resend Webhook
 
 
 
@@ -142,6 +143,81 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetEventsResponse**](GetEventsResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/vnd.conekta-v2.1.0+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ResendWebhook
+
+> EventsWebhookResendResponse ResendWebhook(ctx, eventId, webhookLogId).AcceptLanguage(acceptLanguage).Execute()
+
+Resend Webhook
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/conekta/conekta-go"
+)
+
+func main() {
+    eventId := "6463d6e35a4c3e001819e760" // string | event identifier
+    webhookLogId := "webhl_2tsv6NzWJHBWCkqGt" // string | webhook log identifier
+    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.EventsApi.ResendWebhook(context.Background(), eventId, webhookLogId).AcceptLanguage(acceptLanguage).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.ResendWebhook``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ResendWebhook`: EventsWebhookResendResponse
+    fmt.Fprintf(os.Stdout, "Response from `EventsApi.ResendWebhook`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**eventId** | **string** | event identifier | 
+**webhookLogId** | **string** | webhook log identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiResendWebhookRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+
+### Return type
+
+[**EventsWebhookResendResponse**](EventsWebhookResendResponse.md)
 
 ### Authorization
 

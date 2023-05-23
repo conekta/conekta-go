@@ -107,6 +107,7 @@ docs/EmailCheckoutRequest.md
 docs/ErrorAllOf.md
 docs/EventResponse.md
 docs/EventsApi.md
+docs/EventsWebhookResendResponse.md
 docs/GetChargesResponse.md
 docs/GetChargesResponseAllOf.md
 docs/GetCompaniesResponse.md
@@ -312,6 +313,7 @@ model_email_checkout_request.go
 model_error.go
 model_error_all_of.go
 model_event_response.go
+model_events_webhook_resend_response.go
 model_get_charges_response.go
 model_get_charges_response_all_of.go
 model_get_companies_response.go

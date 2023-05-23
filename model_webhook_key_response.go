@@ -20,14 +20,16 @@ var _ MappedNullable = &WebhookKeyResponse{}
 
 // WebhookKeyResponse webhook keys model
 type WebhookKeyResponse struct {
+	// Unique identifier of the webhook key
+	Id *string `json:"id,omitempty"`
 	// Indicates if the webhook key is active
 	Active *bool `json:"active,omitempty"`
 	// Unix timestamp in seconds with the creation date of the webhook key
 	CreatedAt *int64 `json:"created_at,omitempty"`
 	// Unix timestamp in seconds with the deactivation date of the webhook key
 	DeactivatedAt NullableInt64 `json:"deactivated_at,omitempty"`
-	// Unique identifier of the webhook key
-	Id *string `json:"id,omitempty"`
+	// Public key to be used in the webhook
+	PublicKey *string `json:"public_key,omitempty"`
 	// Indicates if the webhook key is in live mode
 	Livemode *bool `json:"livemode,omitempty"`
 	// Object name, value is webhook_key
@@ -49,6 +51,38 @@ func NewWebhookKeyResponse() *WebhookKeyResponse {
 func NewWebhookKeyResponseWithDefaults() *WebhookKeyResponse {
 	this := WebhookKeyResponse{}
 	return &this
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *WebhookKeyResponse) GetId() string {
+	if o == nil || IsNil(o.Id) {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebhookKeyResponse) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *WebhookKeyResponse) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *WebhookKeyResponse) SetId(v string) {
+	o.Id = &v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
@@ -157,36 +191,36 @@ func (o *WebhookKeyResponse) UnsetDeactivatedAt() {
 	o.DeactivatedAt.Unset()
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *WebhookKeyResponse) GetId() string {
-	if o == nil || IsNil(o.Id) {
+// GetPublicKey returns the PublicKey field value if set, zero value otherwise.
+func (o *WebhookKeyResponse) GetPublicKey() string {
+	if o == nil || IsNil(o.PublicKey) {
 		var ret string
 		return ret
 	}
-	return *o.Id
+	return *o.PublicKey
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookKeyResponse) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
+func (o *WebhookKeyResponse) GetPublicKeyOk() (*string, bool) {
+	if o == nil || IsNil(o.PublicKey) {
 		return nil, false
 	}
-	return o.Id, true
+	return o.PublicKey, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *WebhookKeyResponse) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+// HasPublicKey returns a boolean if a field has been set.
+func (o *WebhookKeyResponse) HasPublicKey() bool {
+	if o != nil && !IsNil(o.PublicKey) {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *WebhookKeyResponse) SetId(v string) {
-	o.Id = &v
+// SetPublicKey gets a reference to the given string and assigns it to the PublicKey field.
+func (o *WebhookKeyResponse) SetPublicKey(v string) {
+	o.PublicKey = &v
 }
 
 // GetLivemode returns the Livemode field value if set, zero value otherwise.
@@ -263,6 +297,9 @@ func (o WebhookKeyResponse) MarshalJSON() ([]byte, error) {
 
 func (o WebhookKeyResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
@@ -272,8 +309,8 @@ func (o WebhookKeyResponse) ToMap() (map[string]interface{}, error) {
 	if o.DeactivatedAt.IsSet() {
 		toSerialize["deactivated_at"] = o.DeactivatedAt.Get()
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if !IsNil(o.PublicKey) {
+		toSerialize["public_key"] = o.PublicKey
 	}
 	if !IsNil(o.Livemode) {
 		toSerialize["livemode"] = o.Livemode

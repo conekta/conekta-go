@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**DeleteWebhook**](WebhooksApi.md#DeleteWebhook) | **Delete** /webhooks/{id} | Delete Webhook
 [**GetWebhook**](WebhooksApi.md#GetWebhook) | **Get** /webhooks/{id} | Get Webhook
 [**GetWebhooks**](WebhooksApi.md#GetWebhooks) | **Get** /webhooks | Get List of Webhooks
+[**TestWebhook**](WebhooksApi.md#TestWebhook) | **Post** /webhooks/{id}/test | Test Webhook
 [**UpdateWebhook**](WebhooksApi.md#UpdateWebhook) | **Put** /webhooks/{id} | Update Webhook
 
 
@@ -283,6 +284,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetWebhooksResponse**](GetWebhooksResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/vnd.conekta-v2.1.0+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## TestWebhook
+
+> WebhookResponse TestWebhook(ctx, id).AcceptLanguage(acceptLanguage).Execute()
+
+Test Webhook
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/conekta/conekta-go"
+)
+
+func main() {
+    id := "6307a60c41de27127515a575" // string | Identifier of the resource
+    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WebhooksApi.TestWebhook(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksApi.TestWebhook``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `TestWebhook`: WebhookResponse
+    fmt.Fprintf(os.Stdout, "Response from `WebhooksApi.TestWebhook`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Identifier of the resource | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTestWebhookRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+
+### Return type
+
+[**WebhookResponse**](WebhookResponse.md)
 
 ### Authorization
 

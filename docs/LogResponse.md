@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **LoggableType** | Pointer to **NullableString** |  | [optional] 
 **Method** | Pointer to **string** |  | [optional] 
 **OauthTokenId** | Pointer to **NullableString** |  | [optional] 
-**QueryString** | Pointer to **map[string]string** |  | [optional] 
+**QueryString** | Pointer to **map[string]interface{}** |  | [optional] 
 **Related** | Pointer to **string** |  | [optional] 
 **RequestBody** | Pointer to **map[string]interface{}** |  | [optional] 
 **RequestHeaders** | Pointer to **map[string]string** |  | [optional] 
@@ -261,20 +261,20 @@ HasOauthTokenId returns a boolean if a field has been set.
 UnsetOauthTokenId ensures that no value is present for OauthTokenId, not even an explicit nil
 ### GetQueryString
 
-`func (o *LogResponse) GetQueryString() map[string]string`
+`func (o *LogResponse) GetQueryString() map[string]interface{}`
 
 GetQueryString returns the QueryString field if non-nil, zero value otherwise.
 
 ### GetQueryStringOk
 
-`func (o *LogResponse) GetQueryStringOk() (*map[string]string, bool)`
+`func (o *LogResponse) GetQueryStringOk() (*map[string]interface{}, bool)`
 
 GetQueryStringOk returns a tuple with the QueryString field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQueryString
 
-`func (o *LogResponse) SetQueryString(v map[string]string)`
+`func (o *LogResponse) SetQueryString(v map[string]interface{})`
 
 SetQueryString sets QueryString field to given value.
 

@@ -2366,6 +2366,101 @@ paths:
       summary: Get Event
       tags:
       - Events
+  /events/{event_id}/webhook_logs/{webhook_log_id}/resend:
+    post:
+      description: Try to send an event
+      operationId: resendWebhook
+      parameters:
+      - description: event identifier
+        example: 6463d6e35a4c3e001819e760
+        in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+      - description: webhook log identifier
+        example: webhl_2tsv6NzWJHBWCkqGt
+        in: path
+        name: webhook_log_id
+        required: true
+        schema:
+          type: string
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+      responses:
+        "200":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              schema:
+                $ref: '#/components/schemas/events_webhook_resend_response'
+          description: successful operation
+        "401":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  param: null
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        "404":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  param: null
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could
+                    not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        "500":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have
+                    been notified.
+                  message: There was a runtime error and Conekta engineers have been
+                    notified.
+                  param: null
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Resend Webhook
+      tags:
+      - Events
   /logs:
     get:
       description: Get log details in the form of a list
@@ -9486,6 +9581,94 @@ paths:
       summary: Update Webhook
       tags:
       - Webhooks
+  /webhooks/{id}/test:
+    post:
+      description: Send a webhook.ping event
+      operationId: testWebhook
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+      responses:
+        "200":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              schema:
+                $ref: '#/components/schemas/webhook_response'
+          description: successful
+        "401":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  param: null
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        "404":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  param: null
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could
+                    not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        "500":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have
+                    been notified.
+                  message: There was a runtime error and Conekta engineers have been
+                    notified.
+                  param: null
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Test Webhook
+      tags:
+      - Webhooks
 components:
   examples:
     order_cash:
@@ -9870,6 +10053,22 @@ components:
       example: dis_lin_2tQ974hSHcsdeSZHG
       in: path
       name: discount_lines_id
+      required: true
+      schema:
+        type: string
+    event_id:
+      description: event identifier
+      example: 6463d6e35a4c3e001819e760
+      in: path
+      name: event_id
+      required: true
+      schema:
+        type: string
+    webhook_log_id:
+      description: webhook log identifier
+      example: webhl_2tsv6NzWJHBWCkqGt
+      in: path
+      name: webhook_log_id
       required: true
       schema:
         type: string
@@ -10616,6 +10815,33 @@ components:
           type: string
       title: event_response
       type: object
+    events_webhook_resend_response:
+      description: event model
+      properties:
+        failed_attempts:
+          example: 6
+          type: integer
+        id:
+          example: webhl_2svd2sh6GbqzyWBNZ
+          type: string
+        last_attempted_at:
+          example: 1684265970
+          type: integer
+        last_http_response_status:
+          example: 405
+          format: int32
+          type: integer
+        response_data:
+          additionalProperties: true
+          example: {}
+          maxProperties: 100
+          type: object
+        url:
+          example: https://username:password@mockoon.stg.conekta.io/payments-api/cash/merchant_approval
+          format: uri
+          type: string
+      title: event_webhook_resend_response
+      type: object
     logs_response:
       description: logs model
       properties:
@@ -10675,10 +10901,10 @@ components:
           nullable: true
           type: string
         query_string:
-          additionalProperties:
-            type: string
+          additionalProperties: true
           example:
-            limit: "20"
+            amount: 3000
+            payable: true
           type: object
         related:
           example: FilterResource
@@ -11333,6 +11559,10 @@ components:
     webhook-key_response:
       description: webhook keys model
       properties:
+        id:
+          description: Unique identifier of the webhook key
+          example: 62730ba6fb7dfd6a712f118e
+          type: string
         active:
           description: Indicates if the webhook key is active
           example: true
@@ -11350,9 +11580,10 @@ components:
           format: int64
           nullable: true
           type: integer
-        id:
-          description: Unique identifier of the webhook key
-          example: 62730ba6fb7dfd6a712f118e
+        public_key:
+          description: Public key to be used in the webhook
+          example: '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqULpUc6D6mSAq5a0yLY/\noOjd1mWm6q+QI8y/FI4STr2F+XgKeNnMxSqnyFrHtKQ/ut4Zi45WFnJLfEQL7aW5\n67yE2dWyo6GaL7yZUfLC0Y3sHPGzaGtvDF36ISW7LliYNoMiA3Bx5/1Sr0G23pGW\n0Mp8IO1Nlz0sJWuU/d7zCz/UN6cl9g/BP4eaQ7deS56YuWcj5sTlwqFTlwN12kpA\nIzMZ7gnvYQnZTpPny5lben6QEuxTvZcPApcyOweiESjMnXfkfWOyuYtgMrbsU6oL\nA6sWa6j0pePW7AYeBqB4tyAlenkCSqzHg8bMk5Bm7hiT6I9Pls774lJbnOYmmuNE\n8QIDAQAB\n-----END
+            PUBLIC KEY-----\n'
           type: string
         livemode:
           description: Indicates if the webhook key is in live mode
@@ -13333,10 +13564,10 @@ components:
           nullable: true
           type: string
         query_string:
-          additionalProperties:
-            type: string
+          additionalProperties: true
           example:
-            limit: "20"
+            amount: 3000
+            payable: true
           type: object
         related:
           example: FilterResource

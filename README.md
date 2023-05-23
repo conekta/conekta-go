@@ -106,7 +106,6 @@ Navigate to conekta-go folder and run the following commands.
 docker-compose up
 go test ./...
 ```
-
 ## Documentation for API Endpoints
 
 All URIs are relative to *https://api.conekta.io*
@@ -135,6 +134,7 @@ Class | Method | HTTP request | Description
 *DiscountsApi* | [**OrdersUpdateDiscountLines**](docs/DiscountsApi.md#ordersupdatediscountlines) | **Put** /orders/{id}/discount_lines/{discount_lines_id} | Update Discount
 *EventsApi* | [**GetEvent**](docs/EventsApi.md#getevent) | **Get** /events/{id} | Get Event
 *EventsApi* | [**GetEvents**](docs/EventsApi.md#getevents) | **Get** /events | Get list of Events
+*EventsApi* | [**ResendWebhook**](docs/EventsApi.md#resendwebhook) | **Post** /events/{event_id}/webhook_logs/{webhook_log_id}/resend | Resend Webhook
 *LogsApi* | [**GetLogById**](docs/LogsApi.md#getlogbyid) | **Get** /logs/{id} | Get Log
 *LogsApi* | [**GetLogs**](docs/LogsApi.md#getlogs) | **Get** /logs | Get List Of Logs
 *OrdersApi* | [**CancelOrder**](docs/OrdersApi.md#cancelorder) | **Post** /orders/{id}/cancel | Cancel Order
@@ -193,6 +193,7 @@ Class | Method | HTTP request | Description
 *WebhooksApi* | [**DeleteWebhook**](docs/WebhooksApi.md#deletewebhook) | **Delete** /webhooks/{id} | Delete Webhook
 *WebhooksApi* | [**GetWebhook**](docs/WebhooksApi.md#getwebhook) | **Get** /webhooks/{id} | Get Webhook
 *WebhooksApi* | [**GetWebhooks**](docs/WebhooksApi.md#getwebhooks) | **Get** /webhooks | Get List of Webhooks
+*WebhooksApi* | [**TestWebhook**](docs/WebhooksApi.md#testwebhook) | **Post** /webhooks/{id}/test | Test Webhook
 *WebhooksApi* | [**UpdateWebhook**](docs/WebhooksApi.md#updatewebhook) | **Put** /webhooks/{id} | Update Webhook
 
 
@@ -270,6 +271,7 @@ Class | Method | HTTP request | Description
 - [EmailCheckoutRequest](docs/EmailCheckoutRequest.md)
 - [ErrorAllOf](docs/ErrorAllOf.md)
 - [EventResponse](docs/EventResponse.md)
+- [EventsWebhookResendResponse](docs/EventsWebhookResendResponse.md)
 - [GetChargesResponse](docs/GetChargesResponse.md)
 - [GetChargesResponseAllOf](docs/GetChargesResponseAllOf.md)
 - [GetCompaniesResponse](docs/GetCompaniesResponse.md)
