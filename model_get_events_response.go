@@ -20,10 +20,10 @@ var _ MappedNullable = &GetEventsResponse{}
 
 // GetEventsResponse struct for GetEventsResponse
 type GetEventsResponse struct {
-	// Object type, in this case is list
-	Object string `json:"object"`
 	// Indicates if there are more pages to be requested
 	HasMore bool `json:"has_more"`
+	// Object type, in this case is list
+	Object string `json:"object"`
 	// URL of the next page.
 	NextPageUrl NullableString `json:"next_page_url,omitempty"`
 	// Url of the previous page.
@@ -35,10 +35,10 @@ type GetEventsResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetEventsResponse(object string, hasMore bool) *GetEventsResponse {
+func NewGetEventsResponse(hasMore bool, object string) *GetEventsResponse {
 	this := GetEventsResponse{}
-	this.Object = object
 	this.HasMore = hasMore
+	this.Object = object
 	return &this
 }
 
@@ -48,30 +48,6 @@ func NewGetEventsResponse(object string, hasMore bool) *GetEventsResponse {
 func NewGetEventsResponseWithDefaults() *GetEventsResponse {
 	this := GetEventsResponse{}
 	return &this
-}
-
-// GetObject returns the Object field value
-func (o *GetEventsResponse) GetObject() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Object
-}
-
-// GetObjectOk returns a tuple with the Object field value
-// and a boolean to check if the value has been set.
-func (o *GetEventsResponse) GetObjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Object, true
-}
-
-// SetObject sets field value
-func (o *GetEventsResponse) SetObject(v string) {
-	o.Object = v
 }
 
 // GetHasMore returns the HasMore field value
@@ -96,6 +72,30 @@ func (o *GetEventsResponse) GetHasMoreOk() (*bool, bool) {
 // SetHasMore sets field value
 func (o *GetEventsResponse) SetHasMore(v bool) {
 	o.HasMore = v
+}
+
+// GetObject returns the Object field value
+func (o *GetEventsResponse) GetObject() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Object
+}
+
+// GetObjectOk returns a tuple with the Object field value
+// and a boolean to check if the value has been set.
+func (o *GetEventsResponse) GetObjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Object, true
+}
+
+// SetObject sets field value
+func (o *GetEventsResponse) SetObject(v string) {
+	o.Object = v
 }
 
 // GetNextPageUrl returns the NextPageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -224,8 +224,8 @@ func (o GetEventsResponse) MarshalJSON() ([]byte, error) {
 
 func (o GetEventsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
 	toSerialize["has_more"] = o.HasMore
+	toSerialize["object"] = o.Object
 	if o.NextPageUrl.IsSet() {
 		toSerialize["next_page_url"] = o.NextPageUrl.Get()
 	}

@@ -51,20 +51,20 @@ type EventsApi interface {
 	GetEventsExecute(r ApiGetEventsRequest) (*GetEventsResponse, *http.Response, error)
 
 	/*
-	ResendWebhook Resend Webhook
+	ResendEvent Resend Event
 
 	Try to send an event
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param eventId event identifier
 	@param webhookLogId webhook log identifier
-	@return ApiResendWebhookRequest
+	@return ApiResendEventRequest
 	*/
-	ResendWebhook(ctx context.Context, eventId string, webhookLogId string) ApiResendWebhookRequest
+	ResendEvent(ctx context.Context, eventId string, webhookLogId string) ApiResendEventRequest
 
-	// ResendWebhookExecute executes the request
-	//  @return EventsWebhookResendResponse
-	ResendWebhookExecute(r ApiResendWebhookRequest) (*EventsWebhookResendResponse, *http.Response, error)
+	// ResendEventExecute executes the request
+	//  @return EventsResendResponse
+	ResendEventExecute(r ApiResendEventRequest) (*EventsResendResponse, *http.Response, error)
 }
 
 // EventsApiService EventsApi service
@@ -403,7 +403,7 @@ func (a *EventsApiService) GetEventsExecute(r ApiGetEventsRequest) (*GetEventsRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiResendWebhookRequest struct {
+type ApiResendEventRequest struct {
 	ctx context.Context
 	ApiService EventsApi
 	eventId string
@@ -412,27 +412,27 @@ type ApiResendWebhookRequest struct {
 }
 
 // Use for knowing which language to use
-func (r ApiResendWebhookRequest) AcceptLanguage(acceptLanguage string) ApiResendWebhookRequest {
+func (r ApiResendEventRequest) AcceptLanguage(acceptLanguage string) ApiResendEventRequest {
 	r.acceptLanguage = &acceptLanguage
 	return r
 }
 
-func (r ApiResendWebhookRequest) Execute() (*EventsWebhookResendResponse, *http.Response, error) {
-	return r.ApiService.ResendWebhookExecute(r)
+func (r ApiResendEventRequest) Execute() (*EventsResendResponse, *http.Response, error) {
+	return r.ApiService.ResendEventExecute(r)
 }
 
 /*
-ResendWebhook Resend Webhook
+ResendEvent Resend Event
 
 Try to send an event
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param eventId event identifier
  @param webhookLogId webhook log identifier
- @return ApiResendWebhookRequest
+ @return ApiResendEventRequest
 */
-func (a *EventsApiService) ResendWebhook(ctx context.Context, eventId string, webhookLogId string) ApiResendWebhookRequest {
-	return ApiResendWebhookRequest{
+func (a *EventsApiService) ResendEvent(ctx context.Context, eventId string, webhookLogId string) ApiResendEventRequest {
+	return ApiResendEventRequest{
 		ApiService: a,
 		ctx: ctx,
 		eventId: eventId,
@@ -441,16 +441,16 @@ func (a *EventsApiService) ResendWebhook(ctx context.Context, eventId string, we
 }
 
 // Execute executes the request
-//  @return EventsWebhookResendResponse
-func (a *EventsApiService) ResendWebhookExecute(r ApiResendWebhookRequest) (*EventsWebhookResendResponse, *http.Response, error) {
+//  @return EventsResendResponse
+func (a *EventsApiService) ResendEventExecute(r ApiResendEventRequest) (*EventsResendResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *EventsWebhookResendResponse
+		localVarReturnValue  *EventsResendResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.ResendWebhook")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.ResendEvent")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

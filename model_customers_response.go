@@ -21,10 +21,10 @@ var _ MappedNullable = &CustomersResponse{}
 // CustomersResponse struct for CustomersResponse
 type CustomersResponse struct {
 	Data []CustomerResponse `json:"data,omitempty"`
-	// Object type, in this case is list
-	Object string `json:"object"`
 	// Indicates if there are more pages to be requested
 	HasMore bool `json:"has_more"`
+	// Object type, in this case is list
+	Object string `json:"object"`
 	// URL of the next page.
 	NextPageUrl NullableString `json:"next_page_url,omitempty"`
 	// Url of the previous page.
@@ -35,10 +35,10 @@ type CustomersResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustomersResponse(object string, hasMore bool) *CustomersResponse {
+func NewCustomersResponse(hasMore bool, object string) *CustomersResponse {
 	this := CustomersResponse{}
-	this.Object = object
 	this.HasMore = hasMore
+	this.Object = object
 	return &this
 }
 
@@ -82,30 +82,6 @@ func (o *CustomersResponse) SetData(v []CustomerResponse) {
 	o.Data = v
 }
 
-// GetObject returns the Object field value
-func (o *CustomersResponse) GetObject() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Object
-}
-
-// GetObjectOk returns a tuple with the Object field value
-// and a boolean to check if the value has been set.
-func (o *CustomersResponse) GetObjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Object, true
-}
-
-// SetObject sets field value
-func (o *CustomersResponse) SetObject(v string) {
-	o.Object = v
-}
-
 // GetHasMore returns the HasMore field value
 func (o *CustomersResponse) GetHasMore() bool {
 	if o == nil {
@@ -128,6 +104,30 @@ func (o *CustomersResponse) GetHasMoreOk() (*bool, bool) {
 // SetHasMore sets field value
 func (o *CustomersResponse) SetHasMore(v bool) {
 	o.HasMore = v
+}
+
+// GetObject returns the Object field value
+func (o *CustomersResponse) GetObject() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Object
+}
+
+// GetObjectOk returns a tuple with the Object field value
+// and a boolean to check if the value has been set.
+func (o *CustomersResponse) GetObjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Object, true
+}
+
+// SetObject sets field value
+func (o *CustomersResponse) SetObject(v string) {
+	o.Object = v
 }
 
 // GetNextPageUrl returns the NextPageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -227,8 +227,8 @@ func (o CustomersResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
-	toSerialize["object"] = o.Object
 	toSerialize["has_more"] = o.HasMore
+	toSerialize["object"] = o.Object
 	if o.NextPageUrl.IsSet() {
 		toSerialize["next_page_url"] = o.NextPageUrl.Get()
 	}

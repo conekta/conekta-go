@@ -20,20 +20,20 @@ var _ MappedNullable = &Pagination{}
 
 // Pagination pagination metadata
 type Pagination struct {
-	// Object type, in this case is list
-	Object string `json:"object"`
 	// Indicates if there are more pages to be requested
 	HasMore bool `json:"has_more"`
+	// Object type, in this case is list
+	Object string `json:"object"`
 }
 
 // NewPagination instantiates a new Pagination object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPagination(object string, hasMore bool) *Pagination {
+func NewPagination(hasMore bool, object string) *Pagination {
 	this := Pagination{}
-	this.Object = object
 	this.HasMore = hasMore
+	this.Object = object
 	return &this
 }
 
@@ -43,30 +43,6 @@ func NewPagination(object string, hasMore bool) *Pagination {
 func NewPaginationWithDefaults() *Pagination {
 	this := Pagination{}
 	return &this
-}
-
-// GetObject returns the Object field value
-func (o *Pagination) GetObject() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Object
-}
-
-// GetObjectOk returns a tuple with the Object field value
-// and a boolean to check if the value has been set.
-func (o *Pagination) GetObjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Object, true
-}
-
-// SetObject sets field value
-func (o *Pagination) SetObject(v string) {
-	o.Object = v
 }
 
 // GetHasMore returns the HasMore field value
@@ -93,6 +69,30 @@ func (o *Pagination) SetHasMore(v bool) {
 	o.HasMore = v
 }
 
+// GetObject returns the Object field value
+func (o *Pagination) GetObject() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Object
+}
+
+// GetObjectOk returns a tuple with the Object field value
+// and a boolean to check if the value has been set.
+func (o *Pagination) GetObjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Object, true
+}
+
+// SetObject sets field value
+func (o *Pagination) SetObject(v string) {
+	o.Object = v
+}
+
 func (o Pagination) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -103,8 +103,8 @@ func (o Pagination) MarshalJSON() ([]byte, error) {
 
 func (o Pagination) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
 	toSerialize["has_more"] = o.HasMore
+	toSerialize["object"] = o.Object
 	return toSerialize, nil
 }
 

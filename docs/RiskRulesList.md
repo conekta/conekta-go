@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **string** | Object type, in this case is list | 
 **HasMore** | **bool** | Indicates if there are more pages to be requested | 
+**Object** | **string** | Object type, in this case is list | 
 **NextPageUrl** | Pointer to **NullableString** | URL of the next page. | [optional] 
 **PreviousPageUrl** | Pointer to **NullableString** | Url of the previous page. | [optional] 
 **Data** | Pointer to [**[]RiskRulesData**](RiskRulesData.md) |  | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewRiskRulesList
 
-`func NewRiskRulesList(object string, hasMore bool, ) *RiskRulesList`
+`func NewRiskRulesList(hasMore bool, object string, ) *RiskRulesList`
 
 NewRiskRulesList instantiates a new RiskRulesList object
 This constructor will assign default values to properties that have it defined,
@@ -28,26 +28,6 @@ will change when the set of required properties is changed
 NewRiskRulesListWithDefaults instantiates a new RiskRulesList object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetObject
-
-`func (o *RiskRulesList) GetObject() string`
-
-GetObject returns the Object field if non-nil, zero value otherwise.
-
-### GetObjectOk
-
-`func (o *RiskRulesList) GetObjectOk() (*string, bool)`
-
-GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetObject
-
-`func (o *RiskRulesList) SetObject(v string)`
-
-SetObject sets Object field to given value.
-
 
 ### GetHasMore
 
@@ -67,6 +47,26 @@ and a boolean to check if the value has been set.
 `func (o *RiskRulesList) SetHasMore(v bool)`
 
 SetHasMore sets HasMore field to given value.
+
+
+### GetObject
+
+`func (o *RiskRulesList) GetObject() string`
+
+GetObject returns the Object field if non-nil, zero value otherwise.
+
+### GetObjectOk
+
+`func (o *RiskRulesList) GetObjectOk() (*string, bool)`
+
+GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetObject
+
+`func (o *RiskRulesList) SetObject(v string)`
+
+SetObject sets Object field to given value.
 
 
 ### GetNextPageUrl

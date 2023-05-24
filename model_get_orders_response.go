@@ -21,10 +21,10 @@ var _ MappedNullable = &GetOrdersResponse{}
 // GetOrdersResponse struct for GetOrdersResponse
 type GetOrdersResponse struct {
 	Data []OrderResponse `json:"data"`
-	// Object type, in this case is list
-	Object string `json:"object"`
 	// Indicates if there are more pages to be requested
 	HasMore bool `json:"has_more"`
+	// Object type, in this case is list
+	Object string `json:"object"`
 	// URL of the next page.
 	NextPageUrl NullableString `json:"next_page_url,omitempty"`
 	// Url of the previous page.
@@ -35,11 +35,11 @@ type GetOrdersResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetOrdersResponse(data []OrderResponse, object string, hasMore bool) *GetOrdersResponse {
+func NewGetOrdersResponse(data []OrderResponse, hasMore bool, object string) *GetOrdersResponse {
 	this := GetOrdersResponse{}
 	this.Data = data
-	this.Object = object
 	this.HasMore = hasMore
+	this.Object = object
 	return &this
 }
 
@@ -75,30 +75,6 @@ func (o *GetOrdersResponse) SetData(v []OrderResponse) {
 	o.Data = v
 }
 
-// GetObject returns the Object field value
-func (o *GetOrdersResponse) GetObject() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Object
-}
-
-// GetObjectOk returns a tuple with the Object field value
-// and a boolean to check if the value has been set.
-func (o *GetOrdersResponse) GetObjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Object, true
-}
-
-// SetObject sets field value
-func (o *GetOrdersResponse) SetObject(v string) {
-	o.Object = v
-}
-
 // GetHasMore returns the HasMore field value
 func (o *GetOrdersResponse) GetHasMore() bool {
 	if o == nil {
@@ -121,6 +97,30 @@ func (o *GetOrdersResponse) GetHasMoreOk() (*bool, bool) {
 // SetHasMore sets field value
 func (o *GetOrdersResponse) SetHasMore(v bool) {
 	o.HasMore = v
+}
+
+// GetObject returns the Object field value
+func (o *GetOrdersResponse) GetObject() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Object
+}
+
+// GetObjectOk returns a tuple with the Object field value
+// and a boolean to check if the value has been set.
+func (o *GetOrdersResponse) GetObjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Object, true
+}
+
+// SetObject sets field value
+func (o *GetOrdersResponse) SetObject(v string) {
+	o.Object = v
 }
 
 // GetNextPageUrl returns the NextPageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -218,8 +218,8 @@ func (o GetOrdersResponse) MarshalJSON() ([]byte, error) {
 func (o GetOrdersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["data"] = o.Data
-	toSerialize["object"] = o.Object
 	toSerialize["has_more"] = o.HasMore
+	toSerialize["object"] = o.Object
 	if o.NextPageUrl.IsSet() {
 		toSerialize["next_page_url"] = o.NextPageUrl.Get()
 	}

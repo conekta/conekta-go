@@ -20,10 +20,10 @@ var _ MappedNullable = &OrderResponseDiscountLines{}
 
 // OrderResponseDiscountLines struct for OrderResponseDiscountLines
 type OrderResponseDiscountLines struct {
-	// Object type, in this case is list
-	Object string `json:"object"`
 	// Indicates if there are more pages to be requested
 	HasMore bool `json:"has_more"`
+	// Object type, in this case is list
+	Object string `json:"object"`
 	Data []DiscountLinesDataResponse `json:"data,omitempty"`
 }
 
@@ -31,10 +31,10 @@ type OrderResponseDiscountLines struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrderResponseDiscountLines(object string, hasMore bool) *OrderResponseDiscountLines {
+func NewOrderResponseDiscountLines(hasMore bool, object string) *OrderResponseDiscountLines {
 	this := OrderResponseDiscountLines{}
-	this.Object = object
 	this.HasMore = hasMore
+	this.Object = object
 	return &this
 }
 
@@ -44,30 +44,6 @@ func NewOrderResponseDiscountLines(object string, hasMore bool) *OrderResponseDi
 func NewOrderResponseDiscountLinesWithDefaults() *OrderResponseDiscountLines {
 	this := OrderResponseDiscountLines{}
 	return &this
-}
-
-// GetObject returns the Object field value
-func (o *OrderResponseDiscountLines) GetObject() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Object
-}
-
-// GetObjectOk returns a tuple with the Object field value
-// and a boolean to check if the value has been set.
-func (o *OrderResponseDiscountLines) GetObjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Object, true
-}
-
-// SetObject sets field value
-func (o *OrderResponseDiscountLines) SetObject(v string) {
-	o.Object = v
 }
 
 // GetHasMore returns the HasMore field value
@@ -92,6 +68,30 @@ func (o *OrderResponseDiscountLines) GetHasMoreOk() (*bool, bool) {
 // SetHasMore sets field value
 func (o *OrderResponseDiscountLines) SetHasMore(v bool) {
 	o.HasMore = v
+}
+
+// GetObject returns the Object field value
+func (o *OrderResponseDiscountLines) GetObject() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Object
+}
+
+// GetObjectOk returns a tuple with the Object field value
+// and a boolean to check if the value has been set.
+func (o *OrderResponseDiscountLines) GetObjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Object, true
+}
+
+// SetObject sets field value
+func (o *OrderResponseDiscountLines) SetObject(v string) {
+	o.Object = v
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
@@ -136,8 +136,8 @@ func (o OrderResponseDiscountLines) MarshalJSON() ([]byte, error) {
 
 func (o OrderResponseDiscountLines) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
 	toSerialize["has_more"] = o.HasMore
+	toSerialize["object"] = o.Object
 	if !IsNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}

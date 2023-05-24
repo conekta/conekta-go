@@ -27,7 +27,7 @@ func TestCompaniesApi(t *testing.T) {
 			t.Errorf("assertion fail, expected=%v , actual=%v", "not nil", company)
 		}
 	})
-	t.Run("GetCompany success", func(t *testing.T) {
+	t.Run("GetCompanies success", func(t *testing.T) {
 		companies, response, err := client.CompaniesApi.GetCompanies(context.TODO()).
 			AcceptLanguage("es").
 			Execute()

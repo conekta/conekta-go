@@ -507,6 +507,496 @@ paths:
       summary: Delete blacklisted rule
       tags:
       - Antifraud
+  /api_keys:
+    get:
+      description: Consume the list of api keys you have
+      operationId: getApiKeys
+      parameters:
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+      - description: "In the case of a holding company, the company id of the child\
+          \ company to which will process the request."
+        example: 6441b6376b60c3a638da80af
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+      - description: "The numbers of items to return, the maximum value is 250"
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          format: int32
+          maximum: 250
+          minimum: 1
+          type: integer
+      - description: "General order search, e.g. by mail, reference etc."
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+      - description: next page
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+      - description: previous page
+        in: query
+        name: previous
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              schema:
+                $ref: '#/components/schemas/get_api_keys_response'
+          description: successful
+          headers:
+            Content-Type:
+              description: The format of the response body
+              schema:
+                example: application/json; charset=utf-8
+                type: string
+            Conekta-Media-Type:
+              schema:
+                example: conekta-v2.1.0; format=application/json
+                type: string
+        "401":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  param: null
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        "500":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have
+                    been notified.
+                  message: There was a runtime error and Conekta engineers have been
+                    notified.
+                  param: null
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Get list of Api Keys
+      tags:
+      - Api Keys
+    post:
+      description: Create a api key
+      operationId: createApiKey
+      parameters:
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+      - description: "In the case of a holding company, the company id of the child\
+          \ company to which will process the request."
+        example: 6441b6376b60c3a638da80af
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/api_keys_create'
+      responses:
+        "200":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              schema:
+                $ref: '#/components/schemas/api_key_create_response'
+          description: successful operation
+          headers:
+            Content-Type:
+              description: The format of the response body
+              schema:
+                example: application/json; charset=utf-8
+                type: string
+            Conekta-Media-Type:
+              schema:
+                example: conekta-v2.1.0; format=application/json
+                type: string
+        "401":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  param: null
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        "500":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have
+                    been notified.
+                  message: There was a runtime error and Conekta engineers have been
+                    notified.
+                  param: null
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Create Api Key
+      tags:
+      - Api Keys
+  /api_keys/{id}:
+    delete:
+      description: Deletes a api key that corresponds to a api key ID
+      operationId: deleteApiKey
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+      responses:
+        "200":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              schema:
+                $ref: '#/components/schemas/delete_api_keys_response'
+          description: successful
+          headers:
+            Content-Type:
+              description: The format of the response body
+              schema:
+                example: application/json; charset=utf-8
+                type: string
+            Conekta-Media-Type:
+              schema:
+                example: conekta-v2.1.0; format=application/json
+                type: string
+        "401":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  param: null
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        "404":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  param: null
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could
+                    not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        "500":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have
+                    been notified.
+                  message: There was a runtime error and Conekta engineers have been
+                    notified.
+                  param: null
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Delete Api Key
+      tags:
+      - Api Keys
+    get:
+      description: Gets a api key that corresponds to a api key ID
+      operationId: getApiKey
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+      - description: "In the case of a holding company, the company id of the child\
+          \ company to which will process the request."
+        example: 6441b6376b60c3a638da80af
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              schema:
+                $ref: '#/components/schemas/api-key_response'
+          description: successful
+          headers:
+            Content-Type:
+              description: The format of the response body
+              schema:
+                example: application/json; charset=utf-8
+                type: string
+            Conekta-Media-Type:
+              schema:
+                example: conekta-v2.1.0; format=application/json
+                type: string
+        "401":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  param: null
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        "404":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  param: null
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could
+                    not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        "500":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have
+                    been notified.
+                  message: There was a runtime error and Conekta engineers have been
+                    notified.
+                  param: null
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Get Api Key
+      tags:
+      - Api Keys
+    put:
+      description: Update an existing api key
+      operationId: updateApiKey
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/api_key_update_request'
+      responses:
+        "200":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              schema:
+                $ref: '#/components/schemas/api-key_response'
+          description: successful operation
+        "404":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  param: null
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could
+                    not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        "401":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  param: null
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        "500":
+          content:
+            application/vnd.conekta-v2.1.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have
+                    been notified.
+                  message: There was a runtime error and Conekta engineers have been
+                    notified.
+                  param: null
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Update Api Key
+      tags:
+      - Api Keys
   /charges:
     get:
       operationId: getCharges
@@ -2369,7 +2859,7 @@ paths:
   /events/{event_id}/webhook_logs/{webhook_log_id}/resend:
     post:
       description: Try to send an event
-      operationId: resendWebhook
+      operationId: resendEvent
       parameters:
       - description: event identifier
         example: 6463d6e35a4c3e001819e760
@@ -2407,7 +2897,7 @@ paths:
           content:
             application/vnd.conekta-v2.1.0+json:
               schema:
-                $ref: '#/components/schemas/events_webhook_resend_response'
+                $ref: '#/components/schemas/events_resend_response'
           description: successful operation
         "401":
           content:
@@ -2458,7 +2948,7 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Resend Webhook
+      summary: Resend Event
       tags:
       - Events
   /logs:
@@ -10121,6 +10611,13 @@ components:
       schema:
         type: string
   requestBodies:
+    api_keys_create:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/api-key_request'
+      description: requested field for a api keys
+      required: true
     charge_create:
       content:
         application/json:
@@ -10502,22 +10999,6 @@ components:
       - field
       - value
       type: object
-    pagination:
-      description: pagination metadata
-      properties:
-        object:
-          description: "Object type, in this case is list"
-          example: list
-          type: string
-        has_more:
-          description: Indicates if there are more pages to be requested
-          example: false
-          type: boolean
-      required:
-      - has_more
-      - object
-      title: pagination metadata
-      type: object
     page:
       description: page metadata
       properties:
@@ -10532,6 +11013,61 @@ components:
           nullable: true
           type: string
       title: page metadata
+      type: object
+    pagination:
+      description: pagination metadata
+      properties:
+        has_more:
+          description: Indicates if there are more pages to be requested
+          example: false
+          type: boolean
+        object:
+          description: "Object type, in this case is list"
+          example: list
+          type: string
+      required:
+      - has_more
+      - object
+      title: pagination metadata
+      type: object
+    api-key_response:
+      description: api keys model
+      properties:
+        active:
+          description: Indicates if the api key is active
+          example: true
+          type: boolean
+        created_at:
+          description: Unix timestamp in seconds with the creation date of the api
+            key
+          example: 1684167881
+          format: int64
+          type: integer
+        description:
+          description: Detail of the use that will be given to the api key
+          example: online store
+          type: string
+        id:
+          description: Unique identifier of the api key
+          example: 64625cc9f3e02c00163f5e4d
+          type: string
+        livemode:
+          description: Indicates if the api key is in live mode
+          example: false
+          type: boolean
+        object:
+          description: "Object name, value is api_key"
+          example: api_key
+          type: string
+        prefix:
+          description: The first few characters of the authentication_token
+          example: key_rp
+          type: string
+        role:
+          description: Indicates the user account private=owner or public=public
+          example: private
+          type: string
+      title: api_key_response
       type: object
     charge_response:
       properties:
@@ -10815,7 +11351,7 @@ components:
           type: string
       title: event_response
       type: object
-    events_webhook_resend_response:
+    events_resend_response:
       description: event model
       properties:
         failed_attempts:
@@ -11705,6 +12241,25 @@ components:
           example: https://username:password@mockoon.stg.conekta.io/payments-api/cash/merchant_approval
           type: string
       title: webhook_response
+      type: object
+    api-key_request:
+      properties:
+        active:
+          description: Indicates if the api key is active
+          example: true
+          type: boolean
+        description:
+          description: Detail of the use that will be given to the api key
+          example: online store
+          type: string
+        role:
+          example: private
+          type: string
+      required:
+      - active
+      - description
+      - role
+      title: api_keys_request
       type: object
     charge_request:
       description: The charges to be made
@@ -12928,6 +13483,56 @@ components:
           type: string
       title: deleted_blacklist_rule_response
       type: object
+    get_api_keys_response_allOf:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/api-key_response'
+          type: array
+      type: object
+    get_api_keys_response:
+      allOf:
+      - $ref: '#/components/schemas/page'
+      - $ref: '#/components/schemas/pagination'
+      - $ref: '#/components/schemas/get_api_keys_response_allOf'
+      title: get_api_keys_response
+    api_key_create_response_allOf:
+      properties:
+        authentication_token:
+          description: "It is occupied as a user when authenticated with basic authentication,\
+            \ with a blank password. This value will only appear once, in the request\
+            \ to create a new key"
+          example: key_rpHzxufNgjFCdprEEFZRTKi
+          type: string
+      type: object
+    api_key_create_response:
+      allOf:
+      - $ref: '#/components/schemas/api_key_create_response_allOf'
+      - $ref: '#/components/schemas/api-key_response'
+      title: api_key_create_response
+    api_key_update_request:
+      properties:
+        active:
+          description: Indicates if the webhook key is active
+          example: true
+          type: boolean
+        description:
+          description: Detail of the use that will be given to the api key
+          example: online store
+          type: string
+      title: api_key_update_request
+      type: object
+    delete_api_keys_response_allOf:
+      properties:
+        deleted:
+          example: true
+          type: boolean
+      type: object
+    delete_api_keys_response:
+      allOf:
+      - $ref: '#/components/schemas/api-key_response'
+      - $ref: '#/components/schemas/delete_api_keys_response_allOf'
+      title: delete_api_keys_response
     get_charges_response_allOf:
       properties:
         data:

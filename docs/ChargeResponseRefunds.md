@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | **string** | Object type, in this case is list | 
 **HasMore** | **bool** | Indicates if there are more pages to be requested | 
+**Object** | **string** | Object type, in this case is list | 
 **NextPageUrl** | Pointer to **NullableString** | URL of the next page. | [optional] 
 **PreviousPageUrl** | Pointer to **NullableString** | Url of the previous page. | [optional] 
 **Data** | Pointer to [**[]ChargeResponseRefundsData**](ChargeResponseRefundsData.md) |  | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewChargeResponseRefunds
 
-`func NewChargeResponseRefunds(object string, hasMore bool, ) *ChargeResponseRefunds`
+`func NewChargeResponseRefunds(hasMore bool, object string, ) *ChargeResponseRefunds`
 
 NewChargeResponseRefunds instantiates a new ChargeResponseRefunds object
 This constructor will assign default values to properties that have it defined,
@@ -28,26 +28,6 @@ will change when the set of required properties is changed
 NewChargeResponseRefundsWithDefaults instantiates a new ChargeResponseRefunds object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetObject
-
-`func (o *ChargeResponseRefunds) GetObject() string`
-
-GetObject returns the Object field if non-nil, zero value otherwise.
-
-### GetObjectOk
-
-`func (o *ChargeResponseRefunds) GetObjectOk() (*string, bool)`
-
-GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetObject
-
-`func (o *ChargeResponseRefunds) SetObject(v string)`
-
-SetObject sets Object field to given value.
-
 
 ### GetHasMore
 
@@ -67,6 +47,26 @@ and a boolean to check if the value has been set.
 `func (o *ChargeResponseRefunds) SetHasMore(v bool)`
 
 SetHasMore sets HasMore field to given value.
+
+
+### GetObject
+
+`func (o *ChargeResponseRefunds) GetObject() string`
+
+GetObject returns the Object field if non-nil, zero value otherwise.
+
+### GetObjectOk
+
+`func (o *ChargeResponseRefunds) GetObjectOk() (*string, bool)`
+
+GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetObject
+
+`func (o *ChargeResponseRefunds) SetObject(v string)`
+
+SetObject sets Object field to given value.
 
 
 ### GetNextPageUrl

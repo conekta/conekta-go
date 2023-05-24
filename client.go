@@ -60,6 +60,8 @@ type APIClient struct {
 
 	AntifraudApi AntifraudApi
 
+	ApiKeysApi ApiKeysApi
+
 	ChargesApi ChargesApi
 
 	CompaniesApi CompaniesApi
@@ -108,7 +110,7 @@ func init() {
 
 func initUserAgent() {
 	data := map[string]string{
-		"bindings_version": "6.0.2",
+		"bindings_version": "6.0.1",
 		"lang":             "go",
 		"lang_version":     runtime.Version(),
 		"publisher":        "conekta",
@@ -156,6 +158,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.AntifraudApi = (*AntifraudApiService)(&c.common)
+	c.ApiKeysApi = (*ApiKeysApiService)(&c.common)
 	c.ChargesApi = (*ChargesApiService)(&c.common)
 	c.CompaniesApi = (*CompaniesApiService)(&c.common)
 	c.CustomersApi = (*CustomersApiService)(&c.common)

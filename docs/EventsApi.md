@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetEvent**](EventsApi.md#GetEvent) | **Get** /events/{id} | Get Event
 [**GetEvents**](EventsApi.md#GetEvents) | **Get** /events | Get list of Events
-[**ResendWebhook**](EventsApi.md#ResendWebhook) | **Post** /events/{event_id}/webhook_logs/{webhook_log_id}/resend | Resend Webhook
+[**ResendEvent**](EventsApi.md#ResendEvent) | **Post** /events/{event_id}/webhook_logs/{webhook_log_id}/resend | Resend Event
 
 
 
@@ -158,11 +158,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ResendWebhook
+## ResendEvent
 
-> EventsWebhookResendResponse ResendWebhook(ctx, eventId, webhookLogId).AcceptLanguage(acceptLanguage).Execute()
+> EventsResendResponse ResendEvent(ctx, eventId, webhookLogId).AcceptLanguage(acceptLanguage).Execute()
 
-Resend Webhook
+Resend Event
 
 
 
@@ -185,13 +185,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsApi.ResendWebhook(context.Background(), eventId, webhookLogId).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.EventsApi.ResendEvent(context.Background(), eventId, webhookLogId).AcceptLanguage(acceptLanguage).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.ResendWebhook``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.ResendEvent``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ResendWebhook`: EventsWebhookResendResponse
-    fmt.Fprintf(os.Stdout, "Response from `EventsApi.ResendWebhook`: %v\n", resp)
+    // response from `ResendEvent`: EventsResendResponse
+    fmt.Fprintf(os.Stdout, "Response from `EventsApi.ResendEvent`: %v\n", resp)
 }
 ```
 
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiResendWebhookRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiResendEventRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -217,7 +217,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EventsWebhookResendResponse**](EventsWebhookResendResponse.md)
+[**EventsResendResponse**](EventsResendResponse.md)
 
 ### Authorization
 

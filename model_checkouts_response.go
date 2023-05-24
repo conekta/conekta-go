@@ -20,10 +20,10 @@ var _ MappedNullable = &CheckoutsResponse{}
 
 // CheckoutsResponse struct for CheckoutsResponse
 type CheckoutsResponse struct {
-	// Object type, in this case is list
-	Object string `json:"object"`
 	// Indicates if there are more pages to be requested
 	HasMore bool `json:"has_more"`
+	// Object type, in this case is list
+	Object string `json:"object"`
 	// URL of the next page.
 	NextPageUrl NullableString `json:"next_page_url,omitempty"`
 	// Url of the previous page.
@@ -35,10 +35,10 @@ type CheckoutsResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCheckoutsResponse(object string, hasMore bool) *CheckoutsResponse {
+func NewCheckoutsResponse(hasMore bool, object string) *CheckoutsResponse {
 	this := CheckoutsResponse{}
-	this.Object = object
 	this.HasMore = hasMore
+	this.Object = object
 	return &this
 }
 
@@ -48,30 +48,6 @@ func NewCheckoutsResponse(object string, hasMore bool) *CheckoutsResponse {
 func NewCheckoutsResponseWithDefaults() *CheckoutsResponse {
 	this := CheckoutsResponse{}
 	return &this
-}
-
-// GetObject returns the Object field value
-func (o *CheckoutsResponse) GetObject() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Object
-}
-
-// GetObjectOk returns a tuple with the Object field value
-// and a boolean to check if the value has been set.
-func (o *CheckoutsResponse) GetObjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Object, true
-}
-
-// SetObject sets field value
-func (o *CheckoutsResponse) SetObject(v string) {
-	o.Object = v
 }
 
 // GetHasMore returns the HasMore field value
@@ -96,6 +72,30 @@ func (o *CheckoutsResponse) GetHasMoreOk() (*bool, bool) {
 // SetHasMore sets field value
 func (o *CheckoutsResponse) SetHasMore(v bool) {
 	o.HasMore = v
+}
+
+// GetObject returns the Object field value
+func (o *CheckoutsResponse) GetObject() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Object
+}
+
+// GetObjectOk returns a tuple with the Object field value
+// and a boolean to check if the value has been set.
+func (o *CheckoutsResponse) GetObjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Object, true
+}
+
+// SetObject sets field value
+func (o *CheckoutsResponse) SetObject(v string) {
+	o.Object = v
 }
 
 // GetNextPageUrl returns the NextPageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -224,8 +224,8 @@ func (o CheckoutsResponse) MarshalJSON() ([]byte, error) {
 
 func (o CheckoutsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
 	toSerialize["has_more"] = o.HasMore
+	toSerialize["object"] = o.Object
 	if o.NextPageUrl.IsSet() {
 		toSerialize["next_page_url"] = o.NextPageUrl.Get()
 	}

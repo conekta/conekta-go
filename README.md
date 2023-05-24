@@ -118,6 +118,11 @@ Class | Method | HTTP request | Description
 *AntifraudApi* | [**DeleteRuleWhitelist**](docs/AntifraudApi.md#deleterulewhitelist) | **Delete** /antifraud/whitelists/{id} | Delete whitelisted rule
 *AntifraudApi* | [**GetRuleBlacklist**](docs/AntifraudApi.md#getruleblacklist) | **Get** /antifraud/blacklists | Get list of blacklisted rules
 *AntifraudApi* | [**GetRuleWhitelist**](docs/AntifraudApi.md#getrulewhitelist) | **Get** /antifraud/whitelists | Get a list of whitelisted rules
+*ApiKeysApi* | [**CreateApiKey**](docs/ApiKeysApi.md#createapikey) | **Post** /api_keys | Create Api Key
+*ApiKeysApi* | [**DeleteApiKey**](docs/ApiKeysApi.md#deleteapikey) | **Delete** /api_keys/{id} | Delete Api Key
+*ApiKeysApi* | [**GetApiKey**](docs/ApiKeysApi.md#getapikey) | **Get** /api_keys/{id} | Get Api Key
+*ApiKeysApi* | [**GetApiKeys**](docs/ApiKeysApi.md#getapikeys) | **Get** /api_keys | Get list of Api Keys
+*ApiKeysApi* | [**UpdateApiKey**](docs/ApiKeysApi.md#updateapikey) | **Put** /api_keys/{id} | Update Api Key
 *ChargesApi* | [**GetCharges**](docs/ChargesApi.md#getcharges) | **Get** /charges | Get A List of Charges
 *ChargesApi* | [**OrdersCreateCharge**](docs/ChargesApi.md#orderscreatecharge) | **Post** /orders/{id}/charges | Create charge
 *CompaniesApi* | [**GetCompanies**](docs/CompaniesApi.md#getcompanies) | **Get** /companies | Get List of Companies
@@ -134,7 +139,7 @@ Class | Method | HTTP request | Description
 *DiscountsApi* | [**OrdersUpdateDiscountLines**](docs/DiscountsApi.md#ordersupdatediscountlines) | **Put** /orders/{id}/discount_lines/{discount_lines_id} | Update Discount
 *EventsApi* | [**GetEvent**](docs/EventsApi.md#getevent) | **Get** /events/{id} | Get Event
 *EventsApi* | [**GetEvents**](docs/EventsApi.md#getevents) | **Get** /events | Get list of Events
-*EventsApi* | [**ResendWebhook**](docs/EventsApi.md#resendwebhook) | **Post** /events/{event_id}/webhook_logs/{webhook_log_id}/resend | Resend Webhook
+*EventsApi* | [**ResendEvent**](docs/EventsApi.md#resendevent) | **Post** /events/{event_id}/webhook_logs/{webhook_log_id}/resend | Resend Event
 *LogsApi* | [**GetLogById**](docs/LogsApi.md#getlogbyid) | **Get** /logs/{id} | Get Log
 *LogsApi* | [**GetLogs**](docs/LogsApi.md#getlogs) | **Get** /logs | Get List Of Logs
 *OrdersApi* | [**CancelOrder**](docs/OrdersApi.md#cancelorder) | **Post** /orders/{id}/cancel | Cancel Order
@@ -199,6 +204,11 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+- [ApiKeyCreateResponse](docs/ApiKeyCreateResponse.md)
+- [ApiKeyCreateResponseAllOf](docs/ApiKeyCreateResponseAllOf.md)
+- [ApiKeyRequest](docs/ApiKeyRequest.md)
+- [ApiKeyResponse](docs/ApiKeyResponse.md)
+- [ApiKeyUpdateRequest](docs/ApiKeyUpdateRequest.md)
 - [BlacklistRuleResponse](docs/BlacklistRuleResponse.md)
 - [ChargeDataPaymentMethodBankTransferResponse](docs/ChargeDataPaymentMethodBankTransferResponse.md)
 - [ChargeDataPaymentMethodCardResponse](docs/ChargeDataPaymentMethodCardResponse.md)
@@ -261,6 +271,8 @@ Class | Method | HTTP request | Description
 - [CustomerUpdateShippingContacts](docs/CustomerUpdateShippingContacts.md)
 - [CustomersResponse](docs/CustomersResponse.md)
 - [CustomersResponseAllOf](docs/CustomersResponseAllOf.md)
+- [DeleteApiKeysResponse](docs/DeleteApiKeysResponse.md)
+- [DeleteApiKeysResponseAllOf](docs/DeleteApiKeysResponseAllOf.md)
 - [DeletedBlacklistRuleResponse](docs/DeletedBlacklistRuleResponse.md)
 - [DeletedWhitelistRuleResponse](docs/DeletedWhitelistRuleResponse.md)
 - [Details](docs/Details.md)
@@ -271,7 +283,9 @@ Class | Method | HTTP request | Description
 - [EmailCheckoutRequest](docs/EmailCheckoutRequest.md)
 - [ErrorAllOf](docs/ErrorAllOf.md)
 - [EventResponse](docs/EventResponse.md)
-- [EventsWebhookResendResponse](docs/EventsWebhookResendResponse.md)
+- [EventsResendResponse](docs/EventsResendResponse.md)
+- [GetApiKeysResponse](docs/GetApiKeysResponse.md)
+- [GetApiKeysResponseAllOf](docs/GetApiKeysResponseAllOf.md)
 - [GetChargesResponse](docs/GetChargesResponse.md)
 - [GetChargesResponseAllOf](docs/GetChargesResponseAllOf.md)
 - [GetCompaniesResponse](docs/GetCompaniesResponse.md)

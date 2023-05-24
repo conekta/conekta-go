@@ -6,6 +6,7 @@ LICENSE
 README.md
 api/openapi.yaml
 api_antifraud.go
+api_api_keys.go
 api_charges.go
 api_companies.go
 api_customers.go
@@ -30,6 +31,12 @@ client.go
 conekta.png
 configuration.go
 docs/AntifraudApi.md
+docs/ApiKeyCreateResponse.md
+docs/ApiKeyCreateResponseAllOf.md
+docs/ApiKeyRequest.md
+docs/ApiKeyResponse.md
+docs/ApiKeyUpdateRequest.md
+docs/ApiKeysApi.md
 docs/BlacklistRuleResponse.md
 docs/ChargeDataPaymentMethodBankTransferResponse.md
 docs/ChargeDataPaymentMethodCardResponse.md
@@ -95,6 +102,8 @@ docs/CustomerUpdateShippingContacts.md
 docs/CustomersApi.md
 docs/CustomersResponse.md
 docs/CustomersResponseAllOf.md
+docs/DeleteApiKeysResponse.md
+docs/DeleteApiKeysResponseAllOf.md
 docs/DeletedBlacklistRuleResponse.md
 docs/DeletedWhitelistRuleResponse.md
 docs/Details.md
@@ -107,7 +116,9 @@ docs/EmailCheckoutRequest.md
 docs/ErrorAllOf.md
 docs/EventResponse.md
 docs/EventsApi.md
-docs/EventsWebhookResendResponse.md
+docs/EventsResendResponse.md
+docs/GetApiKeysResponse.md
+docs/GetApiKeysResponseAllOf.md
 docs/GetChargesResponse.md
 docs/GetChargesResponseAllOf.md
 docs/GetCompaniesResponse.md
@@ -240,6 +251,11 @@ docs/WhitelistlistRuleResponse.md
 git_push.sh
 go.mod
 go.sum
+model_api_key_create_response.go
+model_api_key_create_response_all_of.go
+model_api_key_request.go
+model_api_key_response.go
+model_api_key_update_request.go
 model_blacklist_rule_response.go
 model_charge_data_payment_method_bank_transfer_response.go
 model_charge_data_payment_method_card_response.go
@@ -302,6 +318,8 @@ model_customer_update_fiscal_entities_request.go
 model_customer_update_shipping_contacts.go
 model_customers_response.go
 model_customers_response_all_of.go
+model_delete_api_keys_response.go
+model_delete_api_keys_response_all_of.go
 model_deleted_blacklist_rule_response.go
 model_deleted_whitelist_rule_response.go
 model_details.go
@@ -313,7 +331,9 @@ model_email_checkout_request.go
 model_error.go
 model_error_all_of.go
 model_event_response.go
-model_events_webhook_resend_response.go
+model_events_resend_response.go
+model_get_api_keys_response.go
+model_get_api_keys_response_all_of.go
 model_get_charges_response.go
 model_get_charges_response_all_of.go
 model_get_companies_response.go

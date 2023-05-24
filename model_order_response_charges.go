@@ -20,10 +20,10 @@ var _ MappedNullable = &OrderResponseCharges{}
 
 // OrderResponseCharges The charges associated with the order
 type OrderResponseCharges struct {
-	// Object type, in this case is list
-	Object string `json:"object"`
 	// Indicates if there are more pages to be requested
 	HasMore bool `json:"has_more"`
+	// Object type, in this case is list
+	Object string `json:"object"`
 	Data []ChargesDataResponse `json:"data,omitempty"`
 }
 
@@ -31,10 +31,10 @@ type OrderResponseCharges struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrderResponseCharges(object string, hasMore bool) *OrderResponseCharges {
+func NewOrderResponseCharges(hasMore bool, object string) *OrderResponseCharges {
 	this := OrderResponseCharges{}
-	this.Object = object
 	this.HasMore = hasMore
+	this.Object = object
 	return &this
 }
 
@@ -44,30 +44,6 @@ func NewOrderResponseCharges(object string, hasMore bool) *OrderResponseCharges 
 func NewOrderResponseChargesWithDefaults() *OrderResponseCharges {
 	this := OrderResponseCharges{}
 	return &this
-}
-
-// GetObject returns the Object field value
-func (o *OrderResponseCharges) GetObject() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Object
-}
-
-// GetObjectOk returns a tuple with the Object field value
-// and a boolean to check if the value has been set.
-func (o *OrderResponseCharges) GetObjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Object, true
-}
-
-// SetObject sets field value
-func (o *OrderResponseCharges) SetObject(v string) {
-	o.Object = v
 }
 
 // GetHasMore returns the HasMore field value
@@ -92,6 +68,30 @@ func (o *OrderResponseCharges) GetHasMoreOk() (*bool, bool) {
 // SetHasMore sets field value
 func (o *OrderResponseCharges) SetHasMore(v bool) {
 	o.HasMore = v
+}
+
+// GetObject returns the Object field value
+func (o *OrderResponseCharges) GetObject() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Object
+}
+
+// GetObjectOk returns a tuple with the Object field value
+// and a boolean to check if the value has been set.
+func (o *OrderResponseCharges) GetObjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Object, true
+}
+
+// SetObject sets field value
+func (o *OrderResponseCharges) SetObject(v string) {
+	o.Object = v
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
@@ -136,8 +136,8 @@ func (o OrderResponseCharges) MarshalJSON() ([]byte, error) {
 
 func (o OrderResponseCharges) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["object"] = o.Object
 	toSerialize["has_more"] = o.HasMore
+	toSerialize["object"] = o.Object
 	if !IsNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}

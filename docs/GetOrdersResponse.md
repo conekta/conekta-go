@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Data** | [**[]OrderResponse**](OrderResponse.md) |  | 
-**Object** | **string** | Object type, in this case is list | 
 **HasMore** | **bool** | Indicates if there are more pages to be requested | 
+**Object** | **string** | Object type, in this case is list | 
 **NextPageUrl** | Pointer to **NullableString** | URL of the next page. | [optional] 
 **PreviousPageUrl** | Pointer to **NullableString** | Url of the previous page. | [optional] 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewGetOrdersResponse
 
-`func NewGetOrdersResponse(data []OrderResponse, object string, hasMore bool, ) *GetOrdersResponse`
+`func NewGetOrdersResponse(data []OrderResponse, hasMore bool, object string, ) *GetOrdersResponse`
 
 NewGetOrdersResponse instantiates a new GetOrdersResponse object
 This constructor will assign default values to properties that have it defined,
@@ -49,26 +49,6 @@ and a boolean to check if the value has been set.
 SetData sets Data field to given value.
 
 
-### GetObject
-
-`func (o *GetOrdersResponse) GetObject() string`
-
-GetObject returns the Object field if non-nil, zero value otherwise.
-
-### GetObjectOk
-
-`func (o *GetOrdersResponse) GetObjectOk() (*string, bool)`
-
-GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetObject
-
-`func (o *GetOrdersResponse) SetObject(v string)`
-
-SetObject sets Object field to given value.
-
-
 ### GetHasMore
 
 `func (o *GetOrdersResponse) GetHasMore() bool`
@@ -87,6 +67,26 @@ and a boolean to check if the value has been set.
 `func (o *GetOrdersResponse) SetHasMore(v bool)`
 
 SetHasMore sets HasMore field to given value.
+
+
+### GetObject
+
+`func (o *GetOrdersResponse) GetObject() string`
+
+GetObject returns the Object field if non-nil, zero value otherwise.
+
+### GetObjectOk
+
+`func (o *GetOrdersResponse) GetObjectOk() (*string, bool)`
+
+GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetObject
+
+`func (o *GetOrdersResponse) SetObject(v string)`
+
+SetObject sets Object field to given value.
 
 
 ### GetNextPageUrl

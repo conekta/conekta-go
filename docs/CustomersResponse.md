@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Data** | Pointer to [**[]CustomerResponse**](CustomerResponse.md) |  | [optional] 
-**Object** | **string** | Object type, in this case is list | 
 **HasMore** | **bool** | Indicates if there are more pages to be requested | 
+**Object** | **string** | Object type, in this case is list | 
 **NextPageUrl** | Pointer to **NullableString** | URL of the next page. | [optional] 
 **PreviousPageUrl** | Pointer to **NullableString** | Url of the previous page. | [optional] 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewCustomersResponse
 
-`func NewCustomersResponse(object string, hasMore bool, ) *CustomersResponse`
+`func NewCustomersResponse(hasMore bool, object string, ) *CustomersResponse`
 
 NewCustomersResponse instantiates a new CustomersResponse object
 This constructor will assign default values to properties that have it defined,
@@ -54,26 +54,6 @@ SetData sets Data field to given value.
 
 HasData returns a boolean if a field has been set.
 
-### GetObject
-
-`func (o *CustomersResponse) GetObject() string`
-
-GetObject returns the Object field if non-nil, zero value otherwise.
-
-### GetObjectOk
-
-`func (o *CustomersResponse) GetObjectOk() (*string, bool)`
-
-GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetObject
-
-`func (o *CustomersResponse) SetObject(v string)`
-
-SetObject sets Object field to given value.
-
-
 ### GetHasMore
 
 `func (o *CustomersResponse) GetHasMore() bool`
@@ -92,6 +72,26 @@ and a boolean to check if the value has been set.
 `func (o *CustomersResponse) SetHasMore(v bool)`
 
 SetHasMore sets HasMore field to given value.
+
+
+### GetObject
+
+`func (o *CustomersResponse) GetObject() string`
+
+GetObject returns the Object field if non-nil, zero value otherwise.
+
+### GetObjectOk
+
+`func (o *CustomersResponse) GetObjectOk() (*string, bool)`
+
+GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetObject
+
+`func (o *CustomersResponse) SetObject(v string)`
+
+SetObject sets Object field to given value.
 
 
 ### GetNextPageUrl
