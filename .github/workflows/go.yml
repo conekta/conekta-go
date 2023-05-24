@@ -5,16 +5,17 @@ on:
   pull_request:
     branches: [ main, master ]
 jobs:
-  test:
+  tests:
     strategy:
       matrix:
         sdk: [1.16, 1.17, 1.18, 1.19, 1.20]
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v4
         with:
-          go-version: ${{ matrix.sdk }}
+          go-version: '${{ matrix.sdk }}'
       - name: Golang install, build and test
         run: |
           go version
