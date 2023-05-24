@@ -20,14 +20,12 @@ jobs:
         run: git config --global url."ssh://git@github.com/conekta".insteadOf https://github.com/conekta && go mod download -x
       - name: Build
         run: go build -v ./...
+      - uses: actions/setup-node@v2
       - name: Install Mockserver
         run: |
           npm install -g @mockoon/cli
           npx mockoon-cli start --data https://raw.githubusercontent.com/conekta/openapi/v6.0.3/mocks/conekta_api.json --port 3000
       - name: Run tests
-        run: |
-          npm install -g @mockoon/cli
-          npx mockoon-cli start --data https://raw.githubusercontent.com/conekta/openapi/v6.0.3/mocks/conekta_api.json --port 3000
-          go test -v --race ./...
+        run: go test -v --race ./...
         env:
           BASE_PATH: http://localhost:3000
