@@ -24,7 +24,7 @@ jobs:
       - name: Install Mockserver
         run: |
           npm install -g @mockoon/cli
-          npx mockoon-cli start --data https://raw.githubusercontent.com/conekta/openapi/v6.0.3/mocks/conekta_api.json --port 3000
+          npx mockoon-cli start --data https://raw.githubusercontent.com/conekta/openapi/acaa935a9eed5b7c3a49b681bd801bcfa501cc5a/mocks/conekta_api.json --port 3000
       - name: Run tests
         run: go test -v --race ./...
         env:
