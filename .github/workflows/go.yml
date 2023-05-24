@@ -16,11 +16,6 @@ jobs:
       - uses: actions/setup-go@v4
         with:
           go-version: ${{ matrix.sdk }}
-      - name: Install dependencies
-        run: git config --global url."ssh://git@github.com/conekta".insteadOf https://github.com/conekta && go mod download -x
-      - name: Build
-        run: go build -v ./...
-      - uses: actions/setup-node@v2
       - name: Install Mockserver
         run: |
           npm install -g @mockoon/cli
