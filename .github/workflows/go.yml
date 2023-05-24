@@ -8,18 +8,24 @@ jobs:
   tests:
     strategy:
       matrix:
-        sdk: [1.16, 1.17, 1.18, 1.19, 1.20]
+        sdk: [1.16, 1.17, 1.18, 1.19, 1.20.x]
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v4
         with:
-          go-version: '${{ matrix.sdk }}'
-      - name: Golang install, build and test
+          go-version: ${{ matrix.sdk }}
+      - name: Install dependencies
+        run: git config --global url."ssh://git@github.com/conekta".insteadOf https://github.com/conekta && go mod download -x
+      - name: Build
+        run: go build -v ./...
+      - name: Install Mockserver
         run: |
-          go version
-          git config --global url."ssh://git@github.com/conekta".insteadOf https://github.com/conekta && go mod download -x
+          npm install -g @mockoon/cli
+          npx mockoon-cli start --data https://raw.githubusercontent.com/conekta/openapi/v6.0.3/mocks/conekta_api.json --port 3000
+      - name: Run tests
+        run: |
           npm install -g @mockoon/cli
           npx mockoon-cli start --data https://raw.githubusercontent.com/conekta/openapi/v6.0.3/mocks/conekta_api.json --port 3000
           go test -v --race ./...
