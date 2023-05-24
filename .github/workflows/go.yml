@@ -28,4 +28,4 @@ jobs:
       - name: Run tests
         run: go test -v --race ./...
         env:
-          BASE_PATH: http://localhost:3000
+          BASE_PATH: localhost:3000
