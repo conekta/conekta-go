@@ -132,4 +132,35 @@ func TestOrdersApi(t *testing.T) {
 			t.Errorf("assertion fail, expected=%v , actual=%v", "not nil", order)
 		}
 	})
+	t.Run("OrderCancelRefund success", func(t *testing.T) {
+		orderID := "ord_2tV52JvSom2w3E8bX"
+		refundID := "6407b5bee1329a000175ba11"
+		order, response, err := client.OrdersApi.OrderCancelRefund(context.TODO(), orderID, refundID).
+			AcceptLanguage("es").
+			Execute()
+		if err != nil {
+			t.Error(err)
+		}
+		if response.StatusCode != http.StatusOK {
+			t.Errorf("assertion fail, expected=%v , actual=%v", http.StatusOK, response.StatusCode)
+		}
+		if order == nil {
+			t.Errorf("assertion fail, expected=%v , actual=%v", "not nil", order)
+		}
+	})
+	t.Run("CancelOrder success", func(t *testing.T) {
+		orderID := "ord_2tqaGQYZyvBsMKEgs"
+		order, response, err := client.OrdersApi.CancelOrder(context.TODO(), orderID).
+			AcceptLanguage("es").
+			Execute()
+		if err != nil {
+			t.Error(err)
+		}
+		if response.StatusCode != http.StatusOK {
+			t.Errorf("assertion fail, expected=%v , actual=%v", http.StatusOK, response.StatusCode)
+		}
+		if order == nil {
+			t.Errorf("assertion fail, expected=%v , actual=%v", "not nil", order)
+		}
+	})
 }
