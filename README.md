@@ -103,8 +103,8 @@ func main() {
 ## Running tests
 Navigate to conekta-go folder and run the following commands.
 ```
-docker-compose up
-go test ./...
+docker-compose up -d
+go test -v --race ./...
 ```
 ## Documentation for API Endpoints
 
