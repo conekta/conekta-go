@@ -11,11 +11,10 @@ package conekta_test
 
 import (
 	"context"
+	"net/http"
 	"testing"
 
 	"github.com/conekta/conekta-go"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
 func Test_conekta_WebhooksApiService(t *testing.T) {
@@ -35,9 +34,15 @@ func Test_conekta_WebhooksApiService(t *testing.T) {
 			AcceptLanguage("es").
 			Execute()
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
+		if err != nil {
+			t.Fatalf("expected err nil but was %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("expected resp not nil but was %v", resp)
+		}
+		if httpRes.StatusCode != http.StatusOK {
+			t.Fatalf("expected StatusCode 200 OK but was %d", httpRes.StatusCode)
+		}
 
 	})
 
@@ -46,9 +51,15 @@ func Test_conekta_WebhooksApiService(t *testing.T) {
 			AcceptLanguage("es").
 			Execute()
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
+		if err != nil {
+			t.Fatalf("expected err nil but was %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("expected resp not nil but was %v", resp)
+		}
+		if httpRes.StatusCode != http.StatusOK {
+			t.Fatalf("expected StatusCode 200 OK but was %d", httpRes.StatusCode)
+		}
 
 	})
 
@@ -57,9 +68,15 @@ func Test_conekta_WebhooksApiService(t *testing.T) {
 			AcceptLanguage("es").
 			Execute()
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
+		if err != nil {
+			t.Fatalf("expected err nil but was %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("expected resp not nil but was %v", resp)
+		}
+		if httpRes.StatusCode != http.StatusOK {
+			t.Fatalf("expected StatusCode 200 OK but was %d", httpRes.StatusCode)
+		}
 
 	})
 
@@ -69,9 +86,15 @@ func Test_conekta_WebhooksApiService(t *testing.T) {
 			AcceptLanguage("es").
 			Execute()
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
+		if err != nil {
+			t.Fatalf("expected err nil but was %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("expected resp not nil but was %v", resp)
+		}
+		if httpRes.StatusCode != http.StatusOK {
+			t.Fatalf("expected StatusCode 200 OK but was %d", httpRes.StatusCode)
+		}
 
 	})
 
@@ -80,9 +103,15 @@ func Test_conekta_WebhooksApiService(t *testing.T) {
 			AcceptLanguage("es").
 			Execute()
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
+		if err != nil {
+			t.Fatalf("expected err nil but was %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("expected resp not nil but was %v", resp)
+		}
+		if httpRes.StatusCode != http.StatusOK {
+			t.Fatalf("expected StatusCode 200 OK but was %d", httpRes.StatusCode)
+		}
 
 	})
 
@@ -95,9 +124,15 @@ func Test_conekta_WebhooksApiService(t *testing.T) {
 			AcceptLanguage("es").
 			Execute()
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
+		if err != nil {
+			t.Fatalf("expected err nil but was %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("expected resp not nil but was %v", resp)
+		}
+		if httpRes.StatusCode != http.StatusOK {
+			t.Fatalf("expected StatusCode 200 OK but was %d", httpRes.StatusCode)
+		}
 
 	})
 

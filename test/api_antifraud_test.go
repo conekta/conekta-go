@@ -11,11 +11,10 @@ package conekta_test
 
 import (
 	"context"
+	"net/http"
 	"testing"
 
 	"github.com/conekta/conekta-go"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
 func Test_conekta_AntifraudApiService(t *testing.T) {
@@ -35,9 +34,15 @@ func Test_conekta_AntifraudApiService(t *testing.T) {
 			CreateRiskRulesData(req).
 			Execute()
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
+		if err != nil {
+			t.Fatalf("expected err nil but was %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("expected resp not nil but was %v", resp)
+		}
+		if httpRes.StatusCode != http.StatusOK {
+			t.Fatalf("expected StatusCode 200 OK but was %d", httpRes.StatusCode)
+		}
 
 	})
 
@@ -51,9 +56,15 @@ func Test_conekta_AntifraudApiService(t *testing.T) {
 			CreateRiskRulesData(req).
 			Execute()
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
+		if err != nil {
+			t.Fatalf("expected err nil but was %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("expected resp not nil but was %v", resp)
+		}
+		if httpRes.StatusCode != http.StatusOK {
+			t.Fatalf("expected StatusCode 200 OK but was %d", httpRes.StatusCode)
+		}
 
 	})
 
@@ -61,9 +72,15 @@ func Test_conekta_AntifraudApiService(t *testing.T) {
 		resp, httpRes, err := apiClient.AntifraudApi.DeleteRuleWhitelist(context.TODO(), "618c3f2fdb8b8da9be376afe").
 			Execute()
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
+		if err != nil {
+			t.Fatalf("expected err nil but was %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("expected resp not nil but was %v", resp)
+		}
+		if httpRes.StatusCode != http.StatusOK {
+			t.Fatalf("expected StatusCode 200 OK but was %d", httpRes.StatusCode)
+		}
 
 	})
 
@@ -71,9 +88,15 @@ func Test_conekta_AntifraudApiService(t *testing.T) {
 		resp, httpRes, err := apiClient.AntifraudApi.DeleteRuleBlacklist(context.TODO(), "618c3f30db8b8da9be376b1e").
 			Execute()
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
+		if err != nil {
+			t.Fatalf("expected err nil but was %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("expected resp not nil but was %v", resp)
+		}
+		if httpRes.StatusCode != http.StatusOK {
+			t.Fatalf("expected StatusCode 200 OK but was %d", httpRes.StatusCode)
+		}
 
 	})
 
@@ -81,9 +104,15 @@ func Test_conekta_AntifraudApiService(t *testing.T) {
 		resp, httpRes, err := apiClient.AntifraudApi.GetRuleBlacklist(context.TODO()).
 			Execute()
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
+		if err != nil {
+			t.Fatalf("expected err nil but was %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("expected resp not nil but was %v", resp)
+		}
+		if httpRes.StatusCode != http.StatusOK {
+			t.Fatalf("expected StatusCode 200 OK but was %d", httpRes.StatusCode)
+		}
 
 	})
 
@@ -91,9 +120,15 @@ func Test_conekta_AntifraudApiService(t *testing.T) {
 		resp, httpRes, err := apiClient.AntifraudApi.GetRuleWhitelist(context.TODO()).
 			Execute()
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
+		if err != nil {
+			t.Fatalf("expected err nil but was %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("expected resp not nil but was %v", resp)
+		}
+		if httpRes.StatusCode != http.StatusOK {
+			t.Fatalf("expected StatusCode 200 OK but was %d", httpRes.StatusCode)
+		}
 
 	})
 
