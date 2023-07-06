@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **StoreName** | Pointer to **string** |  | [optional] 
 **AccountType** | Pointer to **string** |  | [optional] 
 **Brand** | Pointer to **string** |  | [optional] 
+**ContractId** | Pointer to **string** | Id sent for recurrent charges. | [optional] 
 **Country** | Pointer to **string** |  | [optional] 
 **ExpMonth** | Pointer to **string** |  | [optional] 
 **ExpYear** | Pointer to **string** |  | [optional] 
@@ -372,6 +373,31 @@ SetBrand sets Brand field to given value.
 `func (o *ChargeOrderResponsePaymentMethod) HasBrand() bool`
 
 HasBrand returns a boolean if a field has been set.
+
+### GetContractId
+
+`func (o *ChargeOrderResponsePaymentMethod) GetContractId() string`
+
+GetContractId returns the ContractId field if non-nil, zero value otherwise.
+
+### GetContractIdOk
+
+`func (o *ChargeOrderResponsePaymentMethod) GetContractIdOk() (*string, bool)`
+
+GetContractIdOk returns a tuple with the ContractId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContractId
+
+`func (o *ChargeOrderResponsePaymentMethod) SetContractId(v string)`
+
+SetContractId sets ContractId field to given value.
+
+### HasContractId
+
+`func (o *ChargeOrderResponsePaymentMethod) HasContractId() bool`
+
+HasContractId returns a boolean if a field has been set.
 
 ### GetCountry
 

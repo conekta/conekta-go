@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **AccountType** | Pointer to **string** |  | [optional] 
 **AuthCode** | Pointer to **string** |  | [optional] 
 **Brand** | Pointer to **string** |  | [optional] 
+**ContractId** | Pointer to **string** | Id sent for recurrent charges. | [optional] 
 **Country** | Pointer to **string** |  | [optional] 
 **ExpMonth** | Pointer to **string** |  | [optional] 
 **ExpYear** | Pointer to **string** |  | [optional] 
@@ -155,6 +156,31 @@ SetBrand sets Brand field to given value.
 `func (o *PaymentMethodCard) HasBrand() bool`
 
 HasBrand returns a boolean if a field has been set.
+
+### GetContractId
+
+`func (o *PaymentMethodCard) GetContractId() string`
+
+GetContractId returns the ContractId field if non-nil, zero value otherwise.
+
+### GetContractIdOk
+
+`func (o *PaymentMethodCard) GetContractIdOk() (*string, bool)`
+
+GetContractIdOk returns a tuple with the ContractId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContractId
+
+`func (o *PaymentMethodCard) SetContractId(v string)`
+
+SetContractId sets ContractId field to given value.
+
+### HasContractId
+
+`func (o *PaymentMethodCard) HasContractId() bool`
+
+HasContractId returns a boolean if a field has been set.
 
 ### GetCountry
 

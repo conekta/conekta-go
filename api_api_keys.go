@@ -227,6 +227,17 @@ func (a *ApiKeysApiService) CreateApiKeyExecute(r ApiCreateApiKeyRequest) (*ApiK
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -558,9 +569,9 @@ type ApiGetApiKeysRequest struct {
 	acceptLanguage *string
 	xChildCompanyId *string
 	limit *int32
-	search *string
 	next *string
 	previous *string
+	search *string
 }
 
 // Use for knowing which language to use
@@ -581,12 +592,6 @@ func (r ApiGetApiKeysRequest) Limit(limit int32) ApiGetApiKeysRequest {
 	return r
 }
 
-// General order search, e.g. by mail, reference etc.
-func (r ApiGetApiKeysRequest) Search(search string) ApiGetApiKeysRequest {
-	r.search = &search
-	return r
-}
-
 // next page
 func (r ApiGetApiKeysRequest) Next(next string) ApiGetApiKeysRequest {
 	r.next = &next
@@ -596,6 +601,12 @@ func (r ApiGetApiKeysRequest) Next(next string) ApiGetApiKeysRequest {
 // previous page
 func (r ApiGetApiKeysRequest) Previous(previous string) ApiGetApiKeysRequest {
 	r.previous = &previous
+	return r
+}
+
+// General search, e.g. by id, description, prefix
+func (r ApiGetApiKeysRequest) Search(search string) ApiGetApiKeysRequest {
+	r.search = &search
 	return r
 }
 
@@ -642,14 +653,14 @@ func (a *ApiKeysApiService) GetApiKeysExecute(r ApiGetApiKeysRequest) (*GetApiKe
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
-	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
-	}
 	if r.next != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "next", r.next, "")
 	}
 	if r.previous != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "previous", r.previous, "")
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

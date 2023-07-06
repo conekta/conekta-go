@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Object** | **string** | Object type, in this case is list | 
 **NextPageUrl** | Pointer to **NullableString** | URL of the next page. | [optional] 
 **PreviousPageUrl** | Pointer to **NullableString** | Url of the previous page. | [optional] 
-**Data** | Pointer to [**[]ChargeResponseRefundsData**](ChargeResponseRefundsData.md) |  | [optional] 
+**Data** | Pointer to [**[]ChargeResponseRefundsData**](ChargeResponseRefundsData.md) | refunds | [optional] 
 
 ## Methods
 

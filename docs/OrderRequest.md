@@ -10,9 +10,10 @@ Name | Type | Description | Notes
 **CustomerInfo** | [**OrderRequestCustomerInfo**](OrderRequestCustomerInfo.md) |  | 
 **DiscountLines** | Pointer to [**[]OrderDiscountLinesRequest**](OrderDiscountLinesRequest.md) | List of [discounts](https://developers.conekta.com/v2.1.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount. | [optional] 
 **LineItems** | [**[]Product**](Product.md) | List of [products](https://developers.conekta.com/v2.1.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product. | 
-**Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
+**Metadata** | Pointer to **map[string]interface{}** | Metadata associated with the order | [optional] 
 **NeedsShippingContact** | Pointer to **bool** | Allows you to fill out the shipping information at checkout | [optional] 
 **PreAuthorize** | Pointer to **bool** | Indicates whether the order charges must be preauthorized | [optional] [default to false]
+**ProcessingMode** | Pointer to **string** | Indicates the processing mode for the order, either ecommerce, recurrent or validation. | [optional] 
 **ShippingContact** | Pointer to [**CustomerShippingContacts**](CustomerShippingContacts.md) |  | [optional] 
 **ShippingLines** | Pointer to [**[]ShippingRequest**](ShippingRequest.md) | List of [shipping costs](https://developers.conekta.com/v2.1.0/reference/orderscreateshipping). If the online store offers digital products. | [optional] 
 **TaxLines** | Pointer to [**[]OrderTaxRequest**](OrderTaxRequest.md) | List of [taxes](https://developers.conekta.com/v2.1.0/reference/orderscreatetaxes) that are applied to the order. | [optional] 
@@ -245,6 +246,31 @@ SetPreAuthorize sets PreAuthorize field to given value.
 `func (o *OrderRequest) HasPreAuthorize() bool`
 
 HasPreAuthorize returns a boolean if a field has been set.
+
+### GetProcessingMode
+
+`func (o *OrderRequest) GetProcessingMode() string`
+
+GetProcessingMode returns the ProcessingMode field if non-nil, zero value otherwise.
+
+### GetProcessingModeOk
+
+`func (o *OrderRequest) GetProcessingModeOk() (*string, bool)`
+
+GetProcessingModeOk returns a tuple with the ProcessingMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProcessingMode
+
+`func (o *OrderRequest) SetProcessingMode(v string)`
+
+SetProcessingMode sets ProcessingMode field to given value.
+
+### HasProcessingMode
+
+`func (o *OrderRequest) HasProcessingMode() bool`
+
+HasProcessingMode returns a boolean if a field has been set.
 
 ### GetShippingContact
 

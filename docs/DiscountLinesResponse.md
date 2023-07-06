@@ -7,15 +7,15 @@ Name | Type | Description | Notes
 **Amount** | **int64** | The amount to be deducted from the total sum of all payments, in cents. | 
 **Code** | **string** | Discount code. | 
 **Type** | **string** | It can be &#39;loyalty&#39;, &#39;campaign&#39;, &#39;coupon&#39; o &#39;sign&#39; | 
-**Id** | Pointer to **string** |  | [optional] 
-**Object** | Pointer to **string** |  | [optional] 
-**ParentId** | Pointer to **string** |  | [optional] 
+**Id** | **string** | The discount line id | 
+**Object** | **string** | The object name | 
+**ParentId** | **string** | The order id | 
 
 ## Methods
 
 ### NewDiscountLinesResponse
 
-`func NewDiscountLinesResponse(amount int64, code string, type_ string, ) *DiscountLinesResponse`
+`func NewDiscountLinesResponse(amount int64, code string, type_ string, id string, object string, parentId string, ) *DiscountLinesResponse`
 
 NewDiscountLinesResponse instantiates a new DiscountLinesResponse object
 This constructor will assign default values to properties that have it defined,
@@ -109,11 +109,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *DiscountLinesResponse) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetObject
 
@@ -134,11 +129,6 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
-### HasObject
-
-`func (o *DiscountLinesResponse) HasObject() bool`
-
-HasObject returns a boolean if a field has been set.
 
 ### GetParentId
 
@@ -159,11 +149,6 @@ and a boolean to check if the value has been set.
 
 SetParentId sets ParentId field to given value.
 
-### HasParentId
-
-`func (o *DiscountLinesResponse) HasParentId() bool`
-
-HasParentId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

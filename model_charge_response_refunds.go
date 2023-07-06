@@ -28,6 +28,7 @@ type ChargeResponseRefunds struct {
 	NextPageUrl NullableString `json:"next_page_url,omitempty"`
 	// Url of the previous page.
 	PreviousPageUrl NullableString `json:"previous_page_url,omitempty"`
+	// refunds
 	Data []ChargeResponseRefundsData `json:"data,omitempty"`
 }
 

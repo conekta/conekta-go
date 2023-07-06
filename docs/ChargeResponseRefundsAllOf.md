@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**[]ChargeResponseRefundsData**](ChargeResponseRefundsData.md) |  | [optional] 
+**Data** | Pointer to [**[]ChargeResponseRefundsData**](ChargeResponseRefundsData.md) | refunds | [optional] 
 
 ## Methods
 

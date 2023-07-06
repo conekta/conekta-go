@@ -20,7 +20,7 @@ var _ MappedNullable = &ApiKeyCreateResponseAllOf{}
 
 // ApiKeyCreateResponseAllOf struct for ApiKeyCreateResponseAllOf
 type ApiKeyCreateResponseAllOf struct {
-	// It is occupied as a user when authenticated with basic authentication, with a blank password. This value will only appear once, in the request to create a new key
+	// It is occupied as a user when authenticated with basic authentication, with a blank password. This value will only appear once, in the request to create a new key. Copy and save it in a safe place.
 	AuthenticationToken *string `json:"authentication_token,omitempty"`
 }
 

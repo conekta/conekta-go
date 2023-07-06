@@ -20,23 +20,29 @@ var _ MappedNullable = &ApiKeyCreateResponse{}
 
 // ApiKeyCreateResponse struct for ApiKeyCreateResponse
 type ApiKeyCreateResponse struct {
-	// It is occupied as a user when authenticated with basic authentication, with a blank password. This value will only appear once, in the request to create a new key
+	// It is occupied as a user when authenticated with basic authentication, with a blank password. This value will only appear once, in the request to create a new key. Copy and save it in a safe place.
 	AuthenticationToken *string `json:"authentication_token,omitempty"`
 	// Indicates if the api key is active
 	Active *bool `json:"active,omitempty"`
-	// Unix timestamp in seconds with the creation date of the api key
+	// Unix timestamp in seconds of when the api key was created
 	CreatedAt *int64 `json:"created_at,omitempty"`
-	// Detail of the use that will be given to the api key
+	// Unix timestamp in seconds of when the api key was last updated
+	UpdatedAt *int64 `json:"updated_at,omitempty"`
+	// Unix timestamp in seconds of when the api key was deleted
+	DeactivatedAt NullableInt64 `json:"deactivated_at,omitempty"`
+	// A name or brief explanation of what this api key is used for
 	Description *string `json:"description,omitempty"`
 	// Unique identifier of the api key
 	Id *string `json:"id,omitempty"`
-	// Indicates if the api key is in live mode
+	// Indicates if the api key is in production
 	Livemode *bool `json:"livemode,omitempty"`
-	// Object name, value is api_key
+	// Indicates if the api key was deleted
+	Deleted *bool `json:"deleted,omitempty"`
+	// Object name, value is 'api_key'
 	Object *string `json:"object,omitempty"`
 	// The first few characters of the authentication_token
 	Prefix *string `json:"prefix,omitempty"`
-	// Indicates the user account private=owner or public=public
+	// Indicates if the api key is private or public
 	Role *string `json:"role,omitempty"`
 }
 
@@ -153,6 +159,80 @@ func (o *ApiKeyCreateResponse) SetCreatedAt(v int64) {
 	o.CreatedAt = &v
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *ApiKeyCreateResponse) GetUpdatedAt() int64 {
+	if o == nil || IsNil(o.UpdatedAt) {
+		var ret int64
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ApiKeyCreateResponse) GetUpdatedAtOk() (*int64, bool) {
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *ApiKeyCreateResponse) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given int64 and assigns it to the UpdatedAt field.
+func (o *ApiKeyCreateResponse) SetUpdatedAt(v int64) {
+	o.UpdatedAt = &v
+}
+
+// GetDeactivatedAt returns the DeactivatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ApiKeyCreateResponse) GetDeactivatedAt() int64 {
+	if o == nil || IsNil(o.DeactivatedAt.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.DeactivatedAt.Get()
+}
+
+// GetDeactivatedAtOk returns a tuple with the DeactivatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ApiKeyCreateResponse) GetDeactivatedAtOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DeactivatedAt.Get(), o.DeactivatedAt.IsSet()
+}
+
+// HasDeactivatedAt returns a boolean if a field has been set.
+func (o *ApiKeyCreateResponse) HasDeactivatedAt() bool {
+	if o != nil && o.DeactivatedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeactivatedAt gets a reference to the given NullableInt64 and assigns it to the DeactivatedAt field.
+func (o *ApiKeyCreateResponse) SetDeactivatedAt(v int64) {
+	o.DeactivatedAt.Set(&v)
+}
+// SetDeactivatedAtNil sets the value for DeactivatedAt to be an explicit nil
+func (o *ApiKeyCreateResponse) SetDeactivatedAtNil() {
+	o.DeactivatedAt.Set(nil)
+}
+
+// UnsetDeactivatedAt ensures that no value is present for DeactivatedAt, not even an explicit nil
+func (o *ApiKeyCreateResponse) UnsetDeactivatedAt() {
+	o.DeactivatedAt.Unset()
+}
+
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *ApiKeyCreateResponse) GetDescription() string {
 	if o == nil || IsNil(o.Description) {
@@ -247,6 +327,38 @@ func (o *ApiKeyCreateResponse) HasLivemode() bool {
 // SetLivemode gets a reference to the given bool and assigns it to the Livemode field.
 func (o *ApiKeyCreateResponse) SetLivemode(v bool) {
 	o.Livemode = &v
+}
+
+// GetDeleted returns the Deleted field value if set, zero value otherwise.
+func (o *ApiKeyCreateResponse) GetDeleted() bool {
+	if o == nil || IsNil(o.Deleted) {
+		var ret bool
+		return ret
+	}
+	return *o.Deleted
+}
+
+// GetDeletedOk returns a tuple with the Deleted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ApiKeyCreateResponse) GetDeletedOk() (*bool, bool) {
+	if o == nil || IsNil(o.Deleted) {
+		return nil, false
+	}
+	return o.Deleted, true
+}
+
+// HasDeleted returns a boolean if a field has been set.
+func (o *ApiKeyCreateResponse) HasDeleted() bool {
+	if o != nil && !IsNil(o.Deleted) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeleted gets a reference to the given bool and assigns it to the Deleted field.
+func (o *ApiKeyCreateResponse) SetDeleted(v bool) {
+	o.Deleted = &v
 }
 
 // GetObject returns the Object field value if set, zero value otherwise.
@@ -364,6 +476,12 @@ func (o ApiKeyCreateResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if o.DeactivatedAt.IsSet() {
+		toSerialize["deactivated_at"] = o.DeactivatedAt.Get()
+	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
@@ -372,6 +490,9 @@ func (o ApiKeyCreateResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Livemode) {
 		toSerialize["livemode"] = o.Livemode
+	}
+	if !IsNil(o.Deleted) {
+		toSerialize["deleted"] = o.Deleted
 	}
 	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object

@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// OrderRequestCustomerInfo - struct for OrderRequestCustomerInfo
+// OrderRequestCustomerInfo - Customer information
 type OrderRequestCustomerInfo struct {
 	CustomerInfo *CustomerInfo
 	CustomerInfoJustCustomerId *CustomerInfoJustCustomerId

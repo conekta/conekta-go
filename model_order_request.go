@@ -30,11 +30,14 @@ type OrderRequest struct {
 	DiscountLines []OrderDiscountLinesRequest `json:"discount_lines,omitempty"`
 	// List of [products](https://developers.conekta.com/v2.1.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
 	LineItems []Product `json:"line_items"`
+	// Metadata associated with the order
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// Allows you to fill out the shipping information at checkout
 	NeedsShippingContact *bool `json:"needs_shipping_contact,omitempty"`
 	// Indicates whether the order charges must be preauthorized
 	PreAuthorize *bool `json:"pre_authorize,omitempty"`
+	// Indicates the processing mode for the order, either ecommerce, recurrent or validation.
+	ProcessingMode *string `json:"processing_mode,omitempty"`
 	ShippingContact *CustomerShippingContacts `json:"shipping_contact,omitempty"`
 	// List of [shipping costs](https://developers.conekta.com/v2.1.0/reference/orderscreateshipping). If the online store offers digital products.
 	ShippingLines []ShippingRequest `json:"shipping_lines,omitempty"`
@@ -330,6 +333,38 @@ func (o *OrderRequest) SetPreAuthorize(v bool) {
 	o.PreAuthorize = &v
 }
 
+// GetProcessingMode returns the ProcessingMode field value if set, zero value otherwise.
+func (o *OrderRequest) GetProcessingMode() string {
+	if o == nil || IsNil(o.ProcessingMode) {
+		var ret string
+		return ret
+	}
+	return *o.ProcessingMode
+}
+
+// GetProcessingModeOk returns a tuple with the ProcessingMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderRequest) GetProcessingModeOk() (*string, bool) {
+	if o == nil || IsNil(o.ProcessingMode) {
+		return nil, false
+	}
+	return o.ProcessingMode, true
+}
+
+// HasProcessingMode returns a boolean if a field has been set.
+func (o *OrderRequest) HasProcessingMode() bool {
+	if o != nil && !IsNil(o.ProcessingMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetProcessingMode gets a reference to the given string and assigns it to the ProcessingMode field.
+func (o *OrderRequest) SetProcessingMode(v string) {
+	o.ProcessingMode = &v
+}
+
 // GetShippingContact returns the ShippingContact field value if set, zero value otherwise.
 func (o *OrderRequest) GetShippingContact() CustomerShippingContacts {
 	if o == nil || IsNil(o.ShippingContact) {
@@ -456,6 +491,9 @@ func (o OrderRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PreAuthorize) {
 		toSerialize["pre_authorize"] = o.PreAuthorize
+	}
+	if !IsNil(o.ProcessingMode) {
+		toSerialize["processing_mode"] = o.ProcessingMode
 	}
 	if !IsNil(o.ShippingContact) {
 		toSerialize["shipping_contact"] = o.ShippingContact

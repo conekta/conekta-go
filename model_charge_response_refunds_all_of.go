@@ -20,6 +20,7 @@ var _ MappedNullable = &ChargeResponseRefundsAllOf{}
 
 // ChargeResponseRefundsAllOf struct for ChargeResponseRefundsAllOf
 type ChargeResponseRefundsAllOf struct {
+	// refunds
 	Data []ChargeResponseRefundsData `json:"data,omitempty"`
 }
 

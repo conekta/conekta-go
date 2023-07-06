@@ -20,17 +20,23 @@ var _ MappedNullable = &DiscountLinesResponseAllOf{}
 
 // DiscountLinesResponseAllOf struct for DiscountLinesResponseAllOf
 type DiscountLinesResponseAllOf struct {
-	Id *string `json:"id,omitempty"`
-	Object *string `json:"object,omitempty"`
-	ParentId *string `json:"parent_id,omitempty"`
+	// The discount line id
+	Id string `json:"id"`
+	// The object name
+	Object string `json:"object"`
+	// The order id
+	ParentId string `json:"parent_id"`
 }
 
 // NewDiscountLinesResponseAllOf instantiates a new DiscountLinesResponseAllOf object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDiscountLinesResponseAllOf() *DiscountLinesResponseAllOf {
+func NewDiscountLinesResponseAllOf(id string, object string, parentId string) *DiscountLinesResponseAllOf {
 	this := DiscountLinesResponseAllOf{}
+	this.Id = id
+	this.Object = object
+	this.ParentId = parentId
 	return &this
 }
 
@@ -42,100 +48,76 @@ func NewDiscountLinesResponseAllOfWithDefaults() *DiscountLinesResponseAllOf {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value
 func (o *DiscountLinesResponseAllOf) GetId() string {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *DiscountLinesResponseAllOf) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *DiscountLinesResponseAllOf) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value
 func (o *DiscountLinesResponseAllOf) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
-// GetObject returns the Object field value if set, zero value otherwise.
+// GetObject returns the Object field value
 func (o *DiscountLinesResponseAllOf) GetObject() string {
-	if o == nil || IsNil(o.Object) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Object
+
+	return o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
+// GetObjectOk returns a tuple with the Object field value
 // and a boolean to check if the value has been set.
 func (o *DiscountLinesResponseAllOf) GetObjectOk() (*string, bool) {
-	if o == nil || IsNil(o.Object) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Object, true
+	return &o.Object, true
 }
 
-// HasObject returns a boolean if a field has been set.
-func (o *DiscountLinesResponseAllOf) HasObject() bool {
-	if o != nil && !IsNil(o.Object) {
-		return true
-	}
-
-	return false
-}
-
-// SetObject gets a reference to the given string and assigns it to the Object field.
+// SetObject sets field value
 func (o *DiscountLinesResponseAllOf) SetObject(v string) {
-	o.Object = &v
+	o.Object = v
 }
 
-// GetParentId returns the ParentId field value if set, zero value otherwise.
+// GetParentId returns the ParentId field value
 func (o *DiscountLinesResponseAllOf) GetParentId() string {
-	if o == nil || IsNil(o.ParentId) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ParentId
+
+	return o.ParentId
 }
 
-// GetParentIdOk returns a tuple with the ParentId field value if set, nil otherwise
+// GetParentIdOk returns a tuple with the ParentId field value
 // and a boolean to check if the value has been set.
 func (o *DiscountLinesResponseAllOf) GetParentIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ParentId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ParentId, true
+	return &o.ParentId, true
 }
 
-// HasParentId returns a boolean if a field has been set.
-func (o *DiscountLinesResponseAllOf) HasParentId() bool {
-	if o != nil && !IsNil(o.ParentId) {
-		return true
-	}
-
-	return false
-}
-
-// SetParentId gets a reference to the given string and assigns it to the ParentId field.
+// SetParentId sets field value
 func (o *DiscountLinesResponseAllOf) SetParentId(v string) {
-	o.ParentId = &v
+	o.ParentId = v
 }
 
 func (o DiscountLinesResponseAllOf) MarshalJSON() ([]byte, error) {
@@ -148,15 +130,9 @@ func (o DiscountLinesResponseAllOf) MarshalJSON() ([]byte, error) {
 
 func (o DiscountLinesResponseAllOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !IsNil(o.Object) {
-		toSerialize["object"] = o.Object
-	}
-	if !IsNil(o.ParentId) {
-		toSerialize["parent_id"] = o.ParentId
-	}
+	toSerialize["id"] = o.Id
+	toSerialize["object"] = o.Object
+	toSerialize["parent_id"] = o.ParentId
 	return toSerialize, nil
 }
 

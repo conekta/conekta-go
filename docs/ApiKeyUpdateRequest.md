@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Active** | Pointer to **bool** | Indicates if the webhook key is active | [optional] 
-**Description** | Pointer to **string** | Detail of the use that will be given to the api key | [optional] 
+**Description** | Pointer to **string** | A name or brief explanation of what this api key is used for | [optional] 
 
 ## Methods
 

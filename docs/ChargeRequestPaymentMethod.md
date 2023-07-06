@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Type** | **string** |  | 
 **TokenId** | Pointer to **string** |  | [optional] 
 **PaymentSourceId** | Pointer to **string** |  | [optional] 
+**ContractId** | Pointer to **string** | Optional id sent to indicate the bank contract for recurrent card charges. | [optional] 
 
 ## Methods
 
@@ -122,6 +123,31 @@ SetPaymentSourceId sets PaymentSourceId field to given value.
 `func (o *ChargeRequestPaymentMethod) HasPaymentSourceId() bool`
 
 HasPaymentSourceId returns a boolean if a field has been set.
+
+### GetContractId
+
+`func (o *ChargeRequestPaymentMethod) GetContractId() string`
+
+GetContractId returns the ContractId field if non-nil, zero value otherwise.
+
+### GetContractIdOk
+
+`func (o *ChargeRequestPaymentMethod) GetContractIdOk() (*string, bool)`
+
+GetContractIdOk returns a tuple with the ContractId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContractId
+
+`func (o *ChargeRequestPaymentMethod) SetContractId(v string)`
+
+SetContractId sets ContractId field to given value.
+
+### HasContractId
+
+`func (o *ChargeRequestPaymentMethod) HasContractId() bool`
+
+HasContractId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

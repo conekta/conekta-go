@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Active** | Pointer to **bool** | Indicates if the api key is active | [optional] 
-**CreatedAt** | Pointer to **int64** | Unix timestamp in seconds with the creation date of the api key | [optional] 
-**Description** | Pointer to **string** | Detail of the use that will be given to the api key | [optional] 
-**Id** | Pointer to **string** | Unique identifier of the api key | [optional] 
-**Livemode** | Pointer to **bool** | Indicates if the api key is in live mode | [optional] 
-**Object** | Pointer to **string** | Object name, value is api_key | [optional] 
+**CreatedAt** | Pointer to **int64** | Unix timestamp in seconds of when the api key was created | [optional] 
+**Description** | Pointer to **string** | A name or brief explanation of what this api key is used for | [optional] 
+**Livemode** | Pointer to **bool** | Indicates if the api key is in production | [optional] 
 **Prefix** | Pointer to **string** | The first few characters of the authentication_token | [optional] 
-**Role** | Pointer to **string** | Indicates the user account private&#x3D;owner or public&#x3D;public | [optional] 
+**Id** | Pointer to **string** | Unique identifier of the api key | [optional] 
+**Object** | Pointer to **string** | Object name, value is &#39;api_key&#39; | [optional] 
 **Deleted** | Pointer to **bool** |  | [optional] 
+**Role** | Pointer to **string** | Indicates if the api key is private or public | [optional] 
 
 ## Methods
 
@@ -108,31 +108,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### GetId
-
-`func (o *DeleteApiKeysResponse) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *DeleteApiKeysResponse) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *DeleteApiKeysResponse) SetId(v string)`
-
-SetId sets Id field to given value.
-
-### HasId
-
-`func (o *DeleteApiKeysResponse) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
 ### GetLivemode
 
 `func (o *DeleteApiKeysResponse) GetLivemode() bool`
@@ -157,31 +132,6 @@ SetLivemode sets Livemode field to given value.
 `func (o *DeleteApiKeysResponse) HasLivemode() bool`
 
 HasLivemode returns a boolean if a field has been set.
-
-### GetObject
-
-`func (o *DeleteApiKeysResponse) GetObject() string`
-
-GetObject returns the Object field if non-nil, zero value otherwise.
-
-### GetObjectOk
-
-`func (o *DeleteApiKeysResponse) GetObjectOk() (*string, bool)`
-
-GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetObject
-
-`func (o *DeleteApiKeysResponse) SetObject(v string)`
-
-SetObject sets Object field to given value.
-
-### HasObject
-
-`func (o *DeleteApiKeysResponse) HasObject() bool`
-
-HasObject returns a boolean if a field has been set.
 
 ### GetPrefix
 
@@ -208,30 +158,55 @@ SetPrefix sets Prefix field to given value.
 
 HasPrefix returns a boolean if a field has been set.
 
-### GetRole
+### GetId
 
-`func (o *DeleteApiKeysResponse) GetRole() string`
+`func (o *DeleteApiKeysResponse) GetId() string`
 
-GetRole returns the Role field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetRoleOk
+### GetIdOk
 
-`func (o *DeleteApiKeysResponse) GetRoleOk() (*string, bool)`
+`func (o *DeleteApiKeysResponse) GetIdOk() (*string, bool)`
 
-GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRole
+### SetId
 
-`func (o *DeleteApiKeysResponse) SetRole(v string)`
+`func (o *DeleteApiKeysResponse) SetId(v string)`
 
-SetRole sets Role field to given value.
+SetId sets Id field to given value.
 
-### HasRole
+### HasId
 
-`func (o *DeleteApiKeysResponse) HasRole() bool`
+`func (o *DeleteApiKeysResponse) HasId() bool`
 
-HasRole returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
+
+### GetObject
+
+`func (o *DeleteApiKeysResponse) GetObject() string`
+
+GetObject returns the Object field if non-nil, zero value otherwise.
+
+### GetObjectOk
+
+`func (o *DeleteApiKeysResponse) GetObjectOk() (*string, bool)`
+
+GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetObject
+
+`func (o *DeleteApiKeysResponse) SetObject(v string)`
+
+SetObject sets Object field to given value.
+
+### HasObject
+
+`func (o *DeleteApiKeysResponse) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetDeleted
 
@@ -257,6 +232,31 @@ SetDeleted sets Deleted field to given value.
 `func (o *DeleteApiKeysResponse) HasDeleted() bool`
 
 HasDeleted returns a boolean if a field has been set.
+
+### GetRole
+
+`func (o *DeleteApiKeysResponse) GetRole() string`
+
+GetRole returns the Role field if non-nil, zero value otherwise.
+
+### GetRoleOk
+
+`func (o *DeleteApiKeysResponse) GetRoleOk() (*string, bool)`
+
+GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRole
+
+`func (o *DeleteApiKeysResponse) SetRole(v string)`
+
+SetRole sets Role field to given value.
+
+### HasRole
+
+`func (o *DeleteApiKeysResponse) HasRole() bool`
+
+HasRole returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

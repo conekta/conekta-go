@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-    apiKeyRequest := *openapiclient.NewApiKeyRequest(true, "online store", "private") // ApiKeyRequest | requested field for a api keys
+    apiKeyRequest := *openapiclient.NewApiKeyRequest("private") // ApiKeyRequest | requested field for a api keys
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
     xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
@@ -230,7 +230,7 @@ Name | Type | Description  | Notes
 
 ## GetApiKeys
 
-> GetApiKeysResponse GetApiKeys(ctx).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+> GetApiKeysResponse GetApiKeys(ctx).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Next(next).Previous(previous).Search(search).Execute()
 
 Get list of Api Keys
 
@@ -252,13 +252,13 @@ func main() {
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
     xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
     limit := int32(56) // int32 | The numbers of items to return, the maximum value is 250 (optional) (default to 20)
-    search := "search_example" // string | General order search, e.g. by mail, reference etc. (optional)
     next := "next_example" // string | next page (optional)
     previous := "previous_example" // string | previous page (optional)
+    search := "search_example" // string | General search, e.g. by id, description, prefix (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApiKeysApi.GetApiKeys(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+    resp, r, err := apiClient.ApiKeysApi.GetApiKeys(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Next(next).Previous(previous).Search(search).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysApi.GetApiKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -282,9 +282,9 @@ Name | Type | Description  | Notes
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
  **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
  **limit** | **int32** | The numbers of items to return, the maximum value is 250 | [default to 20]
- **search** | **string** | General order search, e.g. by mail, reference etc. | 
  **next** | **string** | next page | 
  **previous** | **string** | previous page | 
+ **search** | **string** | General search, e.g. by id, description, prefix | 
 
 ### Return type
 

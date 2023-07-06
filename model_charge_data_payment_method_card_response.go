@@ -23,6 +23,8 @@ type ChargeDataPaymentMethodCardResponse struct {
 	AccountType *string `json:"account_type,omitempty"`
 	AuthCode *string `json:"auth_code,omitempty"`
 	Brand *string `json:"brand,omitempty"`
+	// Id sent for recurrent charges.
+	ContractId *string `json:"contract_id,omitempty"`
 	Country *string `json:"country,omitempty"`
 	ExpMonth *string `json:"exp_month,omitempty"`
 	ExpYear *string `json:"exp_year,omitempty"`
@@ -143,6 +145,38 @@ func (o *ChargeDataPaymentMethodCardResponse) HasBrand() bool {
 // SetBrand gets a reference to the given string and assigns it to the Brand field.
 func (o *ChargeDataPaymentMethodCardResponse) SetBrand(v string) {
 	o.Brand = &v
+}
+
+// GetContractId returns the ContractId field value if set, zero value otherwise.
+func (o *ChargeDataPaymentMethodCardResponse) GetContractId() string {
+	if o == nil || IsNil(o.ContractId) {
+		var ret string
+		return ret
+	}
+	return *o.ContractId
+}
+
+// GetContractIdOk returns a tuple with the ContractId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChargeDataPaymentMethodCardResponse) GetContractIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ContractId) {
+		return nil, false
+	}
+	return o.ContractId, true
+}
+
+// HasContractId returns a boolean if a field has been set.
+func (o *ChargeDataPaymentMethodCardResponse) HasContractId() bool {
+	if o != nil && !IsNil(o.ContractId) {
+		return true
+	}
+
+	return false
+}
+
+// SetContractId gets a reference to the given string and assigns it to the ContractId field.
+func (o *ChargeDataPaymentMethodCardResponse) SetContractId(v string) {
+	o.ContractId = &v
 }
 
 // GetCountry returns the Country field value if set, zero value otherwise.
@@ -387,6 +421,9 @@ func (o ChargeDataPaymentMethodCardResponse) ToMap() (map[string]interface{}, er
 	}
 	if !IsNil(o.Brand) {
 		toSerialize["brand"] = o.Brand
+	}
+	if !IsNil(o.ContractId) {
+		toSerialize["contract_id"] = o.ContractId
 	}
 	if !IsNil(o.Country) {
 		toSerialize["country"] = o.Country

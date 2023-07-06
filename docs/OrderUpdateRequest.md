@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Charges** | Pointer to [**[]ChargeRequest**](ChargeRequest.md) |  | [optional] 
 **Checkout** | Pointer to [**CheckoutRequest**](CheckoutRequest.md) |  | [optional] 
 **Currency** | Pointer to **string** | Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217) | [optional] 
-**CustomerInfo** | Pointer to [**OrderRequestCustomerInfo**](OrderRequestCustomerInfo.md) |  | [optional] 
+**CustomerInfo** | Pointer to [**OrderUpdateRequestCustomerInfo**](OrderUpdateRequestCustomerInfo.md) |  | [optional] 
 **DiscountLines** | Pointer to [**[]OrderDiscountLinesRequest**](OrderDiscountLinesRequest.md) | List of [discounts](https://developers.conekta.com/v2.1.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount. | [optional] 
 **LineItems** | Pointer to [**[]Product**](Product.md) | List of [products](https://developers.conekta.com/v2.1.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product. | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
@@ -112,20 +112,20 @@ HasCurrency returns a boolean if a field has been set.
 
 ### GetCustomerInfo
 
-`func (o *OrderUpdateRequest) GetCustomerInfo() OrderRequestCustomerInfo`
+`func (o *OrderUpdateRequest) GetCustomerInfo() OrderUpdateRequestCustomerInfo`
 
 GetCustomerInfo returns the CustomerInfo field if non-nil, zero value otherwise.
 
 ### GetCustomerInfoOk
 
-`func (o *OrderUpdateRequest) GetCustomerInfoOk() (*OrderRequestCustomerInfo, bool)`
+`func (o *OrderUpdateRequest) GetCustomerInfoOk() (*OrderUpdateRequestCustomerInfo, bool)`
 
 GetCustomerInfoOk returns a tuple with the CustomerInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCustomerInfo
 
-`func (o *OrderUpdateRequest) SetCustomerInfo(v OrderRequestCustomerInfo)`
+`func (o *OrderUpdateRequest) SetCustomerInfo(v OrderUpdateRequestCustomerInfo)`
 
 SetCustomerInfo sets CustomerInfo field to given value.
 

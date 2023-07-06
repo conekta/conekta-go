@@ -24,7 +24,7 @@ type OrderUpdateRequest struct {
 	Checkout *CheckoutRequest `json:"checkout,omitempty"`
 	// Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)
 	Currency *string `json:"currency,omitempty"`
-	CustomerInfo *OrderRequestCustomerInfo `json:"customer_info,omitempty"`
+	CustomerInfo *OrderUpdateRequestCustomerInfo `json:"customer_info,omitempty"`
 	// List of [discounts](https://developers.conekta.com/v2.1.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount.
 	DiscountLines []OrderDiscountLinesRequest `json:"discount_lines,omitempty"`
 	// List of [products](https://developers.conekta.com/v2.1.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
@@ -156,9 +156,9 @@ func (o *OrderUpdateRequest) SetCurrency(v string) {
 }
 
 // GetCustomerInfo returns the CustomerInfo field value if set, zero value otherwise.
-func (o *OrderUpdateRequest) GetCustomerInfo() OrderRequestCustomerInfo {
+func (o *OrderUpdateRequest) GetCustomerInfo() OrderUpdateRequestCustomerInfo {
 	if o == nil || IsNil(o.CustomerInfo) {
-		var ret OrderRequestCustomerInfo
+		var ret OrderUpdateRequestCustomerInfo
 		return ret
 	}
 	return *o.CustomerInfo
@@ -166,7 +166,7 @@ func (o *OrderUpdateRequest) GetCustomerInfo() OrderRequestCustomerInfo {
 
 // GetCustomerInfoOk returns a tuple with the CustomerInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderUpdateRequest) GetCustomerInfoOk() (*OrderRequestCustomerInfo, bool) {
+func (o *OrderUpdateRequest) GetCustomerInfoOk() (*OrderUpdateRequestCustomerInfo, bool) {
 	if o == nil || IsNil(o.CustomerInfo) {
 		return nil, false
 	}
@@ -182,8 +182,8 @@ func (o *OrderUpdateRequest) HasCustomerInfo() bool {
 	return false
 }
 
-// SetCustomerInfo gets a reference to the given OrderRequestCustomerInfo and assigns it to the CustomerInfo field.
-func (o *OrderUpdateRequest) SetCustomerInfo(v OrderRequestCustomerInfo) {
+// SetCustomerInfo gets a reference to the given OrderUpdateRequestCustomerInfo and assigns it to the CustomerInfo field.
+func (o *OrderUpdateRequest) SetCustomerInfo(v OrderUpdateRequestCustomerInfo) {
 	o.CustomerInfo = &v
 }
 

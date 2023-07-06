@@ -22,7 +22,7 @@ var _ MappedNullable = &ApiKeyUpdateRequest{}
 type ApiKeyUpdateRequest struct {
 	// Indicates if the webhook key is active
 	Active *bool `json:"active,omitempty"`
-	// Detail of the use that will be given to the api key
+	// A name or brief explanation of what this api key is used for
 	Description *string `json:"description,omitempty"`
 }
 

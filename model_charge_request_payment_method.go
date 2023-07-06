@@ -25,6 +25,8 @@ type ChargeRequestPaymentMethod struct {
 	Type string `json:"type"`
 	TokenId *string `json:"token_id,omitempty"`
 	PaymentSourceId *string `json:"payment_source_id,omitempty"`
+	// Optional id sent to indicate the bank contract for recurrent card charges.
+	ContractId *string `json:"contract_id,omitempty"`
 }
 
 // NewChargeRequestPaymentMethod instantiates a new ChargeRequestPaymentMethod object
@@ -165,6 +167,38 @@ func (o *ChargeRequestPaymentMethod) SetPaymentSourceId(v string) {
 	o.PaymentSourceId = &v
 }
 
+// GetContractId returns the ContractId field value if set, zero value otherwise.
+func (o *ChargeRequestPaymentMethod) GetContractId() string {
+	if o == nil || IsNil(o.ContractId) {
+		var ret string
+		return ret
+	}
+	return *o.ContractId
+}
+
+// GetContractIdOk returns a tuple with the ContractId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChargeRequestPaymentMethod) GetContractIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ContractId) {
+		return nil, false
+	}
+	return o.ContractId, true
+}
+
+// HasContractId returns a boolean if a field has been set.
+func (o *ChargeRequestPaymentMethod) HasContractId() bool {
+	if o != nil && !IsNil(o.ContractId) {
+		return true
+	}
+
+	return false
+}
+
+// SetContractId gets a reference to the given string and assigns it to the ContractId field.
+func (o *ChargeRequestPaymentMethod) SetContractId(v string) {
+	o.ContractId = &v
+}
+
 func (o ChargeRequestPaymentMethod) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -184,6 +218,9 @@ func (o ChargeRequestPaymentMethod) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PaymentSourceId) {
 		toSerialize["payment_source_id"] = o.PaymentSourceId
+	}
+	if !IsNil(o.ContractId) {
+		toSerialize["contract_id"] = o.ContractId
 	}
 	return toSerialize, nil
 }

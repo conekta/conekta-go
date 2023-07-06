@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **Metadata** | Pointer to **map[string]interface{}** | Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. | [optional] 
 **Object** | Pointer to **string** | String representing the object’s type. Objects of the same type share the same value. | [optional] 
 **PaymentStatus** | Pointer to **string** | The payment status of the order. | [optional] 
+**ProcessingMode** | Pointer to **string** | Indicates the processing mode for the order, either ecommerce, recurrent or validation. | [optional] 
 **ShippingContact** | Pointer to [**OrderResponseShippingContact**](OrderResponseShippingContact.md) |  | [optional] 
 **UpdatedAt** | Pointer to **int64** | The time at which the object was last updated in seconds since the Unix epoch | [optional] 
 
@@ -467,6 +468,31 @@ SetPaymentStatus sets PaymentStatus field to given value.
 `func (o *OrderResponse) HasPaymentStatus() bool`
 
 HasPaymentStatus returns a boolean if a field has been set.
+
+### GetProcessingMode
+
+`func (o *OrderResponse) GetProcessingMode() string`
+
+GetProcessingMode returns the ProcessingMode field if non-nil, zero value otherwise.
+
+### GetProcessingModeOk
+
+`func (o *OrderResponse) GetProcessingModeOk() (*string, bool)`
+
+GetProcessingModeOk returns a tuple with the ProcessingMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProcessingMode
+
+`func (o *OrderResponse) SetProcessingMode(v string)`
+
+SetProcessingMode sets ProcessingMode field to given value.
+
+### HasProcessingMode
+
+`func (o *OrderResponse) HasProcessingMode() bool`
+
+HasProcessingMode returns a boolean if a field has been set.
 
 ### GetShippingContact
 

@@ -20,10 +20,8 @@ var _ MappedNullable = &ApiKeyRequest{}
 
 // ApiKeyRequest struct for ApiKeyRequest
 type ApiKeyRequest struct {
-	// Indicates if the api key is active
-	Active bool `json:"active"`
-	// Detail of the use that will be given to the api key
-	Description string `json:"description"`
+	// A name or brief explanation of what this api key is used for
+	Description *string `json:"description,omitempty"`
 	Role string `json:"role"`
 }
 
@@ -31,10 +29,8 @@ type ApiKeyRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiKeyRequest(active bool, description string, role string) *ApiKeyRequest {
+func NewApiKeyRequest(role string) *ApiKeyRequest {
 	this := ApiKeyRequest{}
-	this.Active = active
-	this.Description = description
 	this.Role = role
 	return &this
 }
@@ -47,52 +43,36 @@ func NewApiKeyRequestWithDefaults() *ApiKeyRequest {
 	return &this
 }
 
-// GetActive returns the Active field value
-func (o *ApiKeyRequest) GetActive() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Active
-}
-
-// GetActiveOk returns a tuple with the Active field value
-// and a boolean to check if the value has been set.
-func (o *ApiKeyRequest) GetActiveOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Active, true
-}
-
-// SetActive sets field value
-func (o *ApiKeyRequest) SetActive(v bool) {
-	o.Active = v
-}
-
-// GetDescription returns the Description field value
+// GetDescription returns the Description field value if set, zero value otherwise.
 func (o *ApiKeyRequest) GetDescription() string {
-	if o == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
-
-	return o.Description
+	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiKeyRequest) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
-	return &o.Description, true
+	return o.Description, true
 }
 
-// SetDescription sets field value
+// HasDescription returns a boolean if a field has been set.
+func (o *ApiKeyRequest) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *ApiKeyRequest) SetDescription(v string) {
-	o.Description = v
+	o.Description = &v
 }
 
 // GetRole returns the Role field value
@@ -129,8 +109,9 @@ func (o ApiKeyRequest) MarshalJSON() ([]byte, error) {
 
 func (o ApiKeyRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["active"] = o.Active
-	toSerialize["description"] = o.Description
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
 	toSerialize["role"] = o.Role
 	return toSerialize, nil
 }

@@ -5,13 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Active** | Pointer to **bool** | Indicates if the api key is active | [optional] 
-**CreatedAt** | Pointer to **int64** | Unix timestamp in seconds with the creation date of the api key | [optional] 
-**Description** | Pointer to **string** | Detail of the use that will be given to the api key | [optional] 
+**CreatedAt** | Pointer to **int64** | Unix timestamp in seconds of when the api key was created | [optional] 
+**UpdatedAt** | Pointer to **int64** | Unix timestamp in seconds of when the api key was last updated | [optional] 
+**DeactivatedAt** | Pointer to **NullableInt64** | Unix timestamp in seconds of when the api key was deleted | [optional] 
+**Description** | Pointer to **string** | A name or brief explanation of what this api key is used for | [optional] 
 **Id** | Pointer to **string** | Unique identifier of the api key | [optional] 
-**Livemode** | Pointer to **bool** | Indicates if the api key is in live mode | [optional] 
-**Object** | Pointer to **string** | Object name, value is api_key | [optional] 
+**Livemode** | Pointer to **bool** | Indicates if the api key is in production | [optional] 
+**Deleted** | Pointer to **bool** | Indicates if the api key was deleted | [optional] 
+**Object** | Pointer to **string** | Object name, value is &#39;api_key&#39; | [optional] 
 **Prefix** | Pointer to **string** | The first few characters of the authentication_token | [optional] 
-**Role** | Pointer to **string** | Indicates the user account private&#x3D;owner or public&#x3D;public | [optional] 
+**Role** | Pointer to **string** | Indicates if the api key is private or public | [optional] 
 
 ## Methods
 
@@ -82,6 +85,66 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
+### GetUpdatedAt
+
+`func (o *ApiKeyResponse) GetUpdatedAt() int64`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *ApiKeyResponse) GetUpdatedAtOk() (*int64, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *ApiKeyResponse) SetUpdatedAt(v int64)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
+
+### HasUpdatedAt
+
+`func (o *ApiKeyResponse) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
+
+### GetDeactivatedAt
+
+`func (o *ApiKeyResponse) GetDeactivatedAt() int64`
+
+GetDeactivatedAt returns the DeactivatedAt field if non-nil, zero value otherwise.
+
+### GetDeactivatedAtOk
+
+`func (o *ApiKeyResponse) GetDeactivatedAtOk() (*int64, bool)`
+
+GetDeactivatedAtOk returns a tuple with the DeactivatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeactivatedAt
+
+`func (o *ApiKeyResponse) SetDeactivatedAt(v int64)`
+
+SetDeactivatedAt sets DeactivatedAt field to given value.
+
+### HasDeactivatedAt
+
+`func (o *ApiKeyResponse) HasDeactivatedAt() bool`
+
+HasDeactivatedAt returns a boolean if a field has been set.
+
+### SetDeactivatedAtNil
+
+`func (o *ApiKeyResponse) SetDeactivatedAtNil(b bool)`
+
+ SetDeactivatedAtNil sets the value for DeactivatedAt to be an explicit nil
+
+### UnsetDeactivatedAt
+`func (o *ApiKeyResponse) UnsetDeactivatedAt()`
+
+UnsetDeactivatedAt ensures that no value is present for DeactivatedAt, not even an explicit nil
 ### GetDescription
 
 `func (o *ApiKeyResponse) GetDescription() string`
@@ -156,6 +219,31 @@ SetLivemode sets Livemode field to given value.
 `func (o *ApiKeyResponse) HasLivemode() bool`
 
 HasLivemode returns a boolean if a field has been set.
+
+### GetDeleted
+
+`func (o *ApiKeyResponse) GetDeleted() bool`
+
+GetDeleted returns the Deleted field if non-nil, zero value otherwise.
+
+### GetDeletedOk
+
+`func (o *ApiKeyResponse) GetDeletedOk() (*bool, bool)`
+
+GetDeletedOk returns a tuple with the Deleted field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeleted
+
+`func (o *ApiKeyResponse) SetDeleted(v bool)`
+
+SetDeleted sets Deleted field to given value.
+
+### HasDeleted
+
+`func (o *ApiKeyResponse) HasDeleted() bool`
+
+HasDeleted returns a boolean if a field has been set.
 
 ### GetObject
 

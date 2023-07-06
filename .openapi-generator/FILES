@@ -1,5 +1,3 @@
-.gitignore
-.travis.yml
 AUTHORS.md
 CODE_OF_CONDUCT.md
 LICENSE
@@ -7,6 +5,7 @@ README.md
 api/openapi.yaml
 api_antifraud.go
 api_api_keys.go
+api_balances.go
 api_charges.go
 api_companies.go
 api_customers.go
@@ -35,8 +34,12 @@ docs/ApiKeyCreateResponse.md
 docs/ApiKeyCreateResponseAllOf.md
 docs/ApiKeyRequest.md
 docs/ApiKeyResponse.md
+docs/ApiKeyResponseOnDelete.md
 docs/ApiKeyUpdateRequest.md
 docs/ApiKeysApi.md
+docs/BalanceCommonField.md
+docs/BalanceResponse.md
+docs/BalancesApi.md
 docs/BlacklistRuleResponse.md
 docs/ChargeDataPaymentMethodBankTransferResponse.md
 docs/ChargeDataPaymentMethodCardResponse.md
@@ -126,6 +129,8 @@ docs/GetCompaniesResponseAllOf.md
 docs/GetCustomerPaymentMethodDataResponse.md
 docs/GetEventsResponse.md
 docs/GetEventsResponseAllOf.md
+docs/GetOrderDiscountLinesResponse.md
+docs/GetOrderDiscountLinesResponseAllOf.md
 docs/GetOrdersResponse.md
 docs/GetPaymentMethodResponse.md
 docs/GetPaymentMethodResponseAllOf.md
@@ -166,6 +171,7 @@ docs/OrderResponseShippingContact.md
 docs/OrderResponseShippingContactAllOf.md
 docs/OrderTaxRequest.md
 docs/OrderUpdateRequest.md
+docs/OrderUpdateRequestCustomerInfo.md
 docs/OrdersApi.md
 docs/OrdersResponse.md
 docs/Page.md
@@ -248,14 +254,16 @@ docs/WebhookResponse.md
 docs/WebhookUpdateRequest.md
 docs/WebhooksApi.md
 docs/WhitelistlistRuleResponse.md
-git_push.sh
 go.mod
 go.sum
 model_api_key_create_response.go
 model_api_key_create_response_all_of.go
 model_api_key_request.go
 model_api_key_response.go
+model_api_key_response_on_delete.go
 model_api_key_update_request.go
+model_balance_common_field.go
+model_balance_response.go
 model_blacklist_rule_response.go
 model_charge_data_payment_method_bank_transfer_response.go
 model_charge_data_payment_method_card_response.go
@@ -341,6 +349,8 @@ model_get_companies_response_all_of.go
 model_get_customer_payment_method_data_response.go
 model_get_events_response.go
 model_get_events_response_all_of.go
+model_get_order_discount_lines_response.go
+model_get_order_discount_lines_response_all_of.go
 model_get_orders_response.go
 model_get_payment_method_response.go
 model_get_payment_method_response_all_of.go
@@ -379,6 +389,7 @@ model_order_response_shipping_contact.go
 model_order_response_shipping_contact_all_of.go
 model_order_tax_request.go
 model_order_update_request.go
+model_order_update_request_customer_info.go
 model_orders_response.go
 model_page.go
 model_pagination.go

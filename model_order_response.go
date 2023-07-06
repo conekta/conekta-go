@@ -45,6 +45,8 @@ type OrderResponse struct {
 	Object *string `json:"object,omitempty"`
 	// The payment status of the order.
 	PaymentStatus *string `json:"payment_status,omitempty"`
+	// Indicates the processing mode for the order, either ecommerce, recurrent or validation.
+	ProcessingMode *string `json:"processing_mode,omitempty"`
 	ShippingContact *OrderResponseShippingContact `json:"shipping_contact,omitempty"`
 	// The time at which the object was last updated in seconds since the Unix epoch
 	UpdatedAt *int64 `json:"updated_at,omitempty"`
@@ -611,6 +613,38 @@ func (o *OrderResponse) SetPaymentStatus(v string) {
 	o.PaymentStatus = &v
 }
 
+// GetProcessingMode returns the ProcessingMode field value if set, zero value otherwise.
+func (o *OrderResponse) GetProcessingMode() string {
+	if o == nil || IsNil(o.ProcessingMode) {
+		var ret string
+		return ret
+	}
+	return *o.ProcessingMode
+}
+
+// GetProcessingModeOk returns a tuple with the ProcessingMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderResponse) GetProcessingModeOk() (*string, bool) {
+	if o == nil || IsNil(o.ProcessingMode) {
+		return nil, false
+	}
+	return o.ProcessingMode, true
+}
+
+// HasProcessingMode returns a boolean if a field has been set.
+func (o *OrderResponse) HasProcessingMode() bool {
+	if o != nil && !IsNil(o.ProcessingMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetProcessingMode gets a reference to the given string and assigns it to the ProcessingMode field.
+func (o *OrderResponse) SetProcessingMode(v string) {
+	o.ProcessingMode = &v
+}
+
 // GetShippingContact returns the ShippingContact field value if set, zero value otherwise.
 func (o *OrderResponse) GetShippingContact() OrderResponseShippingContact {
 	if o == nil || IsNil(o.ShippingContact) {
@@ -735,6 +769,9 @@ func (o OrderResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PaymentStatus) {
 		toSerialize["payment_status"] = o.PaymentStatus
+	}
+	if !IsNil(o.ProcessingMode) {
+		toSerialize["processing_mode"] = o.ProcessingMode
 	}
 	if !IsNil(o.ShippingContact) {
 		toSerialize["shipping_contact"] = o.ShippingContact

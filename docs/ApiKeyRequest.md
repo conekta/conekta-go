@@ -4,15 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Active** | **bool** | Indicates if the api key is active | 
-**Description** | **string** | Detail of the use that will be given to the api key | 
+**Description** | Pointer to **string** | A name or brief explanation of what this api key is used for | [optional] 
 **Role** | **string** |  | 
 
 ## Methods
 
 ### NewApiKeyRequest
 
-`func NewApiKeyRequest(active bool, description string, role string, ) *ApiKeyRequest`
+`func NewApiKeyRequest(role string, ) *ApiKeyRequest`
 
 NewApiKeyRequest instantiates a new ApiKeyRequest object
 This constructor will assign default values to properties that have it defined,
@@ -26,26 +25,6 @@ will change when the set of required properties is changed
 NewApiKeyRequestWithDefaults instantiates a new ApiKeyRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetActive
-
-`func (o *ApiKeyRequest) GetActive() bool`
-
-GetActive returns the Active field if non-nil, zero value otherwise.
-
-### GetActiveOk
-
-`func (o *ApiKeyRequest) GetActiveOk() (*bool, bool)`
-
-GetActiveOk returns a tuple with the Active field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetActive
-
-`func (o *ApiKeyRequest) SetActive(v bool)`
-
-SetActive sets Active field to given value.
-
 
 ### GetDescription
 
@@ -66,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetDescription sets Description field to given value.
 
+### HasDescription
+
+`func (o *ApiKeyRequest) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
 
 ### GetRole
 
