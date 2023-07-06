@@ -21,6 +21,8 @@ jobs:
           npm install -g @mockoon/cli
           npx mockoon-cli start --data https://raw.githubusercontent.com/conekta/openapi/main/mocks/conekta_api.json --port 3000
       - name: Run tests
-        run: go test -v --race ./...
+        run: |
+          go mod tidy
+          go test -v --race ./...
         env:
           BASE_PATH: localhost:3000
