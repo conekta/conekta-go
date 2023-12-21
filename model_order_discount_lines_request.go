@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the OrderDiscountLinesRequest type satisfies the MappedNullable interface at compile time
@@ -27,6 +28,8 @@ type OrderDiscountLinesRequest struct {
 	// It can be 'loyalty', 'campaign', 'coupon' o 'sign'
 	Type string `json:"type"`
 }
+
+type _OrderDiscountLinesRequest OrderDiscountLinesRequest
 
 // NewOrderDiscountLinesRequest instantiates a new OrderDiscountLinesRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -134,6 +137,43 @@ func (o OrderDiscountLinesRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["code"] = o.Code
 	toSerialize["type"] = o.Type
 	return toSerialize, nil
+}
+
+func (o *OrderDiscountLinesRequest) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"amount",
+		"code",
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varOrderDiscountLinesRequest := _OrderDiscountLinesRequest{}
+
+	err = json.Unmarshal(bytes, &varOrderDiscountLinesRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = OrderDiscountLinesRequest(varOrderDiscountLinesRequest)
+
+	return err
 }
 
 type NullableOrderDiscountLinesRequest struct {

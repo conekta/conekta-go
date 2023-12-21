@@ -1,15 +1,15 @@
-# \AntifraudApi
+# \AntifraudAPI
 
 All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateRuleBlacklist**](AntifraudApi.md#CreateRuleBlacklist) | **Post** /antifraud/blacklists | Create blacklisted rule
-[**CreateRuleWhitelist**](AntifraudApi.md#CreateRuleWhitelist) | **Post** /antifraud/whitelists | Create whitelisted rule
-[**DeleteRuleBlacklist**](AntifraudApi.md#DeleteRuleBlacklist) | **Delete** /antifraud/blacklists/{id} | Delete blacklisted rule
-[**DeleteRuleWhitelist**](AntifraudApi.md#DeleteRuleWhitelist) | **Delete** /antifraud/whitelists/{id} | Delete whitelisted rule
-[**GetRuleBlacklist**](AntifraudApi.md#GetRuleBlacklist) | **Get** /antifraud/blacklists | Get list of blacklisted rules
-[**GetRuleWhitelist**](AntifraudApi.md#GetRuleWhitelist) | **Get** /antifraud/whitelists | Get a list of whitelisted rules
+[**CreateRuleBlacklist**](AntifraudAPI.md#CreateRuleBlacklist) | **Post** /antifraud/blacklists | Create blacklisted rule
+[**CreateRuleWhitelist**](AntifraudAPI.md#CreateRuleWhitelist) | **Post** /antifraud/whitelists | Create whitelisted rule
+[**DeleteRuleBlacklist**](AntifraudAPI.md#DeleteRuleBlacklist) | **Delete** /antifraud/blacklists/{id} | Delete blacklisted rule
+[**DeleteRuleWhitelist**](AntifraudAPI.md#DeleteRuleWhitelist) | **Delete** /antifraud/whitelists/{id} | Delete whitelisted rule
+[**GetRuleBlacklist**](AntifraudAPI.md#GetRuleBlacklist) | **Get** /antifraud/blacklists | Get list of blacklisted rules
+[**GetRuleWhitelist**](AntifraudAPI.md#GetRuleWhitelist) | **Get** /antifraud/whitelists | Get a list of whitelisted rules
 
 
 
@@ -32,18 +32,18 @@ import (
 )
 
 func main() {
-    createRiskRulesData := *openapiclient.NewCreateRiskRulesData("this client's email was verified at 20/09/22 by internal process", "email | phone | card_token", "email@example.com | 818081808180 | src_2qUCNd5AyQqfPMBuV") // CreateRiskRulesData | requested field for blacklist rule
+    createRiskRulesData := *openapiclient.NewCreateRiskRulesData("this client email was verified at 20/09/22 by internal process", "email | phone | card_token", "email@example.com | 818081808180 | src_2qUCNd5AyQqfPMBuV") // CreateRiskRulesData | requested field for blacklist rule
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AntifraudApi.CreateRuleBlacklist(context.Background()).CreateRiskRulesData(createRiskRulesData).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.AntifraudAPI.CreateRuleBlacklist(context.Background()).CreateRiskRulesData(createRiskRulesData).AcceptLanguage(acceptLanguage).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AntifraudApi.CreateRuleBlacklist``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AntifraudAPI.CreateRuleBlacklist``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateRuleBlacklist`: BlacklistRuleResponse
-    fmt.Fprintf(os.Stdout, "Response from `AntifraudApi.CreateRuleBlacklist`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AntifraudAPI.CreateRuleBlacklist`: %v\n", resp)
 }
 ```
 
@@ -99,17 +99,17 @@ import (
 
 func main() {
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    createRiskRulesData := *openapiclient.NewCreateRiskRulesData("this client's email was verified at 20/09/22 by internal process", "email | phone | card_token", "email@example.com | 818081808180 | src_2qUCNd5AyQqfPMBuV") // CreateRiskRulesData |  (optional)
+    createRiskRulesData := *openapiclient.NewCreateRiskRulesData("this client email was verified at 20/09/22 by internal process", "email | phone | card_token", "email@example.com | 818081808180 | src_2qUCNd5AyQqfPMBuV") // CreateRiskRulesData |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AntifraudApi.CreateRuleWhitelist(context.Background()).AcceptLanguage(acceptLanguage).CreateRiskRulesData(createRiskRulesData).Execute()
+    resp, r, err := apiClient.AntifraudAPI.CreateRuleWhitelist(context.Background()).AcceptLanguage(acceptLanguage).CreateRiskRulesData(createRiskRulesData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AntifraudApi.CreateRuleWhitelist``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AntifraudAPI.CreateRuleWhitelist``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateRuleWhitelist`: WhitelistlistRuleResponse
-    fmt.Fprintf(os.Stdout, "Response from `AntifraudApi.CreateRuleWhitelist`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AntifraudAPI.CreateRuleWhitelist`: %v\n", resp)
 }
 ```
 
@@ -170,13 +170,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AntifraudApi.DeleteRuleBlacklist(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.AntifraudAPI.DeleteRuleBlacklist(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AntifraudApi.DeleteRuleBlacklist``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AntifraudAPI.DeleteRuleBlacklist``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteRuleBlacklist`: DeletedBlacklistRuleResponse
-    fmt.Fprintf(os.Stdout, "Response from `AntifraudApi.DeleteRuleBlacklist`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AntifraudAPI.DeleteRuleBlacklist`: %v\n", resp)
 }
 ```
 
@@ -242,13 +242,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AntifraudApi.DeleteRuleWhitelist(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.AntifraudAPI.DeleteRuleWhitelist(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AntifraudApi.DeleteRuleWhitelist``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AntifraudAPI.DeleteRuleWhitelist``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteRuleWhitelist`: DeletedWhitelistRuleResponse
-    fmt.Fprintf(os.Stdout, "Response from `AntifraudApi.DeleteRuleWhitelist`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AntifraudAPI.DeleteRuleWhitelist`: %v\n", resp)
 }
 ```
 
@@ -314,13 +314,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AntifraudApi.GetRuleBlacklist(context.Background()).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.AntifraudAPI.GetRuleBlacklist(context.Background()).AcceptLanguage(acceptLanguage).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AntifraudApi.GetRuleBlacklist``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AntifraudAPI.GetRuleBlacklist``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetRuleBlacklist`: RiskRulesList
-    fmt.Fprintf(os.Stdout, "Response from `AntifraudApi.GetRuleBlacklist`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AntifraudAPI.GetRuleBlacklist`: %v\n", resp)
 }
 ```
 
@@ -380,13 +380,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AntifraudApi.GetRuleWhitelist(context.Background()).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.AntifraudAPI.GetRuleWhitelist(context.Background()).AcceptLanguage(acceptLanguage).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AntifraudApi.GetRuleWhitelist``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AntifraudAPI.GetRuleWhitelist``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetRuleWhitelist`: RiskRulesList
-    fmt.Fprintf(os.Stdout, "Response from `AntifraudApi.GetRuleWhitelist`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AntifraudAPI.GetRuleWhitelist`: %v\n", resp)
 }
 ```
 

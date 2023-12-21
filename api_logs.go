@@ -21,7 +21,7 @@ import (
 )
 
 
-type LogsApi interface {
+type LogsAPI interface {
 
 	/*
 	GetLogById Get Log
@@ -53,12 +53,12 @@ type LogsApi interface {
 	GetLogsExecute(r ApiGetLogsRequest) (*LogsResponse, *http.Response, error)
 }
 
-// LogsApiService LogsApi service
-type LogsApiService service
+// LogsAPIService LogsAPI service
+type LogsAPIService service
 
 type ApiGetLogByIdRequest struct {
 	ctx context.Context
-	ApiService LogsApi
+	ApiService LogsAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -89,7 +89,7 @@ Get the details of a specific log
  @param id Identifier of the resource
  @return ApiGetLogByIdRequest
 */
-func (a *LogsApiService) GetLogById(ctx context.Context, id string) ApiGetLogByIdRequest {
+func (a *LogsAPIService) GetLogById(ctx context.Context, id string) ApiGetLogByIdRequest {
 	return ApiGetLogByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -99,7 +99,7 @@ func (a *LogsApiService) GetLogById(ctx context.Context, id string) ApiGetLogByI
 
 // Execute executes the request
 //  @return LogResponse
-func (a *LogsApiService) GetLogByIdExecute(r ApiGetLogByIdRequest) (*LogResponse, *http.Response, error) {
+func (a *LogsAPIService) GetLogByIdExecute(r ApiGetLogByIdRequest) (*LogResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -107,7 +107,7 @@ func (a *LogsApiService) GetLogByIdExecute(r ApiGetLogByIdRequest) (*LogResponse
 		localVarReturnValue  *LogResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.GetLogById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsAPIService.GetLogById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -213,7 +213,7 @@ func (a *LogsApiService) GetLogByIdExecute(r ApiGetLogByIdRequest) (*LogResponse
 
 type ApiGetLogsRequest struct {
 	ctx context.Context
-	ApiService LogsApi
+	ApiService LogsAPI
 	acceptLanguage *string
 	xChildCompanyId *string
 	limit *int32
@@ -270,7 +270,7 @@ Get log details in the form of a list
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetLogsRequest
 */
-func (a *LogsApiService) GetLogs(ctx context.Context) ApiGetLogsRequest {
+func (a *LogsAPIService) GetLogs(ctx context.Context) ApiGetLogsRequest {
 	return ApiGetLogsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -279,7 +279,7 @@ func (a *LogsApiService) GetLogs(ctx context.Context) ApiGetLogsRequest {
 
 // Execute executes the request
 //  @return LogsResponse
-func (a *LogsApiService) GetLogsExecute(r ApiGetLogsRequest) (*LogsResponse, *http.Response, error) {
+func (a *LogsAPIService) GetLogsExecute(r ApiGetLogsRequest) (*LogsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -287,7 +287,7 @@ func (a *LogsApiService) GetLogsExecute(r ApiGetLogsRequest) (*LogsResponse, *ht
 		localVarReturnValue  *LogsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.GetLogs")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsAPIService.GetLogs")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -300,6 +300,9 @@ func (a *LogsApiService) GetLogsExecute(r ApiGetLogsRequest) (*LogsResponse, *ht
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")

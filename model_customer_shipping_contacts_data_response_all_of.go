@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CustomerShippingContactsDataResponseAllOf type satisfies the MappedNullable interface at compile time
@@ -24,6 +25,8 @@ type CustomerShippingContactsDataResponseAllOf struct {
 	Object string `json:"object"`
 	CreatedAt int64 `json:"created_at"`
 }
+
+type _CustomerShippingContactsDataResponseAllOf CustomerShippingContactsDataResponseAllOf
 
 // NewCustomerShippingContactsDataResponseAllOf instantiates a new CustomerShippingContactsDataResponseAllOf object
 // This constructor will assign default values to properties that have it defined,
@@ -131,6 +134,43 @@ func (o CustomerShippingContactsDataResponseAllOf) ToMap() (map[string]interface
 	toSerialize["object"] = o.Object
 	toSerialize["created_at"] = o.CreatedAt
 	return toSerialize, nil
+}
+
+func (o *CustomerShippingContactsDataResponseAllOf) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"object",
+		"created_at",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCustomerShippingContactsDataResponseAllOf := _CustomerShippingContactsDataResponseAllOf{}
+
+	err = json.Unmarshal(bytes, &varCustomerShippingContactsDataResponseAllOf)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CustomerShippingContactsDataResponseAllOf(varCustomerShippingContactsDataResponseAllOf)
+
+	return err
 }
 
 type NullableCustomerShippingContactsDataResponseAllOf struct {

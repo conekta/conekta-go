@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Default** | Pointer to **bool** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **int64** |  | [optional] 
+**Metadata** | Pointer to **map[string]interface{}** | Metadata associated with the shipping contact | [optional] 
 **Object** | Pointer to **string** |  | [optional] 
 **Deleted** | Pointer to **bool** |  | [optional] 
 
@@ -243,6 +244,31 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *CustomerShippingContactsResponse) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
+
+### GetMetadata
+
+`func (o *CustomerShippingContactsResponse) GetMetadata() map[string]interface{}`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *CustomerShippingContactsResponse) GetMetadataOk() (*map[string]interface{}, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *CustomerShippingContactsResponse) SetMetadata(v map[string]interface{})`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *CustomerShippingContactsResponse) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
 
 ### GetObject
 

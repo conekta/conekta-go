@@ -29,6 +29,8 @@ type OrderResponseShippingContact struct {
 	Address *CustomerShippingContactsResponseAddress `json:"address,omitempty"`
 	ParentId *string `json:"parent_id,omitempty"`
 	Default *bool `json:"default,omitempty"`
+	// Metadata associated with the shipping contact
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	Deleted *bool `json:"deleted,omitempty"`
 }
 
@@ -347,6 +349,38 @@ func (o *OrderResponseShippingContact) SetDefault(v bool) {
 	o.Default = &v
 }
 
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *OrderResponseShippingContact) GetMetadata() map[string]interface{} {
+	if o == nil || IsNil(o.Metadata) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderResponseShippingContact) GetMetadataOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Metadata) {
+		return map[string]interface{}{}, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *OrderResponseShippingContact) HasMetadata() bool {
+	if o != nil && !IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *OrderResponseShippingContact) SetMetadata(v map[string]interface{}) {
+	o.Metadata = v
+}
+
 // GetDeleted returns the Deleted field value if set, zero value otherwise.
 func (o *OrderResponseShippingContact) GetDeleted() bool {
 	if o == nil || IsNil(o.Deleted) {
@@ -415,6 +449,9 @@ func (o OrderResponseShippingContact) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Default) {
 		toSerialize["default"] = o.Default
+	}
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
 	}
 	if !IsNil(o.Deleted) {
 		toSerialize["deleted"] = o.Deleted

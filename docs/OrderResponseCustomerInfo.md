@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Object** | Pointer to **string** |  | [optional] 
+**CustomerCustomReference** | Pointer to **NullableString** | Custom reference | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
 **Phone** | Pointer to **string** |  | [optional] 
@@ -55,6 +56,41 @@ SetObject sets Object field to given value.
 
 HasObject returns a boolean if a field has been set.
 
+### GetCustomerCustomReference
+
+`func (o *OrderResponseCustomerInfo) GetCustomerCustomReference() string`
+
+GetCustomerCustomReference returns the CustomerCustomReference field if non-nil, zero value otherwise.
+
+### GetCustomerCustomReferenceOk
+
+`func (o *OrderResponseCustomerInfo) GetCustomerCustomReferenceOk() (*string, bool)`
+
+GetCustomerCustomReferenceOk returns a tuple with the CustomerCustomReference field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomerCustomReference
+
+`func (o *OrderResponseCustomerInfo) SetCustomerCustomReference(v string)`
+
+SetCustomerCustomReference sets CustomerCustomReference field to given value.
+
+### HasCustomerCustomReference
+
+`func (o *OrderResponseCustomerInfo) HasCustomerCustomReference() bool`
+
+HasCustomerCustomReference returns a boolean if a field has been set.
+
+### SetCustomerCustomReferenceNil
+
+`func (o *OrderResponseCustomerInfo) SetCustomerCustomReferenceNil(b bool)`
+
+ SetCustomerCustomReferenceNil sets the value for CustomerCustomReference to be an explicit nil
+
+### UnsetCustomerCustomReference
+`func (o *OrderResponseCustomerInfo) UnsetCustomerCustomReference()`
+
+UnsetCustomerCustomReference ensures that no value is present for CustomerCustomReference, not even an explicit nil
 ### GetName
 
 `func (o *OrderResponseCustomerInfo) GetName() string`

@@ -30,7 +30,7 @@ func Test_conekta_PlansApiService(t *testing.T) {
 			Currency: conekta.PtrString("MXN"),
 			Name:     "Test Plan",
 		}
-		resp, httpRes, err := apiClient.PlansApi.CreatePlan(context.TODO()).
+		resp, httpRes, err := apiClient.PlansAPI.CreatePlan(context.TODO()).
 			PlanRequest(req).
 			AcceptLanguage("es").
 			Execute()
@@ -48,7 +48,7 @@ func Test_conekta_PlansApiService(t *testing.T) {
 	})
 
 	t.Run("Test PlansApiService DeletePlan", func(t *testing.T) {
-		resp, httpRes, err := apiClient.PlansApi.DeletePlan(context.TODO(), "plan_2tZb5q8Z3PYpg6SJd").
+		resp, httpRes, err := apiClient.PlansAPI.DeletePlan(context.TODO(), "plan_2tZb5q8Z3PYpg6SJd").
 			AcceptLanguage("es").
 			Execute()
 
@@ -65,7 +65,7 @@ func Test_conekta_PlansApiService(t *testing.T) {
 	})
 
 	t.Run("Test PlansApiService GetPlan", func(t *testing.T) {
-		resp, httpRes, err := apiClient.PlansApi.GetPlan(context.TODO(), "plan_2tZb5q8Z3PYpg6SJd").
+		resp, httpRes, err := apiClient.PlansAPI.GetPlan(context.TODO(), "plan_2tZb5q8Z3PYpg6SJd").
 			AcceptLanguage("es").
 			Execute()
 
@@ -82,7 +82,7 @@ func Test_conekta_PlansApiService(t *testing.T) {
 	})
 
 	t.Run("Test PlansApiService GetPlans", func(t *testing.T) {
-		resp, httpRes, err := apiClient.PlansApi.GetPlans(context.TODO()).
+		resp, httpRes, err := apiClient.PlansAPI.GetPlans(context.TODO()).
 			Limit(10).
 			AcceptLanguage("es").
 			Execute()
@@ -105,7 +105,7 @@ func Test_conekta_PlansApiService(t *testing.T) {
 			Currency: conekta.PtrString("MXN"),
 			Name:     conekta.PtrString("Test Plan"),
 		}
-		resp, httpRes, err := apiClient.PlansApi.UpdatePlan(context.TODO(), "plan_2tZb5q8Z3PYpg6SJd").
+		resp, httpRes, err := apiClient.PlansAPI.UpdatePlan(context.TODO(), "plan_2tZb5q8Z3PYpg6SJd").
 			PlanUpdateRequest(req).
 			AcceptLanguage("es").
 			Execute()

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **Country** | Pointer to **string** |  | [optional] 
 **ExpMonth** | Pointer to **string** |  | [optional] 
 **ExpYear** | Pointer to **string** |  | [optional] 
-**FraudIndicators** | Pointer to **[]interface{}** |  | [optional] 
+**FraudIndicators** | Pointer to **[]map[string]interface{}** |  | [optional] 
 **Issuer** | Pointer to **string** |  | [optional] 
 **Last4** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
@@ -259,20 +259,20 @@ HasExpYear returns a boolean if a field has been set.
 
 ### GetFraudIndicators
 
-`func (o *PaymentMethodCard) GetFraudIndicators() []interface{}`
+`func (o *PaymentMethodCard) GetFraudIndicators() []map[string]interface{}`
 
 GetFraudIndicators returns the FraudIndicators field if non-nil, zero value otherwise.
 
 ### GetFraudIndicatorsOk
 
-`func (o *PaymentMethodCard) GetFraudIndicatorsOk() (*[]interface{}, bool)`
+`func (o *PaymentMethodCard) GetFraudIndicatorsOk() (*[]map[string]interface{}, bool)`
 
 GetFraudIndicatorsOk returns a tuple with the FraudIndicators field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFraudIndicators
 
-`func (o *PaymentMethodCard) SetFraudIndicators(v []interface{})`
+`func (o *PaymentMethodCard) SetFraudIndicators(v []map[string]interface{})`
 
 SetFraudIndicators sets FraudIndicators field to given value.
 

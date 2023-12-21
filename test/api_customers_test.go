@@ -29,7 +29,7 @@ func Test_conekta_CustomersApiService(t *testing.T) {
 			Email: "foo@foo.com",
 			Name:  "Foo Foo",
 		}
-		resp, httpRes, err := apiClient.CustomersApi.CreateCustomer(context.TODO()).
+		resp, httpRes, err := apiClient.CustomersAPI.CreateCustomer(context.TODO()).
 			Customer(req).
 			AcceptLanguage("es").
 			Execute()
@@ -51,7 +51,7 @@ func Test_conekta_CustomersApiService(t *testing.T) {
 			Email:       conekta.PtrString("foo@foo.com"),
 			CompanyName: conekta.PtrString("FooCompany"),
 		}
-		resp, httpRes, err := apiClient.CustomersApi.CreateCustomerFiscalEntities(context.TODO(), "cus_2tYENskzTjjgkGQLt").
+		resp, httpRes, err := apiClient.CustomersAPI.CreateCustomerFiscalEntities(context.TODO(), "cus_2tYENskzTjjgkGQLt").
 			CustomerFiscalEntitiesRequest(req).
 			AcceptLanguage("es").
 			Execute()
@@ -69,7 +69,7 @@ func Test_conekta_CustomersApiService(t *testing.T) {
 	})
 
 	t.Run("Test CustomersApiService DeleteCustomerById", func(t *testing.T) {
-		resp, httpRes, err := apiClient.CustomersApi.DeleteCustomerById(context.TODO(), "cus_2tYENskzTjjgkGQLt").
+		resp, httpRes, err := apiClient.CustomersAPI.DeleteCustomerById(context.TODO(), "cus_2tYENskzTjjgkGQLt").
 			AcceptLanguage("es").
 			Execute()
 
@@ -86,7 +86,7 @@ func Test_conekta_CustomersApiService(t *testing.T) {
 	})
 
 	t.Run("Test CustomersApiService GetCustomerById", func(t *testing.T) {
-		resp, httpRes, err := apiClient.CustomersApi.GetCustomerById(context.TODO(), "cus_2tYENskzTjjgkGQLt").
+		resp, httpRes, err := apiClient.CustomersAPI.GetCustomerById(context.TODO(), "cus_2tYENskzTjjgkGQLt").
 			AcceptLanguage("es").
 			Execute()
 
@@ -103,7 +103,7 @@ func Test_conekta_CustomersApiService(t *testing.T) {
 	})
 
 	t.Run("Test CustomersApiService GetCustomers", func(t *testing.T) {
-		resp, httpRes, err := apiClient.CustomersApi.GetCustomers(context.TODO()).
+		resp, httpRes, err := apiClient.CustomersAPI.GetCustomers(context.TODO()).
 			Limit(10).
 			AcceptLanguage("es").
 			Execute()
@@ -125,7 +125,7 @@ func Test_conekta_CustomersApiService(t *testing.T) {
 			Email: conekta.PtrString("foo@foo.com"),
 			Name:  conekta.PtrString("Foo Foo"),
 		}
-		resp, httpRes, err := apiClient.CustomersApi.UpdateCustomer(context.TODO(), "cus_2tYENskzTjjgkGQLt").
+		resp, httpRes, err := apiClient.CustomersAPI.UpdateCustomer(context.TODO(), "cus_2tYENskzTjjgkGQLt").
 			UpdateCustomer(req).
 			AcceptLanguage("es").
 			Execute()
@@ -147,7 +147,7 @@ func Test_conekta_CustomersApiService(t *testing.T) {
 			Email:       conekta.PtrString("foo@foo.com"),
 			CompanyName: conekta.PtrString("FooCompany"),
 		}
-		resp, httpRes, err := apiClient.CustomersApi.UpdateCustomerFiscalEntities(context.TODO(), "cus_2tYENskzTjjgkGQLt", "fis_ent_2tYENskzTjjgkGQLr").
+		resp, httpRes, err := apiClient.CustomersAPI.UpdateCustomerFiscalEntities(context.TODO(), "cus_2tYENskzTjjgkGQLt", "fis_ent_2tYENskzTjjgkGQLr").
 			CustomerUpdateFiscalEntitiesRequest(req).
 			AcceptLanguage("es").
 			Execute()

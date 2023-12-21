@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CheckoutOrderTemplate type satisfies the MappedNullable interface at compile time
@@ -28,6 +29,8 @@ type CheckoutOrderTemplate struct {
 	// It is a set of key-value pairs that you can attach to the order. It can be used to store additional information about the order in a structured format.
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 }
+
+type _CheckoutOrderTemplate CheckoutOrderTemplate
 
 // NewCheckoutOrderTemplate instantiates a new CheckoutOrderTemplate object
 // This constructor will assign default values to properties that have it defined,
@@ -179,6 +182,42 @@ func (o CheckoutOrderTemplate) ToMap() (map[string]interface{}, error) {
 		toSerialize["metadata"] = o.Metadata
 	}
 	return toSerialize, nil
+}
+
+func (o *CheckoutOrderTemplate) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"currency",
+		"line_items",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCheckoutOrderTemplate := _CheckoutOrderTemplate{}
+
+	err = json.Unmarshal(bytes, &varCheckoutOrderTemplate)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CheckoutOrderTemplate(varCheckoutOrderTemplate)
+
+	return err
 }
 
 type NullableCheckoutOrderTemplate struct {

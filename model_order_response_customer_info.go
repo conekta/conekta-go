@@ -21,6 +21,8 @@ var _ MappedNullable = &OrderResponseCustomerInfo{}
 // OrderResponseCustomerInfo struct for OrderResponseCustomerInfo
 type OrderResponseCustomerInfo struct {
 	Object *string `json:"object,omitempty"`
+	// Custom reference
+	CustomerCustomReference NullableString `json:"customer_custom_reference,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Email *string `json:"email,omitempty"`
 	Phone *string `json:"phone,omitempty"`
@@ -79,6 +81,48 @@ func (o *OrderResponseCustomerInfo) HasObject() bool {
 // SetObject gets a reference to the given string and assigns it to the Object field.
 func (o *OrderResponseCustomerInfo) SetObject(v string) {
 	o.Object = &v
+}
+
+// GetCustomerCustomReference returns the CustomerCustomReference field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *OrderResponseCustomerInfo) GetCustomerCustomReference() string {
+	if o == nil || IsNil(o.CustomerCustomReference.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CustomerCustomReference.Get()
+}
+
+// GetCustomerCustomReferenceOk returns a tuple with the CustomerCustomReference field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OrderResponseCustomerInfo) GetCustomerCustomReferenceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CustomerCustomReference.Get(), o.CustomerCustomReference.IsSet()
+}
+
+// HasCustomerCustomReference returns a boolean if a field has been set.
+func (o *OrderResponseCustomerInfo) HasCustomerCustomReference() bool {
+	if o != nil && o.CustomerCustomReference.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomerCustomReference gets a reference to the given NullableString and assigns it to the CustomerCustomReference field.
+func (o *OrderResponseCustomerInfo) SetCustomerCustomReference(v string) {
+	o.CustomerCustomReference.Set(&v)
+}
+// SetCustomerCustomReferenceNil sets the value for CustomerCustomReference to be an explicit nil
+func (o *OrderResponseCustomerInfo) SetCustomerCustomReferenceNil() {
+	o.CustomerCustomReference.Set(nil)
+}
+
+// UnsetCustomerCustomReference ensures that no value is present for CustomerCustomReference, not even an explicit nil
+func (o *OrderResponseCustomerInfo) UnsetCustomerCustomReference() {
+	o.CustomerCustomReference.Unset()
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -253,6 +297,9 @@ func (o OrderResponseCustomerInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object
+	}
+	if o.CustomerCustomReference.IsSet() {
+		toSerialize["customer_custom_reference"] = o.CustomerCustomReference.Get()
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name

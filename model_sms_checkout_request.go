@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the SmsCheckoutRequest type satisfies the MappedNullable interface at compile time
@@ -22,6 +23,8 @@ var _ MappedNullable = &SmsCheckoutRequest{}
 type SmsCheckoutRequest struct {
 	Phonenumber string `json:"phonenumber"`
 }
+
+type _SmsCheckoutRequest SmsCheckoutRequest
 
 // NewSmsCheckoutRequest instantiates a new SmsCheckoutRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -77,6 +80,41 @@ func (o SmsCheckoutRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["phonenumber"] = o.Phonenumber
 	return toSerialize, nil
+}
+
+func (o *SmsCheckoutRequest) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"phonenumber",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSmsCheckoutRequest := _SmsCheckoutRequest{}
+
+	err = json.Unmarshal(bytes, &varSmsCheckoutRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SmsCheckoutRequest(varSmsCheckoutRequest)
+
+	return err
 }
 
 type NullableSmsCheckoutRequest struct {

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Currency** | Pointer to **string** | Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217) | [optional] 
 **CustomerInfo** | Pointer to [**OrderUpdateRequestCustomerInfo**](OrderUpdateRequestCustomerInfo.md) |  | [optional] 
 **DiscountLines** | Pointer to [**[]OrderDiscountLinesRequest**](OrderDiscountLinesRequest.md) | List of [discounts](https://developers.conekta.com/v2.1.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount. | [optional] 
+**FiscalEntity** | Pointer to [**OrderUpdateFiscalEntityRequest**](OrderUpdateFiscalEntityRequest.md) |  | [optional] 
 **LineItems** | Pointer to [**[]Product**](Product.md) | List of [products](https://developers.conekta.com/v2.1.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product. | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **PreAuthorize** | Pointer to **bool** | Indicates whether the order charges must be preauthorized | [optional] [default to false]
@@ -159,6 +160,31 @@ SetDiscountLines sets DiscountLines field to given value.
 `func (o *OrderUpdateRequest) HasDiscountLines() bool`
 
 HasDiscountLines returns a boolean if a field has been set.
+
+### GetFiscalEntity
+
+`func (o *OrderUpdateRequest) GetFiscalEntity() OrderUpdateFiscalEntityRequest`
+
+GetFiscalEntity returns the FiscalEntity field if non-nil, zero value otherwise.
+
+### GetFiscalEntityOk
+
+`func (o *OrderUpdateRequest) GetFiscalEntityOk() (*OrderUpdateFiscalEntityRequest, bool)`
+
+GetFiscalEntityOk returns a tuple with the FiscalEntity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFiscalEntity
+
+`func (o *OrderUpdateRequest) SetFiscalEntity(v OrderUpdateFiscalEntityRequest)`
+
+SetFiscalEntity sets FiscalEntity field to given value.
+
+### HasFiscalEntity
+
+`func (o *OrderUpdateRequest) HasFiscalEntity() bool`
+
+HasFiscalEntity returns a boolean if a field has been set.
 
 ### GetLineItems
 

@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CustomerShippingContactsDataResponse type satisfies the MappedNullable interface at compile time
@@ -30,10 +31,14 @@ type CustomerShippingContactsDataResponse struct {
 	ParentId *string `json:"parent_id,omitempty"`
 	Default NullableBool `json:"default,omitempty"`
 	Deleted NullableBool `json:"deleted,omitempty"`
+	// Metadata associated with the shipping contact
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	Id string `json:"id"`
 	Object string `json:"object"`
 	CreatedAt int64 `json:"created_at"`
 }
+
+type _CustomerShippingContactsDataResponse CustomerShippingContactsDataResponse
 
 // NewCustomerShippingContactsDataResponse instantiates a new CustomerShippingContactsDataResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -292,6 +297,38 @@ func (o *CustomerShippingContactsDataResponse) UnsetDeleted() {
 	o.Deleted.Unset()
 }
 
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *CustomerShippingContactsDataResponse) GetMetadata() map[string]interface{} {
+	if o == nil || IsNil(o.Metadata) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomerShippingContactsDataResponse) GetMetadataOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Metadata) {
+		return map[string]interface{}{}, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *CustomerShippingContactsDataResponse) HasMetadata() bool {
+	if o != nil && !IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *CustomerShippingContactsDataResponse) SetMetadata(v map[string]interface{}) {
+	o.Metadata = v
+}
+
 // GetId returns the Id field value
 func (o *CustomerShippingContactsDataResponse) GetId() string {
 	if o == nil {
@@ -393,10 +430,51 @@ func (o CustomerShippingContactsDataResponse) ToMap() (map[string]interface{}, e
 	if o.Deleted.IsSet() {
 		toSerialize["deleted"] = o.Deleted.Get()
 	}
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["object"] = o.Object
 	toSerialize["created_at"] = o.CreatedAt
 	return toSerialize, nil
+}
+
+func (o *CustomerShippingContactsDataResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"address",
+		"id",
+		"object",
+		"created_at",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCustomerShippingContactsDataResponse := _CustomerShippingContactsDataResponse{}
+
+	err = json.Unmarshal(bytes, &varCustomerShippingContactsDataResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CustomerShippingContactsDataResponse(varCustomerShippingContactsDataResponse)
+
+	return err
 }
 
 type NullableCustomerShippingContactsDataResponse struct {

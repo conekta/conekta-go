@@ -20,7 +20,7 @@ import (
 )
 
 
-type TokensApi interface {
+type TokensAPI interface {
 
 	/*
 	CreateToken Create Token
@@ -38,12 +38,12 @@ type TokensApi interface {
 	CreateTokenExecute(r ApiCreateTokenRequest) (*TokenResponse, *http.Response, error)
 }
 
-// TokensApiService TokensApi service
-type TokensApiService service
+// TokensAPIService TokensAPI service
+type TokensAPIService service
 
 type ApiCreateTokenRequest struct {
 	ctx context.Context
-	ApiService TokensApi
+	ApiService TokensAPI
 	token *Token
 	acceptLanguage *string
 }
@@ -73,7 +73,7 @@ Generate a payment token, to associate it with a card
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateTokenRequest
 */
-func (a *TokensApiService) CreateToken(ctx context.Context) ApiCreateTokenRequest {
+func (a *TokensAPIService) CreateToken(ctx context.Context) ApiCreateTokenRequest {
 	return ApiCreateTokenRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -82,7 +82,7 @@ func (a *TokensApiService) CreateToken(ctx context.Context) ApiCreateTokenReques
 
 // Execute executes the request
 //  @return TokenResponse
-func (a *TokensApiService) CreateTokenExecute(r ApiCreateTokenRequest) (*TokenResponse, *http.Response, error) {
+func (a *TokensAPIService) CreateTokenExecute(r ApiCreateTokenRequest) (*TokenResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -90,7 +90,7 @@ func (a *TokensApiService) CreateTokenExecute(r ApiCreateTokenRequest) (*TokenRe
 		localVarReturnValue  *TokenResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.CreateToken")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensAPIService.CreateToken")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

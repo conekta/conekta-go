@@ -1,12 +1,12 @@
-# \ShippingsApi
+# \ShippingsAPI
 
 All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**OrdersCreateShipping**](ShippingsApi.md#OrdersCreateShipping) | **Post** /orders/{id}/shipping_lines | Create Shipping
-[**OrdersDeleteShipping**](ShippingsApi.md#OrdersDeleteShipping) | **Delete** /orders/{id}/shipping_lines/{shipping_id} | Delete Shipping
-[**OrdersUpdateShipping**](ShippingsApi.md#OrdersUpdateShipping) | **Put** /orders/{id}/shipping_lines/{shipping_id} | Update Shipping
+[**OrdersCreateShipping**](ShippingsAPI.md#OrdersCreateShipping) | **Post** /orders/{id}/shipping_lines | Create Shipping
+[**OrdersDeleteShipping**](ShippingsAPI.md#OrdersDeleteShipping) | **Delete** /orders/{id}/shipping_lines/{shipping_id} | Delete Shipping
+[**OrdersUpdateShipping**](ShippingsAPI.md#OrdersUpdateShipping) | **Put** /orders/{id}/shipping_lines/{shipping_id} | Update Shipping
 
 
 
@@ -38,13 +38,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ShippingsApi.OrdersCreateShipping(context.Background(), id).ShippingRequest(shippingRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.ShippingsAPI.OrdersCreateShipping(context.Background(), id).ShippingRequest(shippingRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ShippingsApi.OrdersCreateShipping``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ShippingsAPI.OrdersCreateShipping``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `OrdersCreateShipping`: ShippingOrderResponse
-    fmt.Fprintf(os.Stdout, "Response from `ShippingsApi.OrdersCreateShipping`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ShippingsAPI.OrdersCreateShipping`: %v\n", resp)
 }
 ```
 
@@ -114,13 +114,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ShippingsApi.OrdersDeleteShipping(context.Background(), id, shippingId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.ShippingsAPI.OrdersDeleteShipping(context.Background(), id, shippingId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ShippingsApi.OrdersDeleteShipping``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ShippingsAPI.OrdersDeleteShipping``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `OrdersDeleteShipping`: ShippingOrderResponse
-    fmt.Fprintf(os.Stdout, "Response from `ShippingsApi.OrdersDeleteShipping`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ShippingsAPI.OrdersDeleteShipping`: %v\n", resp)
 }
 ```
 
@@ -192,13 +192,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ShippingsApi.OrdersUpdateShipping(context.Background(), id, shippingId).ShippingRequest(shippingRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.ShippingsAPI.OrdersUpdateShipping(context.Background(), id, shippingId).ShippingRequest(shippingRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ShippingsApi.OrdersUpdateShipping``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ShippingsAPI.OrdersUpdateShipping``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `OrdersUpdateShipping`: ShippingOrderResponse
-    fmt.Fprintf(os.Stdout, "Response from `ShippingsApi.OrdersUpdateShipping`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ShippingsAPI.OrdersUpdateShipping`: %v\n", resp)
 }
 ```
 

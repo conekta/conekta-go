@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the WebhookUpdateRequest type satisfies the MappedNullable interface at compile time
@@ -24,8 +25,10 @@ type WebhookUpdateRequest struct {
 	Url string `json:"url"`
 	// It is a value that allows to decide if the events will be synchronous or asynchronous. We recommend asynchronous = false
 	Synchronous *bool `json:"synchronous,omitempty"`
-	SubscribedEvents []string `json:"subscribed_events,omitempty"`
+	Events []string `json:"events,omitempty"`
 }
+
+type _WebhookUpdateRequest WebhookUpdateRequest
 
 // NewWebhookUpdateRequest instantiates a new WebhookUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -105,36 +108,36 @@ func (o *WebhookUpdateRequest) SetSynchronous(v bool) {
 	o.Synchronous = &v
 }
 
-// GetSubscribedEvents returns the SubscribedEvents field value if set, zero value otherwise.
-func (o *WebhookUpdateRequest) GetSubscribedEvents() []string {
-	if o == nil || IsNil(o.SubscribedEvents) {
+// GetEvents returns the Events field value if set, zero value otherwise.
+func (o *WebhookUpdateRequest) GetEvents() []string {
+	if o == nil || IsNil(o.Events) {
 		var ret []string
 		return ret
 	}
-	return o.SubscribedEvents
+	return o.Events
 }
 
-// GetSubscribedEventsOk returns a tuple with the SubscribedEvents field value if set, nil otherwise
+// GetEventsOk returns a tuple with the Events field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookUpdateRequest) GetSubscribedEventsOk() ([]string, bool) {
-	if o == nil || IsNil(o.SubscribedEvents) {
+func (o *WebhookUpdateRequest) GetEventsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Events) {
 		return nil, false
 	}
-	return o.SubscribedEvents, true
+	return o.Events, true
 }
 
-// HasSubscribedEvents returns a boolean if a field has been set.
-func (o *WebhookUpdateRequest) HasSubscribedEvents() bool {
-	if o != nil && !IsNil(o.SubscribedEvents) {
+// HasEvents returns a boolean if a field has been set.
+func (o *WebhookUpdateRequest) HasEvents() bool {
+	if o != nil && !IsNil(o.Events) {
 		return true
 	}
 
 	return false
 }
 
-// SetSubscribedEvents gets a reference to the given []string and assigns it to the SubscribedEvents field.
-func (o *WebhookUpdateRequest) SetSubscribedEvents(v []string) {
-	o.SubscribedEvents = v
+// SetEvents gets a reference to the given []string and assigns it to the Events field.
+func (o *WebhookUpdateRequest) SetEvents(v []string) {
+	o.Events = v
 }
 
 func (o WebhookUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -151,10 +154,45 @@ func (o WebhookUpdateRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Synchronous) {
 		toSerialize["synchronous"] = o.Synchronous
 	}
-	if !IsNil(o.SubscribedEvents) {
-		toSerialize["subscribed_events"] = o.SubscribedEvents
+	if !IsNil(o.Events) {
+		toSerialize["events"] = o.Events
 	}
 	return toSerialize, nil
+}
+
+func (o *WebhookUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"url",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varWebhookUpdateRequest := _WebhookUpdateRequest{}
+
+	err = json.Unmarshal(bytes, &varWebhookUpdateRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = WebhookUpdateRequest(varWebhookUpdateRequest)
+
+	return err
 }
 
 type NullableWebhookUpdateRequest struct {

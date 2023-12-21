@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **IssuingAccountNumber** | Pointer to **NullableString** |  | [optional] 
 **IssuingAccountHolderName** | Pointer to **NullableString** |  | [optional] 
 **IssuingAccountTaxId** | Pointer to **NullableString** |  | [optional] 
-**PaymentAttempts** | Pointer to **[]interface{}** |  | [optional] 
+**PaymentAttempts** | Pointer to **[]map[string]interface{}** |  | [optional] 
 **ReceivingAccountHolderName** | Pointer to **NullableString** |  | [optional] 
 **ReceivingAccountNumber** | Pointer to **string** |  | [optional] 
 **ReceivingAccountBank** | Pointer to **string** |  | [optional] 
@@ -374,20 +374,20 @@ HasIssuingAccountTaxId returns a boolean if a field has been set.
 UnsetIssuingAccountTaxId ensures that no value is present for IssuingAccountTaxId, not even an explicit nil
 ### GetPaymentAttempts
 
-`func (o *PaymentMethodBankTransfer) GetPaymentAttempts() []interface{}`
+`func (o *PaymentMethodBankTransfer) GetPaymentAttempts() []map[string]interface{}`
 
 GetPaymentAttempts returns the PaymentAttempts field if non-nil, zero value otherwise.
 
 ### GetPaymentAttemptsOk
 
-`func (o *PaymentMethodBankTransfer) GetPaymentAttemptsOk() (*[]interface{}, bool)`
+`func (o *PaymentMethodBankTransfer) GetPaymentAttemptsOk() (*[]map[string]interface{}, bool)`
 
 GetPaymentAttemptsOk returns a tuple with the PaymentAttempts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPaymentAttempts
 
-`func (o *PaymentMethodBankTransfer) SetPaymentAttempts(v []interface{})`
+`func (o *PaymentMethodBankTransfer) SetPaymentAttempts(v []map[string]interface{})`
 
 SetPaymentAttempts sets PaymentAttempts field to given value.
 

@@ -1,10 +1,10 @@
-# \TokensApi
+# \TokensAPI
 
 All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateToken**](TokensApi.md#CreateToken) | **Post** /tokens | Create Token
+[**CreateToken**](TokensAPI.md#CreateToken) | **Post** /tokens | Create Token
 
 
 
@@ -34,13 +34,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TokensApi.CreateToken(context.Background()).Token(token).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.TokensAPI.CreateToken(context.Background()).Token(token).AcceptLanguage(acceptLanguage).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.CreateToken``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TokensAPI.CreateToken``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateToken`: TokenResponse
-    fmt.Fprintf(os.Stdout, "Response from `TokensApi.CreateToken`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `TokensAPI.CreateToken`: %v\n", resp)
 }
 ```
 

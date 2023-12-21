@@ -21,7 +21,7 @@ import (
 )
 
 
-type PlansApi interface {
+type PlansAPI interface {
 
 	/*
 	CreatePlan Create Plan
@@ -89,12 +89,12 @@ type PlansApi interface {
 	UpdatePlanExecute(r ApiUpdatePlanRequest) (*PlanResponse, *http.Response, error)
 }
 
-// PlansApiService PlansApi service
-type PlansApiService service
+// PlansAPIService PlansAPI service
+type PlansAPIService service
 
 type ApiCreatePlanRequest struct {
 	ctx context.Context
-	ApiService PlansApi
+	ApiService PlansAPI
 	planRequest *PlanRequest
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -130,7 +130,7 @@ Create a new plan for an existing order
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreatePlanRequest
 */
-func (a *PlansApiService) CreatePlan(ctx context.Context) ApiCreatePlanRequest {
+func (a *PlansAPIService) CreatePlan(ctx context.Context) ApiCreatePlanRequest {
 	return ApiCreatePlanRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -139,7 +139,7 @@ func (a *PlansApiService) CreatePlan(ctx context.Context) ApiCreatePlanRequest {
 
 // Execute executes the request
 //  @return PlanResponse
-func (a *PlansApiService) CreatePlanExecute(r ApiCreatePlanRequest) (*PlanResponse, *http.Response, error) {
+func (a *PlansAPIService) CreatePlanExecute(r ApiCreatePlanRequest) (*PlanResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -147,7 +147,7 @@ func (a *PlansApiService) CreatePlanExecute(r ApiCreatePlanRequest) (*PlanRespon
 		localVarReturnValue  *PlanResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansApiService.CreatePlan")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansAPIService.CreatePlan")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -257,7 +257,7 @@ func (a *PlansApiService) CreatePlanExecute(r ApiCreatePlanRequest) (*PlanRespon
 
 type ApiDeletePlanRequest struct {
 	ctx context.Context
-	ApiService PlansApi
+	ApiService PlansAPI
 	id string
 	acceptLanguage *string
 }
@@ -279,7 +279,7 @@ DeletePlan Delete Plan
  @param id Identifier of the resource
  @return ApiDeletePlanRequest
 */
-func (a *PlansApiService) DeletePlan(ctx context.Context, id string) ApiDeletePlanRequest {
+func (a *PlansAPIService) DeletePlan(ctx context.Context, id string) ApiDeletePlanRequest {
 	return ApiDeletePlanRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -289,7 +289,7 @@ func (a *PlansApiService) DeletePlan(ctx context.Context, id string) ApiDeletePl
 
 // Execute executes the request
 //  @return PlanResponse
-func (a *PlansApiService) DeletePlanExecute(r ApiDeletePlanRequest) (*PlanResponse, *http.Response, error) {
+func (a *PlansAPIService) DeletePlanExecute(r ApiDeletePlanRequest) (*PlanResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -297,7 +297,7 @@ func (a *PlansApiService) DeletePlanExecute(r ApiDeletePlanRequest) (*PlanRespon
 		localVarReturnValue  *PlanResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansApiService.DeletePlan")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansAPIService.DeletePlan")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -411,7 +411,7 @@ func (a *PlansApiService) DeletePlanExecute(r ApiDeletePlanRequest) (*PlanRespon
 
 type ApiGetPlanRequest struct {
 	ctx context.Context
-	ApiService PlansApi
+	ApiService PlansAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -440,7 +440,7 @@ GetPlan Get Plan
  @param id Identifier of the resource
  @return ApiGetPlanRequest
 */
-func (a *PlansApiService) GetPlan(ctx context.Context, id string) ApiGetPlanRequest {
+func (a *PlansAPIService) GetPlan(ctx context.Context, id string) ApiGetPlanRequest {
 	return ApiGetPlanRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -450,7 +450,7 @@ func (a *PlansApiService) GetPlan(ctx context.Context, id string) ApiGetPlanRequ
 
 // Execute executes the request
 //  @return PlanResponse
-func (a *PlansApiService) GetPlanExecute(r ApiGetPlanRequest) (*PlanResponse, *http.Response, error) {
+func (a *PlansAPIService) GetPlanExecute(r ApiGetPlanRequest) (*PlanResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -458,7 +458,7 @@ func (a *PlansApiService) GetPlanExecute(r ApiGetPlanRequest) (*PlanResponse, *h
 		localVarReturnValue  *PlanResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansApiService.GetPlan")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansAPIService.GetPlan")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -575,7 +575,7 @@ func (a *PlansApiService) GetPlanExecute(r ApiGetPlanRequest) (*PlanResponse, *h
 
 type ApiGetPlansRequest struct {
 	ctx context.Context
-	ApiService PlansApi
+	ApiService PlansAPI
 	acceptLanguage *string
 	xChildCompanyId *string
 	limit *int32
@@ -630,7 +630,7 @@ GetPlans Get A List of Plans
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetPlansRequest
 */
-func (a *PlansApiService) GetPlans(ctx context.Context) ApiGetPlansRequest {
+func (a *PlansAPIService) GetPlans(ctx context.Context) ApiGetPlansRequest {
 	return ApiGetPlansRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -639,7 +639,7 @@ func (a *PlansApiService) GetPlans(ctx context.Context) ApiGetPlansRequest {
 
 // Execute executes the request
 //  @return GetPlansResponse
-func (a *PlansApiService) GetPlansExecute(r ApiGetPlansRequest) (*GetPlansResponse, *http.Response, error) {
+func (a *PlansAPIService) GetPlansExecute(r ApiGetPlansRequest) (*GetPlansResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -647,7 +647,7 @@ func (a *PlansApiService) GetPlansExecute(r ApiGetPlansRequest) (*GetPlansRespon
 		localVarReturnValue  *GetPlansResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansApiService.GetPlans")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansAPIService.GetPlans")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -660,6 +660,9 @@ func (a *PlansApiService) GetPlansExecute(r ApiGetPlansRequest) (*GetPlansRespon
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
@@ -764,7 +767,7 @@ func (a *PlansApiService) GetPlansExecute(r ApiGetPlansRequest) (*GetPlansRespon
 
 type ApiUpdatePlanRequest struct {
 	ctx context.Context
-	ApiService PlansApi
+	ApiService PlansAPI
 	id string
 	planUpdateRequest *PlanUpdateRequest
 	acceptLanguage *string
@@ -800,7 +803,7 @@ UpdatePlan Update Plan
  @param id Identifier of the resource
  @return ApiUpdatePlanRequest
 */
-func (a *PlansApiService) UpdatePlan(ctx context.Context, id string) ApiUpdatePlanRequest {
+func (a *PlansAPIService) UpdatePlan(ctx context.Context, id string) ApiUpdatePlanRequest {
 	return ApiUpdatePlanRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -810,7 +813,7 @@ func (a *PlansApiService) UpdatePlan(ctx context.Context, id string) ApiUpdatePl
 
 // Execute executes the request
 //  @return PlanResponse
-func (a *PlansApiService) UpdatePlanExecute(r ApiUpdatePlanRequest) (*PlanResponse, *http.Response, error) {
+func (a *PlansAPIService) UpdatePlanExecute(r ApiUpdatePlanRequest) (*PlanResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -818,7 +821,7 @@ func (a *PlansApiService) UpdatePlanExecute(r ApiUpdatePlanRequest) (*PlanRespon
 		localVarReturnValue  *PlanResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansApiService.UpdatePlan")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansAPIService.UpdatePlan")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

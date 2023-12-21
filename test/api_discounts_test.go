@@ -28,7 +28,7 @@ func Test_conekta_DiscountsApiService(t *testing.T) {
 		req := conekta.OrderDiscountLinesRequest{
 			Amount: 1000,
 		}
-		resp, httpRes, err := apiClient.DiscountsApi.OrdersCreateDiscountLine(context.TODO(), "ord_2tUigJ8DgBhbp6w5D").
+		resp, httpRes, err := apiClient.DiscountsAPI.OrdersCreateDiscountLine(context.TODO(), "ord_2tUigJ8DgBhbp6w5D").
 			OrderDiscountLinesRequest(req).
 			AcceptLanguage("es").
 			Execute()
@@ -46,7 +46,7 @@ func Test_conekta_DiscountsApiService(t *testing.T) {
 	})
 
 	t.Run("Test DiscountsApiService OrdersDeleteDiscountLines", func(t *testing.T) {
-		resp, httpRes, err := apiClient.DiscountsApi.OrdersDeleteDiscountLines(context.TODO(), "ord_2tPAmKCEJqh8RE6nY", "dis_lin_2tQQ58HPgPw7StE8z").
+		resp, httpRes, err := apiClient.DiscountsAPI.OrdersDeleteDiscountLines(context.TODO(), "ord_2tPAmKCEJqh8RE6nY", "dis_lin_2tQQ58HPgPw7StE8z").
 			AcceptLanguage("es").
 			Execute()
 
@@ -66,7 +66,7 @@ func Test_conekta_DiscountsApiService(t *testing.T) {
 		req := conekta.UpdateOrderDiscountLinesRequest{
 			Amount: conekta.PtrInt64(2000),
 		}
-		resp, httpRes, err := apiClient.DiscountsApi.OrdersUpdateDiscountLines(context.TODO(), "ord_2tPAmKCEJqh8RE6nY", "dis_lin_2tQQ58HPgPw7StE8z").
+		resp, httpRes, err := apiClient.DiscountsAPI.OrdersUpdateDiscountLines(context.TODO(), "ord_2tPAmKCEJqh8RE6nY", "dis_lin_2tQQ58HPgPw7StE8z").
 			UpdateOrderDiscountLinesRequest(req).
 			AcceptLanguage("es").
 			Execute()

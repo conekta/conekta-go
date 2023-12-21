@@ -21,7 +21,7 @@ import (
 )
 
 
-type SubscriptionsApi interface {
+type SubscriptionsAPI interface {
 
 	/*
 	CancelSubscription Cancel Subscription
@@ -127,12 +127,12 @@ type SubscriptionsApi interface {
 	UpdateSubscriptionExecute(r ApiUpdateSubscriptionRequest) (*SubscriptionResponse, *http.Response, error)
 }
 
-// SubscriptionsApiService SubscriptionsApi service
-type SubscriptionsApiService service
+// SubscriptionsAPIService SubscriptionsAPI service
+type SubscriptionsAPIService service
 
 type ApiCancelSubscriptionRequest struct {
 	ctx context.Context
-	ApiService SubscriptionsApi
+	ApiService SubscriptionsAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -163,7 +163,7 @@ You can cancel the subscription to stop the plans that your customers consume
  @param id Identifier of the resource
  @return ApiCancelSubscriptionRequest
 */
-func (a *SubscriptionsApiService) CancelSubscription(ctx context.Context, id string) ApiCancelSubscriptionRequest {
+func (a *SubscriptionsAPIService) CancelSubscription(ctx context.Context, id string) ApiCancelSubscriptionRequest {
 	return ApiCancelSubscriptionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -173,7 +173,7 @@ func (a *SubscriptionsApiService) CancelSubscription(ctx context.Context, id str
 
 // Execute executes the request
 //  @return SubscriptionResponse
-func (a *SubscriptionsApiService) CancelSubscriptionExecute(r ApiCancelSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
+func (a *SubscriptionsAPIService) CancelSubscriptionExecute(r ApiCancelSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -181,7 +181,7 @@ func (a *SubscriptionsApiService) CancelSubscriptionExecute(r ApiCancelSubscript
 		localVarReturnValue  *SubscriptionResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsApiService.CancelSubscription")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.CancelSubscription")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -287,7 +287,7 @@ func (a *SubscriptionsApiService) CancelSubscriptionExecute(r ApiCancelSubscript
 
 type ApiCreateSubscriptionRequest struct {
 	ctx context.Context
-	ApiService SubscriptionsApi
+	ApiService SubscriptionsAPI
 	id string
 	subscriptionRequest *SubscriptionRequest
 	acceptLanguage *string
@@ -325,7 +325,7 @@ You can create the subscription to include the plans that your customers consume
  @param id Identifier of the resource
  @return ApiCreateSubscriptionRequest
 */
-func (a *SubscriptionsApiService) CreateSubscription(ctx context.Context, id string) ApiCreateSubscriptionRequest {
+func (a *SubscriptionsAPIService) CreateSubscription(ctx context.Context, id string) ApiCreateSubscriptionRequest {
 	return ApiCreateSubscriptionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -335,7 +335,7 @@ func (a *SubscriptionsApiService) CreateSubscription(ctx context.Context, id str
 
 // Execute executes the request
 //  @return SubscriptionResponse
-func (a *SubscriptionsApiService) CreateSubscriptionExecute(r ApiCreateSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
+func (a *SubscriptionsAPIService) CreateSubscriptionExecute(r ApiCreateSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -343,7 +343,7 @@ func (a *SubscriptionsApiService) CreateSubscriptionExecute(r ApiCreateSubscript
 		localVarReturnValue  *SubscriptionResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsApiService.CreateSubscription")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.CreateSubscription")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -465,7 +465,7 @@ func (a *SubscriptionsApiService) CreateSubscriptionExecute(r ApiCreateSubscript
 
 type ApiGetAllEventsFromSubscriptionRequest struct {
 	ctx context.Context
-	ApiService SubscriptionsApi
+	ApiService SubscriptionsAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -496,7 +496,7 @@ You can get the events of the subscription(s) of a client, with the customer id
  @param id Identifier of the resource
  @return ApiGetAllEventsFromSubscriptionRequest
 */
-func (a *SubscriptionsApiService) GetAllEventsFromSubscription(ctx context.Context, id string) ApiGetAllEventsFromSubscriptionRequest {
+func (a *SubscriptionsAPIService) GetAllEventsFromSubscription(ctx context.Context, id string) ApiGetAllEventsFromSubscriptionRequest {
 	return ApiGetAllEventsFromSubscriptionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -506,7 +506,7 @@ func (a *SubscriptionsApiService) GetAllEventsFromSubscription(ctx context.Conte
 
 // Execute executes the request
 //  @return SubscriptionEventsResponse
-func (a *SubscriptionsApiService) GetAllEventsFromSubscriptionExecute(r ApiGetAllEventsFromSubscriptionRequest) (*SubscriptionEventsResponse, *http.Response, error) {
+func (a *SubscriptionsAPIService) GetAllEventsFromSubscriptionExecute(r ApiGetAllEventsFromSubscriptionRequest) (*SubscriptionEventsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -514,7 +514,7 @@ func (a *SubscriptionsApiService) GetAllEventsFromSubscriptionExecute(r ApiGetAl
 		localVarReturnValue  *SubscriptionEventsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsApiService.GetAllEventsFromSubscription")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.GetAllEventsFromSubscription")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -642,7 +642,7 @@ func (a *SubscriptionsApiService) GetAllEventsFromSubscriptionExecute(r ApiGetAl
 
 type ApiGetSubscriptionRequest struct {
 	ctx context.Context
-	ApiService SubscriptionsApi
+	ApiService SubscriptionsAPI
 	id string
 	acceptLanguage *string
 }
@@ -664,7 +664,7 @@ GetSubscription Get Subscription
  @param id Identifier of the resource
  @return ApiGetSubscriptionRequest
 */
-func (a *SubscriptionsApiService) GetSubscription(ctx context.Context, id string) ApiGetSubscriptionRequest {
+func (a *SubscriptionsAPIService) GetSubscription(ctx context.Context, id string) ApiGetSubscriptionRequest {
 	return ApiGetSubscriptionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -674,7 +674,7 @@ func (a *SubscriptionsApiService) GetSubscription(ctx context.Context, id string
 
 // Execute executes the request
 //  @return SubscriptionResponse
-func (a *SubscriptionsApiService) GetSubscriptionExecute(r ApiGetSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
+func (a *SubscriptionsAPIService) GetSubscriptionExecute(r ApiGetSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -682,7 +682,7 @@ func (a *SubscriptionsApiService) GetSubscriptionExecute(r ApiGetSubscriptionReq
 		localVarReturnValue  *SubscriptionResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsApiService.GetSubscription")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.GetSubscription")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -785,7 +785,7 @@ func (a *SubscriptionsApiService) GetSubscriptionExecute(r ApiGetSubscriptionReq
 
 type ApiPauseSubscriptionRequest struct {
 	ctx context.Context
-	ApiService SubscriptionsApi
+	ApiService SubscriptionsAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -816,7 +816,7 @@ You can pause the subscription to stop the plans that your customers consume
  @param id Identifier of the resource
  @return ApiPauseSubscriptionRequest
 */
-func (a *SubscriptionsApiService) PauseSubscription(ctx context.Context, id string) ApiPauseSubscriptionRequest {
+func (a *SubscriptionsAPIService) PauseSubscription(ctx context.Context, id string) ApiPauseSubscriptionRequest {
 	return ApiPauseSubscriptionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -826,7 +826,7 @@ func (a *SubscriptionsApiService) PauseSubscription(ctx context.Context, id stri
 
 // Execute executes the request
 //  @return SubscriptionResponse
-func (a *SubscriptionsApiService) PauseSubscriptionExecute(r ApiPauseSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
+func (a *SubscriptionsAPIService) PauseSubscriptionExecute(r ApiPauseSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -834,7 +834,7 @@ func (a *SubscriptionsApiService) PauseSubscriptionExecute(r ApiPauseSubscriptio
 		localVarReturnValue  *SubscriptionResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsApiService.PauseSubscription")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.PauseSubscription")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -951,7 +951,7 @@ func (a *SubscriptionsApiService) PauseSubscriptionExecute(r ApiPauseSubscriptio
 
 type ApiResumeSubscriptionRequest struct {
 	ctx context.Context
-	ApiService SubscriptionsApi
+	ApiService SubscriptionsAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -982,7 +982,7 @@ You can resume the subscription to start the plans that your customers consume
  @param id Identifier of the resource
  @return ApiResumeSubscriptionRequest
 */
-func (a *SubscriptionsApiService) ResumeSubscription(ctx context.Context, id string) ApiResumeSubscriptionRequest {
+func (a *SubscriptionsAPIService) ResumeSubscription(ctx context.Context, id string) ApiResumeSubscriptionRequest {
 	return ApiResumeSubscriptionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -992,7 +992,7 @@ func (a *SubscriptionsApiService) ResumeSubscription(ctx context.Context, id str
 
 // Execute executes the request
 //  @return SubscriptionResponse
-func (a *SubscriptionsApiService) ResumeSubscriptionExecute(r ApiResumeSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
+func (a *SubscriptionsAPIService) ResumeSubscriptionExecute(r ApiResumeSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1000,7 +1000,7 @@ func (a *SubscriptionsApiService) ResumeSubscriptionExecute(r ApiResumeSubscript
 		localVarReturnValue  *SubscriptionResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsApiService.ResumeSubscription")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.ResumeSubscription")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1128,7 +1128,7 @@ func (a *SubscriptionsApiService) ResumeSubscriptionExecute(r ApiResumeSubscript
 
 type ApiUpdateSubscriptionRequest struct {
 	ctx context.Context
-	ApiService SubscriptionsApi
+	ApiService SubscriptionsAPI
 	id string
 	subscriptionUpdateRequest *SubscriptionUpdateRequest
 	acceptLanguage *string
@@ -1166,7 +1166,7 @@ You can modify the subscription to change the plans that your customers consume
  @param id Identifier of the resource
  @return ApiUpdateSubscriptionRequest
 */
-func (a *SubscriptionsApiService) UpdateSubscription(ctx context.Context, id string) ApiUpdateSubscriptionRequest {
+func (a *SubscriptionsAPIService) UpdateSubscription(ctx context.Context, id string) ApiUpdateSubscriptionRequest {
 	return ApiUpdateSubscriptionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1176,7 +1176,7 @@ func (a *SubscriptionsApiService) UpdateSubscription(ctx context.Context, id str
 
 // Execute executes the request
 //  @return SubscriptionResponse
-func (a *SubscriptionsApiService) UpdateSubscriptionExecute(r ApiUpdateSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
+func (a *SubscriptionsAPIService) UpdateSubscriptionExecute(r ApiUpdateSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -1184,7 +1184,7 @@ func (a *SubscriptionsApiService) UpdateSubscriptionExecute(r ApiUpdateSubscript
 		localVarReturnValue  *SubscriptionResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsApiService.UpdateSubscription")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.UpdateSubscription")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

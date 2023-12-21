@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **DeviceFingerprint** | Pointer to **string** |  | [optional] 
 **FailureCode** | Pointer to **string** |  | [optional] 
 **FailureMessage** | Pointer to **string** |  | [optional] 
-**Fee** | Pointer to **int32** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Livemode** | Pointer to **bool** |  | [optional] 
 **Object** | Pointer to **string** |  | [optional] 
@@ -267,31 +266,6 @@ SetFailureMessage sets FailureMessage field to given value.
 `func (o *ChargesDataResponse) HasFailureMessage() bool`
 
 HasFailureMessage returns a boolean if a field has been set.
-
-### GetFee
-
-`func (o *ChargesDataResponse) GetFee() int32`
-
-GetFee returns the Fee field if non-nil, zero value otherwise.
-
-### GetFeeOk
-
-`func (o *ChargesDataResponse) GetFeeOk() (*int32, bool)`
-
-GetFeeOk returns a tuple with the Fee field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFee
-
-`func (o *ChargesDataResponse) SetFee(v int32)`
-
-SetFee sets Fee field to given value.
-
-### HasFee
-
-`func (o *ChargesDataResponse) HasFee() bool`
-
-HasFee returns a boolean if a field has been set.
 
 ### GetId
 

@@ -21,7 +21,7 @@ import (
 )
 
 
-type EventsApi interface {
+type EventsAPI interface {
 
 	/*
 	GetEvent Get Event
@@ -67,12 +67,12 @@ type EventsApi interface {
 	ResendEventExecute(r ApiResendEventRequest) (*EventsResendResponse, *http.Response, error)
 }
 
-// EventsApiService EventsApi service
-type EventsApiService service
+// EventsAPIService EventsAPI service
+type EventsAPIService service
 
 type ApiGetEventRequest struct {
 	ctx context.Context
-	ApiService EventsApi
+	ApiService EventsAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -103,7 +103,7 @@ Returns a single event
  @param id Identifier of the resource
  @return ApiGetEventRequest
 */
-func (a *EventsApiService) GetEvent(ctx context.Context, id string) ApiGetEventRequest {
+func (a *EventsAPIService) GetEvent(ctx context.Context, id string) ApiGetEventRequest {
 	return ApiGetEventRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -113,7 +113,7 @@ func (a *EventsApiService) GetEvent(ctx context.Context, id string) ApiGetEventR
 
 // Execute executes the request
 //  @return EventResponse
-func (a *EventsApiService) GetEventExecute(r ApiGetEventRequest) (*EventResponse, *http.Response, error) {
+func (a *EventsAPIService) GetEventExecute(r ApiGetEventRequest) (*EventResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -121,7 +121,7 @@ func (a *EventsApiService) GetEventExecute(r ApiGetEventRequest) (*EventResponse
 		localVarReturnValue  *EventResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.GetEvent")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.GetEvent")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -227,7 +227,7 @@ func (a *EventsApiService) GetEventExecute(r ApiGetEventRequest) (*EventResponse
 
 type ApiGetEventsRequest struct {
 	ctx context.Context
-	ApiService EventsApi
+	ApiService EventsAPI
 	acceptLanguage *string
 	xChildCompanyId *string
 	limit *int32
@@ -282,7 +282,7 @@ GetEvents Get list of Events
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetEventsRequest
 */
-func (a *EventsApiService) GetEvents(ctx context.Context) ApiGetEventsRequest {
+func (a *EventsAPIService) GetEvents(ctx context.Context) ApiGetEventsRequest {
 	return ApiGetEventsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -291,7 +291,7 @@ func (a *EventsApiService) GetEvents(ctx context.Context) ApiGetEventsRequest {
 
 // Execute executes the request
 //  @return GetEventsResponse
-func (a *EventsApiService) GetEventsExecute(r ApiGetEventsRequest) (*GetEventsResponse, *http.Response, error) {
+func (a *EventsAPIService) GetEventsExecute(r ApiGetEventsRequest) (*GetEventsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -299,7 +299,7 @@ func (a *EventsApiService) GetEventsExecute(r ApiGetEventsRequest) (*GetEventsRe
 		localVarReturnValue  *GetEventsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.GetEvents")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.GetEvents")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -312,6 +312,9 @@ func (a *EventsApiService) GetEventsExecute(r ApiGetEventsRequest) (*GetEventsRe
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
@@ -405,7 +408,7 @@ func (a *EventsApiService) GetEventsExecute(r ApiGetEventsRequest) (*GetEventsRe
 
 type ApiResendEventRequest struct {
 	ctx context.Context
-	ApiService EventsApi
+	ApiService EventsAPI
 	eventId string
 	webhookLogId string
 	acceptLanguage *string
@@ -431,7 +434,7 @@ Try to send an event
  @param webhookLogId webhook log identifier
  @return ApiResendEventRequest
 */
-func (a *EventsApiService) ResendEvent(ctx context.Context, eventId string, webhookLogId string) ApiResendEventRequest {
+func (a *EventsAPIService) ResendEvent(ctx context.Context, eventId string, webhookLogId string) ApiResendEventRequest {
 	return ApiResendEventRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -442,7 +445,7 @@ func (a *EventsApiService) ResendEvent(ctx context.Context, eventId string, webh
 
 // Execute executes the request
 //  @return EventsResendResponse
-func (a *EventsApiService) ResendEventExecute(r ApiResendEventRequest) (*EventsResendResponse, *http.Response, error) {
+func (a *EventsAPIService) ResendEventExecute(r ApiResendEventRequest) (*EventsResendResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -450,7 +453,7 @@ func (a *EventsApiService) ResendEventExecute(r ApiResendEventRequest) (*EventsR
 		localVarReturnValue  *EventsResendResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.ResendEvent")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.ResendEvent")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

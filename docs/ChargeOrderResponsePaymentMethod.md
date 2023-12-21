@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **Country** | Pointer to **string** |  | [optional] 
 **ExpMonth** | Pointer to **string** |  | [optional] 
 **ExpYear** | Pointer to **string** |  | [optional] 
-**FraudIndicators** | Pointer to **[]interface{}** |  | [optional] 
+**FraudIndicators** | Pointer to **[]map[string]interface{}** |  | [optional] 
 **Issuer** | Pointer to **string** |  | [optional] 
 **Last4** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 **IssuingAccountNumber** | Pointer to **NullableString** |  | [optional] 
 **IssuingAccountHolderName** | Pointer to **NullableString** |  | [optional] 
 **IssuingAccountTaxId** | Pointer to **NullableString** |  | [optional] 
-**PaymentAttempts** | Pointer to **[]interface{}** |  | [optional] 
+**PaymentAttempts** | Pointer to **[]map[string]interface{}** |  | [optional] 
 **ReceivingAccountHolderName** | Pointer to **NullableString** |  | [optional] 
 **ReceivingAccountNumber** | Pointer to **string** |  | [optional] 
 **ReceivingAccountBank** | Pointer to **string** |  | [optional] 
@@ -476,20 +476,20 @@ HasExpYear returns a boolean if a field has been set.
 
 ### GetFraudIndicators
 
-`func (o *ChargeOrderResponsePaymentMethod) GetFraudIndicators() []interface{}`
+`func (o *ChargeOrderResponsePaymentMethod) GetFraudIndicators() []map[string]interface{}`
 
 GetFraudIndicators returns the FraudIndicators field if non-nil, zero value otherwise.
 
 ### GetFraudIndicatorsOk
 
-`func (o *ChargeOrderResponsePaymentMethod) GetFraudIndicatorsOk() (*[]interface{}, bool)`
+`func (o *ChargeOrderResponsePaymentMethod) GetFraudIndicatorsOk() (*[]map[string]interface{}, bool)`
 
 GetFraudIndicatorsOk returns a tuple with the FraudIndicators field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFraudIndicators
 
-`func (o *ChargeOrderResponsePaymentMethod) SetFraudIndicators(v []interface{})`
+`func (o *ChargeOrderResponsePaymentMethod) SetFraudIndicators(v []map[string]interface{})`
 
 SetFraudIndicators sets FraudIndicators field to given value.
 
@@ -836,20 +836,20 @@ HasIssuingAccountTaxId returns a boolean if a field has been set.
 UnsetIssuingAccountTaxId ensures that no value is present for IssuingAccountTaxId, not even an explicit nil
 ### GetPaymentAttempts
 
-`func (o *ChargeOrderResponsePaymentMethod) GetPaymentAttempts() []interface{}`
+`func (o *ChargeOrderResponsePaymentMethod) GetPaymentAttempts() []map[string]interface{}`
 
 GetPaymentAttempts returns the PaymentAttempts field if non-nil, zero value otherwise.
 
 ### GetPaymentAttemptsOk
 
-`func (o *ChargeOrderResponsePaymentMethod) GetPaymentAttemptsOk() (*[]interface{}, bool)`
+`func (o *ChargeOrderResponsePaymentMethod) GetPaymentAttemptsOk() (*[]map[string]interface{}, bool)`
 
 GetPaymentAttemptsOk returns a tuple with the PaymentAttempts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPaymentAttempts
 
-`func (o *ChargeOrderResponsePaymentMethod) SetPaymentAttempts(v []interface{})`
+`func (o *ChargeOrderResponsePaymentMethod) SetPaymentAttempts(v []map[string]interface{})`
 
 SetPaymentAttempts sets PaymentAttempts field to given value.
 

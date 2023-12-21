@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Address** | Pointer to [**CustomerShippingContactsResponseAddress**](CustomerShippingContactsResponseAddress.md) |  | [optional] 
 **ParentId** | Pointer to **string** |  | [optional] 
 **Default** | Pointer to **bool** |  | [optional] 
+**Metadata** | Pointer to **map[string]interface{}** | Metadata associated with the shipping contact | [optional] 
 **Deleted** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -268,6 +269,31 @@ SetDefault sets Default field to given value.
 `func (o *OrderResponseShippingContact) HasDefault() bool`
 
 HasDefault returns a boolean if a field has been set.
+
+### GetMetadata
+
+`func (o *OrderResponseShippingContact) GetMetadata() map[string]interface{}`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *OrderResponseShippingContact) GetMetadataOk() (*map[string]interface{}, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *OrderResponseShippingContact) SetMetadata(v map[string]interface{})`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *OrderResponseShippingContact) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
 
 ### GetDeleted
 

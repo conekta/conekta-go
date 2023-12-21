@@ -29,7 +29,7 @@ func Test_conekta_ApiKeysApiService(t *testing.T) {
 			Description: conekta.PtrString("description"),
 			Role:        "admin",
 		}
-		resp, httpRes, err := apiClient.ApiKeysApi.CreateApiKey(context.TODO()).
+		resp, httpRes, err := apiClient.ApiKeysAPI.CreateApiKey(context.TODO()).
 			ApiKeyRequest(rq).
 			AcceptLanguage("es").
 			Execute()
@@ -47,7 +47,7 @@ func Test_conekta_ApiKeysApiService(t *testing.T) {
 	})
 
 	t.Run("Test ApiKeysApiService DeleteApiKey", func(t *testing.T) {
-		resp, httpRes, err := apiClient.ApiKeysApi.DeleteApiKey(context.TODO(), "64625cc9f3e02c00163f5e4d").
+		resp, httpRes, err := apiClient.ApiKeysAPI.DeleteApiKey(context.TODO(), "64625cc9f3e02c00163f5e4d").
 			AcceptLanguage("es").
 			Execute()
 
@@ -64,7 +64,7 @@ func Test_conekta_ApiKeysApiService(t *testing.T) {
 	})
 
 	t.Run("Test ApiKeysApiService GetApiKey", func(t *testing.T) {
-		resp, httpRes, err := apiClient.ApiKeysApi.GetApiKey(context.TODO(), "64625cc9f3e02c00163f5e4d").
+		resp, httpRes, err := apiClient.ApiKeysAPI.GetApiKey(context.TODO(), "64625cc9f3e02c00163f5e4d").
 			AcceptLanguage("es").
 			Execute()
 
@@ -81,7 +81,7 @@ func Test_conekta_ApiKeysApiService(t *testing.T) {
 	})
 
 	t.Run("Test ApiKeysApiService GetApiKeys", func(t *testing.T) {
-		resp, httpRes, err := apiClient.ApiKeysApi.GetApiKeys(context.TODO()).
+		resp, httpRes, err := apiClient.ApiKeysAPI.GetApiKeys(context.TODO()).
 			Limit(20).
 			AcceptLanguage("es").
 			Execute()
@@ -103,7 +103,7 @@ func Test_conekta_ApiKeysApiService(t *testing.T) {
 			Active:      conekta.PtrBool(false),
 			Description: conekta.PtrString("description"),
 		}
-		resp, httpRes, err := apiClient.ApiKeysApi.UpdateApiKey(context.TODO(), "64625cc9f3e02c00163f5e4d").
+		resp, httpRes, err := apiClient.ApiKeysAPI.UpdateApiKey(context.TODO(), "64625cc9f3e02c00163f5e4d").
 			ApiKeyUpdateRequest(rq).
 			AcceptLanguage("es").
 			Execute()

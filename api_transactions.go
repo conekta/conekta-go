@@ -21,7 +21,7 @@ import (
 )
 
 
-type TransactionsApi interface {
+type TransactionsAPI interface {
 
 	/*
 	GetTransaction Get transaction
@@ -53,12 +53,12 @@ type TransactionsApi interface {
 	GetTransactionsExecute(r ApiGetTransactionsRequest) (*GetTransactionsResponse, *http.Response, error)
 }
 
-// TransactionsApiService TransactionsApi service
-type TransactionsApiService service
+// TransactionsAPIService TransactionsAPI service
+type TransactionsAPIService service
 
 type ApiGetTransactionRequest struct {
 	ctx context.Context
-	ApiService TransactionsApi
+	ApiService TransactionsAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -89,7 +89,7 @@ Get the details of a transaction
  @param id Identifier of the resource
  @return ApiGetTransactionRequest
 */
-func (a *TransactionsApiService) GetTransaction(ctx context.Context, id string) ApiGetTransactionRequest {
+func (a *TransactionsAPIService) GetTransaction(ctx context.Context, id string) ApiGetTransactionRequest {
 	return ApiGetTransactionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -99,7 +99,7 @@ func (a *TransactionsApiService) GetTransaction(ctx context.Context, id string) 
 
 // Execute executes the request
 //  @return TransactionResponse
-func (a *TransactionsApiService) GetTransactionExecute(r ApiGetTransactionRequest) (*TransactionResponse, *http.Response, error) {
+func (a *TransactionsAPIService) GetTransactionExecute(r ApiGetTransactionRequest) (*TransactionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -107,7 +107,7 @@ func (a *TransactionsApiService) GetTransactionExecute(r ApiGetTransactionReques
 		localVarReturnValue  *TransactionResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransactionsApiService.GetTransaction")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransactionsAPIService.GetTransaction")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -213,13 +213,16 @@ func (a *TransactionsApiService) GetTransactionExecute(r ApiGetTransactionReques
 
 type ApiGetTransactionsRequest struct {
 	ctx context.Context
-	ApiService TransactionsApi
+	ApiService TransactionsAPI
 	acceptLanguage *string
 	xChildCompanyId *string
 	limit *int32
-	search *string
 	next *string
 	previous *string
+	id *string
+	chargeId *string
+	type_ *string
+	currency *string
 }
 
 // Use for knowing which language to use
@@ -240,12 +243,6 @@ func (r ApiGetTransactionsRequest) Limit(limit int32) ApiGetTransactionsRequest 
 	return r
 }
 
-// General order search, e.g. by mail, reference etc.
-func (r ApiGetTransactionsRequest) Search(search string) ApiGetTransactionsRequest {
-	r.search = &search
-	return r
-}
-
 // next page
 func (r ApiGetTransactionsRequest) Next(next string) ApiGetTransactionsRequest {
 	r.next = &next
@@ -255,6 +252,30 @@ func (r ApiGetTransactionsRequest) Next(next string) ApiGetTransactionsRequest {
 // previous page
 func (r ApiGetTransactionsRequest) Previous(previous string) ApiGetTransactionsRequest {
 	r.previous = &previous
+	return r
+}
+
+// id of the object to be retrieved
+func (r ApiGetTransactionsRequest) Id(id string) ApiGetTransactionsRequest {
+	r.id = &id
+	return r
+}
+
+// id of the charge used for filtering
+func (r ApiGetTransactionsRequest) ChargeId(chargeId string) ApiGetTransactionsRequest {
+	r.chargeId = &chargeId
+	return r
+}
+
+// type of the object to be retrieved
+func (r ApiGetTransactionsRequest) Type_(type_ string) ApiGetTransactionsRequest {
+	r.type_ = &type_
+	return r
+}
+
+// currency of the object to be retrieved
+func (r ApiGetTransactionsRequest) Currency(currency string) ApiGetTransactionsRequest {
+	r.currency = &currency
 	return r
 }
 
@@ -270,7 +291,7 @@ Get transaction details in the form of a list
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetTransactionsRequest
 */
-func (a *TransactionsApiService) GetTransactions(ctx context.Context) ApiGetTransactionsRequest {
+func (a *TransactionsAPIService) GetTransactions(ctx context.Context) ApiGetTransactionsRequest {
 	return ApiGetTransactionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -279,7 +300,7 @@ func (a *TransactionsApiService) GetTransactions(ctx context.Context) ApiGetTran
 
 // Execute executes the request
 //  @return GetTransactionsResponse
-func (a *TransactionsApiService) GetTransactionsExecute(r ApiGetTransactionsRequest) (*GetTransactionsResponse, *http.Response, error) {
+func (a *TransactionsAPIService) GetTransactionsExecute(r ApiGetTransactionsRequest) (*GetTransactionsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -287,7 +308,7 @@ func (a *TransactionsApiService) GetTransactionsExecute(r ApiGetTransactionsRequ
 		localVarReturnValue  *GetTransactionsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransactionsApiService.GetTransactions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransactionsAPIService.GetTransactions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -300,15 +321,27 @@ func (a *TransactionsApiService) GetTransactionsExecute(r ApiGetTransactionsRequ
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
-	}
-	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
 	}
 	if r.next != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "next", r.next, "")
 	}
 	if r.previous != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "previous", r.previous, "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "")
+	}
+	if r.chargeId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "charge_id", r.chargeId, "")
+	}
+	if r.type_ != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "")
+	}
+	if r.currency != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "currency", r.currency, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

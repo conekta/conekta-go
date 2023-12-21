@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PaymentMethodSpeiRecurrent type satisfies the MappedNullable interface at compile time
@@ -28,6 +29,8 @@ type PaymentMethodSpeiRecurrent struct {
 	Reference *string `json:"reference,omitempty"`
 	ExpiresAt *string `json:"expires_at,omitempty"`
 }
+
+type _PaymentMethodSpeiRecurrent PaymentMethodSpeiRecurrent
 
 // NewPaymentMethodSpeiRecurrent instantiates a new PaymentMethodSpeiRecurrent object
 // This constructor will assign default values to properties that have it defined,
@@ -266,6 +269,44 @@ func (o PaymentMethodSpeiRecurrent) ToMap() (map[string]interface{}, error) {
 		toSerialize["expires_at"] = o.ExpiresAt
 	}
 	return toSerialize, nil
+}
+
+func (o *PaymentMethodSpeiRecurrent) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"type",
+		"id",
+		"object",
+		"created_at",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPaymentMethodSpeiRecurrent := _PaymentMethodSpeiRecurrent{}
+
+	err = json.Unmarshal(bytes, &varPaymentMethodSpeiRecurrent)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaymentMethodSpeiRecurrent(varPaymentMethodSpeiRecurrent)
+
+	return err
 }
 
 type NullablePaymentMethodSpeiRecurrent struct {

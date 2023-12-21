@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PaymentMethodCardRequest type satisfies the MappedNullable interface at compile time
@@ -25,6 +26,8 @@ type PaymentMethodCardRequest struct {
 	// Token id that will be used to create a \"card\" type payment method. See the (subscriptions)[https://developers.conekta.com/v2.1.0/reference/createsubscription] tutorial for more information on how to tokenize cards.
 	TokenId string `json:"token_id"`
 }
+
+type _PaymentMethodCardRequest PaymentMethodCardRequest
 
 // NewPaymentMethodCardRequest instantiates a new PaymentMethodCardRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -106,6 +109,42 @@ func (o PaymentMethodCardRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	toSerialize["token_id"] = o.TokenId
 	return toSerialize, nil
+}
+
+func (o *PaymentMethodCardRequest) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"type",
+		"token_id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPaymentMethodCardRequest := _PaymentMethodCardRequest{}
+
+	err = json.Unmarshal(bytes, &varPaymentMethodCardRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaymentMethodCardRequest(varPaymentMethodCardRequest)
+
+	return err
 }
 
 type NullablePaymentMethodCardRequest struct {

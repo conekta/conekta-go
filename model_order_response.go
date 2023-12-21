@@ -33,7 +33,7 @@ type OrderResponse struct {
 	Currency *string `json:"currency,omitempty"`
 	CustomerInfo *OrderResponseCustomerInfo `json:"customer_info,omitempty"`
 	DiscountLines *OrderResponseDiscountLines `json:"discount_lines,omitempty"`
-	FiscalEntity *OrderResponseFiscalEntity `json:"fiscal_entity,omitempty"`
+	FiscalEntity NullableOrderFiscalEntityResponse `json:"fiscal_entity,omitempty"`
 	Id *string `json:"id,omitempty"`
 	IsRefundable *bool `json:"is_refundable,omitempty"`
 	LineItems *OrderResponseProducts `json:"line_items,omitempty"`
@@ -41,6 +41,7 @@ type OrderResponse struct {
 	Livemode *bool `json:"livemode,omitempty"`
 	// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	NextAction *OrderNextActionResponse `json:"next_action,omitempty"`
 	// String representing the object’s type. Objects of the same type share the same value.
 	Object *string `json:"object,omitempty"`
 	// The payment status of the order.
@@ -357,36 +358,46 @@ func (o *OrderResponse) SetDiscountLines(v OrderResponseDiscountLines) {
 	o.DiscountLines = &v
 }
 
-// GetFiscalEntity returns the FiscalEntity field value if set, zero value otherwise.
-func (o *OrderResponse) GetFiscalEntity() OrderResponseFiscalEntity {
-	if o == nil || IsNil(o.FiscalEntity) {
-		var ret OrderResponseFiscalEntity
+// GetFiscalEntity returns the FiscalEntity field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *OrderResponse) GetFiscalEntity() OrderFiscalEntityResponse {
+	if o == nil || IsNil(o.FiscalEntity.Get()) {
+		var ret OrderFiscalEntityResponse
 		return ret
 	}
-	return *o.FiscalEntity
+	return *o.FiscalEntity.Get()
 }
 
 // GetFiscalEntityOk returns a tuple with the FiscalEntity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderResponse) GetFiscalEntityOk() (*OrderResponseFiscalEntity, bool) {
-	if o == nil || IsNil(o.FiscalEntity) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OrderResponse) GetFiscalEntityOk() (*OrderFiscalEntityResponse, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.FiscalEntity, true
+	return o.FiscalEntity.Get(), o.FiscalEntity.IsSet()
 }
 
 // HasFiscalEntity returns a boolean if a field has been set.
 func (o *OrderResponse) HasFiscalEntity() bool {
-	if o != nil && !IsNil(o.FiscalEntity) {
+	if o != nil && o.FiscalEntity.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetFiscalEntity gets a reference to the given OrderResponseFiscalEntity and assigns it to the FiscalEntity field.
-func (o *OrderResponse) SetFiscalEntity(v OrderResponseFiscalEntity) {
-	o.FiscalEntity = &v
+// SetFiscalEntity gets a reference to the given NullableOrderFiscalEntityResponse and assigns it to the FiscalEntity field.
+func (o *OrderResponse) SetFiscalEntity(v OrderFiscalEntityResponse) {
+	o.FiscalEntity.Set(&v)
+}
+// SetFiscalEntityNil sets the value for FiscalEntity to be an explicit nil
+func (o *OrderResponse) SetFiscalEntityNil() {
+	o.FiscalEntity.Set(nil)
+}
+
+// UnsetFiscalEntity ensures that no value is present for FiscalEntity, not even an explicit nil
+func (o *OrderResponse) UnsetFiscalEntity() {
+	o.FiscalEntity.Unset()
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -547,6 +558,38 @@ func (o *OrderResponse) HasMetadata() bool {
 // SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
 func (o *OrderResponse) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
+}
+
+// GetNextAction returns the NextAction field value if set, zero value otherwise.
+func (o *OrderResponse) GetNextAction() OrderNextActionResponse {
+	if o == nil || IsNil(o.NextAction) {
+		var ret OrderNextActionResponse
+		return ret
+	}
+	return *o.NextAction
+}
+
+// GetNextActionOk returns a tuple with the NextAction field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderResponse) GetNextActionOk() (*OrderNextActionResponse, bool) {
+	if o == nil || IsNil(o.NextAction) {
+		return nil, false
+	}
+	return o.NextAction, true
+}
+
+// HasNextAction returns a boolean if a field has been set.
+func (o *OrderResponse) HasNextAction() bool {
+	if o != nil && !IsNil(o.NextAction) {
+		return true
+	}
+
+	return false
+}
+
+// SetNextAction gets a reference to the given OrderNextActionResponse and assigns it to the NextAction field.
+func (o *OrderResponse) SetNextAction(v OrderNextActionResponse) {
+	o.NextAction = &v
 }
 
 // GetObject returns the Object field value if set, zero value otherwise.
@@ -746,8 +789,8 @@ func (o OrderResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DiscountLines) {
 		toSerialize["discount_lines"] = o.DiscountLines
 	}
-	if !IsNil(o.FiscalEntity) {
-		toSerialize["fiscal_entity"] = o.FiscalEntity
+	if o.FiscalEntity.IsSet() {
+		toSerialize["fiscal_entity"] = o.FiscalEntity.Get()
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
@@ -763,6 +806,9 @@ func (o OrderResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
+	}
+	if !IsNil(o.NextAction) {
+		toSerialize["next_action"] = o.NextAction
 	}
 	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object

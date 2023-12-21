@@ -21,7 +21,7 @@ import (
 )
 
 
-type PaymentLinkApi interface {
+type PaymentLinkAPI interface {
 
 	/*
 	CancelCheckout Cancel Payment Link
@@ -102,12 +102,12 @@ type PaymentLinkApi interface {
 	SmsCheckoutExecute(r ApiSmsCheckoutRequest) (*CheckoutResponse, *http.Response, error)
 }
 
-// PaymentLinkApiService PaymentLinkApi service
-type PaymentLinkApiService service
+// PaymentLinkAPIService PaymentLinkAPI service
+type PaymentLinkAPIService service
 
 type ApiCancelCheckoutRequest struct {
 	ctx context.Context
-	ApiService PaymentLinkApi
+	ApiService PaymentLinkAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -136,7 +136,7 @@ CancelCheckout Cancel Payment Link
  @param id Identifier of the resource
  @return ApiCancelCheckoutRequest
 */
-func (a *PaymentLinkApiService) CancelCheckout(ctx context.Context, id string) ApiCancelCheckoutRequest {
+func (a *PaymentLinkAPIService) CancelCheckout(ctx context.Context, id string) ApiCancelCheckoutRequest {
 	return ApiCancelCheckoutRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -146,7 +146,7 @@ func (a *PaymentLinkApiService) CancelCheckout(ctx context.Context, id string) A
 
 // Execute executes the request
 //  @return CheckoutResponse
-func (a *PaymentLinkApiService) CancelCheckoutExecute(r ApiCancelCheckoutRequest) (*CheckoutResponse, *http.Response, error) {
+func (a *PaymentLinkAPIService) CancelCheckoutExecute(r ApiCancelCheckoutRequest) (*CheckoutResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -154,7 +154,7 @@ func (a *PaymentLinkApiService) CancelCheckoutExecute(r ApiCancelCheckoutRequest
 		localVarReturnValue  *CheckoutResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentLinkApiService.CancelCheckout")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentLinkAPIService.CancelCheckout")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -282,7 +282,7 @@ func (a *PaymentLinkApiService) CancelCheckoutExecute(r ApiCancelCheckoutRequest
 
 type ApiCreateCheckoutRequest struct {
 	ctx context.Context
-	ApiService PaymentLinkApi
+	ApiService PaymentLinkAPI
 	checkout *Checkout
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -316,7 +316,7 @@ CreateCheckout Create Unique Payment Link
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateCheckoutRequest
 */
-func (a *PaymentLinkApiService) CreateCheckout(ctx context.Context) ApiCreateCheckoutRequest {
+func (a *PaymentLinkAPIService) CreateCheckout(ctx context.Context) ApiCreateCheckoutRequest {
 	return ApiCreateCheckoutRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -325,7 +325,7 @@ func (a *PaymentLinkApiService) CreateCheckout(ctx context.Context) ApiCreateChe
 
 // Execute executes the request
 //  @return CheckoutResponse
-func (a *PaymentLinkApiService) CreateCheckoutExecute(r ApiCreateCheckoutRequest) (*CheckoutResponse, *http.Response, error) {
+func (a *PaymentLinkAPIService) CreateCheckoutExecute(r ApiCreateCheckoutRequest) (*CheckoutResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -333,7 +333,7 @@ func (a *PaymentLinkApiService) CreateCheckoutExecute(r ApiCreateCheckoutRequest
 		localVarReturnValue  *CheckoutResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentLinkApiService.CreateCheckout")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentLinkAPIService.CreateCheckout")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -454,7 +454,7 @@ func (a *PaymentLinkApiService) CreateCheckoutExecute(r ApiCreateCheckoutRequest
 
 type ApiEmailCheckoutRequest struct {
 	ctx context.Context
-	ApiService PaymentLinkApi
+	ApiService PaymentLinkAPI
 	id string
 	emailCheckoutRequest *EmailCheckoutRequest
 	acceptLanguage *string
@@ -490,7 +490,7 @@ EmailCheckout Send an email
  @param id Identifier of the resource
  @return ApiEmailCheckoutRequest
 */
-func (a *PaymentLinkApiService) EmailCheckout(ctx context.Context, id string) ApiEmailCheckoutRequest {
+func (a *PaymentLinkAPIService) EmailCheckout(ctx context.Context, id string) ApiEmailCheckoutRequest {
 	return ApiEmailCheckoutRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -500,7 +500,7 @@ func (a *PaymentLinkApiService) EmailCheckout(ctx context.Context, id string) Ap
 
 // Execute executes the request
 //  @return CheckoutResponse
-func (a *PaymentLinkApiService) EmailCheckoutExecute(r ApiEmailCheckoutRequest) (*CheckoutResponse, *http.Response, error) {
+func (a *PaymentLinkAPIService) EmailCheckoutExecute(r ApiEmailCheckoutRequest) (*CheckoutResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -508,7 +508,7 @@ func (a *PaymentLinkApiService) EmailCheckoutExecute(r ApiEmailCheckoutRequest) 
 		localVarReturnValue  *CheckoutResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentLinkApiService.EmailCheckout")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentLinkAPIService.EmailCheckout")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -641,7 +641,7 @@ func (a *PaymentLinkApiService) EmailCheckoutExecute(r ApiEmailCheckoutRequest) 
 
 type ApiGetCheckoutRequest struct {
 	ctx context.Context
-	ApiService PaymentLinkApi
+	ApiService PaymentLinkAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -670,7 +670,7 @@ GetCheckout Get a payment link by ID
  @param id Identifier of the resource
  @return ApiGetCheckoutRequest
 */
-func (a *PaymentLinkApiService) GetCheckout(ctx context.Context, id string) ApiGetCheckoutRequest {
+func (a *PaymentLinkAPIService) GetCheckout(ctx context.Context, id string) ApiGetCheckoutRequest {
 	return ApiGetCheckoutRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -680,7 +680,7 @@ func (a *PaymentLinkApiService) GetCheckout(ctx context.Context, id string) ApiG
 
 // Execute executes the request
 //  @return CheckoutResponse
-func (a *PaymentLinkApiService) GetCheckoutExecute(r ApiGetCheckoutRequest) (*CheckoutResponse, *http.Response, error) {
+func (a *PaymentLinkAPIService) GetCheckoutExecute(r ApiGetCheckoutRequest) (*CheckoutResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -688,7 +688,7 @@ func (a *PaymentLinkApiService) GetCheckoutExecute(r ApiGetCheckoutRequest) (*Ch
 		localVarReturnValue  *CheckoutResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentLinkApiService.GetCheckout")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentLinkAPIService.GetCheckout")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -816,7 +816,7 @@ func (a *PaymentLinkApiService) GetCheckoutExecute(r ApiGetCheckoutRequest) (*Ch
 
 type ApiGetCheckoutsRequest struct {
 	ctx context.Context
-	ApiService PaymentLinkApi
+	ApiService PaymentLinkAPI
 	acceptLanguage *string
 	xChildCompanyId *string
 	limit *int32
@@ -873,7 +873,7 @@ Returns a list of links generated by the merchant
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetCheckoutsRequest
 */
-func (a *PaymentLinkApiService) GetCheckouts(ctx context.Context) ApiGetCheckoutsRequest {
+func (a *PaymentLinkAPIService) GetCheckouts(ctx context.Context) ApiGetCheckoutsRequest {
 	return ApiGetCheckoutsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -882,7 +882,7 @@ func (a *PaymentLinkApiService) GetCheckouts(ctx context.Context) ApiGetCheckout
 
 // Execute executes the request
 //  @return CheckoutsResponse
-func (a *PaymentLinkApiService) GetCheckoutsExecute(r ApiGetCheckoutsRequest) (*CheckoutsResponse, *http.Response, error) {
+func (a *PaymentLinkAPIService) GetCheckoutsExecute(r ApiGetCheckoutsRequest) (*CheckoutsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -890,7 +890,7 @@ func (a *PaymentLinkApiService) GetCheckoutsExecute(r ApiGetCheckoutsRequest) (*
 		localVarReturnValue  *CheckoutsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentLinkApiService.GetCheckouts")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentLinkAPIService.GetCheckouts")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -903,6 +903,9 @@ func (a *PaymentLinkApiService) GetCheckoutsExecute(r ApiGetCheckoutsRequest) (*
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
@@ -1018,7 +1021,7 @@ func (a *PaymentLinkApiService) GetCheckoutsExecute(r ApiGetCheckoutsRequest) (*
 
 type ApiSmsCheckoutRequest struct {
 	ctx context.Context
-	ApiService PaymentLinkApi
+	ApiService PaymentLinkAPI
 	id string
 	smsCheckoutRequest *SmsCheckoutRequest
 	acceptLanguage *string
@@ -1054,7 +1057,7 @@ SmsCheckout Send an sms
  @param id Identifier of the resource
  @return ApiSmsCheckoutRequest
 */
-func (a *PaymentLinkApiService) SmsCheckout(ctx context.Context, id string) ApiSmsCheckoutRequest {
+func (a *PaymentLinkAPIService) SmsCheckout(ctx context.Context, id string) ApiSmsCheckoutRequest {
 	return ApiSmsCheckoutRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1064,7 +1067,7 @@ func (a *PaymentLinkApiService) SmsCheckout(ctx context.Context, id string) ApiS
 
 // Execute executes the request
 //  @return CheckoutResponse
-func (a *PaymentLinkApiService) SmsCheckoutExecute(r ApiSmsCheckoutRequest) (*CheckoutResponse, *http.Response, error) {
+func (a *PaymentLinkAPIService) SmsCheckoutExecute(r ApiSmsCheckoutRequest) (*CheckoutResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1072,7 +1075,7 @@ func (a *PaymentLinkApiService) SmsCheckoutExecute(r ApiSmsCheckoutRequest) (*Ch
 		localVarReturnValue  *CheckoutResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentLinkApiService.SmsCheckout")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentLinkAPIService.SmsCheckout")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the TokenCard type satisfies the MappedNullable interface at compile time
@@ -33,6 +34,8 @@ type TokenCard struct {
 	// It is a value that allows identifying the number of the card.
 	Number string `json:"number"`
 }
+
+type _TokenCard TokenCard
 
 // NewTokenCard instantiates a new TokenCard object
 // This constructor will assign default values to properties that have it defined,
@@ -227,6 +230,45 @@ func (o TokenCard) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["number"] = o.Number
 	return toSerialize, nil
+}
+
+func (o *TokenCard) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"cvc",
+		"exp_month",
+		"exp_year",
+		"name",
+		"number",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTokenCard := _TokenCard{}
+
+	err = json.Unmarshal(bytes, &varTokenCard)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TokenCard(varTokenCard)
+
+	return err
 }
 
 type NullableTokenCard struct {

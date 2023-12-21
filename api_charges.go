@@ -21,7 +21,7 @@ import (
 )
 
 
-type ChargesApi interface {
+type ChargesAPI interface {
 
 	/*
 	GetCharges Get A List of Charges
@@ -49,14 +49,27 @@ type ChargesApi interface {
 	// OrdersCreateChargeExecute executes the request
 	//  @return ChargeOrderResponse
 	OrdersCreateChargeExecute(r ApiOrdersCreateChargeRequest) (*ChargeOrderResponse, *http.Response, error)
+
+	/*
+	UpdateCharge Update a charge
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiUpdateChargeRequest
+	*/
+	UpdateCharge(ctx context.Context, id string) ApiUpdateChargeRequest
+
+	// UpdateChargeExecute executes the request
+	//  @return ChargeResponse
+	UpdateChargeExecute(r ApiUpdateChargeRequest) (*ChargeResponse, *http.Response, error)
 }
 
-// ChargesApiService ChargesApi service
-type ChargesApiService service
+// ChargesAPIService ChargesAPI service
+type ChargesAPIService service
 
 type ApiGetChargesRequest struct {
 	ctx context.Context
-	ApiService ChargesApi
+	ApiService ChargesAPI
 	acceptLanguage *string
 	xChildCompanyId *string
 	limit *int32
@@ -111,7 +124,7 @@ GetCharges Get A List of Charges
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetChargesRequest
 */
-func (a *ChargesApiService) GetCharges(ctx context.Context) ApiGetChargesRequest {
+func (a *ChargesAPIService) GetCharges(ctx context.Context) ApiGetChargesRequest {
 	return ApiGetChargesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -120,7 +133,7 @@ func (a *ChargesApiService) GetCharges(ctx context.Context) ApiGetChargesRequest
 
 // Execute executes the request
 //  @return GetChargesResponse
-func (a *ChargesApiService) GetChargesExecute(r ApiGetChargesRequest) (*GetChargesResponse, *http.Response, error) {
+func (a *ChargesAPIService) GetChargesExecute(r ApiGetChargesRequest) (*GetChargesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -128,7 +141,7 @@ func (a *ChargesApiService) GetChargesExecute(r ApiGetChargesRequest) (*GetCharg
 		localVarReturnValue  *GetChargesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChargesApiService.GetCharges")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChargesAPIService.GetCharges")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -141,6 +154,9 @@ func (a *ChargesApiService) GetChargesExecute(r ApiGetChargesRequest) (*GetCharg
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
@@ -234,7 +250,7 @@ func (a *ChargesApiService) GetChargesExecute(r ApiGetChargesRequest) (*GetCharg
 
 type ApiOrdersCreateChargeRequest struct {
 	ctx context.Context
-	ApiService ChargesApi
+	ApiService ChargesAPI
 	id string
 	chargeRequest *ChargeRequest
 	acceptLanguage *string
@@ -272,7 +288,7 @@ Create charge for an existing orden
  @param id Identifier of the resource
  @return ApiOrdersCreateChargeRequest
 */
-func (a *ChargesApiService) OrdersCreateCharge(ctx context.Context, id string) ApiOrdersCreateChargeRequest {
+func (a *ChargesAPIService) OrdersCreateCharge(ctx context.Context, id string) ApiOrdersCreateChargeRequest {
 	return ApiOrdersCreateChargeRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -282,7 +298,7 @@ func (a *ChargesApiService) OrdersCreateCharge(ctx context.Context, id string) A
 
 // Execute executes the request
 //  @return ChargeOrderResponse
-func (a *ChargesApiService) OrdersCreateChargeExecute(r ApiOrdersCreateChargeRequest) (*ChargeOrderResponse, *http.Response, error) {
+func (a *ChargesAPIService) OrdersCreateChargeExecute(r ApiOrdersCreateChargeRequest) (*ChargeOrderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -290,7 +306,7 @@ func (a *ChargesApiService) OrdersCreateChargeExecute(r ApiOrdersCreateChargeReq
 		localVarReturnValue  *ChargeOrderResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChargesApiService.OrdersCreateCharge")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChargesAPIService.OrdersCreateCharge")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -375,6 +391,171 @@ func (a *ChargesApiService) OrdersCreateChargeExecute(r ApiOrdersCreateChargeReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 428 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUpdateChargeRequest struct {
+	ctx context.Context
+	ApiService ChargesAPI
+	id string
+	chargeUpdateRequest *ChargeUpdateRequest
+	acceptLanguage *string
+	xChildCompanyId *string
+}
+
+// requested field for update a charge
+func (r ApiUpdateChargeRequest) ChargeUpdateRequest(chargeUpdateRequest ChargeUpdateRequest) ApiUpdateChargeRequest {
+	r.chargeUpdateRequest = &chargeUpdateRequest
+	return r
+}
+
+// Use for knowing which language to use
+func (r ApiUpdateChargeRequest) AcceptLanguage(acceptLanguage string) ApiUpdateChargeRequest {
+	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiUpdateChargeRequest) XChildCompanyId(xChildCompanyId string) ApiUpdateChargeRequest {
+	r.xChildCompanyId = &xChildCompanyId
+	return r
+}
+
+func (r ApiUpdateChargeRequest) Execute() (*ChargeResponse, *http.Response, error) {
+	return r.ApiService.UpdateChargeExecute(r)
+}
+
+/*
+UpdateCharge Update a charge
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Identifier of the resource
+ @return ApiUpdateChargeRequest
+*/
+func (a *ChargesAPIService) UpdateCharge(ctx context.Context, id string) ApiUpdateChargeRequest {
+	return ApiUpdateChargeRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return ChargeResponse
+func (a *ChargesAPIService) UpdateChargeExecute(r ApiUpdateChargeRequest) (*ChargeResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ChargeResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChargesAPIService.UpdateCharge")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/charges/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.chargeUpdateRequest == nil {
+		return localVarReturnValue, nil, reportError("chargeUpdateRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptLanguage != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+	}
+	// body params
+	localVarPostBody = r.chargeUpdateRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

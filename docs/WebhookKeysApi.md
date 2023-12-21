@@ -1,14 +1,14 @@
-# \WebhookKeysApi
+# \WebhookKeysAPI
 
 All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateWebhookKey**](WebhookKeysApi.md#CreateWebhookKey) | **Post** /webhook_keys | Create Webhook Key
-[**DeleteWebhookKey**](WebhookKeysApi.md#DeleteWebhookKey) | **Delete** /webhook_keys/{id} | Delete Webhook key
-[**GetWebhookKey**](WebhookKeysApi.md#GetWebhookKey) | **Get** /webhook_keys/{id} | Get Webhook Key
-[**GetWebhookKeys**](WebhookKeysApi.md#GetWebhookKeys) | **Get** /webhook_keys | Get List of Webhook Keys
-[**UpdateWebhookKey**](WebhookKeysApi.md#UpdateWebhookKey) | **Put** /webhook_keys/{id} | Update Webhook Key
+[**CreateWebhookKey**](WebhookKeysAPI.md#CreateWebhookKey) | **Post** /webhook_keys | Create Webhook Key
+[**DeleteWebhookKey**](WebhookKeysAPI.md#DeleteWebhookKey) | **Delete** /webhook_keys/{id} | Delete Webhook key
+[**GetWebhookKey**](WebhookKeysAPI.md#GetWebhookKey) | **Get** /webhook_keys/{id} | Get Webhook Key
+[**GetWebhookKeys**](WebhookKeysAPI.md#GetWebhookKeys) | **Get** /webhook_keys | Get List of Webhook Keys
+[**UpdateWebhookKey**](WebhookKeysAPI.md#UpdateWebhookKey) | **Put** /webhook_keys/{id} | Update Webhook Key
 
 
 
@@ -38,13 +38,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WebhookKeysApi.CreateWebhookKey(context.Background()).AcceptLanguage(acceptLanguage).WebhookKeyRequest(webhookKeyRequest).Execute()
+    resp, r, err := apiClient.WebhookKeysAPI.CreateWebhookKey(context.Background()).AcceptLanguage(acceptLanguage).WebhookKeyRequest(webhookKeyRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysApi.CreateWebhookKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysAPI.CreateWebhookKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateWebhookKey`: WebhookKeyCreateResponse
-    fmt.Fprintf(os.Stdout, "Response from `WebhookKeysApi.CreateWebhookKey`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `WebhookKeysAPI.CreateWebhookKey`: %v\n", resp)
 }
 ```
 
@@ -104,13 +104,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WebhookKeysApi.DeleteWebhookKey(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.WebhookKeysAPI.DeleteWebhookKey(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysApi.DeleteWebhookKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysAPI.DeleteWebhookKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteWebhookKey`: WebhookKeyDeleteResponse
-    fmt.Fprintf(os.Stdout, "Response from `WebhookKeysApi.DeleteWebhookKey`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `WebhookKeysAPI.DeleteWebhookKey`: %v\n", resp)
 }
 ```
 
@@ -175,13 +175,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WebhookKeysApi.GetWebhookKey(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.WebhookKeysAPI.GetWebhookKey(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysApi.GetWebhookKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysAPI.GetWebhookKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetWebhookKey`: WebhookKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `WebhookKeysApi.GetWebhookKey`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `WebhookKeysAPI.GetWebhookKey`: %v\n", resp)
 }
 ```
 
@@ -252,13 +252,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WebhookKeysApi.GetWebhookKeys(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+    resp, r, err := apiClient.WebhookKeysAPI.GetWebhookKeys(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysApi.GetWebhookKeys``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysAPI.GetWebhookKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetWebhookKeys`: GetWebhookKeysResponse
-    fmt.Fprintf(os.Stdout, "Response from `WebhookKeysApi.GetWebhookKeys`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `WebhookKeysAPI.GetWebhookKeys`: %v\n", resp)
 }
 ```
 
@@ -325,13 +325,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WebhookKeysApi.UpdateWebhookKey(context.Background(), id).AcceptLanguage(acceptLanguage).WebhookKeyUpdateRequest(webhookKeyUpdateRequest).Execute()
+    resp, r, err := apiClient.WebhookKeysAPI.UpdateWebhookKey(context.Background(), id).AcceptLanguage(acceptLanguage).WebhookKeyUpdateRequest(webhookKeyUpdateRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysApi.UpdateWebhookKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysAPI.UpdateWebhookKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateWebhookKey`: WebhookKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `WebhookKeysApi.UpdateWebhookKey`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `WebhookKeysAPI.UpdateWebhookKey`: %v\n", resp)
 }
 ```
 

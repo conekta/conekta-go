@@ -28,7 +28,7 @@ func Test_conekta_ShippingContactsApiService(t *testing.T) {
 		req := conekta.CustomerShippingContacts{
 			Phone: conekta.PtrString("1132312312"),
 		}
-		resp, httpRes, err := apiClient.ShippingContactsApi.CreateCustomerShippingContacts(context.TODO(), "cus_2tYENskzTjjgkGQLt").
+		resp, httpRes, err := apiClient.ShippingContactsAPI.CreateCustomerShippingContacts(context.TODO(), "cus_2tYENskzTjjgkGQLt").
 			CustomerShippingContacts(req).
 			AcceptLanguage("es").
 			Execute()
@@ -46,7 +46,7 @@ func Test_conekta_ShippingContactsApiService(t *testing.T) {
 	})
 
 	t.Run("Test ShippingContactsApiService DeleteCustomerShippingContacts", func(t *testing.T) {
-		resp, httpRes, err := apiClient.ShippingContactsApi.DeleteCustomerShippingContacts(context.TODO(), "cus_2tYENskzTjjgkGQLt", "ship_cont_2tY2ncFSBLUaohto2").
+		resp, httpRes, err := apiClient.ShippingContactsAPI.DeleteCustomerShippingContacts(context.TODO(), "cus_2tYENskzTjjgkGQLt", "ship_cont_2tY2ncFSBLUaohto2").
 			AcceptLanguage("es").
 			Execute()
 
@@ -66,7 +66,7 @@ func Test_conekta_ShippingContactsApiService(t *testing.T) {
 		req := conekta.CustomerUpdateShippingContacts{
 			Phone: conekta.PtrString("1132312312"),
 		}
-		resp, httpRes, err := apiClient.ShippingContactsApi.UpdateCustomerShippingContacts(context.TODO(), "cus_2tYENskzTjjgkGQLt", "ship_cont_2tY2ncFSBLUaohto2").
+		resp, httpRes, err := apiClient.ShippingContactsAPI.UpdateCustomerShippingContacts(context.TODO(), "cus_2tYENskzTjjgkGQLt", "ship_cont_2tY2ncFSBLUaohto2").
 			CustomerUpdateShippingContacts(req).
 			AcceptLanguage("es").
 			Execute()

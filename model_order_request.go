@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the OrderRequest type satisfies the MappedNullable interface at compile time
@@ -28,6 +29,7 @@ type OrderRequest struct {
 	CustomerInfo OrderRequestCustomerInfo `json:"customer_info"`
 	// List of [discounts](https://developers.conekta.com/v2.1.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount.
 	DiscountLines []OrderDiscountLinesRequest `json:"discount_lines,omitempty"`
+	FiscalEntity *OrderFiscalEntityRequest `json:"fiscal_entity,omitempty"`
 	// List of [products](https://developers.conekta.com/v2.1.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
 	LineItems []Product `json:"line_items"`
 	// Metadata associated with the order
@@ -38,12 +40,18 @@ type OrderRequest struct {
 	PreAuthorize *bool `json:"pre_authorize,omitempty"`
 	// Indicates the processing mode for the order, either ecommerce, recurrent or validation.
 	ProcessingMode *string `json:"processing_mode,omitempty"`
+	// Indicates the redirection callback upon completion of the 3DS2 flow.
+	ReturnUrl *string `json:"return_url,omitempty"`
 	ShippingContact *CustomerShippingContacts `json:"shipping_contact,omitempty"`
 	// List of [shipping costs](https://developers.conekta.com/v2.1.0/reference/orderscreateshipping). If the online store offers digital products.
 	ShippingLines []ShippingRequest `json:"shipping_lines,omitempty"`
 	// List of [taxes](https://developers.conekta.com/v2.1.0/reference/orderscreatetaxes) that are applied to the order.
 	TaxLines []OrderTaxRequest `json:"tax_lines,omitempty"`
+	// Indicates the 3DS2 mode for the order, either smart or strict.
+	ThreeDsMode *string `json:"three_ds_mode,omitempty"`
 }
+
+type _OrderRequest OrderRequest
 
 // NewOrderRequest instantiates a new OrderRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -213,6 +221,38 @@ func (o *OrderRequest) SetDiscountLines(v []OrderDiscountLinesRequest) {
 	o.DiscountLines = v
 }
 
+// GetFiscalEntity returns the FiscalEntity field value if set, zero value otherwise.
+func (o *OrderRequest) GetFiscalEntity() OrderFiscalEntityRequest {
+	if o == nil || IsNil(o.FiscalEntity) {
+		var ret OrderFiscalEntityRequest
+		return ret
+	}
+	return *o.FiscalEntity
+}
+
+// GetFiscalEntityOk returns a tuple with the FiscalEntity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderRequest) GetFiscalEntityOk() (*OrderFiscalEntityRequest, bool) {
+	if o == nil || IsNil(o.FiscalEntity) {
+		return nil, false
+	}
+	return o.FiscalEntity, true
+}
+
+// HasFiscalEntity returns a boolean if a field has been set.
+func (o *OrderRequest) HasFiscalEntity() bool {
+	if o != nil && !IsNil(o.FiscalEntity) {
+		return true
+	}
+
+	return false
+}
+
+// SetFiscalEntity gets a reference to the given OrderFiscalEntityRequest and assigns it to the FiscalEntity field.
+func (o *OrderRequest) SetFiscalEntity(v OrderFiscalEntityRequest) {
+	o.FiscalEntity = &v
+}
+
 // GetLineItems returns the LineItems field value
 func (o *OrderRequest) GetLineItems() []Product {
 	if o == nil {
@@ -365,6 +405,38 @@ func (o *OrderRequest) SetProcessingMode(v string) {
 	o.ProcessingMode = &v
 }
 
+// GetReturnUrl returns the ReturnUrl field value if set, zero value otherwise.
+func (o *OrderRequest) GetReturnUrl() string {
+	if o == nil || IsNil(o.ReturnUrl) {
+		var ret string
+		return ret
+	}
+	return *o.ReturnUrl
+}
+
+// GetReturnUrlOk returns a tuple with the ReturnUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderRequest) GetReturnUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.ReturnUrl) {
+		return nil, false
+	}
+	return o.ReturnUrl, true
+}
+
+// HasReturnUrl returns a boolean if a field has been set.
+func (o *OrderRequest) HasReturnUrl() bool {
+	if o != nil && !IsNil(o.ReturnUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetReturnUrl gets a reference to the given string and assigns it to the ReturnUrl field.
+func (o *OrderRequest) SetReturnUrl(v string) {
+	o.ReturnUrl = &v
+}
+
 // GetShippingContact returns the ShippingContact field value if set, zero value otherwise.
 func (o *OrderRequest) GetShippingContact() CustomerShippingContacts {
 	if o == nil || IsNil(o.ShippingContact) {
@@ -461,6 +533,38 @@ func (o *OrderRequest) SetTaxLines(v []OrderTaxRequest) {
 	o.TaxLines = v
 }
 
+// GetThreeDsMode returns the ThreeDsMode field value if set, zero value otherwise.
+func (o *OrderRequest) GetThreeDsMode() string {
+	if o == nil || IsNil(o.ThreeDsMode) {
+		var ret string
+		return ret
+	}
+	return *o.ThreeDsMode
+}
+
+// GetThreeDsModeOk returns a tuple with the ThreeDsMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderRequest) GetThreeDsModeOk() (*string, bool) {
+	if o == nil || IsNil(o.ThreeDsMode) {
+		return nil, false
+	}
+	return o.ThreeDsMode, true
+}
+
+// HasThreeDsMode returns a boolean if a field has been set.
+func (o *OrderRequest) HasThreeDsMode() bool {
+	if o != nil && !IsNil(o.ThreeDsMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetThreeDsMode gets a reference to the given string and assigns it to the ThreeDsMode field.
+func (o *OrderRequest) SetThreeDsMode(v string) {
+	o.ThreeDsMode = &v
+}
+
 func (o OrderRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -482,6 +586,9 @@ func (o OrderRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DiscountLines) {
 		toSerialize["discount_lines"] = o.DiscountLines
 	}
+	if !IsNil(o.FiscalEntity) {
+		toSerialize["fiscal_entity"] = o.FiscalEntity
+	}
 	toSerialize["line_items"] = o.LineItems
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
@@ -495,6 +602,9 @@ func (o OrderRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ProcessingMode) {
 		toSerialize["processing_mode"] = o.ProcessingMode
 	}
+	if !IsNil(o.ReturnUrl) {
+		toSerialize["return_url"] = o.ReturnUrl
+	}
 	if !IsNil(o.ShippingContact) {
 		toSerialize["shipping_contact"] = o.ShippingContact
 	}
@@ -504,7 +614,47 @@ func (o OrderRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TaxLines) {
 		toSerialize["tax_lines"] = o.TaxLines
 	}
+	if !IsNil(o.ThreeDsMode) {
+		toSerialize["three_ds_mode"] = o.ThreeDsMode
+	}
 	return toSerialize, nil
+}
+
+func (o *OrderRequest) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"currency",
+		"customer_info",
+		"line_items",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varOrderRequest := _OrderRequest{}
+
+	err = json.Unmarshal(bytes, &varOrderRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = OrderRequest(varOrderRequest)
+
+	return err
 }
 
 type NullableOrderRequest struct {

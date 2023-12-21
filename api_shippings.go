@@ -21,7 +21,7 @@ import (
 )
 
 
-type ShippingsApi interface {
+type ShippingsAPI interface {
 
 	/*
 	OrdersCreateShipping Create Shipping
@@ -71,12 +71,12 @@ type ShippingsApi interface {
 	OrdersUpdateShippingExecute(r ApiOrdersUpdateShippingRequest) (*ShippingOrderResponse, *http.Response, error)
 }
 
-// ShippingsApiService ShippingsApi service
-type ShippingsApiService service
+// ShippingsAPIService ShippingsAPI service
+type ShippingsAPIService service
 
 type ApiOrdersCreateShippingRequest struct {
 	ctx context.Context
-	ApiService ShippingsApi
+	ApiService ShippingsAPI
 	id string
 	shippingRequest *ShippingRequest
 	acceptLanguage *string
@@ -114,7 +114,7 @@ Create new shipping for an existing orden
  @param id Identifier of the resource
  @return ApiOrdersCreateShippingRequest
 */
-func (a *ShippingsApiService) OrdersCreateShipping(ctx context.Context, id string) ApiOrdersCreateShippingRequest {
+func (a *ShippingsAPIService) OrdersCreateShipping(ctx context.Context, id string) ApiOrdersCreateShippingRequest {
 	return ApiOrdersCreateShippingRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -124,7 +124,7 @@ func (a *ShippingsApiService) OrdersCreateShipping(ctx context.Context, id strin
 
 // Execute executes the request
 //  @return ShippingOrderResponse
-func (a *ShippingsApiService) OrdersCreateShippingExecute(r ApiOrdersCreateShippingRequest) (*ShippingOrderResponse, *http.Response, error) {
+func (a *ShippingsAPIService) OrdersCreateShippingExecute(r ApiOrdersCreateShippingRequest) (*ShippingOrderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -132,7 +132,7 @@ func (a *ShippingsApiService) OrdersCreateShippingExecute(r ApiOrdersCreateShipp
 		localVarReturnValue  *ShippingOrderResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShippingsApiService.OrdersCreateShipping")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShippingsAPIService.OrdersCreateShipping")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -243,7 +243,7 @@ func (a *ShippingsApiService) OrdersCreateShippingExecute(r ApiOrdersCreateShipp
 
 type ApiOrdersDeleteShippingRequest struct {
 	ctx context.Context
-	ApiService ShippingsApi
+	ApiService ShippingsAPI
 	id string
 	shippingId string
 	acceptLanguage *string
@@ -276,7 +276,7 @@ Delete shipping
  @param shippingId identifier
  @return ApiOrdersDeleteShippingRequest
 */
-func (a *ShippingsApiService) OrdersDeleteShipping(ctx context.Context, id string, shippingId string) ApiOrdersDeleteShippingRequest {
+func (a *ShippingsAPIService) OrdersDeleteShipping(ctx context.Context, id string, shippingId string) ApiOrdersDeleteShippingRequest {
 	return ApiOrdersDeleteShippingRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -287,7 +287,7 @@ func (a *ShippingsApiService) OrdersDeleteShipping(ctx context.Context, id strin
 
 // Execute executes the request
 //  @return ShippingOrderResponse
-func (a *ShippingsApiService) OrdersDeleteShippingExecute(r ApiOrdersDeleteShippingRequest) (*ShippingOrderResponse, *http.Response, error) {
+func (a *ShippingsAPIService) OrdersDeleteShippingExecute(r ApiOrdersDeleteShippingRequest) (*ShippingOrderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -295,7 +295,7 @@ func (a *ShippingsApiService) OrdersDeleteShippingExecute(r ApiOrdersDeleteShipp
 		localVarReturnValue  *ShippingOrderResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShippingsApiService.OrdersDeleteShipping")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShippingsAPIService.OrdersDeleteShipping")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -424,7 +424,7 @@ func (a *ShippingsApiService) OrdersDeleteShippingExecute(r ApiOrdersDeleteShipp
 
 type ApiOrdersUpdateShippingRequest struct {
 	ctx context.Context
-	ApiService ShippingsApi
+	ApiService ShippingsAPI
 	id string
 	shippingId string
 	shippingRequest *ShippingRequest
@@ -464,7 +464,7 @@ Update existing shipping for an existing orden
  @param shippingId identifier
  @return ApiOrdersUpdateShippingRequest
 */
-func (a *ShippingsApiService) OrdersUpdateShipping(ctx context.Context, id string, shippingId string) ApiOrdersUpdateShippingRequest {
+func (a *ShippingsAPIService) OrdersUpdateShipping(ctx context.Context, id string, shippingId string) ApiOrdersUpdateShippingRequest {
 	return ApiOrdersUpdateShippingRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -475,7 +475,7 @@ func (a *ShippingsApiService) OrdersUpdateShipping(ctx context.Context, id strin
 
 // Execute executes the request
 //  @return ShippingOrderResponse
-func (a *ShippingsApiService) OrdersUpdateShippingExecute(r ApiOrdersUpdateShippingRequest) (*ShippingOrderResponse, *http.Response, error) {
+func (a *ShippingsAPIService) OrdersUpdateShippingExecute(r ApiOrdersUpdateShippingRequest) (*ShippingOrderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -483,7 +483,7 @@ func (a *ShippingsApiService) OrdersUpdateShippingExecute(r ApiOrdersUpdateShipp
 		localVarReturnValue  *ShippingOrderResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShippingsApiService.OrdersUpdateShipping")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShippingsAPIService.OrdersUpdateShipping")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

@@ -1,11 +1,11 @@
-# \TransfersApi
+# \TransfersAPI
 
 All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetTransfer**](TransfersApi.md#GetTransfer) | **Get** /transfers/{id} | Get Transfer
-[**GetTransfers**](TransfersApi.md#GetTransfers) | **Get** /transfers | Get a list of transfers
+[**GetTransfer**](TransfersAPI.md#GetTransfer) | **Get** /transfers/{id} | Get Transfer
+[**GetTransfers**](TransfersAPI.md#GetTransfers) | **Get** /transfers | Get a list of transfers
 
 
 
@@ -36,13 +36,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TransfersApi.GetTransfer(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.TransfersAPI.GetTransfer(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TransfersApi.GetTransfer``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TransfersAPI.GetTransfer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetTransfer`: TransferResponse
-    fmt.Fprintf(os.Stdout, "Response from `TransfersApi.GetTransfer`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `TransfersAPI.GetTransfer`: %v\n", resp)
 }
 ```
 
@@ -113,13 +113,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TransfersApi.GetTransfers(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+    resp, r, err := apiClient.TransfersAPI.GetTransfers(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TransfersApi.GetTransfers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TransfersAPI.GetTransfers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetTransfers`: GetTransfersResponse
-    fmt.Fprintf(os.Stdout, "Response from `TransfersApi.GetTransfers`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `TransfersAPI.GetTransfers`: %v\n", resp)
 }
 ```
 

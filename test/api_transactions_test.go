@@ -25,7 +25,7 @@ func Test_conekta_TransactionsApiService(t *testing.T) {
 	apiClient := conekta.NewAPIClient(configuration)
 
 	t.Run("Test TransactionsApiService GetTransaction", func(t *testing.T) {
-		resp, httpRes, err := apiClient.TransactionsApi.GetTransaction(context.TODO(), "6456b6dfac0fd40001a64eb8").
+		resp, httpRes, err := apiClient.TransactionsAPI.GetTransaction(context.TODO(), "6456b6dfac0fd40001a64eb8").
 			AcceptLanguage("es").
 			Execute()
 
@@ -42,7 +42,7 @@ func Test_conekta_TransactionsApiService(t *testing.T) {
 	})
 
 	t.Run("Test TransactionsApiService GetTransactions", func(t *testing.T) {
-		resp, httpRes, err := apiClient.TransactionsApi.GetTransactions(context.TODO()).
+		resp, httpRes, err := apiClient.TransactionsAPI.GetTransactions(context.TODO()).
 			AcceptLanguage("es").
 			Limit(2).
 			Execute()

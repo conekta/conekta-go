@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ChargeRequestPaymentMethod type satisfies the MappedNullable interface at compile time
@@ -22,12 +23,16 @@ var _ MappedNullable = &ChargeRequestPaymentMethod{}
 type ChargeRequestPaymentMethod struct {
 	// Method expiration date as unix timestamp
 	ExpiresAt *int64 `json:"expires_at,omitempty"`
+	// How many months without interest to apply, it can be 3, 6, 9, 12 or 18
+	MonthlyInstallments *int32 `json:"monthly_installments,omitempty"`
 	Type string `json:"type"`
 	TokenId *string `json:"token_id,omitempty"`
 	PaymentSourceId *string `json:"payment_source_id,omitempty"`
 	// Optional id sent to indicate the bank contract for recurrent card charges.
 	ContractId *string `json:"contract_id,omitempty"`
 }
+
+type _ChargeRequestPaymentMethod ChargeRequestPaymentMethod
 
 // NewChargeRequestPaymentMethod instantiates a new ChargeRequestPaymentMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -77,6 +82,38 @@ func (o *ChargeRequestPaymentMethod) HasExpiresAt() bool {
 // SetExpiresAt gets a reference to the given int64 and assigns it to the ExpiresAt field.
 func (o *ChargeRequestPaymentMethod) SetExpiresAt(v int64) {
 	o.ExpiresAt = &v
+}
+
+// GetMonthlyInstallments returns the MonthlyInstallments field value if set, zero value otherwise.
+func (o *ChargeRequestPaymentMethod) GetMonthlyInstallments() int32 {
+	if o == nil || IsNil(o.MonthlyInstallments) {
+		var ret int32
+		return ret
+	}
+	return *o.MonthlyInstallments
+}
+
+// GetMonthlyInstallmentsOk returns a tuple with the MonthlyInstallments field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChargeRequestPaymentMethod) GetMonthlyInstallmentsOk() (*int32, bool) {
+	if o == nil || IsNil(o.MonthlyInstallments) {
+		return nil, false
+	}
+	return o.MonthlyInstallments, true
+}
+
+// HasMonthlyInstallments returns a boolean if a field has been set.
+func (o *ChargeRequestPaymentMethod) HasMonthlyInstallments() bool {
+	if o != nil && !IsNil(o.MonthlyInstallments) {
+		return true
+	}
+
+	return false
+}
+
+// SetMonthlyInstallments gets a reference to the given int32 and assigns it to the MonthlyInstallments field.
+func (o *ChargeRequestPaymentMethod) SetMonthlyInstallments(v int32) {
+	o.MonthlyInstallments = &v
 }
 
 // GetType returns the Type field value
@@ -212,6 +249,9 @@ func (o ChargeRequestPaymentMethod) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExpiresAt) {
 		toSerialize["expires_at"] = o.ExpiresAt
 	}
+	if !IsNil(o.MonthlyInstallments) {
+		toSerialize["monthly_installments"] = o.MonthlyInstallments
+	}
 	toSerialize["type"] = o.Type
 	if !IsNil(o.TokenId) {
 		toSerialize["token_id"] = o.TokenId
@@ -223,6 +263,41 @@ func (o ChargeRequestPaymentMethod) ToMap() (map[string]interface{}, error) {
 		toSerialize["contract_id"] = o.ContractId
 	}
 	return toSerialize, nil
+}
+
+func (o *ChargeRequestPaymentMethod) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varChargeRequestPaymentMethod := _ChargeRequestPaymentMethod{}
+
+	err = json.Unmarshal(bytes, &varChargeRequestPaymentMethod)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ChargeRequestPaymentMethod(varChargeRequestPaymentMethod)
+
+	return err
 }
 
 type NullableChargeRequestPaymentMethod struct {

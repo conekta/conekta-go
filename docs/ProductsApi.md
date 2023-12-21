@@ -1,12 +1,12 @@
-# \ProductsApi
+# \ProductsAPI
 
 All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**OrdersCreateProduct**](ProductsApi.md#OrdersCreateProduct) | **Post** /orders/{id}/line_items | Create Product
-[**OrdersDeleteProduct**](ProductsApi.md#OrdersDeleteProduct) | **Delete** /orders/{id}/line_items/{line_item_id} | Delete Product
-[**OrdersUpdateProduct**](ProductsApi.md#OrdersUpdateProduct) | **Put** /orders/{id}/line_items/{line_item_id} | Update Product
+[**OrdersCreateProduct**](ProductsAPI.md#OrdersCreateProduct) | **Post** /orders/{id}/line_items | Create Product
+[**OrdersDeleteProduct**](ProductsAPI.md#OrdersDeleteProduct) | **Delete** /orders/{id}/line_items/{line_item_id} | Delete Product
+[**OrdersUpdateProduct**](ProductsAPI.md#OrdersUpdateProduct) | **Put** /orders/{id}/line_items/{line_item_id} | Update Product
 
 
 
@@ -38,13 +38,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProductsApi.OrdersCreateProduct(context.Background(), id).Product(product).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.ProductsAPI.OrdersCreateProduct(context.Background(), id).Product(product).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProductsApi.OrdersCreateProduct``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProductsAPI.OrdersCreateProduct``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `OrdersCreateProduct`: ProductOrderResponse
-    fmt.Fprintf(os.Stdout, "Response from `ProductsApi.OrdersCreateProduct`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ProductsAPI.OrdersCreateProduct`: %v\n", resp)
 }
 ```
 
@@ -114,13 +114,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProductsApi.OrdersDeleteProduct(context.Background(), id, lineItemId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.ProductsAPI.OrdersDeleteProduct(context.Background(), id, lineItemId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProductsApi.OrdersDeleteProduct``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProductsAPI.OrdersDeleteProduct``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `OrdersDeleteProduct`: ProductOrderResponse
-    fmt.Fprintf(os.Stdout, "Response from `ProductsApi.OrdersDeleteProduct`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ProductsAPI.OrdersDeleteProduct`: %v\n", resp)
 }
 ```
 
@@ -192,13 +192,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProductsApi.OrdersUpdateProduct(context.Background(), id, lineItemId).UpdateProduct(updateProduct).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.ProductsAPI.OrdersUpdateProduct(context.Background(), id, lineItemId).UpdateProduct(updateProduct).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProductsApi.OrdersUpdateProduct``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProductsAPI.OrdersUpdateProduct``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `OrdersUpdateProduct`: ProductOrderResponse
-    fmt.Fprintf(os.Stdout, "Response from `ProductsApi.OrdersUpdateProduct`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ProductsAPI.OrdersUpdateProduct`: %v\n", resp)
 }
 ```
 

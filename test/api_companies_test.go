@@ -25,7 +25,7 @@ func Test_conekta_CompaniesApiService(t *testing.T) {
 	apiClient := conekta.NewAPIClient(configuration)
 
 	t.Run("Test CompaniesApiService GetCompanies", func(t *testing.T) {
-		resp, httpRes, err := apiClient.CompaniesApi.GetCompanies(context.TODO()).
+		resp, httpRes, err := apiClient.CompaniesAPI.GetCompanies(context.TODO()).
 			AcceptLanguage("es").
 			Execute()
 
@@ -42,7 +42,7 @@ func Test_conekta_CompaniesApiService(t *testing.T) {
 	})
 
 	t.Run("Test CompaniesApiService GetCompany", func(t *testing.T) {
-		resp, httpRes, err := apiClient.CompaniesApi.GetCompany(context.TODO(), "5c537c4d27839876e2f18139").
+		resp, httpRes, err := apiClient.CompaniesAPI.GetCompany(context.TODO(), "5c537c4d27839876e2f18139").
 			AcceptLanguage("es").
 			Execute()
 

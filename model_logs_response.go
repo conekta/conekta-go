@@ -240,8 +240,12 @@ func (o LogsResponse) MarshalJSON() ([]byte, error) {
 
 func (o LogsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: has_more is readOnly
-	// skip: object is readOnly
+	if !IsNil(o.HasMore) {
+		toSerialize["has_more"] = o.HasMore
+	}
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
+	}
 	if o.NextPageUrl.IsSet() {
 		toSerialize["next_page_url"] = o.NextPageUrl.Get()
 	}

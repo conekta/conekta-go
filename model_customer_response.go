@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CustomerResponse type satisfies the MappedNullable interface at compile time
@@ -21,33 +22,44 @@ var _ MappedNullable = &CustomerResponse{}
 // CustomerResponse customer response
 type CustomerResponse struct {
 	AntifraudInfo NullableCustomerAntifraudInfoResponse `json:"antifraud_info,omitempty"`
+	// true if the customer is a company
 	Corporate *bool `json:"corporate,omitempty"`
+	// Creation date of the object
 	CreatedAt int64 `json:"created_at"`
+	// Custom reference
 	CustomReference *string `json:"custom_reference,omitempty"`
 	DefaultFiscalEntityId NullableString `json:"default_fiscal_entity_id,omitempty"`
 	DefaultShippingContactId *string `json:"default_shipping_contact_id,omitempty"`
 	DefaultPaymentSourceId NullableString `json:"default_payment_source_id,omitempty"`
 	Email *string `json:"email,omitempty"`
 	FiscalEntities *CustomerFiscalEntitiesResponse `json:"fiscal_entities,omitempty"`
+	// Customer's ID
 	Id string `json:"id"`
+	// true if the object exists in live mode or the value false if the object exists in test mode
 	Livemode bool `json:"livemode"`
-	Name *string `json:"name,omitempty"`
+	// Customer's name
+	Name string `json:"name"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	Object string `json:"object"`
 	PaymentSources *CustomerPaymentMethodsResponse `json:"payment_sources,omitempty"`
+	// Customer's phone number
 	Phone *string `json:"phone,omitempty"`
 	ShippingContacts *CustomerResponseShippingContacts `json:"shipping_contacts,omitempty"`
 	Subscription *SubscriptionResponse `json:"subscription,omitempty"`
 }
 
+type _CustomerResponse CustomerResponse
+
 // NewCustomerResponse instantiates a new CustomerResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustomerResponse(createdAt int64, id string, livemode bool, object string) *CustomerResponse {
+func NewCustomerResponse(createdAt int64, id string, livemode bool, name string, object string) *CustomerResponse {
 	this := CustomerResponse{}
 	this.CreatedAt = createdAt
 	this.Id = id
 	this.Livemode = livemode
+	this.Name = name
 	this.Object = object
 	return &this
 }
@@ -418,36 +430,60 @@ func (o *CustomerResponse) SetLivemode(v bool) {
 	o.Livemode = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *CustomerResponse) GetName() string {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *CustomerResponse) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *CustomerResponse) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+// SetName sets field value
+func (o *CustomerResponse) SetName(v string) {
+	o.Name = v
+}
+
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *CustomerResponse) GetMetadata() map[string]interface{} {
+	if o == nil || IsNil(o.Metadata) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomerResponse) GetMetadataOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Metadata) {
+		return map[string]interface{}{}, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *CustomerResponse) HasMetadata() bool {
+	if o != nil && !IsNil(o.Metadata) {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *CustomerResponse) SetName(v string) {
-	o.Name = &v
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *CustomerResponse) SetMetadata(v map[string]interface{}) {
+	o.Metadata = v
 }
 
 // GetObject returns the Object field value
@@ -639,8 +675,9 @@ func (o CustomerResponse) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["id"] = o.Id
 	toSerialize["livemode"] = o.Livemode
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	toSerialize["name"] = o.Name
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
 	}
 	toSerialize["object"] = o.Object
 	if !IsNil(o.PaymentSources) {
@@ -656,6 +693,45 @@ func (o CustomerResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["subscription"] = o.Subscription
 	}
 	return toSerialize, nil
+}
+
+func (o *CustomerResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"created_at",
+		"id",
+		"livemode",
+		"name",
+		"object",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCustomerResponse := _CustomerResponse{}
+
+	err = json.Unmarshal(bytes, &varCustomerResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CustomerResponse(varCustomerResponse)
+
+	return err
 }
 
 type NullableCustomerResponse struct {

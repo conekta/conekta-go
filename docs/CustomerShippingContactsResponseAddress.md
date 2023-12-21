@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **City** | Pointer to **string** |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
 **Country** | Pointer to **string** |  | [optional] 
-**Residential** | Pointer to **bool** |  | [optional] 
+**Residential** | Pointer to **NullableBool** |  | [optional] 
 
 ## Methods
 
@@ -232,6 +232,16 @@ SetResidential sets Residential field to given value.
 
 HasResidential returns a boolean if a field has been set.
 
+### SetResidentialNil
+
+`func (o *CustomerShippingContactsResponseAddress) SetResidentialNil(b bool)`
+
+ SetResidentialNil sets the value for Residential to be an explicit nil
+
+### UnsetResidential
+`func (o *CustomerShippingContactsResponseAddress) UnsetResidential()`
+
+UnsetResidential ensures that no value is present for Residential, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

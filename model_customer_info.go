@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CustomerInfo type satisfies the MappedNullable interface at compile time
@@ -26,6 +27,8 @@ type CustomerInfo struct {
 	Corporate *bool `json:"corporate,omitempty"`
 	Object *string `json:"object,omitempty"`
 }
+
+type _CustomerInfo CustomerInfo
 
 // NewCustomerInfo instantiates a new CustomerInfo object
 // This constructor will assign default values to properties that have it defined,
@@ -203,6 +206,43 @@ func (o CustomerInfo) ToMap() (map[string]interface{}, error) {
 		toSerialize["object"] = o.Object
 	}
 	return toSerialize, nil
+}
+
+func (o *CustomerInfo) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"email",
+		"phone",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCustomerInfo := _CustomerInfo{}
+
+	err = json.Unmarshal(bytes, &varCustomerInfo)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CustomerInfo(varCustomerInfo)
+
+	return err
 }
 
 type NullableCustomerInfo struct {

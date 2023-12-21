@@ -1,15 +1,15 @@
-# \WebhooksApi
+# \WebhooksAPI
 
 All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateWebhook**](WebhooksApi.md#CreateWebhook) | **Post** /webhooks | Create Webhook
-[**DeleteWebhook**](WebhooksApi.md#DeleteWebhook) | **Delete** /webhooks/{id} | Delete Webhook
-[**GetWebhook**](WebhooksApi.md#GetWebhook) | **Get** /webhooks/{id} | Get Webhook
-[**GetWebhooks**](WebhooksApi.md#GetWebhooks) | **Get** /webhooks | Get List of Webhooks
-[**TestWebhook**](WebhooksApi.md#TestWebhook) | **Post** /webhooks/{id}/test | Test Webhook
-[**UpdateWebhook**](WebhooksApi.md#UpdateWebhook) | **Put** /webhooks/{id} | Update Webhook
+[**CreateWebhook**](WebhooksAPI.md#CreateWebhook) | **Post** /webhooks | Create Webhook
+[**DeleteWebhook**](WebhooksAPI.md#DeleteWebhook) | **Delete** /webhooks/{id} | Delete Webhook
+[**GetWebhook**](WebhooksAPI.md#GetWebhook) | **Get** /webhooks/{id} | Get Webhook
+[**GetWebhooks**](WebhooksAPI.md#GetWebhooks) | **Get** /webhooks | Get List of Webhooks
+[**TestWebhook**](WebhooksAPI.md#TestWebhook) | **Post** /webhooks/{id}/test | Test Webhook
+[**UpdateWebhook**](WebhooksAPI.md#UpdateWebhook) | **Put** /webhooks/{id} | Update Webhook
 
 
 
@@ -39,13 +39,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WebhooksApi.CreateWebhook(context.Background()).WebhookRequest(webhookRequest).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.WebhooksAPI.CreateWebhook(context.Background()).WebhookRequest(webhookRequest).AcceptLanguage(acceptLanguage).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksApi.CreateWebhook``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.CreateWebhook``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateWebhook`: WebhookResponse
-    fmt.Fprintf(os.Stdout, "Response from `WebhooksApi.CreateWebhook`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.CreateWebhook`: %v\n", resp)
 }
 ```
 
@@ -105,13 +105,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WebhooksApi.DeleteWebhook(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.WebhooksAPI.DeleteWebhook(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksApi.DeleteWebhook``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.DeleteWebhook``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteWebhook`: WebhookResponse
-    fmt.Fprintf(os.Stdout, "Response from `WebhooksApi.DeleteWebhook`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.DeleteWebhook`: %v\n", resp)
 }
 ```
 
@@ -176,13 +176,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WebhooksApi.GetWebhook(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.WebhooksAPI.GetWebhook(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksApi.GetWebhook``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.GetWebhook``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetWebhook`: WebhookResponse
-    fmt.Fprintf(os.Stdout, "Response from `WebhooksApi.GetWebhook`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.GetWebhook`: %v\n", resp)
 }
 ```
 
@@ -253,13 +253,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WebhooksApi.GetWebhooks(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+    resp, r, err := apiClient.WebhooksAPI.GetWebhooks(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksApi.GetWebhooks``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.GetWebhooks``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetWebhooks`: GetWebhooksResponse
-    fmt.Fprintf(os.Stdout, "Response from `WebhooksApi.GetWebhooks`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.GetWebhooks`: %v\n", resp)
 }
 ```
 
@@ -325,13 +325,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WebhooksApi.TestWebhook(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.WebhooksAPI.TestWebhook(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksApi.TestWebhook``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.TestWebhook``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `TestWebhook`: WebhookResponse
-    fmt.Fprintf(os.Stdout, "Response from `WebhooksApi.TestWebhook`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.TestWebhook`: %v\n", resp)
 }
 ```
 
@@ -399,13 +399,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WebhooksApi.UpdateWebhook(context.Background(), id).WebhookUpdateRequest(webhookUpdateRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.WebhooksAPI.UpdateWebhook(context.Background(), id).WebhookUpdateRequest(webhookUpdateRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksApi.UpdateWebhook``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.UpdateWebhook``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateWebhook`: WebhookResponse
-    fmt.Fprintf(os.Stdout, "Response from `WebhooksApi.UpdateWebhook`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.UpdateWebhook`: %v\n", resp)
 }
 ```
 

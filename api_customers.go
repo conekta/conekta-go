@@ -21,7 +21,7 @@ import (
 )
 
 
-type CustomersApi interface {
+type CustomersAPI interface {
 
 	/*
 	CreateCustomer Create customer
@@ -130,12 +130,12 @@ Remember the credit and debit card tokenization process: [https://developers.con
 	UpdateCustomerFiscalEntitiesExecute(r ApiUpdateCustomerFiscalEntitiesRequest) (*UpdateCustomerFiscalEntitiesResponse, *http.Response, error)
 }
 
-// CustomersApiService CustomersApi service
-type CustomersApiService service
+// CustomersAPIService CustomersAPI service
+type CustomersAPIService service
 
 type ApiCreateCustomerRequest struct {
 	ctx context.Context
-	ApiService CustomersApi
+	ApiService CustomersAPI
 	customer *Customer
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -173,7 +173,7 @@ Remember the credit and debit card tokenization process: [https://developers.con
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateCustomerRequest
 */
-func (a *CustomersApiService) CreateCustomer(ctx context.Context) ApiCreateCustomerRequest {
+func (a *CustomersAPIService) CreateCustomer(ctx context.Context) ApiCreateCustomerRequest {
 	return ApiCreateCustomerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -182,7 +182,7 @@ func (a *CustomersApiService) CreateCustomer(ctx context.Context) ApiCreateCusto
 
 // Execute executes the request
 //  @return CustomerResponse
-func (a *CustomersApiService) CreateCustomerExecute(r ApiCreateCustomerRequest) (*CustomerResponse, *http.Response, error) {
+func (a *CustomersAPIService) CreateCustomerExecute(r ApiCreateCustomerRequest) (*CustomerResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -190,7 +190,7 @@ func (a *CustomersApiService) CreateCustomerExecute(r ApiCreateCustomerRequest) 
 		localVarReturnValue  *CustomerResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersApiService.CreateCustomer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersAPIService.CreateCustomer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -311,7 +311,7 @@ func (a *CustomersApiService) CreateCustomerExecute(r ApiCreateCustomerRequest) 
 
 type ApiCreateCustomerFiscalEntitiesRequest struct {
 	ctx context.Context
-	ApiService CustomersApi
+	ApiService CustomersAPI
 	id string
 	customerFiscalEntitiesRequest *CustomerFiscalEntitiesRequest
 	acceptLanguage *string
@@ -349,7 +349,7 @@ Create Fiscal entity resource that corresponds to a customer ID.
  @param id Identifier of the resource
  @return ApiCreateCustomerFiscalEntitiesRequest
 */
-func (a *CustomersApiService) CreateCustomerFiscalEntities(ctx context.Context, id string) ApiCreateCustomerFiscalEntitiesRequest {
+func (a *CustomersAPIService) CreateCustomerFiscalEntities(ctx context.Context, id string) ApiCreateCustomerFiscalEntitiesRequest {
 	return ApiCreateCustomerFiscalEntitiesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -359,7 +359,7 @@ func (a *CustomersApiService) CreateCustomerFiscalEntities(ctx context.Context, 
 
 // Execute executes the request
 //  @return CreateCustomerFiscalEntitiesResponse
-func (a *CustomersApiService) CreateCustomerFiscalEntitiesExecute(r ApiCreateCustomerFiscalEntitiesRequest) (*CreateCustomerFiscalEntitiesResponse, *http.Response, error) {
+func (a *CustomersAPIService) CreateCustomerFiscalEntitiesExecute(r ApiCreateCustomerFiscalEntitiesRequest) (*CreateCustomerFiscalEntitiesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -367,7 +367,7 @@ func (a *CustomersApiService) CreateCustomerFiscalEntitiesExecute(r ApiCreateCus
 		localVarReturnValue  *CreateCustomerFiscalEntitiesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersApiService.CreateCustomerFiscalEntities")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersAPIService.CreateCustomerFiscalEntities")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -489,7 +489,7 @@ func (a *CustomersApiService) CreateCustomerFiscalEntitiesExecute(r ApiCreateCus
 
 type ApiDeleteCustomerByIdRequest struct {
 	ctx context.Context
-	ApiService CustomersApi
+	ApiService CustomersAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -520,7 +520,7 @@ Deleted a customer resource that corresponds to a customer ID.
  @param id Identifier of the resource
  @return ApiDeleteCustomerByIdRequest
 */
-func (a *CustomersApiService) DeleteCustomerById(ctx context.Context, id string) ApiDeleteCustomerByIdRequest {
+func (a *CustomersAPIService) DeleteCustomerById(ctx context.Context, id string) ApiDeleteCustomerByIdRequest {
 	return ApiDeleteCustomerByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -530,7 +530,7 @@ func (a *CustomersApiService) DeleteCustomerById(ctx context.Context, id string)
 
 // Execute executes the request
 //  @return CustomerResponse
-func (a *CustomersApiService) DeleteCustomerByIdExecute(r ApiDeleteCustomerByIdRequest) (*CustomerResponse, *http.Response, error) {
+func (a *CustomersAPIService) DeleteCustomerByIdExecute(r ApiDeleteCustomerByIdRequest) (*CustomerResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -538,7 +538,7 @@ func (a *CustomersApiService) DeleteCustomerByIdExecute(r ApiDeleteCustomerByIdR
 		localVarReturnValue  *CustomerResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersApiService.DeleteCustomerById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersAPIService.DeleteCustomerById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -655,7 +655,7 @@ func (a *CustomersApiService) DeleteCustomerByIdExecute(r ApiDeleteCustomerByIdR
 
 type ApiGetCustomerByIdRequest struct {
 	ctx context.Context
-	ApiService CustomersApi
+	ApiService CustomersAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -686,7 +686,7 @@ Gets a customer resource that corresponds to a customer ID.
  @param id Identifier of the resource
  @return ApiGetCustomerByIdRequest
 */
-func (a *CustomersApiService) GetCustomerById(ctx context.Context, id string) ApiGetCustomerByIdRequest {
+func (a *CustomersAPIService) GetCustomerById(ctx context.Context, id string) ApiGetCustomerByIdRequest {
 	return ApiGetCustomerByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -696,7 +696,7 @@ func (a *CustomersApiService) GetCustomerById(ctx context.Context, id string) Ap
 
 // Execute executes the request
 //  @return CustomerResponse
-func (a *CustomersApiService) GetCustomerByIdExecute(r ApiGetCustomerByIdRequest) (*CustomerResponse, *http.Response, error) {
+func (a *CustomersAPIService) GetCustomerByIdExecute(r ApiGetCustomerByIdRequest) (*CustomerResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -704,7 +704,7 @@ func (a *CustomersApiService) GetCustomerByIdExecute(r ApiGetCustomerByIdRequest
 		localVarReturnValue  *CustomerResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersApiService.GetCustomerById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersAPIService.GetCustomerById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -810,7 +810,7 @@ func (a *CustomersApiService) GetCustomerByIdExecute(r ApiGetCustomerByIdRequest
 
 type ApiGetCustomersRequest struct {
 	ctx context.Context
-	ApiService CustomersApi
+	ApiService CustomersAPI
 	acceptLanguage *string
 	xChildCompanyId *string
 	limit *int32
@@ -867,7 +867,7 @@ The purpose of business is to create and maintain a client, you will learn what 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetCustomersRequest
 */
-func (a *CustomersApiService) GetCustomers(ctx context.Context) ApiGetCustomersRequest {
+func (a *CustomersAPIService) GetCustomers(ctx context.Context) ApiGetCustomersRequest {
 	return ApiGetCustomersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -876,7 +876,7 @@ func (a *CustomersApiService) GetCustomers(ctx context.Context) ApiGetCustomersR
 
 // Execute executes the request
 //  @return CustomersResponse
-func (a *CustomersApiService) GetCustomersExecute(r ApiGetCustomersRequest) (*CustomersResponse, *http.Response, error) {
+func (a *CustomersAPIService) GetCustomersExecute(r ApiGetCustomersRequest) (*CustomersResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -884,7 +884,7 @@ func (a *CustomersApiService) GetCustomersExecute(r ApiGetCustomersRequest) (*Cu
 		localVarReturnValue  *CustomersResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersApiService.GetCustomers")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersAPIService.GetCustomers")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -897,6 +897,9 @@ func (a *CustomersApiService) GetCustomersExecute(r ApiGetCustomersRequest) (*Cu
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
@@ -990,7 +993,7 @@ func (a *CustomersApiService) GetCustomersExecute(r ApiGetCustomersRequest) (*Cu
 
 type ApiUpdateCustomerRequest struct {
 	ctx context.Context
-	ApiService CustomersApi
+	ApiService CustomersAPI
 	id string
 	updateCustomer *UpdateCustomer
 	acceptLanguage *string
@@ -1028,7 +1031,7 @@ You can update customer-related data
  @param id Identifier of the resource
  @return ApiUpdateCustomerRequest
 */
-func (a *CustomersApiService) UpdateCustomer(ctx context.Context, id string) ApiUpdateCustomerRequest {
+func (a *CustomersAPIService) UpdateCustomer(ctx context.Context, id string) ApiUpdateCustomerRequest {
 	return ApiUpdateCustomerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1038,7 +1041,7 @@ func (a *CustomersApiService) UpdateCustomer(ctx context.Context, id string) Api
 
 // Execute executes the request
 //  @return CustomerResponse
-func (a *CustomersApiService) UpdateCustomerExecute(r ApiUpdateCustomerRequest) (*CustomerResponse, *http.Response, error) {
+func (a *CustomersAPIService) UpdateCustomerExecute(r ApiUpdateCustomerRequest) (*CustomerResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -1046,7 +1049,7 @@ func (a *CustomersApiService) UpdateCustomerExecute(r ApiUpdateCustomerRequest) 
 		localVarReturnValue  *CustomerResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersApiService.UpdateCustomer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersAPIService.UpdateCustomer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1168,7 +1171,7 @@ func (a *CustomersApiService) UpdateCustomerExecute(r ApiUpdateCustomerRequest) 
 
 type ApiUpdateCustomerFiscalEntitiesRequest struct {
 	ctx context.Context
-	ApiService CustomersApi
+	ApiService CustomersAPI
 	id string
 	fiscalEntitiesId string
 	customerUpdateFiscalEntitiesRequest *CustomerUpdateFiscalEntitiesRequest
@@ -1208,7 +1211,7 @@ Update Fiscal Entity resource that corresponds to a customer ID.
  @param fiscalEntitiesId identifier
  @return ApiUpdateCustomerFiscalEntitiesRequest
 */
-func (a *CustomersApiService) UpdateCustomerFiscalEntities(ctx context.Context, id string, fiscalEntitiesId string) ApiUpdateCustomerFiscalEntitiesRequest {
+func (a *CustomersAPIService) UpdateCustomerFiscalEntities(ctx context.Context, id string, fiscalEntitiesId string) ApiUpdateCustomerFiscalEntitiesRequest {
 	return ApiUpdateCustomerFiscalEntitiesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1219,7 +1222,7 @@ func (a *CustomersApiService) UpdateCustomerFiscalEntities(ctx context.Context, 
 
 // Execute executes the request
 //  @return UpdateCustomerFiscalEntitiesResponse
-func (a *CustomersApiService) UpdateCustomerFiscalEntitiesExecute(r ApiUpdateCustomerFiscalEntitiesRequest) (*UpdateCustomerFiscalEntitiesResponse, *http.Response, error) {
+func (a *CustomersAPIService) UpdateCustomerFiscalEntitiesExecute(r ApiUpdateCustomerFiscalEntitiesRequest) (*UpdateCustomerFiscalEntitiesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -1227,7 +1230,7 @@ func (a *CustomersApiService) UpdateCustomerFiscalEntitiesExecute(r ApiUpdateCus
 		localVarReturnValue  *UpdateCustomerFiscalEntitiesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersApiService.UpdateCustomerFiscalEntities")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersAPIService.UpdateCustomerFiscalEntities")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

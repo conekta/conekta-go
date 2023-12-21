@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the DiscountLinesResponseAllOf type satisfies the MappedNullable interface at compile time
@@ -27,6 +28,8 @@ type DiscountLinesResponseAllOf struct {
 	// The order id
 	ParentId string `json:"parent_id"`
 }
+
+type _DiscountLinesResponseAllOf DiscountLinesResponseAllOf
 
 // NewDiscountLinesResponseAllOf instantiates a new DiscountLinesResponseAllOf object
 // This constructor will assign default values to properties that have it defined,
@@ -134,6 +137,43 @@ func (o DiscountLinesResponseAllOf) ToMap() (map[string]interface{}, error) {
 	toSerialize["object"] = o.Object
 	toSerialize["parent_id"] = o.ParentId
 	return toSerialize, nil
+}
+
+func (o *DiscountLinesResponseAllOf) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"object",
+		"parent_id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDiscountLinesResponseAllOf := _DiscountLinesResponseAllOf{}
+
+	err = json.Unmarshal(bytes, &varDiscountLinesResponseAllOf)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DiscountLinesResponseAllOf(varDiscountLinesResponseAllOf)
+
+	return err
 }
 
 type NullableDiscountLinesResponseAllOf struct {

@@ -25,7 +25,7 @@ func Test_conekta_EventsApiService(t *testing.T) {
 	apiClient := conekta.NewAPIClient(configuration)
 
 	t.Run("Test EventsApiService GetEvent", func(t *testing.T) {
-		resp, httpRes, err := apiClient.EventsApi.GetEvent(context.TODO(), "63fe3d2ddf70970001cfb41a").
+		resp, httpRes, err := apiClient.EventsAPI.GetEvent(context.TODO(), "63fe3d2ddf70970001cfb41a").
 			AcceptLanguage("es").
 			Execute()
 
@@ -42,7 +42,7 @@ func Test_conekta_EventsApiService(t *testing.T) {
 	})
 
 	t.Run("Test EventsApiService GetEvents", func(t *testing.T) {
-		resp, httpRes, err := apiClient.EventsApi.GetEvents(context.TODO()).
+		resp, httpRes, err := apiClient.EventsAPI.GetEvents(context.TODO()).
 			AcceptLanguage("es").
 			Execute()
 
@@ -59,7 +59,7 @@ func Test_conekta_EventsApiService(t *testing.T) {
 	})
 
 	t.Run("Test EventsApiService ResendEvent", func(t *testing.T) {
-		resp, httpRes, err := apiClient.EventsApi.ResendEvent(context.TODO(), "6463d6e35a4c3e001819e760", "webhl_2tsv6NzWJHBWCkqGt").
+		resp, httpRes, err := apiClient.EventsAPI.ResendEvent(context.TODO(), "6463d6e35a4c3e001819e760", "webhl_2tsv6NzWJHBWCkqGt").
 			AcceptLanguage("es").
 			Execute()
 

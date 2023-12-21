@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the GetApiKeysResponse type satisfies the MappedNullable interface at compile time
@@ -30,6 +31,8 @@ type GetApiKeysResponse struct {
 	Object string `json:"object"`
 	Data []ApiKeyResponse `json:"data,omitempty"`
 }
+
+type _GetApiKeysResponse GetApiKeysResponse
 
 // NewGetApiKeysResponse instantiates a new GetApiKeysResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -236,6 +239,42 @@ func (o GetApiKeysResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["data"] = o.Data
 	}
 	return toSerialize, nil
+}
+
+func (o *GetApiKeysResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"has_more",
+		"object",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varGetApiKeysResponse := _GetApiKeysResponse{}
+
+	err = json.Unmarshal(bytes, &varGetApiKeysResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GetApiKeysResponse(varGetApiKeysResponse)
+
+	return err
 }
 
 type NullableGetApiKeysResponse struct {

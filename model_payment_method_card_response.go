@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PaymentMethodCardResponse type satisfies the MappedNullable interface at compile time
@@ -36,6 +37,8 @@ type PaymentMethodCardResponse struct {
 	VisibleOnCheckout *bool `json:"visible_on_checkout,omitempty"`
 	PaymentSourceStatus *string `json:"payment_source_status,omitempty"`
 }
+
+type _PaymentMethodCardResponse PaymentMethodCardResponse
 
 // NewPaymentMethodCardResponse instantiates a new PaymentMethodCardResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -554,6 +557,44 @@ func (o PaymentMethodCardResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["payment_source_status"] = o.PaymentSourceStatus
 	}
 	return toSerialize, nil
+}
+
+func (o *PaymentMethodCardResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"type",
+		"id",
+		"object",
+		"created_at",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPaymentMethodCardResponse := _PaymentMethodCardResponse{}
+
+	err = json.Unmarshal(bytes, &varPaymentMethodCardResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaymentMethodCardResponse(varPaymentMethodCardResponse)
+
+	return err
 }
 
 type NullablePaymentMethodCardResponse struct {

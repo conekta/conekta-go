@@ -30,7 +30,7 @@ func Test_conekta_ShippingsApiService(t *testing.T) {
 			Carrier:        conekta.PtrString("FedEx"),
 			TrackingNumber: conekta.PtrString("ASDA12312"),
 		}
-		resp, httpRes, err := apiClient.ShippingsApi.OrdersCreateShipping(context.TODO(), "ord_2tUigJ8DgBhbp6w5D").
+		resp, httpRes, err := apiClient.ShippingsAPI.OrdersCreateShipping(context.TODO(), "ord_2tUigJ8DgBhbp6w5D").
 			ShippingRequest(req).
 			AcceptLanguage("es").
 			Execute()
@@ -48,7 +48,7 @@ func Test_conekta_ShippingsApiService(t *testing.T) {
 	})
 
 	t.Run("Test ShippingsApiService OrdersDeleteShipping", func(t *testing.T) {
-		resp, httpRes, err := apiClient.ShippingsApi.OrdersDeleteShipping(context.TODO(), "ord_2tUigJ8DgBhbp6w5D", "ship_lin_2tVzNuDGSaDwreMg6").
+		resp, httpRes, err := apiClient.ShippingsAPI.OrdersDeleteShipping(context.TODO(), "ord_2tUigJ8DgBhbp6w5D", "ship_lin_2tVzNuDGSaDwreMg6").
 			AcceptLanguage("es").
 			Execute()
 
@@ -70,7 +70,7 @@ func Test_conekta_ShippingsApiService(t *testing.T) {
 			Carrier:        conekta.PtrString("FedEx"),
 			TrackingNumber: conekta.PtrString("ASDA12312"),
 		}
-		resp, httpRes, err := apiClient.ShippingsApi.OrdersUpdateShipping(context.TODO(), "ord_2tUigJ8DgBhbp6w5D", "ship_lin_2tVzNuDGSaDwreMg6").
+		resp, httpRes, err := apiClient.ShippingsAPI.OrdersUpdateShipping(context.TODO(), "ord_2tUigJ8DgBhbp6w5D", "ship_lin_2tVzNuDGSaDwreMg6").
 			ShippingRequest(req).
 			AcceptLanguage("es").
 			Execute()

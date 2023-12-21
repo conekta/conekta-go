@@ -15,11 +15,13 @@ import (
 	"encoding/json"
 )
 
-// checks if the CustomerInfoResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CustomerInfoResponse{}
+// checks if the OrderCustomerInfoResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OrderCustomerInfoResponse{}
 
-// CustomerInfoResponse struct for CustomerInfoResponse
-type CustomerInfoResponse struct {
+// OrderCustomerInfoResponse struct for OrderCustomerInfoResponse
+type OrderCustomerInfoResponse struct {
+	// Custom reference
+	CustomerCustomReference NullableString `json:"customer_custom_reference,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Email *string `json:"email,omitempty"`
 	Phone *string `json:"phone,omitempty"`
@@ -27,29 +29,71 @@ type CustomerInfoResponse struct {
 	Object *string `json:"object,omitempty"`
 }
 
-// NewCustomerInfoResponse instantiates a new CustomerInfoResponse object
+// NewOrderCustomerInfoResponse instantiates a new OrderCustomerInfoResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustomerInfoResponse() *CustomerInfoResponse {
-	this := CustomerInfoResponse{}
+func NewOrderCustomerInfoResponse() *OrderCustomerInfoResponse {
+	this := OrderCustomerInfoResponse{}
 	var corporate bool = false
 	this.Corporate = &corporate
 	return &this
 }
 
-// NewCustomerInfoResponseWithDefaults instantiates a new CustomerInfoResponse object
+// NewOrderCustomerInfoResponseWithDefaults instantiates a new OrderCustomerInfoResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCustomerInfoResponseWithDefaults() *CustomerInfoResponse {
-	this := CustomerInfoResponse{}
+func NewOrderCustomerInfoResponseWithDefaults() *OrderCustomerInfoResponse {
+	this := OrderCustomerInfoResponse{}
 	var corporate bool = false
 	this.Corporate = &corporate
 	return &this
+}
+
+// GetCustomerCustomReference returns the CustomerCustomReference field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *OrderCustomerInfoResponse) GetCustomerCustomReference() string {
+	if o == nil || IsNil(o.CustomerCustomReference.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CustomerCustomReference.Get()
+}
+
+// GetCustomerCustomReferenceOk returns a tuple with the CustomerCustomReference field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OrderCustomerInfoResponse) GetCustomerCustomReferenceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CustomerCustomReference.Get(), o.CustomerCustomReference.IsSet()
+}
+
+// HasCustomerCustomReference returns a boolean if a field has been set.
+func (o *OrderCustomerInfoResponse) HasCustomerCustomReference() bool {
+	if o != nil && o.CustomerCustomReference.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomerCustomReference gets a reference to the given NullableString and assigns it to the CustomerCustomReference field.
+func (o *OrderCustomerInfoResponse) SetCustomerCustomReference(v string) {
+	o.CustomerCustomReference.Set(&v)
+}
+// SetCustomerCustomReferenceNil sets the value for CustomerCustomReference to be an explicit nil
+func (o *OrderCustomerInfoResponse) SetCustomerCustomReferenceNil() {
+	o.CustomerCustomReference.Set(nil)
+}
+
+// UnsetCustomerCustomReference ensures that no value is present for CustomerCustomReference, not even an explicit nil
+func (o *OrderCustomerInfoResponse) UnsetCustomerCustomReference() {
+	o.CustomerCustomReference.Unset()
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *CustomerInfoResponse) GetName() string {
+func (o *OrderCustomerInfoResponse) GetName() string {
 	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
@@ -59,7 +103,7 @@ func (o *CustomerInfoResponse) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerInfoResponse) GetNameOk() (*string, bool) {
+func (o *OrderCustomerInfoResponse) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -67,7 +111,7 @@ func (o *CustomerInfoResponse) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *CustomerInfoResponse) HasName() bool {
+func (o *OrderCustomerInfoResponse) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -76,12 +120,12 @@ func (o *CustomerInfoResponse) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *CustomerInfoResponse) SetName(v string) {
+func (o *OrderCustomerInfoResponse) SetName(v string) {
 	o.Name = &v
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise.
-func (o *CustomerInfoResponse) GetEmail() string {
+func (o *OrderCustomerInfoResponse) GetEmail() string {
 	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
@@ -91,7 +135,7 @@ func (o *CustomerInfoResponse) GetEmail() string {
 
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerInfoResponse) GetEmailOk() (*string, bool) {
+func (o *OrderCustomerInfoResponse) GetEmailOk() (*string, bool) {
 	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
@@ -99,7 +143,7 @@ func (o *CustomerInfoResponse) GetEmailOk() (*string, bool) {
 }
 
 // HasEmail returns a boolean if a field has been set.
-func (o *CustomerInfoResponse) HasEmail() bool {
+func (o *OrderCustomerInfoResponse) HasEmail() bool {
 	if o != nil && !IsNil(o.Email) {
 		return true
 	}
@@ -108,12 +152,12 @@ func (o *CustomerInfoResponse) HasEmail() bool {
 }
 
 // SetEmail gets a reference to the given string and assigns it to the Email field.
-func (o *CustomerInfoResponse) SetEmail(v string) {
+func (o *OrderCustomerInfoResponse) SetEmail(v string) {
 	o.Email = &v
 }
 
 // GetPhone returns the Phone field value if set, zero value otherwise.
-func (o *CustomerInfoResponse) GetPhone() string {
+func (o *OrderCustomerInfoResponse) GetPhone() string {
 	if o == nil || IsNil(o.Phone) {
 		var ret string
 		return ret
@@ -123,7 +167,7 @@ func (o *CustomerInfoResponse) GetPhone() string {
 
 // GetPhoneOk returns a tuple with the Phone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerInfoResponse) GetPhoneOk() (*string, bool) {
+func (o *OrderCustomerInfoResponse) GetPhoneOk() (*string, bool) {
 	if o == nil || IsNil(o.Phone) {
 		return nil, false
 	}
@@ -131,7 +175,7 @@ func (o *CustomerInfoResponse) GetPhoneOk() (*string, bool) {
 }
 
 // HasPhone returns a boolean if a field has been set.
-func (o *CustomerInfoResponse) HasPhone() bool {
+func (o *OrderCustomerInfoResponse) HasPhone() bool {
 	if o != nil && !IsNil(o.Phone) {
 		return true
 	}
@@ -140,12 +184,12 @@ func (o *CustomerInfoResponse) HasPhone() bool {
 }
 
 // SetPhone gets a reference to the given string and assigns it to the Phone field.
-func (o *CustomerInfoResponse) SetPhone(v string) {
+func (o *OrderCustomerInfoResponse) SetPhone(v string) {
 	o.Phone = &v
 }
 
 // GetCorporate returns the Corporate field value if set, zero value otherwise.
-func (o *CustomerInfoResponse) GetCorporate() bool {
+func (o *OrderCustomerInfoResponse) GetCorporate() bool {
 	if o == nil || IsNil(o.Corporate) {
 		var ret bool
 		return ret
@@ -155,7 +199,7 @@ func (o *CustomerInfoResponse) GetCorporate() bool {
 
 // GetCorporateOk returns a tuple with the Corporate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerInfoResponse) GetCorporateOk() (*bool, bool) {
+func (o *OrderCustomerInfoResponse) GetCorporateOk() (*bool, bool) {
 	if o == nil || IsNil(o.Corporate) {
 		return nil, false
 	}
@@ -163,7 +207,7 @@ func (o *CustomerInfoResponse) GetCorporateOk() (*bool, bool) {
 }
 
 // HasCorporate returns a boolean if a field has been set.
-func (o *CustomerInfoResponse) HasCorporate() bool {
+func (o *OrderCustomerInfoResponse) HasCorporate() bool {
 	if o != nil && !IsNil(o.Corporate) {
 		return true
 	}
@@ -172,12 +216,12 @@ func (o *CustomerInfoResponse) HasCorporate() bool {
 }
 
 // SetCorporate gets a reference to the given bool and assigns it to the Corporate field.
-func (o *CustomerInfoResponse) SetCorporate(v bool) {
+func (o *OrderCustomerInfoResponse) SetCorporate(v bool) {
 	o.Corporate = &v
 }
 
 // GetObject returns the Object field value if set, zero value otherwise.
-func (o *CustomerInfoResponse) GetObject() string {
+func (o *OrderCustomerInfoResponse) GetObject() string {
 	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
@@ -187,7 +231,7 @@ func (o *CustomerInfoResponse) GetObject() string {
 
 // GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerInfoResponse) GetObjectOk() (*string, bool) {
+func (o *OrderCustomerInfoResponse) GetObjectOk() (*string, bool) {
 	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
@@ -195,7 +239,7 @@ func (o *CustomerInfoResponse) GetObjectOk() (*string, bool) {
 }
 
 // HasObject returns a boolean if a field has been set.
-func (o *CustomerInfoResponse) HasObject() bool {
+func (o *OrderCustomerInfoResponse) HasObject() bool {
 	if o != nil && !IsNil(o.Object) {
 		return true
 	}
@@ -204,11 +248,11 @@ func (o *CustomerInfoResponse) HasObject() bool {
 }
 
 // SetObject gets a reference to the given string and assigns it to the Object field.
-func (o *CustomerInfoResponse) SetObject(v string) {
+func (o *OrderCustomerInfoResponse) SetObject(v string) {
 	o.Object = &v
 }
 
-func (o CustomerInfoResponse) MarshalJSON() ([]byte, error) {
+func (o OrderCustomerInfoResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -216,8 +260,11 @@ func (o CustomerInfoResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CustomerInfoResponse) ToMap() (map[string]interface{}, error) {
+func (o OrderCustomerInfoResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.CustomerCustomReference.IsSet() {
+		toSerialize["customer_custom_reference"] = o.CustomerCustomReference.Get()
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -236,38 +283,38 @@ func (o CustomerInfoResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableCustomerInfoResponse struct {
-	value *CustomerInfoResponse
+type NullableOrderCustomerInfoResponse struct {
+	value *OrderCustomerInfoResponse
 	isSet bool
 }
 
-func (v NullableCustomerInfoResponse) Get() *CustomerInfoResponse {
+func (v NullableOrderCustomerInfoResponse) Get() *OrderCustomerInfoResponse {
 	return v.value
 }
 
-func (v *NullableCustomerInfoResponse) Set(val *CustomerInfoResponse) {
+func (v *NullableOrderCustomerInfoResponse) Set(val *OrderCustomerInfoResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCustomerInfoResponse) IsSet() bool {
+func (v NullableOrderCustomerInfoResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCustomerInfoResponse) Unset() {
+func (v *NullableOrderCustomerInfoResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCustomerInfoResponse(val *CustomerInfoResponse) *NullableCustomerInfoResponse {
-	return &NullableCustomerInfoResponse{value: val, isSet: true}
+func NewNullableOrderCustomerInfoResponse(val *OrderCustomerInfoResponse) *NullableOrderCustomerInfoResponse {
+	return &NullableOrderCustomerInfoResponse{value: val, isSet: true}
 }
 
-func (v NullableCustomerInfoResponse) MarshalJSON() ([]byte, error) {
+func (v NullableOrderCustomerInfoResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCustomerInfoResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableOrderCustomerInfoResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

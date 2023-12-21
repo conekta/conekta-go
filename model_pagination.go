@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Pagination type satisfies the MappedNullable interface at compile time
@@ -25,6 +26,8 @@ type Pagination struct {
 	// Object type, in this case is list
 	Object string `json:"object"`
 }
+
+type _Pagination Pagination
 
 // NewPagination instantiates a new Pagination object
 // This constructor will assign default values to properties that have it defined,
@@ -106,6 +109,42 @@ func (o Pagination) ToMap() (map[string]interface{}, error) {
 	toSerialize["has_more"] = o.HasMore
 	toSerialize["object"] = o.Object
 	return toSerialize, nil
+}
+
+func (o *Pagination) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"has_more",
+		"object",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPagination := _Pagination{}
+
+	err = json.Unmarshal(bytes, &varPagination)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Pagination(varPagination)
+
+	return err
 }
 
 type NullablePagination struct {

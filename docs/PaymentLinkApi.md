@@ -1,15 +1,15 @@
-# \PaymentLinkApi
+# \PaymentLinkAPI
 
 All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CancelCheckout**](PaymentLinkApi.md#CancelCheckout) | **Put** /checkouts/{id}/cancel | Cancel Payment Link
-[**CreateCheckout**](PaymentLinkApi.md#CreateCheckout) | **Post** /checkouts | Create Unique Payment Link
-[**EmailCheckout**](PaymentLinkApi.md#EmailCheckout) | **Post** /checkouts/{id}/email | Send an email
-[**GetCheckout**](PaymentLinkApi.md#GetCheckout) | **Get** /checkouts/{id} | Get a payment link by ID
-[**GetCheckouts**](PaymentLinkApi.md#GetCheckouts) | **Get** /checkouts | Get a list of payment links
-[**SmsCheckout**](PaymentLinkApi.md#SmsCheckout) | **Post** /checkouts/{id}/sms | Send an sms
+[**CancelCheckout**](PaymentLinkAPI.md#CancelCheckout) | **Put** /checkouts/{id}/cancel | Cancel Payment Link
+[**CreateCheckout**](PaymentLinkAPI.md#CreateCheckout) | **Post** /checkouts | Create Unique Payment Link
+[**EmailCheckout**](PaymentLinkAPI.md#EmailCheckout) | **Post** /checkouts/{id}/email | Send an email
+[**GetCheckout**](PaymentLinkAPI.md#GetCheckout) | **Get** /checkouts/{id} | Get a payment link by ID
+[**GetCheckouts**](PaymentLinkAPI.md#GetCheckouts) | **Get** /checkouts | Get a list of payment links
+[**SmsCheckout**](PaymentLinkAPI.md#SmsCheckout) | **Post** /checkouts/{id}/sms | Send an sms
 
 
 
@@ -38,13 +38,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentLinkApi.CancelCheckout(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.PaymentLinkAPI.CancelCheckout(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PaymentLinkApi.CancelCheckout``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PaymentLinkAPI.CancelCheckout``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CancelCheckout`: CheckoutResponse
-    fmt.Fprintf(os.Stdout, "Response from `PaymentLinkApi.CancelCheckout`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PaymentLinkAPI.CancelCheckout`: %v\n", resp)
 }
 ```
 
@@ -110,13 +110,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentLinkApi.CreateCheckout(context.Background()).Checkout(checkout).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.PaymentLinkAPI.CreateCheckout(context.Background()).Checkout(checkout).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PaymentLinkApi.CreateCheckout``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PaymentLinkAPI.CreateCheckout``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateCheckout`: CheckoutResponse
-    fmt.Fprintf(os.Stdout, "Response from `PaymentLinkApi.CreateCheckout`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PaymentLinkAPI.CreateCheckout`: %v\n", resp)
 }
 ```
 
@@ -179,13 +179,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentLinkApi.EmailCheckout(context.Background(), id).EmailCheckoutRequest(emailCheckoutRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.PaymentLinkAPI.EmailCheckout(context.Background(), id).EmailCheckoutRequest(emailCheckoutRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PaymentLinkApi.EmailCheckout``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PaymentLinkAPI.EmailCheckout``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `EmailCheckout`: CheckoutResponse
-    fmt.Fprintf(os.Stdout, "Response from `PaymentLinkApi.EmailCheckout`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PaymentLinkAPI.EmailCheckout`: %v\n", resp)
 }
 ```
 
@@ -252,13 +252,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentLinkApi.GetCheckout(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.PaymentLinkAPI.GetCheckout(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PaymentLinkApi.GetCheckout``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PaymentLinkAPI.GetCheckout``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetCheckout`: CheckoutResponse
-    fmt.Fprintf(os.Stdout, "Response from `PaymentLinkApi.GetCheckout`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PaymentLinkAPI.GetCheckout`: %v\n", resp)
 }
 ```
 
@@ -329,13 +329,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentLinkApi.GetCheckouts(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+    resp, r, err := apiClient.PaymentLinkAPI.GetCheckouts(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PaymentLinkApi.GetCheckouts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PaymentLinkAPI.GetCheckouts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetCheckouts`: CheckoutsResponse
-    fmt.Fprintf(os.Stdout, "Response from `PaymentLinkApi.GetCheckouts`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PaymentLinkAPI.GetCheckouts`: %v\n", resp)
 }
 ```
 
@@ -401,13 +401,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentLinkApi.SmsCheckout(context.Background(), id).SmsCheckoutRequest(smsCheckoutRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.PaymentLinkAPI.SmsCheckout(context.Background(), id).SmsCheckoutRequest(smsCheckoutRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PaymentLinkApi.SmsCheckout``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PaymentLinkAPI.SmsCheckout``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `SmsCheckout`: CheckoutResponse
-    fmt.Fprintf(os.Stdout, "Response from `PaymentLinkApi.SmsCheckout`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PaymentLinkAPI.SmsCheckout`: %v\n", resp)
 }
 ```
 
