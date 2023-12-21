@@ -25,7 +25,7 @@ func Test_conekta_PaymentLinkApiService(t *testing.T) {
 	apiClient := conekta.NewAPIClient(configuration)
 
 	t.Run("Test PaymentLinkApiService CancelCheckout", func(t *testing.T) {
-		resp, httpRes, err := apiClient.PaymentLinkApi.CancelCheckout(context.TODO(), "ff6918c6-5043-43b9-a7ec-d40d407d62c1").
+		resp, httpRes, err := apiClient.PaymentLinkAPI.CancelCheckout(context.TODO(), "ff6918c6-5043-43b9-a7ec-d40d407d62c1").
 			AcceptLanguage("es").
 			Execute()
 
@@ -50,7 +50,7 @@ func Test_conekta_PaymentLinkApiService(t *testing.T) {
 			Name:      "FooCheckout",
 			Recurrent: false,
 		}
-		resp, httpRes, err := apiClient.PaymentLinkApi.CreateCheckout(context.TODO()).
+		resp, httpRes, err := apiClient.PaymentLinkAPI.CreateCheckout(context.TODO()).
 			Checkout(req).
 			AcceptLanguage("es").
 			Execute()
@@ -69,7 +69,7 @@ func Test_conekta_PaymentLinkApiService(t *testing.T) {
 
 	t.Run("Test PaymentLinkApiService EmailCheckout", func(t *testing.T) {
 		req := conekta.EmailCheckoutRequest{Email: "foo@foo.com"}
-		resp, httpRes, err := apiClient.PaymentLinkApi.EmailCheckout(context.TODO(), "ff6918c6-5043-43b9-a7ec-d40d407d62c1").
+		resp, httpRes, err := apiClient.PaymentLinkAPI.EmailCheckout(context.TODO(), "ff6918c6-5043-43b9-a7ec-d40d407d62c1").
 			EmailCheckoutRequest(req).
 			AcceptLanguage("es").
 			Execute()
@@ -87,7 +87,7 @@ func Test_conekta_PaymentLinkApiService(t *testing.T) {
 	})
 
 	t.Run("Test PaymentLinkApiService GetCheckout", func(t *testing.T) {
-		resp, httpRes, err := apiClient.PaymentLinkApi.GetCheckout(context.TODO(), "ff6918c6-5043-43b9-a7ec-d40d407d62c1").
+		resp, httpRes, err := apiClient.PaymentLinkAPI.GetCheckout(context.TODO(), "ff6918c6-5043-43b9-a7ec-d40d407d62c1").
 			AcceptLanguage("es").
 			Execute()
 
@@ -104,7 +104,7 @@ func Test_conekta_PaymentLinkApiService(t *testing.T) {
 	})
 
 	t.Run("Test PaymentLinkApiService GetCheckouts", func(t *testing.T) {
-		resp, httpRes, err := apiClient.PaymentLinkApi.GetCheckouts(context.TODO()).
+		resp, httpRes, err := apiClient.PaymentLinkAPI.GetCheckouts(context.TODO()).
 			AcceptLanguage("es").
 			Execute()
 
@@ -122,7 +122,7 @@ func Test_conekta_PaymentLinkApiService(t *testing.T) {
 
 	t.Run("Test PaymentLinkApiService SmsCheckout", func(t *testing.T) {
 		req := conekta.SmsCheckoutRequest{Phonenumber: "12312312312"}
-		resp, httpRes, err := apiClient.PaymentLinkApi.SmsCheckout(context.TODO(), "ff6918c6-5043-43b9-a7ec-d40d407d62c1").
+		resp, httpRes, err := apiClient.PaymentLinkAPI.SmsCheckout(context.TODO(), "ff6918c6-5043-43b9-a7ec-d40d407d62c1").
 			SmsCheckoutRequest(req).
 			AcceptLanguage("es").
 			Execute()

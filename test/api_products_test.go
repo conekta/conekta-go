@@ -29,7 +29,7 @@ func Test_conekta_ProductsApiService(t *testing.T) {
 			Name:     "Test Product",
 			Quantity: 1,
 		}
-		resp, httpRes, err := apiClient.ProductsApi.OrdersCreateProduct(context.TODO(), "ord_2tUigJ8DgBhbp6w5D").
+		resp, httpRes, err := apiClient.ProductsAPI.OrdersCreateProduct(context.TODO(), "ord_2tUigJ8DgBhbp6w5D").
 			Product(req).
 			AcceptLanguage("es").
 			Execute()
@@ -47,7 +47,7 @@ func Test_conekta_ProductsApiService(t *testing.T) {
 	})
 
 	t.Run("Test ProductsApiService OrdersDeleteProduct", func(t *testing.T) {
-		resp, httpRes, err := apiClient.ProductsApi.OrdersDeleteProduct(context.TODO(), "ord_2tUigJ8DgBhbp6w5D", "line_item_2tVz8UkyWhSxLfUd7").
+		resp, httpRes, err := apiClient.ProductsAPI.OrdersDeleteProduct(context.TODO(), "ord_2tUigJ8DgBhbp6w5D", "line_item_2tVz8UkyWhSxLfUd7").
 			AcceptLanguage("es").
 			Execute()
 
@@ -68,7 +68,7 @@ func Test_conekta_ProductsApiService(t *testing.T) {
 			Name:     conekta.PtrString("Test Product"),
 			Quantity: conekta.PtrInt32(1),
 		}
-		resp, httpRes, err := apiClient.ProductsApi.OrdersUpdateProduct(context.TODO(), "ord_2tUigJ8DgBhbp6w5D", "line_item_2tVz8UkyWhSxLfUd7").
+		resp, httpRes, err := apiClient.ProductsAPI.OrdersUpdateProduct(context.TODO(), "ord_2tUigJ8DgBhbp6w5D", "line_item_2tVz8UkyWhSxLfUd7").
 			UpdateProduct(req).
 			AcceptLanguage("es").
 			Execute()

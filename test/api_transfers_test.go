@@ -25,7 +25,7 @@ func Test_conekta_TransfersApiService(t *testing.T) {
 	apiClient := conekta.NewAPIClient(configuration)
 
 	t.Run("Test TransfersApiService GetTransfer", func(t *testing.T) {
-		resp, httpRes, err := apiClient.TransfersApi.GetTransfer(context.TODO(), "64462930651b2600017b6d43").
+		resp, httpRes, err := apiClient.TransfersAPI.GetTransfer(context.TODO(), "64462930651b2600017b6d43").
 			AcceptLanguage("es").
 			Execute()
 
@@ -42,7 +42,7 @@ func Test_conekta_TransfersApiService(t *testing.T) {
 	})
 
 	t.Run("Test TransfersApiService GetTransfers", func(t *testing.T) {
-		resp, httpRes, err := apiClient.TransfersApi.GetTransfers(context.TODO()).
+		resp, httpRes, err := apiClient.TransfersAPI.GetTransfers(context.TODO()).
 			AcceptLanguage("es").
 			Limit(5).
 			Execute()

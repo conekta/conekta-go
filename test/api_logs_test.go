@@ -25,7 +25,7 @@ func Test_conekta_LogsApiService(t *testing.T) {
 	apiClient := conekta.NewAPIClient(configuration)
 
 	t.Run("Test LogsApiService GetLogById", func(t *testing.T) {
-		resp, httpRes, err := apiClient.LogsApi.GetLogById(context.TODO(), "6419dd15b985080001fc280e").
+		resp, httpRes, err := apiClient.LogsAPI.GetLogById(context.TODO(), "6419dd15b985080001fc280e").
 			AcceptLanguage("es").
 			Execute()
 
@@ -42,7 +42,7 @@ func Test_conekta_LogsApiService(t *testing.T) {
 	})
 
 	t.Run("Test LogsApiService GetLogs", func(t *testing.T) {
-		resp, httpRes, err := apiClient.LogsApi.GetLogs(context.TODO()).
+		resp, httpRes, err := apiClient.LogsAPI.GetLogs(context.TODO()).
 			AcceptLanguage("es").
 			Execute()
 

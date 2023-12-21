@@ -28,7 +28,7 @@ func Test_conekta_BalancesApiService(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
-		resp, httpRes, err := apiClient.BalancesApi.GetBalance(context.Background()).Execute()
+		resp, httpRes, err := apiClient.BalancesAPI.GetBalance(context.Background()).Execute()
 
 		if err != nil {
 			t.Fatalf("expected err nil but was %v", err)

@@ -25,7 +25,7 @@ func Test_conekta_SubscriptionsApiService(t *testing.T) {
 	apiClient := conekta.NewAPIClient(configuration)
 
 	t.Run("Test SubscriptionsApiService CancelSubscription", func(t *testing.T) {
-		resp, httpRes, err := apiClient.SubscriptionsApi.CancelSubscription(context.TODO(), "cus_2tYENskzTjjgkGQLt").
+		resp, httpRes, err := apiClient.SubscriptionsAPI.CancelSubscription(context.TODO(), "cus_2tYENskzTjjgkGQLt").
 			AcceptLanguage("es").
 			Execute()
 
@@ -46,7 +46,7 @@ func Test_conekta_SubscriptionsApiService(t *testing.T) {
 			PlanId:   "plan_2tZb5q8Z3PYpg6SJd",
 			TrialEnd: conekta.PtrInt32(12312),
 		}
-		resp, httpRes, err := apiClient.SubscriptionsApi.CreateSubscription(context.TODO(), "cus_2tYENskzTjjgkGQLt").
+		resp, httpRes, err := apiClient.SubscriptionsAPI.CreateSubscription(context.TODO(), "cus_2tYENskzTjjgkGQLt").
 			SubscriptionRequest(req).
 			AcceptLanguage("es").
 			Execute()
@@ -64,7 +64,7 @@ func Test_conekta_SubscriptionsApiService(t *testing.T) {
 	})
 
 	t.Run("Test SubscriptionsApiService GetAllEventsFromSubscription", func(t *testing.T) {
-		resp, httpRes, err := apiClient.SubscriptionsApi.GetAllEventsFromSubscription(context.TODO(), "cus_2tYENskzTjjgkGQLt").
+		resp, httpRes, err := apiClient.SubscriptionsAPI.GetAllEventsFromSubscription(context.TODO(), "cus_2tYENskzTjjgkGQLt").
 			AcceptLanguage("es").
 			Execute()
 
@@ -81,7 +81,7 @@ func Test_conekta_SubscriptionsApiService(t *testing.T) {
 	})
 
 	t.Run("Test SubscriptionsApiService GetSubscription", func(t *testing.T) {
-		resp, httpRes, err := apiClient.SubscriptionsApi.GetSubscription(context.TODO(), "cus_2tYENskzTjjgkGQLt").
+		resp, httpRes, err := apiClient.SubscriptionsAPI.GetSubscription(context.TODO(), "cus_2tYENskzTjjgkGQLt").
 			AcceptLanguage("es").
 			Execute()
 
@@ -98,7 +98,7 @@ func Test_conekta_SubscriptionsApiService(t *testing.T) {
 	})
 
 	t.Run("Test SubscriptionsApiService PauseSubscription", func(t *testing.T) {
-		resp, httpRes, err := apiClient.SubscriptionsApi.PauseSubscription(context.TODO(), "cus_2tYENskzTjjgkGQLt").
+		resp, httpRes, err := apiClient.SubscriptionsAPI.PauseSubscription(context.TODO(), "cus_2tYENskzTjjgkGQLt").
 			AcceptLanguage("es").
 			Execute()
 
@@ -115,7 +115,7 @@ func Test_conekta_SubscriptionsApiService(t *testing.T) {
 	})
 
 	t.Run("Test SubscriptionsApiService ResumeSubscription", func(t *testing.T) {
-		resp, httpRes, err := apiClient.SubscriptionsApi.ResumeSubscription(context.TODO(), "cus_2tYENskzTjjgkGQLt").
+		resp, httpRes, err := apiClient.SubscriptionsAPI.ResumeSubscription(context.TODO(), "cus_2tYENskzTjjgkGQLt").
 			AcceptLanguage("es").
 			Execute()
 
@@ -137,7 +137,7 @@ func Test_conekta_SubscriptionsApiService(t *testing.T) {
 			TrialEnd: conekta.PtrInt32(12312),
 		}
 
-		resp, httpRes, err := apiClient.SubscriptionsApi.UpdateSubscription(context.Background(), "cus_2tYENskzTjjgkGQLt").
+		resp, httpRes, err := apiClient.SubscriptionsAPI.UpdateSubscription(context.Background(), "cus_2tYENskzTjjgkGQLt").
 			SubscriptionUpdateRequest(req).
 			Execute()
 

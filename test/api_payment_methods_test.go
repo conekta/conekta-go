@@ -31,7 +31,7 @@ func Test_conekta_PaymentMethodsApiService(t *testing.T) {
 				TokenId: "tokenID",
 			},
 		}
-		resp, httpRes, err := apiClient.PaymentMethodsApi.CreateCustomerPaymentMethods(context.TODO(), "cus_2tXyF9BwPG14UMkkg").
+		resp, httpRes, err := apiClient.PaymentMethodsAPI.CreateCustomerPaymentMethods(context.TODO(), "cus_2tXyF9BwPG14UMkkg").
 			CreateCustomerPaymentMethodsRequest(req).
 			AcceptLanguage("es").
 			Execute()
@@ -49,7 +49,7 @@ func Test_conekta_PaymentMethodsApiService(t *testing.T) {
 	})
 
 	t.Run("Test PaymentMethodsApiService DeleteCustomerPaymentMethods", func(t *testing.T) {
-		resp, httpRes, err := apiClient.PaymentMethodsApi.DeleteCustomerPaymentMethods(context.TODO(), "cus_2tYENskzTjjgkGQLt", "src_2tbd5Bgy67RL9oycM").
+		resp, httpRes, err := apiClient.PaymentMethodsAPI.DeleteCustomerPaymentMethods(context.TODO(), "cus_2tYENskzTjjgkGQLt", "src_2tbd5Bgy67RL9oycM").
 			AcceptLanguage("es").
 			Execute()
 
@@ -66,7 +66,7 @@ func Test_conekta_PaymentMethodsApiService(t *testing.T) {
 	})
 
 	t.Run("Test PaymentMethodsApiService GetCustomerPaymentMethods", func(t *testing.T) {
-		resp, httpRes, err := apiClient.PaymentMethodsApi.GetCustomerPaymentMethods(context.TODO(), "cus_2tYENskzTjjgkGQLt").
+		resp, httpRes, err := apiClient.PaymentMethodsAPI.GetCustomerPaymentMethods(context.TODO(), "cus_2tYENskzTjjgkGQLt").
 			AcceptLanguage("es").
 			Execute()
 
@@ -86,7 +86,7 @@ func Test_conekta_PaymentMethodsApiService(t *testing.T) {
 		req := conekta.UpdatePaymentMethods{
 			Name: conekta.PtrString("name"),
 		}
-		resp, httpRes, err := apiClient.PaymentMethodsApi.UpdateCustomerPaymentMethods(context.TODO(), "cus_2tYENskzTjjgkGQLt", "src_2tbd5Bgy67RL9oycM").
+		resp, httpRes, err := apiClient.PaymentMethodsAPI.UpdateCustomerPaymentMethods(context.TODO(), "cus_2tYENskzTjjgkGQLt", "src_2tbd5Bgy67RL9oycM").
 			UpdatePaymentMethods(req).
 			AcceptLanguage("es").
 			Execute()

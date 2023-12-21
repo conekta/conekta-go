@@ -112,7 +112,7 @@ func init() {
 
 func initUserAgent() {
 	data := map[string]string{
-		"bindings_version": "6.0.3",
+		"bindings_version": "6.0.4",
 		"lang":             "go",
 		"lang_version":     runtime.Version(),
 		"publisher":        "conekta",

@@ -25,7 +25,7 @@ func Test_conekta_ChargesApiService(t *testing.T) {
 	apiClient := conekta.NewAPIClient(configuration)
 
 	t.Run("Test ChargesApiService GetCharges", func(t *testing.T) {
-		resp, httpRes, err := apiClient.ChargesApi.GetCharges(context.TODO()).
+		resp, httpRes, err := apiClient.ChargesAPI.GetCharges(context.TODO()).
 			Limit(20).
 			AcceptLanguage("es").
 			Execute()
@@ -46,7 +46,7 @@ func Test_conekta_ChargesApiService(t *testing.T) {
 		req := conekta.ChargeRequest{
 			Amount: conekta.PtrInt32(1000),
 		}
-		resp, httpRes, err := apiClient.ChargesApi.OrdersCreateCharge(context.TODO(), "ord_2tUigJ8DgBhbp6w5D").
+		resp, httpRes, err := apiClient.ChargesAPI.OrdersCreateCharge(context.TODO(), "ord_2tUigJ8DgBhbp6w5D").
 			ChargeRequest(req).
 			AcceptLanguage("es").
 			Execute()

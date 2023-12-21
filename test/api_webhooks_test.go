@@ -29,7 +29,7 @@ func Test_conekta_WebhooksApiService(t *testing.T) {
 			Url:         "https://www.fooapi.com",
 			Synchronous: false,
 		}
-		resp, httpRes, err := apiClient.WebhooksApi.CreateWebhook(context.TODO()).
+		resp, httpRes, err := apiClient.WebhooksAPI.CreateWebhook(context.TODO()).
 			WebhookRequest(req).
 			AcceptLanguage("es").
 			Execute()
@@ -47,7 +47,7 @@ func Test_conekta_WebhooksApiService(t *testing.T) {
 	})
 
 	t.Run("Test WebhooksApiService DeleteWebhook", func(t *testing.T) {
-		resp, httpRes, err := apiClient.WebhooksApi.DeleteWebhook(context.TODO(), "641b1d5662d7e00001eaa46b").
+		resp, httpRes, err := apiClient.WebhooksAPI.DeleteWebhook(context.TODO(), "641b1d5662d7e00001eaa46b").
 			AcceptLanguage("es").
 			Execute()
 
@@ -64,7 +64,7 @@ func Test_conekta_WebhooksApiService(t *testing.T) {
 	})
 
 	t.Run("Test WebhooksApiService GetWebhook", func(t *testing.T) {
-		resp, httpRes, err := apiClient.WebhooksApi.GetWebhook(context.TODO(), "641b1d5662d7e00001eaa46b").
+		resp, httpRes, err := apiClient.WebhooksAPI.GetWebhook(context.TODO(), "641b1d5662d7e00001eaa46b").
 			AcceptLanguage("es").
 			Execute()
 
@@ -81,7 +81,7 @@ func Test_conekta_WebhooksApiService(t *testing.T) {
 	})
 
 	t.Run("Test WebhooksApiService GetWebhooks", func(t *testing.T) {
-		resp, httpRes, err := apiClient.WebhooksApi.GetWebhooks(context.TODO()).
+		resp, httpRes, err := apiClient.WebhooksAPI.GetWebhooks(context.TODO()).
 			Limit(10).
 			AcceptLanguage("es").
 			Execute()
@@ -99,7 +99,7 @@ func Test_conekta_WebhooksApiService(t *testing.T) {
 	})
 
 	t.Run("Test WebhooksApiService TestWebhook", func(t *testing.T) {
-		resp, httpRes, err := apiClient.WebhooksApi.TestWebhook(context.TODO(), "641b1d5662d7e00001eaa46b").
+		resp, httpRes, err := apiClient.WebhooksAPI.TestWebhook(context.TODO(), "641b1d5662d7e00001eaa46b").
 			AcceptLanguage("es").
 			Execute()
 
@@ -119,7 +119,7 @@ func Test_conekta_WebhooksApiService(t *testing.T) {
 		req := conekta.WebhookUpdateRequest{
 			Url: "https://www.fooapi.com",
 		}
-		resp, httpRes, err := apiClient.WebhooksApi.UpdateWebhook(context.TODO(), "641b1d5662d7e00001eaa46b").
+		resp, httpRes, err := apiClient.WebhooksAPI.UpdateWebhook(context.TODO(), "641b1d5662d7e00001eaa46b").
 			WebhookUpdateRequest(req).
 			AcceptLanguage("es").
 			Execute()

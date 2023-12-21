@@ -1,3 +1,6 @@
+
+ci-test:
+	go test  ./...
 go:
 	rm -rf /docs \
 	&& rm model_*

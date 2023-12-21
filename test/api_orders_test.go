@@ -26,7 +26,7 @@ func Test_conekta_OrdersApiService(t *testing.T) {
 
 	t.Run("Test OrdersApiService CancelOrder", func(t *testing.T) {
 		orderID := "ord_2tqaGQYZyvBsMKEgs"
-		resp, httpRes, err := apiClient.OrdersApi.CancelOrder(context.TODO(), orderID).
+		resp, httpRes, err := apiClient.OrdersAPI.CancelOrder(context.TODO(), orderID).
 			AcceptLanguage("es").
 			Execute()
 
@@ -44,6 +44,28 @@ func Test_conekta_OrdersApiService(t *testing.T) {
 
 	t.Run("Test OrdersApiService CreateOrder", func(t *testing.T) {
 		customerID := "cus_2tYENskzTjjgkGQLt"
+
+		shippingContact := conekta.CustomerShippingContacts{
+			Address: conekta.CustomerShippingContactsAddress{
+				Street1:    conekta.PtrString("Calle 123, int 2"),
+				City:       conekta.PtrString("Guadalajara"),
+				State:      conekta.PtrString("Jalisco"),
+				Country:    conekta.PtrString("MX"),
+				PostalCode: conekta.PtrString("44100"),
+			},
+			Metadata: map[string]interface{}{},
+		}
+		fiscalEntityRequest := conekta.OrderFiscalEntityRequest{
+			Address: conekta.FiscalEntityAddress{
+				Street1:    "Calle 123, int 2",
+				City:       "Guadalajara",
+				State:      conekta.PtrString("Jalisco"),
+				Country:    "MX",
+				PostalCode: "44100",
+			},
+			Metadata: map[string]interface{}{},
+		}
+
 		req := conekta.OrderRequest{
 			Currency: "MXN",
 			CustomerInfo: conekta.OrderRequestCustomerInfo{
@@ -55,8 +77,10 @@ func Test_conekta_OrdersApiService(t *testing.T) {
 					UnitPrice: 1000,
 				},
 			},
+			ShippingContact: &shippingContact,
+			FiscalEntity:    &fiscalEntityRequest,
 		}
-		resp, httpRes, err := apiClient.OrdersApi.CreateOrder(context.TODO()).OrderRequest(req).
+		resp, httpRes, err := apiClient.OrdersAPI.CreateOrder(context.TODO()).OrderRequest(req).
 			AcceptLanguage("es").
 			Execute()
 
@@ -74,7 +98,7 @@ func Test_conekta_OrdersApiService(t *testing.T) {
 
 	t.Run("Test OrdersApiService GetOrderById", func(t *testing.T) {
 		orderID := "ord_2tUigJ8DgBhbp6w5D"
-		resp, httpRes, err := apiClient.OrdersApi.GetOrderById(context.TODO(), orderID).
+		resp, httpRes, err := apiClient.OrdersAPI.GetOrderById(context.TODO(), orderID).
 			AcceptLanguage("es").
 			Execute()
 
@@ -91,7 +115,7 @@ func Test_conekta_OrdersApiService(t *testing.T) {
 	})
 
 	t.Run("Test OrdersApiService GetOrders", func(t *testing.T) {
-		resp, httpRes, err := apiClient.OrdersApi.GetOrders(context.TODO()).Limit(10).
+		resp, httpRes, err := apiClient.OrdersAPI.GetOrders(context.TODO()).Limit(10).
 			AcceptLanguage("es").
 			Execute()
 
@@ -110,7 +134,7 @@ func Test_conekta_OrdersApiService(t *testing.T) {
 	t.Run("Test OrdersApiService OrderCancelRefund", func(t *testing.T) {
 		orderID := "ord_2tV52JvSom2w3E8bX"
 		refundID := "6407b5bee1329a000175ba11"
-		resp, httpRes, err := apiClient.OrdersApi.OrderCancelRefund(context.TODO(), orderID, refundID).
+		resp, httpRes, err := apiClient.OrdersAPI.OrderCancelRefund(context.TODO(), orderID, refundID).
 			AcceptLanguage("es").
 			Execute()
 
@@ -132,7 +156,7 @@ func Test_conekta_OrdersApiService(t *testing.T) {
 			Reason: "reason",
 		}
 		orderID := "ord_2tUigJ8DgBhbp6w5D"
-		resp, httpRes, err := apiClient.OrdersApi.OrderRefund(context.TODO(), orderID).
+		resp, httpRes, err := apiClient.OrdersAPI.OrderRefund(context.TODO(), orderID).
 			OrderRefundRequest(req).
 			AcceptLanguage("es").
 			Execute()
@@ -151,7 +175,7 @@ func Test_conekta_OrdersApiService(t *testing.T) {
 
 	t.Run("Test OrdersApiService OrdersCreateCapture", func(t *testing.T) {
 		orderID := "ord_2tUigJ8DgBhbp6w5D"
-		resp, httpRes, err := apiClient.OrdersApi.OrdersCreateCapture(context.TODO(), orderID).
+		resp, httpRes, err := apiClient.OrdersAPI.OrdersCreateCapture(context.TODO(), orderID).
 			AcceptLanguage("es").
 			Execute()
 
@@ -181,7 +205,7 @@ func Test_conekta_OrdersApiService(t *testing.T) {
 			},
 		}
 		orderID := "ord_2tUigJ8DgBhbp6w5D"
-		resp, httpRes, err := apiClient.OrdersApi.UpdateOrder(context.TODO(), orderID).
+		resp, httpRes, err := apiClient.OrdersAPI.UpdateOrder(context.TODO(), orderID).
 			OrderUpdateRequest(req).
 			AcceptLanguage("es").
 			Execute()

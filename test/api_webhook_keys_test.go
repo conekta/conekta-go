@@ -26,7 +26,7 @@ func Test_conekta_WebhookKeysApiService(t *testing.T) {
 
 	t.Run("Test WebhookKeysApiService CreateWebhookKey", func(t *testing.T) {
 		req := conekta.WebhookKeyRequest{Active: conekta.PtrBool(true)}
-		resp, httpRes, err := apiClient.WebhookKeysApi.CreateWebhookKey(context.TODO()).
+		resp, httpRes, err := apiClient.WebhookKeysAPI.CreateWebhookKey(context.TODO()).
 			WebhookKeyRequest(req).
 			AcceptLanguage("es").
 			Execute()
@@ -44,7 +44,7 @@ func Test_conekta_WebhookKeysApiService(t *testing.T) {
 	})
 
 	t.Run("Test WebhookKeysApiService DeleteWebhookKey", func(t *testing.T) {
-		resp, httpRes, err := apiClient.WebhookKeysApi.DeleteWebhookKey(context.TODO(), "645a59da22e7da0001cad283").
+		resp, httpRes, err := apiClient.WebhookKeysAPI.DeleteWebhookKey(context.TODO(), "645a59da22e7da0001cad283").
 			AcceptLanguage("es").
 			Execute()
 
@@ -61,7 +61,7 @@ func Test_conekta_WebhookKeysApiService(t *testing.T) {
 	})
 
 	t.Run("Test WebhookKeysApiService GetWebhookKey", func(t *testing.T) {
-		resp, httpRes, err := apiClient.WebhookKeysApi.GetWebhookKey(context.TODO(), "645a5eb022e7da0001cad2a4").
+		resp, httpRes, err := apiClient.WebhookKeysAPI.GetWebhookKey(context.TODO(), "645a5eb022e7da0001cad2a4").
 			AcceptLanguage("es").
 			Execute()
 
@@ -78,7 +78,7 @@ func Test_conekta_WebhookKeysApiService(t *testing.T) {
 	})
 
 	t.Run("Test WebhookKeysApiService GetWebhookKeys", func(t *testing.T) {
-		resp, httpRes, err := apiClient.WebhookKeysApi.GetWebhookKeys(context.TODO()).
+		resp, httpRes, err := apiClient.WebhookKeysAPI.GetWebhookKeys(context.TODO()).
 			AcceptLanguage("es").
 			Limit(2).
 			Execute()
@@ -97,7 +97,7 @@ func Test_conekta_WebhookKeysApiService(t *testing.T) {
 
 	t.Run("Test WebhookKeysApiService UpdateWebhookKey", func(t *testing.T) {
 		req := conekta.WebhookKeyUpdateRequest{Active: conekta.PtrBool(false)}
-		resp, httpRes, err := apiClient.WebhookKeysApi.UpdateWebhookKey(context.TODO(), "645a613622e7da0001cad882").
+		resp, httpRes, err := apiClient.WebhookKeysAPI.UpdateWebhookKey(context.TODO(), "645a613622e7da0001cad882").
 			WebhookKeyUpdateRequest(req).
 			AcceptLanguage("es").
 			Execute()

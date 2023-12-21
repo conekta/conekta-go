@@ -29,7 +29,7 @@ func Test_conekta_TaxesApiService(t *testing.T) {
 			Amount:      100,
 			Description: "Test",
 		}
-		resp, httpRes, err := apiClient.TaxesApi.OrdersCreateTaxes(context.TODO(), "ord_2tUigJ8DgBhbp6w5D").
+		resp, httpRes, err := apiClient.TaxesAPI.OrdersCreateTaxes(context.TODO(), "ord_2tUigJ8DgBhbp6w5D").
 			OrderTaxRequest(req).
 			AcceptLanguage("es").
 			Execute()
@@ -47,7 +47,7 @@ func Test_conekta_TaxesApiService(t *testing.T) {
 	})
 
 	t.Run("Test TaxesApiService OrdersDeleteTaxes", func(t *testing.T) {
-		resp, httpRes, err := apiClient.TaxesApi.OrdersDeleteTaxes(context.TODO(), "ord_2tVyWPnCPWbrV37mW", "tax_lin_2tVzVp6AAptCRHhgt").
+		resp, httpRes, err := apiClient.TaxesAPI.OrdersDeleteTaxes(context.TODO(), "ord_2tVyWPnCPWbrV37mW", "tax_lin_2tVzVp6AAptCRHhgt").
 			AcceptLanguage("es").
 			Execute()
 
@@ -68,7 +68,7 @@ func Test_conekta_TaxesApiService(t *testing.T) {
 			Amount:      conekta.PtrInt64(100),
 			Description: conekta.PtrString("Test"),
 		}
-		resp, httpRes, err := apiClient.TaxesApi.OrdersUpdateTaxes(context.TODO(), "ord_2tUigJ8DgBhbp6w5D", "tax_lin_2tVzVp6AAptCRHhgt").
+		resp, httpRes, err := apiClient.TaxesAPI.OrdersUpdateTaxes(context.TODO(), "ord_2tUigJ8DgBhbp6w5D", "tax_lin_2tVzVp6AAptCRHhgt").
 			UpdateOrderTaxRequest(req).
 			AcceptLanguage("es").
 			Execute()

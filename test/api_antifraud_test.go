@@ -30,7 +30,7 @@ func Test_conekta_AntifraudApiService(t *testing.T) {
 			Field:       "field",
 			Value:       "value",
 		}
-		resp, httpRes, err := apiClient.AntifraudApi.CreateRuleWhitelist(context.TODO()).
+		resp, httpRes, err := apiClient.AntifraudAPI.CreateRuleWhitelist(context.TODO()).
 			CreateRiskRulesData(req).
 			Execute()
 
@@ -52,7 +52,7 @@ func Test_conekta_AntifraudApiService(t *testing.T) {
 			Field:       "field",
 			Value:       "value",
 		}
-		resp, httpRes, err := apiClient.AntifraudApi.CreateRuleWhitelist(context.TODO()).
+		resp, httpRes, err := apiClient.AntifraudAPI.CreateRuleWhitelist(context.TODO()).
 			CreateRiskRulesData(req).
 			Execute()
 
@@ -69,7 +69,7 @@ func Test_conekta_AntifraudApiService(t *testing.T) {
 	})
 
 	t.Run("Test AntifraudApiService DeleteRuleBlacklist", func(t *testing.T) {
-		resp, httpRes, err := apiClient.AntifraudApi.DeleteRuleWhitelist(context.TODO(), "618c3f2fdb8b8da9be376afe").
+		resp, httpRes, err := apiClient.AntifraudAPI.DeleteRuleWhitelist(context.TODO(), "618c3f2fdb8b8da9be376afe").
 			Execute()
 
 		if err != nil {
@@ -85,7 +85,7 @@ func Test_conekta_AntifraudApiService(t *testing.T) {
 	})
 
 	t.Run("Test AntifraudApiService DeleteRuleWhitelist", func(t *testing.T) {
-		resp, httpRes, err := apiClient.AntifraudApi.DeleteRuleBlacklist(context.TODO(), "618c3f30db8b8da9be376b1e").
+		resp, httpRes, err := apiClient.AntifraudAPI.DeleteRuleBlacklist(context.TODO(), "618c3f30db8b8da9be376b1e").
 			Execute()
 
 		if err != nil {
@@ -101,7 +101,7 @@ func Test_conekta_AntifraudApiService(t *testing.T) {
 	})
 
 	t.Run("Test AntifraudApiService GetRuleBlacklist", func(t *testing.T) {
-		resp, httpRes, err := apiClient.AntifraudApi.GetRuleBlacklist(context.TODO()).
+		resp, httpRes, err := apiClient.AntifraudAPI.GetRuleBlacklist(context.TODO()).
 			Execute()
 
 		if err != nil {
@@ -117,7 +117,7 @@ func Test_conekta_AntifraudApiService(t *testing.T) {
 	})
 
 	t.Run("Test AntifraudApiService GetRuleWhitelist", func(t *testing.T) {
-		resp, httpRes, err := apiClient.AntifraudApi.GetRuleWhitelist(context.TODO()).
+		resp, httpRes, err := apiClient.AntifraudAPI.GetRuleWhitelist(context.TODO()).
 			Execute()
 
 		if err != nil {

@@ -28,7 +28,7 @@ func Test_conekta_TokensApiService(t *testing.T) {
 		req := conekta.Token{
 			Card: *conekta.NewNullableTokenCard(conekta.NewTokenCard("123", "02", "27", "Foo Foo", "5475040095304607")),
 		}
-		resp, httpRes, err := apiClient.TokensApi.CreateToken(context.TODO()).
+		resp, httpRes, err := apiClient.TokensAPI.CreateToken(context.TODO()).
 			Token(req).
 			AcceptLanguage("es").
 			Execute()
