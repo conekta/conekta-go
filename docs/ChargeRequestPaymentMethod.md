@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ExpiresAt** | Pointer to **int64** | Method expiration date as unix timestamp | [optional] 
+**MonthlyInstallments** | Pointer to **int32** | How many months without interest to apply, it can be 3, 6, 9, 12 or 18 | [optional] 
 **Type** | **string** |  | 
 **TokenId** | Pointer to **string** |  | [optional] 
 **PaymentSourceId** | Pointer to **string** |  | [optional] 
@@ -53,6 +54,31 @@ SetExpiresAt sets ExpiresAt field to given value.
 `func (o *ChargeRequestPaymentMethod) HasExpiresAt() bool`
 
 HasExpiresAt returns a boolean if a field has been set.
+
+### GetMonthlyInstallments
+
+`func (o *ChargeRequestPaymentMethod) GetMonthlyInstallments() int32`
+
+GetMonthlyInstallments returns the MonthlyInstallments field if non-nil, zero value otherwise.
+
+### GetMonthlyInstallmentsOk
+
+`func (o *ChargeRequestPaymentMethod) GetMonthlyInstallmentsOk() (*int32, bool)`
+
+GetMonthlyInstallmentsOk returns a tuple with the MonthlyInstallments field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMonthlyInstallments
+
+`func (o *ChargeRequestPaymentMethod) SetMonthlyInstallments(v int32)`
+
+SetMonthlyInstallments sets MonthlyInstallments field to given value.
+
+### HasMonthlyInstallments
+
+`func (o *ChargeRequestPaymentMethod) HasMonthlyInstallments() bool`
+
+HasMonthlyInstallments returns a boolean if a field has been set.
 
 ### GetType
 

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **City** | **string** |  | 
 **State** | Pointer to **string** |  | [optional] 
 **Country** | Pointer to **string** | this field follows the [ISO 3166-1 alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) | [optional] 
-**Residential** | Pointer to **bool** |  | [optional] 
+**Residential** | Pointer to **bool** |  | [optional] [default to false]
 **ExternalNumber** | Pointer to **string** |  | [optional] 
 
 ## Methods

@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the DiscountLinesDataResponse type satisfies the MappedNullable interface at compile time
@@ -33,6 +34,8 @@ type DiscountLinesDataResponse struct {
 	// The order id
 	ParentId string `json:"parent_id"`
 }
+
+type _DiscountLinesDataResponse DiscountLinesDataResponse
 
 // NewDiscountLinesDataResponse instantiates a new DiscountLinesDataResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -218,6 +221,46 @@ func (o DiscountLinesDataResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["object"] = o.Object
 	toSerialize["parent_id"] = o.ParentId
 	return toSerialize, nil
+}
+
+func (o *DiscountLinesDataResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"amount",
+		"code",
+		"type",
+		"id",
+		"object",
+		"parent_id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDiscountLinesDataResponse := _DiscountLinesDataResponse{}
+
+	err = json.Unmarshal(bytes, &varDiscountLinesDataResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DiscountLinesDataResponse(varDiscountLinesDataResponse)
+
+	return err
 }
 
 type NullableDiscountLinesDataResponse struct {

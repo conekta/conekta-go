@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the SubscriptionRequest type satisfies the MappedNullable interface at compile time
@@ -24,6 +25,8 @@ type SubscriptionRequest struct {
 	CardId *string `json:"card_id,omitempty"`
 	TrialEnd *int32 `json:"trial_end,omitempty"`
 }
+
+type _SubscriptionRequest SubscriptionRequest
 
 // NewSubscriptionRequest instantiates a new SubscriptionRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -149,6 +152,41 @@ func (o SubscriptionRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["trial_end"] = o.TrialEnd
 	}
 	return toSerialize, nil
+}
+
+func (o *SubscriptionRequest) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"plan_id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSubscriptionRequest := _SubscriptionRequest{}
+
+	err = json.Unmarshal(bytes, &varSubscriptionRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SubscriptionRequest(varSubscriptionRequest)
+
+	return err
 }
 
 type NullableSubscriptionRequest struct {

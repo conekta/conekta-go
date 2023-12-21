@@ -1,12 +1,12 @@
-# \TaxesApi
+# \TaxesAPI
 
 All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**OrdersCreateTaxes**](TaxesApi.md#OrdersCreateTaxes) | **Post** /orders/{id}/tax_lines | Create Tax
-[**OrdersDeleteTaxes**](TaxesApi.md#OrdersDeleteTaxes) | **Delete** /orders/{id}/tax_lines/{tax_id} | Delete Tax
-[**OrdersUpdateTaxes**](TaxesApi.md#OrdersUpdateTaxes) | **Put** /orders/{id}/tax_lines/{tax_id} | Update Tax
+[**OrdersCreateTaxes**](TaxesAPI.md#OrdersCreateTaxes) | **Post** /orders/{id}/tax_lines | Create Tax
+[**OrdersDeleteTaxes**](TaxesAPI.md#OrdersDeleteTaxes) | **Delete** /orders/{id}/tax_lines/{tax_id} | Delete Tax
+[**OrdersUpdateTaxes**](TaxesAPI.md#OrdersUpdateTaxes) | **Put** /orders/{id}/tax_lines/{tax_id} | Update Tax
 
 
 
@@ -38,13 +38,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TaxesApi.OrdersCreateTaxes(context.Background(), id).OrderTaxRequest(orderTaxRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.TaxesAPI.OrdersCreateTaxes(context.Background(), id).OrderTaxRequest(orderTaxRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TaxesApi.OrdersCreateTaxes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TaxesAPI.OrdersCreateTaxes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `OrdersCreateTaxes`: UpdateOrderTaxResponse
-    fmt.Fprintf(os.Stdout, "Response from `TaxesApi.OrdersCreateTaxes`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `TaxesAPI.OrdersCreateTaxes`: %v\n", resp)
 }
 ```
 
@@ -114,13 +114,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TaxesApi.OrdersDeleteTaxes(context.Background(), id, taxId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.TaxesAPI.OrdersDeleteTaxes(context.Background(), id, taxId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TaxesApi.OrdersDeleteTaxes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TaxesAPI.OrdersDeleteTaxes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `OrdersDeleteTaxes`: UpdateOrderTaxResponse
-    fmt.Fprintf(os.Stdout, "Response from `TaxesApi.OrdersDeleteTaxes`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `TaxesAPI.OrdersDeleteTaxes`: %v\n", resp)
 }
 ```
 
@@ -192,13 +192,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TaxesApi.OrdersUpdateTaxes(context.Background(), id, taxId).UpdateOrderTaxRequest(updateOrderTaxRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.TaxesAPI.OrdersUpdateTaxes(context.Background(), id, taxId).UpdateOrderTaxRequest(updateOrderTaxRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TaxesApi.OrdersUpdateTaxes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TaxesAPI.OrdersUpdateTaxes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `OrdersUpdateTaxes`: UpdateOrderTaxResponse
-    fmt.Fprintf(os.Stdout, "Response from `TaxesApi.OrdersUpdateTaxes`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `TaxesAPI.OrdersUpdateTaxes`: %v\n", resp)
 }
 ```
 

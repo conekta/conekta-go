@@ -1,14 +1,14 @@
-# \DiscountsApi
+# \DiscountsAPI
 
 All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**OrdersCreateDiscountLine**](DiscountsApi.md#OrdersCreateDiscountLine) | **Post** /orders/{id}/discount_lines | Create Discount
-[**OrdersDeleteDiscountLines**](DiscountsApi.md#OrdersDeleteDiscountLines) | **Delete** /orders/{id}/discount_lines/{discount_lines_id} | Delete Discount
-[**OrdersGetDiscountLine**](DiscountsApi.md#OrdersGetDiscountLine) | **Get** /orders/{id}/discount_lines/{discount_lines_id} | Get Discount
-[**OrdersGetDiscountLines**](DiscountsApi.md#OrdersGetDiscountLines) | **Get** /orders/{id}/discount_lines | Get a List of Discount
-[**OrdersUpdateDiscountLines**](DiscountsApi.md#OrdersUpdateDiscountLines) | **Put** /orders/{id}/discount_lines/{discount_lines_id} | Update Discount
+[**OrdersCreateDiscountLine**](DiscountsAPI.md#OrdersCreateDiscountLine) | **Post** /orders/{id}/discount_lines | Create Discount
+[**OrdersDeleteDiscountLines**](DiscountsAPI.md#OrdersDeleteDiscountLines) | **Delete** /orders/{id}/discount_lines/{discount_lines_id} | Delete Discount
+[**OrdersGetDiscountLine**](DiscountsAPI.md#OrdersGetDiscountLine) | **Get** /orders/{id}/discount_lines/{discount_lines_id} | Get Discount
+[**OrdersGetDiscountLines**](DiscountsAPI.md#OrdersGetDiscountLines) | **Get** /orders/{id}/discount_lines | Get a List of Discount
+[**OrdersUpdateDiscountLines**](DiscountsAPI.md#OrdersUpdateDiscountLines) | **Put** /orders/{id}/discount_lines/{discount_lines_id} | Update Discount
 
 
 
@@ -40,13 +40,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DiscountsApi.OrdersCreateDiscountLine(context.Background(), id).OrderDiscountLinesRequest(orderDiscountLinesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.DiscountsAPI.OrdersCreateDiscountLine(context.Background(), id).OrderDiscountLinesRequest(orderDiscountLinesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DiscountsApi.OrdersCreateDiscountLine``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DiscountsAPI.OrdersCreateDiscountLine``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `OrdersCreateDiscountLine`: DiscountLinesResponse
-    fmt.Fprintf(os.Stdout, "Response from `DiscountsApi.OrdersCreateDiscountLine`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `DiscountsAPI.OrdersCreateDiscountLine`: %v\n", resp)
 }
 ```
 
@@ -116,13 +116,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DiscountsApi.OrdersDeleteDiscountLines(context.Background(), id, discountLinesId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.DiscountsAPI.OrdersDeleteDiscountLines(context.Background(), id, discountLinesId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DiscountsApi.OrdersDeleteDiscountLines``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DiscountsAPI.OrdersDeleteDiscountLines``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `OrdersDeleteDiscountLines`: DiscountLinesResponse
-    fmt.Fprintf(os.Stdout, "Response from `DiscountsApi.OrdersDeleteDiscountLines`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `DiscountsAPI.OrdersDeleteDiscountLines`: %v\n", resp)
 }
 ```
 
@@ -193,13 +193,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DiscountsApi.OrdersGetDiscountLine(context.Background(), id, discountLinesId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.DiscountsAPI.OrdersGetDiscountLine(context.Background(), id, discountLinesId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DiscountsApi.OrdersGetDiscountLine``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DiscountsAPI.OrdersGetDiscountLine``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `OrdersGetDiscountLine`: DiscountLinesResponse
-    fmt.Fprintf(os.Stdout, "Response from `DiscountsApi.OrdersGetDiscountLine`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `DiscountsAPI.OrdersGetDiscountLine`: %v\n", resp)
 }
 ```
 
@@ -273,13 +273,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DiscountsApi.OrdersGetDiscountLines(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+    resp, r, err := apiClient.DiscountsAPI.OrdersGetDiscountLines(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DiscountsApi.OrdersGetDiscountLines``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DiscountsAPI.OrdersGetDiscountLines``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `OrdersGetDiscountLines`: GetOrderDiscountLinesResponse
-    fmt.Fprintf(os.Stdout, "Response from `DiscountsApi.OrdersGetDiscountLines`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `DiscountsAPI.OrdersGetDiscountLines`: %v\n", resp)
 }
 ```
 
@@ -353,13 +353,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DiscountsApi.OrdersUpdateDiscountLines(context.Background(), id, discountLinesId).UpdateOrderDiscountLinesRequest(updateOrderDiscountLinesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.DiscountsAPI.OrdersUpdateDiscountLines(context.Background(), id, discountLinesId).UpdateOrderDiscountLinesRequest(updateOrderDiscountLinesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DiscountsApi.OrdersUpdateDiscountLines``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DiscountsAPI.OrdersUpdateDiscountLines``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `OrdersUpdateDiscountLines`: DiscountLinesResponse
-    fmt.Fprintf(os.Stdout, "Response from `DiscountsApi.OrdersUpdateDiscountLines`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `DiscountsAPI.OrdersUpdateDiscountLines`: %v\n", resp)
 }
 ```
 

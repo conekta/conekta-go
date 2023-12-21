@@ -21,7 +21,7 @@ import (
 )
 
 
-type DiscountsApi interface {
+type DiscountsAPI interface {
 
 	/*
 	OrdersCreateDiscountLine Create Discount
@@ -102,12 +102,12 @@ type DiscountsApi interface {
 	OrdersUpdateDiscountLinesExecute(r ApiOrdersUpdateDiscountLinesRequest) (*DiscountLinesResponse, *http.Response, error)
 }
 
-// DiscountsApiService DiscountsApi service
-type DiscountsApiService service
+// DiscountsAPIService DiscountsAPI service
+type DiscountsAPIService service
 
 type ApiOrdersCreateDiscountLineRequest struct {
 	ctx context.Context
-	ApiService DiscountsApi
+	ApiService DiscountsAPI
 	id string
 	orderDiscountLinesRequest *OrderDiscountLinesRequest
 	acceptLanguage *string
@@ -145,7 +145,7 @@ Create discount lines for an existing orden
  @param id Identifier of the resource
  @return ApiOrdersCreateDiscountLineRequest
 */
-func (a *DiscountsApiService) OrdersCreateDiscountLine(ctx context.Context, id string) ApiOrdersCreateDiscountLineRequest {
+func (a *DiscountsAPIService) OrdersCreateDiscountLine(ctx context.Context, id string) ApiOrdersCreateDiscountLineRequest {
 	return ApiOrdersCreateDiscountLineRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -155,7 +155,7 @@ func (a *DiscountsApiService) OrdersCreateDiscountLine(ctx context.Context, id s
 
 // Execute executes the request
 //  @return DiscountLinesResponse
-func (a *DiscountsApiService) OrdersCreateDiscountLineExecute(r ApiOrdersCreateDiscountLineRequest) (*DiscountLinesResponse, *http.Response, error) {
+func (a *DiscountsAPIService) OrdersCreateDiscountLineExecute(r ApiOrdersCreateDiscountLineRequest) (*DiscountLinesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -163,7 +163,7 @@ func (a *DiscountsApiService) OrdersCreateDiscountLineExecute(r ApiOrdersCreateD
 		localVarReturnValue  *DiscountLinesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DiscountsApiService.OrdersCreateDiscountLine")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DiscountsAPIService.OrdersCreateDiscountLine")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -274,7 +274,7 @@ func (a *DiscountsApiService) OrdersCreateDiscountLineExecute(r ApiOrdersCreateD
 
 type ApiOrdersDeleteDiscountLinesRequest struct {
 	ctx context.Context
-	ApiService DiscountsApi
+	ApiService DiscountsAPI
 	id string
 	discountLinesId string
 	acceptLanguage *string
@@ -307,7 +307,7 @@ Delete an existing discount lines for an existing orden
  @param discountLinesId discount line id identifier
  @return ApiOrdersDeleteDiscountLinesRequest
 */
-func (a *DiscountsApiService) OrdersDeleteDiscountLines(ctx context.Context, id string, discountLinesId string) ApiOrdersDeleteDiscountLinesRequest {
+func (a *DiscountsAPIService) OrdersDeleteDiscountLines(ctx context.Context, id string, discountLinesId string) ApiOrdersDeleteDiscountLinesRequest {
 	return ApiOrdersDeleteDiscountLinesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -318,7 +318,7 @@ func (a *DiscountsApiService) OrdersDeleteDiscountLines(ctx context.Context, id 
 
 // Execute executes the request
 //  @return DiscountLinesResponse
-func (a *DiscountsApiService) OrdersDeleteDiscountLinesExecute(r ApiOrdersDeleteDiscountLinesRequest) (*DiscountLinesResponse, *http.Response, error) {
+func (a *DiscountsAPIService) OrdersDeleteDiscountLinesExecute(r ApiOrdersDeleteDiscountLinesRequest) (*DiscountLinesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -326,7 +326,7 @@ func (a *DiscountsApiService) OrdersDeleteDiscountLinesExecute(r ApiOrdersDelete
 		localVarReturnValue  *DiscountLinesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DiscountsApiService.OrdersDeleteDiscountLines")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DiscountsAPIService.OrdersDeleteDiscountLines")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -444,7 +444,7 @@ func (a *DiscountsApiService) OrdersDeleteDiscountLinesExecute(r ApiOrdersDelete
 
 type ApiOrdersGetDiscountLineRequest struct {
 	ctx context.Context
-	ApiService DiscountsApi
+	ApiService DiscountsAPI
 	id string
 	discountLinesId string
 	acceptLanguage *string
@@ -477,7 +477,7 @@ Get an existing discount lines for an existing orden
  @param discountLinesId discount line id identifier
  @return ApiOrdersGetDiscountLineRequest
 */
-func (a *DiscountsApiService) OrdersGetDiscountLine(ctx context.Context, id string, discountLinesId string) ApiOrdersGetDiscountLineRequest {
+func (a *DiscountsAPIService) OrdersGetDiscountLine(ctx context.Context, id string, discountLinesId string) ApiOrdersGetDiscountLineRequest {
 	return ApiOrdersGetDiscountLineRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -488,7 +488,7 @@ func (a *DiscountsApiService) OrdersGetDiscountLine(ctx context.Context, id stri
 
 // Execute executes the request
 //  @return DiscountLinesResponse
-func (a *DiscountsApiService) OrdersGetDiscountLineExecute(r ApiOrdersGetDiscountLineRequest) (*DiscountLinesResponse, *http.Response, error) {
+func (a *DiscountsAPIService) OrdersGetDiscountLineExecute(r ApiOrdersGetDiscountLineRequest) (*DiscountLinesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -496,7 +496,7 @@ func (a *DiscountsApiService) OrdersGetDiscountLineExecute(r ApiOrdersGetDiscoun
 		localVarReturnValue  *DiscountLinesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DiscountsApiService.OrdersGetDiscountLine")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DiscountsAPIService.OrdersGetDiscountLine")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -614,7 +614,7 @@ func (a *DiscountsApiService) OrdersGetDiscountLineExecute(r ApiOrdersGetDiscoun
 
 type ApiOrdersGetDiscountLinesRequest struct {
 	ctx context.Context
-	ApiService DiscountsApi
+	ApiService DiscountsAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -673,7 +673,7 @@ Get discount lines for an existing orden
  @param id Identifier of the resource
  @return ApiOrdersGetDiscountLinesRequest
 */
-func (a *DiscountsApiService) OrdersGetDiscountLines(ctx context.Context, id string) ApiOrdersGetDiscountLinesRequest {
+func (a *DiscountsAPIService) OrdersGetDiscountLines(ctx context.Context, id string) ApiOrdersGetDiscountLinesRequest {
 	return ApiOrdersGetDiscountLinesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -683,7 +683,7 @@ func (a *DiscountsApiService) OrdersGetDiscountLines(ctx context.Context, id str
 
 // Execute executes the request
 //  @return GetOrderDiscountLinesResponse
-func (a *DiscountsApiService) OrdersGetDiscountLinesExecute(r ApiOrdersGetDiscountLinesRequest) (*GetOrderDiscountLinesResponse, *http.Response, error) {
+func (a *DiscountsAPIService) OrdersGetDiscountLinesExecute(r ApiOrdersGetDiscountLinesRequest) (*GetOrderDiscountLinesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -691,7 +691,7 @@ func (a *DiscountsApiService) OrdersGetDiscountLinesExecute(r ApiOrdersGetDiscou
 		localVarReturnValue  *GetOrderDiscountLinesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DiscountsApiService.OrdersGetDiscountLines")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DiscountsAPIService.OrdersGetDiscountLines")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -705,6 +705,9 @@ func (a *DiscountsApiService) OrdersGetDiscountLinesExecute(r ApiOrdersGetDiscou
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
@@ -798,7 +801,7 @@ func (a *DiscountsApiService) OrdersGetDiscountLinesExecute(r ApiOrdersGetDiscou
 
 type ApiOrdersUpdateDiscountLinesRequest struct {
 	ctx context.Context
-	ApiService DiscountsApi
+	ApiService DiscountsAPI
 	id string
 	discountLinesId string
 	updateOrderDiscountLinesRequest *UpdateOrderDiscountLinesRequest
@@ -838,7 +841,7 @@ Update an existing discount lines for an existing orden
  @param discountLinesId discount line id identifier
  @return ApiOrdersUpdateDiscountLinesRequest
 */
-func (a *DiscountsApiService) OrdersUpdateDiscountLines(ctx context.Context, id string, discountLinesId string) ApiOrdersUpdateDiscountLinesRequest {
+func (a *DiscountsAPIService) OrdersUpdateDiscountLines(ctx context.Context, id string, discountLinesId string) ApiOrdersUpdateDiscountLinesRequest {
 	return ApiOrdersUpdateDiscountLinesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -849,7 +852,7 @@ func (a *DiscountsApiService) OrdersUpdateDiscountLines(ctx context.Context, id 
 
 // Execute executes the request
 //  @return DiscountLinesResponse
-func (a *DiscountsApiService) OrdersUpdateDiscountLinesExecute(r ApiOrdersUpdateDiscountLinesRequest) (*DiscountLinesResponse, *http.Response, error) {
+func (a *DiscountsAPIService) OrdersUpdateDiscountLinesExecute(r ApiOrdersUpdateDiscountLinesRequest) (*DiscountLinesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -857,7 +860,7 @@ func (a *DiscountsApiService) OrdersUpdateDiscountLinesExecute(r ApiOrdersUpdate
 		localVarReturnValue  *DiscountLinesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DiscountsApiService.OrdersUpdateDiscountLines")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DiscountsAPIService.OrdersUpdateDiscountLines")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

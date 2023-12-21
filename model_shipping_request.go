@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ShippingRequest type satisfies the MappedNullable interface at compile time
@@ -31,6 +32,8 @@ type ShippingRequest struct {
 	// Hash where the user can send additional information for each 'shipping'.
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 }
+
+type _ShippingRequest ShippingRequest
 
 // NewShippingRequest instantiates a new ShippingRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -226,6 +229,41 @@ func (o ShippingRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["metadata"] = o.Metadata
 	}
 	return toSerialize, nil
+}
+
+func (o *ShippingRequest) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"amount",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varShippingRequest := _ShippingRequest{}
+
+	err = json.Unmarshal(bytes, &varShippingRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ShippingRequest(varShippingRequest)
+
+	return err
 }
 
 type NullableShippingRequest struct {

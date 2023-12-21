@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PaymentMethodCard type satisfies the MappedNullable interface at compile time
@@ -30,11 +31,13 @@ type PaymentMethodCard struct {
 	Country *string `json:"country,omitempty"`
 	ExpMonth *string `json:"exp_month,omitempty"`
 	ExpYear *string `json:"exp_year,omitempty"`
-	FraudIndicators []interface{} `json:"fraud_indicators,omitempty"`
+	FraudIndicators []map[string]interface{} `json:"fraud_indicators,omitempty"`
 	Issuer *string `json:"issuer,omitempty"`
 	Last4 *string `json:"last4,omitempty"`
 	Name *string `json:"name,omitempty"`
 }
+
+type _PaymentMethodCard PaymentMethodCard
 
 // NewPaymentMethodCard instantiates a new PaymentMethodCard object
 // This constructor will assign default values to properties that have it defined,
@@ -335,9 +338,9 @@ func (o *PaymentMethodCard) SetExpYear(v string) {
 }
 
 // GetFraudIndicators returns the FraudIndicators field value if set, zero value otherwise.
-func (o *PaymentMethodCard) GetFraudIndicators() []interface{} {
+func (o *PaymentMethodCard) GetFraudIndicators() []map[string]interface{} {
 	if o == nil || IsNil(o.FraudIndicators) {
-		var ret []interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
 	return o.FraudIndicators
@@ -345,7 +348,7 @@ func (o *PaymentMethodCard) GetFraudIndicators() []interface{} {
 
 // GetFraudIndicatorsOk returns a tuple with the FraudIndicators field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethodCard) GetFraudIndicatorsOk() ([]interface{}, bool) {
+func (o *PaymentMethodCard) GetFraudIndicatorsOk() ([]map[string]interface{}, bool) {
 	if o == nil || IsNil(o.FraudIndicators) {
 		return nil, false
 	}
@@ -361,8 +364,8 @@ func (o *PaymentMethodCard) HasFraudIndicators() bool {
 	return false
 }
 
-// SetFraudIndicators gets a reference to the given []interface{} and assigns it to the FraudIndicators field.
-func (o *PaymentMethodCard) SetFraudIndicators(v []interface{}) {
+// SetFraudIndicators gets a reference to the given []map[string]interface{} and assigns it to the FraudIndicators field.
+func (o *PaymentMethodCard) SetFraudIndicators(v []map[string]interface{}) {
 	o.FraudIndicators = v
 }
 
@@ -510,6 +513,41 @@ func (o PaymentMethodCard) ToMap() (map[string]interface{}, error) {
 		toSerialize["name"] = o.Name
 	}
 	return toSerialize, nil
+}
+
+func (o *PaymentMethodCard) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"object",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPaymentMethodCard := _PaymentMethodCard{}
+
+	err = json.Unmarshal(bytes, &varPaymentMethodCard)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaymentMethodCard(varPaymentMethodCard)
+
+	return err
 }
 
 type NullablePaymentMethodCard struct {

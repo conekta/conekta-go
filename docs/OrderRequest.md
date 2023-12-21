@@ -9,14 +9,17 @@ Name | Type | Description | Notes
 **Currency** | **string** | Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217) | 
 **CustomerInfo** | [**OrderRequestCustomerInfo**](OrderRequestCustomerInfo.md) |  | 
 **DiscountLines** | Pointer to [**[]OrderDiscountLinesRequest**](OrderDiscountLinesRequest.md) | List of [discounts](https://developers.conekta.com/v2.1.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount. | [optional] 
+**FiscalEntity** | Pointer to [**OrderFiscalEntityRequest**](OrderFiscalEntityRequest.md) |  | [optional] 
 **LineItems** | [**[]Product**](Product.md) | List of [products](https://developers.conekta.com/v2.1.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product. | 
 **Metadata** | Pointer to **map[string]interface{}** | Metadata associated with the order | [optional] 
 **NeedsShippingContact** | Pointer to **bool** | Allows you to fill out the shipping information at checkout | [optional] 
 **PreAuthorize** | Pointer to **bool** | Indicates whether the order charges must be preauthorized | [optional] [default to false]
 **ProcessingMode** | Pointer to **string** | Indicates the processing mode for the order, either ecommerce, recurrent or validation. | [optional] 
+**ReturnUrl** | Pointer to **string** | Indicates the redirection callback upon completion of the 3DS2 flow. | [optional] 
 **ShippingContact** | Pointer to [**CustomerShippingContacts**](CustomerShippingContacts.md) |  | [optional] 
 **ShippingLines** | Pointer to [**[]ShippingRequest**](ShippingRequest.md) | List of [shipping costs](https://developers.conekta.com/v2.1.0/reference/orderscreateshipping). If the online store offers digital products. | [optional] 
 **TaxLines** | Pointer to [**[]OrderTaxRequest**](OrderTaxRequest.md) | List of [taxes](https://developers.conekta.com/v2.1.0/reference/orderscreatetaxes) that are applied to the order. | [optional] 
+**ThreeDsMode** | Pointer to **string** | Indicates the 3DS2 mode for the order, either smart or strict. | [optional] 
 
 ## Methods
 
@@ -152,6 +155,31 @@ SetDiscountLines sets DiscountLines field to given value.
 
 HasDiscountLines returns a boolean if a field has been set.
 
+### GetFiscalEntity
+
+`func (o *OrderRequest) GetFiscalEntity() OrderFiscalEntityRequest`
+
+GetFiscalEntity returns the FiscalEntity field if non-nil, zero value otherwise.
+
+### GetFiscalEntityOk
+
+`func (o *OrderRequest) GetFiscalEntityOk() (*OrderFiscalEntityRequest, bool)`
+
+GetFiscalEntityOk returns a tuple with the FiscalEntity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFiscalEntity
+
+`func (o *OrderRequest) SetFiscalEntity(v OrderFiscalEntityRequest)`
+
+SetFiscalEntity sets FiscalEntity field to given value.
+
+### HasFiscalEntity
+
+`func (o *OrderRequest) HasFiscalEntity() bool`
+
+HasFiscalEntity returns a boolean if a field has been set.
+
 ### GetLineItems
 
 `func (o *OrderRequest) GetLineItems() []Product`
@@ -272,6 +300,31 @@ SetProcessingMode sets ProcessingMode field to given value.
 
 HasProcessingMode returns a boolean if a field has been set.
 
+### GetReturnUrl
+
+`func (o *OrderRequest) GetReturnUrl() string`
+
+GetReturnUrl returns the ReturnUrl field if non-nil, zero value otherwise.
+
+### GetReturnUrlOk
+
+`func (o *OrderRequest) GetReturnUrlOk() (*string, bool)`
+
+GetReturnUrlOk returns a tuple with the ReturnUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReturnUrl
+
+`func (o *OrderRequest) SetReturnUrl(v string)`
+
+SetReturnUrl sets ReturnUrl field to given value.
+
+### HasReturnUrl
+
+`func (o *OrderRequest) HasReturnUrl() bool`
+
+HasReturnUrl returns a boolean if a field has been set.
+
 ### GetShippingContact
 
 `func (o *OrderRequest) GetShippingContact() CustomerShippingContacts`
@@ -346,6 +399,31 @@ SetTaxLines sets TaxLines field to given value.
 `func (o *OrderRequest) HasTaxLines() bool`
 
 HasTaxLines returns a boolean if a field has been set.
+
+### GetThreeDsMode
+
+`func (o *OrderRequest) GetThreeDsMode() string`
+
+GetThreeDsMode returns the ThreeDsMode field if non-nil, zero value otherwise.
+
+### GetThreeDsModeOk
+
+`func (o *OrderRequest) GetThreeDsModeOk() (*string, bool)`
+
+GetThreeDsModeOk returns a tuple with the ThreeDsMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThreeDsMode
+
+`func (o *OrderRequest) SetThreeDsMode(v string)`
+
+SetThreeDsMode sets ThreeDsMode field to given value.
+
+### HasThreeDsMode
+
+`func (o *OrderRequest) HasThreeDsMode() bool`
+
+HasThreeDsMode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

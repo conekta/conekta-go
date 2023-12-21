@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CustomerAddress type satisfies the MappedNullable interface at compile time
@@ -31,6 +32,8 @@ type CustomerAddress struct {
 	ExternalNumber *string `json:"external_number,omitempty"`
 }
 
+type _CustomerAddress CustomerAddress
+
 // NewCustomerAddress instantiates a new CustomerAddress object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -40,6 +43,8 @@ func NewCustomerAddress(street1 string, postalCode string, city string) *Custome
 	this.Street1 = street1
 	this.PostalCode = postalCode
 	this.City = city
+	var residential bool = false
+	this.Residential = &residential
 	return &this
 }
 
@@ -48,6 +53,8 @@ func NewCustomerAddress(street1 string, postalCode string, city string) *Custome
 // but it doesn't guarantee that properties required by API are set
 func NewCustomerAddressWithDefaults() *CustomerAddress {
 	this := CustomerAddress{}
+	var residential bool = false
+	this.Residential = &residential
 	return &this
 }
 
@@ -312,6 +319,43 @@ func (o CustomerAddress) ToMap() (map[string]interface{}, error) {
 		toSerialize["external_number"] = o.ExternalNumber
 	}
 	return toSerialize, nil
+}
+
+func (o *CustomerAddress) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"street1",
+		"postal_code",
+		"city",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCustomerAddress := _CustomerAddress{}
+
+	err = json.Unmarshal(bytes, &varCustomerAddress)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CustomerAddress(varCustomerAddress)
+
+	return err
 }
 
 type NullableCustomerAddress struct {

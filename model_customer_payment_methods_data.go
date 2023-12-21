@@ -91,6 +91,18 @@ func (dst *CustomerPaymentMethodsData) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'spei_recurrent'
+	if jsonDict["type"] == "spei_recurrent" {
+		// try to unmarshal JSON data into PaymentMethodSpeiRecurrent
+		err = json.Unmarshal(data, &dst.PaymentMethodSpeiRecurrent)
+		if err == nil {
+			return nil // data stored in dst.PaymentMethodSpeiRecurrent, return on the first match
+		} else {
+			dst.PaymentMethodSpeiRecurrent = nil
+			return fmt.Errorf("failed to unmarshal CustomerPaymentMethodsData as PaymentMethodSpeiRecurrent: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'payment_method_card_response'
 	if jsonDict["type"] == "payment_method_card_response" {
 		// try to unmarshal JSON data into PaymentMethodCardResponse
@@ -117,18 +129,6 @@ func (dst *CustomerPaymentMethodsData) UnmarshalJSON(data []byte) error {
 
 	// check if the discriminator value is 'payment_method_spei_recurrent'
 	if jsonDict["type"] == "payment_method_spei_recurrent" {
-		// try to unmarshal JSON data into PaymentMethodSpeiRecurrent
-		err = json.Unmarshal(data, &dst.PaymentMethodSpeiRecurrent)
-		if err == nil {
-			return nil // data stored in dst.PaymentMethodSpeiRecurrent, return on the first match
-		} else {
-			dst.PaymentMethodSpeiRecurrent = nil
-			return fmt.Errorf("failed to unmarshal CustomerPaymentMethodsData as PaymentMethodSpeiRecurrent: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'spei_recurrent'
-	if jsonDict["type"] == "spei_recurrent" {
 		// try to unmarshal JSON data into PaymentMethodSpeiRecurrent
 		err = json.Unmarshal(data, &dst.PaymentMethodSpeiRecurrent)
 		if err == nil {

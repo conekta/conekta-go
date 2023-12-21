@@ -1,10 +1,10 @@
-# \BalancesApi
+# \BalancesAPI
 
 All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetBalance**](BalancesApi.md#GetBalance) | **Get** /balances | Get a company&#39;s balance
+[**GetBalance**](BalancesAPI.md#GetBalance) | **Get** /balance | Get a company&#39;s balance
 
 
 
@@ -33,13 +33,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BalancesApi.GetBalance(context.Background()).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.BalancesAPI.GetBalance(context.Background()).AcceptLanguage(acceptLanguage).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BalancesApi.GetBalance``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BalancesAPI.GetBalance``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetBalance`: BalanceResponse
-    fmt.Fprintf(os.Stdout, "Response from `BalancesApi.GetBalance`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `BalancesAPI.GetBalance`: %v\n", resp)
 }
 ```
 

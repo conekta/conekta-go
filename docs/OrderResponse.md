@@ -13,12 +13,13 @@ Name | Type | Description | Notes
 **Currency** | Pointer to **string** | The three-letter ISO 4217 currency code. The currency of the order. | [optional] 
 **CustomerInfo** | Pointer to [**OrderResponseCustomerInfo**](OrderResponseCustomerInfo.md) |  | [optional] 
 **DiscountLines** | Pointer to [**OrderResponseDiscountLines**](OrderResponseDiscountLines.md) |  | [optional] 
-**FiscalEntity** | Pointer to [**OrderResponseFiscalEntity**](OrderResponseFiscalEntity.md) |  | [optional] 
+**FiscalEntity** | Pointer to [**NullableOrderFiscalEntityResponse**](OrderFiscalEntityResponse.md) |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **IsRefundable** | Pointer to **bool** |  | [optional] 
 **LineItems** | Pointer to [**OrderResponseProducts**](OrderResponseProducts.md) |  | [optional] 
 **Livemode** | Pointer to **bool** | Whether the object exists in live mode or test mode | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** | Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. | [optional] 
+**NextAction** | Pointer to [**OrderNextActionResponse**](OrderNextActionResponse.md) |  | [optional] 
 **Object** | Pointer to **string** | String representing the object’s type. Objects of the same type share the same value. | [optional] 
 **PaymentStatus** | Pointer to **string** | The payment status of the order. | [optional] 
 **ProcessingMode** | Pointer to **string** | Indicates the processing mode for the order, either ecommerce, recurrent or validation. | [optional] 
@@ -271,20 +272,20 @@ HasDiscountLines returns a boolean if a field has been set.
 
 ### GetFiscalEntity
 
-`func (o *OrderResponse) GetFiscalEntity() OrderResponseFiscalEntity`
+`func (o *OrderResponse) GetFiscalEntity() OrderFiscalEntityResponse`
 
 GetFiscalEntity returns the FiscalEntity field if non-nil, zero value otherwise.
 
 ### GetFiscalEntityOk
 
-`func (o *OrderResponse) GetFiscalEntityOk() (*OrderResponseFiscalEntity, bool)`
+`func (o *OrderResponse) GetFiscalEntityOk() (*OrderFiscalEntityResponse, bool)`
 
 GetFiscalEntityOk returns a tuple with the FiscalEntity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFiscalEntity
 
-`func (o *OrderResponse) SetFiscalEntity(v OrderResponseFiscalEntity)`
+`func (o *OrderResponse) SetFiscalEntity(v OrderFiscalEntityResponse)`
 
 SetFiscalEntity sets FiscalEntity field to given value.
 
@@ -294,6 +295,16 @@ SetFiscalEntity sets FiscalEntity field to given value.
 
 HasFiscalEntity returns a boolean if a field has been set.
 
+### SetFiscalEntityNil
+
+`func (o *OrderResponse) SetFiscalEntityNil(b bool)`
+
+ SetFiscalEntityNil sets the value for FiscalEntity to be an explicit nil
+
+### UnsetFiscalEntity
+`func (o *OrderResponse) UnsetFiscalEntity()`
+
+UnsetFiscalEntity ensures that no value is present for FiscalEntity, not even an explicit nil
 ### GetId
 
 `func (o *OrderResponse) GetId() string`
@@ -418,6 +429,31 @@ SetMetadata sets Metadata field to given value.
 `func (o *OrderResponse) HasMetadata() bool`
 
 HasMetadata returns a boolean if a field has been set.
+
+### GetNextAction
+
+`func (o *OrderResponse) GetNextAction() OrderNextActionResponse`
+
+GetNextAction returns the NextAction field if non-nil, zero value otherwise.
+
+### GetNextActionOk
+
+`func (o *OrderResponse) GetNextActionOk() (*OrderNextActionResponse, bool)`
+
+GetNextActionOk returns a tuple with the NextAction field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNextAction
+
+`func (o *OrderResponse) SetNextAction(v OrderNextActionResponse)`
+
+SetNextAction sets NextAction field to given value.
+
+### HasNextAction
+
+`func (o *OrderResponse) HasNextAction() bool`
+
+HasNextAction returns a boolean if a field has been set.
 
 ### GetObject
 

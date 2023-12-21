@@ -21,7 +21,7 @@ import (
 )
 
 
-type OrdersApi interface {
+type OrdersAPI interface {
 
 	/*
 	CancelOrder Cancel Order
@@ -143,12 +143,12 @@ type OrdersApi interface {
 	UpdateOrderExecute(r ApiUpdateOrderRequest) (*OrderResponse, *http.Response, error)
 }
 
-// OrdersApiService OrdersApi service
-type OrdersApiService service
+// OrdersAPIService OrdersAPI service
+type OrdersAPIService service
 
 type ApiCancelOrderRequest struct {
 	ctx context.Context
-	ApiService OrdersApi
+	ApiService OrdersAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -179,7 +179,7 @@ Cancel an order that has been previously created.
  @param id Identifier of the resource
  @return ApiCancelOrderRequest
 */
-func (a *OrdersApiService) CancelOrder(ctx context.Context, id string) ApiCancelOrderRequest {
+func (a *OrdersAPIService) CancelOrder(ctx context.Context, id string) ApiCancelOrderRequest {
 	return ApiCancelOrderRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -189,7 +189,7 @@ func (a *OrdersApiService) CancelOrder(ctx context.Context, id string) ApiCancel
 
 // Execute executes the request
 //  @return OrderResponse
-func (a *OrdersApiService) CancelOrderExecute(r ApiCancelOrderRequest) (*OrderResponse, *http.Response, error) {
+func (a *OrdersAPIService) CancelOrderExecute(r ApiCancelOrderRequest) (*OrderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -197,7 +197,7 @@ func (a *OrdersApiService) CancelOrderExecute(r ApiCancelOrderRequest) (*OrderRe
 		localVarReturnValue  *OrderResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.CancelOrder")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersAPIService.CancelOrder")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -325,7 +325,7 @@ func (a *OrdersApiService) CancelOrderExecute(r ApiCancelOrderRequest) (*OrderRe
 
 type ApiCreateOrderRequest struct {
 	ctx context.Context
-	ApiService OrdersApi
+	ApiService OrdersAPI
 	orderRequest *OrderRequest
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -361,7 +361,7 @@ Create a new order.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateOrderRequest
 */
-func (a *OrdersApiService) CreateOrder(ctx context.Context) ApiCreateOrderRequest {
+func (a *OrdersAPIService) CreateOrder(ctx context.Context) ApiCreateOrderRequest {
 	return ApiCreateOrderRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -370,7 +370,7 @@ func (a *OrdersApiService) CreateOrder(ctx context.Context) ApiCreateOrderReques
 
 // Execute executes the request
 //  @return OrderResponse
-func (a *OrdersApiService) CreateOrderExecute(r ApiCreateOrderRequest) (*OrderResponse, *http.Response, error) {
+func (a *OrdersAPIService) CreateOrderExecute(r ApiCreateOrderRequest) (*OrderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -378,7 +378,7 @@ func (a *OrdersApiService) CreateOrderExecute(r ApiCreateOrderRequest) (*OrderRe
 		localVarReturnValue  *OrderResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.CreateOrder")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersAPIService.CreateOrder")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -499,7 +499,7 @@ func (a *OrdersApiService) CreateOrderExecute(r ApiCreateOrderRequest) (*OrderRe
 
 type ApiGetOrderByIdRequest struct {
 	ctx context.Context
-	ApiService OrdersApi
+	ApiService OrdersAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -530,7 +530,7 @@ Info for a specific order
  @param id Identifier of the resource
  @return ApiGetOrderByIdRequest
 */
-func (a *OrdersApiService) GetOrderById(ctx context.Context, id string) ApiGetOrderByIdRequest {
+func (a *OrdersAPIService) GetOrderById(ctx context.Context, id string) ApiGetOrderByIdRequest {
 	return ApiGetOrderByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -540,7 +540,7 @@ func (a *OrdersApiService) GetOrderById(ctx context.Context, id string) ApiGetOr
 
 // Execute executes the request
 //  @return OrderResponse
-func (a *OrdersApiService) GetOrderByIdExecute(r ApiGetOrderByIdRequest) (*OrderResponse, *http.Response, error) {
+func (a *OrdersAPIService) GetOrderByIdExecute(r ApiGetOrderByIdRequest) (*OrderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -548,7 +548,7 @@ func (a *OrdersApiService) GetOrderByIdExecute(r ApiGetOrderByIdRequest) (*Order
 		localVarReturnValue  *OrderResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.GetOrderById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersAPIService.GetOrderById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -654,7 +654,7 @@ func (a *OrdersApiService) GetOrderByIdExecute(r ApiGetOrderByIdRequest) (*Order
 
 type ApiGetOrdersRequest struct {
 	ctx context.Context
-	ApiService OrdersApi
+	ApiService OrdersAPI
 	acceptLanguage *string
 	xChildCompanyId *string
 	limit *int32
@@ -711,7 +711,7 @@ Get order details in the form of a list
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetOrdersRequest
 */
-func (a *OrdersApiService) GetOrders(ctx context.Context) ApiGetOrdersRequest {
+func (a *OrdersAPIService) GetOrders(ctx context.Context) ApiGetOrdersRequest {
 	return ApiGetOrdersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -720,7 +720,7 @@ func (a *OrdersApiService) GetOrders(ctx context.Context) ApiGetOrdersRequest {
 
 // Execute executes the request
 //  @return GetOrdersResponse
-func (a *OrdersApiService) GetOrdersExecute(r ApiGetOrdersRequest) (*GetOrdersResponse, *http.Response, error) {
+func (a *OrdersAPIService) GetOrdersExecute(r ApiGetOrdersRequest) (*GetOrdersResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -728,7 +728,7 @@ func (a *OrdersApiService) GetOrdersExecute(r ApiGetOrdersRequest) (*GetOrdersRe
 		localVarReturnValue  *GetOrdersResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.GetOrders")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersAPIService.GetOrders")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -741,6 +741,9 @@ func (a *OrdersApiService) GetOrdersExecute(r ApiGetOrdersRequest) (*GetOrdersRe
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
@@ -834,7 +837,7 @@ func (a *OrdersApiService) GetOrdersExecute(r ApiGetOrdersRequest) (*GetOrdersRe
 
 type ApiOrderCancelRefundRequest struct {
 	ctx context.Context
-	ApiService OrdersApi
+	ApiService OrdersAPI
 	id string
 	refundId string
 	acceptLanguage *string
@@ -867,7 +870,7 @@ A refunded order describes the items, amount, and reason an order is being refun
  @param refundId refund identifier
  @return ApiOrderCancelRefundRequest
 */
-func (a *OrdersApiService) OrderCancelRefund(ctx context.Context, id string, refundId string) ApiOrderCancelRefundRequest {
+func (a *OrdersAPIService) OrderCancelRefund(ctx context.Context, id string, refundId string) ApiOrderCancelRefundRequest {
 	return ApiOrderCancelRefundRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -878,7 +881,7 @@ func (a *OrdersApiService) OrderCancelRefund(ctx context.Context, id string, ref
 
 // Execute executes the request
 //  @return OrderResponse
-func (a *OrdersApiService) OrderCancelRefundExecute(r ApiOrderCancelRefundRequest) (*OrderResponse, *http.Response, error) {
+func (a *OrdersAPIService) OrderCancelRefundExecute(r ApiOrderCancelRefundRequest) (*OrderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -886,7 +889,7 @@ func (a *OrdersApiService) OrderCancelRefundExecute(r ApiOrderCancelRefundReques
 		localVarReturnValue  *OrderResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.OrderCancelRefund")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersAPIService.OrderCancelRefund")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1015,7 +1018,7 @@ func (a *OrdersApiService) OrderCancelRefundExecute(r ApiOrderCancelRefundReques
 
 type ApiOrderRefundRequest struct {
 	ctx context.Context
-	ApiService OrdersApi
+	ApiService OrdersAPI
 	id string
 	orderRefundRequest *OrderRefundRequest
 	acceptLanguage *string
@@ -1053,7 +1056,7 @@ A refunded order describes the items, amount, and reason an order is being refun
  @param id Identifier of the resource
  @return ApiOrderRefundRequest
 */
-func (a *OrdersApiService) OrderRefund(ctx context.Context, id string) ApiOrderRefundRequest {
+func (a *OrdersAPIService) OrderRefund(ctx context.Context, id string) ApiOrderRefundRequest {
 	return ApiOrderRefundRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1063,7 +1066,7 @@ func (a *OrdersApiService) OrderRefund(ctx context.Context, id string) ApiOrderR
 
 // Execute executes the request
 //  @return OrderResponse
-func (a *OrdersApiService) OrderRefundExecute(r ApiOrderRefundRequest) (*OrderResponse, *http.Response, error) {
+func (a *OrdersAPIService) OrderRefundExecute(r ApiOrderRefundRequest) (*OrderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1071,7 +1074,7 @@ func (a *OrdersApiService) OrderRefundExecute(r ApiOrderRefundRequest) (*OrderRe
 		localVarReturnValue  *OrderResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.OrderRefund")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersAPIService.OrderRefund")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1204,7 +1207,7 @@ func (a *OrdersApiService) OrderRefundExecute(r ApiOrderRefundRequest) (*OrderRe
 
 type ApiOrdersCreateCaptureRequest struct {
 	ctx context.Context
-	ApiService OrdersApi
+	ApiService OrdersAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -1242,7 +1245,7 @@ Processes an order that has been previously authorized.
  @param id Identifier of the resource
  @return ApiOrdersCreateCaptureRequest
 */
-func (a *OrdersApiService) OrdersCreateCapture(ctx context.Context, id string) ApiOrdersCreateCaptureRequest {
+func (a *OrdersAPIService) OrdersCreateCapture(ctx context.Context, id string) ApiOrdersCreateCaptureRequest {
 	return ApiOrdersCreateCaptureRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1252,7 +1255,7 @@ func (a *OrdersApiService) OrdersCreateCapture(ctx context.Context, id string) A
 
 // Execute executes the request
 //  @return OrderResponse
-func (a *OrdersApiService) OrdersCreateCaptureExecute(r ApiOrdersCreateCaptureRequest) (*OrderResponse, *http.Response, error) {
+func (a *OrdersAPIService) OrdersCreateCaptureExecute(r ApiOrdersCreateCaptureRequest) (*OrderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1260,7 +1263,7 @@ func (a *OrdersApiService) OrdersCreateCaptureExecute(r ApiOrdersCreateCaptureRe
 		localVarReturnValue  *OrderResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.OrdersCreateCapture")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersAPIService.OrdersCreateCapture")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1379,7 +1382,7 @@ func (a *OrdersApiService) OrdersCreateCaptureExecute(r ApiOrdersCreateCaptureRe
 
 type ApiUpdateOrderRequest struct {
 	ctx context.Context
-	ApiService OrdersApi
+	ApiService OrdersAPI
 	id string
 	orderUpdateRequest *OrderUpdateRequest
 	acceptLanguage *string
@@ -1410,7 +1413,7 @@ Update an existing Order.
  @param id Identifier of the resource
  @return ApiUpdateOrderRequest
 */
-func (a *OrdersApiService) UpdateOrder(ctx context.Context, id string) ApiUpdateOrderRequest {
+func (a *OrdersAPIService) UpdateOrder(ctx context.Context, id string) ApiUpdateOrderRequest {
 	return ApiUpdateOrderRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1420,7 +1423,7 @@ func (a *OrdersApiService) UpdateOrder(ctx context.Context, id string) ApiUpdate
 
 // Execute executes the request
 //  @return OrderResponse
-func (a *OrdersApiService) UpdateOrderExecute(r ApiUpdateOrderRequest) (*OrderResponse, *http.Response, error) {
+func (a *OrdersAPIService) UpdateOrderExecute(r ApiUpdateOrderRequest) (*OrderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -1428,7 +1431,7 @@ func (a *OrdersApiService) UpdateOrderExecute(r ApiUpdateOrderRequest) (*OrderRe
 		localVarReturnValue  *OrderResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.UpdateOrder")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersAPIService.UpdateOrder")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

@@ -21,7 +21,7 @@ import (
 )
 
 
-type TransfersApi interface {
+type TransfersAPI interface {
 
 	/*
 	GetTransfer Get Transfer
@@ -53,12 +53,12 @@ type TransfersApi interface {
 	GetTransfersExecute(r ApiGetTransfersRequest) (*GetTransfersResponse, *http.Response, error)
 }
 
-// TransfersApiService TransfersApi service
-type TransfersApiService service
+// TransfersAPIService TransfersAPI service
+type TransfersAPIService service
 
 type ApiGetTransferRequest struct {
 	ctx context.Context
-	ApiService TransfersApi
+	ApiService TransfersAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -89,7 +89,7 @@ Get the details of a Transfer
  @param id Identifier of the resource
  @return ApiGetTransferRequest
 */
-func (a *TransfersApiService) GetTransfer(ctx context.Context, id string) ApiGetTransferRequest {
+func (a *TransfersAPIService) GetTransfer(ctx context.Context, id string) ApiGetTransferRequest {
 	return ApiGetTransferRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -99,7 +99,7 @@ func (a *TransfersApiService) GetTransfer(ctx context.Context, id string) ApiGet
 
 // Execute executes the request
 //  @return TransferResponse
-func (a *TransfersApiService) GetTransferExecute(r ApiGetTransferRequest) (*TransferResponse, *http.Response, error) {
+func (a *TransfersAPIService) GetTransferExecute(r ApiGetTransferRequest) (*TransferResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -107,7 +107,7 @@ func (a *TransfersApiService) GetTransferExecute(r ApiGetTransferRequest) (*Tran
 		localVarReturnValue  *TransferResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransfersApiService.GetTransfer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransfersAPIService.GetTransfer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -213,7 +213,7 @@ func (a *TransfersApiService) GetTransferExecute(r ApiGetTransferRequest) (*Tran
 
 type ApiGetTransfersRequest struct {
 	ctx context.Context
-	ApiService TransfersApi
+	ApiService TransfersAPI
 	acceptLanguage *string
 	xChildCompanyId *string
 	limit *int32
@@ -270,7 +270,7 @@ Get transfers details in the form of a list
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetTransfersRequest
 */
-func (a *TransfersApiService) GetTransfers(ctx context.Context) ApiGetTransfersRequest {
+func (a *TransfersAPIService) GetTransfers(ctx context.Context) ApiGetTransfersRequest {
 	return ApiGetTransfersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -279,7 +279,7 @@ func (a *TransfersApiService) GetTransfers(ctx context.Context) ApiGetTransfersR
 
 // Execute executes the request
 //  @return GetTransfersResponse
-func (a *TransfersApiService) GetTransfersExecute(r ApiGetTransfersRequest) (*GetTransfersResponse, *http.Response, error) {
+func (a *TransfersAPIService) GetTransfersExecute(r ApiGetTransfersRequest) (*GetTransfersResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -287,7 +287,7 @@ func (a *TransfersApiService) GetTransfersExecute(r ApiGetTransfersRequest) (*Ge
 		localVarReturnValue  *GetTransfersResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransfersApiService.GetTransfers")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransfersAPIService.GetTransfers")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -300,6 +300,9 @@ func (a *TransfersApiService) GetTransfersExecute(r ApiGetTransfersRequest) (*Ge
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")

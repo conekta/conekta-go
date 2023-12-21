@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Url** | **string** | Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security. | 
 **Synchronous** | Pointer to **bool** | It is a value that allows to decide if the events will be synchronous or asynchronous. We recommend asynchronous &#x3D; false | [optional] [default to false]
-**SubscribedEvents** | Pointer to **[]string** |  | [optional] 
+**Events** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -72,30 +72,30 @@ SetSynchronous sets Synchronous field to given value.
 
 HasSynchronous returns a boolean if a field has been set.
 
-### GetSubscribedEvents
+### GetEvents
 
-`func (o *WebhookUpdateRequest) GetSubscribedEvents() []string`
+`func (o *WebhookUpdateRequest) GetEvents() []string`
 
-GetSubscribedEvents returns the SubscribedEvents field if non-nil, zero value otherwise.
+GetEvents returns the Events field if non-nil, zero value otherwise.
 
-### GetSubscribedEventsOk
+### GetEventsOk
 
-`func (o *WebhookUpdateRequest) GetSubscribedEventsOk() (*[]string, bool)`
+`func (o *WebhookUpdateRequest) GetEventsOk() (*[]string, bool)`
 
-GetSubscribedEventsOk returns a tuple with the SubscribedEvents field if it's non-nil, zero value otherwise
+GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSubscribedEvents
+### SetEvents
 
-`func (o *WebhookUpdateRequest) SetSubscribedEvents(v []string)`
+`func (o *WebhookUpdateRequest) SetEvents(v []string)`
 
-SetSubscribedEvents sets SubscribedEvents field to given value.
+SetEvents sets Events field to given value.
 
-### HasSubscribedEvents
+### HasEvents
 
-`func (o *WebhookUpdateRequest) HasSubscribedEvents() bool`
+`func (o *WebhookUpdateRequest) HasEvents() bool`
 
-HasSubscribedEvents returns a boolean if a field has been set.
+HasEvents returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

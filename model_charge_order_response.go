@@ -29,7 +29,6 @@ type ChargeOrderResponse struct {
 	DeviceFingerprint NullableString `json:"device_fingerprint,omitempty"`
 	FailureCode *string `json:"failure_code,omitempty"`
 	FailureMessage *string `json:"failure_message,omitempty"`
-	Fee *int32 `json:"fee,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Livemode *bool `json:"livemode,omitempty"`
 	MonthlyInstallments NullableInt32 `json:"monthly_installments,omitempty"`
@@ -356,38 +355,6 @@ func (o *ChargeOrderResponse) HasFailureMessage() bool {
 // SetFailureMessage gets a reference to the given string and assigns it to the FailureMessage field.
 func (o *ChargeOrderResponse) SetFailureMessage(v string) {
 	o.FailureMessage = &v
-}
-
-// GetFee returns the Fee field value if set, zero value otherwise.
-func (o *ChargeOrderResponse) GetFee() int32 {
-	if o == nil || IsNil(o.Fee) {
-		var ret int32
-		return ret
-	}
-	return *o.Fee
-}
-
-// GetFeeOk returns a tuple with the Fee field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ChargeOrderResponse) GetFeeOk() (*int32, bool) {
-	if o == nil || IsNil(o.Fee) {
-		return nil, false
-	}
-	return o.Fee, true
-}
-
-// HasFee returns a boolean if a field has been set.
-func (o *ChargeOrderResponse) HasFee() bool {
-	if o != nil && !IsNil(o.Fee) {
-		return true
-	}
-
-	return false
-}
-
-// SetFee gets a reference to the given int32 and assigns it to the Fee field.
-func (o *ChargeOrderResponse) SetFee(v int32) {
-	o.Fee = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -776,9 +743,6 @@ func (o ChargeOrderResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.FailureMessage) {
 		toSerialize["failure_message"] = o.FailureMessage
-	}
-	if !IsNil(o.Fee) {
-		toSerialize["fee"] = o.Fee
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id

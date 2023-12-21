@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PlanRequest type satisfies the MappedNullable interface at compile time
@@ -37,6 +38,8 @@ type PlanRequest struct {
 	// The number of days the customer will have a free trial.
 	TrialPeriodDays *int32 `json:"trial_period_days,omitempty"`
 }
+
+type _PlanRequest PlanRequest
 
 // NewPlanRequest instantiates a new PlanRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -310,6 +313,44 @@ func (o PlanRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["trial_period_days"] = o.TrialPeriodDays
 	}
 	return toSerialize, nil
+}
+
+func (o *PlanRequest) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"amount",
+		"frequency",
+		"interval",
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPlanRequest := _PlanRequest{}
+
+	err = json.Unmarshal(bytes, &varPlanRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PlanRequest(varPlanRequest)
+
+	return err
 }
 
 type NullablePlanRequest struct {

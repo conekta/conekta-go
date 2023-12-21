@@ -21,7 +21,7 @@ import (
 )
 
 
-type PaymentMethodsApi interface {
+type PaymentMethodsAPI interface {
 
 	/*
 	CreateCustomerPaymentMethods Create Payment Method
@@ -86,12 +86,12 @@ type PaymentMethodsApi interface {
 	UpdateCustomerPaymentMethodsExecute(r ApiUpdateCustomerPaymentMethodsRequest) (*UpdateCustomerPaymentMethodsResponse, *http.Response, error)
 }
 
-// PaymentMethodsApiService PaymentMethodsApi service
-type PaymentMethodsApiService service
+// PaymentMethodsAPIService PaymentMethodsAPI service
+type PaymentMethodsAPIService service
 
 type ApiCreateCustomerPaymentMethodsRequest struct {
 	ctx context.Context
-	ApiService PaymentMethodsApi
+	ApiService PaymentMethodsAPI
 	id string
 	createCustomerPaymentMethodsRequest *CreateCustomerPaymentMethodsRequest
 	acceptLanguage *string
@@ -129,7 +129,7 @@ Create a payment method for a customer.
  @param id Identifier of the resource
  @return ApiCreateCustomerPaymentMethodsRequest
 */
-func (a *PaymentMethodsApiService) CreateCustomerPaymentMethods(ctx context.Context, id string) ApiCreateCustomerPaymentMethodsRequest {
+func (a *PaymentMethodsAPIService) CreateCustomerPaymentMethods(ctx context.Context, id string) ApiCreateCustomerPaymentMethodsRequest {
 	return ApiCreateCustomerPaymentMethodsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -139,7 +139,7 @@ func (a *PaymentMethodsApiService) CreateCustomerPaymentMethods(ctx context.Cont
 
 // Execute executes the request
 //  @return CreateCustomerPaymentMethodsResponse
-func (a *PaymentMethodsApiService) CreateCustomerPaymentMethodsExecute(r ApiCreateCustomerPaymentMethodsRequest) (*CreateCustomerPaymentMethodsResponse, *http.Response, error) {
+func (a *PaymentMethodsAPIService) CreateCustomerPaymentMethodsExecute(r ApiCreateCustomerPaymentMethodsRequest) (*CreateCustomerPaymentMethodsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -147,7 +147,7 @@ func (a *PaymentMethodsApiService) CreateCustomerPaymentMethodsExecute(r ApiCrea
 		localVarReturnValue  *CreateCustomerPaymentMethodsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentMethodsApiService.CreateCustomerPaymentMethods")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentMethodsAPIService.CreateCustomerPaymentMethods")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -269,7 +269,7 @@ func (a *PaymentMethodsApiService) CreateCustomerPaymentMethodsExecute(r ApiCrea
 
 type ApiDeleteCustomerPaymentMethodsRequest struct {
 	ctx context.Context
-	ApiService PaymentMethodsApi
+	ApiService PaymentMethodsAPI
 	id string
 	paymentMethodId string
 	acceptLanguage *string
@@ -302,7 +302,7 @@ Delete an existing payment method
  @param paymentMethodId Identifier of the payment method
  @return ApiDeleteCustomerPaymentMethodsRequest
 */
-func (a *PaymentMethodsApiService) DeleteCustomerPaymentMethods(ctx context.Context, id string, paymentMethodId string) ApiDeleteCustomerPaymentMethodsRequest {
+func (a *PaymentMethodsAPIService) DeleteCustomerPaymentMethods(ctx context.Context, id string, paymentMethodId string) ApiDeleteCustomerPaymentMethodsRequest {
 	return ApiDeleteCustomerPaymentMethodsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -313,7 +313,7 @@ func (a *PaymentMethodsApiService) DeleteCustomerPaymentMethods(ctx context.Cont
 
 // Execute executes the request
 //  @return UpdateCustomerPaymentMethodsResponse
-func (a *PaymentMethodsApiService) DeleteCustomerPaymentMethodsExecute(r ApiDeleteCustomerPaymentMethodsRequest) (*UpdateCustomerPaymentMethodsResponse, *http.Response, error) {
+func (a *PaymentMethodsAPIService) DeleteCustomerPaymentMethodsExecute(r ApiDeleteCustomerPaymentMethodsRequest) (*UpdateCustomerPaymentMethodsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -321,7 +321,7 @@ func (a *PaymentMethodsApiService) DeleteCustomerPaymentMethodsExecute(r ApiDele
 		localVarReturnValue  *UpdateCustomerPaymentMethodsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentMethodsApiService.DeleteCustomerPaymentMethods")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentMethodsAPIService.DeleteCustomerPaymentMethods")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -439,7 +439,7 @@ func (a *PaymentMethodsApiService) DeleteCustomerPaymentMethodsExecute(r ApiDele
 
 type ApiGetCustomerPaymentMethodsRequest struct {
 	ctx context.Context
-	ApiService PaymentMethodsApi
+	ApiService PaymentMethodsAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -498,7 +498,7 @@ Get a list of Payment Methods
  @param id Identifier of the resource
  @return ApiGetCustomerPaymentMethodsRequest
 */
-func (a *PaymentMethodsApiService) GetCustomerPaymentMethods(ctx context.Context, id string) ApiGetCustomerPaymentMethodsRequest {
+func (a *PaymentMethodsAPIService) GetCustomerPaymentMethods(ctx context.Context, id string) ApiGetCustomerPaymentMethodsRequest {
 	return ApiGetCustomerPaymentMethodsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -508,7 +508,7 @@ func (a *PaymentMethodsApiService) GetCustomerPaymentMethods(ctx context.Context
 
 // Execute executes the request
 //  @return GetPaymentMethodResponse
-func (a *PaymentMethodsApiService) GetCustomerPaymentMethodsExecute(r ApiGetCustomerPaymentMethodsRequest) (*GetPaymentMethodResponse, *http.Response, error) {
+func (a *PaymentMethodsAPIService) GetCustomerPaymentMethodsExecute(r ApiGetCustomerPaymentMethodsRequest) (*GetPaymentMethodResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -516,7 +516,7 @@ func (a *PaymentMethodsApiService) GetCustomerPaymentMethodsExecute(r ApiGetCust
 		localVarReturnValue  *GetPaymentMethodResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentMethodsApiService.GetCustomerPaymentMethods")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentMethodsAPIService.GetCustomerPaymentMethods")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -530,6 +530,9 @@ func (a *PaymentMethodsApiService) GetCustomerPaymentMethodsExecute(r ApiGetCust
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
 	}
 	if r.next != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "next", r.next, "")
@@ -634,7 +637,7 @@ func (a *PaymentMethodsApiService) GetCustomerPaymentMethodsExecute(r ApiGetCust
 
 type ApiUpdateCustomerPaymentMethodsRequest struct {
 	ctx context.Context
-	ApiService PaymentMethodsApi
+	ApiService PaymentMethodsAPI
 	id string
 	paymentMethodId string
 	updatePaymentMethods *UpdatePaymentMethods
@@ -674,7 +677,7 @@ Gets a payment Method that corresponds to a customer ID.
  @param paymentMethodId Identifier of the payment method
  @return ApiUpdateCustomerPaymentMethodsRequest
 */
-func (a *PaymentMethodsApiService) UpdateCustomerPaymentMethods(ctx context.Context, id string, paymentMethodId string) ApiUpdateCustomerPaymentMethodsRequest {
+func (a *PaymentMethodsAPIService) UpdateCustomerPaymentMethods(ctx context.Context, id string, paymentMethodId string) ApiUpdateCustomerPaymentMethodsRequest {
 	return ApiUpdateCustomerPaymentMethodsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -685,7 +688,7 @@ func (a *PaymentMethodsApiService) UpdateCustomerPaymentMethods(ctx context.Cont
 
 // Execute executes the request
 //  @return UpdateCustomerPaymentMethodsResponse
-func (a *PaymentMethodsApiService) UpdateCustomerPaymentMethodsExecute(r ApiUpdateCustomerPaymentMethodsRequest) (*UpdateCustomerPaymentMethodsResponse, *http.Response, error) {
+func (a *PaymentMethodsAPIService) UpdateCustomerPaymentMethodsExecute(r ApiUpdateCustomerPaymentMethodsRequest) (*UpdateCustomerPaymentMethodsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -693,7 +696,7 @@ func (a *PaymentMethodsApiService) UpdateCustomerPaymentMethodsExecute(r ApiUpda
 		localVarReturnValue  *UpdateCustomerPaymentMethodsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentMethodsApiService.UpdateCustomerPaymentMethods")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentMethodsAPIService.UpdateCustomerPaymentMethods")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

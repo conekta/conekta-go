@@ -1,12 +1,12 @@
-# \EventsApi
+# \EventsAPI
 
 All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetEvent**](EventsApi.md#GetEvent) | **Get** /events/{id} | Get Event
-[**GetEvents**](EventsApi.md#GetEvents) | **Get** /events | Get list of Events
-[**ResendEvent**](EventsApi.md#ResendEvent) | **Post** /events/{event_id}/webhook_logs/{webhook_log_id}/resend | Resend Event
+[**GetEvent**](EventsAPI.md#GetEvent) | **Get** /events/{id} | Get Event
+[**GetEvents**](EventsAPI.md#GetEvents) | **Get** /events | Get list of Events
+[**ResendEvent**](EventsAPI.md#ResendEvent) | **Post** /events/{event_id}/webhook_logs/{webhook_log_id}/resend | Resend Event
 
 
 
@@ -37,13 +37,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsApi.GetEvent(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.EventsAPI.GetEvent(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.GetEvent``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.GetEvent``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetEvent`: EventResponse
-    fmt.Fprintf(os.Stdout, "Response from `EventsApi.GetEvent`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `EventsAPI.GetEvent`: %v\n", resp)
 }
 ```
 
@@ -112,13 +112,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsApi.GetEvents(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+    resp, r, err := apiClient.EventsAPI.GetEvents(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.GetEvents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.GetEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetEvents`: GetEventsResponse
-    fmt.Fprintf(os.Stdout, "Response from `EventsApi.GetEvents`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `EventsAPI.GetEvents`: %v\n", resp)
 }
 ```
 
@@ -185,13 +185,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsApi.ResendEvent(context.Background(), eventId, webhookLogId).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.EventsAPI.ResendEvent(context.Background(), eventId, webhookLogId).AcceptLanguage(acceptLanguage).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.ResendEvent``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.ResendEvent``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ResendEvent`: EventsResendResponse
-    fmt.Fprintf(os.Stdout, "Response from `EventsApi.ResendEvent`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `EventsAPI.ResendEvent`: %v\n", resp)
 }
 ```
 

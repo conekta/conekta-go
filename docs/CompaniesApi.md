@@ -1,11 +1,11 @@
-# \CompaniesApi
+# \CompaniesAPI
 
 All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetCompanies**](CompaniesApi.md#GetCompanies) | **Get** /companies | Get List of Companies
-[**GetCompany**](CompaniesApi.md#GetCompany) | **Get** /companies/{id} | Get Company
+[**GetCompanies**](CompaniesAPI.md#GetCompanies) | **Get** /companies | Get List of Companies
+[**GetCompany**](CompaniesAPI.md#GetCompany) | **Get** /companies/{id} | Get Company
 
 
 
@@ -38,13 +38,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CompaniesApi.GetCompanies(context.Background()).AcceptLanguage(acceptLanguage).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+    resp, r, err := apiClient.CompaniesAPI.GetCompanies(context.Background()).AcceptLanguage(acceptLanguage).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CompaniesApi.GetCompanies``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CompaniesAPI.GetCompanies``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetCompanies`: GetCompaniesResponse
-    fmt.Fprintf(os.Stdout, "Response from `CompaniesApi.GetCompanies`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `CompaniesAPI.GetCompanies`: %v\n", resp)
 }
 ```
 
@@ -107,13 +107,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CompaniesApi.GetCompany(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.CompaniesAPI.GetCompany(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CompaniesApi.GetCompany``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CompaniesAPI.GetCompany``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetCompany`: CompanyResponse
-    fmt.Fprintf(os.Stdout, "Response from `CompaniesApi.GetCompany`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `CompaniesAPI.GetCompany`: %v\n", resp)
 }
 ```
 

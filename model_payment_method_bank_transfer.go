@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PaymentMethodBankTransfer type satisfies the MappedNullable interface at compile time
@@ -31,7 +32,7 @@ type PaymentMethodBankTransfer struct {
 	IssuingAccountNumber NullableString `json:"issuing_account_number,omitempty"`
 	IssuingAccountHolderName NullableString `json:"issuing_account_holder_name,omitempty"`
 	IssuingAccountTaxId NullableString `json:"issuing_account_tax_id,omitempty"`
-	PaymentAttempts []interface{} `json:"payment_attempts,omitempty"`
+	PaymentAttempts []map[string]interface{} `json:"payment_attempts,omitempty"`
 	ReceivingAccountHolderName NullableString `json:"receiving_account_holder_name,omitempty"`
 	ReceivingAccountNumber *string `json:"receiving_account_number,omitempty"`
 	ReceivingAccountBank *string `json:"receiving_account_bank,omitempty"`
@@ -39,6 +40,8 @@ type PaymentMethodBankTransfer struct {
 	ReferenceNumber NullableString `json:"reference_number,omitempty"`
 	TrackingCode NullableString `json:"tracking_code,omitempty"`
 }
+
+type _PaymentMethodBankTransfer PaymentMethodBankTransfer
 
 // NewPaymentMethodBankTransfer instantiates a new PaymentMethodBankTransfer object
 // This constructor will assign default values to properties that have it defined,
@@ -463,9 +466,9 @@ func (o *PaymentMethodBankTransfer) UnsetIssuingAccountTaxId() {
 }
 
 // GetPaymentAttempts returns the PaymentAttempts field value if set, zero value otherwise.
-func (o *PaymentMethodBankTransfer) GetPaymentAttempts() []interface{} {
+func (o *PaymentMethodBankTransfer) GetPaymentAttempts() []map[string]interface{} {
 	if o == nil || IsNil(o.PaymentAttempts) {
-		var ret []interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
 	return o.PaymentAttempts
@@ -473,7 +476,7 @@ func (o *PaymentMethodBankTransfer) GetPaymentAttempts() []interface{} {
 
 // GetPaymentAttemptsOk returns a tuple with the PaymentAttempts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethodBankTransfer) GetPaymentAttemptsOk() ([]interface{}, bool) {
+func (o *PaymentMethodBankTransfer) GetPaymentAttemptsOk() ([]map[string]interface{}, bool) {
 	if o == nil || IsNil(o.PaymentAttempts) {
 		return nil, false
 	}
@@ -489,8 +492,8 @@ func (o *PaymentMethodBankTransfer) HasPaymentAttempts() bool {
 	return false
 }
 
-// SetPaymentAttempts gets a reference to the given []interface{} and assigns it to the PaymentAttempts field.
-func (o *PaymentMethodBankTransfer) SetPaymentAttempts(v []interface{}) {
+// SetPaymentAttempts gets a reference to the given []map[string]interface{} and assigns it to the PaymentAttempts field.
+func (o *PaymentMethodBankTransfer) SetPaymentAttempts(v []map[string]interface{}) {
 	o.PaymentAttempts = v
 }
 
@@ -789,6 +792,41 @@ func (o PaymentMethodBankTransfer) ToMap() (map[string]interface{}, error) {
 		toSerialize["tracking_code"] = o.TrackingCode.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *PaymentMethodBankTransfer) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"object",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPaymentMethodBankTransfer := _PaymentMethodBankTransfer{}
+
+	err = json.Unmarshal(bytes, &varPaymentMethodBankTransfer)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaymentMethodBankTransfer(varPaymentMethodBankTransfer)
+
+	return err
 }
 
 type NullablePaymentMethodBankTransfer struct {

@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CheckoutsResponse type satisfies the MappedNullable interface at compile time
@@ -30,6 +31,8 @@ type CheckoutsResponse struct {
 	PreviousPageUrl NullableString `json:"previous_page_url,omitempty"`
 	Data []CheckoutResponse `json:"data,omitempty"`
 }
+
+type _CheckoutsResponse CheckoutsResponse
 
 // NewCheckoutsResponse instantiates a new CheckoutsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -236,6 +239,42 @@ func (o CheckoutsResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["data"] = o.Data
 	}
 	return toSerialize, nil
+}
+
+func (o *CheckoutsResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"has_more",
+		"object",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCheckoutsResponse := _CheckoutsResponse{}
+
+	err = json.Unmarshal(bytes, &varCheckoutsResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CheckoutsResponse(varCheckoutsResponse)
+
+	return err
 }
 
 type NullableCheckoutsResponse struct {

@@ -21,7 +21,7 @@ import (
 )
 
 
-type WebhookKeysApi interface {
+type WebhookKeysAPI interface {
 
 	/*
 	CreateWebhookKey Create Webhook Key
@@ -93,12 +93,12 @@ type WebhookKeysApi interface {
 	UpdateWebhookKeyExecute(r ApiUpdateWebhookKeyRequest) (*WebhookKeyResponse, *http.Response, error)
 }
 
-// WebhookKeysApiService WebhookKeysApi service
-type WebhookKeysApiService service
+// WebhookKeysAPIService WebhookKeysAPI service
+type WebhookKeysAPIService service
 
 type ApiCreateWebhookKeyRequest struct {
 	ctx context.Context
-	ApiService WebhookKeysApi
+	ApiService WebhookKeysAPI
 	acceptLanguage *string
 	webhookKeyRequest *WebhookKeyRequest
 }
@@ -126,7 +126,7 @@ Create a webhook key
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateWebhookKeyRequest
 */
-func (a *WebhookKeysApiService) CreateWebhookKey(ctx context.Context) ApiCreateWebhookKeyRequest {
+func (a *WebhookKeysAPIService) CreateWebhookKey(ctx context.Context) ApiCreateWebhookKeyRequest {
 	return ApiCreateWebhookKeyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -135,7 +135,7 @@ func (a *WebhookKeysApiService) CreateWebhookKey(ctx context.Context) ApiCreateW
 
 // Execute executes the request
 //  @return WebhookKeyCreateResponse
-func (a *WebhookKeysApiService) CreateWebhookKeyExecute(r ApiCreateWebhookKeyRequest) (*WebhookKeyCreateResponse, *http.Response, error) {
+func (a *WebhookKeysAPIService) CreateWebhookKeyExecute(r ApiCreateWebhookKeyRequest) (*WebhookKeyCreateResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -143,7 +143,7 @@ func (a *WebhookKeysApiService) CreateWebhookKeyExecute(r ApiCreateWebhookKeyReq
 		localVarReturnValue  *WebhookKeyCreateResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookKeysApiService.CreateWebhookKey")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookKeysAPIService.CreateWebhookKey")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -236,7 +236,7 @@ func (a *WebhookKeysApiService) CreateWebhookKeyExecute(r ApiCreateWebhookKeyReq
 
 type ApiDeleteWebhookKeyRequest struct {
 	ctx context.Context
-	ApiService WebhookKeysApi
+	ApiService WebhookKeysAPI
 	id string
 	acceptLanguage *string
 }
@@ -258,7 +258,7 @@ DeleteWebhookKey Delete Webhook key
  @param id Identifier of the resource
  @return ApiDeleteWebhookKeyRequest
 */
-func (a *WebhookKeysApiService) DeleteWebhookKey(ctx context.Context, id string) ApiDeleteWebhookKeyRequest {
+func (a *WebhookKeysAPIService) DeleteWebhookKey(ctx context.Context, id string) ApiDeleteWebhookKeyRequest {
 	return ApiDeleteWebhookKeyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -268,7 +268,7 @@ func (a *WebhookKeysApiService) DeleteWebhookKey(ctx context.Context, id string)
 
 // Execute executes the request
 //  @return WebhookKeyDeleteResponse
-func (a *WebhookKeysApiService) DeleteWebhookKeyExecute(r ApiDeleteWebhookKeyRequest) (*WebhookKeyDeleteResponse, *http.Response, error) {
+func (a *WebhookKeysAPIService) DeleteWebhookKeyExecute(r ApiDeleteWebhookKeyRequest) (*WebhookKeyDeleteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -276,7 +276,7 @@ func (a *WebhookKeysApiService) DeleteWebhookKeyExecute(r ApiDeleteWebhookKeyReq
 		localVarReturnValue  *WebhookKeyDeleteResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookKeysApiService.DeleteWebhookKey")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookKeysAPIService.DeleteWebhookKey")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -379,7 +379,7 @@ func (a *WebhookKeysApiService) DeleteWebhookKeyExecute(r ApiDeleteWebhookKeyReq
 
 type ApiGetWebhookKeyRequest struct {
 	ctx context.Context
-	ApiService WebhookKeysApi
+	ApiService WebhookKeysAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -408,7 +408,7 @@ GetWebhookKey Get Webhook Key
  @param id Identifier of the resource
  @return ApiGetWebhookKeyRequest
 */
-func (a *WebhookKeysApiService) GetWebhookKey(ctx context.Context, id string) ApiGetWebhookKeyRequest {
+func (a *WebhookKeysAPIService) GetWebhookKey(ctx context.Context, id string) ApiGetWebhookKeyRequest {
 	return ApiGetWebhookKeyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -418,7 +418,7 @@ func (a *WebhookKeysApiService) GetWebhookKey(ctx context.Context, id string) Ap
 
 // Execute executes the request
 //  @return WebhookKeyResponse
-func (a *WebhookKeysApiService) GetWebhookKeyExecute(r ApiGetWebhookKeyRequest) (*WebhookKeyResponse, *http.Response, error) {
+func (a *WebhookKeysAPIService) GetWebhookKeyExecute(r ApiGetWebhookKeyRequest) (*WebhookKeyResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -426,7 +426,7 @@ func (a *WebhookKeysApiService) GetWebhookKeyExecute(r ApiGetWebhookKeyRequest) 
 		localVarReturnValue  *WebhookKeyResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookKeysApiService.GetWebhookKey")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookKeysAPIService.GetWebhookKey")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -532,7 +532,7 @@ func (a *WebhookKeysApiService) GetWebhookKeyExecute(r ApiGetWebhookKeyRequest) 
 
 type ApiGetWebhookKeysRequest struct {
 	ctx context.Context
-	ApiService WebhookKeysApi
+	ApiService WebhookKeysAPI
 	acceptLanguage *string
 	xChildCompanyId *string
 	limit *int32
@@ -589,7 +589,7 @@ Consume the list of webhook keys you have
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetWebhookKeysRequest
 */
-func (a *WebhookKeysApiService) GetWebhookKeys(ctx context.Context) ApiGetWebhookKeysRequest {
+func (a *WebhookKeysAPIService) GetWebhookKeys(ctx context.Context) ApiGetWebhookKeysRequest {
 	return ApiGetWebhookKeysRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -598,7 +598,7 @@ func (a *WebhookKeysApiService) GetWebhookKeys(ctx context.Context) ApiGetWebhoo
 
 // Execute executes the request
 //  @return GetWebhookKeysResponse
-func (a *WebhookKeysApiService) GetWebhookKeysExecute(r ApiGetWebhookKeysRequest) (*GetWebhookKeysResponse, *http.Response, error) {
+func (a *WebhookKeysAPIService) GetWebhookKeysExecute(r ApiGetWebhookKeysRequest) (*GetWebhookKeysResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -606,7 +606,7 @@ func (a *WebhookKeysApiService) GetWebhookKeysExecute(r ApiGetWebhookKeysRequest
 		localVarReturnValue  *GetWebhookKeysResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookKeysApiService.GetWebhookKeys")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookKeysAPIService.GetWebhookKeys")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -619,6 +619,9 @@ func (a *WebhookKeysApiService) GetWebhookKeysExecute(r ApiGetWebhookKeysRequest
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
@@ -712,7 +715,7 @@ func (a *WebhookKeysApiService) GetWebhookKeysExecute(r ApiGetWebhookKeysRequest
 
 type ApiUpdateWebhookKeyRequest struct {
 	ctx context.Context
-	ApiService WebhookKeysApi
+	ApiService WebhookKeysAPI
 	id string
 	acceptLanguage *string
 	webhookKeyUpdateRequest *WebhookKeyUpdateRequest
@@ -742,7 +745,7 @@ updates an existing webhook key
  @param id Identifier of the resource
  @return ApiUpdateWebhookKeyRequest
 */
-func (a *WebhookKeysApiService) UpdateWebhookKey(ctx context.Context, id string) ApiUpdateWebhookKeyRequest {
+func (a *WebhookKeysAPIService) UpdateWebhookKey(ctx context.Context, id string) ApiUpdateWebhookKeyRequest {
 	return ApiUpdateWebhookKeyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -752,7 +755,7 @@ func (a *WebhookKeysApiService) UpdateWebhookKey(ctx context.Context, id string)
 
 // Execute executes the request
 //  @return WebhookKeyResponse
-func (a *WebhookKeysApiService) UpdateWebhookKeyExecute(r ApiUpdateWebhookKeyRequest) (*WebhookKeyResponse, *http.Response, error) {
+func (a *WebhookKeysAPIService) UpdateWebhookKeyExecute(r ApiUpdateWebhookKeyRequest) (*WebhookKeyResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -760,7 +763,7 @@ func (a *WebhookKeysApiService) UpdateWebhookKeyExecute(r ApiUpdateWebhookKeyReq
 		localVarReturnValue  *WebhookKeyResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookKeysApiService.UpdateWebhookKey")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookKeysAPIService.UpdateWebhookKey")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

@@ -1,17 +1,17 @@
-# \OrdersApi
+# \OrdersAPI
 
 All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CancelOrder**](OrdersApi.md#CancelOrder) | **Post** /orders/{id}/cancel | Cancel Order
-[**CreateOrder**](OrdersApi.md#CreateOrder) | **Post** /orders | Create order
-[**GetOrderById**](OrdersApi.md#GetOrderById) | **Get** /orders/{id} | Get Order
-[**GetOrders**](OrdersApi.md#GetOrders) | **Get** /orders | Get a list of Orders
-[**OrderCancelRefund**](OrdersApi.md#OrderCancelRefund) | **Delete** /orders/{id}/refunds/{refund_id} | Cancel Refund
-[**OrderRefund**](OrdersApi.md#OrderRefund) | **Post** /orders/{id}/refunds | Refund Order
-[**OrdersCreateCapture**](OrdersApi.md#OrdersCreateCapture) | **Post** /orders/{id}/capture | Capture Order
-[**UpdateOrder**](OrdersApi.md#UpdateOrder) | **Put** /orders/{id} | Update Order
+[**CancelOrder**](OrdersAPI.md#CancelOrder) | **Post** /orders/{id}/cancel | Cancel Order
+[**CreateOrder**](OrdersAPI.md#CreateOrder) | **Post** /orders | Create order
+[**GetOrderById**](OrdersAPI.md#GetOrderById) | **Get** /orders/{id} | Get Order
+[**GetOrders**](OrdersAPI.md#GetOrders) | **Get** /orders | Get a list of Orders
+[**OrderCancelRefund**](OrdersAPI.md#OrderCancelRefund) | **Delete** /orders/{id}/refunds/{refund_id} | Cancel Refund
+[**OrderRefund**](OrdersAPI.md#OrderRefund) | **Post** /orders/{id}/refunds | Refund Order
+[**OrdersCreateCapture**](OrdersAPI.md#OrdersCreateCapture) | **Post** /orders/{id}/capture | Capture Order
+[**UpdateOrder**](OrdersAPI.md#UpdateOrder) | **Put** /orders/{id} | Update Order
 
 
 
@@ -42,13 +42,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrdersApi.CancelOrder(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.OrdersAPI.CancelOrder(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.CancelOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrdersAPI.CancelOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CancelOrder`: OrderResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrdersApi.CancelOrder`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `OrdersAPI.CancelOrder`: %v\n", resp)
 }
 ```
 
@@ -116,13 +116,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrdersApi.CreateOrder(context.Background()).OrderRequest(orderRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.OrdersAPI.CreateOrder(context.Background()).OrderRequest(orderRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.CreateOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrdersAPI.CreateOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateOrder`: OrderResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrdersApi.CreateOrder`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `OrdersAPI.CreateOrder`: %v\n", resp)
 }
 ```
 
@@ -186,13 +186,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrdersApi.GetOrderById(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.OrdersAPI.GetOrderById(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.GetOrderById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrdersAPI.GetOrderById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetOrderById`: OrderResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrdersApi.GetOrderById`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `OrdersAPI.GetOrderById`: %v\n", resp)
 }
 ```
 
@@ -263,13 +263,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrdersApi.GetOrders(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+    resp, r, err := apiClient.OrdersAPI.GetOrders(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.GetOrders``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrdersAPI.GetOrders``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetOrders`: GetOrdersResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrdersApi.GetOrders`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `OrdersAPI.GetOrders`: %v\n", resp)
 }
 ```
 
@@ -337,13 +337,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrdersApi.OrderCancelRefund(context.Background(), id, refundId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.OrdersAPI.OrderCancelRefund(context.Background(), id, refundId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.OrderCancelRefund``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrdersAPI.OrderCancelRefund``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `OrderCancelRefund`: OrderResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrdersApi.OrderCancelRefund`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `OrdersAPI.OrderCancelRefund`: %v\n", resp)
 }
 ```
 
@@ -414,13 +414,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrdersApi.OrderRefund(context.Background(), id).OrderRefundRequest(orderRefundRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.OrdersAPI.OrderRefund(context.Background(), id).OrderRefundRequest(orderRefundRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.OrderRefund``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrdersAPI.OrderRefund``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `OrderRefund`: OrderResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrdersApi.OrderRefund`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `OrdersAPI.OrderRefund`: %v\n", resp)
 }
 ```
 
@@ -490,13 +490,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrdersApi.OrdersCreateCapture(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).OrderCaptureRequest(orderCaptureRequest).Execute()
+    resp, r, err := apiClient.OrdersAPI.OrdersCreateCapture(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).OrderCaptureRequest(orderCaptureRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.OrdersCreateCapture``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrdersAPI.OrdersCreateCapture``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `OrdersCreateCapture`: OrderResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrdersApi.OrdersCreateCapture`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `OrdersAPI.OrdersCreateCapture`: %v\n", resp)
 }
 ```
 
@@ -565,13 +565,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrdersApi.UpdateOrder(context.Background(), id).OrderUpdateRequest(orderUpdateRequest).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.OrdersAPI.UpdateOrder(context.Background(), id).OrderUpdateRequest(orderUpdateRequest).AcceptLanguage(acceptLanguage).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.UpdateOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrdersAPI.UpdateOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateOrder`: OrderResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrdersApi.UpdateOrder`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `OrdersAPI.UpdateOrder`: %v\n", resp)
 }
 ```
 

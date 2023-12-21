@@ -21,7 +21,7 @@ import (
 )
 
 
-type TaxesApi interface {
+type TaxesAPI interface {
 
 	/*
 	OrdersCreateTaxes Create Tax
@@ -71,12 +71,12 @@ type TaxesApi interface {
 	OrdersUpdateTaxesExecute(r ApiOrdersUpdateTaxesRequest) (*UpdateOrderTaxResponse, *http.Response, error)
 }
 
-// TaxesApiService TaxesApi service
-type TaxesApiService service
+// TaxesAPIService TaxesAPI service
+type TaxesAPIService service
 
 type ApiOrdersCreateTaxesRequest struct {
 	ctx context.Context
-	ApiService TaxesApi
+	ApiService TaxesAPI
 	id string
 	orderTaxRequest *OrderTaxRequest
 	acceptLanguage *string
@@ -114,7 +114,7 @@ Create new taxes for an existing orden
  @param id Identifier of the resource
  @return ApiOrdersCreateTaxesRequest
 */
-func (a *TaxesApiService) OrdersCreateTaxes(ctx context.Context, id string) ApiOrdersCreateTaxesRequest {
+func (a *TaxesAPIService) OrdersCreateTaxes(ctx context.Context, id string) ApiOrdersCreateTaxesRequest {
 	return ApiOrdersCreateTaxesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -124,7 +124,7 @@ func (a *TaxesApiService) OrdersCreateTaxes(ctx context.Context, id string) ApiO
 
 // Execute executes the request
 //  @return UpdateOrderTaxResponse
-func (a *TaxesApiService) OrdersCreateTaxesExecute(r ApiOrdersCreateTaxesRequest) (*UpdateOrderTaxResponse, *http.Response, error) {
+func (a *TaxesAPIService) OrdersCreateTaxesExecute(r ApiOrdersCreateTaxesRequest) (*UpdateOrderTaxResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -132,7 +132,7 @@ func (a *TaxesApiService) OrdersCreateTaxesExecute(r ApiOrdersCreateTaxesRequest
 		localVarReturnValue  *UpdateOrderTaxResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaxesApiService.OrdersCreateTaxes")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaxesAPIService.OrdersCreateTaxes")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -243,7 +243,7 @@ func (a *TaxesApiService) OrdersCreateTaxesExecute(r ApiOrdersCreateTaxesRequest
 
 type ApiOrdersDeleteTaxesRequest struct {
 	ctx context.Context
-	ApiService TaxesApi
+	ApiService TaxesAPI
 	id string
 	taxId string
 	acceptLanguage *string
@@ -276,7 +276,7 @@ Delete taxes for an existing orden
  @param taxId identifier
  @return ApiOrdersDeleteTaxesRequest
 */
-func (a *TaxesApiService) OrdersDeleteTaxes(ctx context.Context, id string, taxId string) ApiOrdersDeleteTaxesRequest {
+func (a *TaxesAPIService) OrdersDeleteTaxes(ctx context.Context, id string, taxId string) ApiOrdersDeleteTaxesRequest {
 	return ApiOrdersDeleteTaxesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -287,7 +287,7 @@ func (a *TaxesApiService) OrdersDeleteTaxes(ctx context.Context, id string, taxI
 
 // Execute executes the request
 //  @return UpdateOrderTaxResponse
-func (a *TaxesApiService) OrdersDeleteTaxesExecute(r ApiOrdersDeleteTaxesRequest) (*UpdateOrderTaxResponse, *http.Response, error) {
+func (a *TaxesAPIService) OrdersDeleteTaxesExecute(r ApiOrdersDeleteTaxesRequest) (*UpdateOrderTaxResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -295,7 +295,7 @@ func (a *TaxesApiService) OrdersDeleteTaxesExecute(r ApiOrdersDeleteTaxesRequest
 		localVarReturnValue  *UpdateOrderTaxResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaxesApiService.OrdersDeleteTaxes")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaxesAPIService.OrdersDeleteTaxes")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -413,7 +413,7 @@ func (a *TaxesApiService) OrdersDeleteTaxesExecute(r ApiOrdersDeleteTaxesRequest
 
 type ApiOrdersUpdateTaxesRequest struct {
 	ctx context.Context
-	ApiService TaxesApi
+	ApiService TaxesAPI
 	id string
 	taxId string
 	updateOrderTaxRequest *UpdateOrderTaxRequest
@@ -453,7 +453,7 @@ Update taxes for an existing orden
  @param taxId identifier
  @return ApiOrdersUpdateTaxesRequest
 */
-func (a *TaxesApiService) OrdersUpdateTaxes(ctx context.Context, id string, taxId string) ApiOrdersUpdateTaxesRequest {
+func (a *TaxesAPIService) OrdersUpdateTaxes(ctx context.Context, id string, taxId string) ApiOrdersUpdateTaxesRequest {
 	return ApiOrdersUpdateTaxesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -464,7 +464,7 @@ func (a *TaxesApiService) OrdersUpdateTaxes(ctx context.Context, id string, taxI
 
 // Execute executes the request
 //  @return UpdateOrderTaxResponse
-func (a *TaxesApiService) OrdersUpdateTaxesExecute(r ApiOrdersUpdateTaxesRequest) (*UpdateOrderTaxResponse, *http.Response, error) {
+func (a *TaxesAPIService) OrdersUpdateTaxesExecute(r ApiOrdersUpdateTaxesRequest) (*UpdateOrderTaxResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -472,7 +472,7 @@ func (a *TaxesApiService) OrdersUpdateTaxesExecute(r ApiOrdersUpdateTaxesRequest
 		localVarReturnValue  *UpdateOrderTaxResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaxesApiService.OrdersUpdateTaxes")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaxesAPIService.OrdersUpdateTaxes")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

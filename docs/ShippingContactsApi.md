@@ -1,12 +1,12 @@
-# \ShippingContactsApi
+# \ShippingContactsAPI
 
 All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCustomerShippingContacts**](ShippingContactsApi.md#CreateCustomerShippingContacts) | **Post** /customers/{id}/shipping_contacts | Create a shipping contacts
-[**DeleteCustomerShippingContacts**](ShippingContactsApi.md#DeleteCustomerShippingContacts) | **Delete** /customers/{id}/shipping_contacts/{shipping_contacts_id} | Delete shipping contacts
-[**UpdateCustomerShippingContacts**](ShippingContactsApi.md#UpdateCustomerShippingContacts) | **Put** /customers/{id}/shipping_contacts/{shipping_contacts_id} | Update shipping contacts
+[**CreateCustomerShippingContacts**](ShippingContactsAPI.md#CreateCustomerShippingContacts) | **Post** /customers/{id}/shipping_contacts | Create a shipping contacts
+[**DeleteCustomerShippingContacts**](ShippingContactsAPI.md#DeleteCustomerShippingContacts) | **Delete** /customers/{id}/shipping_contacts/{shipping_contacts_id} | Delete shipping contacts
+[**UpdateCustomerShippingContacts**](ShippingContactsAPI.md#UpdateCustomerShippingContacts) | **Put** /customers/{id}/shipping_contacts/{shipping_contacts_id} | Update shipping contacts
 
 
 
@@ -38,13 +38,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ShippingContactsApi.CreateCustomerShippingContacts(context.Background(), id).CustomerShippingContacts(customerShippingContacts).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.ShippingContactsAPI.CreateCustomerShippingContacts(context.Background(), id).CustomerShippingContacts(customerShippingContacts).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ShippingContactsApi.CreateCustomerShippingContacts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ShippingContactsAPI.CreateCustomerShippingContacts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateCustomerShippingContacts`: CustomerShippingContactsResponse
-    fmt.Fprintf(os.Stdout, "Response from `ShippingContactsApi.CreateCustomerShippingContacts`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ShippingContactsAPI.CreateCustomerShippingContacts`: %v\n", resp)
 }
 ```
 
@@ -114,13 +114,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ShippingContactsApi.DeleteCustomerShippingContacts(context.Background(), id, shippingContactsId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.ShippingContactsAPI.DeleteCustomerShippingContacts(context.Background(), id, shippingContactsId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ShippingContactsApi.DeleteCustomerShippingContacts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ShippingContactsAPI.DeleteCustomerShippingContacts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteCustomerShippingContacts`: CustomerShippingContactsResponse
-    fmt.Fprintf(os.Stdout, "Response from `ShippingContactsApi.DeleteCustomerShippingContacts`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ShippingContactsAPI.DeleteCustomerShippingContacts`: %v\n", resp)
 }
 ```
 
@@ -192,13 +192,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ShippingContactsApi.UpdateCustomerShippingContacts(context.Background(), id, shippingContactsId).CustomerUpdateShippingContacts(customerUpdateShippingContacts).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.ShippingContactsAPI.UpdateCustomerShippingContacts(context.Background(), id, shippingContactsId).CustomerUpdateShippingContacts(customerUpdateShippingContacts).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ShippingContactsApi.UpdateCustomerShippingContacts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ShippingContactsAPI.UpdateCustomerShippingContacts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateCustomerShippingContacts`: CustomerShippingContactsResponse
-    fmt.Fprintf(os.Stdout, "Response from `ShippingContactsApi.UpdateCustomerShippingContacts`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ShippingContactsAPI.UpdateCustomerShippingContacts`: %v\n", resp)
 }
 ```
 

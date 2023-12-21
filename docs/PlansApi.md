@@ -1,14 +1,14 @@
-# \PlansApi
+# \PlansAPI
 
 All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreatePlan**](PlansApi.md#CreatePlan) | **Post** /plans | Create Plan
-[**DeletePlan**](PlansApi.md#DeletePlan) | **Delete** /plans/{id} | Delete Plan
-[**GetPlan**](PlansApi.md#GetPlan) | **Get** /plans/{id} | Get Plan
-[**GetPlans**](PlansApi.md#GetPlans) | **Get** /plans | Get A List of Plans
-[**UpdatePlan**](PlansApi.md#UpdatePlan) | **Put** /plans/{id} | Update Plan
+[**CreatePlan**](PlansAPI.md#CreatePlan) | **Post** /plans | Create Plan
+[**DeletePlan**](PlansAPI.md#DeletePlan) | **Delete** /plans/{id} | Delete Plan
+[**GetPlan**](PlansAPI.md#GetPlan) | **Get** /plans/{id} | Get Plan
+[**GetPlans**](PlansAPI.md#GetPlans) | **Get** /plans | Get A List of Plans
+[**UpdatePlan**](PlansAPI.md#UpdatePlan) | **Put** /plans/{id} | Update Plan
 
 
 
@@ -39,13 +39,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PlansApi.CreatePlan(context.Background()).PlanRequest(planRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.PlansAPI.CreatePlan(context.Background()).PlanRequest(planRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PlansApi.CreatePlan``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PlansAPI.CreatePlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreatePlan`: PlanResponse
-    fmt.Fprintf(os.Stdout, "Response from `PlansApi.CreatePlan`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PlansAPI.CreatePlan`: %v\n", resp)
 }
 ```
 
@@ -106,13 +106,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PlansApi.DeletePlan(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+    resp, r, err := apiClient.PlansAPI.DeletePlan(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PlansApi.DeletePlan``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PlansAPI.DeletePlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeletePlan`: PlanResponse
-    fmt.Fprintf(os.Stdout, "Response from `PlansApi.DeletePlan`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PlansAPI.DeletePlan`: %v\n", resp)
 }
 ```
 
@@ -177,13 +177,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PlansApi.GetPlan(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.PlansAPI.GetPlan(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PlansApi.GetPlan``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PlansAPI.GetPlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetPlan`: PlanResponse
-    fmt.Fprintf(os.Stdout, "Response from `PlansApi.GetPlan`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PlansAPI.GetPlan`: %v\n", resp)
 }
 ```
 
@@ -252,13 +252,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PlansApi.GetPlans(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+    resp, r, err := apiClient.PlansAPI.GetPlans(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PlansApi.GetPlans``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PlansAPI.GetPlans``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetPlans`: GetPlansResponse
-    fmt.Fprintf(os.Stdout, "Response from `PlansApi.GetPlans`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PlansAPI.GetPlans`: %v\n", resp)
 }
 ```
 
@@ -324,13 +324,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PlansApi.UpdatePlan(context.Background(), id).PlanUpdateRequest(planUpdateRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.PlansAPI.UpdatePlan(context.Background(), id).PlanUpdateRequest(planUpdateRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PlansApi.UpdatePlan``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PlansAPI.UpdatePlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdatePlan`: PlanResponse
-    fmt.Fprintf(os.Stdout, "Response from `PlansApi.UpdatePlan`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PlansAPI.UpdatePlan`: %v\n", resp)
 }
 ```
 

@@ -21,7 +21,7 @@ import (
 )
 
 
-type ProductsApi interface {
+type ProductsAPI interface {
 
 	/*
 	OrdersCreateProduct Create Product
@@ -71,12 +71,12 @@ type ProductsApi interface {
 	OrdersUpdateProductExecute(r ApiOrdersUpdateProductRequest) (*ProductOrderResponse, *http.Response, error)
 }
 
-// ProductsApiService ProductsApi service
-type ProductsApiService service
+// ProductsAPIService ProductsAPI service
+type ProductsAPIService service
 
 type ApiOrdersCreateProductRequest struct {
 	ctx context.Context
-	ApiService ProductsApi
+	ApiService ProductsAPI
 	id string
 	product *Product
 	acceptLanguage *string
@@ -114,7 +114,7 @@ Create a new product for an existing order.
  @param id Identifier of the resource
  @return ApiOrdersCreateProductRequest
 */
-func (a *ProductsApiService) OrdersCreateProduct(ctx context.Context, id string) ApiOrdersCreateProductRequest {
+func (a *ProductsAPIService) OrdersCreateProduct(ctx context.Context, id string) ApiOrdersCreateProductRequest {
 	return ApiOrdersCreateProductRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -124,7 +124,7 @@ func (a *ProductsApiService) OrdersCreateProduct(ctx context.Context, id string)
 
 // Execute executes the request
 //  @return ProductOrderResponse
-func (a *ProductsApiService) OrdersCreateProductExecute(r ApiOrdersCreateProductRequest) (*ProductOrderResponse, *http.Response, error) {
+func (a *ProductsAPIService) OrdersCreateProductExecute(r ApiOrdersCreateProductRequest) (*ProductOrderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -132,7 +132,7 @@ func (a *ProductsApiService) OrdersCreateProductExecute(r ApiOrdersCreateProduct
 		localVarReturnValue  *ProductOrderResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductsApiService.OrdersCreateProduct")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductsAPIService.OrdersCreateProduct")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -243,7 +243,7 @@ func (a *ProductsApiService) OrdersCreateProductExecute(r ApiOrdersCreateProduct
 
 type ApiOrdersDeleteProductRequest struct {
 	ctx context.Context
-	ApiService ProductsApi
+	ApiService ProductsAPI
 	id string
 	lineItemId string
 	acceptLanguage *string
@@ -276,7 +276,7 @@ Delete product for an existing orden
  @param lineItemId identifier
  @return ApiOrdersDeleteProductRequest
 */
-func (a *ProductsApiService) OrdersDeleteProduct(ctx context.Context, id string, lineItemId string) ApiOrdersDeleteProductRequest {
+func (a *ProductsAPIService) OrdersDeleteProduct(ctx context.Context, id string, lineItemId string) ApiOrdersDeleteProductRequest {
 	return ApiOrdersDeleteProductRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -287,7 +287,7 @@ func (a *ProductsApiService) OrdersDeleteProduct(ctx context.Context, id string,
 
 // Execute executes the request
 //  @return ProductOrderResponse
-func (a *ProductsApiService) OrdersDeleteProductExecute(r ApiOrdersDeleteProductRequest) (*ProductOrderResponse, *http.Response, error) {
+func (a *ProductsAPIService) OrdersDeleteProductExecute(r ApiOrdersDeleteProductRequest) (*ProductOrderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -295,7 +295,7 @@ func (a *ProductsApiService) OrdersDeleteProductExecute(r ApiOrdersDeleteProduct
 		localVarReturnValue  *ProductOrderResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductsApiService.OrdersDeleteProduct")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductsAPIService.OrdersDeleteProduct")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -413,7 +413,7 @@ func (a *ProductsApiService) OrdersDeleteProductExecute(r ApiOrdersDeleteProduct
 
 type ApiOrdersUpdateProductRequest struct {
 	ctx context.Context
-	ApiService ProductsApi
+	ApiService ProductsAPI
 	id string
 	lineItemId string
 	updateProduct *UpdateProduct
@@ -453,7 +453,7 @@ Update an existing product for an existing orden
  @param lineItemId identifier
  @return ApiOrdersUpdateProductRequest
 */
-func (a *ProductsApiService) OrdersUpdateProduct(ctx context.Context, id string, lineItemId string) ApiOrdersUpdateProductRequest {
+func (a *ProductsAPIService) OrdersUpdateProduct(ctx context.Context, id string, lineItemId string) ApiOrdersUpdateProductRequest {
 	return ApiOrdersUpdateProductRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -464,7 +464,7 @@ func (a *ProductsApiService) OrdersUpdateProduct(ctx context.Context, id string,
 
 // Execute executes the request
 //  @return ProductOrderResponse
-func (a *ProductsApiService) OrdersUpdateProductExecute(r ApiOrdersUpdateProductRequest) (*ProductOrderResponse, *http.Response, error) {
+func (a *ProductsAPIService) OrdersUpdateProductExecute(r ApiOrdersUpdateProductRequest) (*ProductOrderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -472,7 +472,7 @@ func (a *ProductsApiService) OrdersUpdateProductExecute(r ApiOrdersUpdateProduct
 		localVarReturnValue  *ProductOrderResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductsApiService.OrdersUpdateProduct")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductsAPIService.OrdersUpdateProduct")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

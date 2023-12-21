@@ -21,7 +21,7 @@ import (
 )
 
 
-type AntifraudApi interface {
+type AntifraudAPI interface {
 
 	/*
 	CreateRuleBlacklist Create blacklisted rule
@@ -102,12 +102,12 @@ type AntifraudApi interface {
 	GetRuleWhitelistExecute(r ApiGetRuleWhitelistRequest) (*RiskRulesList, *http.Response, error)
 }
 
-// AntifraudApiService AntifraudApi service
-type AntifraudApiService service
+// AntifraudAPIService AntifraudAPI service
+type AntifraudAPIService service
 
 type ApiCreateRuleBlacklistRequest struct {
 	ctx context.Context
-	ApiService AntifraudApi
+	ApiService AntifraudAPI
 	createRiskRulesData *CreateRiskRulesData
 	acceptLanguage *string
 }
@@ -134,7 +134,7 @@ CreateRuleBlacklist Create blacklisted rule
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateRuleBlacklistRequest
 */
-func (a *AntifraudApiService) CreateRuleBlacklist(ctx context.Context) ApiCreateRuleBlacklistRequest {
+func (a *AntifraudAPIService) CreateRuleBlacklist(ctx context.Context) ApiCreateRuleBlacklistRequest {
 	return ApiCreateRuleBlacklistRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -143,7 +143,7 @@ func (a *AntifraudApiService) CreateRuleBlacklist(ctx context.Context) ApiCreate
 
 // Execute executes the request
 //  @return BlacklistRuleResponse
-func (a *AntifraudApiService) CreateRuleBlacklistExecute(r ApiCreateRuleBlacklistRequest) (*BlacklistRuleResponse, *http.Response, error) {
+func (a *AntifraudAPIService) CreateRuleBlacklistExecute(r ApiCreateRuleBlacklistRequest) (*BlacklistRuleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -151,7 +151,7 @@ func (a *AntifraudApiService) CreateRuleBlacklistExecute(r ApiCreateRuleBlacklis
 		localVarReturnValue  *BlacklistRuleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AntifraudApiService.CreateRuleBlacklist")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AntifraudAPIService.CreateRuleBlacklist")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -247,7 +247,7 @@ func (a *AntifraudApiService) CreateRuleBlacklistExecute(r ApiCreateRuleBlacklis
 
 type ApiCreateRuleWhitelistRequest struct {
 	ctx context.Context
-	ApiService AntifraudApi
+	ApiService AntifraudAPI
 	acceptLanguage *string
 	createRiskRulesData *CreateRiskRulesData
 }
@@ -273,7 +273,7 @@ CreateRuleWhitelist Create whitelisted rule
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateRuleWhitelistRequest
 */
-func (a *AntifraudApiService) CreateRuleWhitelist(ctx context.Context) ApiCreateRuleWhitelistRequest {
+func (a *AntifraudAPIService) CreateRuleWhitelist(ctx context.Context) ApiCreateRuleWhitelistRequest {
 	return ApiCreateRuleWhitelistRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -282,7 +282,7 @@ func (a *AntifraudApiService) CreateRuleWhitelist(ctx context.Context) ApiCreate
 
 // Execute executes the request
 //  @return WhitelistlistRuleResponse
-func (a *AntifraudApiService) CreateRuleWhitelistExecute(r ApiCreateRuleWhitelistRequest) (*WhitelistlistRuleResponse, *http.Response, error) {
+func (a *AntifraudAPIService) CreateRuleWhitelistExecute(r ApiCreateRuleWhitelistRequest) (*WhitelistlistRuleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -290,7 +290,7 @@ func (a *AntifraudApiService) CreateRuleWhitelistExecute(r ApiCreateRuleWhitelis
 		localVarReturnValue  *WhitelistlistRuleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AntifraudApiService.CreateRuleWhitelist")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AntifraudAPIService.CreateRuleWhitelist")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -394,7 +394,7 @@ func (a *AntifraudApiService) CreateRuleWhitelistExecute(r ApiCreateRuleWhitelis
 
 type ApiDeleteRuleBlacklistRequest struct {
 	ctx context.Context
-	ApiService AntifraudApi
+	ApiService AntifraudAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -423,7 +423,7 @@ DeleteRuleBlacklist Delete blacklisted rule
  @param id Identifier of the resource
  @return ApiDeleteRuleBlacklistRequest
 */
-func (a *AntifraudApiService) DeleteRuleBlacklist(ctx context.Context, id string) ApiDeleteRuleBlacklistRequest {
+func (a *AntifraudAPIService) DeleteRuleBlacklist(ctx context.Context, id string) ApiDeleteRuleBlacklistRequest {
 	return ApiDeleteRuleBlacklistRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -433,7 +433,7 @@ func (a *AntifraudApiService) DeleteRuleBlacklist(ctx context.Context, id string
 
 // Execute executes the request
 //  @return DeletedBlacklistRuleResponse
-func (a *AntifraudApiService) DeleteRuleBlacklistExecute(r ApiDeleteRuleBlacklistRequest) (*DeletedBlacklistRuleResponse, *http.Response, error) {
+func (a *AntifraudAPIService) DeleteRuleBlacklistExecute(r ApiDeleteRuleBlacklistRequest) (*DeletedBlacklistRuleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -441,7 +441,7 @@ func (a *AntifraudApiService) DeleteRuleBlacklistExecute(r ApiDeleteRuleBlacklis
 		localVarReturnValue  *DeletedBlacklistRuleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AntifraudApiService.DeleteRuleBlacklist")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AntifraudAPIService.DeleteRuleBlacklist")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -547,7 +547,7 @@ func (a *AntifraudApiService) DeleteRuleBlacklistExecute(r ApiDeleteRuleBlacklis
 
 type ApiDeleteRuleWhitelistRequest struct {
 	ctx context.Context
-	ApiService AntifraudApi
+	ApiService AntifraudAPI
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
@@ -576,7 +576,7 @@ DeleteRuleWhitelist Delete whitelisted rule
  @param id Identifier of the resource
  @return ApiDeleteRuleWhitelistRequest
 */
-func (a *AntifraudApiService) DeleteRuleWhitelist(ctx context.Context, id string) ApiDeleteRuleWhitelistRequest {
+func (a *AntifraudAPIService) DeleteRuleWhitelist(ctx context.Context, id string) ApiDeleteRuleWhitelistRequest {
 	return ApiDeleteRuleWhitelistRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -586,7 +586,7 @@ func (a *AntifraudApiService) DeleteRuleWhitelist(ctx context.Context, id string
 
 // Execute executes the request
 //  @return DeletedWhitelistRuleResponse
-func (a *AntifraudApiService) DeleteRuleWhitelistExecute(r ApiDeleteRuleWhitelistRequest) (*DeletedWhitelistRuleResponse, *http.Response, error) {
+func (a *AntifraudAPIService) DeleteRuleWhitelistExecute(r ApiDeleteRuleWhitelistRequest) (*DeletedWhitelistRuleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -594,7 +594,7 @@ func (a *AntifraudApiService) DeleteRuleWhitelistExecute(r ApiDeleteRuleWhitelis
 		localVarReturnValue  *DeletedWhitelistRuleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AntifraudApiService.DeleteRuleWhitelist")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AntifraudAPIService.DeleteRuleWhitelist")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -711,7 +711,7 @@ func (a *AntifraudApiService) DeleteRuleWhitelistExecute(r ApiDeleteRuleWhitelis
 
 type ApiGetRuleBlacklistRequest struct {
 	ctx context.Context
-	ApiService AntifraudApi
+	ApiService AntifraudAPI
 	acceptLanguage *string
 }
 
@@ -733,7 +733,7 @@ Return all rules
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetRuleBlacklistRequest
 */
-func (a *AntifraudApiService) GetRuleBlacklist(ctx context.Context) ApiGetRuleBlacklistRequest {
+func (a *AntifraudAPIService) GetRuleBlacklist(ctx context.Context) ApiGetRuleBlacklistRequest {
 	return ApiGetRuleBlacklistRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -742,7 +742,7 @@ func (a *AntifraudApiService) GetRuleBlacklist(ctx context.Context) ApiGetRuleBl
 
 // Execute executes the request
 //  @return RiskRulesList
-func (a *AntifraudApiService) GetRuleBlacklistExecute(r ApiGetRuleBlacklistRequest) (*RiskRulesList, *http.Response, error) {
+func (a *AntifraudAPIService) GetRuleBlacklistExecute(r ApiGetRuleBlacklistRequest) (*RiskRulesList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -750,7 +750,7 @@ func (a *AntifraudApiService) GetRuleBlacklistExecute(r ApiGetRuleBlacklistReque
 		localVarReturnValue  *RiskRulesList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AntifraudApiService.GetRuleBlacklist")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AntifraudAPIService.GetRuleBlacklist")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -841,7 +841,7 @@ func (a *AntifraudApiService) GetRuleBlacklistExecute(r ApiGetRuleBlacklistReque
 
 type ApiGetRuleWhitelistRequest struct {
 	ctx context.Context
-	ApiService AntifraudApi
+	ApiService AntifraudAPI
 	acceptLanguage *string
 }
 
@@ -863,7 +863,7 @@ Return all rules
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetRuleWhitelistRequest
 */
-func (a *AntifraudApiService) GetRuleWhitelist(ctx context.Context) ApiGetRuleWhitelistRequest {
+func (a *AntifraudAPIService) GetRuleWhitelist(ctx context.Context) ApiGetRuleWhitelistRequest {
 	return ApiGetRuleWhitelistRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -872,7 +872,7 @@ func (a *AntifraudApiService) GetRuleWhitelist(ctx context.Context) ApiGetRuleWh
 
 // Execute executes the request
 //  @return RiskRulesList
-func (a *AntifraudApiService) GetRuleWhitelistExecute(r ApiGetRuleWhitelistRequest) (*RiskRulesList, *http.Response, error) {
+func (a *AntifraudAPIService) GetRuleWhitelistExecute(r ApiGetRuleWhitelistRequest) (*RiskRulesList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -880,7 +880,7 @@ func (a *AntifraudApiService) GetRuleWhitelistExecute(r ApiGetRuleWhitelistReque
 		localVarReturnValue  *RiskRulesList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AntifraudApiService.GetRuleWhitelist")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AntifraudAPIService.GetRuleWhitelist")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

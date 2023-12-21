@@ -27,6 +27,7 @@ type OrderUpdateRequest struct {
 	CustomerInfo *OrderUpdateRequestCustomerInfo `json:"customer_info,omitempty"`
 	// List of [discounts](https://developers.conekta.com/v2.1.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount.
 	DiscountLines []OrderDiscountLinesRequest `json:"discount_lines,omitempty"`
+	FiscalEntity *OrderUpdateFiscalEntityRequest `json:"fiscal_entity,omitempty"`
 	// List of [products](https://developers.conekta.com/v2.1.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
 	LineItems []Product `json:"line_items,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
@@ -217,6 +218,38 @@ func (o *OrderUpdateRequest) HasDiscountLines() bool {
 // SetDiscountLines gets a reference to the given []OrderDiscountLinesRequest and assigns it to the DiscountLines field.
 func (o *OrderUpdateRequest) SetDiscountLines(v []OrderDiscountLinesRequest) {
 	o.DiscountLines = v
+}
+
+// GetFiscalEntity returns the FiscalEntity field value if set, zero value otherwise.
+func (o *OrderUpdateRequest) GetFiscalEntity() OrderUpdateFiscalEntityRequest {
+	if o == nil || IsNil(o.FiscalEntity) {
+		var ret OrderUpdateFiscalEntityRequest
+		return ret
+	}
+	return *o.FiscalEntity
+}
+
+// GetFiscalEntityOk returns a tuple with the FiscalEntity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderUpdateRequest) GetFiscalEntityOk() (*OrderUpdateFiscalEntityRequest, bool) {
+	if o == nil || IsNil(o.FiscalEntity) {
+		return nil, false
+	}
+	return o.FiscalEntity, true
+}
+
+// HasFiscalEntity returns a boolean if a field has been set.
+func (o *OrderUpdateRequest) HasFiscalEntity() bool {
+	if o != nil && !IsNil(o.FiscalEntity) {
+		return true
+	}
+
+	return false
+}
+
+// SetFiscalEntity gets a reference to the given OrderUpdateFiscalEntityRequest and assigns it to the FiscalEntity field.
+func (o *OrderUpdateRequest) SetFiscalEntity(v OrderUpdateFiscalEntityRequest) {
+	o.FiscalEntity = &v
 }
 
 // GetLineItems returns the LineItems field value if set, zero value otherwise.
@@ -435,6 +468,9 @@ func (o OrderUpdateRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.DiscountLines) {
 		toSerialize["discount_lines"] = o.DiscountLines
+	}
+	if !IsNil(o.FiscalEntity) {
+		toSerialize["fiscal_entity"] = o.FiscalEntity
 	}
 	if !IsNil(o.LineItems) {
 		toSerialize["line_items"] = o.LineItems

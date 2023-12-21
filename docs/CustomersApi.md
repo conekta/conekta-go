@@ -1,16 +1,16 @@
-# \CustomersApi
+# \CustomersAPI
 
 All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCustomer**](CustomersApi.md#CreateCustomer) | **Post** /customers | Create customer
-[**CreateCustomerFiscalEntities**](CustomersApi.md#CreateCustomerFiscalEntities) | **Post** /customers/{id}/fiscal_entities | Create Fiscal Entity
-[**DeleteCustomerById**](CustomersApi.md#DeleteCustomerById) | **Delete** /customers/{id} | Delete Customer
-[**GetCustomerById**](CustomersApi.md#GetCustomerById) | **Get** /customers/{id} | Get Customer
-[**GetCustomers**](CustomersApi.md#GetCustomers) | **Get** /customers | Get a list of customers
-[**UpdateCustomer**](CustomersApi.md#UpdateCustomer) | **Put** /customers/{id} | Update customer
-[**UpdateCustomerFiscalEntities**](CustomersApi.md#UpdateCustomerFiscalEntities) | **Put** /customers/{id}/fiscal_entities/{fiscal_entities_id} | Update  Fiscal Entity
+[**CreateCustomer**](CustomersAPI.md#CreateCustomer) | **Post** /customers | Create customer
+[**CreateCustomerFiscalEntities**](CustomersAPI.md#CreateCustomerFiscalEntities) | **Post** /customers/{id}/fiscal_entities | Create Fiscal Entity
+[**DeleteCustomerById**](CustomersAPI.md#DeleteCustomerById) | **Delete** /customers/{id} | Delete Customer
+[**GetCustomerById**](CustomersAPI.md#GetCustomerById) | **Get** /customers/{id} | Get Customer
+[**GetCustomers**](CustomersAPI.md#GetCustomers) | **Get** /customers | Get a list of customers
+[**UpdateCustomer**](CustomersAPI.md#UpdateCustomer) | **Put** /customers/{id} | Update customer
+[**UpdateCustomerFiscalEntities**](CustomersAPI.md#UpdateCustomerFiscalEntities) | **Put** /customers/{id}/fiscal_entities/{fiscal_entities_id} | Update  Fiscal Entity
 
 
 
@@ -35,19 +35,19 @@ import (
 )
 
 func main() {
-    customer := *openapiclient.NewCustomer("miguel@gmail.com", "miguel", "+5215555555555") // Customer | requested field for customer
+    customer := *openapiclient.NewCustomer("miguel@gmail.com", "miguel", "5215555555555") // Customer | requested field for customer
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
     xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CustomersApi.CreateCustomer(context.Background()).Customer(customer).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.CustomersAPI.CreateCustomer(context.Background()).Customer(customer).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CustomersApi.CreateCustomer``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CustomersAPI.CreateCustomer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateCustomer`: CustomerResponse
-    fmt.Fprintf(os.Stdout, "Response from `CustomersApi.CreateCustomer`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `CustomersAPI.CreateCustomer`: %v\n", resp)
 }
 ```
 
@@ -106,19 +106,19 @@ import (
 
 func main() {
     id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    customerFiscalEntitiesRequest := *openapiclient.NewCustomerFiscalEntitiesRequest(*openapiclient.NewCustomerFiscalEntitiesRequestAddress("avenida siempre viva", "06100", "Ciudad de Mexico")) // CustomerFiscalEntitiesRequest | requested field for customer fiscal entities
+    customerFiscalEntitiesRequest := *openapiclient.NewCustomerFiscalEntitiesRequest(*openapiclient.NewCustomerFiscalEntitiesRequestAddress("Nuevo Leon 254", "06100", "Ciudad de Mexico")) // CustomerFiscalEntitiesRequest | requested field for customer fiscal entities
     acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
     xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CustomersApi.CreateCustomerFiscalEntities(context.Background(), id).CustomerFiscalEntitiesRequest(customerFiscalEntitiesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.CustomersAPI.CreateCustomerFiscalEntities(context.Background(), id).CustomerFiscalEntitiesRequest(customerFiscalEntitiesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CustomersApi.CreateCustomerFiscalEntities``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CustomersAPI.CreateCustomerFiscalEntities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateCustomerFiscalEntities`: CreateCustomerFiscalEntitiesResponse
-    fmt.Fprintf(os.Stdout, "Response from `CustomersApi.CreateCustomerFiscalEntities`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `CustomersAPI.CreateCustomerFiscalEntities`: %v\n", resp)
 }
 ```
 
@@ -187,13 +187,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CustomersApi.DeleteCustomerById(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.CustomersAPI.DeleteCustomerById(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CustomersApi.DeleteCustomerById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CustomersAPI.DeleteCustomerById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteCustomerById`: CustomerResponse
-    fmt.Fprintf(os.Stdout, "Response from `CustomersApi.DeleteCustomerById`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `CustomersAPI.DeleteCustomerById`: %v\n", resp)
 }
 ```
 
@@ -261,13 +261,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CustomersApi.GetCustomerById(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.CustomersAPI.GetCustomerById(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CustomersApi.GetCustomerById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CustomersAPI.GetCustomerById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetCustomerById`: CustomerResponse
-    fmt.Fprintf(os.Stdout, "Response from `CustomersApi.GetCustomerById`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `CustomersAPI.GetCustomerById`: %v\n", resp)
 }
 ```
 
@@ -338,13 +338,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CustomersApi.GetCustomers(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+    resp, r, err := apiClient.CustomersAPI.GetCustomers(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CustomersApi.GetCustomers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CustomersAPI.GetCustomers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetCustomers`: CustomersResponse
-    fmt.Fprintf(os.Stdout, "Response from `CustomersApi.GetCustomers`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `CustomersAPI.GetCustomers`: %v\n", resp)
 }
 ```
 
@@ -412,13 +412,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CustomersApi.UpdateCustomer(context.Background(), id).UpdateCustomer(updateCustomer).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.CustomersAPI.UpdateCustomer(context.Background(), id).UpdateCustomer(updateCustomer).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CustomersApi.UpdateCustomer``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CustomersAPI.UpdateCustomer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateCustomer`: CustomerResponse
-    fmt.Fprintf(os.Stdout, "Response from `CustomersApi.UpdateCustomer`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `CustomersAPI.UpdateCustomer`: %v\n", resp)
 }
 ```
 
@@ -489,13 +489,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CustomersApi.UpdateCustomerFiscalEntities(context.Background(), id, fiscalEntitiesId).CustomerUpdateFiscalEntitiesRequest(customerUpdateFiscalEntitiesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.CustomersAPI.UpdateCustomerFiscalEntities(context.Background(), id, fiscalEntitiesId).CustomerUpdateFiscalEntitiesRequest(customerUpdateFiscalEntitiesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CustomersApi.UpdateCustomerFiscalEntities``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CustomersAPI.UpdateCustomerFiscalEntities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateCustomerFiscalEntities`: UpdateCustomerFiscalEntitiesResponse
-    fmt.Fprintf(os.Stdout, "Response from `CustomersApi.UpdateCustomerFiscalEntities`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `CustomersAPI.UpdateCustomerFiscalEntities`: %v\n", resp)
 }
 ```
 

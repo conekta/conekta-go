@@ -27,7 +27,7 @@ type CustomerShippingContactsResponseAddress struct {
 	City *string `json:"city,omitempty"`
 	State *string `json:"state,omitempty"`
 	Country *string `json:"country,omitempty"`
-	Residential *bool `json:"residential,omitempty"`
+	Residential NullableBool `json:"residential,omitempty"`
 }
 
 // NewCustomerShippingContactsResponseAddress instantiates a new CustomerShippingContactsResponseAddress object
@@ -271,36 +271,46 @@ func (o *CustomerShippingContactsResponseAddress) SetCountry(v string) {
 	o.Country = &v
 }
 
-// GetResidential returns the Residential field value if set, zero value otherwise.
+// GetResidential returns the Residential field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CustomerShippingContactsResponseAddress) GetResidential() bool {
-	if o == nil || IsNil(o.Residential) {
+	if o == nil || IsNil(o.Residential.Get()) {
 		var ret bool
 		return ret
 	}
-	return *o.Residential
+	return *o.Residential.Get()
 }
 
 // GetResidentialOk returns a tuple with the Residential field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CustomerShippingContactsResponseAddress) GetResidentialOk() (*bool, bool) {
-	if o == nil || IsNil(o.Residential) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Residential, true
+	return o.Residential.Get(), o.Residential.IsSet()
 }
 
 // HasResidential returns a boolean if a field has been set.
 func (o *CustomerShippingContactsResponseAddress) HasResidential() bool {
-	if o != nil && !IsNil(o.Residential) {
+	if o != nil && o.Residential.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetResidential gets a reference to the given bool and assigns it to the Residential field.
+// SetResidential gets a reference to the given NullableBool and assigns it to the Residential field.
 func (o *CustomerShippingContactsResponseAddress) SetResidential(v bool) {
-	o.Residential = &v
+	o.Residential.Set(&v)
+}
+// SetResidentialNil sets the value for Residential to be an explicit nil
+func (o *CustomerShippingContactsResponseAddress) SetResidentialNil() {
+	o.Residential.Set(nil)
+}
+
+// UnsetResidential ensures that no value is present for Residential, not even an explicit nil
+func (o *CustomerShippingContactsResponseAddress) UnsetResidential() {
+	o.Residential.Unset()
 }
 
 func (o CustomerShippingContactsResponseAddress) MarshalJSON() ([]byte, error) {
@@ -334,8 +344,8 @@ func (o CustomerShippingContactsResponseAddress) ToMap() (map[string]interface{}
 	if !IsNil(o.Country) {
 		toSerialize["country"] = o.Country
 	}
-	if !IsNil(o.Residential) {
-		toSerialize["residential"] = o.Residential
+	if o.Residential.IsSet() {
+		toSerialize["residential"] = o.Residential.Get()
 	}
 	return toSerialize, nil
 }

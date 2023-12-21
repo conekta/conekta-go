@@ -20,7 +20,7 @@ import (
 )
 
 
-type BalancesApi interface {
+type BalancesAPI interface {
 
 	/*
 	GetBalance Get a company's balance
@@ -37,12 +37,12 @@ type BalancesApi interface {
 	GetBalanceExecute(r ApiGetBalanceRequest) (*BalanceResponse, *http.Response, error)
 }
 
-// BalancesApiService BalancesApi service
-type BalancesApiService service
+// BalancesAPIService BalancesAPI service
+type BalancesAPIService service
 
 type ApiGetBalanceRequest struct {
 	ctx context.Context
-	ApiService BalancesApi
+	ApiService BalancesAPI
 	acceptLanguage *string
 }
 
@@ -64,7 +64,7 @@ Get a company's balance
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetBalanceRequest
 */
-func (a *BalancesApiService) GetBalance(ctx context.Context) ApiGetBalanceRequest {
+func (a *BalancesAPIService) GetBalance(ctx context.Context) ApiGetBalanceRequest {
 	return ApiGetBalanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -73,7 +73,7 @@ func (a *BalancesApiService) GetBalance(ctx context.Context) ApiGetBalanceReques
 
 // Execute executes the request
 //  @return BalanceResponse
-func (a *BalancesApiService) GetBalanceExecute(r ApiGetBalanceRequest) (*BalanceResponse, *http.Response, error) {
+func (a *BalancesAPIService) GetBalanceExecute(r ApiGetBalanceRequest) (*BalanceResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -81,12 +81,12 @@ func (a *BalancesApiService) GetBalanceExecute(r ApiGetBalanceRequest) (*Balance
 		localVarReturnValue  *BalanceResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BalancesApiService.GetBalance")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BalancesAPIService.GetBalance")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/balances"
+	localVarPath := localBasePath + "/balance"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

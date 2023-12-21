@@ -28,6 +28,8 @@ type CustomerShippingContactsResponse struct {
 	Default *bool `json:"default,omitempty"`
 	Id *string `json:"id,omitempty"`
 	CreatedAt *int64 `json:"created_at,omitempty"`
+	// Metadata associated with the shipping contact
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	Object *string `json:"object,omitempty"`
 	Deleted *bool `json:"deleted,omitempty"`
 }
@@ -315,6 +317,38 @@ func (o *CustomerShippingContactsResponse) SetCreatedAt(v int64) {
 	o.CreatedAt = &v
 }
 
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *CustomerShippingContactsResponse) GetMetadata() map[string]interface{} {
+	if o == nil || IsNil(o.Metadata) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomerShippingContactsResponse) GetMetadataOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Metadata) {
+		return map[string]interface{}{}, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *CustomerShippingContactsResponse) HasMetadata() bool {
+	if o != nil && !IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *CustomerShippingContactsResponse) SetMetadata(v map[string]interface{}) {
+	o.Metadata = v
+}
+
 // GetObject returns the Object field value if set, zero value otherwise.
 func (o *CustomerShippingContactsResponse) GetObject() string {
 	if o == nil || IsNil(o.Object) {
@@ -412,6 +446,9 @@ func (o CustomerShippingContactsResponse) ToMap() (map[string]interface{}, error
 	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
 	}
 	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object

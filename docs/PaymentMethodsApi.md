@@ -1,13 +1,13 @@
-# \PaymentMethodsApi
+# \PaymentMethodsAPI
 
 All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCustomerPaymentMethods**](PaymentMethodsApi.md#CreateCustomerPaymentMethods) | **Post** /customers/{id}/payment_sources | Create Payment Method
-[**DeleteCustomerPaymentMethods**](PaymentMethodsApi.md#DeleteCustomerPaymentMethods) | **Delete** /customers/{id}/payment_sources/{payment_method_id} | Delete Payment Method
-[**GetCustomerPaymentMethods**](PaymentMethodsApi.md#GetCustomerPaymentMethods) | **Get** /customers/{id}/payment_sources | Get Payment Methods
-[**UpdateCustomerPaymentMethods**](PaymentMethodsApi.md#UpdateCustomerPaymentMethods) | **Put** /customers/{id}/payment_sources/{payment_method_id} | Update Payment Method
+[**CreateCustomerPaymentMethods**](PaymentMethodsAPI.md#CreateCustomerPaymentMethods) | **Post** /customers/{id}/payment_sources | Create Payment Method
+[**DeleteCustomerPaymentMethods**](PaymentMethodsAPI.md#DeleteCustomerPaymentMethods) | **Delete** /customers/{id}/payment_sources/{payment_method_id} | Delete Payment Method
+[**GetCustomerPaymentMethods**](PaymentMethodsAPI.md#GetCustomerPaymentMethods) | **Get** /customers/{id}/payment_sources | Get Payment Methods
+[**UpdateCustomerPaymentMethods**](PaymentMethodsAPI.md#UpdateCustomerPaymentMethods) | **Put** /customers/{id}/payment_sources/{payment_method_id} | Update Payment Method
 
 
 
@@ -39,13 +39,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentMethodsApi.CreateCustomerPaymentMethods(context.Background(), id).CreateCustomerPaymentMethodsRequest(createCustomerPaymentMethodsRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.PaymentMethodsAPI.CreateCustomerPaymentMethods(context.Background(), id).CreateCustomerPaymentMethodsRequest(createCustomerPaymentMethodsRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsApi.CreateCustomerPaymentMethods``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsAPI.CreateCustomerPaymentMethods``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateCustomerPaymentMethods`: CreateCustomerPaymentMethodsResponse
-    fmt.Fprintf(os.Stdout, "Response from `PaymentMethodsApi.CreateCustomerPaymentMethods`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PaymentMethodsAPI.CreateCustomerPaymentMethods`: %v\n", resp)
 }
 ```
 
@@ -115,13 +115,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentMethodsApi.DeleteCustomerPaymentMethods(context.Background(), id, paymentMethodId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.PaymentMethodsAPI.DeleteCustomerPaymentMethods(context.Background(), id, paymentMethodId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsApi.DeleteCustomerPaymentMethods``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsAPI.DeleteCustomerPaymentMethods``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteCustomerPaymentMethods`: UpdateCustomerPaymentMethodsResponse
-    fmt.Fprintf(os.Stdout, "Response from `PaymentMethodsApi.DeleteCustomerPaymentMethods`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PaymentMethodsAPI.DeleteCustomerPaymentMethods`: %v\n", resp)
 }
 ```
 
@@ -195,13 +195,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentMethodsApi.GetCustomerPaymentMethods(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Next(next).Previous(previous).Search(search).Execute()
+    resp, r, err := apiClient.PaymentMethodsAPI.GetCustomerPaymentMethods(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Next(next).Previous(previous).Search(search).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsApi.GetCustomerPaymentMethods``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsAPI.GetCustomerPaymentMethods``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetCustomerPaymentMethods`: GetPaymentMethodResponse
-    fmt.Fprintf(os.Stdout, "Response from `PaymentMethodsApi.GetCustomerPaymentMethods`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PaymentMethodsAPI.GetCustomerPaymentMethods`: %v\n", resp)
 }
 ```
 
@@ -275,13 +275,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentMethodsApi.UpdateCustomerPaymentMethods(context.Background(), id, paymentMethodId).UpdatePaymentMethods(updatePaymentMethods).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.PaymentMethodsAPI.UpdateCustomerPaymentMethods(context.Background(), id, paymentMethodId).UpdatePaymentMethods(updatePaymentMethods).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsApi.UpdateCustomerPaymentMethods``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsAPI.UpdateCustomerPaymentMethods``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateCustomerPaymentMethods`: UpdateCustomerPaymentMethodsResponse
-    fmt.Fprintf(os.Stdout, "Response from `PaymentMethodsApi.UpdateCustomerPaymentMethods`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `PaymentMethodsAPI.UpdateCustomerPaymentMethods`: %v\n", resp)
 }
 ```
 

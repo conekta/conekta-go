@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Checkout type satisfies the MappedNullable interface at compile time
@@ -42,6 +43,8 @@ type Checkout struct {
 	// It is the type of link that will be created. It must be a valid type.
 	Type string `json:"type"`
 }
+
+type _Checkout Checkout
 
 // NewCheckout instantiates a new Checkout object
 // This constructor will assign default values to properties that have it defined,
@@ -412,6 +415,46 @@ func (o Checkout) ToMap() (map[string]interface{}, error) {
 	toSerialize["recurrent"] = o.Recurrent
 	toSerialize["type"] = o.Type
 	return toSerialize, nil
+}
+
+func (o *Checkout) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"allowed_payment_methods",
+		"expires_at",
+		"name",
+		"order_template",
+		"recurrent",
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCheckout := _Checkout{}
+
+	err = json.Unmarshal(bytes, &varCheckout)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Checkout(varCheckout)
+
+	return err
 }
 
 type NullableCheckout struct {

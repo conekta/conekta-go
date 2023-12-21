@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the OrderRefundRequest type satisfies the MappedNullable interface at compile time
@@ -24,6 +25,8 @@ type OrderRefundRequest struct {
 	ExpiresAt NullableInt64 `json:"expires_at,omitempty"`
 	Reason string `json:"reason"`
 }
+
+type _OrderRefundRequest OrderRefundRequest
 
 // NewOrderRefundRequest instantiates a new OrderRefundRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -150,6 +153,42 @@ func (o OrderRefundRequest) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["reason"] = o.Reason
 	return toSerialize, nil
+}
+
+func (o *OrderRefundRequest) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"amount",
+		"reason",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varOrderRefundRequest := _OrderRefundRequest{}
+
+	err = json.Unmarshal(bytes, &varOrderRefundRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = OrderRefundRequest(varOrderRefundRequest)
+
+	return err
 }
 
 type NullableOrderRefundRequest struct {

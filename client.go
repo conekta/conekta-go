@@ -58,51 +58,51 @@ type APIClient struct {
 
 	// API Services
 
-	AntifraudApi AntifraudApi
+	AntifraudAPI AntifraudAPI
 
-	ApiKeysApi ApiKeysApi
+	ApiKeysAPI ApiKeysAPI
 
-	BalancesApi BalancesApi
+	BalancesAPI BalancesAPI
 
-	ChargesApi ChargesApi
+	ChargesAPI ChargesAPI
 
-	CompaniesApi CompaniesApi
+	CompaniesAPI CompaniesAPI
 
-	CustomersApi CustomersApi
+	CustomersAPI CustomersAPI
 
-	DiscountsApi DiscountsApi
+	DiscountsAPI DiscountsAPI
 
-	EventsApi EventsApi
+	EventsAPI EventsAPI
 
-	LogsApi LogsApi
+	LogsAPI LogsAPI
 
-	OrdersApi OrdersApi
+	OrdersAPI OrdersAPI
 
-	PaymentLinkApi PaymentLinkApi
+	PaymentLinkAPI PaymentLinkAPI
 
-	PaymentMethodsApi PaymentMethodsApi
+	PaymentMethodsAPI PaymentMethodsAPI
 
-	PlansApi PlansApi
+	PlansAPI PlansAPI
 
-	ProductsApi ProductsApi
+	ProductsAPI ProductsAPI
 
-	ShippingContactsApi ShippingContactsApi
+	ShippingContactsAPI ShippingContactsAPI
 
-	ShippingsApi ShippingsApi
+	ShippingsAPI ShippingsAPI
 
-	SubscriptionsApi SubscriptionsApi
+	SubscriptionsAPI SubscriptionsAPI
 
-	TaxesApi TaxesApi
+	TaxesAPI TaxesAPI
 
-	TokensApi TokensApi
+	TokensAPI TokensAPI
 
-	TransactionsApi TransactionsApi
+	TransactionsAPI TransactionsAPI
 
-	TransfersApi TransfersApi
+	TransfersAPI TransfersAPI
 
-	WebhookKeysApi WebhookKeysApi
+	WebhookKeysAPI WebhookKeysAPI
 
-	WebhooksApi WebhooksApi
+	WebhooksAPI WebhooksAPI
 }
 
 
@@ -112,7 +112,7 @@ func init() {
 
 func initUserAgent() {
 	data := map[string]string{
-		"bindings_version": "6.0.2",
+		"bindings_version": "6.0.3",
 		"lang":             "go",
 		"lang_version":     runtime.Version(),
 		"publisher":        "conekta",
@@ -159,29 +159,29 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.AntifraudApi = (*AntifraudApiService)(&c.common)
-	c.ApiKeysApi = (*ApiKeysApiService)(&c.common)
-	c.BalancesApi = (*BalancesApiService)(&c.common)
-	c.ChargesApi = (*ChargesApiService)(&c.common)
-	c.CompaniesApi = (*CompaniesApiService)(&c.common)
-	c.CustomersApi = (*CustomersApiService)(&c.common)
-	c.DiscountsApi = (*DiscountsApiService)(&c.common)
-	c.EventsApi = (*EventsApiService)(&c.common)
-	c.LogsApi = (*LogsApiService)(&c.common)
-	c.OrdersApi = (*OrdersApiService)(&c.common)
-	c.PaymentLinkApi = (*PaymentLinkApiService)(&c.common)
-	c.PaymentMethodsApi = (*PaymentMethodsApiService)(&c.common)
-	c.PlansApi = (*PlansApiService)(&c.common)
-	c.ProductsApi = (*ProductsApiService)(&c.common)
-	c.ShippingContactsApi = (*ShippingContactsApiService)(&c.common)
-	c.ShippingsApi = (*ShippingsApiService)(&c.common)
-	c.SubscriptionsApi = (*SubscriptionsApiService)(&c.common)
-	c.TaxesApi = (*TaxesApiService)(&c.common)
-	c.TokensApi = (*TokensApiService)(&c.common)
-	c.TransactionsApi = (*TransactionsApiService)(&c.common)
-	c.TransfersApi = (*TransfersApiService)(&c.common)
-	c.WebhookKeysApi = (*WebhookKeysApiService)(&c.common)
-	c.WebhooksApi = (*WebhooksApiService)(&c.common)
+	c.AntifraudAPI = (*AntifraudAPIService)(&c.common)
+	c.ApiKeysAPI = (*ApiKeysAPIService)(&c.common)
+	c.BalancesAPI = (*BalancesAPIService)(&c.common)
+	c.ChargesAPI = (*ChargesAPIService)(&c.common)
+	c.CompaniesAPI = (*CompaniesAPIService)(&c.common)
+	c.CustomersAPI = (*CustomersAPIService)(&c.common)
+	c.DiscountsAPI = (*DiscountsAPIService)(&c.common)
+	c.EventsAPI = (*EventsAPIService)(&c.common)
+	c.LogsAPI = (*LogsAPIService)(&c.common)
+	c.OrdersAPI = (*OrdersAPIService)(&c.common)
+	c.PaymentLinkAPI = (*PaymentLinkAPIService)(&c.common)
+	c.PaymentMethodsAPI = (*PaymentMethodsAPIService)(&c.common)
+	c.PlansAPI = (*PlansAPIService)(&c.common)
+	c.ProductsAPI = (*ProductsAPIService)(&c.common)
+	c.ShippingContactsAPI = (*ShippingContactsAPIService)(&c.common)
+	c.ShippingsAPI = (*ShippingsAPIService)(&c.common)
+	c.SubscriptionsAPI = (*SubscriptionsAPIService)(&c.common)
+	c.TaxesAPI = (*TaxesAPIService)(&c.common)
+	c.TokensAPI = (*TokensAPIService)(&c.common)
+	c.TransactionsAPI = (*TransactionsAPIService)(&c.common)
+	c.TransfersAPI = (*TransfersAPIService)(&c.common)
+	c.WebhookKeysAPI = (*WebhookKeysAPIService)(&c.common)
+	c.WebhooksAPI = (*WebhooksAPIService)(&c.common)
 
 	return c
 }

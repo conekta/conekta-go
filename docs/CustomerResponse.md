@@ -5,20 +5,21 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AntifraudInfo** | Pointer to [**NullableCustomerAntifraudInfoResponse**](CustomerAntifraudInfoResponse.md) |  | [optional] 
-**Corporate** | Pointer to **bool** |  | [optional] 
-**CreatedAt** | **int64** |  | 
-**CustomReference** | Pointer to **string** |  | [optional] 
+**Corporate** | Pointer to **bool** | true if the customer is a company | [optional] 
+**CreatedAt** | **int64** | Creation date of the object | 
+**CustomReference** | Pointer to **string** | Custom reference | [optional] 
 **DefaultFiscalEntityId** | Pointer to **NullableString** |  | [optional] 
 **DefaultShippingContactId** | Pointer to **string** |  | [optional] 
 **DefaultPaymentSourceId** | Pointer to **NullableString** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
 **FiscalEntities** | Pointer to [**CustomerFiscalEntitiesResponse**](CustomerFiscalEntitiesResponse.md) |  | [optional] 
-**Id** | **string** |  | 
-**Livemode** | **bool** |  | 
-**Name** | Pointer to **string** |  | [optional] 
+**Id** | **string** | Customer&#39;s ID | 
+**Livemode** | **bool** | true if the object exists in live mode or the value false if the object exists in test mode | 
+**Name** | **string** | Customer&#39;s name | 
+**Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Object** | **string** |  | 
 **PaymentSources** | Pointer to [**CustomerPaymentMethodsResponse**](CustomerPaymentMethodsResponse.md) |  | [optional] 
-**Phone** | Pointer to **string** |  | [optional] 
+**Phone** | Pointer to **string** | Customer&#39;s phone number | [optional] 
 **ShippingContacts** | Pointer to [**CustomerResponseShippingContacts**](CustomerResponseShippingContacts.md) |  | [optional] 
 **Subscription** | Pointer to [**SubscriptionResponse**](SubscriptionResponse.md) |  | [optional] 
 
@@ -26,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewCustomerResponse
 
-`func NewCustomerResponse(createdAt int64, id string, livemode bool, object string, ) *CustomerResponse`
+`func NewCustomerResponse(createdAt int64, id string, livemode bool, name string, object string, ) *CustomerResponse`
 
 NewCustomerResponse instantiates a new CustomerResponse object
 This constructor will assign default values to properties that have it defined,
@@ -350,11 +351,31 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
 
-`func (o *CustomerResponse) HasName() bool`
+### GetMetadata
 
-HasName returns a boolean if a field has been set.
+`func (o *CustomerResponse) GetMetadata() map[string]interface{}`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *CustomerResponse) GetMetadataOk() (*map[string]interface{}, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *CustomerResponse) SetMetadata(v map[string]interface{})`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *CustomerResponse) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
 
 ### GetObject
 

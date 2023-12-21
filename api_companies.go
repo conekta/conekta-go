@@ -21,7 +21,7 @@ import (
 )
 
 
-type CompaniesApi interface {
+type CompaniesAPI interface {
 
 	/*
 	GetCompanies Get List of Companies
@@ -51,12 +51,12 @@ type CompaniesApi interface {
 	GetCompanyExecute(r ApiGetCompanyRequest) (*CompanyResponse, *http.Response, error)
 }
 
-// CompaniesApiService CompaniesApi service
-type CompaniesApiService service
+// CompaniesAPIService CompaniesAPI service
+type CompaniesAPIService service
 
 type ApiGetCompaniesRequest struct {
 	ctx context.Context
-	ApiService CompaniesApi
+	ApiService CompaniesAPI
 	acceptLanguage *string
 	limit *int32
 	search *string
@@ -106,7 +106,7 @@ Consume the list of child companies.  This is used for holding companies with se
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetCompaniesRequest
 */
-func (a *CompaniesApiService) GetCompanies(ctx context.Context) ApiGetCompaniesRequest {
+func (a *CompaniesAPIService) GetCompanies(ctx context.Context) ApiGetCompaniesRequest {
 	return ApiGetCompaniesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -115,7 +115,7 @@ func (a *CompaniesApiService) GetCompanies(ctx context.Context) ApiGetCompaniesR
 
 // Execute executes the request
 //  @return GetCompaniesResponse
-func (a *CompaniesApiService) GetCompaniesExecute(r ApiGetCompaniesRequest) (*GetCompaniesResponse, *http.Response, error) {
+func (a *CompaniesAPIService) GetCompaniesExecute(r ApiGetCompaniesRequest) (*GetCompaniesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -123,7 +123,7 @@ func (a *CompaniesApiService) GetCompaniesExecute(r ApiGetCompaniesRequest) (*Ge
 		localVarReturnValue  *GetCompaniesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CompaniesApiService.GetCompanies")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CompaniesAPIService.GetCompanies")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -136,6 +136,9 @@ func (a *CompaniesApiService) GetCompaniesExecute(r ApiGetCompaniesRequest) (*Ge
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
@@ -226,7 +229,7 @@ func (a *CompaniesApiService) GetCompaniesExecute(r ApiGetCompaniesRequest) (*Ge
 
 type ApiGetCompanyRequest struct {
 	ctx context.Context
-	ApiService CompaniesApi
+	ApiService CompaniesAPI
 	id string
 	acceptLanguage *string
 }
@@ -248,7 +251,7 @@ GetCompany Get Company
  @param id Identifier of the resource
  @return ApiGetCompanyRequest
 */
-func (a *CompaniesApiService) GetCompany(ctx context.Context, id string) ApiGetCompanyRequest {
+func (a *CompaniesAPIService) GetCompany(ctx context.Context, id string) ApiGetCompanyRequest {
 	return ApiGetCompanyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -258,7 +261,7 @@ func (a *CompaniesApiService) GetCompany(ctx context.Context, id string) ApiGetC
 
 // Execute executes the request
 //  @return CompanyResponse
-func (a *CompaniesApiService) GetCompanyExecute(r ApiGetCompanyRequest) (*CompanyResponse, *http.Response, error) {
+func (a *CompaniesAPIService) GetCompanyExecute(r ApiGetCompanyRequest) (*CompanyResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -266,7 +269,7 @@ func (a *CompaniesApiService) GetCompanyExecute(r ApiGetCompanyRequest) (*Compan
 		localVarReturnValue  *CompanyResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CompaniesApiService.GetCompany")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CompaniesAPIService.GetCompany")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

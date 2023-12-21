@@ -1,11 +1,11 @@
-# \LogsApi
+# \LogsAPI
 
 All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetLogById**](LogsApi.md#GetLogById) | **Get** /logs/{id} | Get Log
-[**GetLogs**](LogsApi.md#GetLogs) | **Get** /logs | Get List Of Logs
+[**GetLogById**](LogsAPI.md#GetLogById) | **Get** /logs/{id} | Get Log
+[**GetLogs**](LogsAPI.md#GetLogs) | **Get** /logs | Get List Of Logs
 
 
 
@@ -36,13 +36,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsApi.GetLogById(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+    resp, r, err := apiClient.LogsAPI.GetLogById(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.GetLogById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsAPI.GetLogById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetLogById`: LogResponse
-    fmt.Fprintf(os.Stdout, "Response from `LogsApi.GetLogById`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `LogsAPI.GetLogById`: %v\n", resp)
 }
 ```
 
@@ -113,13 +113,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsApi.GetLogs(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+    resp, r, err := apiClient.LogsAPI.GetLogs(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.GetLogs``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsAPI.GetLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetLogs`: LogsResponse
-    fmt.Fprintf(os.Stdout, "Response from `LogsApi.GetLogs`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `LogsAPI.GetLogs`: %v\n", resp)
 }
 ```
 

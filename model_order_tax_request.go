@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the OrderTaxRequest type satisfies the MappedNullable interface at compile time
@@ -26,6 +27,8 @@ type OrderTaxRequest struct {
 	Description string `json:"description"`
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 }
+
+type _OrderTaxRequest OrderTaxRequest
 
 // NewOrderTaxRequest instantiates a new OrderTaxRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -142,6 +145,42 @@ func (o OrderTaxRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["metadata"] = o.Metadata
 	}
 	return toSerialize, nil
+}
+
+func (o *OrderTaxRequest) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"amount",
+		"description",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varOrderTaxRequest := _OrderTaxRequest{}
+
+	err = json.Unmarshal(bytes, &varOrderTaxRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = OrderTaxRequest(varOrderTaxRequest)
+
+	return err
 }
 
 type NullableOrderTaxRequest struct {
