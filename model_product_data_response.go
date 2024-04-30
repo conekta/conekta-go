@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -27,7 +28,7 @@ type ProductDataResponse struct {
 	// Short description of the item
 	Description *string `json:"description,omitempty"`
 	// It is a key/value hash that can hold custom fields. Maximum 100 elements and allows special characters.
-	Metadata *map[string]string `json:"metadata,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// The name of the item. It will be displayed in the order.
 	Name string `json:"name"`
 	// The quantity of the item in the order.
@@ -162,19 +163,19 @@ func (o *ProductDataResponse) SetDescription(v string) {
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *ProductDataResponse) GetMetadata() map[string]string {
+func (o *ProductDataResponse) GetMetadata() map[string]interface{} {
 	if o == nil || IsNil(o.Metadata) {
-		var ret map[string]string
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Metadata
+	return o.Metadata
 }
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductDataResponse) GetMetadataOk() (*map[string]string, bool) {
+func (o *ProductDataResponse) GetMetadataOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Metadata) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.Metadata, true
 }
@@ -188,9 +189,9 @@ func (o *ProductDataResponse) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
-func (o *ProductDataResponse) SetMetadata(v map[string]string) {
-	o.Metadata = &v
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *ProductDataResponse) SetMetadata(v map[string]interface{}) {
+	o.Metadata = v
 }
 
 // GetName returns the Name field value
@@ -468,8 +469,8 @@ func (o ProductDataResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ProductDataResponse) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *ProductDataResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -480,7 +481,7 @@ func (o *ProductDataResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -494,7 +495,9 @@ func (o *ProductDataResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	varProductDataResponse := _ProductDataResponse{}
 
-	err = json.Unmarshal(bytes, &varProductDataResponse)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varProductDataResponse)
 
 	if err != nil {
 		return err

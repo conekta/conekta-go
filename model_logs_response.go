@@ -218,7 +218,7 @@ func (o *LogsResponse) GetDataOk() ([]LogsResponseData, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *LogsResponse) HasData() bool {
-	if o != nil && IsNil(o.Data) {
+	if o != nil && !IsNil(o.Data) {
 		return true
 	}
 

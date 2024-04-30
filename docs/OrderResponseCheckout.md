@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **OnDemandEnabled** | Pointer to **NullableBool** |  | [optional] 
 **PaidPaymentsCount** | Pointer to **int32** |  | [optional] 
 **Recurrent** | Pointer to **bool** |  | [optional] 
+**RedirectionTime** | Pointer to **NullableInt32** | number of seconds to wait before redirecting to the success_url | [optional] 
 **Slug** | Pointer to **string** |  | [optional] 
 **SmsSent** | Pointer to **int32** |  | [optional] 
 **SuccessUrl** | Pointer to **string** |  | [optional] 
@@ -535,6 +536,41 @@ SetRecurrent sets Recurrent field to given value.
 
 HasRecurrent returns a boolean if a field has been set.
 
+### GetRedirectionTime
+
+`func (o *OrderResponseCheckout) GetRedirectionTime() int32`
+
+GetRedirectionTime returns the RedirectionTime field if non-nil, zero value otherwise.
+
+### GetRedirectionTimeOk
+
+`func (o *OrderResponseCheckout) GetRedirectionTimeOk() (*int32, bool)`
+
+GetRedirectionTimeOk returns a tuple with the RedirectionTime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRedirectionTime
+
+`func (o *OrderResponseCheckout) SetRedirectionTime(v int32)`
+
+SetRedirectionTime sets RedirectionTime field to given value.
+
+### HasRedirectionTime
+
+`func (o *OrderResponseCheckout) HasRedirectionTime() bool`
+
+HasRedirectionTime returns a boolean if a field has been set.
+
+### SetRedirectionTimeNil
+
+`func (o *OrderResponseCheckout) SetRedirectionTimeNil(b bool)`
+
+ SetRedirectionTimeNil sets the value for RedirectionTime to be an explicit nil
+
+### UnsetRedirectionTime
+`func (o *OrderResponseCheckout) UnsetRedirectionTime()`
+
+UnsetRedirectionTime ensures that no value is present for RedirectionTime, not even an explicit nil
 ### GetSlug
 
 `func (o *OrderResponseCheckout) GetSlug() string`

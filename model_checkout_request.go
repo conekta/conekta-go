@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -32,6 +33,8 @@ type CheckoutRequest struct {
 	// Reason for payment
 	Name *string `json:"name,omitempty"`
 	OnDemandEnabled *bool `json:"on_demand_enabled,omitempty"`
+	// number of seconds to wait before redirecting to the success_url
+	RedirectionTime *int32 `json:"redirection_time,omitempty"`
 	// Redirection url back to the site in case of successful payment, applies only to HostedPayment
 	SuccessUrl *string `json:"success_url,omitempty"`
 	// This field represents the type of checkout
@@ -274,6 +277,38 @@ func (o *CheckoutRequest) SetOnDemandEnabled(v bool) {
 	o.OnDemandEnabled = &v
 }
 
+// GetRedirectionTime returns the RedirectionTime field value if set, zero value otherwise.
+func (o *CheckoutRequest) GetRedirectionTime() int32 {
+	if o == nil || IsNil(o.RedirectionTime) {
+		var ret int32
+		return ret
+	}
+	return *o.RedirectionTime
+}
+
+// GetRedirectionTimeOk returns a tuple with the RedirectionTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CheckoutRequest) GetRedirectionTimeOk() (*int32, bool) {
+	if o == nil || IsNil(o.RedirectionTime) {
+		return nil, false
+	}
+	return o.RedirectionTime, true
+}
+
+// HasRedirectionTime returns a boolean if a field has been set.
+func (o *CheckoutRequest) HasRedirectionTime() bool {
+	if o != nil && !IsNil(o.RedirectionTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetRedirectionTime gets a reference to the given int32 and assigns it to the RedirectionTime field.
+func (o *CheckoutRequest) SetRedirectionTime(v int32) {
+	o.RedirectionTime = &v
+}
+
 // GetSuccessUrl returns the SuccessUrl field value if set, zero value otherwise.
 func (o *CheckoutRequest) GetSuccessUrl() string {
 	if o == nil || IsNil(o.SuccessUrl) {
@@ -367,6 +402,9 @@ func (o CheckoutRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OnDemandEnabled) {
 		toSerialize["on_demand_enabled"] = o.OnDemandEnabled
 	}
+	if !IsNil(o.RedirectionTime) {
+		toSerialize["redirection_time"] = o.RedirectionTime
+	}
 	if !IsNil(o.SuccessUrl) {
 		toSerialize["success_url"] = o.SuccessUrl
 	}
@@ -376,8 +414,8 @@ func (o CheckoutRequest) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *CheckoutRequest) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *CheckoutRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -386,7 +424,7 @@ func (o *CheckoutRequest) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -400,7 +438,9 @@ func (o *CheckoutRequest) UnmarshalJSON(bytes []byte) (err error) {
 
 	varCheckoutRequest := _CheckoutRequest{}
 
-	err = json.Unmarshal(bytes, &varCheckoutRequest)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCheckoutRequest)
 
 	if err != nil {
 		return err

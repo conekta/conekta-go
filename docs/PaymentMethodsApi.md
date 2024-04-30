@@ -25,27 +25,27 @@ Create Payment Method
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    createCustomerPaymentMethodsRequest := openapiclient.CreateCustomerPaymentMethods_request{PaymentMethodCardRequest: openapiclient.NewPaymentMethodCardRequest("card | cash | spei", "tok_32hj4g234as")} // CreateCustomerPaymentMethodsRequest | requested field for customer payment methods
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	createCustomerPaymentMethodsRequest := openapiclient.CreateCustomerPaymentMethods_request{PaymentMethodCardRequest: openapiclient.NewPaymentMethodCardRequest("card | cash | spei", "tok_32hj4g234as")} // CreateCustomerPaymentMethodsRequest | requested field for customer payment methods
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentMethodsAPI.CreateCustomerPaymentMethods(context.Background(), id).CreateCustomerPaymentMethodsRequest(createCustomerPaymentMethodsRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsAPI.CreateCustomerPaymentMethods``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateCustomerPaymentMethods`: CreateCustomerPaymentMethodsResponse
-    fmt.Fprintf(os.Stdout, "Response from `PaymentMethodsAPI.CreateCustomerPaymentMethods`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PaymentMethodsAPI.CreateCustomerPaymentMethods(context.Background(), id).CreateCustomerPaymentMethodsRequest(createCustomerPaymentMethodsRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsAPI.CreateCustomerPaymentMethods``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateCustomerPaymentMethods`: CreateCustomerPaymentMethodsResponse
+	fmt.Fprintf(os.Stdout, "Response from `PaymentMethodsAPI.CreateCustomerPaymentMethods`: %v\n", resp)
 }
 ```
 
@@ -101,27 +101,27 @@ Delete Payment Method
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    paymentMethodId := "src_2tQ974hSHcsdeSZHG" // string | Identifier of the payment method
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	paymentMethodId := "src_2tQ974hSHcsdeSZHG" // string | Identifier of the payment method
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentMethodsAPI.DeleteCustomerPaymentMethods(context.Background(), id, paymentMethodId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsAPI.DeleteCustomerPaymentMethods``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteCustomerPaymentMethods`: UpdateCustomerPaymentMethodsResponse
-    fmt.Fprintf(os.Stdout, "Response from `PaymentMethodsAPI.DeleteCustomerPaymentMethods`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PaymentMethodsAPI.DeleteCustomerPaymentMethods(context.Background(), id, paymentMethodId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsAPI.DeleteCustomerPaymentMethods``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeleteCustomerPaymentMethods`: UpdateCustomerPaymentMethodsResponse
+	fmt.Fprintf(os.Stdout, "Response from `PaymentMethodsAPI.DeleteCustomerPaymentMethods`: %v\n", resp)
 }
 ```
 
@@ -178,30 +178,30 @@ Get Payment Methods
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
-    limit := int32(56) // int32 | The numbers of items to return, the maximum value is 250 (optional) (default to 20)
-    next := "next_example" // string | next page (optional)
-    previous := "previous_example" // string | previous page (optional)
-    search := "search_example" // string | General order search, e.g. by mail, reference etc. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	limit := int32(56) // int32 | The numbers of items to return, the maximum value is 250 (optional) (default to 20)
+	next := "next_example" // string | next page (optional)
+	previous := "previous_example" // string | previous page (optional)
+	search := "search_example" // string | General order search, e.g. by mail, reference etc. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentMethodsAPI.GetCustomerPaymentMethods(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Next(next).Previous(previous).Search(search).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsAPI.GetCustomerPaymentMethods``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetCustomerPaymentMethods`: GetPaymentMethodResponse
-    fmt.Fprintf(os.Stdout, "Response from `PaymentMethodsAPI.GetCustomerPaymentMethods`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PaymentMethodsAPI.GetCustomerPaymentMethods(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Next(next).Previous(previous).Search(search).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsAPI.GetCustomerPaymentMethods``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetCustomerPaymentMethods`: GetPaymentMethodResponse
+	fmt.Fprintf(os.Stdout, "Response from `PaymentMethodsAPI.GetCustomerPaymentMethods`: %v\n", resp)
 }
 ```
 
@@ -260,28 +260,28 @@ Update Payment Method
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    paymentMethodId := "src_2tQ974hSHcsdeSZHG" // string | Identifier of the payment method
-    updatePaymentMethods := *openapiclient.NewUpdatePaymentMethods() // UpdatePaymentMethods | requested field for customer payment methods
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	paymentMethodId := "src_2tQ974hSHcsdeSZHG" // string | Identifier of the payment method
+	updatePaymentMethods := *openapiclient.NewUpdatePaymentMethods() // UpdatePaymentMethods | requested field for customer payment methods
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PaymentMethodsAPI.UpdateCustomerPaymentMethods(context.Background(), id, paymentMethodId).UpdatePaymentMethods(updatePaymentMethods).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsAPI.UpdateCustomerPaymentMethods``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateCustomerPaymentMethods`: UpdateCustomerPaymentMethodsResponse
-    fmt.Fprintf(os.Stdout, "Response from `PaymentMethodsAPI.UpdateCustomerPaymentMethods`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PaymentMethodsAPI.UpdateCustomerPaymentMethods(context.Background(), id, paymentMethodId).UpdatePaymentMethods(updatePaymentMethods).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsAPI.UpdateCustomerPaymentMethods``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateCustomerPaymentMethods`: UpdateCustomerPaymentMethodsResponse
+	fmt.Fprintf(os.Stdout, "Response from `PaymentMethodsAPI.UpdateCustomerPaymentMethods`: %v\n", resp)
 }
 ```
 

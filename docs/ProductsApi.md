@@ -24,27 +24,27 @@ Create Product
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    product := *openapiclient.NewProduct("Box of Cohiba S1s", int32(1), int32(20000)) // Product | requested field for a product
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	product := *openapiclient.NewProduct("Box of Cohiba S1s", int32(1), int32(20000)) // Product | requested field for a product
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProductsAPI.OrdersCreateProduct(context.Background(), id).Product(product).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProductsAPI.OrdersCreateProduct``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrdersCreateProduct`: ProductOrderResponse
-    fmt.Fprintf(os.Stdout, "Response from `ProductsAPI.OrdersCreateProduct`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ProductsAPI.OrdersCreateProduct(context.Background(), id).Product(product).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ProductsAPI.OrdersCreateProduct``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrdersCreateProduct`: ProductOrderResponse
+	fmt.Fprintf(os.Stdout, "Response from `ProductsAPI.OrdersCreateProduct`: %v\n", resp)
 }
 ```
 
@@ -100,27 +100,27 @@ Delete Product
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    lineItemId := "line_item_2tQ8HkkfbauaKP9Ho" // string | identifier
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	lineItemId := "line_item_2tQ8HkkfbauaKP9Ho" // string | identifier
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProductsAPI.OrdersDeleteProduct(context.Background(), id, lineItemId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProductsAPI.OrdersDeleteProduct``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrdersDeleteProduct`: ProductOrderResponse
-    fmt.Fprintf(os.Stdout, "Response from `ProductsAPI.OrdersDeleteProduct`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ProductsAPI.OrdersDeleteProduct(context.Background(), id, lineItemId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ProductsAPI.OrdersDeleteProduct``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrdersDeleteProduct`: ProductOrderResponse
+	fmt.Fprintf(os.Stdout, "Response from `ProductsAPI.OrdersDeleteProduct`: %v\n", resp)
 }
 ```
 
@@ -177,28 +177,28 @@ Update Product
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    lineItemId := "line_item_2tQ8HkkfbauaKP9Ho" // string | identifier
-    updateProduct := *openapiclient.NewUpdateProduct() // UpdateProduct | requested field for products
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	lineItemId := "line_item_2tQ8HkkfbauaKP9Ho" // string | identifier
+	updateProduct := *openapiclient.NewUpdateProduct() // UpdateProduct | requested field for products
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProductsAPI.OrdersUpdateProduct(context.Background(), id, lineItemId).UpdateProduct(updateProduct).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProductsAPI.OrdersUpdateProduct``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrdersUpdateProduct`: ProductOrderResponse
-    fmt.Fprintf(os.Stdout, "Response from `ProductsAPI.OrdersUpdateProduct`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ProductsAPI.OrdersUpdateProduct(context.Background(), id, lineItemId).UpdateProduct(updateProduct).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ProductsAPI.OrdersUpdateProduct``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrdersUpdateProduct`: ProductOrderResponse
+	fmt.Fprintf(os.Stdout, "Response from `ProductsAPI.OrdersUpdateProduct`: %v\n", resp)
 }
 ```
 

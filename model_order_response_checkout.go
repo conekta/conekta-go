@@ -39,6 +39,8 @@ type OrderResponseCheckout struct {
 	OnDemandEnabled NullableBool `json:"on_demand_enabled,omitempty"`
 	PaidPaymentsCount *int32 `json:"paid_payments_count,omitempty"`
 	Recurrent *bool `json:"recurrent,omitempty"`
+	// number of seconds to wait before redirecting to the success_url
+	RedirectionTime NullableInt32 `json:"redirection_time,omitempty"`
 	Slug *string `json:"slug,omitempty"`
 	SmsSent *int32 `json:"sms_sent,omitempty"`
 	SuccessUrl *string `json:"success_url,omitempty"`
@@ -683,6 +685,48 @@ func (o *OrderResponseCheckout) SetRecurrent(v bool) {
 	o.Recurrent = &v
 }
 
+// GetRedirectionTime returns the RedirectionTime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *OrderResponseCheckout) GetRedirectionTime() int32 {
+	if o == nil || IsNil(o.RedirectionTime.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.RedirectionTime.Get()
+}
+
+// GetRedirectionTimeOk returns a tuple with the RedirectionTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OrderResponseCheckout) GetRedirectionTimeOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RedirectionTime.Get(), o.RedirectionTime.IsSet()
+}
+
+// HasRedirectionTime returns a boolean if a field has been set.
+func (o *OrderResponseCheckout) HasRedirectionTime() bool {
+	if o != nil && o.RedirectionTime.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRedirectionTime gets a reference to the given NullableInt32 and assigns it to the RedirectionTime field.
+func (o *OrderResponseCheckout) SetRedirectionTime(v int32) {
+	o.RedirectionTime.Set(&v)
+}
+// SetRedirectionTimeNil sets the value for RedirectionTime to be an explicit nil
+func (o *OrderResponseCheckout) SetRedirectionTimeNil() {
+	o.RedirectionTime.Set(nil)
+}
+
+// UnsetRedirectionTime ensures that no value is present for RedirectionTime, not even an explicit nil
+func (o *OrderResponseCheckout) UnsetRedirectionTime() {
+	o.RedirectionTime.Unset()
+}
+
 // GetSlug returns the Slug field value if set, zero value otherwise.
 func (o *OrderResponseCheckout) GetSlug() string {
 	if o == nil || IsNil(o.Slug) {
@@ -973,6 +1017,9 @@ func (o OrderResponseCheckout) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Recurrent) {
 		toSerialize["recurrent"] = o.Recurrent
+	}
+	if o.RedirectionTime.IsSet() {
+		toSerialize["redirection_time"] = o.RedirectionTime.Get()
 	}
 	if !IsNil(o.Slug) {
 		toSerialize["slug"] = o.Slug

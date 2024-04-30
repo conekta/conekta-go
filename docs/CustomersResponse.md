@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**[]CustomerResponse**](CustomerResponse.md) |  | [optional] 
 **HasMore** | **bool** | Indicates if there are more pages to be requested | 
 **Object** | **string** | Object type, in this case is list | 
 **NextPageUrl** | Pointer to **NullableString** | URL of the next page. | [optional] 
 **PreviousPageUrl** | Pointer to **NullableString** | Url of the previous page. | [optional] 
+**Data** | Pointer to [**[]CustomerResponse**](CustomerResponse.md) |  | [optional] 
 
 ## Methods
 
@@ -28,31 +28,6 @@ will change when the set of required properties is changed
 NewCustomersResponseWithDefaults instantiates a new CustomersResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetData
-
-`func (o *CustomersResponse) GetData() []CustomerResponse`
-
-GetData returns the Data field if non-nil, zero value otherwise.
-
-### GetDataOk
-
-`func (o *CustomersResponse) GetDataOk() (*[]CustomerResponse, bool)`
-
-GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetData
-
-`func (o *CustomersResponse) SetData(v []CustomerResponse)`
-
-SetData sets Data field to given value.
-
-### HasData
-
-`func (o *CustomersResponse) HasData() bool`
-
-HasData returns a boolean if a field has been set.
 
 ### GetHasMore
 
@@ -164,6 +139,31 @@ HasPreviousPageUrl returns a boolean if a field has been set.
 `func (o *CustomersResponse) UnsetPreviousPageUrl()`
 
 UnsetPreviousPageUrl ensures that no value is present for PreviousPageUrl, not even an explicit nil
+### GetData
+
+`func (o *CustomersResponse) GetData() []CustomerResponse`
+
+GetData returns the Data field if non-nil, zero value otherwise.
+
+### GetDataOk
+
+`func (o *CustomersResponse) GetDataOk() (*[]CustomerResponse, bool)`
+
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetData
+
+`func (o *CustomersResponse) SetData(v []CustomerResponse)`
+
+SetData sets Data field to given value.
+
+### HasData
+
+`func (o *CustomersResponse) HasData() bool`
+
+HasData returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

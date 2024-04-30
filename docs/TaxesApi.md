@@ -24,27 +24,27 @@ Create Tax
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    orderTaxRequest := *openapiclient.NewOrderTaxRequest(int64(100), "testing") // OrderTaxRequest | requested field for a taxes
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	orderTaxRequest := *openapiclient.NewOrderTaxRequest(int64(100), "testing") // OrderTaxRequest | requested field for a taxes
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TaxesAPI.OrdersCreateTaxes(context.Background(), id).OrderTaxRequest(orderTaxRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TaxesAPI.OrdersCreateTaxes``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrdersCreateTaxes`: UpdateOrderTaxResponse
-    fmt.Fprintf(os.Stdout, "Response from `TaxesAPI.OrdersCreateTaxes`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TaxesAPI.OrdersCreateTaxes(context.Background(), id).OrderTaxRequest(orderTaxRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TaxesAPI.OrdersCreateTaxes``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrdersCreateTaxes`: UpdateOrderTaxResponse
+	fmt.Fprintf(os.Stdout, "Response from `TaxesAPI.OrdersCreateTaxes`: %v\n", resp)
 }
 ```
 
@@ -100,27 +100,27 @@ Delete Tax
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    taxId := "tax_lin_2tQ974hSHcsdeSZHG" // string | identifier
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	taxId := "tax_lin_2tQ974hSHcsdeSZHG" // string | identifier
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TaxesAPI.OrdersDeleteTaxes(context.Background(), id, taxId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TaxesAPI.OrdersDeleteTaxes``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrdersDeleteTaxes`: UpdateOrderTaxResponse
-    fmt.Fprintf(os.Stdout, "Response from `TaxesAPI.OrdersDeleteTaxes`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TaxesAPI.OrdersDeleteTaxes(context.Background(), id, taxId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TaxesAPI.OrdersDeleteTaxes``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrdersDeleteTaxes`: UpdateOrderTaxResponse
+	fmt.Fprintf(os.Stdout, "Response from `TaxesAPI.OrdersDeleteTaxes`: %v\n", resp)
 }
 ```
 
@@ -177,28 +177,28 @@ Update Tax
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    taxId := "tax_lin_2tQ974hSHcsdeSZHG" // string | identifier
-    updateOrderTaxRequest := *openapiclient.NewUpdateOrderTaxRequest() // UpdateOrderTaxRequest | requested field for taxes
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	taxId := "tax_lin_2tQ974hSHcsdeSZHG" // string | identifier
+	updateOrderTaxRequest := *openapiclient.NewUpdateOrderTaxRequest() // UpdateOrderTaxRequest | requested field for taxes
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TaxesAPI.OrdersUpdateTaxes(context.Background(), id, taxId).UpdateOrderTaxRequest(updateOrderTaxRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TaxesAPI.OrdersUpdateTaxes``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrdersUpdateTaxes`: UpdateOrderTaxResponse
-    fmt.Fprintf(os.Stdout, "Response from `TaxesAPI.OrdersUpdateTaxes`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TaxesAPI.OrdersUpdateTaxes(context.Background(), id, taxId).UpdateOrderTaxRequest(updateOrderTaxRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TaxesAPI.OrdersUpdateTaxes``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrdersUpdateTaxes`: UpdateOrderTaxResponse
+	fmt.Fprintf(os.Stdout, "Response from `TaxesAPI.OrdersUpdateTaxes`: %v\n", resp)
 }
 ```
 

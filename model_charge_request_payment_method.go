@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -265,8 +266,8 @@ func (o ChargeRequestPaymentMethod) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ChargeRequestPaymentMethod) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *ChargeRequestPaymentMethod) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -275,7 +276,7 @@ func (o *ChargeRequestPaymentMethod) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -289,7 +290,9 @@ func (o *ChargeRequestPaymentMethod) UnmarshalJSON(bytes []byte) (err error) {
 
 	varChargeRequestPaymentMethod := _ChargeRequestPaymentMethod{}
 
-	err = json.Unmarshal(bytes, &varChargeRequestPaymentMethod)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varChargeRequestPaymentMethod)
 
 	if err != nil {
 		return err

@@ -26,26 +26,26 @@ Create Plan
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    planRequest := *openapiclient.NewPlanRequest(int32(10000), int32(1), "Interval_example", "Extra Plan3") // PlanRequest | requested field for plan
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	planRequest := *openapiclient.NewPlanRequest(int32(10000), int32(1), "Interval_example", "Extra Plan3") // PlanRequest | requested field for plan
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PlansAPI.CreatePlan(context.Background()).PlanRequest(planRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PlansAPI.CreatePlan``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreatePlan`: PlanResponse
-    fmt.Fprintf(os.Stdout, "Response from `PlansAPI.CreatePlan`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PlansAPI.CreatePlan(context.Background()).PlanRequest(planRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PlansAPI.CreatePlan``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreatePlan`: PlanResponse
+	fmt.Fprintf(os.Stdout, "Response from `PlansAPI.CreatePlan`: %v\n", resp)
 }
 ```
 
@@ -94,25 +94,25 @@ Delete Plan
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PlansAPI.DeletePlan(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PlansAPI.DeletePlan``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeletePlan`: PlanResponse
-    fmt.Fprintf(os.Stdout, "Response from `PlansAPI.DeletePlan`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PlansAPI.DeletePlan(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PlansAPI.DeletePlan``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeletePlan`: PlanResponse
+	fmt.Fprintf(os.Stdout, "Response from `PlansAPI.DeletePlan`: %v\n", resp)
 }
 ```
 
@@ -164,26 +164,26 @@ Get Plan
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PlansAPI.GetPlan(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PlansAPI.GetPlan``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPlan`: PlanResponse
-    fmt.Fprintf(os.Stdout, "Response from `PlansAPI.GetPlan`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PlansAPI.GetPlan(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PlansAPI.GetPlan``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPlan`: PlanResponse
+	fmt.Fprintf(os.Stdout, "Response from `PlansAPI.GetPlan`: %v\n", resp)
 }
 ```
 
@@ -236,29 +236,29 @@ Get A List of Plans
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
-    limit := int32(56) // int32 | The numbers of items to return, the maximum value is 250 (optional) (default to 20)
-    search := "search_example" // string | General order search, e.g. by mail, reference etc. (optional)
-    next := "next_example" // string | next page (optional)
-    previous := "previous_example" // string | previous page (optional)
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	limit := int32(56) // int32 | The numbers of items to return, the maximum value is 250 (optional) (default to 20)
+	search := "search_example" // string | General order search, e.g. by mail, reference etc. (optional)
+	next := "next_example" // string | next page (optional)
+	previous := "previous_example" // string | previous page (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PlansAPI.GetPlans(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PlansAPI.GetPlans``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPlans`: GetPlansResponse
-    fmt.Fprintf(os.Stdout, "Response from `PlansAPI.GetPlans`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PlansAPI.GetPlans(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PlansAPI.GetPlans``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPlans`: GetPlansResponse
+	fmt.Fprintf(os.Stdout, "Response from `PlansAPI.GetPlans`: %v\n", resp)
 }
 ```
 
@@ -310,27 +310,27 @@ Update Plan
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    planUpdateRequest := *openapiclient.NewPlanUpdateRequest() // PlanUpdateRequest | requested field for plan
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	planUpdateRequest := *openapiclient.NewPlanUpdateRequest() // PlanUpdateRequest | requested field for plan
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PlansAPI.UpdatePlan(context.Background(), id).PlanUpdateRequest(planUpdateRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PlansAPI.UpdatePlan``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdatePlan`: PlanResponse
-    fmt.Fprintf(os.Stdout, "Response from `PlansAPI.UpdatePlan`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PlansAPI.UpdatePlan(context.Background(), id).PlanUpdateRequest(planUpdateRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PlansAPI.UpdatePlan``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdatePlan`: PlanResponse
+	fmt.Fprintf(os.Stdout, "Response from `PlansAPI.UpdatePlan`: %v\n", resp)
 }
 ```
 

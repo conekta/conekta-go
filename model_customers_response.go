@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,7 +22,6 @@ var _ MappedNullable = &CustomersResponse{}
 
 // CustomersResponse struct for CustomersResponse
 type CustomersResponse struct {
-	Data []CustomerResponse `json:"data,omitempty"`
 	// Indicates if there are more pages to be requested
 	HasMore bool `json:"has_more"`
 	// Object type, in this case is list
@@ -30,6 +30,7 @@ type CustomersResponse struct {
 	NextPageUrl NullableString `json:"next_page_url,omitempty"`
 	// Url of the previous page.
 	PreviousPageUrl NullableString `json:"previous_page_url,omitempty"`
+	Data []CustomerResponse `json:"data,omitempty"`
 }
 
 type _CustomersResponse CustomersResponse
@@ -51,38 +52,6 @@ func NewCustomersResponse(hasMore bool, object string) *CustomersResponse {
 func NewCustomersResponseWithDefaults() *CustomersResponse {
 	this := CustomersResponse{}
 	return &this
-}
-
-// GetData returns the Data field value if set, zero value otherwise.
-func (o *CustomersResponse) GetData() []CustomerResponse {
-	if o == nil || IsNil(o.Data) {
-		var ret []CustomerResponse
-		return ret
-	}
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CustomersResponse) GetDataOk() ([]CustomerResponse, bool) {
-	if o == nil || IsNil(o.Data) {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// HasData returns a boolean if a field has been set.
-func (o *CustomersResponse) HasData() bool {
-	if o != nil && !IsNil(o.Data) {
-		return true
-	}
-
-	return false
-}
-
-// SetData gets a reference to the given []CustomerResponse and assigns it to the Data field.
-func (o *CustomersResponse) SetData(v []CustomerResponse) {
-	o.Data = v
 }
 
 // GetHasMore returns the HasMore field value
@@ -217,6 +186,38 @@ func (o *CustomersResponse) UnsetPreviousPageUrl() {
 	o.PreviousPageUrl.Unset()
 }
 
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *CustomersResponse) GetData() []CustomerResponse {
+	if o == nil || IsNil(o.Data) {
+		var ret []CustomerResponse
+		return ret
+	}
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomersResponse) GetDataOk() ([]CustomerResponse, bool) {
+	if o == nil || IsNil(o.Data) {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// HasData returns a boolean if a field has been set.
+func (o *CustomersResponse) HasData() bool {
+	if o != nil && !IsNil(o.Data) {
+		return true
+	}
+
+	return false
+}
+
+// SetData gets a reference to the given []CustomerResponse and assigns it to the Data field.
+func (o *CustomersResponse) SetData(v []CustomerResponse) {
+	o.Data = v
+}
+
 func (o CustomersResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -227,9 +228,6 @@ func (o CustomersResponse) MarshalJSON() ([]byte, error) {
 
 func (o CustomersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Data) {
-		toSerialize["data"] = o.Data
-	}
 	toSerialize["has_more"] = o.HasMore
 	toSerialize["object"] = o.Object
 	if o.NextPageUrl.IsSet() {
@@ -238,11 +236,14 @@ func (o CustomersResponse) ToMap() (map[string]interface{}, error) {
 	if o.PreviousPageUrl.IsSet() {
 		toSerialize["previous_page_url"] = o.PreviousPageUrl.Get()
 	}
+	if !IsNil(o.Data) {
+		toSerialize["data"] = o.Data
+	}
 	return toSerialize, nil
 }
 
-func (o *CustomersResponse) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *CustomersResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -252,7 +253,7 @@ func (o *CustomersResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -266,7 +267,9 @@ func (o *CustomersResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	varCustomersResponse := _CustomersResponse{}
 
-	err = json.Unmarshal(bytes, &varCustomersResponse)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCustomersResponse)
 
 	if err != nil {
 		return err

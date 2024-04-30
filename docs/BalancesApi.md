@@ -22,24 +22,24 @@ Get a company's balance
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BalancesAPI.GetBalance(context.Background()).AcceptLanguage(acceptLanguage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BalancesAPI.GetBalance``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetBalance`: BalanceResponse
-    fmt.Fprintf(os.Stdout, "Response from `BalancesAPI.GetBalance`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BalancesAPI.GetBalance(context.Background()).AcceptLanguage(acceptLanguage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BalancesAPI.GetBalance``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetBalance`: BalanceResponse
+	fmt.Fprintf(os.Stdout, "Response from `BalancesAPI.GetBalance`: %v\n", resp)
 }
 ```
 

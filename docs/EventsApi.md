@@ -24,26 +24,26 @@ Get Event
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsAPI.GetEvent(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.GetEvent``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetEvent`: EventResponse
-    fmt.Fprintf(os.Stdout, "Response from `EventsAPI.GetEvent`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.GetEvent(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.GetEvent``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetEvent`: EventResponse
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.GetEvent`: %v\n", resp)
 }
 ```
 
@@ -96,29 +96,29 @@ Get list of Events
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
-    limit := int32(56) // int32 | The numbers of items to return, the maximum value is 250 (optional) (default to 20)
-    search := "search_example" // string | General order search, e.g. by mail, reference etc. (optional)
-    next := "next_example" // string | next page (optional)
-    previous := "previous_example" // string | previous page (optional)
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	limit := int32(56) // int32 | The numbers of items to return, the maximum value is 250 (optional) (default to 20)
+	search := "search_example" // string | General order search, e.g. by mail, reference etc. (optional)
+	next := "next_example" // string | next page (optional)
+	previous := "previous_example" // string | previous page (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsAPI.GetEvents(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.GetEvents``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetEvents`: GetEventsResponse
-    fmt.Fprintf(os.Stdout, "Response from `EventsAPI.GetEvents`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.GetEvents(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.GetEvents``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetEvents`: GetEventsResponse
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.GetEvents`: %v\n", resp)
 }
 ```
 
@@ -172,26 +172,26 @@ Resend Event
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    eventId := "6463d6e35a4c3e001819e760" // string | event identifier
-    webhookLogId := "webhl_2tsv6NzWJHBWCkqGt" // string | webhook log identifier
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	eventId := "6463d6e35a4c3e001819e760" // string | event identifier
+	webhookLogId := "webhl_2tsv6NzWJHBWCkqGt" // string | webhook log identifier
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsAPI.ResendEvent(context.Background(), eventId, webhookLogId).AcceptLanguage(acceptLanguage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.ResendEvent``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ResendEvent`: EventsResendResponse
-    fmt.Fprintf(os.Stdout, "Response from `EventsAPI.ResendEvent`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.ResendEvent(context.Background(), eventId, webhookLogId).AcceptLanguage(acceptLanguage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.ResendEvent``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ResendEvent`: EventsResendResponse
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.ResendEvent`: %v\n", resp)
 }
 ```
 

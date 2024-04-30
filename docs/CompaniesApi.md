@@ -23,28 +23,28 @@ Get List of Companies
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    limit := int32(56) // int32 | The numbers of items to return, the maximum value is 250 (optional) (default to 20)
-    search := "search_example" // string | General order search, e.g. by mail, reference etc. (optional)
-    next := "next_example" // string | next page (optional)
-    previous := "previous_example" // string | previous page (optional)
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	limit := int32(56) // int32 | The numbers of items to return, the maximum value is 250 (optional) (default to 20)
+	search := "search_example" // string | General order search, e.g. by mail, reference etc. (optional)
+	next := "next_example" // string | next page (optional)
+	previous := "previous_example" // string | previous page (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CompaniesAPI.GetCompanies(context.Background()).AcceptLanguage(acceptLanguage).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CompaniesAPI.GetCompanies``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetCompanies`: GetCompaniesResponse
-    fmt.Fprintf(os.Stdout, "Response from `CompaniesAPI.GetCompanies`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CompaniesAPI.GetCompanies(context.Background()).AcceptLanguage(acceptLanguage).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CompaniesAPI.GetCompanies``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetCompanies`: GetCompaniesResponse
+	fmt.Fprintf(os.Stdout, "Response from `CompaniesAPI.GetCompanies`: %v\n", resp)
 }
 ```
 
@@ -95,25 +95,25 @@ Get Company
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CompaniesAPI.GetCompany(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CompaniesAPI.GetCompany``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetCompany`: CompanyResponse
-    fmt.Fprintf(os.Stdout, "Response from `CompaniesAPI.GetCompany`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CompaniesAPI.GetCompany(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CompaniesAPI.GetCompany``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetCompany`: CompanyResponse
+	fmt.Fprintf(os.Stdout, "Response from `CompaniesAPI.GetCompany`: %v\n", resp)
 }
 ```
 

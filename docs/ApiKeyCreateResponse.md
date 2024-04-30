@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthenticationToken** | Pointer to **string** | It is occupied as a user when authenticated with basic authentication, with a blank password. This value will only appear once, in the request to create a new key. Copy and save it in a safe place. | [optional] 
 **Active** | Pointer to **bool** | Indicates if the api key is active | [optional] 
 **CreatedAt** | Pointer to **int64** | Unix timestamp in seconds of when the api key was created | [optional] 
 **UpdatedAt** | Pointer to **int64** | Unix timestamp in seconds of when the api key was last updated | [optional] 
@@ -16,6 +15,7 @@ Name | Type | Description | Notes
 **Object** | Pointer to **string** | Object name, value is &#39;api_key&#39; | [optional] 
 **Prefix** | Pointer to **string** | The first few characters of the authentication_token | [optional] 
 **Role** | Pointer to **string** | Indicates if the api key is private or public | [optional] 
+**AuthenticationToken** | Pointer to **string** | It is occupied as a user when authenticated with basic authentication, with a blank password. This value will only appear once, in the request to create a new key. Copy and save it in a safe place. | [optional] 
 
 ## Methods
 
@@ -35,31 +35,6 @@ will change when the set of required properties is changed
 NewApiKeyCreateResponseWithDefaults instantiates a new ApiKeyCreateResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetAuthenticationToken
-
-`func (o *ApiKeyCreateResponse) GetAuthenticationToken() string`
-
-GetAuthenticationToken returns the AuthenticationToken field if non-nil, zero value otherwise.
-
-### GetAuthenticationTokenOk
-
-`func (o *ApiKeyCreateResponse) GetAuthenticationTokenOk() (*string, bool)`
-
-GetAuthenticationTokenOk returns a tuple with the AuthenticationToken field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAuthenticationToken
-
-`func (o *ApiKeyCreateResponse) SetAuthenticationToken(v string)`
-
-SetAuthenticationToken sets AuthenticationToken field to given value.
-
-### HasAuthenticationToken
-
-`func (o *ApiKeyCreateResponse) HasAuthenticationToken() bool`
-
-HasAuthenticationToken returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -345,6 +320,31 @@ SetRole sets Role field to given value.
 `func (o *ApiKeyCreateResponse) HasRole() bool`
 
 HasRole returns a boolean if a field has been set.
+
+### GetAuthenticationToken
+
+`func (o *ApiKeyCreateResponse) GetAuthenticationToken() string`
+
+GetAuthenticationToken returns the AuthenticationToken field if non-nil, zero value otherwise.
+
+### GetAuthenticationTokenOk
+
+`func (o *ApiKeyCreateResponse) GetAuthenticationTokenOk() (*string, bool)`
+
+GetAuthenticationTokenOk returns a tuple with the AuthenticationToken field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticationToken
+
+`func (o *ApiKeyCreateResponse) SetAuthenticationToken(v string)`
+
+SetAuthenticationToken sets AuthenticationToken field to given value.
+
+### HasAuthenticationToken
+
+`func (o *ApiKeyCreateResponse) HasAuthenticationToken() bool`
+
+HasAuthenticationToken returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

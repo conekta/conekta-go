@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -32,7 +33,7 @@ type PaymentMethodBankTransfer struct {
 	IssuingAccountNumber NullableString `json:"issuing_account_number,omitempty"`
 	IssuingAccountHolderName NullableString `json:"issuing_account_holder_name,omitempty"`
 	IssuingAccountTaxId NullableString `json:"issuing_account_tax_id,omitempty"`
-	PaymentAttempts []map[string]interface{} `json:"payment_attempts,omitempty"`
+	PaymentAttempts []interface{} `json:"payment_attempts,omitempty"`
 	ReceivingAccountHolderName NullableString `json:"receiving_account_holder_name,omitempty"`
 	ReceivingAccountNumber *string `json:"receiving_account_number,omitempty"`
 	ReceivingAccountBank *string `json:"receiving_account_bank,omitempty"`
@@ -466,9 +467,9 @@ func (o *PaymentMethodBankTransfer) UnsetIssuingAccountTaxId() {
 }
 
 // GetPaymentAttempts returns the PaymentAttempts field value if set, zero value otherwise.
-func (o *PaymentMethodBankTransfer) GetPaymentAttempts() []map[string]interface{} {
+func (o *PaymentMethodBankTransfer) GetPaymentAttempts() []interface{} {
 	if o == nil || IsNil(o.PaymentAttempts) {
-		var ret []map[string]interface{}
+		var ret []interface{}
 		return ret
 	}
 	return o.PaymentAttempts
@@ -476,7 +477,7 @@ func (o *PaymentMethodBankTransfer) GetPaymentAttempts() []map[string]interface{
 
 // GetPaymentAttemptsOk returns a tuple with the PaymentAttempts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethodBankTransfer) GetPaymentAttemptsOk() ([]map[string]interface{}, bool) {
+func (o *PaymentMethodBankTransfer) GetPaymentAttemptsOk() ([]interface{}, bool) {
 	if o == nil || IsNil(o.PaymentAttempts) {
 		return nil, false
 	}
@@ -492,8 +493,8 @@ func (o *PaymentMethodBankTransfer) HasPaymentAttempts() bool {
 	return false
 }
 
-// SetPaymentAttempts gets a reference to the given []map[string]interface{} and assigns it to the PaymentAttempts field.
-func (o *PaymentMethodBankTransfer) SetPaymentAttempts(v []map[string]interface{}) {
+// SetPaymentAttempts gets a reference to the given []interface{} and assigns it to the PaymentAttempts field.
+func (o *PaymentMethodBankTransfer) SetPaymentAttempts(v []interface{}) {
 	o.PaymentAttempts = v
 }
 
@@ -794,8 +795,8 @@ func (o PaymentMethodBankTransfer) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *PaymentMethodBankTransfer) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *PaymentMethodBankTransfer) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -804,7 +805,7 @@ func (o *PaymentMethodBankTransfer) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -818,7 +819,9 @@ func (o *PaymentMethodBankTransfer) UnmarshalJSON(bytes []byte) (err error) {
 
 	varPaymentMethodBankTransfer := _PaymentMethodBankTransfer{}
 
-	err = json.Unmarshal(bytes, &varPaymentMethodBankTransfer)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPaymentMethodBankTransfer)
 
 	if err != nil {
 		return err

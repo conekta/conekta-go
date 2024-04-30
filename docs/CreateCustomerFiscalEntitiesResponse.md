@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | [**CustomerFiscalEntitiesRequestAddress**](CustomerFiscalEntitiesRequestAddress.md) |  | 
+**Address** | [**CustomerAddress**](CustomerAddress.md) |  | 
 **TaxId** | Pointer to **string** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
 **Phone** | Pointer to **string** |  | [optional] 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewCreateCustomerFiscalEntitiesResponse
 
-`func NewCreateCustomerFiscalEntitiesResponse(address CustomerFiscalEntitiesRequestAddress, id string, object string, createdAt int64, ) *CreateCustomerFiscalEntitiesResponse`
+`func NewCreateCustomerFiscalEntitiesResponse(address CustomerAddress, id string, object string, createdAt int64, ) *CreateCustomerFiscalEntitiesResponse`
 
 NewCreateCustomerFiscalEntitiesResponse instantiates a new CreateCustomerFiscalEntitiesResponse object
 This constructor will assign default values to properties that have it defined,
@@ -37,20 +37,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAddress
 
-`func (o *CreateCustomerFiscalEntitiesResponse) GetAddress() CustomerFiscalEntitiesRequestAddress`
+`func (o *CreateCustomerFiscalEntitiesResponse) GetAddress() CustomerAddress`
 
 GetAddress returns the Address field if non-nil, zero value otherwise.
 
 ### GetAddressOk
 
-`func (o *CreateCustomerFiscalEntitiesResponse) GetAddressOk() (*CustomerFiscalEntitiesRequestAddress, bool)`
+`func (o *CreateCustomerFiscalEntitiesResponse) GetAddressOk() (*CustomerAddress, bool)`
 
 GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddress
 
-`func (o *CreateCustomerFiscalEntitiesResponse) SetAddress(v CustomerFiscalEntitiesRequestAddress)`
+`func (o *CreateCustomerFiscalEntitiesResponse) SetAddress(v CustomerAddress)`
 
 SetAddress sets Address field to given value.
 

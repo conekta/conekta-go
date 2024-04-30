@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Object** | Pointer to **string** |  | [optional] 
 **CustomerCustomReference** | Pointer to **NullableString** | Custom reference | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
 **Phone** | Pointer to **string** |  | [optional] 
 **Corporate** | Pointer to **bool** |  | [optional] [default to false]
+**Object** | Pointer to **string** |  | [optional] 
 **CustomerId** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -30,31 +30,6 @@ will change when the set of required properties is changed
 NewOrderResponseCustomerInfoWithDefaults instantiates a new OrderResponseCustomerInfo object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetObject
-
-`func (o *OrderResponseCustomerInfo) GetObject() string`
-
-GetObject returns the Object field if non-nil, zero value otherwise.
-
-### GetObjectOk
-
-`func (o *OrderResponseCustomerInfo) GetObjectOk() (*string, bool)`
-
-GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetObject
-
-`func (o *OrderResponseCustomerInfo) SetObject(v string)`
-
-SetObject sets Object field to given value.
-
-### HasObject
-
-`func (o *OrderResponseCustomerInfo) HasObject() bool`
-
-HasObject returns a boolean if a field has been set.
 
 ### GetCustomerCustomReference
 
@@ -190,6 +165,31 @@ SetCorporate sets Corporate field to given value.
 `func (o *OrderResponseCustomerInfo) HasCorporate() bool`
 
 HasCorporate returns a boolean if a field has been set.
+
+### GetObject
+
+`func (o *OrderResponseCustomerInfo) GetObject() string`
+
+GetObject returns the Object field if non-nil, zero value otherwise.
+
+### GetObjectOk
+
+`func (o *OrderResponseCustomerInfo) GetObjectOk() (*string, bool)`
+
+GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetObject
+
+`func (o *OrderResponseCustomerInfo) SetObject(v string)`
+
+SetObject sets Object field to given value.
+
+### HasObject
+
+`func (o *OrderResponseCustomerInfo) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetCustomerId
 

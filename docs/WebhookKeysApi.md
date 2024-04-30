@@ -26,25 +26,25 @@ Create Webhook Key
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    webhookKeyRequest := *openapiclient.NewWebhookKeyRequest() // WebhookKeyRequest |  (optional)
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	webhookKeyRequest := *openapiclient.NewWebhookKeyRequest() // WebhookKeyRequest |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WebhookKeysAPI.CreateWebhookKey(context.Background()).AcceptLanguage(acceptLanguage).WebhookKeyRequest(webhookKeyRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysAPI.CreateWebhookKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateWebhookKey`: WebhookKeyCreateResponse
-    fmt.Fprintf(os.Stdout, "Response from `WebhookKeysAPI.CreateWebhookKey`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WebhookKeysAPI.CreateWebhookKey(context.Background()).AcceptLanguage(acceptLanguage).WebhookKeyRequest(webhookKeyRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysAPI.CreateWebhookKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateWebhookKey`: WebhookKeyCreateResponse
+	fmt.Fprintf(os.Stdout, "Response from `WebhookKeysAPI.CreateWebhookKey`: %v\n", resp)
 }
 ```
 
@@ -92,25 +92,25 @@ Delete Webhook key
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WebhookKeysAPI.DeleteWebhookKey(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysAPI.DeleteWebhookKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteWebhookKey`: WebhookKeyDeleteResponse
-    fmt.Fprintf(os.Stdout, "Response from `WebhookKeysAPI.DeleteWebhookKey`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WebhookKeysAPI.DeleteWebhookKey(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysAPI.DeleteWebhookKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeleteWebhookKey`: WebhookKeyDeleteResponse
+	fmt.Fprintf(os.Stdout, "Response from `WebhookKeysAPI.DeleteWebhookKey`: %v\n", resp)
 }
 ```
 
@@ -162,26 +162,26 @@ Get Webhook Key
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WebhookKeysAPI.GetWebhookKey(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysAPI.GetWebhookKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetWebhookKey`: WebhookKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `WebhookKeysAPI.GetWebhookKey`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WebhookKeysAPI.GetWebhookKey(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysAPI.GetWebhookKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetWebhookKey`: WebhookKeyResponse
+	fmt.Fprintf(os.Stdout, "Response from `WebhookKeysAPI.GetWebhookKey`: %v\n", resp)
 }
 ```
 
@@ -236,29 +236,29 @@ Get List of Webhook Keys
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
-    limit := int32(56) // int32 | The numbers of items to return, the maximum value is 250 (optional) (default to 20)
-    search := "search_example" // string | General order search, e.g. by mail, reference etc. (optional)
-    next := "next_example" // string | next page (optional)
-    previous := "previous_example" // string | previous page (optional)
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	limit := int32(56) // int32 | The numbers of items to return, the maximum value is 250 (optional) (default to 20)
+	search := "search_example" // string | General order search, e.g. by mail, reference etc. (optional)
+	next := "next_example" // string | next page (optional)
+	previous := "previous_example" // string | previous page (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WebhookKeysAPI.GetWebhookKeys(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysAPI.GetWebhookKeys``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetWebhookKeys`: GetWebhookKeysResponse
-    fmt.Fprintf(os.Stdout, "Response from `WebhookKeysAPI.GetWebhookKeys`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WebhookKeysAPI.GetWebhookKeys(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysAPI.GetWebhookKeys``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetWebhookKeys`: GetWebhookKeysResponse
+	fmt.Fprintf(os.Stdout, "Response from `WebhookKeysAPI.GetWebhookKeys`: %v\n", resp)
 }
 ```
 
@@ -312,26 +312,26 @@ Update Webhook Key
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    webhookKeyUpdateRequest := *openapiclient.NewWebhookKeyUpdateRequest() // WebhookKeyUpdateRequest |  (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	webhookKeyUpdateRequest := *openapiclient.NewWebhookKeyUpdateRequest() // WebhookKeyUpdateRequest |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WebhookKeysAPI.UpdateWebhookKey(context.Background(), id).AcceptLanguage(acceptLanguage).WebhookKeyUpdateRequest(webhookKeyUpdateRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysAPI.UpdateWebhookKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateWebhookKey`: WebhookKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `WebhookKeysAPI.UpdateWebhookKey`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WebhookKeysAPI.UpdateWebhookKey(context.Background(), id).AcceptLanguage(acceptLanguage).WebhookKeyUpdateRequest(webhookKeyUpdateRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WebhookKeysAPI.UpdateWebhookKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateWebhookKey`: WebhookKeyResponse
+	fmt.Fprintf(os.Stdout, "Response from `WebhookKeysAPI.UpdateWebhookKey`: %v\n", resp)
 }
 ```
 

@@ -20,7 +20,7 @@ var _ MappedNullable = &CustomerUpdateFiscalEntitiesRequest{}
 
 // CustomerUpdateFiscalEntitiesRequest struct for CustomerUpdateFiscalEntitiesRequest
 type CustomerUpdateFiscalEntitiesRequest struct {
-	Address *CustomerFiscalEntitiesRequestAddress `json:"address,omitempty"`
+	Address *CustomerAddress `json:"address,omitempty"`
 	TaxId *string `json:"tax_id,omitempty"`
 	Email *string `json:"email,omitempty"`
 	Phone *string `json:"phone,omitempty"`
@@ -46,9 +46,9 @@ func NewCustomerUpdateFiscalEntitiesRequestWithDefaults() *CustomerUpdateFiscalE
 }
 
 // GetAddress returns the Address field value if set, zero value otherwise.
-func (o *CustomerUpdateFiscalEntitiesRequest) GetAddress() CustomerFiscalEntitiesRequestAddress {
+func (o *CustomerUpdateFiscalEntitiesRequest) GetAddress() CustomerAddress {
 	if o == nil || IsNil(o.Address) {
-		var ret CustomerFiscalEntitiesRequestAddress
+		var ret CustomerAddress
 		return ret
 	}
 	return *o.Address
@@ -56,7 +56,7 @@ func (o *CustomerUpdateFiscalEntitiesRequest) GetAddress() CustomerFiscalEntitie
 
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerUpdateFiscalEntitiesRequest) GetAddressOk() (*CustomerFiscalEntitiesRequestAddress, bool) {
+func (o *CustomerUpdateFiscalEntitiesRequest) GetAddressOk() (*CustomerAddress, bool) {
 	if o == nil || IsNil(o.Address) {
 		return nil, false
 	}
@@ -72,8 +72,8 @@ func (o *CustomerUpdateFiscalEntitiesRequest) HasAddress() bool {
 	return false
 }
 
-// SetAddress gets a reference to the given CustomerFiscalEntitiesRequestAddress and assigns it to the Address field.
-func (o *CustomerUpdateFiscalEntitiesRequest) SetAddress(v CustomerFiscalEntitiesRequestAddress) {
+// SetAddress gets a reference to the given CustomerAddress and assigns it to the Address field.
+func (o *CustomerUpdateFiscalEntitiesRequest) SetAddress(v CustomerAddress) {
 	o.Address = &v
 }
 

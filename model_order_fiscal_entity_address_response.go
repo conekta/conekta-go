@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -315,8 +316,8 @@ func (o OrderFiscalEntityAddressResponse) ToMap() (map[string]interface{}, error
 	return toSerialize, nil
 }
 
-func (o *OrderFiscalEntityAddressResponse) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *OrderFiscalEntityAddressResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -329,7 +330,7 @@ func (o *OrderFiscalEntityAddressResponse) UnmarshalJSON(bytes []byte) (err erro
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -343,7 +344,9 @@ func (o *OrderFiscalEntityAddressResponse) UnmarshalJSON(bytes []byte) (err erro
 
 	varOrderFiscalEntityAddressResponse := _OrderFiscalEntityAddressResponse{}
 
-	err = json.Unmarshal(bytes, &varOrderFiscalEntityAddressResponse)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varOrderFiscalEntityAddressResponse)
 
 	if err != nil {
 		return err

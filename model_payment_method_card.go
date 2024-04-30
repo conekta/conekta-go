@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -31,7 +32,7 @@ type PaymentMethodCard struct {
 	Country *string `json:"country,omitempty"`
 	ExpMonth *string `json:"exp_month,omitempty"`
 	ExpYear *string `json:"exp_year,omitempty"`
-	FraudIndicators []map[string]interface{} `json:"fraud_indicators,omitempty"`
+	FraudIndicators []interface{} `json:"fraud_indicators,omitempty"`
 	Issuer *string `json:"issuer,omitempty"`
 	Last4 *string `json:"last4,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -338,9 +339,9 @@ func (o *PaymentMethodCard) SetExpYear(v string) {
 }
 
 // GetFraudIndicators returns the FraudIndicators field value if set, zero value otherwise.
-func (o *PaymentMethodCard) GetFraudIndicators() []map[string]interface{} {
+func (o *PaymentMethodCard) GetFraudIndicators() []interface{} {
 	if o == nil || IsNil(o.FraudIndicators) {
-		var ret []map[string]interface{}
+		var ret []interface{}
 		return ret
 	}
 	return o.FraudIndicators
@@ -348,7 +349,7 @@ func (o *PaymentMethodCard) GetFraudIndicators() []map[string]interface{} {
 
 // GetFraudIndicatorsOk returns a tuple with the FraudIndicators field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethodCard) GetFraudIndicatorsOk() ([]map[string]interface{}, bool) {
+func (o *PaymentMethodCard) GetFraudIndicatorsOk() ([]interface{}, bool) {
 	if o == nil || IsNil(o.FraudIndicators) {
 		return nil, false
 	}
@@ -364,8 +365,8 @@ func (o *PaymentMethodCard) HasFraudIndicators() bool {
 	return false
 }
 
-// SetFraudIndicators gets a reference to the given []map[string]interface{} and assigns it to the FraudIndicators field.
-func (o *PaymentMethodCard) SetFraudIndicators(v []map[string]interface{}) {
+// SetFraudIndicators gets a reference to the given []interface{} and assigns it to the FraudIndicators field.
+func (o *PaymentMethodCard) SetFraudIndicators(v []interface{}) {
 	o.FraudIndicators = v
 }
 
@@ -515,8 +516,8 @@ func (o PaymentMethodCard) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *PaymentMethodCard) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *PaymentMethodCard) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -525,7 +526,7 @@ func (o *PaymentMethodCard) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -539,7 +540,9 @@ func (o *PaymentMethodCard) UnmarshalJSON(bytes []byte) (err error) {
 
 	varPaymentMethodCard := _PaymentMethodCard{}
 
-	err = json.Unmarshal(bytes, &varPaymentMethodCard)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPaymentMethodCard)
 
 	if err != nil {
 		return err

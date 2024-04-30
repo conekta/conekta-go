@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,7 +22,7 @@ var _ MappedNullable = &CustomerFiscalEntitiesRequest{}
 
 // CustomerFiscalEntitiesRequest struct for CustomerFiscalEntitiesRequest
 type CustomerFiscalEntitiesRequest struct {
-	Address CustomerFiscalEntitiesRequestAddress `json:"address"`
+	Address CustomerAddress `json:"address"`
 	TaxId *string `json:"tax_id,omitempty"`
 	Email *string `json:"email,omitempty"`
 	Phone *string `json:"phone,omitempty"`
@@ -35,7 +36,7 @@ type _CustomerFiscalEntitiesRequest CustomerFiscalEntitiesRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustomerFiscalEntitiesRequest(address CustomerFiscalEntitiesRequestAddress) *CustomerFiscalEntitiesRequest {
+func NewCustomerFiscalEntitiesRequest(address CustomerAddress) *CustomerFiscalEntitiesRequest {
 	this := CustomerFiscalEntitiesRequest{}
 	this.Address = address
 	return &this
@@ -50,9 +51,9 @@ func NewCustomerFiscalEntitiesRequestWithDefaults() *CustomerFiscalEntitiesReque
 }
 
 // GetAddress returns the Address field value
-func (o *CustomerFiscalEntitiesRequest) GetAddress() CustomerFiscalEntitiesRequestAddress {
+func (o *CustomerFiscalEntitiesRequest) GetAddress() CustomerAddress {
 	if o == nil {
-		var ret CustomerFiscalEntitiesRequestAddress
+		var ret CustomerAddress
 		return ret
 	}
 
@@ -61,7 +62,7 @@ func (o *CustomerFiscalEntitiesRequest) GetAddress() CustomerFiscalEntitiesReque
 
 // GetAddressOk returns a tuple with the Address field value
 // and a boolean to check if the value has been set.
-func (o *CustomerFiscalEntitiesRequest) GetAddressOk() (*CustomerFiscalEntitiesRequestAddress, bool) {
+func (o *CustomerFiscalEntitiesRequest) GetAddressOk() (*CustomerAddress, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,7 +70,7 @@ func (o *CustomerFiscalEntitiesRequest) GetAddressOk() (*CustomerFiscalEntitiesR
 }
 
 // SetAddress sets field value
-func (o *CustomerFiscalEntitiesRequest) SetAddress(v CustomerFiscalEntitiesRequestAddress) {
+func (o *CustomerFiscalEntitiesRequest) SetAddress(v CustomerAddress) {
 	o.Address = v
 }
 
@@ -262,8 +263,8 @@ func (o CustomerFiscalEntitiesRequest) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *CustomerFiscalEntitiesRequest) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *CustomerFiscalEntitiesRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -272,7 +273,7 @@ func (o *CustomerFiscalEntitiesRequest) UnmarshalJSON(bytes []byte) (err error) 
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -286,7 +287,9 @@ func (o *CustomerFiscalEntitiesRequest) UnmarshalJSON(bytes []byte) (err error) 
 
 	varCustomerFiscalEntitiesRequest := _CustomerFiscalEntitiesRequest{}
 
-	err = json.Unmarshal(bytes, &varCustomerFiscalEntitiesRequest)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCustomerFiscalEntitiesRequest)
 
 	if err != nil {
 		return err
