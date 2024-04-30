@@ -27,8 +27,11 @@ type DeletedWhitelistRuleResponse struct {
 	// value used for whitelists rule deleted
 	Value *string `json:"value,omitempty"`
 	// use an description for whitelisted rule
-	Description *string `json:"description,omitempty"`
+	Description          *string `json:"description,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DeletedWhitelistRuleResponse DeletedWhitelistRuleResponse
 
 // NewDeletedWhitelistRuleResponse instantiates a new DeletedWhitelistRuleResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -176,7 +179,7 @@ func (o *DeletedWhitelistRuleResponse) SetDescription(v string) {
 }
 
 func (o DeletedWhitelistRuleResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -197,7 +200,36 @@ func (o DeletedWhitelistRuleResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *DeletedWhitelistRuleResponse) UnmarshalJSON(data []byte) (err error) {
+	varDeletedWhitelistRuleResponse := _DeletedWhitelistRuleResponse{}
+
+	err = json.Unmarshal(data, &varDeletedWhitelistRuleResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DeletedWhitelistRuleResponse(varDeletedWhitelistRuleResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "field")
+		delete(additionalProperties, "value")
+		delete(additionalProperties, "description")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDeletedWhitelistRuleResponse struct {
@@ -235,5 +267,3 @@ func (v *NullableDeletedWhitelistRuleResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

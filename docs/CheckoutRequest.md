@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **MonthlyInstallmentsOptions** | Pointer to **[]int32** |  | [optional] 
 **Name** | Pointer to **string** | Reason for payment | [optional] 
 **OnDemandEnabled** | Pointer to **bool** |  | [optional] 
+**RedirectionTime** | Pointer to **int32** | number of seconds to wait before redirecting to the success_url | [optional] 
 **SuccessUrl** | Pointer to **string** | Redirection url back to the site in case of successful payment, applies only to HostedPayment | [optional] 
 **Type** | Pointer to **string** | This field represents the type of checkout | [optional] 
 
@@ -202,6 +203,31 @@ SetOnDemandEnabled sets OnDemandEnabled field to given value.
 `func (o *CheckoutRequest) HasOnDemandEnabled() bool`
 
 HasOnDemandEnabled returns a boolean if a field has been set.
+
+### GetRedirectionTime
+
+`func (o *CheckoutRequest) GetRedirectionTime() int32`
+
+GetRedirectionTime returns the RedirectionTime field if non-nil, zero value otherwise.
+
+### GetRedirectionTimeOk
+
+`func (o *CheckoutRequest) GetRedirectionTimeOk() (*int32, bool)`
+
+GetRedirectionTimeOk returns a tuple with the RedirectionTime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRedirectionTime
+
+`func (o *CheckoutRequest) SetRedirectionTime(v int32)`
+
+SetRedirectionTime sets RedirectionTime field to given value.
+
+### HasRedirectionTime
+
+`func (o *CheckoutRequest) HasRedirectionTime() bool`
+
+HasRedirectionTime returns a boolean if a field has been set.
 
 ### GetSuccessUrl
 

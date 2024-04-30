@@ -21,15 +21,16 @@ var _ MappedNullable = &CustomerAddress{}
 
 // CustomerAddress struct for CustomerAddress
 type CustomerAddress struct {
-	Street1 string `json:"street1"`
-	Street2 *string `json:"street2,omitempty"`
-	PostalCode string `json:"postal_code"`
-	City string `json:"city"`
-	State *string `json:"state,omitempty"`
+	Street1    string  `json:"street1"`
+	Street2    *string `json:"street2,omitempty"`
+	PostalCode string  `json:"postal_code"`
+	City       string  `json:"city"`
+	State      *string `json:"state,omitempty"`
 	// this field follows the [ISO 3166-1 alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
-	Country *string `json:"country,omitempty"`
-	Residential *bool `json:"residential,omitempty"`
-	ExternalNumber *string `json:"external_number,omitempty"`
+	Country              *string `json:"country,omitempty"`
+	Residential          *bool   `json:"residential,omitempty"`
+	ExternalNumber       *string `json:"external_number,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomerAddress CustomerAddress
@@ -291,7 +292,7 @@ func (o *CustomerAddress) SetExternalNumber(v string) {
 }
 
 func (o CustomerAddress) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -318,11 +319,16 @@ func (o CustomerAddress) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExternalNumber) {
 		toSerialize["external_number"] = o.ExternalNumber
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *CustomerAddress) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *CustomerAddress) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -333,13 +339,13 @@ func (o *CustomerAddress) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -347,13 +353,27 @@ func (o *CustomerAddress) UnmarshalJSON(bytes []byte) (err error) {
 
 	varCustomerAddress := _CustomerAddress{}
 
-	err = json.Unmarshal(bytes, &varCustomerAddress)
+	err = json.Unmarshal(data, &varCustomerAddress)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomerAddress(varCustomerAddress)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "street1")
+		delete(additionalProperties, "street2")
+		delete(additionalProperties, "postal_code")
+		delete(additionalProperties, "city")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "country")
+		delete(additionalProperties, "residential")
+		delete(additionalProperties, "external_number")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -393,5 +413,3 @@ func (v *NullableCustomerAddress) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

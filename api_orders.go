@@ -661,6 +661,13 @@ type ApiGetOrdersRequest struct {
 	search *string
 	next *string
 	previous *string
+	paymentStatus *string
+	lastPaymentInfoStatus *string
+	createdAt *int64
+	createdAtGte *int64
+	createdAtLte *int64
+	updatedAtGte *int64
+	updatedAtLte *int64
 }
 
 // Use for knowing which language to use
@@ -696,6 +703,48 @@ func (r ApiGetOrdersRequest) Next(next string) ApiGetOrdersRequest {
 // previous page
 func (r ApiGetOrdersRequest) Previous(previous string) ApiGetOrdersRequest {
 	r.previous = &previous
+	return r
+}
+
+// Filters by order status
+func (r ApiGetOrdersRequest) PaymentStatus(paymentStatus string) ApiGetOrdersRequest {
+	r.paymentStatus = &paymentStatus
+	return r
+}
+
+// Filters by last payment info status
+func (r ApiGetOrdersRequest) LastPaymentInfoStatus(lastPaymentInfoStatus string) ApiGetOrdersRequest {
+	r.lastPaymentInfoStatus = &lastPaymentInfoStatus
+	return r
+}
+
+// created equal to
+func (r ApiGetOrdersRequest) CreatedAt(createdAt int64) ApiGetOrdersRequest {
+	r.createdAt = &createdAt
+	return r
+}
+
+// created at greater than or equal to
+func (r ApiGetOrdersRequest) CreatedAtGte(createdAtGte int64) ApiGetOrdersRequest {
+	r.createdAtGte = &createdAtGte
+	return r
+}
+
+// created at less than or equal to
+func (r ApiGetOrdersRequest) CreatedAtLte(createdAtLte int64) ApiGetOrdersRequest {
+	r.createdAtLte = &createdAtLte
+	return r
+}
+
+// updated at greater than or equal to
+func (r ApiGetOrdersRequest) UpdatedAtGte(updatedAtGte int64) ApiGetOrdersRequest {
+	r.updatedAtGte = &updatedAtGte
+	return r
+}
+
+// updated at less than or equal to
+func (r ApiGetOrdersRequest) UpdatedAtLte(updatedAtLte int64) ApiGetOrdersRequest {
+	r.updatedAtLte = &updatedAtLte
 	return r
 }
 
@@ -753,6 +802,27 @@ func (a *OrdersAPIService) GetOrdersExecute(r ApiGetOrdersRequest) (*GetOrdersRe
 	}
 	if r.previous != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "previous", r.previous, "")
+	}
+	if r.paymentStatus != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "payment_status", r.paymentStatus, "")
+	}
+	if r.lastPaymentInfoStatus != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_payment_info.status", r.lastPaymentInfoStatus, "")
+	}
+	if r.createdAt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created_at", r.createdAt, "")
+	}
+	if r.createdAtGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created_at.gte", r.createdAtGte, "")
+	}
+	if r.createdAtLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created_at.lte", r.createdAtLte, "")
+	}
+	if r.updatedAtGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "updated_at.gte", r.updatedAtGte, "")
+	}
+	if r.updatedAtLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "updated_at.lte", r.updatedAtLte, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

@@ -22,8 +22,11 @@ var _ MappedNullable = &Token{}
 type Token struct {
 	Card NullableTokenCard `json:"card,omitempty"`
 	// Deprecated
-	Checkout NullableTokenCheckout `json:"checkout,omitempty"`
+	Checkout             NullableTokenCheckout `json:"checkout,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Token Token
 
 // NewToken instantiates a new Token object
 // This constructor will assign default values to properties that have it defined,
@@ -74,6 +77,7 @@ func (o *Token) HasCard() bool {
 func (o *Token) SetCard(v TokenCard) {
 	o.Card.Set(&v)
 }
+
 // SetCardNil sets the value for Card to be an explicit nil
 func (o *Token) SetCardNil() {
 	o.Card.Set(nil)
@@ -119,6 +123,7 @@ func (o *Token) HasCheckout() bool {
 func (o *Token) SetCheckout(v TokenCheckout) {
 	o.Checkout.Set(&v)
 }
+
 // SetCheckoutNil sets the value for Checkout to be an explicit nil
 func (o *Token) SetCheckoutNil() {
 	o.Checkout.Set(nil)
@@ -130,7 +135,7 @@ func (o *Token) UnsetCheckout() {
 }
 
 func (o Token) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -145,7 +150,34 @@ func (o Token) ToMap() (map[string]interface{}, error) {
 	if o.Checkout.IsSet() {
 		toSerialize["checkout"] = o.Checkout.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Token) UnmarshalJSON(data []byte) (err error) {
+	varToken := _Token{}
+
+	err = json.Unmarshal(data, &varToken)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Token(varToken)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "card")
+		delete(additionalProperties, "checkout")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableToken struct {
@@ -183,5 +215,3 @@ func (v *NullableToken) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

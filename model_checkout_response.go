@@ -21,32 +21,33 @@ var _ MappedNullable = &CheckoutResponse{}
 
 // CheckoutResponse checkout response
 type CheckoutResponse struct {
-	AllowedPaymentMethods []string `json:"allowed_payment_methods,omitempty"`
-	CanNotExpire *bool `json:"can_not_expire,omitempty"`
-	EmailsSent *int32 `json:"emails_sent,omitempty"`
-	ExcludeCardNetworks []map[string]interface{} `json:"exclude_card_networks,omitempty"`
-	ExpiresAt *int64 `json:"expires_at,omitempty"`
-	FailureUrl *string `json:"failure_url,omitempty"`
-	Force3dsFlow *bool `json:"force_3ds_flow,omitempty"`
-	Id string `json:"id"`
-	Livemode bool `json:"livemode"`
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
-	MonthlyInstallmentsEnabled *bool `json:"monthly_installments_enabled,omitempty"`
-	MonthlyInstallmentsOptions []int32 `json:"monthly_installments_options,omitempty"`
+	AllowedPaymentMethods      []string                 `json:"allowed_payment_methods,omitempty"`
+	CanNotExpire               *bool                    `json:"can_not_expire,omitempty"`
+	EmailsSent                 *int32                   `json:"emails_sent,omitempty"`
+	ExcludeCardNetworks        []map[string]interface{} `json:"exclude_card_networks,omitempty"`
+	ExpiresAt                  *int64                   `json:"expires_at,omitempty"`
+	FailureUrl                 *string                  `json:"failure_url,omitempty"`
+	Force3dsFlow               *bool                    `json:"force_3ds_flow,omitempty"`
+	Id                         string                   `json:"id"`
+	Livemode                   bool                     `json:"livemode"`
+	Metadata                   map[string]interface{}   `json:"metadata,omitempty"`
+	MonthlyInstallmentsEnabled *bool                    `json:"monthly_installments_enabled,omitempty"`
+	MonthlyInstallmentsOptions []int32                  `json:"monthly_installments_options,omitempty"`
 	// Reason for charge
-	Name string `json:"name"`
-	NeedsShippingContact *bool `json:"needs_shipping_contact,omitempty"`
-	Object string `json:"object"`
-	PaidPaymentsCount *int32 `json:"paid_payments_count,omitempty"`
-	PaymentsLimitCount NullableInt32 `json:"payments_limit_count,omitempty"`
-	Recurrent *bool `json:"recurrent,omitempty"`
-	Slug *string `json:"slug,omitempty"`
-	SmsSent *int32 `json:"sms_sent,omitempty"`
-	StartsAt *int32 `json:"starts_at,omitempty"`
-	Status *string `json:"status,omitempty"`
-	SuccessUrl *string `json:"success_url,omitempty"`
-	Type *string `json:"type,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Name                 string        `json:"name"`
+	NeedsShippingContact *bool         `json:"needs_shipping_contact,omitempty"`
+	Object               string        `json:"object"`
+	PaidPaymentsCount    *int32        `json:"paid_payments_count,omitempty"`
+	PaymentsLimitCount   NullableInt32 `json:"payments_limit_count,omitempty"`
+	Recurrent            *bool         `json:"recurrent,omitempty"`
+	Slug                 *string       `json:"slug,omitempty"`
+	SmsSent              *int32        `json:"sms_sent,omitempty"`
+	StartsAt             *int32        `json:"starts_at,omitempty"`
+	Status               *string       `json:"status,omitempty"`
+	SuccessUrl           *string       `json:"success_url,omitempty"`
+	Type                 *string       `json:"type,omitempty"`
+	Url                  *string       `json:"url,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CheckoutResponse CheckoutResponse
@@ -584,6 +585,7 @@ func (o *CheckoutResponse) HasPaymentsLimitCount() bool {
 func (o *CheckoutResponse) SetPaymentsLimitCount(v int32) {
 	o.PaymentsLimitCount.Set(&v)
 }
+
 // SetPaymentsLimitCountNil sets the value for PaymentsLimitCount to be an explicit nil
 func (o *CheckoutResponse) SetPaymentsLimitCountNil() {
 	o.PaymentsLimitCount.Set(nil)
@@ -851,7 +853,7 @@ func (o *CheckoutResponse) SetUrl(v string) {
 }
 
 func (o CheckoutResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -927,11 +929,16 @@ func (o CheckoutResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Url) {
 		toSerialize["url"] = o.Url
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *CheckoutResponse) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *CheckoutResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -943,13 +950,13 @@ func (o *CheckoutResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -957,13 +964,44 @@ func (o *CheckoutResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	varCheckoutResponse := _CheckoutResponse{}
 
-	err = json.Unmarshal(bytes, &varCheckoutResponse)
+	err = json.Unmarshal(data, &varCheckoutResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CheckoutResponse(varCheckoutResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "allowed_payment_methods")
+		delete(additionalProperties, "can_not_expire")
+		delete(additionalProperties, "emails_sent")
+		delete(additionalProperties, "exclude_card_networks")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "failure_url")
+		delete(additionalProperties, "force_3ds_flow")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "livemode")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "monthly_installments_enabled")
+		delete(additionalProperties, "monthly_installments_options")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "needs_shipping_contact")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "paid_payments_count")
+		delete(additionalProperties, "payments_limit_count")
+		delete(additionalProperties, "recurrent")
+		delete(additionalProperties, "slug")
+		delete(additionalProperties, "sms_sent")
+		delete(additionalProperties, "starts_at")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "success_url")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -1003,5 +1041,3 @@ func (v *NullableCheckoutResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -21,8 +21,11 @@ var _ MappedNullable = &WebhookKeyUpdateRequest{}
 // WebhookKeyUpdateRequest struct for WebhookKeyUpdateRequest
 type WebhookKeyUpdateRequest struct {
 	// Indicates if the webhook key is active
-	Active *bool `json:"active,omitempty"`
+	Active               *bool `json:"active,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _WebhookKeyUpdateRequest WebhookKeyUpdateRequest
 
 // NewWebhookKeyUpdateRequest instantiates a new WebhookKeyUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -78,7 +81,7 @@ func (o *WebhookKeyUpdateRequest) SetActive(v bool) {
 }
 
 func (o WebhookKeyUpdateRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -90,7 +93,33 @@ func (o WebhookKeyUpdateRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *WebhookKeyUpdateRequest) UnmarshalJSON(data []byte) (err error) {
+	varWebhookKeyUpdateRequest := _WebhookKeyUpdateRequest{}
+
+	err = json.Unmarshal(data, &varWebhookKeyUpdateRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = WebhookKeyUpdateRequest(varWebhookKeyUpdateRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableWebhookKeyUpdateRequest struct {
@@ -128,5 +157,3 @@ func (v *NullableWebhookKeyUpdateRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

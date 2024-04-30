@@ -21,7 +21,8 @@ var _ MappedNullable = &EmailCheckoutRequest{}
 
 // EmailCheckoutRequest struct for EmailCheckoutRequest
 type EmailCheckoutRequest struct {
-	Email string `json:"email"`
+	Email                string `json:"email"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EmailCheckoutRequest EmailCheckoutRequest
@@ -69,7 +70,7 @@ func (o *EmailCheckoutRequest) SetEmail(v string) {
 }
 
 func (o EmailCheckoutRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -79,11 +80,16 @@ func (o EmailCheckoutRequest) MarshalJSON() ([]byte, error) {
 func (o EmailCheckoutRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["email"] = o.Email
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *EmailCheckoutRequest) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *EmailCheckoutRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -92,13 +98,13 @@ func (o *EmailCheckoutRequest) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -106,13 +112,20 @@ func (o *EmailCheckoutRequest) UnmarshalJSON(bytes []byte) (err error) {
 
 	varEmailCheckoutRequest := _EmailCheckoutRequest{}
 
-	err = json.Unmarshal(bytes, &varEmailCheckoutRequest)
+	err = json.Unmarshal(data, &varEmailCheckoutRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EmailCheckoutRequest(varEmailCheckoutRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "email")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -152,5 +165,3 @@ func (v *NullableEmailCheckoutRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

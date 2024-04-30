@@ -20,15 +20,18 @@ var _ MappedNullable = &OrderResponseCustomerInfo{}
 
 // OrderResponseCustomerInfo struct for OrderResponseCustomerInfo
 type OrderResponseCustomerInfo struct {
-	Object *string `json:"object,omitempty"`
 	// Custom reference
 	CustomerCustomReference NullableString `json:"customer_custom_reference,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Email *string `json:"email,omitempty"`
-	Phone *string `json:"phone,omitempty"`
-	Corporate *bool `json:"corporate,omitempty"`
-	CustomerId *string `json:"customer_id,omitempty"`
+	Name                    *string        `json:"name,omitempty"`
+	Email                   *string        `json:"email,omitempty"`
+	Phone                   *string        `json:"phone,omitempty"`
+	Corporate               *bool          `json:"corporate,omitempty"`
+	Object                  *string        `json:"object,omitempty"`
+	CustomerId              *string        `json:"customer_id,omitempty"`
+	AdditionalProperties    map[string]interface{}
 }
+
+type _OrderResponseCustomerInfo OrderResponseCustomerInfo
 
 // NewOrderResponseCustomerInfo instantiates a new OrderResponseCustomerInfo object
 // This constructor will assign default values to properties that have it defined,
@@ -49,38 +52,6 @@ func NewOrderResponseCustomerInfoWithDefaults() *OrderResponseCustomerInfo {
 	var corporate bool = false
 	this.Corporate = &corporate
 	return &this
-}
-
-// GetObject returns the Object field value if set, zero value otherwise.
-func (o *OrderResponseCustomerInfo) GetObject() string {
-	if o == nil || IsNil(o.Object) {
-		var ret string
-		return ret
-	}
-	return *o.Object
-}
-
-// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OrderResponseCustomerInfo) GetObjectOk() (*string, bool) {
-	if o == nil || IsNil(o.Object) {
-		return nil, false
-	}
-	return o.Object, true
-}
-
-// HasObject returns a boolean if a field has been set.
-func (o *OrderResponseCustomerInfo) HasObject() bool {
-	if o != nil && !IsNil(o.Object) {
-		return true
-	}
-
-	return false
-}
-
-// SetObject gets a reference to the given string and assigns it to the Object field.
-func (o *OrderResponseCustomerInfo) SetObject(v string) {
-	o.Object = &v
 }
 
 // GetCustomerCustomReference returns the CustomerCustomReference field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -115,6 +86,7 @@ func (o *OrderResponseCustomerInfo) HasCustomerCustomReference() bool {
 func (o *OrderResponseCustomerInfo) SetCustomerCustomReference(v string) {
 	o.CustomerCustomReference.Set(&v)
 }
+
 // SetCustomerCustomReferenceNil sets the value for CustomerCustomReference to be an explicit nil
 func (o *OrderResponseCustomerInfo) SetCustomerCustomReferenceNil() {
 	o.CustomerCustomReference.Set(nil)
@@ -253,6 +225,38 @@ func (o *OrderResponseCustomerInfo) SetCorporate(v bool) {
 	o.Corporate = &v
 }
 
+// GetObject returns the Object field value if set, zero value otherwise.
+func (o *OrderResponseCustomerInfo) GetObject() string {
+	if o == nil || IsNil(o.Object) {
+		var ret string
+		return ret
+	}
+	return *o.Object
+}
+
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderResponseCustomerInfo) GetObjectOk() (*string, bool) {
+	if o == nil || IsNil(o.Object) {
+		return nil, false
+	}
+	return o.Object, true
+}
+
+// HasObject returns a boolean if a field has been set.
+func (o *OrderResponseCustomerInfo) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
+func (o *OrderResponseCustomerInfo) SetObject(v string) {
+	o.Object = &v
+}
+
 // GetCustomerId returns the CustomerId field value if set, zero value otherwise.
 func (o *OrderResponseCustomerInfo) GetCustomerId() string {
 	if o == nil || IsNil(o.CustomerId) {
@@ -286,7 +290,7 @@ func (o *OrderResponseCustomerInfo) SetCustomerId(v string) {
 }
 
 func (o OrderResponseCustomerInfo) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -295,9 +299,6 @@ func (o OrderResponseCustomerInfo) MarshalJSON() ([]byte, error) {
 
 func (o OrderResponseCustomerInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Object) {
-		toSerialize["object"] = o.Object
-	}
 	if o.CustomerCustomReference.IsSet() {
 		toSerialize["customer_custom_reference"] = o.CustomerCustomReference.Get()
 	}
@@ -313,10 +314,45 @@ func (o OrderResponseCustomerInfo) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Corporate) {
 		toSerialize["corporate"] = o.Corporate
 	}
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
+	}
 	if !IsNil(o.CustomerId) {
 		toSerialize["customer_id"] = o.CustomerId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *OrderResponseCustomerInfo) UnmarshalJSON(data []byte) (err error) {
+	varOrderResponseCustomerInfo := _OrderResponseCustomerInfo{}
+
+	err = json.Unmarshal(data, &varOrderResponseCustomerInfo)
+
+	if err != nil {
+		return err
+	}
+
+	*o = OrderResponseCustomerInfo(varOrderResponseCustomerInfo)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "customer_custom_reference")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "phone")
+		delete(additionalProperties, "corporate")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "customer_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOrderResponseCustomerInfo struct {
@@ -354,5 +390,3 @@ func (v *NullableOrderResponseCustomerInfo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

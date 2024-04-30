@@ -41,8 +41,11 @@ type ApiKeyResponse struct {
 	// The first few characters of the authentication_token
 	Prefix *string `json:"prefix,omitempty"`
 	// Indicates if the api key is private or public
-	Role *string `json:"role,omitempty"`
+	Role                 *string `json:"role,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ApiKeyResponse ApiKeyResponse
 
 // NewApiKeyResponse instantiates a new ApiKeyResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -189,6 +192,7 @@ func (o *ApiKeyResponse) HasDeactivatedAt() bool {
 func (o *ApiKeyResponse) SetDeactivatedAt(v int64) {
 	o.DeactivatedAt.Set(&v)
 }
+
 // SetDeactivatedAtNil sets the value for DeactivatedAt to be an explicit nil
 func (o *ApiKeyResponse) SetDeactivatedAtNil() {
 	o.DeactivatedAt.Set(nil)
@@ -424,7 +428,7 @@ func (o *ApiKeyResponse) SetRole(v string) {
 }
 
 func (o ApiKeyResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -466,7 +470,43 @@ func (o ApiKeyResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Role) {
 		toSerialize["role"] = o.Role
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ApiKeyResponse) UnmarshalJSON(data []byte) (err error) {
+	varApiKeyResponse := _ApiKeyResponse{}
+
+	err = json.Unmarshal(data, &varApiKeyResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ApiKeyResponse(varApiKeyResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "deactivated_at")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "livemode")
+		delete(additionalProperties, "deleted")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "prefix")
+		delete(additionalProperties, "role")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableApiKeyResponse struct {
@@ -504,5 +544,3 @@ func (v *NullableApiKeyResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

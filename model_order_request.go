@@ -22,14 +22,14 @@ var _ MappedNullable = &OrderRequest{}
 // OrderRequest a order
 type OrderRequest struct {
 	// List of [charges](https://developers.conekta.com/v2.1.0/reference/orderscreatecharge) that are applied to the order
-	Charges []ChargeRequest `json:"charges,omitempty"`
+	Charges  []ChargeRequest  `json:"charges,omitempty"`
 	Checkout *CheckoutRequest `json:"checkout,omitempty"`
 	// Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)
-	Currency string `json:"currency"`
+	Currency     string                   `json:"currency"`
 	CustomerInfo OrderRequestCustomerInfo `json:"customer_info"`
 	// List of [discounts](https://developers.conekta.com/v2.1.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount.
 	DiscountLines []OrderDiscountLinesRequest `json:"discount_lines,omitempty"`
-	FiscalEntity *OrderFiscalEntityRequest `json:"fiscal_entity,omitempty"`
+	FiscalEntity  *OrderFiscalEntityRequest   `json:"fiscal_entity,omitempty"`
 	// List of [products](https://developers.conekta.com/v2.1.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
 	LineItems []Product `json:"line_items"`
 	// Metadata associated with the order
@@ -41,14 +41,15 @@ type OrderRequest struct {
 	// Indicates the processing mode for the order, either ecommerce, recurrent or validation.
 	ProcessingMode *string `json:"processing_mode,omitempty"`
 	// Indicates the redirection callback upon completion of the 3DS2 flow.
-	ReturnUrl *string `json:"return_url,omitempty"`
+	ReturnUrl       *string                   `json:"return_url,omitempty"`
 	ShippingContact *CustomerShippingContacts `json:"shipping_contact,omitempty"`
 	// List of [shipping costs](https://developers.conekta.com/v2.1.0/reference/orderscreateshipping). If the online store offers digital products.
 	ShippingLines []ShippingRequest `json:"shipping_lines,omitempty"`
 	// List of [taxes](https://developers.conekta.com/v2.1.0/reference/orderscreatetaxes) that are applied to the order.
 	TaxLines []OrderTaxRequest `json:"tax_lines,omitempty"`
 	// Indicates the 3DS2 mode for the order, either smart or strict.
-	ThreeDsMode *string `json:"three_ds_mode,omitempty"`
+	ThreeDsMode          *string `json:"three_ds_mode,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrderRequest OrderRequest
@@ -566,7 +567,7 @@ func (o *OrderRequest) SetThreeDsMode(v string) {
 }
 
 func (o OrderRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -617,11 +618,16 @@ func (o OrderRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ThreeDsMode) {
 		toSerialize["three_ds_mode"] = o.ThreeDsMode
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *OrderRequest) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *OrderRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -632,13 +638,13 @@ func (o *OrderRequest) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -646,13 +652,35 @@ func (o *OrderRequest) UnmarshalJSON(bytes []byte) (err error) {
 
 	varOrderRequest := _OrderRequest{}
 
-	err = json.Unmarshal(bytes, &varOrderRequest)
+	err = json.Unmarshal(data, &varOrderRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OrderRequest(varOrderRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "charges")
+		delete(additionalProperties, "checkout")
+		delete(additionalProperties, "currency")
+		delete(additionalProperties, "customer_info")
+		delete(additionalProperties, "discount_lines")
+		delete(additionalProperties, "fiscal_entity")
+		delete(additionalProperties, "line_items")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "needs_shipping_contact")
+		delete(additionalProperties, "pre_authorize")
+		delete(additionalProperties, "processing_mode")
+		delete(additionalProperties, "return_url")
+		delete(additionalProperties, "shipping_contact")
+		delete(additionalProperties, "shipping_lines")
+		delete(additionalProperties, "tax_lines")
+		delete(additionalProperties, "three_ds_mode")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -692,5 +720,3 @@ func (v *NullableOrderRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

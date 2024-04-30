@@ -23,8 +23,11 @@ type Page struct {
 	// URL of the next page.
 	NextPageUrl NullableString `json:"next_page_url,omitempty"`
 	// Url of the previous page.
-	PreviousPageUrl NullableString `json:"previous_page_url,omitempty"`
+	PreviousPageUrl      NullableString `json:"previous_page_url,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Page Page
 
 // NewPage instantiates a new Page object
 // This constructor will assign default values to properties that have it defined,
@@ -75,6 +78,7 @@ func (o *Page) HasNextPageUrl() bool {
 func (o *Page) SetNextPageUrl(v string) {
 	o.NextPageUrl.Set(&v)
 }
+
 // SetNextPageUrlNil sets the value for NextPageUrl to be an explicit nil
 func (o *Page) SetNextPageUrlNil() {
 	o.NextPageUrl.Set(nil)
@@ -117,6 +121,7 @@ func (o *Page) HasPreviousPageUrl() bool {
 func (o *Page) SetPreviousPageUrl(v string) {
 	o.PreviousPageUrl.Set(&v)
 }
+
 // SetPreviousPageUrlNil sets the value for PreviousPageUrl to be an explicit nil
 func (o *Page) SetPreviousPageUrlNil() {
 	o.PreviousPageUrl.Set(nil)
@@ -128,7 +133,7 @@ func (o *Page) UnsetPreviousPageUrl() {
 }
 
 func (o Page) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -143,7 +148,34 @@ func (o Page) ToMap() (map[string]interface{}, error) {
 	if o.PreviousPageUrl.IsSet() {
 		toSerialize["previous_page_url"] = o.PreviousPageUrl.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Page) UnmarshalJSON(data []byte) (err error) {
+	varPage := _Page{}
+
+	err = json.Unmarshal(data, &varPage)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Page(varPage)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "next_page_url")
+		delete(additionalProperties, "previous_page_url")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePage struct {
@@ -181,5 +213,3 @@ func (v *NullablePage) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

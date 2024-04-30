@@ -28,8 +28,9 @@ type GetApiKeysResponse struct {
 	// Indicates if there are more pages to be requested
 	HasMore bool `json:"has_more"`
 	// Object type, in this case is list
-	Object string `json:"object"`
-	Data []ApiKeyResponse `json:"data,omitempty"`
+	Object               string           `json:"object"`
+	Data                 []ApiKeyResponse `json:"data,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetApiKeysResponse GetApiKeysResponse
@@ -85,6 +86,7 @@ func (o *GetApiKeysResponse) HasNextPageUrl() bool {
 func (o *GetApiKeysResponse) SetNextPageUrl(v string) {
 	o.NextPageUrl.Set(&v)
 }
+
 // SetNextPageUrlNil sets the value for NextPageUrl to be an explicit nil
 func (o *GetApiKeysResponse) SetNextPageUrlNil() {
 	o.NextPageUrl.Set(nil)
@@ -127,6 +129,7 @@ func (o *GetApiKeysResponse) HasPreviousPageUrl() bool {
 func (o *GetApiKeysResponse) SetPreviousPageUrl(v string) {
 	o.PreviousPageUrl.Set(&v)
 }
+
 // SetPreviousPageUrlNil sets the value for PreviousPageUrl to be an explicit nil
 func (o *GetApiKeysResponse) SetPreviousPageUrlNil() {
 	o.PreviousPageUrl.Set(nil)
@@ -218,7 +221,7 @@ func (o *GetApiKeysResponse) SetData(v []ApiKeyResponse) {
 }
 
 func (o GetApiKeysResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -238,11 +241,16 @@ func (o GetApiKeysResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *GetApiKeysResponse) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *GetApiKeysResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -252,13 +260,13 @@ func (o *GetApiKeysResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -266,13 +274,24 @@ func (o *GetApiKeysResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	varGetApiKeysResponse := _GetApiKeysResponse{}
 
-	err = json.Unmarshal(bytes, &varGetApiKeysResponse)
+	err = json.Unmarshal(data, &varGetApiKeysResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetApiKeysResponse(varGetApiKeysResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "next_page_url")
+		delete(additionalProperties, "previous_page_url")
+		delete(additionalProperties, "has_more")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -312,5 +331,3 @@ func (v *NullableGetApiKeysResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

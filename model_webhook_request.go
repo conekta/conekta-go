@@ -24,7 +24,8 @@ type WebhookRequest struct {
 	// Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security.
 	Url string `json:"url"`
 	// It is a value that allows to decide if the events will be synchronous or asynchronous. We recommend asynchronous = false
-	Synchronous bool `json:"synchronous"`
+	Synchronous          bool `json:"synchronous"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WebhookRequest WebhookRequest
@@ -99,7 +100,7 @@ func (o *WebhookRequest) SetSynchronous(v bool) {
 }
 
 func (o WebhookRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -110,11 +111,16 @@ func (o WebhookRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["url"] = o.Url
 	toSerialize["synchronous"] = o.Synchronous
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *WebhookRequest) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *WebhookRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -124,13 +130,13 @@ func (o *WebhookRequest) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -138,13 +144,21 @@ func (o *WebhookRequest) UnmarshalJSON(bytes []byte) (err error) {
 
 	varWebhookRequest := _WebhookRequest{}
 
-	err = json.Unmarshal(bytes, &varWebhookRequest)
+	err = json.Unmarshal(data, &varWebhookRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WebhookRequest(varWebhookRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "synchronous")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -184,5 +198,3 @@ func (v *NullableWebhookRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

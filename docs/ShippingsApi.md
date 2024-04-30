@@ -24,27 +24,27 @@ Create Shipping
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    shippingRequest := *openapiclient.NewShippingRequest(int64(100)) // ShippingRequest | requested field for a shipping
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	shippingRequest := *openapiclient.NewShippingRequest(int64(100)) // ShippingRequest | requested field for a shipping
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ShippingsAPI.OrdersCreateShipping(context.Background(), id).ShippingRequest(shippingRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ShippingsAPI.OrdersCreateShipping``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrdersCreateShipping`: ShippingOrderResponse
-    fmt.Fprintf(os.Stdout, "Response from `ShippingsAPI.OrdersCreateShipping`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ShippingsAPI.OrdersCreateShipping(context.Background(), id).ShippingRequest(shippingRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ShippingsAPI.OrdersCreateShipping``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrdersCreateShipping`: ShippingOrderResponse
+	fmt.Fprintf(os.Stdout, "Response from `ShippingsAPI.OrdersCreateShipping`: %v\n", resp)
 }
 ```
 
@@ -100,27 +100,27 @@ Delete Shipping
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    shippingId := "ship_lin_2tQ974hSHcsdeSZHG" // string | identifier
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	shippingId := "ship_lin_2tQ974hSHcsdeSZHG" // string | identifier
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ShippingsAPI.OrdersDeleteShipping(context.Background(), id, shippingId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ShippingsAPI.OrdersDeleteShipping``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrdersDeleteShipping`: ShippingOrderResponse
-    fmt.Fprintf(os.Stdout, "Response from `ShippingsAPI.OrdersDeleteShipping`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ShippingsAPI.OrdersDeleteShipping(context.Background(), id, shippingId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ShippingsAPI.OrdersDeleteShipping``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrdersDeleteShipping`: ShippingOrderResponse
+	fmt.Fprintf(os.Stdout, "Response from `ShippingsAPI.OrdersDeleteShipping`: %v\n", resp)
 }
 ```
 
@@ -177,28 +177,28 @@ Update Shipping
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    shippingId := "ship_lin_2tQ974hSHcsdeSZHG" // string | identifier
-    shippingRequest := *openapiclient.NewShippingRequest(int64(100)) // ShippingRequest | requested field for a shipping
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	shippingId := "ship_lin_2tQ974hSHcsdeSZHG" // string | identifier
+	shippingRequest := *openapiclient.NewShippingRequest(int64(100)) // ShippingRequest | requested field for a shipping
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ShippingsAPI.OrdersUpdateShipping(context.Background(), id, shippingId).ShippingRequest(shippingRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ShippingsAPI.OrdersUpdateShipping``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrdersUpdateShipping`: ShippingOrderResponse
-    fmt.Fprintf(os.Stdout, "Response from `ShippingsAPI.OrdersUpdateShipping`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ShippingsAPI.OrdersUpdateShipping(context.Background(), id, shippingId).ShippingRequest(shippingRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ShippingsAPI.OrdersUpdateShipping``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrdersUpdateShipping`: ShippingOrderResponse
+	fmt.Fprintf(os.Stdout, "Response from `ShippingsAPI.OrdersUpdateShipping`: %v\n", resp)
 }
 ```
 

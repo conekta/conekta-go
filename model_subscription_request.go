@@ -21,9 +21,10 @@ var _ MappedNullable = &SubscriptionRequest{}
 
 // SubscriptionRequest It is a parameter that allows to identify in the response, the detailed content of the plans to which the client has subscribed
 type SubscriptionRequest struct {
-	PlanId string `json:"plan_id"`
-	CardId *string `json:"card_id,omitempty"`
-	TrialEnd *int32 `json:"trial_end,omitempty"`
+	PlanId               string  `json:"plan_id"`
+	CardId               *string `json:"card_id,omitempty"`
+	TrialEnd             *int32  `json:"trial_end,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SubscriptionRequest SubscriptionRequest
@@ -135,7 +136,7 @@ func (o *SubscriptionRequest) SetTrialEnd(v int32) {
 }
 
 func (o SubscriptionRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -151,11 +152,16 @@ func (o SubscriptionRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TrialEnd) {
 		toSerialize["trial_end"] = o.TrialEnd
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *SubscriptionRequest) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *SubscriptionRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -164,13 +170,13 @@ func (o *SubscriptionRequest) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -178,13 +184,22 @@ func (o *SubscriptionRequest) UnmarshalJSON(bytes []byte) (err error) {
 
 	varSubscriptionRequest := _SubscriptionRequest{}
 
-	err = json.Unmarshal(bytes, &varSubscriptionRequest)
+	err = json.Unmarshal(data, &varSubscriptionRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SubscriptionRequest(varSubscriptionRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "plan_id")
+		delete(additionalProperties, "card_id")
+		delete(additionalProperties, "trial_end")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -224,5 +239,3 @@ func (v *NullableSubscriptionRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

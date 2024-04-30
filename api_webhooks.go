@@ -556,6 +556,7 @@ type ApiGetWebhooksRequest struct {
 	xChildCompanyId *string
 	limit *int32
 	search *string
+	url *string
 	next *string
 	previous *string
 }
@@ -581,6 +582,12 @@ func (r ApiGetWebhooksRequest) Limit(limit int32) ApiGetWebhooksRequest {
 // General order search, e.g. by mail, reference etc.
 func (r ApiGetWebhooksRequest) Search(search string) ApiGetWebhooksRequest {
 	r.search = &search
+	return r
+}
+
+// url for webhook filter
+func (r ApiGetWebhooksRequest) Url(url string) ApiGetWebhooksRequest {
+	r.url = &url
 	return r
 }
 
@@ -644,6 +651,9 @@ func (a *WebhooksAPIService) GetWebhooksExecute(r ApiGetWebhooksRequest) (*GetWe
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
+	}
+	if r.url != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "url", r.url, "")
 	}
 	if r.next != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "next", r.next, "")

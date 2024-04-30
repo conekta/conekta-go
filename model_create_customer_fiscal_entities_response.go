@@ -21,17 +21,18 @@ var _ MappedNullable = &CreateCustomerFiscalEntitiesResponse{}
 
 // CreateCustomerFiscalEntitiesResponse struct for CreateCustomerFiscalEntitiesResponse
 type CreateCustomerFiscalEntitiesResponse struct {
-	Address CustomerFiscalEntitiesRequestAddress `json:"address"`
-	TaxId *string `json:"tax_id,omitempty"`
-	Email *string `json:"email,omitempty"`
-	Phone *string `json:"phone,omitempty"`
-	Metadata map[string]map[string]interface{} `json:"metadata,omitempty"`
-	CompanyName *string `json:"company_name,omitempty"`
-	Id string `json:"id"`
-	Object string `json:"object"`
-	CreatedAt int64 `json:"created_at"`
-	ParentId *string `json:"parent_id,omitempty"`
-	Default *bool `json:"default,omitempty"`
+	Address              CustomerAddress                   `json:"address"`
+	TaxId                *string                           `json:"tax_id,omitempty"`
+	Email                *string                           `json:"email,omitempty"`
+	Phone                *string                           `json:"phone,omitempty"`
+	Metadata             map[string]map[string]interface{} `json:"metadata,omitempty"`
+	CompanyName          *string                           `json:"company_name,omitempty"`
+	Id                   string                            `json:"id"`
+	Object               string                            `json:"object"`
+	CreatedAt            int64                             `json:"created_at"`
+	ParentId             *string                           `json:"parent_id,omitempty"`
+	Default              *bool                             `json:"default,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateCustomerFiscalEntitiesResponse CreateCustomerFiscalEntitiesResponse
@@ -40,7 +41,7 @@ type _CreateCustomerFiscalEntitiesResponse CreateCustomerFiscalEntitiesResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateCustomerFiscalEntitiesResponse(address CustomerFiscalEntitiesRequestAddress, id string, object string, createdAt int64) *CreateCustomerFiscalEntitiesResponse {
+func NewCreateCustomerFiscalEntitiesResponse(address CustomerAddress, id string, object string, createdAt int64) *CreateCustomerFiscalEntitiesResponse {
 	this := CreateCustomerFiscalEntitiesResponse{}
 	this.Address = address
 	this.Id = id
@@ -58,9 +59,9 @@ func NewCreateCustomerFiscalEntitiesResponseWithDefaults() *CreateCustomerFiscal
 }
 
 // GetAddress returns the Address field value
-func (o *CreateCustomerFiscalEntitiesResponse) GetAddress() CustomerFiscalEntitiesRequestAddress {
+func (o *CreateCustomerFiscalEntitiesResponse) GetAddress() CustomerAddress {
 	if o == nil {
-		var ret CustomerFiscalEntitiesRequestAddress
+		var ret CustomerAddress
 		return ret
 	}
 
@@ -69,7 +70,7 @@ func (o *CreateCustomerFiscalEntitiesResponse) GetAddress() CustomerFiscalEntiti
 
 // GetAddressOk returns a tuple with the Address field value
 // and a boolean to check if the value has been set.
-func (o *CreateCustomerFiscalEntitiesResponse) GetAddressOk() (*CustomerFiscalEntitiesRequestAddress, bool) {
+func (o *CreateCustomerFiscalEntitiesResponse) GetAddressOk() (*CustomerAddress, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -77,7 +78,7 @@ func (o *CreateCustomerFiscalEntitiesResponse) GetAddressOk() (*CustomerFiscalEn
 }
 
 // SetAddress sets field value
-func (o *CreateCustomerFiscalEntitiesResponse) SetAddress(v CustomerFiscalEntitiesRequestAddress) {
+func (o *CreateCustomerFiscalEntitiesResponse) SetAddress(v CustomerAddress) {
 	o.Address = v
 }
 
@@ -378,7 +379,7 @@ func (o *CreateCustomerFiscalEntitiesResponse) SetDefault(v bool) {
 }
 
 func (o CreateCustomerFiscalEntitiesResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -412,11 +413,16 @@ func (o CreateCustomerFiscalEntitiesResponse) ToMap() (map[string]interface{}, e
 	if !IsNil(o.Default) {
 		toSerialize["default"] = o.Default
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *CreateCustomerFiscalEntitiesResponse) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *CreateCustomerFiscalEntitiesResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -428,13 +434,13 @@ func (o *CreateCustomerFiscalEntitiesResponse) UnmarshalJSON(bytes []byte) (err 
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -442,13 +448,30 @@ func (o *CreateCustomerFiscalEntitiesResponse) UnmarshalJSON(bytes []byte) (err 
 
 	varCreateCustomerFiscalEntitiesResponse := _CreateCustomerFiscalEntitiesResponse{}
 
-	err = json.Unmarshal(bytes, &varCreateCustomerFiscalEntitiesResponse)
+	err = json.Unmarshal(data, &varCreateCustomerFiscalEntitiesResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateCustomerFiscalEntitiesResponse(varCreateCustomerFiscalEntitiesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "tax_id")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "phone")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "company_name")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "parent_id")
+		delete(additionalProperties, "default")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -488,5 +511,3 @@ func (v *NullableCreateCustomerFiscalEntitiesResponse) UnmarshalJSON(src []byte)
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

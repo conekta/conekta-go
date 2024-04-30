@@ -27,7 +27,7 @@ type ProductOrderResponse struct {
 	// Short description of the item
 	Description *string `json:"description,omitempty"`
 	// It is a key/value hash that can hold custom fields. Maximum 100 elements and allows special characters.
-	Metadata *map[string]string `json:"metadata,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// The name of the item. It will be displayed in the order.
 	Name string `json:"name"`
 	// The quantity of the item in the order.
@@ -37,10 +37,11 @@ type ProductOrderResponse struct {
 	// List of tags for the item. It is used to identify the item in the order.
 	Tags []string `json:"tags,omitempty"`
 	// The price of the item in cents.
-	UnitPrice int32 `json:"unit_price"`
-	Id *string `json:"id,omitempty"`
-	Object *string `json:"object,omitempty"`
-	ParentId *string `json:"parent_id,omitempty"`
+	UnitPrice            int32   `json:"unit_price"`
+	Id                   *string `json:"id,omitempty"`
+	Object               *string `json:"object,omitempty"`
+	ParentId             *string `json:"parent_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ProductOrderResponse ProductOrderResponse
@@ -162,19 +163,19 @@ func (o *ProductOrderResponse) SetDescription(v string) {
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *ProductOrderResponse) GetMetadata() map[string]string {
+func (o *ProductOrderResponse) GetMetadata() map[string]interface{} {
 	if o == nil || IsNil(o.Metadata) {
-		var ret map[string]string
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Metadata
+	return o.Metadata
 }
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductOrderResponse) GetMetadataOk() (*map[string]string, bool) {
+func (o *ProductOrderResponse) GetMetadataOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Metadata) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.Metadata, true
 }
@@ -188,9 +189,9 @@ func (o *ProductOrderResponse) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
-func (o *ProductOrderResponse) SetMetadata(v map[string]string) {
-	o.Metadata = &v
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *ProductOrderResponse) SetMetadata(v map[string]interface{}) {
+	o.Metadata = v
 }
 
 // GetName returns the Name field value
@@ -426,7 +427,7 @@ func (o *ProductOrderResponse) SetParentId(v string) {
 }
 
 func (o ProductOrderResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -465,11 +466,16 @@ func (o ProductOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ParentId) {
 		toSerialize["parent_id"] = o.ParentId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *ProductOrderResponse) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *ProductOrderResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -480,13 +486,13 @@ func (o *ProductOrderResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -494,13 +500,31 @@ func (o *ProductOrderResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	varProductOrderResponse := _ProductOrderResponse{}
 
-	err = json.Unmarshal(bytes, &varProductOrderResponse)
+	err = json.Unmarshal(data, &varProductOrderResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ProductOrderResponse(varProductOrderResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "antifraud_info")
+		delete(additionalProperties, "brand")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "quantity")
+		delete(additionalProperties, "sku")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "unit_price")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "parent_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -540,5 +564,3 @@ func (v *NullableProductOrderResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -23,9 +23,12 @@ type UpdateOrderTaxRequest struct {
 	// The amount to be collected for tax in cents
 	Amount *int64 `json:"amount,omitempty"`
 	// description or tax's name
-	Description *string `json:"description,omitempty"`
-	Metadata map[string]map[string]interface{} `json:"metadata,omitempty"`
+	Description          *string                           `json:"description,omitempty"`
+	Metadata             map[string]map[string]interface{} `json:"metadata,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateOrderTaxRequest UpdateOrderTaxRequest
 
 // NewUpdateOrderTaxRequest instantiates a new UpdateOrderTaxRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -141,7 +144,7 @@ func (o *UpdateOrderTaxRequest) SetMetadata(v map[string]map[string]interface{})
 }
 
 func (o UpdateOrderTaxRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,7 +162,35 @@ func (o UpdateOrderTaxRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateOrderTaxRequest) UnmarshalJSON(data []byte) (err error) {
+	varUpdateOrderTaxRequest := _UpdateOrderTaxRequest{}
+
+	err = json.Unmarshal(data, &varUpdateOrderTaxRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateOrderTaxRequest(varUpdateOrderTaxRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "metadata")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateOrderTaxRequest struct {
@@ -197,5 +228,3 @@ func (v *NullableUpdateOrderTaxRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

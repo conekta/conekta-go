@@ -20,19 +20,22 @@ var _ MappedNullable = &CustomerShippingContactsResponse{}
 
 // CustomerShippingContactsResponse Contains the detail of the shipping addresses that the client has active or has used in Conekta
 type CustomerShippingContactsResponse struct {
-	Phone *string `json:"phone,omitempty"`
-	Receiver *string `json:"receiver,omitempty"`
-	BetweenStreets NullableString `json:"between_streets,omitempty"`
-	Address *CustomerShippingContactsResponseAddress `json:"address,omitempty"`
-	ParentId *string `json:"parent_id,omitempty"`
-	Default *bool `json:"default,omitempty"`
-	Id *string `json:"id,omitempty"`
-	CreatedAt *int64 `json:"created_at,omitempty"`
+	Phone          *string                                  `json:"phone,omitempty"`
+	Receiver       *string                                  `json:"receiver,omitempty"`
+	BetweenStreets NullableString                           `json:"between_streets,omitempty"`
+	Address        *CustomerShippingContactsResponseAddress `json:"address,omitempty"`
+	ParentId       *string                                  `json:"parent_id,omitempty"`
+	Default        *bool                                    `json:"default,omitempty"`
+	Id             *string                                  `json:"id,omitempty"`
+	CreatedAt      *int64                                   `json:"created_at,omitempty"`
 	// Metadata associated with the shipping contact
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
-	Object *string `json:"object,omitempty"`
-	Deleted *bool `json:"deleted,omitempty"`
+	Metadata             map[string]interface{} `json:"metadata,omitempty"`
+	Object               *string                `json:"object,omitempty"`
+	Deleted              *bool                  `json:"deleted,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CustomerShippingContactsResponse CustomerShippingContactsResponse
 
 // NewCustomerShippingContactsResponse instantiates a new CustomerShippingContactsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -147,6 +150,7 @@ func (o *CustomerShippingContactsResponse) HasBetweenStreets() bool {
 func (o *CustomerShippingContactsResponse) SetBetweenStreets(v string) {
 	o.BetweenStreets.Set(&v)
 }
+
 // SetBetweenStreetsNil sets the value for BetweenStreets to be an explicit nil
 func (o *CustomerShippingContactsResponse) SetBetweenStreetsNil() {
 	o.BetweenStreets.Set(nil)
@@ -414,7 +418,7 @@ func (o *CustomerShippingContactsResponse) SetDeleted(v bool) {
 }
 
 func (o CustomerShippingContactsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -456,7 +460,43 @@ func (o CustomerShippingContactsResponse) ToMap() (map[string]interface{}, error
 	if !IsNil(o.Deleted) {
 		toSerialize["deleted"] = o.Deleted
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CustomerShippingContactsResponse) UnmarshalJSON(data []byte) (err error) {
+	varCustomerShippingContactsResponse := _CustomerShippingContactsResponse{}
+
+	err = json.Unmarshal(data, &varCustomerShippingContactsResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CustomerShippingContactsResponse(varCustomerShippingContactsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "phone")
+		delete(additionalProperties, "receiver")
+		delete(additionalProperties, "between_streets")
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "parent_id")
+		delete(additionalProperties, "default")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "deleted")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCustomerShippingContactsResponse struct {
@@ -494,5 +534,3 @@ func (v *NullableCustomerShippingContactsResponse) UnmarshalJSON(src []byte) err
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

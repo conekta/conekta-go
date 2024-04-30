@@ -21,12 +21,13 @@ var _ MappedNullable = &CustomerFiscalEntitiesRequest{}
 
 // CustomerFiscalEntitiesRequest struct for CustomerFiscalEntitiesRequest
 type CustomerFiscalEntitiesRequest struct {
-	Address CustomerFiscalEntitiesRequestAddress `json:"address"`
-	TaxId *string `json:"tax_id,omitempty"`
-	Email *string `json:"email,omitempty"`
-	Phone *string `json:"phone,omitempty"`
-	Metadata map[string]map[string]interface{} `json:"metadata,omitempty"`
-	CompanyName *string `json:"company_name,omitempty"`
+	Address              CustomerAddress                   `json:"address"`
+	TaxId                *string                           `json:"tax_id,omitempty"`
+	Email                *string                           `json:"email,omitempty"`
+	Phone                *string                           `json:"phone,omitempty"`
+	Metadata             map[string]map[string]interface{} `json:"metadata,omitempty"`
+	CompanyName          *string                           `json:"company_name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomerFiscalEntitiesRequest CustomerFiscalEntitiesRequest
@@ -35,7 +36,7 @@ type _CustomerFiscalEntitiesRequest CustomerFiscalEntitiesRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustomerFiscalEntitiesRequest(address CustomerFiscalEntitiesRequestAddress) *CustomerFiscalEntitiesRequest {
+func NewCustomerFiscalEntitiesRequest(address CustomerAddress) *CustomerFiscalEntitiesRequest {
 	this := CustomerFiscalEntitiesRequest{}
 	this.Address = address
 	return &this
@@ -50,9 +51,9 @@ func NewCustomerFiscalEntitiesRequestWithDefaults() *CustomerFiscalEntitiesReque
 }
 
 // GetAddress returns the Address field value
-func (o *CustomerFiscalEntitiesRequest) GetAddress() CustomerFiscalEntitiesRequestAddress {
+func (o *CustomerFiscalEntitiesRequest) GetAddress() CustomerAddress {
 	if o == nil {
-		var ret CustomerFiscalEntitiesRequestAddress
+		var ret CustomerAddress
 		return ret
 	}
 
@@ -61,7 +62,7 @@ func (o *CustomerFiscalEntitiesRequest) GetAddress() CustomerFiscalEntitiesReque
 
 // GetAddressOk returns a tuple with the Address field value
 // and a boolean to check if the value has been set.
-func (o *CustomerFiscalEntitiesRequest) GetAddressOk() (*CustomerFiscalEntitiesRequestAddress, bool) {
+func (o *CustomerFiscalEntitiesRequest) GetAddressOk() (*CustomerAddress, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,7 +70,7 @@ func (o *CustomerFiscalEntitiesRequest) GetAddressOk() (*CustomerFiscalEntitiesR
 }
 
 // SetAddress sets field value
-func (o *CustomerFiscalEntitiesRequest) SetAddress(v CustomerFiscalEntitiesRequestAddress) {
+func (o *CustomerFiscalEntitiesRequest) SetAddress(v CustomerAddress) {
 	o.Address = v
 }
 
@@ -234,7 +235,7 @@ func (o *CustomerFiscalEntitiesRequest) SetCompanyName(v string) {
 }
 
 func (o CustomerFiscalEntitiesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -259,11 +260,16 @@ func (o CustomerFiscalEntitiesRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CompanyName) {
 		toSerialize["company_name"] = o.CompanyName
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *CustomerFiscalEntitiesRequest) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *CustomerFiscalEntitiesRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -272,13 +278,13 @@ func (o *CustomerFiscalEntitiesRequest) UnmarshalJSON(bytes []byte) (err error) 
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -286,13 +292,25 @@ func (o *CustomerFiscalEntitiesRequest) UnmarshalJSON(bytes []byte) (err error) 
 
 	varCustomerFiscalEntitiesRequest := _CustomerFiscalEntitiesRequest{}
 
-	err = json.Unmarshal(bytes, &varCustomerFiscalEntitiesRequest)
+	err = json.Unmarshal(data, &varCustomerFiscalEntitiesRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomerFiscalEntitiesRequest(varCustomerFiscalEntitiesRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "tax_id")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "phone")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "company_name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -332,5 +350,3 @@ func (v *NullableCustomerFiscalEntitiesRequest) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

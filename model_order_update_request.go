@@ -20,24 +20,27 @@ var _ MappedNullable = &OrderUpdateRequest{}
 
 // OrderUpdateRequest a order
 type OrderUpdateRequest struct {
-	Charges []ChargeRequest `json:"charges,omitempty"`
+	Charges  []ChargeRequest  `json:"charges,omitempty"`
 	Checkout *CheckoutRequest `json:"checkout,omitempty"`
 	// Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)
-	Currency *string `json:"currency,omitempty"`
+	Currency     *string                         `json:"currency,omitempty"`
 	CustomerInfo *OrderUpdateRequestCustomerInfo `json:"customer_info,omitempty"`
 	// List of [discounts](https://developers.conekta.com/v2.1.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount.
-	DiscountLines []OrderDiscountLinesRequest `json:"discount_lines,omitempty"`
-	FiscalEntity *OrderUpdateFiscalEntityRequest `json:"fiscal_entity,omitempty"`
+	DiscountLines []OrderDiscountLinesRequest     `json:"discount_lines,omitempty"`
+	FiscalEntity  *OrderUpdateFiscalEntityRequest `json:"fiscal_entity,omitempty"`
 	// List of [products](https://developers.conekta.com/v2.1.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
-	LineItems []Product `json:"line_items,omitempty"`
-	Metadata *map[string]string `json:"metadata,omitempty"`
+	LineItems []Product          `json:"line_items,omitempty"`
+	Metadata  *map[string]string `json:"metadata,omitempty"`
 	// Indicates whether the order charges must be preauthorized
-	PreAuthorize *bool `json:"pre_authorize,omitempty"`
+	PreAuthorize    *bool                     `json:"pre_authorize,omitempty"`
 	ShippingContact *CustomerShippingContacts `json:"shipping_contact,omitempty"`
 	// List of [shipping costs](https://developers.conekta.com/v2.1.0/reference/orderscreateshipping). If the online store offers digital products.
-	ShippingLines []ShippingRequest `json:"shipping_lines,omitempty"`
-	TaxLines []OrderTaxRequest `json:"tax_lines,omitempty"`
+	ShippingLines        []ShippingRequest `json:"shipping_lines,omitempty"`
+	TaxLines             []OrderTaxRequest `json:"tax_lines,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OrderUpdateRequest OrderUpdateRequest
 
 // NewOrderUpdateRequest instantiates a new OrderUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -445,7 +448,7 @@ func (o *OrderUpdateRequest) SetTaxLines(v []OrderTaxRequest) {
 }
 
 func (o OrderUpdateRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -490,7 +493,44 @@ func (o OrderUpdateRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TaxLines) {
 		toSerialize["tax_lines"] = o.TaxLines
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *OrderUpdateRequest) UnmarshalJSON(data []byte) (err error) {
+	varOrderUpdateRequest := _OrderUpdateRequest{}
+
+	err = json.Unmarshal(data, &varOrderUpdateRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = OrderUpdateRequest(varOrderUpdateRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "charges")
+		delete(additionalProperties, "checkout")
+		delete(additionalProperties, "currency")
+		delete(additionalProperties, "customer_info")
+		delete(additionalProperties, "discount_lines")
+		delete(additionalProperties, "fiscal_entity")
+		delete(additionalProperties, "line_items")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "pre_authorize")
+		delete(additionalProperties, "shipping_contact")
+		delete(additionalProperties, "shipping_lines")
+		delete(additionalProperties, "tax_lines")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOrderUpdateRequest struct {
@@ -528,5 +568,3 @@ func (v *NullableOrderUpdateRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

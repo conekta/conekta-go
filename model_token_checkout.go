@@ -21,8 +21,11 @@ var _ MappedNullable = &TokenCheckout{}
 // TokenCheckout struct for TokenCheckout
 type TokenCheckout struct {
 	// It is a value that allows identifying the returns control on.
-	ReturnsControlOn *string `json:"returns_control_on,omitempty"`
+	ReturnsControlOn     *string `json:"returns_control_on,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TokenCheckout TokenCheckout
 
 // NewTokenCheckout instantiates a new TokenCheckout object
 // This constructor will assign default values to properties that have it defined,
@@ -74,7 +77,7 @@ func (o *TokenCheckout) SetReturnsControlOn(v string) {
 }
 
 func (o TokenCheckout) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -86,7 +89,33 @@ func (o TokenCheckout) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ReturnsControlOn) {
 		toSerialize["returns_control_on"] = o.ReturnsControlOn
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *TokenCheckout) UnmarshalJSON(data []byte) (err error) {
+	varTokenCheckout := _TokenCheckout{}
+
+	err = json.Unmarshal(data, &varTokenCheckout)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TokenCheckout(varTokenCheckout)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "returns_control_on")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTokenCheckout struct {
@@ -124,5 +153,3 @@ func (v *NullableTokenCheckout) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -31,8 +31,11 @@ type CompanyPayoutDestinationResponse struct {
 	// Type of the payout destination
 	Type *string `json:"type,omitempty"`
 	// Account number of the receiving account
-	AccountNumber *string `json:"account_number,omitempty"`
+	AccountNumber        *string `json:"account_number,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CompanyPayoutDestinationResponse CompanyPayoutDestinationResponse
 
 // NewCompanyPayoutDestinationResponse instantiates a new CompanyPayoutDestinationResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -244,7 +247,7 @@ func (o *CompanyPayoutDestinationResponse) SetAccountNumber(v string) {
 }
 
 func (o CompanyPayoutDestinationResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -271,7 +274,38 @@ func (o CompanyPayoutDestinationResponse) ToMap() (map[string]interface{}, error
 	if !IsNil(o.AccountNumber) {
 		toSerialize["account_number"] = o.AccountNumber
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CompanyPayoutDestinationResponse) UnmarshalJSON(data []byte) (err error) {
+	varCompanyPayoutDestinationResponse := _CompanyPayoutDestinationResponse{}
+
+	err = json.Unmarshal(data, &varCompanyPayoutDestinationResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CompanyPayoutDestinationResponse(varCompanyPayoutDestinationResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "currency")
+		delete(additionalProperties, "account_holder_name")
+		delete(additionalProperties, "bank")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "account_number")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCompanyPayoutDestinationResponse struct {
@@ -309,5 +343,3 @@ func (v *NullableCompanyPayoutDestinationResponse) UnmarshalJSON(src []byte) err
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

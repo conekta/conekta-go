@@ -24,11 +24,12 @@ type UpdateOrderTaxResponse struct {
 	// The amount to be collected for tax in cents
 	Amount int64 `json:"amount"`
 	// description or tax's name
-	Description string `json:"description"`
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
-	Id string `json:"id"`
-	Object *string `json:"object,omitempty"`
-	ParentId *string `json:"parent_id,omitempty"`
+	Description          string                 `json:"description"`
+	Metadata             map[string]interface{} `json:"metadata,omitempty"`
+	Id                   string                 `json:"id"`
+	Object               *string                `json:"object,omitempty"`
+	ParentId             *string                `json:"parent_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateOrderTaxResponse UpdateOrderTaxResponse
@@ -222,7 +223,7 @@ func (o *UpdateOrderTaxResponse) SetParentId(v string) {
 }
 
 func (o UpdateOrderTaxResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -243,11 +244,16 @@ func (o UpdateOrderTaxResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ParentId) {
 		toSerialize["parent_id"] = o.ParentId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *UpdateOrderTaxResponse) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *UpdateOrderTaxResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -258,13 +264,13 @@ func (o *UpdateOrderTaxResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -272,13 +278,25 @@ func (o *UpdateOrderTaxResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	varUpdateOrderTaxResponse := _UpdateOrderTaxResponse{}
 
-	err = json.Unmarshal(bytes, &varUpdateOrderTaxResponse)
+	err = json.Unmarshal(data, &varUpdateOrderTaxResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateOrderTaxResponse(varUpdateOrderTaxResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "parent_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -318,5 +336,3 @@ func (v *NullableUpdateOrderTaxResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

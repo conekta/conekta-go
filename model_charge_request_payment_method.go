@@ -19,17 +19,18 @@ import (
 // checks if the ChargeRequestPaymentMethod type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ChargeRequestPaymentMethod{}
 
-// ChargeRequestPaymentMethod Payment method used in the charge. Go to the [payment methods](https://developers.conekta.com/reference/m%C3%A9todos-de-pago) section for more details 
+// ChargeRequestPaymentMethod Payment method used in the charge. Go to the [payment methods](https://developers.conekta.com/reference/m%C3%A9todos-de-pago) section for more details
 type ChargeRequestPaymentMethod struct {
 	// Method expiration date as unix timestamp
 	ExpiresAt *int64 `json:"expires_at,omitempty"`
 	// How many months without interest to apply, it can be 3, 6, 9, 12 or 18
-	MonthlyInstallments *int32 `json:"monthly_installments,omitempty"`
-	Type string `json:"type"`
-	TokenId *string `json:"token_id,omitempty"`
-	PaymentSourceId *string `json:"payment_source_id,omitempty"`
+	MonthlyInstallments *int32  `json:"monthly_installments,omitempty"`
+	Type                string  `json:"type"`
+	TokenId             *string `json:"token_id,omitempty"`
+	PaymentSourceId     *string `json:"payment_source_id,omitempty"`
 	// Optional id sent to indicate the bank contract for recurrent card charges.
-	ContractId *string `json:"contract_id,omitempty"`
+	ContractId           *string `json:"contract_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ChargeRequestPaymentMethod ChargeRequestPaymentMethod
@@ -237,7 +238,7 @@ func (o *ChargeRequestPaymentMethod) SetContractId(v string) {
 }
 
 func (o ChargeRequestPaymentMethod) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -262,11 +263,16 @@ func (o ChargeRequestPaymentMethod) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ContractId) {
 		toSerialize["contract_id"] = o.ContractId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *ChargeRequestPaymentMethod) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *ChargeRequestPaymentMethod) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -275,13 +281,13 @@ func (o *ChargeRequestPaymentMethod) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -289,13 +295,25 @@ func (o *ChargeRequestPaymentMethod) UnmarshalJSON(bytes []byte) (err error) {
 
 	varChargeRequestPaymentMethod := _ChargeRequestPaymentMethod{}
 
-	err = json.Unmarshal(bytes, &varChargeRequestPaymentMethod)
+	err = json.Unmarshal(data, &varChargeRequestPaymentMethod)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ChargeRequestPaymentMethod(varChargeRequestPaymentMethod)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "monthly_installments")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "token_id")
+		delete(additionalProperties, "payment_source_id")
+		delete(additionalProperties, "contract_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -335,5 +353,3 @@ func (v *NullableChargeRequestPaymentMethod) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

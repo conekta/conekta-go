@@ -21,7 +21,6 @@ var _ MappedNullable = &CustomersResponse{}
 
 // CustomersResponse struct for CustomersResponse
 type CustomersResponse struct {
-	Data []CustomerResponse `json:"data,omitempty"`
 	// Indicates if there are more pages to be requested
 	HasMore bool `json:"has_more"`
 	// Object type, in this case is list
@@ -29,7 +28,9 @@ type CustomersResponse struct {
 	// URL of the next page.
 	NextPageUrl NullableString `json:"next_page_url,omitempty"`
 	// Url of the previous page.
-	PreviousPageUrl NullableString `json:"previous_page_url,omitempty"`
+	PreviousPageUrl      NullableString     `json:"previous_page_url,omitempty"`
+	Data                 []CustomerResponse `json:"data,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomersResponse CustomersResponse
@@ -51,38 +52,6 @@ func NewCustomersResponse(hasMore bool, object string) *CustomersResponse {
 func NewCustomersResponseWithDefaults() *CustomersResponse {
 	this := CustomersResponse{}
 	return &this
-}
-
-// GetData returns the Data field value if set, zero value otherwise.
-func (o *CustomersResponse) GetData() []CustomerResponse {
-	if o == nil || IsNil(o.Data) {
-		var ret []CustomerResponse
-		return ret
-	}
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CustomersResponse) GetDataOk() ([]CustomerResponse, bool) {
-	if o == nil || IsNil(o.Data) {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// HasData returns a boolean if a field has been set.
-func (o *CustomersResponse) HasData() bool {
-	if o != nil && !IsNil(o.Data) {
-		return true
-	}
-
-	return false
-}
-
-// SetData gets a reference to the given []CustomerResponse and assigns it to the Data field.
-func (o *CustomersResponse) SetData(v []CustomerResponse) {
-	o.Data = v
 }
 
 // GetHasMore returns the HasMore field value
@@ -165,6 +134,7 @@ func (o *CustomersResponse) HasNextPageUrl() bool {
 func (o *CustomersResponse) SetNextPageUrl(v string) {
 	o.NextPageUrl.Set(&v)
 }
+
 // SetNextPageUrlNil sets the value for NextPageUrl to be an explicit nil
 func (o *CustomersResponse) SetNextPageUrlNil() {
 	o.NextPageUrl.Set(nil)
@@ -207,6 +177,7 @@ func (o *CustomersResponse) HasPreviousPageUrl() bool {
 func (o *CustomersResponse) SetPreviousPageUrl(v string) {
 	o.PreviousPageUrl.Set(&v)
 }
+
 // SetPreviousPageUrlNil sets the value for PreviousPageUrl to be an explicit nil
 func (o *CustomersResponse) SetPreviousPageUrlNil() {
 	o.PreviousPageUrl.Set(nil)
@@ -217,8 +188,40 @@ func (o *CustomersResponse) UnsetPreviousPageUrl() {
 	o.PreviousPageUrl.Unset()
 }
 
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *CustomersResponse) GetData() []CustomerResponse {
+	if o == nil || IsNil(o.Data) {
+		var ret []CustomerResponse
+		return ret
+	}
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomersResponse) GetDataOk() ([]CustomerResponse, bool) {
+	if o == nil || IsNil(o.Data) {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// HasData returns a boolean if a field has been set.
+func (o *CustomersResponse) HasData() bool {
+	if o != nil && !IsNil(o.Data) {
+		return true
+	}
+
+	return false
+}
+
+// SetData gets a reference to the given []CustomerResponse and assigns it to the Data field.
+func (o *CustomersResponse) SetData(v []CustomerResponse) {
+	o.Data = v
+}
+
 func (o CustomersResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -227,9 +230,6 @@ func (o CustomersResponse) MarshalJSON() ([]byte, error) {
 
 func (o CustomersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Data) {
-		toSerialize["data"] = o.Data
-	}
 	toSerialize["has_more"] = o.HasMore
 	toSerialize["object"] = o.Object
 	if o.NextPageUrl.IsSet() {
@@ -238,11 +238,19 @@ func (o CustomersResponse) ToMap() (map[string]interface{}, error) {
 	if o.PreviousPageUrl.IsSet() {
 		toSerialize["previous_page_url"] = o.PreviousPageUrl.Get()
 	}
+	if !IsNil(o.Data) {
+		toSerialize["data"] = o.Data
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *CustomersResponse) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *CustomersResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -252,13 +260,13 @@ func (o *CustomersResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -266,13 +274,24 @@ func (o *CustomersResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	varCustomersResponse := _CustomersResponse{}
 
-	err = json.Unmarshal(bytes, &varCustomersResponse)
+	err = json.Unmarshal(data, &varCustomersResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomersResponse(varCustomersResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "has_more")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "next_page_url")
+		delete(additionalProperties, "previous_page_url")
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -312,5 +331,3 @@ func (v *NullableCustomersResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

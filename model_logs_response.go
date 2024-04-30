@@ -29,8 +29,11 @@ type LogsResponse struct {
 	// Url of the previous page.
 	PreviousPageUrl NullableString `json:"previous_page_url,omitempty"`
 	// set to page results.
-	Data []LogsResponseData `json:"data,omitempty"`
+	Data                 []LogsResponseData `json:"data,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsResponse LogsResponse
 
 // NewLogsResponse instantiates a new LogsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -145,6 +148,7 @@ func (o *LogsResponse) HasNextPageUrl() bool {
 func (o *LogsResponse) SetNextPageUrl(v string) {
 	o.NextPageUrl.Set(&v)
 }
+
 // SetNextPageUrlNil sets the value for NextPageUrl to be an explicit nil
 func (o *LogsResponse) SetNextPageUrlNil() {
 	o.NextPageUrl.Set(nil)
@@ -187,6 +191,7 @@ func (o *LogsResponse) HasPreviousPageUrl() bool {
 func (o *LogsResponse) SetPreviousPageUrl(v string) {
 	o.PreviousPageUrl.Set(&v)
 }
+
 // SetPreviousPageUrlNil sets the value for PreviousPageUrl to be an explicit nil
 func (o *LogsResponse) SetPreviousPageUrlNil() {
 	o.PreviousPageUrl.Set(nil)
@@ -218,7 +223,7 @@ func (o *LogsResponse) GetDataOk() ([]LogsResponseData, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *LogsResponse) HasData() bool {
-	if o != nil && IsNil(o.Data) {
+	if o != nil && !IsNil(o.Data) {
 		return true
 	}
 
@@ -231,7 +236,7 @@ func (o *LogsResponse) SetData(v []LogsResponseData) {
 }
 
 func (o LogsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -255,7 +260,37 @@ func (o LogsResponse) ToMap() (map[string]interface{}, error) {
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *LogsResponse) UnmarshalJSON(data []byte) (err error) {
+	varLogsResponse := _LogsResponse{}
+
+	err = json.Unmarshal(data, &varLogsResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = LogsResponse(varLogsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "has_more")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "next_page_url")
+		delete(additionalProperties, "previous_page_url")
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableLogsResponse struct {
@@ -293,5 +328,3 @@ func (v *NullableLogsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

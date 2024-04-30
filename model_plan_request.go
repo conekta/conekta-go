@@ -36,7 +36,8 @@ type PlanRequest struct {
 	// The name of the plan.
 	Name string `json:"name"`
 	// The number of days the customer will have a free trial.
-	TrialPeriodDays *int32 `json:"trial_period_days,omitempty"`
+	TrialPeriodDays      *int32 `json:"trial_period_days,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PlanRequest PlanRequest
@@ -287,7 +288,7 @@ func (o *PlanRequest) SetTrialPeriodDays(v int32) {
 }
 
 func (o PlanRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -312,11 +313,16 @@ func (o PlanRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TrialPeriodDays) {
 		toSerialize["trial_period_days"] = o.TrialPeriodDays
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *PlanRequest) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *PlanRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -328,13 +334,13 @@ func (o *PlanRequest) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -342,13 +348,27 @@ func (o *PlanRequest) UnmarshalJSON(bytes []byte) (err error) {
 
 	varPlanRequest := _PlanRequest{}
 
-	err = json.Unmarshal(bytes, &varPlanRequest)
+	err = json.Unmarshal(data, &varPlanRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PlanRequest(varPlanRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "currency")
+		delete(additionalProperties, "expiry_count")
+		delete(additionalProperties, "frequency")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "interval")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "trial_period_days")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -388,5 +408,3 @@ func (v *NullablePlanRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

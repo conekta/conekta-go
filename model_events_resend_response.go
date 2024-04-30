@@ -20,13 +20,16 @@ var _ MappedNullable = &EventsResendResponse{}
 
 // EventsResendResponse event model
 type EventsResendResponse struct {
-	FailedAttempts *int32 `json:"failed_attempts,omitempty"`
-	Id *string `json:"id,omitempty"`
-	LastAttemptedAt *int32 `json:"last_attempted_at,omitempty"`
-	LastHttpResponseStatus *int32 `json:"last_http_response_status,omitempty"`
-	ResponseData map[string]interface{} `json:"response_data,omitempty"`
-	Url *string `json:"url,omitempty"`
+	FailedAttempts         *int32                 `json:"failed_attempts,omitempty"`
+	Id                     *string                `json:"id,omitempty"`
+	LastAttemptedAt        *int32                 `json:"last_attempted_at,omitempty"`
+	LastHttpResponseStatus *int32                 `json:"last_http_response_status,omitempty"`
+	ResponseData           map[string]interface{} `json:"response_data,omitempty"`
+	Url                    *string                `json:"url,omitempty"`
+	AdditionalProperties   map[string]interface{}
 }
+
+type _EventsResendResponse EventsResendResponse
 
 // NewEventsResendResponse instantiates a new EventsResendResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -238,7 +241,7 @@ func (o *EventsResendResponse) SetUrl(v string) {
 }
 
 func (o EventsResendResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -265,7 +268,38 @@ func (o EventsResendResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Url) {
 		toSerialize["url"] = o.Url
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *EventsResendResponse) UnmarshalJSON(data []byte) (err error) {
+	varEventsResendResponse := _EventsResendResponse{}
+
+	err = json.Unmarshal(data, &varEventsResendResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = EventsResendResponse(varEventsResendResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "failed_attempts")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "last_attempted_at")
+		delete(additionalProperties, "last_http_response_status")
+		delete(additionalProperties, "response_data")
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableEventsResendResponse struct {
@@ -303,5 +337,3 @@ func (v *NullableEventsResendResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -30,7 +30,8 @@ type GetTransfersResponse struct {
 	// Url of the previous page.
 	PreviousPageUrl NullableString `json:"previous_page_url,omitempty"`
 	// Transfers
-	Data []TransfersResponse `json:"data,omitempty"`
+	Data                 []TransfersResponse `json:"data,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetTransfersResponse GetTransfersResponse
@@ -134,6 +135,7 @@ func (o *GetTransfersResponse) HasNextPageUrl() bool {
 func (o *GetTransfersResponse) SetNextPageUrl(v string) {
 	o.NextPageUrl.Set(&v)
 }
+
 // SetNextPageUrlNil sets the value for NextPageUrl to be an explicit nil
 func (o *GetTransfersResponse) SetNextPageUrlNil() {
 	o.NextPageUrl.Set(nil)
@@ -176,6 +178,7 @@ func (o *GetTransfersResponse) HasPreviousPageUrl() bool {
 func (o *GetTransfersResponse) SetPreviousPageUrl(v string) {
 	o.PreviousPageUrl.Set(&v)
 }
+
 // SetPreviousPageUrlNil sets the value for PreviousPageUrl to be an explicit nil
 func (o *GetTransfersResponse) SetPreviousPageUrlNil() {
 	o.PreviousPageUrl.Set(nil)
@@ -219,7 +222,7 @@ func (o *GetTransfersResponse) SetData(v []TransfersResponse) {
 }
 
 func (o GetTransfersResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -239,11 +242,16 @@ func (o GetTransfersResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *GetTransfersResponse) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *GetTransfersResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -253,13 +261,13 @@ func (o *GetTransfersResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -267,13 +275,24 @@ func (o *GetTransfersResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	varGetTransfersResponse := _GetTransfersResponse{}
 
-	err = json.Unmarshal(bytes, &varGetTransfersResponse)
+	err = json.Unmarshal(data, &varGetTransfersResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetTransfersResponse(varGetTransfersResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "has_more")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "next_page_url")
+		delete(additionalProperties, "previous_page_url")
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -313,5 +332,3 @@ func (v *NullableGetTransfersResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

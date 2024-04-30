@@ -20,9 +20,12 @@ var _ MappedNullable = &UpdateCustomerAntifraudInfo{}
 
 // UpdateCustomerAntifraudInfo struct for UpdateCustomerAntifraudInfo
 type UpdateCustomerAntifraudInfo struct {
-	AccountCreatedAt *int64 `json:"account_created_at,omitempty"`
-	FirstPaidAt *int32 `json:"first_paid_at,omitempty"`
+	AccountCreatedAt     *int64 `json:"account_created_at,omitempty"`
+	FirstPaidAt          *int32 `json:"first_paid_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateCustomerAntifraudInfo UpdateCustomerAntifraudInfo
 
 // NewUpdateCustomerAntifraudInfo instantiates a new UpdateCustomerAntifraudInfo object
 // This constructor will assign default values to properties that have it defined,
@@ -106,7 +109,7 @@ func (o *UpdateCustomerAntifraudInfo) SetFirstPaidAt(v int32) {
 }
 
 func (o UpdateCustomerAntifraudInfo) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -121,7 +124,34 @@ func (o UpdateCustomerAntifraudInfo) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.FirstPaidAt) {
 		toSerialize["first_paid_at"] = o.FirstPaidAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateCustomerAntifraudInfo) UnmarshalJSON(data []byte) (err error) {
+	varUpdateCustomerAntifraudInfo := _UpdateCustomerAntifraudInfo{}
+
+	err = json.Unmarshal(data, &varUpdateCustomerAntifraudInfo)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateCustomerAntifraudInfo(varUpdateCustomerAntifraudInfo)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "account_created_at")
+		delete(additionalProperties, "first_paid_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateCustomerAntifraudInfo struct {
@@ -159,5 +189,3 @@ func (v *NullableUpdateCustomerAntifraudInfo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

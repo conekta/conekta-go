@@ -27,25 +27,26 @@ type CustomerResponse struct {
 	// Creation date of the object
 	CreatedAt int64 `json:"created_at"`
 	// Custom reference
-	CustomReference *string `json:"custom_reference,omitempty"`
-	DefaultFiscalEntityId NullableString `json:"default_fiscal_entity_id,omitempty"`
-	DefaultShippingContactId *string `json:"default_shipping_contact_id,omitempty"`
-	DefaultPaymentSourceId NullableString `json:"default_payment_source_id,omitempty"`
-	Email *string `json:"email,omitempty"`
-	FiscalEntities *CustomerFiscalEntitiesResponse `json:"fiscal_entities,omitempty"`
+	CustomReference          *string                         `json:"custom_reference,omitempty"`
+	DefaultFiscalEntityId    NullableString                  `json:"default_fiscal_entity_id,omitempty"`
+	DefaultShippingContactId *string                         `json:"default_shipping_contact_id,omitempty"`
+	DefaultPaymentSourceId   NullableString                  `json:"default_payment_source_id,omitempty"`
+	Email                    *string                         `json:"email,omitempty"`
+	FiscalEntities           *CustomerFiscalEntitiesResponse `json:"fiscal_entities,omitempty"`
 	// Customer's ID
 	Id string `json:"id"`
 	// true if the object exists in live mode or the value false if the object exists in test mode
 	Livemode bool `json:"livemode"`
 	// Customer's name
-	Name string `json:"name"`
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
-	Object string `json:"object"`
+	Name           string                          `json:"name"`
+	Metadata       map[string]interface{}          `json:"metadata,omitempty"`
+	Object         string                          `json:"object"`
 	PaymentSources *CustomerPaymentMethodsResponse `json:"payment_sources,omitempty"`
 	// Customer's phone number
-	Phone *string `json:"phone,omitempty"`
-	ShippingContacts *CustomerResponseShippingContacts `json:"shipping_contacts,omitempty"`
-	Subscription *SubscriptionResponse `json:"subscription,omitempty"`
+	Phone                *string                           `json:"phone,omitempty"`
+	ShippingContacts     *CustomerResponseShippingContacts `json:"shipping_contacts,omitempty"`
+	Subscription         *SubscriptionResponse             `json:"subscription,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomerResponse CustomerResponse
@@ -104,6 +105,7 @@ func (o *CustomerResponse) HasAntifraudInfo() bool {
 func (o *CustomerResponse) SetAntifraudInfo(v CustomerAntifraudInfoResponse) {
 	o.AntifraudInfo.Set(&v)
 }
+
 // SetAntifraudInfoNil sets the value for AntifraudInfo to be an explicit nil
 func (o *CustomerResponse) SetAntifraudInfoNil() {
 	o.AntifraudInfo.Set(nil)
@@ -234,6 +236,7 @@ func (o *CustomerResponse) HasDefaultFiscalEntityId() bool {
 func (o *CustomerResponse) SetDefaultFiscalEntityId(v string) {
 	o.DefaultFiscalEntityId.Set(&v)
 }
+
 // SetDefaultFiscalEntityIdNil sets the value for DefaultFiscalEntityId to be an explicit nil
 func (o *CustomerResponse) SetDefaultFiscalEntityIdNil() {
 	o.DefaultFiscalEntityId.Set(nil)
@@ -308,6 +311,7 @@ func (o *CustomerResponse) HasDefaultPaymentSourceId() bool {
 func (o *CustomerResponse) SetDefaultPaymentSourceId(v string) {
 	o.DefaultPaymentSourceId.Set(&v)
 }
+
 // SetDefaultPaymentSourceIdNil sets the value for DefaultPaymentSourceId to be an explicit nil
 func (o *CustomerResponse) SetDefaultPaymentSourceIdNil() {
 	o.DefaultPaymentSourceId.Set(nil)
@@ -639,7 +643,7 @@ func (o *CustomerResponse) SetSubscription(v SubscriptionResponse) {
 }
 
 func (o CustomerResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -692,11 +696,16 @@ func (o CustomerResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Subscription) {
 		toSerialize["subscription"] = o.Subscription
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *CustomerResponse) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *CustomerResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -709,13 +718,13 @@ func (o *CustomerResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -723,13 +732,37 @@ func (o *CustomerResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	varCustomerResponse := _CustomerResponse{}
 
-	err = json.Unmarshal(bytes, &varCustomerResponse)
+	err = json.Unmarshal(data, &varCustomerResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomerResponse(varCustomerResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "antifraud_info")
+		delete(additionalProperties, "corporate")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "custom_reference")
+		delete(additionalProperties, "default_fiscal_entity_id")
+		delete(additionalProperties, "default_shipping_contact_id")
+		delete(additionalProperties, "default_payment_source_id")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "fiscal_entities")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "livemode")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "payment_sources")
+		delete(additionalProperties, "phone")
+		delete(additionalProperties, "shipping_contacts")
+		delete(additionalProperties, "subscription")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -769,5 +802,3 @@ func (v *NullableCustomerResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

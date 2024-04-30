@@ -20,18 +20,21 @@ var _ MappedNullable = &PlanResponse{}
 
 // PlanResponse plans model
 type PlanResponse struct {
-	Amount *int32 `json:"amount,omitempty"`
-	CreatedAt *int64 `json:"created_at,omitempty"`
-	Currency *string `json:"currency,omitempty"`
-	ExpiryCount NullableInt32 `json:"expiry_count,omitempty"`
-	Frequency *int32 `json:"frequency,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Interval *string `json:"interval,omitempty"`
-	Livemode *bool `json:"livemode,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Object *string `json:"object,omitempty"`
-	TrialPeriodDays NullableInt32 `json:"trial_period_days,omitempty"`
+	Amount               *int32        `json:"amount,omitempty"`
+	CreatedAt            *int64        `json:"created_at,omitempty"`
+	Currency             *string       `json:"currency,omitempty"`
+	ExpiryCount          NullableInt32 `json:"expiry_count,omitempty"`
+	Frequency            *int32        `json:"frequency,omitempty"`
+	Id                   *string       `json:"id,omitempty"`
+	Interval             *string       `json:"interval,omitempty"`
+	Livemode             *bool         `json:"livemode,omitempty"`
+	Name                 *string       `json:"name,omitempty"`
+	Object               *string       `json:"object,omitempty"`
+	TrialPeriodDays      NullableInt32 `json:"trial_period_days,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PlanResponse PlanResponse
 
 // NewPlanResponse instantiates a new PlanResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -178,6 +181,7 @@ func (o *PlanResponse) HasExpiryCount() bool {
 func (o *PlanResponse) SetExpiryCount(v int32) {
 	o.ExpiryCount.Set(&v)
 }
+
 // SetExpiryCountNil sets the value for ExpiryCount to be an explicit nil
 func (o *PlanResponse) SetExpiryCountNil() {
 	o.ExpiryCount.Set(nil)
@@ -412,6 +416,7 @@ func (o *PlanResponse) HasTrialPeriodDays() bool {
 func (o *PlanResponse) SetTrialPeriodDays(v int32) {
 	o.TrialPeriodDays.Set(&v)
 }
+
 // SetTrialPeriodDaysNil sets the value for TrialPeriodDays to be an explicit nil
 func (o *PlanResponse) SetTrialPeriodDaysNil() {
 	o.TrialPeriodDays.Set(nil)
@@ -423,7 +428,7 @@ func (o *PlanResponse) UnsetTrialPeriodDays() {
 }
 
 func (o PlanResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -465,7 +470,43 @@ func (o PlanResponse) ToMap() (map[string]interface{}, error) {
 	if o.TrialPeriodDays.IsSet() {
 		toSerialize["trial_period_days"] = o.TrialPeriodDays.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PlanResponse) UnmarshalJSON(data []byte) (err error) {
+	varPlanResponse := _PlanResponse{}
+
+	err = json.Unmarshal(data, &varPlanResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PlanResponse(varPlanResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "currency")
+		delete(additionalProperties, "expiry_count")
+		delete(additionalProperties, "frequency")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "interval")
+		delete(additionalProperties, "livemode")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "trial_period_days")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePlanResponse struct {
@@ -503,5 +544,3 @@ func (v *NullablePlanResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

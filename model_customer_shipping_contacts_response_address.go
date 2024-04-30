@@ -20,15 +20,18 @@ var _ MappedNullable = &CustomerShippingContactsResponseAddress{}
 
 // CustomerShippingContactsResponseAddress struct for CustomerShippingContactsResponseAddress
 type CustomerShippingContactsResponseAddress struct {
-	Object *string `json:"object,omitempty"`
-	Street1 *string `json:"street1,omitempty"`
-	Street2 *string `json:"street2,omitempty"`
-	PostalCode *string `json:"postal_code,omitempty"`
-	City *string `json:"city,omitempty"`
-	State *string `json:"state,omitempty"`
-	Country *string `json:"country,omitempty"`
-	Residential NullableBool `json:"residential,omitempty"`
+	Object               *string      `json:"object,omitempty"`
+	Street1              *string      `json:"street1,omitempty"`
+	Street2              *string      `json:"street2,omitempty"`
+	PostalCode           *string      `json:"postal_code,omitempty"`
+	City                 *string      `json:"city,omitempty"`
+	State                *string      `json:"state,omitempty"`
+	Country              *string      `json:"country,omitempty"`
+	Residential          NullableBool `json:"residential,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CustomerShippingContactsResponseAddress CustomerShippingContactsResponseAddress
 
 // NewCustomerShippingContactsResponseAddress instantiates a new CustomerShippingContactsResponseAddress object
 // This constructor will assign default values to properties that have it defined,
@@ -303,6 +306,7 @@ func (o *CustomerShippingContactsResponseAddress) HasResidential() bool {
 func (o *CustomerShippingContactsResponseAddress) SetResidential(v bool) {
 	o.Residential.Set(&v)
 }
+
 // SetResidentialNil sets the value for Residential to be an explicit nil
 func (o *CustomerShippingContactsResponseAddress) SetResidentialNil() {
 	o.Residential.Set(nil)
@@ -314,7 +318,7 @@ func (o *CustomerShippingContactsResponseAddress) UnsetResidential() {
 }
 
 func (o CustomerShippingContactsResponseAddress) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -347,7 +351,40 @@ func (o CustomerShippingContactsResponseAddress) ToMap() (map[string]interface{}
 	if o.Residential.IsSet() {
 		toSerialize["residential"] = o.Residential.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CustomerShippingContactsResponseAddress) UnmarshalJSON(data []byte) (err error) {
+	varCustomerShippingContactsResponseAddress := _CustomerShippingContactsResponseAddress{}
+
+	err = json.Unmarshal(data, &varCustomerShippingContactsResponseAddress)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CustomerShippingContactsResponseAddress(varCustomerShippingContactsResponseAddress)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "street1")
+		delete(additionalProperties, "street2")
+		delete(additionalProperties, "postal_code")
+		delete(additionalProperties, "city")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "country")
+		delete(additionalProperties, "residential")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCustomerShippingContactsResponseAddress struct {
@@ -385,5 +422,3 @@ func (v *NullableCustomerShippingContactsResponseAddress) UnmarshalJSON(src []by
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

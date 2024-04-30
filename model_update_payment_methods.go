@@ -20,8 +20,11 @@ var _ MappedNullable = &UpdatePaymentMethods{}
 
 // UpdatePaymentMethods struct for UpdatePaymentMethods
 type UpdatePaymentMethods struct {
-	Name *string `json:"name,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdatePaymentMethods UpdatePaymentMethods
 
 // NewUpdatePaymentMethods instantiates a new UpdatePaymentMethods object
 // This constructor will assign default values to properties that have it defined,
@@ -73,7 +76,7 @@ func (o *UpdatePaymentMethods) SetName(v string) {
 }
 
 func (o UpdatePaymentMethods) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -85,7 +88,33 @@ func (o UpdatePaymentMethods) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdatePaymentMethods) UnmarshalJSON(data []byte) (err error) {
+	varUpdatePaymentMethods := _UpdatePaymentMethods{}
+
+	err = json.Unmarshal(data, &varUpdatePaymentMethods)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdatePaymentMethods(varUpdatePaymentMethods)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdatePaymentMethods struct {
@@ -123,5 +152,3 @@ func (v *NullableUpdatePaymentMethods) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

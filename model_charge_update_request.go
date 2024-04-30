@@ -21,8 +21,11 @@ var _ MappedNullable = &ChargeUpdateRequest{}
 // ChargeUpdateRequest requested field for update a charge
 type ChargeUpdateRequest struct {
 	// custom reference id
-	ReferenceId *string `json:"reference_id,omitempty"`
+	ReferenceId          *string `json:"reference_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ChargeUpdateRequest ChargeUpdateRequest
 
 // NewChargeUpdateRequest instantiates a new ChargeUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -74,7 +77,7 @@ func (o *ChargeUpdateRequest) SetReferenceId(v string) {
 }
 
 func (o ChargeUpdateRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -86,7 +89,33 @@ func (o ChargeUpdateRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ReferenceId) {
 		toSerialize["reference_id"] = o.ReferenceId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ChargeUpdateRequest) UnmarshalJSON(data []byte) (err error) {
+	varChargeUpdateRequest := _ChargeUpdateRequest{}
+
+	err = json.Unmarshal(data, &varChargeUpdateRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ChargeUpdateRequest(varChargeUpdateRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "reference_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableChargeUpdateRequest struct {
@@ -124,5 +153,3 @@ func (v *NullableChargeUpdateRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

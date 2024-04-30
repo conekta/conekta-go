@@ -37,8 +37,11 @@ type CompanyFiscalInfoAddressResponse struct {
 	// Street number
 	ExternalNumber *string `json:"external_number,omitempty"`
 	// Unit / apartment number
-	InternalNumber *string `json:"internal_number,omitempty"`
+	InternalNumber       *string `json:"internal_number,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CompanyFiscalInfoAddressResponse CompanyFiscalInfoAddressResponse
 
 // NewCompanyFiscalInfoAddressResponse instantiates a new CompanyFiscalInfoAddressResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -346,7 +349,7 @@ func (o *CompanyFiscalInfoAddressResponse) SetInternalNumber(v string) {
 }
 
 func (o CompanyFiscalInfoAddressResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -382,7 +385,41 @@ func (o CompanyFiscalInfoAddressResponse) ToMap() (map[string]interface{}, error
 	if !IsNil(o.InternalNumber) {
 		toSerialize["internal_number"] = o.InternalNumber
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CompanyFiscalInfoAddressResponse) UnmarshalJSON(data []byte) (err error) {
+	varCompanyFiscalInfoAddressResponse := _CompanyFiscalInfoAddressResponse{}
+
+	err = json.Unmarshal(data, &varCompanyFiscalInfoAddressResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CompanyFiscalInfoAddressResponse(varCompanyFiscalInfoAddressResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "street1")
+		delete(additionalProperties, "street2")
+		delete(additionalProperties, "city")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "country")
+		delete(additionalProperties, "postal_code")
+		delete(additionalProperties, "external_number")
+		delete(additionalProperties, "internal_number")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCompanyFiscalInfoAddressResponse struct {
@@ -420,5 +457,3 @@ func (v *NullableCompanyFiscalInfoAddressResponse) UnmarshalJSON(src []byte) err
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

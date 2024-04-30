@@ -20,8 +20,11 @@ var _ MappedNullable = &CustomerInfoJustCustomerIdResponse{}
 
 // CustomerInfoJustCustomerIdResponse struct for CustomerInfoJustCustomerIdResponse
 type CustomerInfoJustCustomerIdResponse struct {
-	CustomerId *string `json:"customer_id,omitempty"`
+	CustomerId           *string `json:"customer_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CustomerInfoJustCustomerIdResponse CustomerInfoJustCustomerIdResponse
 
 // NewCustomerInfoJustCustomerIdResponse instantiates a new CustomerInfoJustCustomerIdResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -73,7 +76,7 @@ func (o *CustomerInfoJustCustomerIdResponse) SetCustomerId(v string) {
 }
 
 func (o CustomerInfoJustCustomerIdResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -85,7 +88,33 @@ func (o CustomerInfoJustCustomerIdResponse) ToMap() (map[string]interface{}, err
 	if !IsNil(o.CustomerId) {
 		toSerialize["customer_id"] = o.CustomerId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CustomerInfoJustCustomerIdResponse) UnmarshalJSON(data []byte) (err error) {
+	varCustomerInfoJustCustomerIdResponse := _CustomerInfoJustCustomerIdResponse{}
+
+	err = json.Unmarshal(data, &varCustomerInfoJustCustomerIdResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CustomerInfoJustCustomerIdResponse(varCustomerInfoJustCustomerIdResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "customer_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCustomerInfoJustCustomerIdResponse struct {
@@ -123,5 +152,3 @@ func (v *NullableCustomerInfoJustCustomerIdResponse) UnmarshalJSON(src []byte) e
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -21,11 +21,12 @@ var _ MappedNullable = &PaymentMethodResponse{}
 
 // PaymentMethodResponse struct for PaymentMethodResponse
 type PaymentMethodResponse struct {
-	Type string `json:"type"`
-	Id string `json:"id"`
-	Object string `json:"object"`
-	CreatedAt int64 `json:"created_at"`
-	ParentId *string `json:"parent_id,omitempty"`
+	Type                 string  `json:"type"`
+	Id                   string  `json:"id"`
+	Object               string  `json:"object"`
+	CreatedAt            int64   `json:"created_at"`
+	ParentId             *string `json:"parent_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PaymentMethodResponse PaymentMethodResponse
@@ -180,7 +181,7 @@ func (o *PaymentMethodResponse) SetParentId(v string) {
 }
 
 func (o PaymentMethodResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -196,11 +197,16 @@ func (o PaymentMethodResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ParentId) {
 		toSerialize["parent_id"] = o.ParentId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *PaymentMethodResponse) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *PaymentMethodResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -212,13 +218,13 @@ func (o *PaymentMethodResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -226,13 +232,24 @@ func (o *PaymentMethodResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	varPaymentMethodResponse := _PaymentMethodResponse{}
 
-	err = json.Unmarshal(bytes, &varPaymentMethodResponse)
+	err = json.Unmarshal(data, &varPaymentMethodResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PaymentMethodResponse(varPaymentMethodResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "parent_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -272,5 +289,3 @@ func (v *NullablePaymentMethodResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

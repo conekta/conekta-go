@@ -20,8 +20,6 @@ var _ MappedNullable = &ApiKeyCreateResponse{}
 
 // ApiKeyCreateResponse struct for ApiKeyCreateResponse
 type ApiKeyCreateResponse struct {
-	// It is occupied as a user when authenticated with basic authentication, with a blank password. This value will only appear once, in the request to create a new key. Copy and save it in a safe place.
-	AuthenticationToken *string `json:"authentication_token,omitempty"`
 	// Indicates if the api key is active
 	Active *bool `json:"active,omitempty"`
 	// Unix timestamp in seconds of when the api key was created
@@ -44,7 +42,12 @@ type ApiKeyCreateResponse struct {
 	Prefix *string `json:"prefix,omitempty"`
 	// Indicates if the api key is private or public
 	Role *string `json:"role,omitempty"`
+	// It is occupied as a user when authenticated with basic authentication, with a blank password. This value will only appear once, in the request to create a new key. Copy and save it in a safe place.
+	AuthenticationToken  *string `json:"authentication_token,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ApiKeyCreateResponse ApiKeyCreateResponse
 
 // NewApiKeyCreateResponse instantiates a new ApiKeyCreateResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -61,38 +64,6 @@ func NewApiKeyCreateResponse() *ApiKeyCreateResponse {
 func NewApiKeyCreateResponseWithDefaults() *ApiKeyCreateResponse {
 	this := ApiKeyCreateResponse{}
 	return &this
-}
-
-// GetAuthenticationToken returns the AuthenticationToken field value if set, zero value otherwise.
-func (o *ApiKeyCreateResponse) GetAuthenticationToken() string {
-	if o == nil || IsNil(o.AuthenticationToken) {
-		var ret string
-		return ret
-	}
-	return *o.AuthenticationToken
-}
-
-// GetAuthenticationTokenOk returns a tuple with the AuthenticationToken field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ApiKeyCreateResponse) GetAuthenticationTokenOk() (*string, bool) {
-	if o == nil || IsNil(o.AuthenticationToken) {
-		return nil, false
-	}
-	return o.AuthenticationToken, true
-}
-
-// HasAuthenticationToken returns a boolean if a field has been set.
-func (o *ApiKeyCreateResponse) HasAuthenticationToken() bool {
-	if o != nil && !IsNil(o.AuthenticationToken) {
-		return true
-	}
-
-	return false
-}
-
-// SetAuthenticationToken gets a reference to the given string and assigns it to the AuthenticationToken field.
-func (o *ApiKeyCreateResponse) SetAuthenticationToken(v string) {
-	o.AuthenticationToken = &v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
@@ -223,6 +194,7 @@ func (o *ApiKeyCreateResponse) HasDeactivatedAt() bool {
 func (o *ApiKeyCreateResponse) SetDeactivatedAt(v int64) {
 	o.DeactivatedAt.Set(&v)
 }
+
 // SetDeactivatedAtNil sets the value for DeactivatedAt to be an explicit nil
 func (o *ApiKeyCreateResponse) SetDeactivatedAtNil() {
 	o.DeactivatedAt.Set(nil)
@@ -457,8 +429,40 @@ func (o *ApiKeyCreateResponse) SetRole(v string) {
 	o.Role = &v
 }
 
+// GetAuthenticationToken returns the AuthenticationToken field value if set, zero value otherwise.
+func (o *ApiKeyCreateResponse) GetAuthenticationToken() string {
+	if o == nil || IsNil(o.AuthenticationToken) {
+		var ret string
+		return ret
+	}
+	return *o.AuthenticationToken
+}
+
+// GetAuthenticationTokenOk returns a tuple with the AuthenticationToken field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ApiKeyCreateResponse) GetAuthenticationTokenOk() (*string, bool) {
+	if o == nil || IsNil(o.AuthenticationToken) {
+		return nil, false
+	}
+	return o.AuthenticationToken, true
+}
+
+// HasAuthenticationToken returns a boolean if a field has been set.
+func (o *ApiKeyCreateResponse) HasAuthenticationToken() bool {
+	if o != nil && !IsNil(o.AuthenticationToken) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthenticationToken gets a reference to the given string and assigns it to the AuthenticationToken field.
+func (o *ApiKeyCreateResponse) SetAuthenticationToken(v string) {
+	o.AuthenticationToken = &v
+}
+
 func (o ApiKeyCreateResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -467,9 +471,6 @@ func (o ApiKeyCreateResponse) MarshalJSON() ([]byte, error) {
 
 func (o ApiKeyCreateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AuthenticationToken) {
-		toSerialize["authentication_token"] = o.AuthenticationToken
-	}
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
@@ -503,7 +504,47 @@ func (o ApiKeyCreateResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Role) {
 		toSerialize["role"] = o.Role
 	}
+	if !IsNil(o.AuthenticationToken) {
+		toSerialize["authentication_token"] = o.AuthenticationToken
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ApiKeyCreateResponse) UnmarshalJSON(data []byte) (err error) {
+	varApiKeyCreateResponse := _ApiKeyCreateResponse{}
+
+	err = json.Unmarshal(data, &varApiKeyCreateResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ApiKeyCreateResponse(varApiKeyCreateResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "deactivated_at")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "livemode")
+		delete(additionalProperties, "deleted")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "prefix")
+		delete(additionalProperties, "role")
+		delete(additionalProperties, "authentication_token")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableApiKeyCreateResponse struct {
@@ -541,5 +582,3 @@ func (v *NullableApiKeyCreateResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

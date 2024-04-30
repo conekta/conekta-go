@@ -24,7 +24,8 @@ type PaymentMethodCardRequest struct {
 	// Type of payment method
 	Type string `json:"type"`
 	// Token id that will be used to create a \"card\" type payment method. See the (subscriptions)[https://developers.conekta.com/v2.1.0/reference/createsubscription] tutorial for more information on how to tokenize cards.
-	TokenId string `json:"token_id"`
+	TokenId              string `json:"token_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PaymentMethodCardRequest PaymentMethodCardRequest
@@ -97,7 +98,7 @@ func (o *PaymentMethodCardRequest) SetTokenId(v string) {
 }
 
 func (o PaymentMethodCardRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -108,11 +109,16 @@ func (o PaymentMethodCardRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
 	toSerialize["token_id"] = o.TokenId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *PaymentMethodCardRequest) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *PaymentMethodCardRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -122,13 +128,13 @@ func (o *PaymentMethodCardRequest) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -136,13 +142,21 @@ func (o *PaymentMethodCardRequest) UnmarshalJSON(bytes []byte) (err error) {
 
 	varPaymentMethodCardRequest := _PaymentMethodCardRequest{}
 
-	err = json.Unmarshal(bytes, &varPaymentMethodCardRequest)
+	err = json.Unmarshal(data, &varPaymentMethodCardRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PaymentMethodCardRequest(varPaymentMethodCardRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "token_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -182,5 +196,3 @@ func (v *NullablePaymentMethodCardRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

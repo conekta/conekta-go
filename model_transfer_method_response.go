@@ -35,8 +35,11 @@ type TransferMethodResponse struct {
 	// Unique identifier of the payee.
 	PayeeId *string `json:"payee_id,omitempty"`
 	// Type of the payee.
-	Type *string `json:"type,omitempty"`
+	Type                 *string `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TransferMethodResponse TransferMethodResponse
 
 // NewTransferMethodResponse instantiates a new TransferMethodResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -312,7 +315,7 @@ func (o *TransferMethodResponse) SetType(v string) {
 }
 
 func (o TransferMethodResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -345,7 +348,40 @@ func (o TransferMethodResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *TransferMethodResponse) UnmarshalJSON(data []byte) (err error) {
+	varTransferMethodResponse := _TransferMethodResponse{}
+
+	err = json.Unmarshal(data, &varTransferMethodResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TransferMethodResponse(varTransferMethodResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "account_holder")
+		delete(additionalProperties, "account_number")
+		delete(additionalProperties, "bank")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "payee_id")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTransferMethodResponse struct {
@@ -383,5 +419,3 @@ func (v *NullableTransferMethodResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -26,27 +26,27 @@ Create Discount
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    orderDiscountLinesRequest := *openapiclient.NewOrderDiscountLinesRequest(int64(500), "123", "loyalty") // OrderDiscountLinesRequest | requested field for a discount lines
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	orderDiscountLinesRequest := *openapiclient.NewOrderDiscountLinesRequest(int64(500), "123", "loyalty") // OrderDiscountLinesRequest | requested field for a discount lines
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DiscountsAPI.OrdersCreateDiscountLine(context.Background(), id).OrderDiscountLinesRequest(orderDiscountLinesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DiscountsAPI.OrdersCreateDiscountLine``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrdersCreateDiscountLine`: DiscountLinesResponse
-    fmt.Fprintf(os.Stdout, "Response from `DiscountsAPI.OrdersCreateDiscountLine`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DiscountsAPI.OrdersCreateDiscountLine(context.Background(), id).OrderDiscountLinesRequest(orderDiscountLinesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DiscountsAPI.OrdersCreateDiscountLine``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrdersCreateDiscountLine`: DiscountLinesResponse
+	fmt.Fprintf(os.Stdout, "Response from `DiscountsAPI.OrdersCreateDiscountLine`: %v\n", resp)
 }
 ```
 
@@ -102,27 +102,27 @@ Delete Discount
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    discountLinesId := "dis_lin_2tQ974hSHcsdeSZHG" // string | discount line id identifier
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	discountLinesId := "dis_lin_2tQ974hSHcsdeSZHG" // string | discount line id identifier
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DiscountsAPI.OrdersDeleteDiscountLines(context.Background(), id, discountLinesId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DiscountsAPI.OrdersDeleteDiscountLines``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrdersDeleteDiscountLines`: DiscountLinesResponse
-    fmt.Fprintf(os.Stdout, "Response from `DiscountsAPI.OrdersDeleteDiscountLines`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DiscountsAPI.OrdersDeleteDiscountLines(context.Background(), id, discountLinesId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DiscountsAPI.OrdersDeleteDiscountLines``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrdersDeleteDiscountLines`: DiscountLinesResponse
+	fmt.Fprintf(os.Stdout, "Response from `DiscountsAPI.OrdersDeleteDiscountLines`: %v\n", resp)
 }
 ```
 
@@ -179,27 +179,27 @@ Get Discount
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    discountLinesId := "dis_lin_2tQ974hSHcsdeSZHG" // string | discount line id identifier
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	discountLinesId := "dis_lin_2tQ974hSHcsdeSZHG" // string | discount line id identifier
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DiscountsAPI.OrdersGetDiscountLine(context.Background(), id, discountLinesId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DiscountsAPI.OrdersGetDiscountLine``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrdersGetDiscountLine`: DiscountLinesResponse
-    fmt.Fprintf(os.Stdout, "Response from `DiscountsAPI.OrdersGetDiscountLine`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DiscountsAPI.OrdersGetDiscountLine(context.Background(), id, discountLinesId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DiscountsAPI.OrdersGetDiscountLine``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrdersGetDiscountLine`: DiscountLinesResponse
+	fmt.Fprintf(os.Stdout, "Response from `DiscountsAPI.OrdersGetDiscountLine`: %v\n", resp)
 }
 ```
 
@@ -256,30 +256,30 @@ Get a List of Discount
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
-    limit := int32(56) // int32 | The numbers of items to return, the maximum value is 250 (optional) (default to 20)
-    search := "search_example" // string | General order search, e.g. by mail, reference etc. (optional)
-    next := "next_example" // string | next page (optional)
-    previous := "previous_example" // string | previous page (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	limit := int32(56) // int32 | The numbers of items to return, the maximum value is 250 (optional) (default to 20)
+	search := "search_example" // string | General order search, e.g. by mail, reference etc. (optional)
+	next := "next_example" // string | next page (optional)
+	previous := "previous_example" // string | previous page (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DiscountsAPI.OrdersGetDiscountLines(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DiscountsAPI.OrdersGetDiscountLines``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrdersGetDiscountLines`: GetOrderDiscountLinesResponse
-    fmt.Fprintf(os.Stdout, "Response from `DiscountsAPI.OrdersGetDiscountLines`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DiscountsAPI.OrdersGetDiscountLines(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DiscountsAPI.OrdersGetDiscountLines``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrdersGetDiscountLines`: GetOrderDiscountLinesResponse
+	fmt.Fprintf(os.Stdout, "Response from `DiscountsAPI.OrdersGetDiscountLines`: %v\n", resp)
 }
 ```
 
@@ -338,28 +338,28 @@ Update Discount
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    discountLinesId := "dis_lin_2tQ974hSHcsdeSZHG" // string | discount line id identifier
-    updateOrderDiscountLinesRequest := *openapiclient.NewUpdateOrderDiscountLinesRequest() // UpdateOrderDiscountLinesRequest | requested field for a discount lines
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	discountLinesId := "dis_lin_2tQ974hSHcsdeSZHG" // string | discount line id identifier
+	updateOrderDiscountLinesRequest := *openapiclient.NewUpdateOrderDiscountLinesRequest() // UpdateOrderDiscountLinesRequest | requested field for a discount lines
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DiscountsAPI.OrdersUpdateDiscountLines(context.Background(), id, discountLinesId).UpdateOrderDiscountLinesRequest(updateOrderDiscountLinesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DiscountsAPI.OrdersUpdateDiscountLines``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrdersUpdateDiscountLines`: DiscountLinesResponse
-    fmt.Fprintf(os.Stdout, "Response from `DiscountsAPI.OrdersUpdateDiscountLines`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DiscountsAPI.OrdersUpdateDiscountLines(context.Background(), id, discountLinesId).UpdateOrderDiscountLinesRequest(updateOrderDiscountLinesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DiscountsAPI.OrdersUpdateDiscountLines``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrdersUpdateDiscountLines`: DiscountLinesResponse
+	fmt.Fprintf(os.Stdout, "Response from `DiscountsAPI.OrdersUpdateDiscountLines`: %v\n", resp)
 }
 ```
 

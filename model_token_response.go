@@ -30,7 +30,8 @@ type TokenResponse struct {
 	// Indicates the type of object, in this case token
 	Object string `json:"object"`
 	// Indicates if the token has been used
-	Used bool `json:"used"`
+	Used                 bool `json:"used"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TokenResponse TokenResponse
@@ -91,6 +92,7 @@ func (o *TokenResponse) HasCheckout() bool {
 func (o *TokenResponse) SetCheckout(v TokenResponseCheckout) {
 	o.Checkout.Set(&v)
 }
+
 // SetCheckoutNil sets the value for Checkout to be an explicit nil
 func (o *TokenResponse) SetCheckoutNil() {
 	o.Checkout.Set(nil)
@@ -198,7 +200,7 @@ func (o *TokenResponse) SetUsed(v bool) {
 }
 
 func (o TokenResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -214,11 +216,16 @@ func (o TokenResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["livemode"] = o.Livemode
 	toSerialize["object"] = o.Object
 	toSerialize["used"] = o.Used
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *TokenResponse) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *TokenResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -230,13 +237,13 @@ func (o *TokenResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -244,13 +251,24 @@ func (o *TokenResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	varTokenResponse := _TokenResponse{}
 
-	err = json.Unmarshal(bytes, &varTokenResponse)
+	err = json.Unmarshal(data, &varTokenResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TokenResponse(varTokenResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "checkout")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "livemode")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "used")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -290,5 +308,3 @@ func (v *NullableTokenResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

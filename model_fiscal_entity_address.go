@@ -34,7 +34,8 @@ type FiscalEntityAddress struct {
 	// this field follows the [ISO 3166-1 alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
 	Country string `json:"country"`
 	// External number
-	ExternalNumber string `json:"external_number"`
+	ExternalNumber       string `json:"external_number"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FiscalEntityAddress FiscalEntityAddress
@@ -117,6 +118,7 @@ func (o *FiscalEntityAddress) HasStreet2() bool {
 func (o *FiscalEntityAddress) SetStreet2(v string) {
 	o.Street2.Set(&v)
 }
+
 // SetStreet2Nil sets the value for Street2 to be an explicit nil
 func (o *FiscalEntityAddress) SetStreet2Nil() {
 	o.Street2.Set(nil)
@@ -256,7 +258,7 @@ func (o *FiscalEntityAddress) SetExternalNumber(v string) {
 }
 
 func (o FiscalEntityAddress) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -276,11 +278,16 @@ func (o FiscalEntityAddress) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["country"] = o.Country
 	toSerialize["external_number"] = o.ExternalNumber
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *FiscalEntityAddress) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *FiscalEntityAddress) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -293,13 +300,13 @@ func (o *FiscalEntityAddress) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -307,13 +314,26 @@ func (o *FiscalEntityAddress) UnmarshalJSON(bytes []byte) (err error) {
 
 	varFiscalEntityAddress := _FiscalEntityAddress{}
 
-	err = json.Unmarshal(bytes, &varFiscalEntityAddress)
+	err = json.Unmarshal(data, &varFiscalEntityAddress)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FiscalEntityAddress(varFiscalEntityAddress)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "street1")
+		delete(additionalProperties, "street2")
+		delete(additionalProperties, "postal_code")
+		delete(additionalProperties, "city")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "country")
+		delete(additionalProperties, "external_number")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -353,5 +373,3 @@ func (v *NullableFiscalEntityAddress) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

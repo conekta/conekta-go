@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **AntifraudInfo** | Pointer to **map[string]interface{}** |  | [optional] 
 **Brand** | Pointer to **string** | The brand of the item. | [optional] 
 **Description** | Pointer to **string** | Short description of the item | [optional] 
-**Metadata** | Pointer to **map[string]string** | It is a key/value hash that can hold custom fields. Maximum 100 elements and allows special characters. | [optional] 
+**Metadata** | Pointer to **map[string]interface{}** | It is a key/value hash that can hold custom fields. Maximum 100 elements and allows special characters. | [optional] [default to {}]
 **Name** | **string** | The name of the item. It will be displayed in the order. | 
 **Quantity** | **int32** | The quantity of the item in the order. | 
 **Sku** | Pointer to **string** | The stock keeping unit for the item. It is used to identify the item in the order. | [optional] 
@@ -110,20 +110,20 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetMetadata
 
-`func (o *Product) GetMetadata() map[string]string`
+`func (o *Product) GetMetadata() map[string]interface{}`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *Product) GetMetadataOk() (*map[string]string, bool)`
+`func (o *Product) GetMetadataOk() (*map[string]interface{}, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *Product) SetMetadata(v map[string]string)`
+`func (o *Product) SetMetadata(v map[string]interface{})`
 
 SetMetadata sets Metadata field to given value.
 

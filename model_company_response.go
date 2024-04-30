@@ -31,10 +31,13 @@ type CompanyResponse struct {
 	// Id of the parent company
 	ParentCompanyId *string `json:"parent_company_id,omitempty"`
 	// Whether the parent company's fiscal data is to be used for liquidation and tax purposes
-	UseParentFiscalData *bool `json:"use_parent_fiscal_data,omitempty"`
-	PayoutDestination *CompanyPayoutDestinationResponse `json:"payout_destination,omitempty"`
-	FiscalInfo *CompanyFiscalInfoResponse `json:"fiscal_info,omitempty"`
+	UseParentFiscalData  *bool                             `json:"use_parent_fiscal_data,omitempty"`
+	PayoutDestination    *CompanyPayoutDestinationResponse `json:"payout_destination,omitempty"`
+	FiscalInfo           *CompanyFiscalInfoResponse        `json:"fiscal_info,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CompanyResponse CompanyResponse
 
 // NewCompanyResponse instantiates a new CompanyResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -310,7 +313,7 @@ func (o *CompanyResponse) SetFiscalInfo(v CompanyFiscalInfoResponse) {
 }
 
 func (o CompanyResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -343,7 +346,40 @@ func (o CompanyResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.FiscalInfo) {
 		toSerialize["fiscal_info"] = o.FiscalInfo
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CompanyResponse) UnmarshalJSON(data []byte) (err error) {
+	varCompanyResponse := _CompanyResponse{}
+
+	err = json.Unmarshal(data, &varCompanyResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CompanyResponse(varCompanyResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "parent_company_id")
+		delete(additionalProperties, "use_parent_fiscal_data")
+		delete(additionalProperties, "payout_destination")
+		delete(additionalProperties, "fiscal_info")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCompanyResponse struct {
@@ -381,5 +417,3 @@ func (v *NullableCompanyResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

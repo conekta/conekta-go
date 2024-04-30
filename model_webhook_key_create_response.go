@@ -31,8 +31,11 @@ type WebhookKeyCreateResponse struct {
 	// Object name, value is webhook_key
 	Object *string `json:"object,omitempty"`
 	// Public key to be used in the webhook
-	PublicKey *string `json:"public_key,omitempty"`
+	PublicKey            *string `json:"public_key,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _WebhookKeyCreateResponse WebhookKeyCreateResponse
 
 // NewWebhookKeyCreateResponse instantiates a new WebhookKeyCreateResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -244,7 +247,7 @@ func (o *WebhookKeyCreateResponse) SetPublicKey(v string) {
 }
 
 func (o WebhookKeyCreateResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -271,7 +274,38 @@ func (o WebhookKeyCreateResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PublicKey) {
 		toSerialize["public_key"] = o.PublicKey
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *WebhookKeyCreateResponse) UnmarshalJSON(data []byte) (err error) {
+	varWebhookKeyCreateResponse := _WebhookKeyCreateResponse{}
+
+	err = json.Unmarshal(data, &varWebhookKeyCreateResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = WebhookKeyCreateResponse(varWebhookKeyCreateResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "livemode")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "public_key")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableWebhookKeyCreateResponse struct {
@@ -309,5 +343,3 @@ func (v *NullableWebhookKeyCreateResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

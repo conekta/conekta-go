@@ -31,9 +31,12 @@ type CompanyFiscalInfoResponse struct {
 	// Phone number of the company
 	Phone *string `json:"phone,omitempty"`
 	// Business type if 'persona_fisica'
-	PhysicalPersonBusinessType *string `json:"physical_person_business_type,omitempty"`
-	Address *CompanyFiscalInfoAddressResponse `json:"address,omitempty"`
+	PhysicalPersonBusinessType *string                           `json:"physical_person_business_type,omitempty"`
+	Address                    *CompanyFiscalInfoAddressResponse `json:"address,omitempty"`
+	AdditionalProperties       map[string]interface{}
 }
+
+type _CompanyFiscalInfoResponse CompanyFiscalInfoResponse
 
 // NewCompanyFiscalInfoResponse instantiates a new CompanyFiscalInfoResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -277,7 +280,7 @@ func (o *CompanyFiscalInfoResponse) SetAddress(v CompanyFiscalInfoAddressRespons
 }
 
 func (o CompanyFiscalInfoResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -307,7 +310,39 @@ func (o CompanyFiscalInfoResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CompanyFiscalInfoResponse) UnmarshalJSON(data []byte) (err error) {
+	varCompanyFiscalInfoResponse := _CompanyFiscalInfoResponse{}
+
+	err = json.Unmarshal(data, &varCompanyFiscalInfoResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CompanyFiscalInfoResponse(varCompanyFiscalInfoResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "tax_id")
+		delete(additionalProperties, "legal_entity_name")
+		delete(additionalProperties, "business_type")
+		delete(additionalProperties, "phone")
+		delete(additionalProperties, "physical_person_business_type")
+		delete(additionalProperties, "address")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCompanyFiscalInfoResponse struct {
@@ -345,5 +380,3 @@ func (v *NullableCompanyFiscalInfoResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

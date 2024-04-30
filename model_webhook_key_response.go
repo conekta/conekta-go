@@ -33,8 +33,11 @@ type WebhookKeyResponse struct {
 	// Indicates if the webhook key is in live mode
 	Livemode *bool `json:"livemode,omitempty"`
 	// Object name, value is webhook_key
-	Object *string `json:"object,omitempty"`
+	Object               *string `json:"object,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _WebhookKeyResponse WebhookKeyResponse
 
 // NewWebhookKeyResponse instantiates a new WebhookKeyResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -181,6 +184,7 @@ func (o *WebhookKeyResponse) HasDeactivatedAt() bool {
 func (o *WebhookKeyResponse) SetDeactivatedAt(v int64) {
 	o.DeactivatedAt.Set(&v)
 }
+
 // SetDeactivatedAtNil sets the value for DeactivatedAt to be an explicit nil
 func (o *WebhookKeyResponse) SetDeactivatedAtNil() {
 	o.DeactivatedAt.Set(nil)
@@ -288,7 +292,7 @@ func (o *WebhookKeyResponse) SetObject(v string) {
 }
 
 func (o WebhookKeyResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -318,7 +322,39 @@ func (o WebhookKeyResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *WebhookKeyResponse) UnmarshalJSON(data []byte) (err error) {
+	varWebhookKeyResponse := _WebhookKeyResponse{}
+
+	err = json.Unmarshal(data, &varWebhookKeyResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = WebhookKeyResponse(varWebhookKeyResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "deactivated_at")
+		delete(additionalProperties, "public_key")
+		delete(additionalProperties, "livemode")
+		delete(additionalProperties, "object")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableWebhookKeyResponse struct {
@@ -356,5 +392,3 @@ func (v *NullableWebhookKeyResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

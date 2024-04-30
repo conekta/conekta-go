@@ -25,25 +25,25 @@ Create blacklisted rule
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    createRiskRulesData := *openapiclient.NewCreateRiskRulesData("this client email was verified at 20/09/22 by internal process", "email | phone | card_token", "email@example.com | 818081808180 | src_2qUCNd5AyQqfPMBuV") // CreateRiskRulesData | requested field for blacklist rule
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	createRiskRulesData := *openapiclient.NewCreateRiskRulesData("this client email was verified at 20/09/22 by internal process", "email | phone | card_token", "email@example.com | 818081808180 | src_2qUCNd5AyQqfPMBuV") // CreateRiskRulesData | requested field for blacklist rule
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AntifraudAPI.CreateRuleBlacklist(context.Background()).CreateRiskRulesData(createRiskRulesData).AcceptLanguage(acceptLanguage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AntifraudAPI.CreateRuleBlacklist``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateRuleBlacklist`: BlacklistRuleResponse
-    fmt.Fprintf(os.Stdout, "Response from `AntifraudAPI.CreateRuleBlacklist`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AntifraudAPI.CreateRuleBlacklist(context.Background()).CreateRiskRulesData(createRiskRulesData).AcceptLanguage(acceptLanguage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AntifraudAPI.CreateRuleBlacklist``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateRuleBlacklist`: BlacklistRuleResponse
+	fmt.Fprintf(os.Stdout, "Response from `AntifraudAPI.CreateRuleBlacklist`: %v\n", resp)
 }
 ```
 
@@ -91,25 +91,25 @@ Create whitelisted rule
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    createRiskRulesData := *openapiclient.NewCreateRiskRulesData("this client email was verified at 20/09/22 by internal process", "email | phone | card_token", "email@example.com | 818081808180 | src_2qUCNd5AyQqfPMBuV") // CreateRiskRulesData |  (optional)
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	createRiskRulesData := *openapiclient.NewCreateRiskRulesData("this client email was verified at 20/09/22 by internal process", "email | phone | card_token", "email@example.com | 818081808180 | src_2qUCNd5AyQqfPMBuV") // CreateRiskRulesData |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AntifraudAPI.CreateRuleWhitelist(context.Background()).AcceptLanguage(acceptLanguage).CreateRiskRulesData(createRiskRulesData).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AntifraudAPI.CreateRuleWhitelist``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateRuleWhitelist`: WhitelistlistRuleResponse
-    fmt.Fprintf(os.Stdout, "Response from `AntifraudAPI.CreateRuleWhitelist`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AntifraudAPI.CreateRuleWhitelist(context.Background()).AcceptLanguage(acceptLanguage).CreateRiskRulesData(createRiskRulesData).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AntifraudAPI.CreateRuleWhitelist``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateRuleWhitelist`: WhitelistlistRuleResponse
+	fmt.Fprintf(os.Stdout, "Response from `AntifraudAPI.CreateRuleWhitelist`: %v\n", resp)
 }
 ```
 
@@ -157,26 +157,26 @@ Delete blacklisted rule
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AntifraudAPI.DeleteRuleBlacklist(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AntifraudAPI.DeleteRuleBlacklist``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteRuleBlacklist`: DeletedBlacklistRuleResponse
-    fmt.Fprintf(os.Stdout, "Response from `AntifraudAPI.DeleteRuleBlacklist`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AntifraudAPI.DeleteRuleBlacklist(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AntifraudAPI.DeleteRuleBlacklist``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeleteRuleBlacklist`: DeletedBlacklistRuleResponse
+	fmt.Fprintf(os.Stdout, "Response from `AntifraudAPI.DeleteRuleBlacklist`: %v\n", resp)
 }
 ```
 
@@ -229,26 +229,26 @@ Delete whitelisted rule
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    id := "6307a60c41de27127515a575" // string | Identifier of the resource
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
-    xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AntifraudAPI.DeleteRuleWhitelist(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AntifraudAPI.DeleteRuleWhitelist``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteRuleWhitelist`: DeletedWhitelistRuleResponse
-    fmt.Fprintf(os.Stdout, "Response from `AntifraudAPI.DeleteRuleWhitelist`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AntifraudAPI.DeleteRuleWhitelist(context.Background(), id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AntifraudAPI.DeleteRuleWhitelist``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeleteRuleWhitelist`: DeletedWhitelistRuleResponse
+	fmt.Fprintf(os.Stdout, "Response from `AntifraudAPI.DeleteRuleWhitelist`: %v\n", resp)
 }
 ```
 
@@ -303,24 +303,24 @@ Get list of blacklisted rules
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AntifraudAPI.GetRuleBlacklist(context.Background()).AcceptLanguage(acceptLanguage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AntifraudAPI.GetRuleBlacklist``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetRuleBlacklist`: RiskRulesList
-    fmt.Fprintf(os.Stdout, "Response from `AntifraudAPI.GetRuleBlacklist`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AntifraudAPI.GetRuleBlacklist(context.Background()).AcceptLanguage(acceptLanguage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AntifraudAPI.GetRuleBlacklist``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetRuleBlacklist`: RiskRulesList
+	fmt.Fprintf(os.Stdout, "Response from `AntifraudAPI.GetRuleBlacklist`: %v\n", resp)
 }
 ```
 
@@ -369,24 +369,24 @@ Get a list of whitelisted rules
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/conekta/conekta-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
 )
 
 func main() {
-    acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AntifraudAPI.GetRuleWhitelist(context.Background()).AcceptLanguage(acceptLanguage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AntifraudAPI.GetRuleWhitelist``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetRuleWhitelist`: RiskRulesList
-    fmt.Fprintf(os.Stdout, "Response from `AntifraudAPI.GetRuleWhitelist`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AntifraudAPI.GetRuleWhitelist(context.Background()).AcceptLanguage(acceptLanguage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AntifraudAPI.GetRuleWhitelist``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetRuleWhitelist`: RiskRulesList
+	fmt.Fprintf(os.Stdout, "Response from `AntifraudAPI.GetRuleWhitelist`: %v\n", resp)
 }
 ```
 

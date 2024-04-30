@@ -31,7 +31,8 @@ type OrderUpdateFiscalEntityRequest struct {
 	// Phone of the fiscal entity
 	Phone *string `json:"phone,omitempty"`
 	// Tax ID of the fiscal entity
-	TaxId NullableString `json:"tax_id,omitempty"`
+	TaxId                NullableString `json:"tax_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrderUpdateFiscalEntityRequest OrderUpdateFiscalEntityRequest
@@ -142,6 +143,7 @@ func (o *OrderUpdateFiscalEntityRequest) HasName() bool {
 func (o *OrderUpdateFiscalEntityRequest) SetName(v string) {
 	o.Name.Set(&v)
 }
+
 // SetNameNil sets the value for Name to be an explicit nil
 func (o *OrderUpdateFiscalEntityRequest) SetNameNil() {
 	o.Name.Set(nil)
@@ -248,6 +250,7 @@ func (o *OrderUpdateFiscalEntityRequest) HasTaxId() bool {
 func (o *OrderUpdateFiscalEntityRequest) SetTaxId(v string) {
 	o.TaxId.Set(&v)
 }
+
 // SetTaxIdNil sets the value for TaxId to be an explicit nil
 func (o *OrderUpdateFiscalEntityRequest) SetTaxIdNil() {
 	o.TaxId.Set(nil)
@@ -259,7 +262,7 @@ func (o *OrderUpdateFiscalEntityRequest) UnsetTaxId() {
 }
 
 func (o OrderUpdateFiscalEntityRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -284,11 +287,16 @@ func (o OrderUpdateFiscalEntityRequest) ToMap() (map[string]interface{}, error) 
 	if o.TaxId.IsSet() {
 		toSerialize["tax_id"] = o.TaxId.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
-func (o *OrderUpdateFiscalEntityRequest) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *OrderUpdateFiscalEntityRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -297,13 +305,13 @@ func (o *OrderUpdateFiscalEntityRequest) UnmarshalJSON(bytes []byte) (err error)
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -311,13 +319,25 @@ func (o *OrderUpdateFiscalEntityRequest) UnmarshalJSON(bytes []byte) (err error)
 
 	varOrderUpdateFiscalEntityRequest := _OrderUpdateFiscalEntityRequest{}
 
-	err = json.Unmarshal(bytes, &varOrderUpdateFiscalEntityRequest)
+	err = json.Unmarshal(data, &varOrderUpdateFiscalEntityRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OrderUpdateFiscalEntityRequest(varOrderUpdateFiscalEntityRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "phone")
+		delete(additionalProperties, "tax_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -357,5 +377,3 @@ func (v *NullableOrderUpdateFiscalEntityRequest) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

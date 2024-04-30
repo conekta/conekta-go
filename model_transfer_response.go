@@ -29,7 +29,7 @@ type TransferResponse struct {
 	// Unique identifier of the transfer.
 	Id *string `json:"id,omitempty"`
 	// Indicates whether the transfer was created in live mode or test mode.
-	Livemode *bool `json:"livemode,omitempty"`
+	Livemode    *bool                        `json:"livemode,omitempty"`
 	Destination *TransferDestinationResponse `json:"destination,omitempty"`
 	// Object name, which is transfer.
 	Object *string `json:"object,omitempty"`
@@ -38,8 +38,11 @@ type TransferResponse struct {
 	// Reference number of the transfer.
 	StatementReference *string `json:"statement_reference,omitempty"`
 	// Code indicating transfer status.
-	Status *string `json:"status,omitempty"`
+	Status               *string `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TransferResponse TransferResponse
 
 // NewTransferResponse instantiates a new TransferResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -379,7 +382,7 @@ func (o *TransferResponse) SetStatus(v string) {
 }
 
 func (o TransferResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -418,7 +421,42 @@ func (o TransferResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *TransferResponse) UnmarshalJSON(data []byte) (err error) {
+	varTransferResponse := _TransferResponse{}
+
+	err = json.Unmarshal(data, &varTransferResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TransferResponse(varTransferResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "currency")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "livemode")
+		delete(additionalProperties, "destination")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "statement_description")
+		delete(additionalProperties, "statement_reference")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTransferResponse struct {
@@ -456,5 +494,3 @@ func (v *NullableTransferResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
