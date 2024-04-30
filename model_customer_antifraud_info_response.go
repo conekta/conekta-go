@@ -20,9 +20,12 @@ var _ MappedNullable = &CustomerAntifraudInfoResponse{}
 
 // CustomerAntifraudInfoResponse struct for CustomerAntifraudInfoResponse
 type CustomerAntifraudInfoResponse struct {
-	FirstPaidAt *int32 `json:"first_paid_at,omitempty"`
-	AccountCreatedAt *int64 `json:"account_created_at,omitempty"`
+	FirstPaidAt          *int32 `json:"first_paid_at,omitempty"`
+	AccountCreatedAt     *int64 `json:"account_created_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CustomerAntifraudInfoResponse CustomerAntifraudInfoResponse
 
 // NewCustomerAntifraudInfoResponse instantiates a new CustomerAntifraudInfoResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -106,7 +109,7 @@ func (o *CustomerAntifraudInfoResponse) SetAccountCreatedAt(v int64) {
 }
 
 func (o CustomerAntifraudInfoResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -121,7 +124,34 @@ func (o CustomerAntifraudInfoResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AccountCreatedAt) {
 		toSerialize["account_created_at"] = o.AccountCreatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CustomerAntifraudInfoResponse) UnmarshalJSON(data []byte) (err error) {
+	varCustomerAntifraudInfoResponse := _CustomerAntifraudInfoResponse{}
+
+	err = json.Unmarshal(data, &varCustomerAntifraudInfoResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CustomerAntifraudInfoResponse(varCustomerAntifraudInfoResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "first_paid_at")
+		delete(additionalProperties, "account_created_at")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCustomerAntifraudInfoResponse struct {
@@ -159,5 +189,3 @@ func (v *NullableCustomerAntifraudInfoResponse) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -20,14 +20,17 @@ var _ MappedNullable = &WebhookLog{}
 
 // WebhookLog struct for WebhookLog
 type WebhookLog struct {
-	FailedAttempts *int32 `json:"failed_attempts,omitempty"`
-	Id *string `json:"id,omitempty"`
-	LastAttemptedAt *int32 `json:"last_attempted_at,omitempty"`
-	LastHttpResponseStatus *int32 `json:"last_http_response_status,omitempty"`
-	Object *string `json:"object,omitempty"`
-	ResponseData map[string]interface{} `json:"response_data,omitempty"`
-	Url *string `json:"url,omitempty"`
+	FailedAttempts         *int32                 `json:"failed_attempts,omitempty"`
+	Id                     *string                `json:"id,omitempty"`
+	LastAttemptedAt        *int32                 `json:"last_attempted_at,omitempty"`
+	LastHttpResponseStatus *int32                 `json:"last_http_response_status,omitempty"`
+	Object                 *string                `json:"object,omitempty"`
+	ResponseData           map[string]interface{} `json:"response_data,omitempty"`
+	Url                    *string                `json:"url,omitempty"`
+	AdditionalProperties   map[string]interface{}
 }
+
+type _WebhookLog WebhookLog
 
 // NewWebhookLog instantiates a new WebhookLog object
 // This constructor will assign default values to properties that have it defined,
@@ -271,7 +274,7 @@ func (o *WebhookLog) SetUrl(v string) {
 }
 
 func (o WebhookLog) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -301,7 +304,39 @@ func (o WebhookLog) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Url) {
 		toSerialize["url"] = o.Url
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *WebhookLog) UnmarshalJSON(data []byte) (err error) {
+	varWebhookLog := _WebhookLog{}
+
+	err = json.Unmarshal(data, &varWebhookLog)
+
+	if err != nil {
+		return err
+	}
+
+	*o = WebhookLog(varWebhookLog)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "failed_attempts")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "last_attempted_at")
+		delete(additionalProperties, "last_http_response_status")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "response_data")
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableWebhookLog struct {
@@ -339,5 +374,3 @@ func (v *NullableWebhookLog) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

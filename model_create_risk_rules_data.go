@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,7 +26,8 @@ type CreateRiskRulesData struct {
 	// Field to be used for the rule
 	Field string `json:"field"`
 	// Value to be used for the rule
-	Value string `json:"value"`
+	Value                string `json:"value"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateRiskRulesData CreateRiskRulesData
@@ -125,7 +125,7 @@ func (o *CreateRiskRulesData) SetValue(v string) {
 }
 
 func (o CreateRiskRulesData) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -137,6 +137,11 @@ func (o CreateRiskRulesData) ToMap() (map[string]interface{}, error) {
 	toSerialize["description"] = o.Description
 	toSerialize["field"] = o.Field
 	toSerialize["value"] = o.Value
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -155,10 +160,10 @@ func (o *CreateRiskRulesData) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -166,15 +171,22 @@ func (o *CreateRiskRulesData) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateRiskRulesData := _CreateRiskRulesData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateRiskRulesData)
+	err = json.Unmarshal(data, &varCreateRiskRulesData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateRiskRulesData(varCreateRiskRulesData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "field")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -214,5 +226,3 @@ func (v *NullableCreateRiskRulesData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

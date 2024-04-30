@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,13 +21,14 @@ var _ MappedNullable = &PaymentMethodSpeiRecurrent{}
 
 // PaymentMethodSpeiRecurrent struct for PaymentMethodSpeiRecurrent
 type PaymentMethodSpeiRecurrent struct {
-	Type string `json:"type"`
-	Id string `json:"id"`
-	Object string `json:"object"`
-	CreatedAt int64 `json:"created_at"`
-	ParentId *string `json:"parent_id,omitempty"`
-	Reference *string `json:"reference,omitempty"`
-	ExpiresAt *string `json:"expires_at,omitempty"`
+	Type                 string  `json:"type"`
+	Id                   string  `json:"id"`
+	Object               string  `json:"object"`
+	CreatedAt            int64   `json:"created_at"`
+	ParentId             *string `json:"parent_id,omitempty"`
+	Reference            *string `json:"reference,omitempty"`
+	ExpiresAt            *string `json:"expires_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PaymentMethodSpeiRecurrent PaymentMethodSpeiRecurrent
@@ -247,7 +247,7 @@ func (o *PaymentMethodSpeiRecurrent) SetExpiresAt(v string) {
 }
 
 func (o PaymentMethodSpeiRecurrent) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -269,6 +269,11 @@ func (o PaymentMethodSpeiRecurrent) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExpiresAt) {
 		toSerialize["expires_at"] = o.ExpiresAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -288,10 +293,10 @@ func (o *PaymentMethodSpeiRecurrent) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -299,15 +304,26 @@ func (o *PaymentMethodSpeiRecurrent) UnmarshalJSON(data []byte) (err error) {
 
 	varPaymentMethodSpeiRecurrent := _PaymentMethodSpeiRecurrent{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPaymentMethodSpeiRecurrent)
+	err = json.Unmarshal(data, &varPaymentMethodSpeiRecurrent)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PaymentMethodSpeiRecurrent(varPaymentMethodSpeiRecurrent)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "parent_id")
+		delete(additionalProperties, "reference")
+		delete(additionalProperties, "expires_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -347,5 +363,3 @@ func (v *NullablePaymentMethodSpeiRecurrent) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

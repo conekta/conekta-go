@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,13 +26,14 @@ type PayoutOrder struct {
 	// The amount of the payout order.
 	Amount int32 `json:"amount"`
 	// The currency in which the payout order is made.
-	Currency string `json:"currency"`
+	Currency     string                     `json:"currency"`
 	CustomerInfo CustomerInfoJustCustomerId `json:"customer_info"`
 	// The metadata of the payout order.
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
-	Payout Payout `json:"payout"`
+	Payout   Payout                 `json:"payout"`
 	// The reason for the payout order.
-	Reason string `json:"reason"`
+	Reason               string `json:"reason"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PayoutOrder PayoutOrder
@@ -240,7 +240,7 @@ func (o *PayoutOrder) SetReason(v string) {
 }
 
 func (o PayoutOrder) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -258,6 +258,11 @@ func (o PayoutOrder) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["payout"] = o.Payout
 	toSerialize["reason"] = o.Reason
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -279,10 +284,10 @@ func (o *PayoutOrder) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -290,15 +295,26 @@ func (o *PayoutOrder) UnmarshalJSON(data []byte) (err error) {
 
 	varPayoutOrder := _PayoutOrder{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPayoutOrder)
+	err = json.Unmarshal(data, &varPayoutOrder)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PayoutOrder(varPayoutOrder)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "allowed_payout_methods")
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "currency")
+		delete(additionalProperties, "customer_info")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "payout")
+		delete(additionalProperties, "reason")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -338,5 +354,3 @@ func (v *NullablePayoutOrder) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

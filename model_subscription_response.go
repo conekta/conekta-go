@@ -20,24 +20,27 @@ var _ MappedNullable = &SubscriptionResponse{}
 
 // SubscriptionResponse subscription model
 type SubscriptionResponse struct {
-	BillingCycleStart NullableInt64 `json:"billing_cycle_start,omitempty"`
-	BillingCycleEnd NullableInt64 `json:"billing_cycle_end,omitempty"`
-	CanceledAt NullableInt64 `json:"canceled_at,omitempty"`
-	CardId *string `json:"card_id,omitempty"`
-	ChargeId NullableString `json:"charge_id,omitempty"`
-	CreatedAt *int64 `json:"created_at,omitempty"`
-	CustomerCustomReference *string `json:"customer_custom_reference,omitempty"`
-	CustomerId *string `json:"customer_id,omitempty"`
-	Id *string `json:"id,omitempty"`
-	LastBillingCycleOrderId *string `json:"last_billing_cycle_order_id,omitempty"`
-	Object *string `json:"object,omitempty"`
-	PausedAt NullableInt64 `json:"paused_at,omitempty"`
-	PlanId *string `json:"plan_id,omitempty"`
-	Status *string `json:"status,omitempty"`
-	SubscriptionStart *int32 `json:"subscription_start,omitempty"`
-	TrialStart NullableInt64 `json:"trial_start,omitempty"`
-	TrialEnd NullableInt64 `json:"trial_end,omitempty"`
+	BillingCycleStart       NullableInt64  `json:"billing_cycle_start,omitempty"`
+	BillingCycleEnd         NullableInt64  `json:"billing_cycle_end,omitempty"`
+	CanceledAt              NullableInt64  `json:"canceled_at,omitempty"`
+	CardId                  *string        `json:"card_id,omitempty"`
+	ChargeId                NullableString `json:"charge_id,omitempty"`
+	CreatedAt               *int64         `json:"created_at,omitempty"`
+	CustomerCustomReference *string        `json:"customer_custom_reference,omitempty"`
+	CustomerId              *string        `json:"customer_id,omitempty"`
+	Id                      *string        `json:"id,omitempty"`
+	LastBillingCycleOrderId *string        `json:"last_billing_cycle_order_id,omitempty"`
+	Object                  *string        `json:"object,omitempty"`
+	PausedAt                NullableInt64  `json:"paused_at,omitempty"`
+	PlanId                  *string        `json:"plan_id,omitempty"`
+	Status                  *string        `json:"status,omitempty"`
+	SubscriptionStart       *int32         `json:"subscription_start,omitempty"`
+	TrialStart              NullableInt64  `json:"trial_start,omitempty"`
+	TrialEnd                NullableInt64  `json:"trial_end,omitempty"`
+	AdditionalProperties    map[string]interface{}
 }
+
+type _SubscriptionResponse SubscriptionResponse
 
 // NewSubscriptionResponse instantiates a new SubscriptionResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -88,6 +91,7 @@ func (o *SubscriptionResponse) HasBillingCycleStart() bool {
 func (o *SubscriptionResponse) SetBillingCycleStart(v int64) {
 	o.BillingCycleStart.Set(&v)
 }
+
 // SetBillingCycleStartNil sets the value for BillingCycleStart to be an explicit nil
 func (o *SubscriptionResponse) SetBillingCycleStartNil() {
 	o.BillingCycleStart.Set(nil)
@@ -130,6 +134,7 @@ func (o *SubscriptionResponse) HasBillingCycleEnd() bool {
 func (o *SubscriptionResponse) SetBillingCycleEnd(v int64) {
 	o.BillingCycleEnd.Set(&v)
 }
+
 // SetBillingCycleEndNil sets the value for BillingCycleEnd to be an explicit nil
 func (o *SubscriptionResponse) SetBillingCycleEndNil() {
 	o.BillingCycleEnd.Set(nil)
@@ -172,6 +177,7 @@ func (o *SubscriptionResponse) HasCanceledAt() bool {
 func (o *SubscriptionResponse) SetCanceledAt(v int64) {
 	o.CanceledAt.Set(&v)
 }
+
 // SetCanceledAtNil sets the value for CanceledAt to be an explicit nil
 func (o *SubscriptionResponse) SetCanceledAtNil() {
 	o.CanceledAt.Set(nil)
@@ -246,6 +252,7 @@ func (o *SubscriptionResponse) HasChargeId() bool {
 func (o *SubscriptionResponse) SetChargeId(v string) {
 	o.ChargeId.Set(&v)
 }
+
 // SetChargeIdNil sets the value for ChargeId to be an explicit nil
 func (o *SubscriptionResponse) SetChargeIdNil() {
 	o.ChargeId.Set(nil)
@@ -480,6 +487,7 @@ func (o *SubscriptionResponse) HasPausedAt() bool {
 func (o *SubscriptionResponse) SetPausedAt(v int64) {
 	o.PausedAt.Set(&v)
 }
+
 // SetPausedAtNil sets the value for PausedAt to be an explicit nil
 func (o *SubscriptionResponse) SetPausedAtNil() {
 	o.PausedAt.Set(nil)
@@ -618,6 +626,7 @@ func (o *SubscriptionResponse) HasTrialStart() bool {
 func (o *SubscriptionResponse) SetTrialStart(v int64) {
 	o.TrialStart.Set(&v)
 }
+
 // SetTrialStartNil sets the value for TrialStart to be an explicit nil
 func (o *SubscriptionResponse) SetTrialStartNil() {
 	o.TrialStart.Set(nil)
@@ -660,6 +669,7 @@ func (o *SubscriptionResponse) HasTrialEnd() bool {
 func (o *SubscriptionResponse) SetTrialEnd(v int64) {
 	o.TrialEnd.Set(&v)
 }
+
 // SetTrialEndNil sets the value for TrialEnd to be an explicit nil
 func (o *SubscriptionResponse) SetTrialEndNil() {
 	o.TrialEnd.Set(nil)
@@ -671,7 +681,7 @@ func (o *SubscriptionResponse) UnsetTrialEnd() {
 }
 
 func (o SubscriptionResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -731,7 +741,49 @@ func (o SubscriptionResponse) ToMap() (map[string]interface{}, error) {
 	if o.TrialEnd.IsSet() {
 		toSerialize["trial_end"] = o.TrialEnd.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SubscriptionResponse) UnmarshalJSON(data []byte) (err error) {
+	varSubscriptionResponse := _SubscriptionResponse{}
+
+	err = json.Unmarshal(data, &varSubscriptionResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SubscriptionResponse(varSubscriptionResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "billing_cycle_start")
+		delete(additionalProperties, "billing_cycle_end")
+		delete(additionalProperties, "canceled_at")
+		delete(additionalProperties, "card_id")
+		delete(additionalProperties, "charge_id")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "customer_custom_reference")
+		delete(additionalProperties, "customer_id")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "last_billing_cycle_order_id")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "paused_at")
+		delete(additionalProperties, "plan_id")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "subscription_start")
+		delete(additionalProperties, "trial_start")
+		delete(additionalProperties, "trial_end")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSubscriptionResponse struct {
@@ -769,5 +821,3 @@ func (v *NullableSubscriptionResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

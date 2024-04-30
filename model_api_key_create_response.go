@@ -43,8 +43,11 @@ type ApiKeyCreateResponse struct {
 	// Indicates if the api key is private or public
 	Role *string `json:"role,omitempty"`
 	// It is occupied as a user when authenticated with basic authentication, with a blank password. This value will only appear once, in the request to create a new key. Copy and save it in a safe place.
-	AuthenticationToken *string `json:"authentication_token,omitempty"`
+	AuthenticationToken  *string `json:"authentication_token,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ApiKeyCreateResponse ApiKeyCreateResponse
 
 // NewApiKeyCreateResponse instantiates a new ApiKeyCreateResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -191,6 +194,7 @@ func (o *ApiKeyCreateResponse) HasDeactivatedAt() bool {
 func (o *ApiKeyCreateResponse) SetDeactivatedAt(v int64) {
 	o.DeactivatedAt.Set(&v)
 }
+
 // SetDeactivatedAtNil sets the value for DeactivatedAt to be an explicit nil
 func (o *ApiKeyCreateResponse) SetDeactivatedAtNil() {
 	o.DeactivatedAt.Set(nil)
@@ -458,7 +462,7 @@ func (o *ApiKeyCreateResponse) SetAuthenticationToken(v string) {
 }
 
 func (o ApiKeyCreateResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -503,7 +507,44 @@ func (o ApiKeyCreateResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AuthenticationToken) {
 		toSerialize["authentication_token"] = o.AuthenticationToken
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ApiKeyCreateResponse) UnmarshalJSON(data []byte) (err error) {
+	varApiKeyCreateResponse := _ApiKeyCreateResponse{}
+
+	err = json.Unmarshal(data, &varApiKeyCreateResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ApiKeyCreateResponse(varApiKeyCreateResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "deactivated_at")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "livemode")
+		delete(additionalProperties, "deleted")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "prefix")
+		delete(additionalProperties, "role")
+		delete(additionalProperties, "authentication_token")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableApiKeyCreateResponse struct {
@@ -541,5 +582,3 @@ func (v *NullableApiKeyCreateResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -22,10 +22,13 @@ var _ MappedNullable = &ModelError{}
 type ModelError struct {
 	Details []DetailsError `json:"details,omitempty"`
 	// log id
-	LogId NullableString `json:"log_id,omitempty"`
-	Type *string `json:"type,omitempty"`
-	Object *string `json:"object,omitempty"`
+	LogId                NullableString `json:"log_id,omitempty"`
+	Type                 *string        `json:"type,omitempty"`
+	Object               *string        `json:"object,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ModelError ModelError
 
 // NewModelError instantiates a new ModelError object
 // This constructor will assign default values to properties that have it defined,
@@ -108,6 +111,7 @@ func (o *ModelError) HasLogId() bool {
 func (o *ModelError) SetLogId(v string) {
 	o.LogId.Set(&v)
 }
+
 // SetLogIdNil sets the value for LogId to be an explicit nil
 func (o *ModelError) SetLogIdNil() {
 	o.LogId.Set(nil)
@@ -183,7 +187,7 @@ func (o *ModelError) SetObject(v string) {
 }
 
 func (o ModelError) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -204,7 +208,36 @@ func (o ModelError) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ModelError) UnmarshalJSON(data []byte) (err error) {
+	varModelError := _ModelError{}
+
+	err = json.Unmarshal(data, &varModelError)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ModelError(varModelError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "details")
+		delete(additionalProperties, "log_id")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "object")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableModelError struct {
@@ -242,5 +275,3 @@ func (v *NullableModelError) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

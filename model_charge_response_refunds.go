@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -31,7 +30,8 @@ type ChargeResponseRefunds struct {
 	// Url of the previous page.
 	PreviousPageUrl NullableString `json:"previous_page_url,omitempty"`
 	// refunds
-	Data []ChargeResponseRefundsData `json:"data,omitempty"`
+	Data                 []ChargeResponseRefundsData `json:"data,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ChargeResponseRefunds ChargeResponseRefunds
@@ -135,6 +135,7 @@ func (o *ChargeResponseRefunds) HasNextPageUrl() bool {
 func (o *ChargeResponseRefunds) SetNextPageUrl(v string) {
 	o.NextPageUrl.Set(&v)
 }
+
 // SetNextPageUrlNil sets the value for NextPageUrl to be an explicit nil
 func (o *ChargeResponseRefunds) SetNextPageUrlNil() {
 	o.NextPageUrl.Set(nil)
@@ -177,6 +178,7 @@ func (o *ChargeResponseRefunds) HasPreviousPageUrl() bool {
 func (o *ChargeResponseRefunds) SetPreviousPageUrl(v string) {
 	o.PreviousPageUrl.Set(&v)
 }
+
 // SetPreviousPageUrlNil sets the value for PreviousPageUrl to be an explicit nil
 func (o *ChargeResponseRefunds) SetPreviousPageUrlNil() {
 	o.PreviousPageUrl.Set(nil)
@@ -220,7 +222,7 @@ func (o *ChargeResponseRefunds) SetData(v []ChargeResponseRefundsData) {
 }
 
 func (o ChargeResponseRefunds) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -240,6 +242,11 @@ func (o ChargeResponseRefunds) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -257,10 +264,10 @@ func (o *ChargeResponseRefunds) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -268,15 +275,24 @@ func (o *ChargeResponseRefunds) UnmarshalJSON(data []byte) (err error) {
 
 	varChargeResponseRefunds := _ChargeResponseRefunds{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varChargeResponseRefunds)
+	err = json.Unmarshal(data, &varChargeResponseRefunds)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ChargeResponseRefunds(varChargeResponseRefunds)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "has_more")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "next_page_url")
+		delete(additionalProperties, "previous_page_url")
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -316,5 +332,3 @@ func (v *NullableChargeResponseRefunds) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

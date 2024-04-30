@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -33,7 +32,8 @@ type DiscountLinesDataResponse struct {
 	// The object name
 	Object string `json:"object"`
 	// The order id
-	ParentId string `json:"parent_id"`
+	ParentId             string `json:"parent_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DiscountLinesDataResponse DiscountLinesDataResponse
@@ -206,7 +206,7 @@ func (o *DiscountLinesDataResponse) SetParentId(v string) {
 }
 
 func (o DiscountLinesDataResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -221,6 +221,11 @@ func (o DiscountLinesDataResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["object"] = o.Object
 	toSerialize["parent_id"] = o.ParentId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -242,10 +247,10 @@ func (o *DiscountLinesDataResponse) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -253,15 +258,25 @@ func (o *DiscountLinesDataResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varDiscountLinesDataResponse := _DiscountLinesDataResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDiscountLinesDataResponse)
+	err = json.Unmarshal(data, &varDiscountLinesDataResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DiscountLinesDataResponse(varDiscountLinesDataResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "parent_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -301,5 +316,3 @@ func (v *NullableDiscountLinesDataResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

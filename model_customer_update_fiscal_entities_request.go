@@ -20,13 +20,16 @@ var _ MappedNullable = &CustomerUpdateFiscalEntitiesRequest{}
 
 // CustomerUpdateFiscalEntitiesRequest struct for CustomerUpdateFiscalEntitiesRequest
 type CustomerUpdateFiscalEntitiesRequest struct {
-	Address *CustomerAddress `json:"address,omitempty"`
-	TaxId *string `json:"tax_id,omitempty"`
-	Email *string `json:"email,omitempty"`
-	Phone *string `json:"phone,omitempty"`
-	Metadata map[string]map[string]interface{} `json:"metadata,omitempty"`
-	CompanyName *string `json:"company_name,omitempty"`
+	Address              *CustomerAddress                  `json:"address,omitempty"`
+	TaxId                *string                           `json:"tax_id,omitempty"`
+	Email                *string                           `json:"email,omitempty"`
+	Phone                *string                           `json:"phone,omitempty"`
+	Metadata             map[string]map[string]interface{} `json:"metadata,omitempty"`
+	CompanyName          *string                           `json:"company_name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CustomerUpdateFiscalEntitiesRequest CustomerUpdateFiscalEntitiesRequest
 
 // NewCustomerUpdateFiscalEntitiesRequest instantiates a new CustomerUpdateFiscalEntitiesRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -238,7 +241,7 @@ func (o *CustomerUpdateFiscalEntitiesRequest) SetCompanyName(v string) {
 }
 
 func (o CustomerUpdateFiscalEntitiesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -265,7 +268,38 @@ func (o CustomerUpdateFiscalEntitiesRequest) ToMap() (map[string]interface{}, er
 	if !IsNil(o.CompanyName) {
 		toSerialize["company_name"] = o.CompanyName
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CustomerUpdateFiscalEntitiesRequest) UnmarshalJSON(data []byte) (err error) {
+	varCustomerUpdateFiscalEntitiesRequest := _CustomerUpdateFiscalEntitiesRequest{}
+
+	err = json.Unmarshal(data, &varCustomerUpdateFiscalEntitiesRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CustomerUpdateFiscalEntitiesRequest(varCustomerUpdateFiscalEntitiesRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "tax_id")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "phone")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "company_name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCustomerUpdateFiscalEntitiesRequest struct {
@@ -303,5 +337,3 @@ func (v *NullableCustomerUpdateFiscalEntitiesRequest) UnmarshalJSON(src []byte) 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

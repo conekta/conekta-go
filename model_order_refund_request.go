@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,9 +21,10 @@ var _ MappedNullable = &OrderRefundRequest{}
 
 // OrderRefundRequest struct for OrderRefundRequest
 type OrderRefundRequest struct {
-	Amount int32 `json:"amount"`
-	ExpiresAt NullableInt64 `json:"expires_at,omitempty"`
-	Reason string `json:"reason"`
+	Amount               int32         `json:"amount"`
+	ExpiresAt            NullableInt64 `json:"expires_at,omitempty"`
+	Reason               string        `json:"reason"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrderRefundRequest OrderRefundRequest
@@ -104,6 +104,7 @@ func (o *OrderRefundRequest) HasExpiresAt() bool {
 func (o *OrderRefundRequest) SetExpiresAt(v int64) {
 	o.ExpiresAt.Set(&v)
 }
+
 // SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
 func (o *OrderRefundRequest) SetExpiresAtNil() {
 	o.ExpiresAt.Set(nil)
@@ -139,7 +140,7 @@ func (o *OrderRefundRequest) SetReason(v string) {
 }
 
 func (o OrderRefundRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -153,6 +154,11 @@ func (o OrderRefundRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["expires_at"] = o.ExpiresAt.Get()
 	}
 	toSerialize["reason"] = o.Reason
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -170,10 +176,10 @@ func (o *OrderRefundRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -181,15 +187,22 @@ func (o *OrderRefundRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varOrderRefundRequest := _OrderRefundRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOrderRefundRequest)
+	err = json.Unmarshal(data, &varOrderRefundRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OrderRefundRequest(varOrderRefundRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "reason")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -229,5 +242,3 @@ func (v *NullableOrderRefundRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

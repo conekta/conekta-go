@@ -20,11 +20,14 @@ var _ MappedNullable = &DetailsError{}
 
 // DetailsError struct for DetailsError
 type DetailsError struct {
-	Code *string `json:"code,omitempty"`
-	Param NullableString `json:"param,omitempty"`
-	Message *string `json:"message,omitempty"`
-	DebugMessage *string `json:"debug_message,omitempty"`
+	Code                 *string        `json:"code,omitempty"`
+	Param                NullableString `json:"param,omitempty"`
+	Message              *string        `json:"message,omitempty"`
+	DebugMessage         *string        `json:"debug_message,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DetailsError DetailsError
 
 // NewDetailsError instantiates a new DetailsError object
 // This constructor will assign default values to properties that have it defined,
@@ -107,6 +110,7 @@ func (o *DetailsError) HasParam() bool {
 func (o *DetailsError) SetParam(v string) {
 	o.Param.Set(&v)
 }
+
 // SetParamNil sets the value for Param to be an explicit nil
 func (o *DetailsError) SetParamNil() {
 	o.Param.Set(nil)
@@ -182,7 +186,7 @@ func (o *DetailsError) SetDebugMessage(v string) {
 }
 
 func (o DetailsError) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -203,7 +207,36 @@ func (o DetailsError) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DebugMessage) {
 		toSerialize["debug_message"] = o.DebugMessage
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *DetailsError) UnmarshalJSON(data []byte) (err error) {
+	varDetailsError := _DetailsError{}
+
+	err = json.Unmarshal(data, &varDetailsError)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DetailsError(varDetailsError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "param")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "debug_message")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDetailsError struct {
@@ -241,5 +274,3 @@ func (v *NullableDetailsError) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

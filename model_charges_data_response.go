@@ -20,26 +20,29 @@ var _ MappedNullable = &ChargesDataResponse{}
 
 // ChargesDataResponse struct for ChargesDataResponse
 type ChargesDataResponse struct {
-	Amount *int32 `json:"amount,omitempty"`
-	Channel *ChargeResponseChannel `json:"channel,omitempty"`
-	CreatedAt *int64 `json:"created_at,omitempty"`
-	Currency *string `json:"currency,omitempty"`
-	CustomerId *string `json:"customer_id,omitempty"`
-	Description *string `json:"description,omitempty"`
-	DeviceFingerprint *string `json:"device_fingerprint,omitempty"`
-	FailureCode *string `json:"failure_code,omitempty"`
-	FailureMessage *string `json:"failure_message,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Livemode *bool `json:"livemode,omitempty"`
-	Object *string `json:"object,omitempty"`
-	OrderId *string `json:"order_id,omitempty"`
-	PaidAt NullableInt32 `json:"paid_at,omitempty"`
-	PaymentMethod *ChargeResponsePaymentMethod `json:"payment_method,omitempty"`
+	Amount            *int32                       `json:"amount,omitempty"`
+	Channel           *ChargeResponseChannel       `json:"channel,omitempty"`
+	CreatedAt         *int64                       `json:"created_at,omitempty"`
+	Currency          *string                      `json:"currency,omitempty"`
+	CustomerId        *string                      `json:"customer_id,omitempty"`
+	Description       *string                      `json:"description,omitempty"`
+	DeviceFingerprint *string                      `json:"device_fingerprint,omitempty"`
+	FailureCode       *string                      `json:"failure_code,omitempty"`
+	FailureMessage    *string                      `json:"failure_message,omitempty"`
+	Id                *string                      `json:"id,omitempty"`
+	Livemode          *bool                        `json:"livemode,omitempty"`
+	Object            *string                      `json:"object,omitempty"`
+	OrderId           *string                      `json:"order_id,omitempty"`
+	PaidAt            NullableInt32                `json:"paid_at,omitempty"`
+	PaymentMethod     *ChargeResponsePaymentMethod `json:"payment_method,omitempty"`
 	// Reference ID of the charge
-	ReferenceId NullableString `json:"reference_id,omitempty"`
-	Refunds NullableChargeResponseRefunds `json:"refunds,omitempty"`
-	Status *string `json:"status,omitempty"`
+	ReferenceId          NullableString                `json:"reference_id,omitempty"`
+	Refunds              NullableChargeResponseRefunds `json:"refunds,omitempty"`
+	Status               *string                       `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ChargesDataResponse ChargesDataResponse
 
 // NewChargesDataResponse instantiates a new ChargesDataResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -506,6 +509,7 @@ func (o *ChargesDataResponse) HasPaidAt() bool {
 func (o *ChargesDataResponse) SetPaidAt(v int32) {
 	o.PaidAt.Set(&v)
 }
+
 // SetPaidAtNil sets the value for PaidAt to be an explicit nil
 func (o *ChargesDataResponse) SetPaidAtNil() {
 	o.PaidAt.Set(nil)
@@ -580,6 +584,7 @@ func (o *ChargesDataResponse) HasReferenceId() bool {
 func (o *ChargesDataResponse) SetReferenceId(v string) {
 	o.ReferenceId.Set(&v)
 }
+
 // SetReferenceIdNil sets the value for ReferenceId to be an explicit nil
 func (o *ChargesDataResponse) SetReferenceIdNil() {
 	o.ReferenceId.Set(nil)
@@ -622,6 +627,7 @@ func (o *ChargesDataResponse) HasRefunds() bool {
 func (o *ChargesDataResponse) SetRefunds(v ChargeResponseRefunds) {
 	o.Refunds.Set(&v)
 }
+
 // SetRefundsNil sets the value for Refunds to be an explicit nil
 func (o *ChargesDataResponse) SetRefundsNil() {
 	o.Refunds.Set(nil)
@@ -665,7 +671,7 @@ func (o *ChargesDataResponse) SetStatus(v string) {
 }
 
 func (o ChargesDataResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -728,7 +734,50 @@ func (o ChargesDataResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ChargesDataResponse) UnmarshalJSON(data []byte) (err error) {
+	varChargesDataResponse := _ChargesDataResponse{}
+
+	err = json.Unmarshal(data, &varChargesDataResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ChargesDataResponse(varChargesDataResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "channel")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "currency")
+		delete(additionalProperties, "customer_id")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "device_fingerprint")
+		delete(additionalProperties, "failure_code")
+		delete(additionalProperties, "failure_message")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "livemode")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "order_id")
+		delete(additionalProperties, "paid_at")
+		delete(additionalProperties, "payment_method")
+		delete(additionalProperties, "reference_id")
+		delete(additionalProperties, "refunds")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableChargesDataResponse struct {
@@ -766,5 +815,3 @@ func (v *NullableChargesDataResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

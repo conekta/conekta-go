@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,13 +23,14 @@ var _ MappedNullable = &PayoutOrderResponseCustomerInfo{}
 type PayoutOrderResponseCustomerInfo struct {
 	// Custom reference
 	CustomerCustomReference NullableString `json:"customer_custom_reference,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Email *string `json:"email,omitempty"`
-	Phone *string `json:"phone,omitempty"`
-	Corporate *bool `json:"corporate,omitempty"`
-	Object *string `json:"object,omitempty"`
+	Name                    *string        `json:"name,omitempty"`
+	Email                   *string        `json:"email,omitempty"`
+	Phone                   *string        `json:"phone,omitempty"`
+	Corporate               *bool          `json:"corporate,omitempty"`
+	Object                  *string        `json:"object,omitempty"`
 	// The id of the customer.
-	Id string `json:"id"`
+	Id                   string `json:"id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PayoutOrderResponseCustomerInfo PayoutOrderResponseCustomerInfo
@@ -89,6 +89,7 @@ func (o *PayoutOrderResponseCustomerInfo) HasCustomerCustomReference() bool {
 func (o *PayoutOrderResponseCustomerInfo) SetCustomerCustomReference(v string) {
 	o.CustomerCustomReference.Set(&v)
 }
+
 // SetCustomerCustomReferenceNil sets the value for CustomerCustomReference to be an explicit nil
 func (o *PayoutOrderResponseCustomerInfo) SetCustomerCustomReferenceNil() {
 	o.CustomerCustomReference.Set(nil)
@@ -284,7 +285,7 @@ func (o *PayoutOrderResponseCustomerInfo) SetId(v string) {
 }
 
 func (o PayoutOrderResponseCustomerInfo) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -312,6 +313,11 @@ func (o PayoutOrderResponseCustomerInfo) ToMap() (map[string]interface{}, error)
 		toSerialize["object"] = o.Object
 	}
 	toSerialize["id"] = o.Id
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -328,10 +334,10 @@ func (o *PayoutOrderResponseCustomerInfo) UnmarshalJSON(data []byte) (err error)
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -339,15 +345,26 @@ func (o *PayoutOrderResponseCustomerInfo) UnmarshalJSON(data []byte) (err error)
 
 	varPayoutOrderResponseCustomerInfo := _PayoutOrderResponseCustomerInfo{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPayoutOrderResponseCustomerInfo)
+	err = json.Unmarshal(data, &varPayoutOrderResponseCustomerInfo)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PayoutOrderResponseCustomerInfo(varPayoutOrderResponseCustomerInfo)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "customer_custom_reference")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "phone")
+		delete(additionalProperties, "corporate")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -387,5 +404,3 @@ func (v *NullablePayoutOrderResponseCustomerInfo) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

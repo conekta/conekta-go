@@ -401,5 +401,4 @@ model_webhook_response.go
 model_webhook_update_request.go
 model_whitelistlist_rule_response.go
 response.go
-test/api_payout_orders_test.go
 utils.go

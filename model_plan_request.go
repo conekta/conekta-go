@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -37,7 +36,8 @@ type PlanRequest struct {
 	// The name of the plan.
 	Name string `json:"name"`
 	// The number of days the customer will have a free trial.
-	TrialPeriodDays *int32 `json:"trial_period_days,omitempty"`
+	TrialPeriodDays      *int32 `json:"trial_period_days,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PlanRequest PlanRequest
@@ -288,7 +288,7 @@ func (o *PlanRequest) SetTrialPeriodDays(v int32) {
 }
 
 func (o PlanRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -313,6 +313,11 @@ func (o PlanRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TrialPeriodDays) {
 		toSerialize["trial_period_days"] = o.TrialPeriodDays
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -332,10 +337,10 @@ func (o *PlanRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -343,15 +348,27 @@ func (o *PlanRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varPlanRequest := _PlanRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPlanRequest)
+	err = json.Unmarshal(data, &varPlanRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PlanRequest(varPlanRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "currency")
+		delete(additionalProperties, "expiry_count")
+		delete(additionalProperties, "frequency")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "interval")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "trial_period_days")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -391,5 +408,3 @@ func (v *NullablePlanRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

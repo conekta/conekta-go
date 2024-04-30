@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,20 +21,21 @@ var _ MappedNullable = &PaymentMethodCard{}
 
 // PaymentMethodCard struct for PaymentMethodCard
 type PaymentMethodCard struct {
-	Type *string `json:"type,omitempty"`
-	Object string `json:"object"`
+	Type        *string `json:"type,omitempty"`
+	Object      string  `json:"object"`
 	AccountType *string `json:"account_type,omitempty"`
-	AuthCode *string `json:"auth_code,omitempty"`
-	Brand *string `json:"brand,omitempty"`
+	AuthCode    *string `json:"auth_code,omitempty"`
+	Brand       *string `json:"brand,omitempty"`
 	// Id sent for recurrent charges.
-	ContractId *string `json:"contract_id,omitempty"`
-	Country *string `json:"country,omitempty"`
-	ExpMonth *string `json:"exp_month,omitempty"`
-	ExpYear *string `json:"exp_year,omitempty"`
-	FraudIndicators []interface{} `json:"fraud_indicators,omitempty"`
-	Issuer *string `json:"issuer,omitempty"`
-	Last4 *string `json:"last4,omitempty"`
-	Name *string `json:"name,omitempty"`
+	ContractId           *string       `json:"contract_id,omitempty"`
+	Country              *string       `json:"country,omitempty"`
+	ExpMonth             *string       `json:"exp_month,omitempty"`
+	ExpYear              *string       `json:"exp_year,omitempty"`
+	FraudIndicators      []interface{} `json:"fraud_indicators,omitempty"`
+	Issuer               *string       `json:"issuer,omitempty"`
+	Last4                *string       `json:"last4,omitempty"`
+	Name                 *string       `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PaymentMethodCard PaymentMethodCard
@@ -467,7 +467,7 @@ func (o *PaymentMethodCard) SetName(v string) {
 }
 
 func (o PaymentMethodCard) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -513,6 +513,11 @@ func (o PaymentMethodCard) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -529,10 +534,10 @@ func (o *PaymentMethodCard) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -540,15 +545,32 @@ func (o *PaymentMethodCard) UnmarshalJSON(data []byte) (err error) {
 
 	varPaymentMethodCard := _PaymentMethodCard{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPaymentMethodCard)
+	err = json.Unmarshal(data, &varPaymentMethodCard)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PaymentMethodCard(varPaymentMethodCard)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "account_type")
+		delete(additionalProperties, "auth_code")
+		delete(additionalProperties, "brand")
+		delete(additionalProperties, "contract_id")
+		delete(additionalProperties, "country")
+		delete(additionalProperties, "exp_month")
+		delete(additionalProperties, "exp_year")
+		delete(additionalProperties, "fraud_indicators")
+		delete(additionalProperties, "issuer")
+		delete(additionalProperties, "last4")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -588,5 +610,3 @@ func (v *NullablePaymentMethodCard) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

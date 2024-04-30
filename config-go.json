@@ -3,7 +3,7 @@
   "packageName": "conekta",
   "hideGenerationTimestamp": false,
   "generateInterfaces": true,
-  "disallowAdditionalPropertiesIfNotPresent": true,
+  "disallowAdditionalPropertiesIfNotPresent": false,
   "gitUserId": "conekta",
   "gitRepoId": "conekta-go",
   "httpUserAgent": "Conekta/v2 GoBindings/6.0.5",

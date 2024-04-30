@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,16 +26,17 @@ type CustomerShippingContactsDataResponse struct {
 	// Name of the person who will receive the order
 	Receiver *string `json:"receiver,omitempty"`
 	// The street names between which the order will be delivered.
-	BetweenStreets *string `json:"between_streets,omitempty"`
-	Address CustomerShippingContactsAddress `json:"address"`
-	ParentId *string `json:"parent_id,omitempty"`
-	Default NullableBool `json:"default,omitempty"`
-	Deleted NullableBool `json:"deleted,omitempty"`
+	BetweenStreets *string                         `json:"between_streets,omitempty"`
+	Address        CustomerShippingContactsAddress `json:"address"`
+	ParentId       *string                         `json:"parent_id,omitempty"`
+	Default        NullableBool                    `json:"default,omitempty"`
+	Deleted        NullableBool                    `json:"deleted,omitempty"`
 	// Metadata associated with the shipping contact
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
-	Id string `json:"id"`
-	Object string `json:"object"`
-	CreatedAt int64 `json:"created_at"`
+	Metadata             map[string]interface{} `json:"metadata,omitempty"`
+	Id                   string                 `json:"id"`
+	Object               string                 `json:"object"`
+	CreatedAt            int64                  `json:"created_at"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomerShippingContactsDataResponse CustomerShippingContactsDataResponse
@@ -246,6 +246,7 @@ func (o *CustomerShippingContactsDataResponse) HasDefault() bool {
 func (o *CustomerShippingContactsDataResponse) SetDefault(v bool) {
 	o.Default.Set(&v)
 }
+
 // SetDefaultNil sets the value for Default to be an explicit nil
 func (o *CustomerShippingContactsDataResponse) SetDefaultNil() {
 	o.Default.Set(nil)
@@ -288,6 +289,7 @@ func (o *CustomerShippingContactsDataResponse) HasDeleted() bool {
 func (o *CustomerShippingContactsDataResponse) SetDeleted(v bool) {
 	o.Deleted.Set(&v)
 }
+
 // SetDeletedNil sets the value for Deleted to be an explicit nil
 func (o *CustomerShippingContactsDataResponse) SetDeletedNil() {
 	o.Deleted.Set(nil)
@@ -403,7 +405,7 @@ func (o *CustomerShippingContactsDataResponse) SetCreatedAt(v int64) {
 }
 
 func (o CustomerShippingContactsDataResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -437,6 +439,11 @@ func (o CustomerShippingContactsDataResponse) ToMap() (map[string]interface{}, e
 	toSerialize["id"] = o.Id
 	toSerialize["object"] = o.Object
 	toSerialize["created_at"] = o.CreatedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -456,10 +463,10 @@ func (o *CustomerShippingContactsDataResponse) UnmarshalJSON(data []byte) (err e
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -467,15 +474,30 @@ func (o *CustomerShippingContactsDataResponse) UnmarshalJSON(data []byte) (err e
 
 	varCustomerShippingContactsDataResponse := _CustomerShippingContactsDataResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCustomerShippingContactsDataResponse)
+	err = json.Unmarshal(data, &varCustomerShippingContactsDataResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomerShippingContactsDataResponse(varCustomerShippingContactsDataResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "phone")
+		delete(additionalProperties, "receiver")
+		delete(additionalProperties, "between_streets")
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "parent_id")
+		delete(additionalProperties, "default")
+		delete(additionalProperties, "deleted")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "created_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -515,5 +537,3 @@ func (v *NullableCustomerShippingContactsDataResponse) UnmarshalJSON(src []byte)
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

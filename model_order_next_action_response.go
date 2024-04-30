@@ -22,8 +22,11 @@ var _ MappedNullable = &OrderNextActionResponse{}
 type OrderNextActionResponse struct {
 	RedirectToUrl *OrderNextActionResponseRedirectToUrl `json:"redirect_to_url,omitempty"`
 	// Indicates the type of action to be taken
-	Type *string `json:"type,omitempty"`
+	Type                 *string `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OrderNextActionResponse OrderNextActionResponse
 
 // NewOrderNextActionResponse instantiates a new OrderNextActionResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -107,7 +110,7 @@ func (o *OrderNextActionResponse) SetType(v string) {
 }
 
 func (o OrderNextActionResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -122,7 +125,34 @@ func (o OrderNextActionResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *OrderNextActionResponse) UnmarshalJSON(data []byte) (err error) {
+	varOrderNextActionResponse := _OrderNextActionResponse{}
+
+	err = json.Unmarshal(data, &varOrderNextActionResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = OrderNextActionResponse(varOrderNextActionResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "redirect_to_url")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOrderNextActionResponse struct {
@@ -160,5 +190,3 @@ func (v *NullableOrderNextActionResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

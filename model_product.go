@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -38,7 +37,8 @@ type Product struct {
 	// List of tags for the item. It is used to identify the item in the order.
 	Tags []string `json:"tags,omitempty"`
 	// The price of the item in cents.
-	UnitPrice int32 `json:"unit_price"`
+	UnitPrice            int32 `json:"unit_price"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Product Product
@@ -328,7 +328,7 @@ func (o *Product) SetUnitPrice(v int32) {
 }
 
 func (o Product) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -358,6 +358,11 @@ func (o Product) ToMap() (map[string]interface{}, error) {
 		toSerialize["tags"] = o.Tags
 	}
 	toSerialize["unit_price"] = o.UnitPrice
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -376,10 +381,10 @@ func (o *Product) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -387,15 +392,28 @@ func (o *Product) UnmarshalJSON(data []byte) (err error) {
 
 	varProduct := _Product{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varProduct)
+	err = json.Unmarshal(data, &varProduct)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Product(varProduct)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "antifraud_info")
+		delete(additionalProperties, "brand")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "quantity")
+		delete(additionalProperties, "sku")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "unit_price")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -435,5 +453,3 @@ func (v *NullableProduct) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

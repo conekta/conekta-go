@@ -20,27 +20,30 @@ var _ MappedNullable = &LogsResponseData{}
 
 // LogsResponseData struct for LogsResponseData
 type LogsResponseData struct {
-	CreatedAt *int64 `json:"created_at,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IpAddress *string `json:"ip_address,omitempty"`
-	Livemode *bool `json:"livemode,omitempty"`
-	LoggableId NullableString `json:"loggable_id,omitempty"`
-	LoggableType NullableString `json:"loggable_type,omitempty"`
-	Method *string `json:"method,omitempty"`
-	OauthTokenId NullableString `json:"oauth_token_id,omitempty"`
-	QueryString map[string]interface{} `json:"query_string,omitempty"`
-	Related *string `json:"related,omitempty"`
-	RequestBody map[string]interface{} `json:"request_body,omitempty"`
-	RequestHeaders *map[string]string `json:"request_headers,omitempty"`
-	ResponseBody map[string]interface{} `json:"response_body,omitempty"`
-	ResponseHeaders *map[string]string `json:"response_headers,omitempty"`
-	SearchableTags []string `json:"searchable_tags,omitempty"`
-	Status *string `json:"status,omitempty"`
-	UpdatedAt *string `json:"updated_at,omitempty"`
-	Url *string `json:"url,omitempty"`
-	UserAccountId *string `json:"user_account_id,omitempty"`
-	Version *string `json:"version,omitempty"`
+	CreatedAt            *int64                 `json:"created_at,omitempty"`
+	Id                   *string                `json:"id,omitempty"`
+	IpAddress            *string                `json:"ip_address,omitempty"`
+	Livemode             *bool                  `json:"livemode,omitempty"`
+	LoggableId           NullableString         `json:"loggable_id,omitempty"`
+	LoggableType         NullableString         `json:"loggable_type,omitempty"`
+	Method               *string                `json:"method,omitempty"`
+	OauthTokenId         NullableString         `json:"oauth_token_id,omitempty"`
+	QueryString          map[string]interface{} `json:"query_string,omitempty"`
+	Related              *string                `json:"related,omitempty"`
+	RequestBody          map[string]interface{} `json:"request_body,omitempty"`
+	RequestHeaders       *map[string]string     `json:"request_headers,omitempty"`
+	ResponseBody         map[string]interface{} `json:"response_body,omitempty"`
+	ResponseHeaders      *map[string]string     `json:"response_headers,omitempty"`
+	SearchableTags       []string               `json:"searchable_tags,omitempty"`
+	Status               *string                `json:"status,omitempty"`
+	UpdatedAt            *string                `json:"updated_at,omitempty"`
+	Url                  *string                `json:"url,omitempty"`
+	UserAccountId        *string                `json:"user_account_id,omitempty"`
+	Version              *string                `json:"version,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsResponseData LogsResponseData
 
 // NewLogsResponseData instantiates a new LogsResponseData object
 // This constructor will assign default values to properties that have it defined,
@@ -219,6 +222,7 @@ func (o *LogsResponseData) HasLoggableId() bool {
 func (o *LogsResponseData) SetLoggableId(v string) {
 	o.LoggableId.Set(&v)
 }
+
 // SetLoggableIdNil sets the value for LoggableId to be an explicit nil
 func (o *LogsResponseData) SetLoggableIdNil() {
 	o.LoggableId.Set(nil)
@@ -261,6 +265,7 @@ func (o *LogsResponseData) HasLoggableType() bool {
 func (o *LogsResponseData) SetLoggableType(v string) {
 	o.LoggableType.Set(&v)
 }
+
 // SetLoggableTypeNil sets the value for LoggableType to be an explicit nil
 func (o *LogsResponseData) SetLoggableTypeNil() {
 	o.LoggableType.Set(nil)
@@ -335,6 +340,7 @@ func (o *LogsResponseData) HasOauthTokenId() bool {
 func (o *LogsResponseData) SetOauthTokenId(v string) {
 	o.OauthTokenId.Set(&v)
 }
+
 // SetOauthTokenIdNil sets the value for OauthTokenId to be an explicit nil
 func (o *LogsResponseData) SetOauthTokenIdNil() {
 	o.OauthTokenId.Set(nil)
@@ -730,7 +736,7 @@ func (o *LogsResponseData) SetVersion(v string) {
 }
 
 func (o LogsResponseData) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -799,7 +805,52 @@ func (o LogsResponseData) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *LogsResponseData) UnmarshalJSON(data []byte) (err error) {
+	varLogsResponseData := _LogsResponseData{}
+
+	err = json.Unmarshal(data, &varLogsResponseData)
+
+	if err != nil {
+		return err
+	}
+
+	*o = LogsResponseData(varLogsResponseData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "ip_address")
+		delete(additionalProperties, "livemode")
+		delete(additionalProperties, "loggable_id")
+		delete(additionalProperties, "loggable_type")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "oauth_token_id")
+		delete(additionalProperties, "query_string")
+		delete(additionalProperties, "related")
+		delete(additionalProperties, "request_body")
+		delete(additionalProperties, "request_headers")
+		delete(additionalProperties, "response_body")
+		delete(additionalProperties, "response_headers")
+		delete(additionalProperties, "searchable_tags")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "user_account_id")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableLogsResponseData struct {
@@ -837,5 +888,3 @@ func (v *NullableLogsResponseData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

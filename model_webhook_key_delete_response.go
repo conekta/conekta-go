@@ -31,8 +31,11 @@ type WebhookKeyDeleteResponse struct {
 	// Indicates if the webhook key is in live mode
 	Livemode *bool `json:"livemode,omitempty"`
 	// Object name, value is webhook_key
-	Object *string `json:"object,omitempty"`
+	Object               *string `json:"object,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _WebhookKeyDeleteResponse WebhookKeyDeleteResponse
 
 // NewWebhookKeyDeleteResponse instantiates a new WebhookKeyDeleteResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -244,7 +247,7 @@ func (o *WebhookKeyDeleteResponse) SetObject(v string) {
 }
 
 func (o WebhookKeyDeleteResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -271,7 +274,38 @@ func (o WebhookKeyDeleteResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *WebhookKeyDeleteResponse) UnmarshalJSON(data []byte) (err error) {
+	varWebhookKeyDeleteResponse := _WebhookKeyDeleteResponse{}
+
+	err = json.Unmarshal(data, &varWebhookKeyDeleteResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = WebhookKeyDeleteResponse(varWebhookKeyDeleteResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "deleted")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "livemode")
+		delete(additionalProperties, "object")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableWebhookKeyDeleteResponse struct {
@@ -309,5 +343,3 @@ func (v *NullableWebhookKeyDeleteResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

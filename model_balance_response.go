@@ -39,8 +39,11 @@ type BalanceResponse struct {
 	// The balance's target retention amount
 	TargetRetentionAmount []BalanceCommonField `json:"target_retention_amount,omitempty"`
 	// The balance's temporarily retained
-	TemporarilyRetained []BalanceCommonField `json:"temporarily_retained,omitempty"`
+	TemporarilyRetained  []BalanceCommonField `json:"temporarily_retained,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BalanceResponse BalanceResponse
 
 // NewBalanceResponse instantiates a new BalanceResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -380,7 +383,7 @@ func (o *BalanceResponse) SetTemporarilyRetained(v []BalanceCommonField) {
 }
 
 func (o BalanceResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -419,7 +422,42 @@ func (o BalanceResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TemporarilyRetained) {
 		toSerialize["temporarily_retained"] = o.TemporarilyRetained
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BalanceResponse) UnmarshalJSON(data []byte) (err error) {
+	varBalanceResponse := _BalanceResponse{}
+
+	err = json.Unmarshal(data, &varBalanceResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = BalanceResponse(varBalanceResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "available")
+		delete(additionalProperties, "cashout_retention_amount")
+		delete(additionalProperties, "conekta_retention")
+		delete(additionalProperties, "gateway")
+		delete(additionalProperties, "pending")
+		delete(additionalProperties, "retained")
+		delete(additionalProperties, "retention_amount")
+		delete(additionalProperties, "target_collateral_amount")
+		delete(additionalProperties, "target_retention_amount")
+		delete(additionalProperties, "temporarily_retained")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBalanceResponse struct {
@@ -457,5 +495,3 @@ func (v *NullableBalanceResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

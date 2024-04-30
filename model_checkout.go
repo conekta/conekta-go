@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,7 +23,7 @@ var _ MappedNullable = &Checkout{}
 type Checkout struct {
 	// Those are the payment methods that will be available for the link
 	AllowedPaymentMethods []string `json:"allowed_payment_methods"`
-	// It is the time when the link will expire. It is expressed in seconds since the Unix epoch. The valid range is from 2 to 365 days (the valid range will be taken from the next day of the creation date at 00:01 hrs) 
+	// It is the time when the link will expire. It is expressed in seconds since the Unix epoch. The valid range is from 2 to 365 days (the valid range will be taken from the next day of the creation date at 00:01 hrs)
 	ExpiresAt int64 `json:"expires_at"`
 	// This flag allows you to specify if months without interest will be active.
 	MonthlyInstallmentsEnabled *bool `json:"monthly_installments_enabled,omitempty"`
@@ -35,14 +34,15 @@ type Checkout struct {
 	// This flag allows you to fill in the shipping information at checkout.
 	NeedsShippingContact *bool `json:"needs_shipping_contact,omitempty"`
 	// This flag allows you to specify if the link will be on demand.
-	OnDemandEnabled NullableBool `json:"on_demand_enabled,omitempty"`
-	OrderTemplate CheckoutOrderTemplate `json:"order_template"`
+	OnDemandEnabled NullableBool          `json:"on_demand_enabled,omitempty"`
+	OrderTemplate   CheckoutOrderTemplate `json:"order_template"`
 	// It is the number of payments that can be made through the link.
 	PaymentsLimitCount *int32 `json:"payments_limit_count,omitempty"`
 	// false: single use. true: multiple payments
 	Recurrent bool `json:"recurrent"`
 	// It is the type of link that will be created. It must be a valid type.
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Checkout Checkout
@@ -270,6 +270,7 @@ func (o *Checkout) HasOnDemandEnabled() bool {
 func (o *Checkout) SetOnDemandEnabled(v bool) {
 	o.OnDemandEnabled.Set(&v)
 }
+
 // SetOnDemandEnabledNil sets the value for OnDemandEnabled to be an explicit nil
 func (o *Checkout) SetOnDemandEnabledNil() {
 	o.OnDemandEnabled.Set(nil)
@@ -385,7 +386,7 @@ func (o *Checkout) SetType(v string) {
 }
 
 func (o Checkout) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -415,6 +416,11 @@ func (o Checkout) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["recurrent"] = o.Recurrent
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -436,10 +442,10 @@ func (o *Checkout) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -447,15 +453,30 @@ func (o *Checkout) UnmarshalJSON(data []byte) (err error) {
 
 	varCheckout := _Checkout{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCheckout)
+	err = json.Unmarshal(data, &varCheckout)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Checkout(varCheckout)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "allowed_payment_methods")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "monthly_installments_enabled")
+		delete(additionalProperties, "monthly_installments_options")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "needs_shipping_contact")
+		delete(additionalProperties, "on_demand_enabled")
+		delete(additionalProperties, "order_template")
+		delete(additionalProperties, "payments_limit_count")
+		delete(additionalProperties, "recurrent")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -495,5 +516,3 @@ func (v *NullableCheckout) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

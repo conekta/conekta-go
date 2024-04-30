@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,17 +21,18 @@ var _ MappedNullable = &CreateCustomerFiscalEntitiesResponse{}
 
 // CreateCustomerFiscalEntitiesResponse struct for CreateCustomerFiscalEntitiesResponse
 type CreateCustomerFiscalEntitiesResponse struct {
-	Address CustomerAddress `json:"address"`
-	TaxId *string `json:"tax_id,omitempty"`
-	Email *string `json:"email,omitempty"`
-	Phone *string `json:"phone,omitempty"`
-	Metadata map[string]map[string]interface{} `json:"metadata,omitempty"`
-	CompanyName *string `json:"company_name,omitempty"`
-	Id string `json:"id"`
-	Object string `json:"object"`
-	CreatedAt int64 `json:"created_at"`
-	ParentId *string `json:"parent_id,omitempty"`
-	Default *bool `json:"default,omitempty"`
+	Address              CustomerAddress                   `json:"address"`
+	TaxId                *string                           `json:"tax_id,omitempty"`
+	Email                *string                           `json:"email,omitempty"`
+	Phone                *string                           `json:"phone,omitempty"`
+	Metadata             map[string]map[string]interface{} `json:"metadata,omitempty"`
+	CompanyName          *string                           `json:"company_name,omitempty"`
+	Id                   string                            `json:"id"`
+	Object               string                            `json:"object"`
+	CreatedAt            int64                             `json:"created_at"`
+	ParentId             *string                           `json:"parent_id,omitempty"`
+	Default              *bool                             `json:"default,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateCustomerFiscalEntitiesResponse CreateCustomerFiscalEntitiesResponse
@@ -379,7 +379,7 @@ func (o *CreateCustomerFiscalEntitiesResponse) SetDefault(v bool) {
 }
 
 func (o CreateCustomerFiscalEntitiesResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -413,6 +413,11 @@ func (o CreateCustomerFiscalEntitiesResponse) ToMap() (map[string]interface{}, e
 	if !IsNil(o.Default) {
 		toSerialize["default"] = o.Default
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -432,10 +437,10 @@ func (o *CreateCustomerFiscalEntitiesResponse) UnmarshalJSON(data []byte) (err e
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -443,15 +448,30 @@ func (o *CreateCustomerFiscalEntitiesResponse) UnmarshalJSON(data []byte) (err e
 
 	varCreateCustomerFiscalEntitiesResponse := _CreateCustomerFiscalEntitiesResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateCustomerFiscalEntitiesResponse)
+	err = json.Unmarshal(data, &varCreateCustomerFiscalEntitiesResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateCustomerFiscalEntitiesResponse(varCreateCustomerFiscalEntitiesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "tax_id")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "phone")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "company_name")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "parent_id")
+		delete(additionalProperties, "default")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -491,5 +511,3 @@ func (v *NullableCreateCustomerFiscalEntitiesResponse) UnmarshalJSON(src []byte)
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

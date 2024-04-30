@@ -13,32 +13,32 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
 // checks if the CheckoutRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CheckoutRequest{}
 
-// CheckoutRequest [Checkout](https://developers.conekta.com/v2.1.0/reference/payment-link) details 
+// CheckoutRequest [Checkout](https://developers.conekta.com/v2.1.0/reference/payment-link) details
 type CheckoutRequest struct {
 	// Are the payment methods available for this link
 	AllowedPaymentMethods []string `json:"allowed_payment_methods"`
 	// Unix timestamp of checkout expiration
 	ExpiresAt *int64 `json:"expires_at,omitempty"`
 	// Redirection url back to the site in case of failed payment, applies only to HostedPayment.
-	FailureUrl *string `json:"failure_url,omitempty"`
-	MonthlyInstallmentsEnabled *bool `json:"monthly_installments_enabled,omitempty"`
+	FailureUrl                 *string `json:"failure_url,omitempty"`
+	MonthlyInstallmentsEnabled *bool   `json:"monthly_installments_enabled,omitempty"`
 	MonthlyInstallmentsOptions []int32 `json:"monthly_installments_options,omitempty"`
 	// Reason for payment
-	Name *string `json:"name,omitempty"`
-	OnDemandEnabled *bool `json:"on_demand_enabled,omitempty"`
+	Name            *string `json:"name,omitempty"`
+	OnDemandEnabled *bool   `json:"on_demand_enabled,omitempty"`
 	// number of seconds to wait before redirecting to the success_url
 	RedirectionTime *int32 `json:"redirection_time,omitempty"`
 	// Redirection url back to the site in case of successful payment, applies only to HostedPayment
 	SuccessUrl *string `json:"success_url,omitempty"`
 	// This field represents the type of checkout
-	Type *string `json:"type,omitempty"`
+	Type                 *string `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CheckoutRequest CheckoutRequest
@@ -374,7 +374,7 @@ func (o *CheckoutRequest) SetType(v string) {
 }
 
 func (o CheckoutRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -411,6 +411,11 @@ func (o CheckoutRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -427,10 +432,10 @@ func (o *CheckoutRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -438,15 +443,29 @@ func (o *CheckoutRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varCheckoutRequest := _CheckoutRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCheckoutRequest)
+	err = json.Unmarshal(data, &varCheckoutRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CheckoutRequest(varCheckoutRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "allowed_payment_methods")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "failure_url")
+		delete(additionalProperties, "monthly_installments_enabled")
+		delete(additionalProperties, "monthly_installments_options")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "on_demand_enabled")
+		delete(additionalProperties, "redirection_time")
+		delete(additionalProperties, "success_url")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -486,5 +505,3 @@ func (v *NullableCheckoutRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

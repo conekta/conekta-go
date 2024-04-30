@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,7 +22,8 @@ var _ MappedNullable = &CustomerPaymentMethodRequest{}
 // CustomerPaymentMethodRequest Contains details of the payment methods that the customer has active or has used in Conekta
 type CustomerPaymentMethodRequest struct {
 	// Type of payment method
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomerPaymentMethodRequest CustomerPaymentMethodRequest
@@ -71,7 +71,7 @@ func (o *CustomerPaymentMethodRequest) SetType(v string) {
 }
 
 func (o CustomerPaymentMethodRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -81,6 +81,11 @@ func (o CustomerPaymentMethodRequest) MarshalJSON() ([]byte, error) {
 func (o CustomerPaymentMethodRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -97,10 +102,10 @@ func (o *CustomerPaymentMethodRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -108,15 +113,20 @@ func (o *CustomerPaymentMethodRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varCustomerPaymentMethodRequest := _CustomerPaymentMethodRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCustomerPaymentMethodRequest)
+	err = json.Unmarshal(data, &varCustomerPaymentMethodRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomerPaymentMethodRequest(varCustomerPaymentMethodRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -156,5 +166,3 @@ func (v *NullableCustomerPaymentMethodRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

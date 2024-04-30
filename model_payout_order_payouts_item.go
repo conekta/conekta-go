@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -37,7 +36,8 @@ type PayoutOrderPayoutsItem struct {
 	// The id of the payout order.
 	PayoutOrderId *string `json:"payout_order_id,omitempty"`
 	// The status of the payout.
-	Status *string `json:"status,omitempty"`
+	Status               *string `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PayoutOrderPayoutsItem PayoutOrderPayoutsItem
@@ -281,7 +281,7 @@ func (o *PayoutOrderPayoutsItem) SetStatus(v string) {
 }
 
 func (o PayoutOrderPayoutsItem) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -304,6 +304,11 @@ func (o PayoutOrderPayoutsItem) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -324,10 +329,10 @@ func (o *PayoutOrderPayoutsItem) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -335,15 +340,27 @@ func (o *PayoutOrderPayoutsItem) UnmarshalJSON(data []byte) (err error) {
 
 	varPayoutOrderPayoutsItem := _PayoutOrderPayoutsItem{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPayoutOrderPayoutsItem)
+	err = json.Unmarshal(data, &varPayoutOrderPayoutsItem)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PayoutOrderPayoutsItem(varPayoutOrderPayoutsItem)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "currency")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "livemode")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "payout_order_id")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -383,5 +400,3 @@ func (v *NullablePayoutOrderPayoutsItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

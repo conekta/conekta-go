@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -32,7 +31,8 @@ type OrderFiscalEntityRequest struct {
 	// Phone of the fiscal entity
 	Phone *string `json:"phone,omitempty"`
 	// Tax ID of the fiscal entity
-	TaxId NullableString `json:"tax_id,omitempty"`
+	TaxId                NullableString `json:"tax_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrderFiscalEntityRequest OrderFiscalEntityRequest
@@ -175,6 +175,7 @@ func (o *OrderFiscalEntityRequest) HasName() bool {
 func (o *OrderFiscalEntityRequest) SetName(v string) {
 	o.Name.Set(&v)
 }
+
 // SetNameNil sets the value for Name to be an explicit nil
 func (o *OrderFiscalEntityRequest) SetNameNil() {
 	o.Name.Set(nil)
@@ -249,6 +250,7 @@ func (o *OrderFiscalEntityRequest) HasTaxId() bool {
 func (o *OrderFiscalEntityRequest) SetTaxId(v string) {
 	o.TaxId.Set(&v)
 }
+
 // SetTaxIdNil sets the value for TaxId to be an explicit nil
 func (o *OrderFiscalEntityRequest) SetTaxIdNil() {
 	o.TaxId.Set(nil)
@@ -260,7 +262,7 @@ func (o *OrderFiscalEntityRequest) UnsetTaxId() {
 }
 
 func (o OrderFiscalEntityRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -285,6 +287,11 @@ func (o OrderFiscalEntityRequest) ToMap() (map[string]interface{}, error) {
 	if o.TaxId.IsSet() {
 		toSerialize["tax_id"] = o.TaxId.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -301,10 +308,10 @@ func (o *OrderFiscalEntityRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -312,15 +319,25 @@ func (o *OrderFiscalEntityRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varOrderFiscalEntityRequest := _OrderFiscalEntityRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOrderFiscalEntityRequest)
+	err = json.Unmarshal(data, &varOrderFiscalEntityRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OrderFiscalEntityRequest(varOrderFiscalEntityRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "phone")
+		delete(additionalProperties, "tax_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -360,5 +377,3 @@ func (v *NullableOrderFiscalEntityRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

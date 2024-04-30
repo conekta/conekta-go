@@ -33,8 +33,11 @@ type RiskRulesData struct {
 	// if the rule is test
 	IsTest *bool `json:"is_test,omitempty"`
 	// description of the rule
-	Description *string `json:"description,omitempty"`
+	Description          *string `json:"description,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RiskRulesData RiskRulesData
 
 // NewRiskRulesData instantiates a new RiskRulesData object
 // This constructor will assign default values to properties that have it defined,
@@ -278,7 +281,7 @@ func (o *RiskRulesData) SetDescription(v string) {
 }
 
 func (o RiskRulesData) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -308,7 +311,39 @@ func (o RiskRulesData) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RiskRulesData) UnmarshalJSON(data []byte) (err error) {
+	varRiskRulesData := _RiskRulesData{}
+
+	err = json.Unmarshal(data, &varRiskRulesData)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RiskRulesData(varRiskRulesData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "field")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "value")
+		delete(additionalProperties, "is_global")
+		delete(additionalProperties, "is_test")
+		delete(additionalProperties, "description")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRiskRulesData struct {
@@ -346,5 +381,3 @@ func (v *NullableRiskRulesData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

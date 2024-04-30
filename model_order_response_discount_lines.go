@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,8 +24,9 @@ type OrderResponseDiscountLines struct {
 	// Indicates if there are more pages to be requested
 	HasMore bool `json:"has_more"`
 	// Object type, in this case is list
-	Object string `json:"object"`
-	Data []DiscountLinesDataResponse `json:"data,omitempty"`
+	Object               string                      `json:"object"`
+	Data                 []DiscountLinesDataResponse `json:"data,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrderResponseDiscountLines OrderResponseDiscountLines
@@ -131,7 +131,7 @@ func (o *OrderResponseDiscountLines) SetData(v []DiscountLinesDataResponse) {
 }
 
 func (o OrderResponseDiscountLines) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -145,6 +145,11 @@ func (o OrderResponseDiscountLines) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,10 +167,10 @@ func (o *OrderResponseDiscountLines) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -173,15 +178,22 @@ func (o *OrderResponseDiscountLines) UnmarshalJSON(data []byte) (err error) {
 
 	varOrderResponseDiscountLines := _OrderResponseDiscountLines{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOrderResponseDiscountLines)
+	err = json.Unmarshal(data, &varOrderResponseDiscountLines)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OrderResponseDiscountLines(varOrderResponseDiscountLines)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "has_more")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -221,5 +233,3 @@ func (v *NullableOrderResponseDiscountLines) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

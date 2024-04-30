@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,11 +21,12 @@ var _ MappedNullable = &CustomerInfo{}
 
 // CustomerInfo struct for CustomerInfo
 type CustomerInfo struct {
-	Name string `json:"name"`
-	Email string `json:"email"`
-	Phone string `json:"phone"`
-	Corporate *bool `json:"corporate,omitempty"`
-	Object *string `json:"object,omitempty"`
+	Name                 string  `json:"name"`
+	Email                string  `json:"email"`
+	Phone                string  `json:"phone"`
+	Corporate            *bool   `json:"corporate,omitempty"`
+	Object               *string `json:"object,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomerInfo CustomerInfo
@@ -188,7 +188,7 @@ func (o *CustomerInfo) SetObject(v string) {
 }
 
 func (o CustomerInfo) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -206,6 +206,11 @@ func (o CustomerInfo) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -224,10 +229,10 @@ func (o *CustomerInfo) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -235,15 +240,24 @@ func (o *CustomerInfo) UnmarshalJSON(data []byte) (err error) {
 
 	varCustomerInfo := _CustomerInfo{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCustomerInfo)
+	err = json.Unmarshal(data, &varCustomerInfo)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomerInfo(varCustomerInfo)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "phone")
+		delete(additionalProperties, "corporate")
+		delete(additionalProperties, "object")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -283,5 +297,3 @@ func (v *NullableCustomerInfo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,16 +21,17 @@ var _ MappedNullable = &PaymentMethodCashResponse{}
 
 // PaymentMethodCashResponse struct for PaymentMethodCashResponse
 type PaymentMethodCashResponse struct {
-	Type string `json:"type"`
-	Id string `json:"id"`
-	Object string `json:"object"`
-	CreatedAt int64 `json:"created_at"`
-	ParentId *string `json:"parent_id,omitempty"`
-	Reference *string `json:"reference,omitempty"`
-	Barcode *string `json:"barcode,omitempty"`
-	BarcodeUrl *string `json:"barcode_url,omitempty"`
-	ExpiresAt *int64 `json:"expires_at,omitempty"`
-	Provider *string `json:"provider,omitempty"`
+	Type                 string  `json:"type"`
+	Id                   string  `json:"id"`
+	Object               string  `json:"object"`
+	CreatedAt            int64   `json:"created_at"`
+	ParentId             *string `json:"parent_id,omitempty"`
+	Reference            *string `json:"reference,omitempty"`
+	Barcode              *string `json:"barcode,omitempty"`
+	BarcodeUrl           *string `json:"barcode_url,omitempty"`
+	ExpiresAt            *int64  `json:"expires_at,omitempty"`
+	Provider             *string `json:"provider,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PaymentMethodCashResponse PaymentMethodCashResponse
@@ -346,7 +346,7 @@ func (o *PaymentMethodCashResponse) SetProvider(v string) {
 }
 
 func (o PaymentMethodCashResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -377,6 +377,11 @@ func (o PaymentMethodCashResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Provider) {
 		toSerialize["provider"] = o.Provider
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -396,10 +401,10 @@ func (o *PaymentMethodCashResponse) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -407,15 +412,29 @@ func (o *PaymentMethodCashResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varPaymentMethodCashResponse := _PaymentMethodCashResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPaymentMethodCashResponse)
+	err = json.Unmarshal(data, &varPaymentMethodCashResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PaymentMethodCashResponse(varPaymentMethodCashResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "parent_id")
+		delete(additionalProperties, "reference")
+		delete(additionalProperties, "barcode")
+		delete(additionalProperties, "barcode_url")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "provider")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -455,5 +474,3 @@ func (v *NullablePaymentMethodCashResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

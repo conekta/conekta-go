@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,13 +26,14 @@ type CustomerShippingContacts struct {
 	// Name of the person who will receive the order
 	Receiver *string `json:"receiver,omitempty"`
 	// The street names between which the order will be delivered.
-	BetweenStreets *string `json:"between_streets,omitempty"`
-	Address CustomerShippingContactsAddress `json:"address"`
-	ParentId *string `json:"parent_id,omitempty"`
-	Default NullableBool `json:"default,omitempty"`
-	Deleted NullableBool `json:"deleted,omitempty"`
+	BetweenStreets *string                         `json:"between_streets,omitempty"`
+	Address        CustomerShippingContactsAddress `json:"address"`
+	ParentId       *string                         `json:"parent_id,omitempty"`
+	Default        NullableBool                    `json:"default,omitempty"`
+	Deleted        NullableBool                    `json:"deleted,omitempty"`
 	// Metadata associated with the shipping contact
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	Metadata             map[string]interface{} `json:"metadata,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomerShippingContacts CustomerShippingContacts
@@ -240,6 +240,7 @@ func (o *CustomerShippingContacts) HasDefault() bool {
 func (o *CustomerShippingContacts) SetDefault(v bool) {
 	o.Default.Set(&v)
 }
+
 // SetDefaultNil sets the value for Default to be an explicit nil
 func (o *CustomerShippingContacts) SetDefaultNil() {
 	o.Default.Set(nil)
@@ -282,6 +283,7 @@ func (o *CustomerShippingContacts) HasDeleted() bool {
 func (o *CustomerShippingContacts) SetDeleted(v bool) {
 	o.Deleted.Set(&v)
 }
+
 // SetDeletedNil sets the value for Deleted to be an explicit nil
 func (o *CustomerShippingContacts) SetDeletedNil() {
 	o.Deleted.Set(nil)
@@ -325,7 +327,7 @@ func (o *CustomerShippingContacts) SetMetadata(v map[string]interface{}) {
 }
 
 func (o CustomerShippingContacts) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -356,6 +358,11 @@ func (o CustomerShippingContacts) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -372,10 +379,10 @@ func (o *CustomerShippingContacts) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -383,15 +390,27 @@ func (o *CustomerShippingContacts) UnmarshalJSON(data []byte) (err error) {
 
 	varCustomerShippingContacts := _CustomerShippingContacts{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCustomerShippingContacts)
+	err = json.Unmarshal(data, &varCustomerShippingContacts)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomerShippingContacts(varCustomerShippingContacts)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "phone")
+		delete(additionalProperties, "receiver")
+		delete(additionalProperties, "between_streets")
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "parent_id")
+		delete(additionalProperties, "default")
+		delete(additionalProperties, "deleted")
+		delete(additionalProperties, "metadata")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -431,5 +450,3 @@ func (v *NullableCustomerShippingContacts) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

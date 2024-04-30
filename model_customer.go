@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -32,9 +31,9 @@ type Customer struct {
 	// It is a parameter that allows to identify in the response, the Conekta ID of a payment method (payment_id)
 	DefaultPaymentSourceId *string `json:"default_payment_source_id,omitempty"`
 	// It is a parameter that allows to identify in the response, the Conekta ID of the shipping address (shipping_contact)
-	DefaultShippingContactId *string `json:"default_shipping_contact_id,omitempty"`
-	FiscalEntities []CustomerFiscalEntitiesRequest `json:"fiscal_entities,omitempty"`
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	DefaultShippingContactId *string                         `json:"default_shipping_contact_id,omitempty"`
+	FiscalEntities           []CustomerFiscalEntitiesRequest `json:"fiscal_entities,omitempty"`
+	Metadata                 map[string]interface{}          `json:"metadata,omitempty"`
 	// Client's name
 	Name string `json:"name"`
 	// Contains details of the payment methods that the customer has active or has used in Conekta
@@ -44,8 +43,9 @@ type Customer struct {
 	// Contains the ID of a plan, which could together with name, email and phone create a client directly to a subscription
 	PlanId *string `json:"plan_id,omitempty"`
 	// Contains the detail of the shipping addresses that the client has active or has used in Conekta
-	ShippingContacts []CustomerShippingContacts `json:"shipping_contacts,omitempty"`
-	Subscription *SubscriptionRequest `json:"subscription,omitempty"`
+	ShippingContacts     []CustomerShippingContacts `json:"shipping_contacts,omitempty"`
+	Subscription         *SubscriptionRequest       `json:"subscription,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Customer Customer
@@ -106,6 +106,7 @@ func (o *Customer) HasAntifraudInfo() bool {
 func (o *Customer) SetAntifraudInfo(v CustomerAntifraudInfo) {
 	o.AntifraudInfo.Set(&v)
 }
+
 // SetAntifraudInfoNil sets the value for AntifraudInfo to be an explicit nil
 func (o *Customer) SetAntifraudInfoNil() {
 	o.AntifraudInfo.Set(nil)
@@ -509,7 +510,7 @@ func (o *Customer) SetSubscription(v SubscriptionRequest) {
 }
 
 func (o Customer) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -554,6 +555,11 @@ func (o Customer) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Subscription) {
 		toSerialize["subscription"] = o.Subscription
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -572,10 +578,10 @@ func (o *Customer) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -583,15 +589,33 @@ func (o *Customer) UnmarshalJSON(data []byte) (err error) {
 
 	varCustomer := _Customer{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCustomer)
+	err = json.Unmarshal(data, &varCustomer)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Customer(varCustomer)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "antifraud_info")
+		delete(additionalProperties, "corporate")
+		delete(additionalProperties, "custom_reference")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "default_payment_source_id")
+		delete(additionalProperties, "default_shipping_contact_id")
+		delete(additionalProperties, "fiscal_entities")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "payment_sources")
+		delete(additionalProperties, "phone")
+		delete(additionalProperties, "plan_id")
+		delete(additionalProperties, "shipping_contacts")
+		delete(additionalProperties, "subscription")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -631,5 +655,3 @@ func (v *NullableCustomer) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

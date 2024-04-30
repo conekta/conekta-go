@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,7 +21,8 @@ var _ MappedNullable = &CustomerInfoJustCustomerId{}
 
 // CustomerInfoJustCustomerId struct for CustomerInfoJustCustomerId
 type CustomerInfoJustCustomerId struct {
-	CustomerId string `json:"customer_id"`
+	CustomerId           string `json:"customer_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomerInfoJustCustomerId CustomerInfoJustCustomerId
@@ -70,7 +70,7 @@ func (o *CustomerInfoJustCustomerId) SetCustomerId(v string) {
 }
 
 func (o CustomerInfoJustCustomerId) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -80,6 +80,11 @@ func (o CustomerInfoJustCustomerId) MarshalJSON() ([]byte, error) {
 func (o CustomerInfoJustCustomerId) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["customer_id"] = o.CustomerId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -96,10 +101,10 @@ func (o *CustomerInfoJustCustomerId) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -107,15 +112,20 @@ func (o *CustomerInfoJustCustomerId) UnmarshalJSON(data []byte) (err error) {
 
 	varCustomerInfoJustCustomerId := _CustomerInfoJustCustomerId{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCustomerInfoJustCustomerId)
+	err = json.Unmarshal(data, &varCustomerInfoJustCustomerId)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomerInfoJustCustomerId(varCustomerInfoJustCustomerId)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "customer_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -155,5 +165,3 @@ func (v *NullableCustomerInfoJustCustomerId) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

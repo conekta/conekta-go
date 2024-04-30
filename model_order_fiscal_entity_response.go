@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -34,10 +33,11 @@ type OrderFiscalEntityResponse struct {
 	// ID of the fiscal entity
 	Id string `json:"id"`
 	// The time at which the object was created in seconds since the Unix epoch
-	CreatedAt int64 `json:"created_at"`
-	Object string `json:"object"`
+	CreatedAt int64  `json:"created_at"`
+	Object    string `json:"object"`
 	// Phone of the fiscal entity
-	Phone NullableString `json:"phone,omitempty"`
+	Phone                NullableString `json:"phone,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrderFiscalEntityResponse OrderFiscalEntityResponse
@@ -119,6 +119,7 @@ func (o *OrderFiscalEntityResponse) HasEmail() bool {
 func (o *OrderFiscalEntityResponse) SetEmail(v string) {
 	o.Email.Set(&v)
 }
+
 // SetEmailNil sets the value for Email to be an explicit nil
 func (o *OrderFiscalEntityResponse) SetEmailNil() {
 	o.Email.Set(nil)
@@ -193,6 +194,7 @@ func (o *OrderFiscalEntityResponse) HasName() bool {
 func (o *OrderFiscalEntityResponse) SetName(v string) {
 	o.Name.Set(&v)
 }
+
 // SetNameNil sets the value for Name to be an explicit nil
 func (o *OrderFiscalEntityResponse) SetNameNil() {
 	o.Name.Set(nil)
@@ -235,6 +237,7 @@ func (o *OrderFiscalEntityResponse) HasTaxId() bool {
 func (o *OrderFiscalEntityResponse) SetTaxId(v string) {
 	o.TaxId.Set(&v)
 }
+
 // SetTaxIdNil sets the value for TaxId to be an explicit nil
 func (o *OrderFiscalEntityResponse) SetTaxIdNil() {
 	o.TaxId.Set(nil)
@@ -349,6 +352,7 @@ func (o *OrderFiscalEntityResponse) HasPhone() bool {
 func (o *OrderFiscalEntityResponse) SetPhone(v string) {
 	o.Phone.Set(&v)
 }
+
 // SetPhoneNil sets the value for Phone to be an explicit nil
 func (o *OrderFiscalEntityResponse) SetPhoneNil() {
 	o.Phone.Set(nil)
@@ -360,7 +364,7 @@ func (o *OrderFiscalEntityResponse) UnsetPhone() {
 }
 
 func (o OrderFiscalEntityResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -388,6 +392,11 @@ func (o OrderFiscalEntityResponse) ToMap() (map[string]interface{}, error) {
 	if o.Phone.IsSet() {
 		toSerialize["phone"] = o.Phone.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -407,10 +416,10 @@ func (o *OrderFiscalEntityResponse) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -418,15 +427,28 @@ func (o *OrderFiscalEntityResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varOrderFiscalEntityResponse := _OrderFiscalEntityResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOrderFiscalEntityResponse)
+	err = json.Unmarshal(data, &varOrderFiscalEntityResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OrderFiscalEntityResponse(varOrderFiscalEntityResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "tax_id")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "phone")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -466,5 +488,3 @@ func (v *NullableOrderFiscalEntityResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

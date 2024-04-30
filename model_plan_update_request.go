@@ -27,8 +27,11 @@ type PlanUpdateRequest struct {
 	// Number of repetitions of the frequency NUMBER OF CHARGES TO BE MADE, considering the interval and frequency, this evolves over time, but is subject to the expiration count.
 	ExpiryCount *int32 `json:"expiry_count,omitempty"`
 	// The name of the plan.
-	Name *string `json:"name,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PlanUpdateRequest PlanUpdateRequest
 
 // NewPlanUpdateRequest instantiates a new PlanUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -176,7 +179,7 @@ func (o *PlanUpdateRequest) SetName(v string) {
 }
 
 func (o PlanUpdateRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -197,7 +200,36 @@ func (o PlanUpdateRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PlanUpdateRequest) UnmarshalJSON(data []byte) (err error) {
+	varPlanUpdateRequest := _PlanUpdateRequest{}
+
+	err = json.Unmarshal(data, &varPlanUpdateRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PlanUpdateRequest(varPlanUpdateRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "currency")
+		delete(additionalProperties, "expiry_count")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePlanUpdateRequest struct {
@@ -235,5 +267,3 @@ func (v *NullablePlanUpdateRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

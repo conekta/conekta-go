@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,8 +28,9 @@ type CustomersResponse struct {
 	// URL of the next page.
 	NextPageUrl NullableString `json:"next_page_url,omitempty"`
 	// Url of the previous page.
-	PreviousPageUrl NullableString `json:"previous_page_url,omitempty"`
-	Data []CustomerResponse `json:"data,omitempty"`
+	PreviousPageUrl      NullableString     `json:"previous_page_url,omitempty"`
+	Data                 []CustomerResponse `json:"data,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomersResponse CustomersResponse
@@ -134,6 +134,7 @@ func (o *CustomersResponse) HasNextPageUrl() bool {
 func (o *CustomersResponse) SetNextPageUrl(v string) {
 	o.NextPageUrl.Set(&v)
 }
+
 // SetNextPageUrlNil sets the value for NextPageUrl to be an explicit nil
 func (o *CustomersResponse) SetNextPageUrlNil() {
 	o.NextPageUrl.Set(nil)
@@ -176,6 +177,7 @@ func (o *CustomersResponse) HasPreviousPageUrl() bool {
 func (o *CustomersResponse) SetPreviousPageUrl(v string) {
 	o.PreviousPageUrl.Set(&v)
 }
+
 // SetPreviousPageUrlNil sets the value for PreviousPageUrl to be an explicit nil
 func (o *CustomersResponse) SetPreviousPageUrlNil() {
 	o.PreviousPageUrl.Set(nil)
@@ -219,7 +221,7 @@ func (o *CustomersResponse) SetData(v []CustomerResponse) {
 }
 
 func (o CustomersResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -239,6 +241,11 @@ func (o CustomersResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -256,10 +263,10 @@ func (o *CustomersResponse) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -267,15 +274,24 @@ func (o *CustomersResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varCustomersResponse := _CustomersResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCustomersResponse)
+	err = json.Unmarshal(data, &varCustomersResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomersResponse(varCustomersResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "has_more")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "next_page_url")
+		delete(additionalProperties, "previous_page_url")
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -315,5 +331,3 @@ func (v *NullableCustomersResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

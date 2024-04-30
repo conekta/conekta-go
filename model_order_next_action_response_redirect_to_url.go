@@ -23,8 +23,11 @@ type OrderNextActionResponseRedirectToUrl struct {
 	// pay.conekta.com/{id} Indicates the url of the Conekta component to authenticate the flow through 3DS2.
 	Url *string `json:"url,omitempty"`
 	// Indicates the url to which the 3DS2 flow returns at the end, when the integration is redirected.
-	ReturnUrl *string `json:"return_url,omitempty"`
+	ReturnUrl            *string `json:"return_url,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OrderNextActionResponseRedirectToUrl OrderNextActionResponseRedirectToUrl
 
 // NewOrderNextActionResponseRedirectToUrl instantiates a new OrderNextActionResponseRedirectToUrl object
 // This constructor will assign default values to properties that have it defined,
@@ -108,7 +111,7 @@ func (o *OrderNextActionResponseRedirectToUrl) SetReturnUrl(v string) {
 }
 
 func (o OrderNextActionResponseRedirectToUrl) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -123,7 +126,34 @@ func (o OrderNextActionResponseRedirectToUrl) ToMap() (map[string]interface{}, e
 	if !IsNil(o.ReturnUrl) {
 		toSerialize["return_url"] = o.ReturnUrl
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *OrderNextActionResponseRedirectToUrl) UnmarshalJSON(data []byte) (err error) {
+	varOrderNextActionResponseRedirectToUrl := _OrderNextActionResponseRedirectToUrl{}
+
+	err = json.Unmarshal(data, &varOrderNextActionResponseRedirectToUrl)
+
+	if err != nil {
+		return err
+	}
+
+	*o = OrderNextActionResponseRedirectToUrl(varOrderNextActionResponseRedirectToUrl)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "return_url")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOrderNextActionResponseRedirectToUrl struct {
@@ -161,5 +191,3 @@ func (v *NullableOrderNextActionResponseRedirectToUrl) UnmarshalJSON(src []byte)
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

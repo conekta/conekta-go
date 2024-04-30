@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,8 +24,9 @@ type OrderResponseCharges struct {
 	// Indicates if there are more pages to be requested
 	HasMore bool `json:"has_more"`
 	// Object type, in this case is list
-	Object string `json:"object"`
-	Data []ChargesDataResponse `json:"data,omitempty"`
+	Object               string                `json:"object"`
+	Data                 []ChargesDataResponse `json:"data,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrderResponseCharges OrderResponseCharges
@@ -131,7 +131,7 @@ func (o *OrderResponseCharges) SetData(v []ChargesDataResponse) {
 }
 
 func (o OrderResponseCharges) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -145,6 +145,11 @@ func (o OrderResponseCharges) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,10 +167,10 @@ func (o *OrderResponseCharges) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -173,15 +178,22 @@ func (o *OrderResponseCharges) UnmarshalJSON(data []byte) (err error) {
 
 	varOrderResponseCharges := _OrderResponseCharges{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOrderResponseCharges)
+	err = json.Unmarshal(data, &varOrderResponseCharges)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OrderResponseCharges(varOrderResponseCharges)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "has_more")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -221,5 +233,3 @@ func (v *NullableOrderResponseCharges) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

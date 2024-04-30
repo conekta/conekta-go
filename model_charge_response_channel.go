@@ -20,11 +20,14 @@ var _ MappedNullable = &ChargeResponseChannel{}
 
 // ChargeResponseChannel struct for ChargeResponseChannel
 type ChargeResponseChannel struct {
-	Segment *string `json:"segment,omitempty"`
-	CheckoutRequestId *string `json:"checkout_request_id,omitempty"`
-	CheckoutRequestType *string `json:"checkout_request_type,omitempty"`
-	Id *string `json:"id,omitempty"`
+	Segment              *string `json:"segment,omitempty"`
+	CheckoutRequestId    *string `json:"checkout_request_id,omitempty"`
+	CheckoutRequestType  *string `json:"checkout_request_type,omitempty"`
+	Id                   *string `json:"id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ChargeResponseChannel ChargeResponseChannel
 
 // NewChargeResponseChannel instantiates a new ChargeResponseChannel object
 // This constructor will assign default values to properties that have it defined,
@@ -172,7 +175,7 @@ func (o *ChargeResponseChannel) SetId(v string) {
 }
 
 func (o ChargeResponseChannel) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -193,7 +196,36 @@ func (o ChargeResponseChannel) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ChargeResponseChannel) UnmarshalJSON(data []byte) (err error) {
+	varChargeResponseChannel := _ChargeResponseChannel{}
+
+	err = json.Unmarshal(data, &varChargeResponseChannel)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ChargeResponseChannel(varChargeResponseChannel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "segment")
+		delete(additionalProperties, "checkout_request_id")
+		delete(additionalProperties, "checkout_request_type")
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableChargeResponseChannel struct {
@@ -231,5 +263,3 @@ func (v *NullableChargeResponseChannel) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

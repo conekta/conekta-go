@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -38,10 +37,11 @@ type ProductOrderResponse struct {
 	// List of tags for the item. It is used to identify the item in the order.
 	Tags []string `json:"tags,omitempty"`
 	// The price of the item in cents.
-	UnitPrice int32 `json:"unit_price"`
-	Id *string `json:"id,omitempty"`
-	Object *string `json:"object,omitempty"`
-	ParentId *string `json:"parent_id,omitempty"`
+	UnitPrice            int32   `json:"unit_price"`
+	Id                   *string `json:"id,omitempty"`
+	Object               *string `json:"object,omitempty"`
+	ParentId             *string `json:"parent_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ProductOrderResponse ProductOrderResponse
@@ -427,7 +427,7 @@ func (o *ProductOrderResponse) SetParentId(v string) {
 }
 
 func (o ProductOrderResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -466,6 +466,11 @@ func (o ProductOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ParentId) {
 		toSerialize["parent_id"] = o.ParentId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -484,10 +489,10 @@ func (o *ProductOrderResponse) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -495,15 +500,31 @@ func (o *ProductOrderResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varProductOrderResponse := _ProductOrderResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varProductOrderResponse)
+	err = json.Unmarshal(data, &varProductOrderResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ProductOrderResponse(varProductOrderResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "antifraud_info")
+		delete(additionalProperties, "brand")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "quantity")
+		delete(additionalProperties, "sku")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "unit_price")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "parent_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -543,5 +564,3 @@ func (v *NullableProductOrderResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -36,15 +36,18 @@ type UpdateCustomer struct {
 	// It is a value that allows identifying if the email is corporate or not.
 	Corporate *bool `json:"corporate,omitempty"`
 	// It is an undefined value.
-	CustomReference *string `json:"custom_reference,omitempty"`
-	FiscalEntities []CustomerFiscalEntitiesRequest `json:"fiscal_entities,omitempty"`
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	CustomReference *string                         `json:"custom_reference,omitempty"`
+	FiscalEntities  []CustomerFiscalEntitiesRequest `json:"fiscal_entities,omitempty"`
+	Metadata        map[string]interface{}          `json:"metadata,omitempty"`
 	// Contains details of the payment methods that the customer has active or has used in Conekta
 	PaymentSources []CustomerPaymentMethodsRequest `json:"payment_sources,omitempty"`
 	// Contains the detail of the shipping addresses that the client has active or has used in Conekta
-	ShippingContacts []CustomerShippingContacts `json:"shipping_contacts,omitempty"`
-	Subscription *SubscriptionRequest `json:"subscription,omitempty"`
+	ShippingContacts     []CustomerShippingContacts `json:"shipping_contacts,omitempty"`
+	Subscription         *SubscriptionRequest       `json:"subscription,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateCustomer UpdateCustomer
 
 // NewUpdateCustomer instantiates a new UpdateCustomer object
 // This constructor will assign default values to properties that have it defined,
@@ -99,6 +102,7 @@ func (o *UpdateCustomer) HasAntifraudInfo() bool {
 func (o *UpdateCustomer) SetAntifraudInfo(v UpdateCustomerAntifraudInfo) {
 	o.AntifraudInfo.Set(&v)
 }
+
 // SetAntifraudInfoNil sets the value for AntifraudInfo to be an explicit nil
 func (o *UpdateCustomer) SetAntifraudInfoNil() {
 	o.AntifraudInfo.Set(nil)
@@ -526,7 +530,7 @@ func (o *UpdateCustomer) SetSubscription(v SubscriptionRequest) {
 }
 
 func (o UpdateCustomer) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -577,7 +581,46 @@ func (o UpdateCustomer) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Subscription) {
 		toSerialize["subscription"] = o.Subscription
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateCustomer) UnmarshalJSON(data []byte) (err error) {
+	varUpdateCustomer := _UpdateCustomer{}
+
+	err = json.Unmarshal(data, &varUpdateCustomer)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateCustomer(varUpdateCustomer)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "antifraud_info")
+		delete(additionalProperties, "default_payment_source_id")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "phone")
+		delete(additionalProperties, "plan_id")
+		delete(additionalProperties, "default_shipping_contact_id")
+		delete(additionalProperties, "corporate")
+		delete(additionalProperties, "custom_reference")
+		delete(additionalProperties, "fiscal_entities")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "payment_sources")
+		delete(additionalProperties, "shipping_contacts")
+		delete(additionalProperties, "subscription")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateCustomer struct {
@@ -615,5 +658,3 @@ func (v *NullableUpdateCustomer) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

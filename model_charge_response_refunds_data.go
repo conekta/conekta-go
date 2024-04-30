@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,15 +21,16 @@ var _ MappedNullable = &ChargeResponseRefundsData{}
 
 // ChargeResponseRefundsData struct for ChargeResponseRefundsData
 type ChargeResponseRefundsData struct {
-	Amount int64 `json:"amount"`
-	AuthCode *string `json:"auth_code,omitempty"`
-	CreatedAt int64 `json:"created_at"`
+	Amount    int64   `json:"amount"`
+	AuthCode  *string `json:"auth_code,omitempty"`
+	CreatedAt int64   `json:"created_at"`
 	// refund expiration date
 	ExpiresAt *int64 `json:"expires_at,omitempty"`
-	Id string `json:"id"`
-	Object string `json:"object"`
+	Id        string `json:"id"`
+	Object    string `json:"object"`
 	// refund status
-	Status *string `json:"status,omitempty"`
+	Status               *string `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ChargeResponseRefundsData ChargeResponseRefundsData
@@ -249,7 +249,7 @@ func (o *ChargeResponseRefundsData) SetStatus(v string) {
 }
 
 func (o ChargeResponseRefundsData) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -271,6 +271,11 @@ func (o ChargeResponseRefundsData) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -290,10 +295,10 @@ func (o *ChargeResponseRefundsData) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -301,15 +306,26 @@ func (o *ChargeResponseRefundsData) UnmarshalJSON(data []byte) (err error) {
 
 	varChargeResponseRefundsData := _ChargeResponseRefundsData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varChargeResponseRefundsData)
+	err = json.Unmarshal(data, &varChargeResponseRefundsData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ChargeResponseRefundsData(varChargeResponseRefundsData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "auth_code")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -349,5 +365,3 @@ func (v *NullableChargeResponseRefundsData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

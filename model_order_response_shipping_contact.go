@@ -20,19 +20,22 @@ var _ MappedNullable = &OrderResponseShippingContact{}
 
 // OrderResponseShippingContact struct for OrderResponseShippingContact
 type OrderResponseShippingContact struct {
-	Phone *string `json:"phone,omitempty"`
-	Receiver *string `json:"receiver,omitempty"`
-	BetweenStreets NullableString `json:"between_streets,omitempty"`
-	Address *CustomerShippingContactsResponseAddress `json:"address,omitempty"`
-	ParentId *string `json:"parent_id,omitempty"`
-	Default *bool `json:"default,omitempty"`
-	Id *string `json:"id,omitempty"`
-	CreatedAt *int64 `json:"created_at,omitempty"`
+	Phone          *string                                  `json:"phone,omitempty"`
+	Receiver       *string                                  `json:"receiver,omitempty"`
+	BetweenStreets NullableString                           `json:"between_streets,omitempty"`
+	Address        *CustomerShippingContactsResponseAddress `json:"address,omitempty"`
+	ParentId       *string                                  `json:"parent_id,omitempty"`
+	Default        *bool                                    `json:"default,omitempty"`
+	Id             *string                                  `json:"id,omitempty"`
+	CreatedAt      *int64                                   `json:"created_at,omitempty"`
 	// Metadata associated with the shipping contact
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
-	Object *string `json:"object,omitempty"`
-	Deleted *bool `json:"deleted,omitempty"`
+	Metadata             map[string]interface{} `json:"metadata,omitempty"`
+	Object               *string                `json:"object,omitempty"`
+	Deleted              *bool                  `json:"deleted,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OrderResponseShippingContact OrderResponseShippingContact
 
 // NewOrderResponseShippingContact instantiates a new OrderResponseShippingContact object
 // This constructor will assign default values to properties that have it defined,
@@ -147,6 +150,7 @@ func (o *OrderResponseShippingContact) HasBetweenStreets() bool {
 func (o *OrderResponseShippingContact) SetBetweenStreets(v string) {
 	o.BetweenStreets.Set(&v)
 }
+
 // SetBetweenStreetsNil sets the value for BetweenStreets to be an explicit nil
 func (o *OrderResponseShippingContact) SetBetweenStreetsNil() {
 	o.BetweenStreets.Set(nil)
@@ -414,7 +418,7 @@ func (o *OrderResponseShippingContact) SetDeleted(v bool) {
 }
 
 func (o OrderResponseShippingContact) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -456,7 +460,43 @@ func (o OrderResponseShippingContact) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Deleted) {
 		toSerialize["deleted"] = o.Deleted
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *OrderResponseShippingContact) UnmarshalJSON(data []byte) (err error) {
+	varOrderResponseShippingContact := _OrderResponseShippingContact{}
+
+	err = json.Unmarshal(data, &varOrderResponseShippingContact)
+
+	if err != nil {
+		return err
+	}
+
+	*o = OrderResponseShippingContact(varOrderResponseShippingContact)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "phone")
+		delete(additionalProperties, "receiver")
+		delete(additionalProperties, "between_streets")
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "parent_id")
+		delete(additionalProperties, "default")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "deleted")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOrderResponseShippingContact struct {
@@ -494,5 +534,3 @@ func (v *NullableOrderResponseShippingContact) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

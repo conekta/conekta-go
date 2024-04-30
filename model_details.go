@@ -20,8 +20,11 @@ var _ MappedNullable = &Details{}
 
 // Details struct for Details
 type Details struct {
-	Details []DetailsError `json:"details,omitempty"`
+	Details              []DetailsError `json:"details,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Details Details
 
 // NewDetails instantiates a new Details object
 // This constructor will assign default values to properties that have it defined,
@@ -73,7 +76,7 @@ func (o *Details) SetDetails(v []DetailsError) {
 }
 
 func (o Details) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -85,7 +88,33 @@ func (o Details) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Details) UnmarshalJSON(data []byte) (err error) {
+	varDetails := _Details{}
+
+	err = json.Unmarshal(data, &varDetails)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Details(varDetails)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "details")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDetails struct {
@@ -123,5 +152,3 @@ func (v *NullableDetails) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

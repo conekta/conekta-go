@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,7 +22,8 @@ var _ MappedNullable = &OrderCaptureRequest{}
 // OrderCaptureRequest struct for OrderCaptureRequest
 type OrderCaptureRequest struct {
 	// Amount to capture
-	Amount int64 `json:"amount"`
+	Amount               int64 `json:"amount"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrderCaptureRequest OrderCaptureRequest
@@ -71,7 +71,7 @@ func (o *OrderCaptureRequest) SetAmount(v int64) {
 }
 
 func (o OrderCaptureRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -81,6 +81,11 @@ func (o OrderCaptureRequest) MarshalJSON() ([]byte, error) {
 func (o OrderCaptureRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["amount"] = o.Amount
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -97,10 +102,10 @@ func (o *OrderCaptureRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -108,15 +113,20 @@ func (o *OrderCaptureRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varOrderCaptureRequest := _OrderCaptureRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOrderCaptureRequest)
+	err = json.Unmarshal(data, &varOrderCaptureRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OrderCaptureRequest(varOrderCaptureRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -156,5 +166,3 @@ func (v *NullableOrderCaptureRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

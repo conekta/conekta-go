@@ -22,9 +22,12 @@ var _ MappedNullable = &UpdateOrderDiscountLinesRequest{}
 type UpdateOrderDiscountLinesRequest struct {
 	Amount *int64 `json:"amount,omitempty"`
 	// Discount code.
-	Code *string `json:"code,omitempty"`
-	Type *string `json:"type,omitempty"`
+	Code                 *string `json:"code,omitempty"`
+	Type                 *string `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateOrderDiscountLinesRequest UpdateOrderDiscountLinesRequest
 
 // NewUpdateOrderDiscountLinesRequest instantiates a new UpdateOrderDiscountLinesRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -140,7 +143,7 @@ func (o *UpdateOrderDiscountLinesRequest) SetType(v string) {
 }
 
 func (o UpdateOrderDiscountLinesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,7 +161,35 @@ func (o UpdateOrderDiscountLinesRequest) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateOrderDiscountLinesRequest) UnmarshalJSON(data []byte) (err error) {
+	varUpdateOrderDiscountLinesRequest := _UpdateOrderDiscountLinesRequest{}
+
+	err = json.Unmarshal(data, &varUpdateOrderDiscountLinesRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateOrderDiscountLinesRequest(varUpdateOrderDiscountLinesRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateOrderDiscountLinesRequest struct {
@@ -196,5 +227,3 @@ func (v *NullableUpdateOrderDiscountLinesRequest) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

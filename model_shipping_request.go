@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -31,7 +30,8 @@ type ShippingRequest struct {
 	// Method of shipment
 	Method *string `json:"method,omitempty"`
 	// Hash where the user can send additional information for each 'shipping'.
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	Metadata             map[string]interface{} `json:"metadata,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ShippingRequest ShippingRequest
@@ -207,7 +207,7 @@ func (o *ShippingRequest) SetMetadata(v map[string]interface{}) {
 }
 
 func (o ShippingRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -229,6 +229,11 @@ func (o ShippingRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -245,10 +250,10 @@ func (o *ShippingRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -256,15 +261,24 @@ func (o *ShippingRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varShippingRequest := _ShippingRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varShippingRequest)
+	err = json.Unmarshal(data, &varShippingRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ShippingRequest(varShippingRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "carrier")
+		delete(additionalProperties, "tracking_number")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "metadata")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -304,5 +318,3 @@ func (v *NullableShippingRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

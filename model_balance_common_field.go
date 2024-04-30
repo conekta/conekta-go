@@ -23,8 +23,11 @@ type BalanceCommonField struct {
 	// The balance's amount
 	Amount *int64 `json:"amount,omitempty"`
 	// The balance's currency
-	Currency *string `json:"currency,omitempty"`
+	Currency             *string `json:"currency,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BalanceCommonField BalanceCommonField
 
 // NewBalanceCommonField instantiates a new BalanceCommonField object
 // This constructor will assign default values to properties that have it defined,
@@ -108,7 +111,7 @@ func (o *BalanceCommonField) SetCurrency(v string) {
 }
 
 func (o BalanceCommonField) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -123,7 +126,34 @@ func (o BalanceCommonField) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Currency) {
 		toSerialize["currency"] = o.Currency
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BalanceCommonField) UnmarshalJSON(data []byte) (err error) {
+	varBalanceCommonField := _BalanceCommonField{}
+
+	err = json.Unmarshal(data, &varBalanceCommonField)
+
+	if err != nil {
+		return err
+	}
+
+	*o = BalanceCommonField(varBalanceCommonField)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "currency")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBalanceCommonField struct {
@@ -161,5 +191,3 @@ func (v *NullableBalanceCommonField) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

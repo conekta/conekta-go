@@ -20,10 +20,13 @@ var _ MappedNullable = &SubscriptionUpdateRequest{}
 
 // SubscriptionUpdateRequest You can modify the subscription to change the plan used by your customers.
 type SubscriptionUpdateRequest struct {
-	PlanId *string `json:"plan_id,omitempty"`
-	CardId *string `json:"card_id,omitempty"`
-	TrialEnd *int32 `json:"trial_end,omitempty"`
+	PlanId               *string `json:"plan_id,omitempty"`
+	CardId               *string `json:"card_id,omitempty"`
+	TrialEnd             *int32  `json:"trial_end,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SubscriptionUpdateRequest SubscriptionUpdateRequest
 
 // NewSubscriptionUpdateRequest instantiates a new SubscriptionUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -139,7 +142,7 @@ func (o *SubscriptionUpdateRequest) SetTrialEnd(v int32) {
 }
 
 func (o SubscriptionUpdateRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -157,7 +160,35 @@ func (o SubscriptionUpdateRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TrialEnd) {
 		toSerialize["trial_end"] = o.TrialEnd
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SubscriptionUpdateRequest) UnmarshalJSON(data []byte) (err error) {
+	varSubscriptionUpdateRequest := _SubscriptionUpdateRequest{}
+
+	err = json.Unmarshal(data, &varSubscriptionUpdateRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SubscriptionUpdateRequest(varSubscriptionUpdateRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "plan_id")
+		delete(additionalProperties, "card_id")
+		delete(additionalProperties, "trial_end")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSubscriptionUpdateRequest struct {
@@ -195,5 +226,3 @@ func (v *NullableSubscriptionUpdateRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

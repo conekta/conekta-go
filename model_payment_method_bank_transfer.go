@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,24 +21,25 @@ var _ MappedNullable = &PaymentMethodBankTransfer{}
 
 // PaymentMethodBankTransfer struct for PaymentMethodBankTransfer
 type PaymentMethodBankTransfer struct {
-	Type *string `json:"type,omitempty"`
-	Object string `json:"object"`
-	Bank *string `json:"bank,omitempty"`
-	Clabe *string `json:"clabe,omitempty"`
-	Description NullableString `json:"description,omitempty"`
-	ExecutedAt NullableInt32 `json:"executed_at,omitempty"`
-	ExpiresAt *int64 `json:"expires_at,omitempty"`
-	IssuingAccountBank NullableString `json:"issuing_account_bank,omitempty"`
-	IssuingAccountNumber NullableString `json:"issuing_account_number,omitempty"`
-	IssuingAccountHolderName NullableString `json:"issuing_account_holder_name,omitempty"`
-	IssuingAccountTaxId NullableString `json:"issuing_account_tax_id,omitempty"`
-	PaymentAttempts []interface{} `json:"payment_attempts,omitempty"`
+	Type                       *string        `json:"type,omitempty"`
+	Object                     string         `json:"object"`
+	Bank                       *string        `json:"bank,omitempty"`
+	Clabe                      *string        `json:"clabe,omitempty"`
+	Description                NullableString `json:"description,omitempty"`
+	ExecutedAt                 NullableInt32  `json:"executed_at,omitempty"`
+	ExpiresAt                  *int64         `json:"expires_at,omitempty"`
+	IssuingAccountBank         NullableString `json:"issuing_account_bank,omitempty"`
+	IssuingAccountNumber       NullableString `json:"issuing_account_number,omitempty"`
+	IssuingAccountHolderName   NullableString `json:"issuing_account_holder_name,omitempty"`
+	IssuingAccountTaxId        NullableString `json:"issuing_account_tax_id,omitempty"`
+	PaymentAttempts            []interface{}  `json:"payment_attempts,omitempty"`
 	ReceivingAccountHolderName NullableString `json:"receiving_account_holder_name,omitempty"`
-	ReceivingAccountNumber *string `json:"receiving_account_number,omitempty"`
-	ReceivingAccountBank *string `json:"receiving_account_bank,omitempty"`
-	ReceivingAccountTaxId NullableString `json:"receiving_account_tax_id,omitempty"`
-	ReferenceNumber NullableString `json:"reference_number,omitempty"`
-	TrackingCode NullableString `json:"tracking_code,omitempty"`
+	ReceivingAccountNumber     *string        `json:"receiving_account_number,omitempty"`
+	ReceivingAccountBank       *string        `json:"receiving_account_bank,omitempty"`
+	ReceivingAccountTaxId      NullableString `json:"receiving_account_tax_id,omitempty"`
+	ReferenceNumber            NullableString `json:"reference_number,omitempty"`
+	TrackingCode               NullableString `json:"tracking_code,omitempty"`
+	AdditionalProperties       map[string]interface{}
 }
 
 type _PaymentMethodBankTransfer PaymentMethodBankTransfer
@@ -214,6 +214,7 @@ func (o *PaymentMethodBankTransfer) HasDescription() bool {
 func (o *PaymentMethodBankTransfer) SetDescription(v string) {
 	o.Description.Set(&v)
 }
+
 // SetDescriptionNil sets the value for Description to be an explicit nil
 func (o *PaymentMethodBankTransfer) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -256,6 +257,7 @@ func (o *PaymentMethodBankTransfer) HasExecutedAt() bool {
 func (o *PaymentMethodBankTransfer) SetExecutedAt(v int32) {
 	o.ExecutedAt.Set(&v)
 }
+
 // SetExecutedAtNil sets the value for ExecutedAt to be an explicit nil
 func (o *PaymentMethodBankTransfer) SetExecutedAtNil() {
 	o.ExecutedAt.Set(nil)
@@ -330,6 +332,7 @@ func (o *PaymentMethodBankTransfer) HasIssuingAccountBank() bool {
 func (o *PaymentMethodBankTransfer) SetIssuingAccountBank(v string) {
 	o.IssuingAccountBank.Set(&v)
 }
+
 // SetIssuingAccountBankNil sets the value for IssuingAccountBank to be an explicit nil
 func (o *PaymentMethodBankTransfer) SetIssuingAccountBankNil() {
 	o.IssuingAccountBank.Set(nil)
@@ -372,6 +375,7 @@ func (o *PaymentMethodBankTransfer) HasIssuingAccountNumber() bool {
 func (o *PaymentMethodBankTransfer) SetIssuingAccountNumber(v string) {
 	o.IssuingAccountNumber.Set(&v)
 }
+
 // SetIssuingAccountNumberNil sets the value for IssuingAccountNumber to be an explicit nil
 func (o *PaymentMethodBankTransfer) SetIssuingAccountNumberNil() {
 	o.IssuingAccountNumber.Set(nil)
@@ -414,6 +418,7 @@ func (o *PaymentMethodBankTransfer) HasIssuingAccountHolderName() bool {
 func (o *PaymentMethodBankTransfer) SetIssuingAccountHolderName(v string) {
 	o.IssuingAccountHolderName.Set(&v)
 }
+
 // SetIssuingAccountHolderNameNil sets the value for IssuingAccountHolderName to be an explicit nil
 func (o *PaymentMethodBankTransfer) SetIssuingAccountHolderNameNil() {
 	o.IssuingAccountHolderName.Set(nil)
@@ -456,6 +461,7 @@ func (o *PaymentMethodBankTransfer) HasIssuingAccountTaxId() bool {
 func (o *PaymentMethodBankTransfer) SetIssuingAccountTaxId(v string) {
 	o.IssuingAccountTaxId.Set(&v)
 }
+
 // SetIssuingAccountTaxIdNil sets the value for IssuingAccountTaxId to be an explicit nil
 func (o *PaymentMethodBankTransfer) SetIssuingAccountTaxIdNil() {
 	o.IssuingAccountTaxId.Set(nil)
@@ -530,6 +536,7 @@ func (o *PaymentMethodBankTransfer) HasReceivingAccountHolderName() bool {
 func (o *PaymentMethodBankTransfer) SetReceivingAccountHolderName(v string) {
 	o.ReceivingAccountHolderName.Set(&v)
 }
+
 // SetReceivingAccountHolderNameNil sets the value for ReceivingAccountHolderName to be an explicit nil
 func (o *PaymentMethodBankTransfer) SetReceivingAccountHolderNameNil() {
 	o.ReceivingAccountHolderName.Set(nil)
@@ -636,6 +643,7 @@ func (o *PaymentMethodBankTransfer) HasReceivingAccountTaxId() bool {
 func (o *PaymentMethodBankTransfer) SetReceivingAccountTaxId(v string) {
 	o.ReceivingAccountTaxId.Set(&v)
 }
+
 // SetReceivingAccountTaxIdNil sets the value for ReceivingAccountTaxId to be an explicit nil
 func (o *PaymentMethodBankTransfer) SetReceivingAccountTaxIdNil() {
 	o.ReceivingAccountTaxId.Set(nil)
@@ -678,6 +686,7 @@ func (o *PaymentMethodBankTransfer) HasReferenceNumber() bool {
 func (o *PaymentMethodBankTransfer) SetReferenceNumber(v string) {
 	o.ReferenceNumber.Set(&v)
 }
+
 // SetReferenceNumberNil sets the value for ReferenceNumber to be an explicit nil
 func (o *PaymentMethodBankTransfer) SetReferenceNumberNil() {
 	o.ReferenceNumber.Set(nil)
@@ -720,6 +729,7 @@ func (o *PaymentMethodBankTransfer) HasTrackingCode() bool {
 func (o *PaymentMethodBankTransfer) SetTrackingCode(v string) {
 	o.TrackingCode.Set(&v)
 }
+
 // SetTrackingCodeNil sets the value for TrackingCode to be an explicit nil
 func (o *PaymentMethodBankTransfer) SetTrackingCodeNil() {
 	o.TrackingCode.Set(nil)
@@ -731,7 +741,7 @@ func (o *PaymentMethodBankTransfer) UnsetTrackingCode() {
 }
 
 func (o PaymentMethodBankTransfer) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -792,6 +802,11 @@ func (o PaymentMethodBankTransfer) ToMap() (map[string]interface{}, error) {
 	if o.TrackingCode.IsSet() {
 		toSerialize["tracking_code"] = o.TrackingCode.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -808,10 +823,10 @@ func (o *PaymentMethodBankTransfer) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -819,15 +834,37 @@ func (o *PaymentMethodBankTransfer) UnmarshalJSON(data []byte) (err error) {
 
 	varPaymentMethodBankTransfer := _PaymentMethodBankTransfer{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPaymentMethodBankTransfer)
+	err = json.Unmarshal(data, &varPaymentMethodBankTransfer)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PaymentMethodBankTransfer(varPaymentMethodBankTransfer)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "bank")
+		delete(additionalProperties, "clabe")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "executed_at")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "issuing_account_bank")
+		delete(additionalProperties, "issuing_account_number")
+		delete(additionalProperties, "issuing_account_holder_name")
+		delete(additionalProperties, "issuing_account_tax_id")
+		delete(additionalProperties, "payment_attempts")
+		delete(additionalProperties, "receiving_account_holder_name")
+		delete(additionalProperties, "receiving_account_number")
+		delete(additionalProperties, "receiving_account_bank")
+		delete(additionalProperties, "receiving_account_tax_id")
+		delete(additionalProperties, "reference_number")
+		delete(additionalProperties, "tracking_code")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -867,5 +904,3 @@ func (v *NullablePaymentMethodBankTransfer) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

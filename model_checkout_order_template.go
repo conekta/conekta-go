@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,12 +22,13 @@ var _ MappedNullable = &CheckoutOrderTemplate{}
 // CheckoutOrderTemplate It maintains the attributes with which the order will be created when receiving a new payment.
 type CheckoutOrderTemplate struct {
 	// It is the currency in which the order will be created. It must be a valid ISO 4217 currency code.
-	Currency string `json:"currency"`
+	Currency     string                             `json:"currency"`
 	CustomerInfo *CheckoutOrderTemplateCustomerInfo `json:"customer_info,omitempty"`
 	// They are the products to buy. Each contains the \"unit price\" and \"quantity\" parameters that are used to calculate the total amount of the order.
 	LineItems []Product `json:"line_items"`
 	// It is a set of key-value pairs that you can attach to the order. It can be used to store additional information about the order in a structured format.
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	Metadata             map[string]interface{} `json:"metadata,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CheckoutOrderTemplate CheckoutOrderTemplate
@@ -165,7 +165,7 @@ func (o *CheckoutOrderTemplate) SetMetadata(v map[string]interface{}) {
 }
 
 func (o CheckoutOrderTemplate) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -182,6 +182,11 @@ func (o CheckoutOrderTemplate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -199,10 +204,10 @@ func (o *CheckoutOrderTemplate) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -210,15 +215,23 @@ func (o *CheckoutOrderTemplate) UnmarshalJSON(data []byte) (err error) {
 
 	varCheckoutOrderTemplate := _CheckoutOrderTemplate{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCheckoutOrderTemplate)
+	err = json.Unmarshal(data, &varCheckoutOrderTemplate)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CheckoutOrderTemplate(varCheckoutOrderTemplate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "currency")
+		delete(additionalProperties, "customer_info")
+		delete(additionalProperties, "line_items")
+		delete(additionalProperties, "metadata")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -258,5 +271,3 @@ func (v *NullableCheckoutOrderTemplate) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

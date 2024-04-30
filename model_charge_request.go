@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,10 +21,11 @@ var _ MappedNullable = &ChargeRequest{}
 
 // ChargeRequest The charges to be made
 type ChargeRequest struct {
-	Amount *int32 `json:"amount,omitempty"`
+	Amount        *int32                     `json:"amount,omitempty"`
 	PaymentMethod ChargeRequestPaymentMethod `json:"payment_method"`
 	// Custom reference to add to the charge
-	ReferenceId *string `json:"reference_id,omitempty"`
+	ReferenceId          *string `json:"reference_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ChargeRequest ChargeRequest
@@ -137,7 +137,7 @@ func (o *ChargeRequest) SetReferenceId(v string) {
 }
 
 func (o ChargeRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -153,6 +153,11 @@ func (o ChargeRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ReferenceId) {
 		toSerialize["reference_id"] = o.ReferenceId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -169,10 +174,10 @@ func (o *ChargeRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -180,15 +185,22 @@ func (o *ChargeRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varChargeRequest := _ChargeRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varChargeRequest)
+	err = json.Unmarshal(data, &varChargeRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ChargeRequest(varChargeRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "payment_method")
+		delete(additionalProperties, "reference_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -228,5 +240,3 @@ func (v *NullableChargeRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

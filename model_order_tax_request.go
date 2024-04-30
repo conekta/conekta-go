@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,8 +24,9 @@ type OrderTaxRequest struct {
 	// The amount to be collected for tax in cents
 	Amount int64 `json:"amount"`
 	// description or tax's name
-	Description string `json:"description"`
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	Description          string                 `json:"description"`
+	Metadata             map[string]interface{} `json:"metadata,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrderTaxRequest OrderTaxRequest
@@ -131,7 +131,7 @@ func (o *OrderTaxRequest) SetMetadata(v map[string]interface{}) {
 }
 
 func (o OrderTaxRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -145,6 +145,11 @@ func (o OrderTaxRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,10 +167,10 @@ func (o *OrderTaxRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -173,15 +178,22 @@ func (o *OrderTaxRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varOrderTaxRequest := _OrderTaxRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOrderTaxRequest)
+	err = json.Unmarshal(data, &varOrderTaxRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OrderTaxRequest(varOrderTaxRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "metadata")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -221,5 +233,3 @@ func (v *NullableOrderTaxRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

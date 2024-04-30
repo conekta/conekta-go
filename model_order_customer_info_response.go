@@ -22,12 +22,15 @@ var _ MappedNullable = &OrderCustomerInfoResponse{}
 type OrderCustomerInfoResponse struct {
 	// Custom reference
 	CustomerCustomReference NullableString `json:"customer_custom_reference,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Email *string `json:"email,omitempty"`
-	Phone *string `json:"phone,omitempty"`
-	Corporate *bool `json:"corporate,omitempty"`
-	Object *string `json:"object,omitempty"`
+	Name                    *string        `json:"name,omitempty"`
+	Email                   *string        `json:"email,omitempty"`
+	Phone                   *string        `json:"phone,omitempty"`
+	Corporate               *bool          `json:"corporate,omitempty"`
+	Object                  *string        `json:"object,omitempty"`
+	AdditionalProperties    map[string]interface{}
 }
+
+type _OrderCustomerInfoResponse OrderCustomerInfoResponse
 
 // NewOrderCustomerInfoResponse instantiates a new OrderCustomerInfoResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -82,6 +85,7 @@ func (o *OrderCustomerInfoResponse) HasCustomerCustomReference() bool {
 func (o *OrderCustomerInfoResponse) SetCustomerCustomReference(v string) {
 	o.CustomerCustomReference.Set(&v)
 }
+
 // SetCustomerCustomReferenceNil sets the value for CustomerCustomReference to be an explicit nil
 func (o *OrderCustomerInfoResponse) SetCustomerCustomReferenceNil() {
 	o.CustomerCustomReference.Set(nil)
@@ -253,7 +257,7 @@ func (o *OrderCustomerInfoResponse) SetObject(v string) {
 }
 
 func (o OrderCustomerInfoResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -280,7 +284,38 @@ func (o OrderCustomerInfoResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *OrderCustomerInfoResponse) UnmarshalJSON(data []byte) (err error) {
+	varOrderCustomerInfoResponse := _OrderCustomerInfoResponse{}
+
+	err = json.Unmarshal(data, &varOrderCustomerInfoResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = OrderCustomerInfoResponse(varOrderCustomerInfoResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "customer_custom_reference")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "phone")
+		delete(additionalProperties, "corporate")
+		delete(additionalProperties, "object")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOrderCustomerInfoResponse struct {
@@ -318,5 +353,3 @@ func (v *NullableOrderCustomerInfoResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

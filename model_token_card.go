@@ -13,7 +13,6 @@ package conekta
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -33,7 +32,8 @@ type TokenCard struct {
 	// It is a value that allows identifying the name of the cardholder.
 	Name string `json:"name"`
 	// It is a value that allows identifying the number of the card.
-	Number string `json:"number"`
+	Number               string `json:"number"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TokenCard TokenCard
@@ -213,7 +213,7 @@ func (o *TokenCard) SetNumber(v string) {
 }
 
 func (o TokenCard) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -230,6 +230,11 @@ func (o TokenCard) ToMap() (map[string]interface{}, error) {
 	toSerialize["exp_year"] = o.ExpYear
 	toSerialize["name"] = o.Name
 	toSerialize["number"] = o.Number
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -250,10 +255,10 @@ func (o *TokenCard) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -261,15 +266,25 @@ func (o *TokenCard) UnmarshalJSON(data []byte) (err error) {
 
 	varTokenCard := _TokenCard{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTokenCard)
+	err = json.Unmarshal(data, &varTokenCard)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TokenCard(varTokenCard)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cvc")
+		delete(additionalProperties, "device_fingerprint")
+		delete(additionalProperties, "exp_month")
+		delete(additionalProperties, "exp_year")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "number")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
@@ -309,5 +324,3 @@ func (v *NullableTokenCard) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
