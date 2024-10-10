@@ -20,14 +20,14 @@ var _ MappedNullable = &EventResponse{}
 
 // EventResponse event model
 type EventResponse struct {
-	CreatedAt            *int64                 `json:"created_at,omitempty"`
-	Data                 map[string]interface{} `json:"data,omitempty"`
-	Id                   *string                `json:"id,omitempty"`
-	Livemode             *bool                  `json:"livemode,omitempty"`
-	Object               *string                `json:"object,omitempty"`
-	Type                 *string                `json:"type,omitempty"`
-	WebhookLogs          []WebhookLog           `json:"webhook_logs,omitempty"`
-	WebhookStatus        *string                `json:"webhook_status,omitempty"`
+	CreatedAt *int64 `json:"created_at,omitempty"`
+	Data map[string]interface{} `json:"data,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Livemode *bool `json:"livemode,omitempty"`
+	Object *string `json:"object,omitempty"`
+	Type *string `json:"type,omitempty"`
+	WebhookLogs []WebhookLog `json:"webhook_logs,omitempty"`
+	WebhookStatus *string `json:"webhook_status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -307,7 +307,7 @@ func (o *EventResponse) SetWebhookStatus(v string) {
 }
 
 func (o EventResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -411,3 +411,5 @@ func (v *NullableEventResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

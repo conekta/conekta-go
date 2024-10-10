@@ -28,8 +28,8 @@ type GetOrderDiscountLinesResponse struct {
 	// URL of the next page.
 	NextPageUrl NullableString `json:"next_page_url,omitempty"`
 	// Url of the previous page.
-	PreviousPageUrl      NullableString          `json:"previous_page_url,omitempty"`
-	Data                 []DiscountLinesResponse `json:"data,omitempty"`
+	PreviousPageUrl NullableString `json:"previous_page_url,omitempty"`
+	Data []DiscountLinesResponse `json:"data,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -134,7 +134,6 @@ func (o *GetOrderDiscountLinesResponse) HasNextPageUrl() bool {
 func (o *GetOrderDiscountLinesResponse) SetNextPageUrl(v string) {
 	o.NextPageUrl.Set(&v)
 }
-
 // SetNextPageUrlNil sets the value for NextPageUrl to be an explicit nil
 func (o *GetOrderDiscountLinesResponse) SetNextPageUrlNil() {
 	o.NextPageUrl.Set(nil)
@@ -177,7 +176,6 @@ func (o *GetOrderDiscountLinesResponse) HasPreviousPageUrl() bool {
 func (o *GetOrderDiscountLinesResponse) SetPreviousPageUrl(v string) {
 	o.PreviousPageUrl.Set(&v)
 }
-
 // SetPreviousPageUrlNil sets the value for PreviousPageUrl to be an explicit nil
 func (o *GetOrderDiscountLinesResponse) SetPreviousPageUrlNil() {
 	o.PreviousPageUrl.Set(nil)
@@ -221,7 +219,7 @@ func (o *GetOrderDiscountLinesResponse) SetData(v []DiscountLinesResponse) {
 }
 
 func (o GetOrderDiscountLinesResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -263,10 +261,10 @@ func (o *GetOrderDiscountLinesResponse) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -331,3 +329,5 @@ func (v *NullableGetOrderDiscountLinesResponse) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -16,306 +16,98 @@ import (
 	"fmt"
 )
 
-// checks if the ChargeRequestPaymentMethod type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ChargeRequestPaymentMethod{}
-
-// ChargeRequestPaymentMethod Payment method used in the charge. Go to the [payment methods](https://developers.conekta.com/reference/m%C3%A9todos-de-pago) section for more details
+// ChargeRequestPaymentMethod - struct for ChargeRequestPaymentMethod
 type ChargeRequestPaymentMethod struct {
-	// Method expiration date as unix timestamp
-	ExpiresAt *int64 `json:"expires_at,omitempty"`
-	// How many months without interest to apply, it can be 3, 6, 9, 12 or 18
-	MonthlyInstallments *int32  `json:"monthly_installments,omitempty"`
-	Type                string  `json:"type"`
-	TokenId             *string `json:"token_id,omitempty"`
-	PaymentSourceId     *string `json:"payment_source_id,omitempty"`
-	// Optional id sent to indicate the bank contract for recurrent card charges.
-	ContractId           *string `json:"contract_id,omitempty"`
-	AdditionalProperties map[string]interface{}
+	PaymentMethodCardRequest *PaymentMethodCardRequest
+	PaymentMethodGeneralRequest *PaymentMethodGeneralRequest
 }
 
-type _ChargeRequestPaymentMethod ChargeRequestPaymentMethod
-
-// NewChargeRequestPaymentMethod instantiates a new ChargeRequestPaymentMethod object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewChargeRequestPaymentMethod(type_ string) *ChargeRequestPaymentMethod {
-	this := ChargeRequestPaymentMethod{}
-	this.Type = type_
-	return &this
-}
-
-// NewChargeRequestPaymentMethodWithDefaults instantiates a new ChargeRequestPaymentMethod object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewChargeRequestPaymentMethodWithDefaults() *ChargeRequestPaymentMethod {
-	this := ChargeRequestPaymentMethod{}
-	return &this
-}
-
-// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
-func (o *ChargeRequestPaymentMethod) GetExpiresAt() int64 {
-	if o == nil || IsNil(o.ExpiresAt) {
-		var ret int64
-		return ret
+// PaymentMethodCardRequestAsChargeRequestPaymentMethod is a convenience function that returns PaymentMethodCardRequest wrapped in ChargeRequestPaymentMethod
+func PaymentMethodCardRequestAsChargeRequestPaymentMethod(v *PaymentMethodCardRequest) ChargeRequestPaymentMethod {
+	return ChargeRequestPaymentMethod{
+		PaymentMethodCardRequest: v,
 	}
-	return *o.ExpiresAt
 }
 
-// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ChargeRequestPaymentMethod) GetExpiresAtOk() (*int64, bool) {
-	if o == nil || IsNil(o.ExpiresAt) {
-		return nil, false
+// PaymentMethodGeneralRequestAsChargeRequestPaymentMethod is a convenience function that returns PaymentMethodGeneralRequest wrapped in ChargeRequestPaymentMethod
+func PaymentMethodGeneralRequestAsChargeRequestPaymentMethod(v *PaymentMethodGeneralRequest) ChargeRequestPaymentMethod {
+	return ChargeRequestPaymentMethod{
+		PaymentMethodGeneralRequest: v,
 	}
-	return o.ExpiresAt, true
 }
 
-// HasExpiresAt returns a boolean if a field has been set.
-func (o *ChargeRequestPaymentMethod) HasExpiresAt() bool {
-	if o != nil && !IsNil(o.ExpiresAt) {
-		return true
-	}
 
-	return false
-}
-
-// SetExpiresAt gets a reference to the given int64 and assigns it to the ExpiresAt field.
-func (o *ChargeRequestPaymentMethod) SetExpiresAt(v int64) {
-	o.ExpiresAt = &v
-}
-
-// GetMonthlyInstallments returns the MonthlyInstallments field value if set, zero value otherwise.
-func (o *ChargeRequestPaymentMethod) GetMonthlyInstallments() int32 {
-	if o == nil || IsNil(o.MonthlyInstallments) {
-		var ret int32
-		return ret
-	}
-	return *o.MonthlyInstallments
-}
-
-// GetMonthlyInstallmentsOk returns a tuple with the MonthlyInstallments field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ChargeRequestPaymentMethod) GetMonthlyInstallmentsOk() (*int32, bool) {
-	if o == nil || IsNil(o.MonthlyInstallments) {
-		return nil, false
-	}
-	return o.MonthlyInstallments, true
-}
-
-// HasMonthlyInstallments returns a boolean if a field has been set.
-func (o *ChargeRequestPaymentMethod) HasMonthlyInstallments() bool {
-	if o != nil && !IsNil(o.MonthlyInstallments) {
-		return true
-	}
-
-	return false
-}
-
-// SetMonthlyInstallments gets a reference to the given int32 and assigns it to the MonthlyInstallments field.
-func (o *ChargeRequestPaymentMethod) SetMonthlyInstallments(v int32) {
-	o.MonthlyInstallments = &v
-}
-
-// GetType returns the Type field value
-func (o *ChargeRequestPaymentMethod) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *ChargeRequestPaymentMethod) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *ChargeRequestPaymentMethod) SetType(v string) {
-	o.Type = v
-}
-
-// GetTokenId returns the TokenId field value if set, zero value otherwise.
-func (o *ChargeRequestPaymentMethod) GetTokenId() string {
-	if o == nil || IsNil(o.TokenId) {
-		var ret string
-		return ret
-	}
-	return *o.TokenId
-}
-
-// GetTokenIdOk returns a tuple with the TokenId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ChargeRequestPaymentMethod) GetTokenIdOk() (*string, bool) {
-	if o == nil || IsNil(o.TokenId) {
-		return nil, false
-	}
-	return o.TokenId, true
-}
-
-// HasTokenId returns a boolean if a field has been set.
-func (o *ChargeRequestPaymentMethod) HasTokenId() bool {
-	if o != nil && !IsNil(o.TokenId) {
-		return true
-	}
-
-	return false
-}
-
-// SetTokenId gets a reference to the given string and assigns it to the TokenId field.
-func (o *ChargeRequestPaymentMethod) SetTokenId(v string) {
-	o.TokenId = &v
-}
-
-// GetPaymentSourceId returns the PaymentSourceId field value if set, zero value otherwise.
-func (o *ChargeRequestPaymentMethod) GetPaymentSourceId() string {
-	if o == nil || IsNil(o.PaymentSourceId) {
-		var ret string
-		return ret
-	}
-	return *o.PaymentSourceId
-}
-
-// GetPaymentSourceIdOk returns a tuple with the PaymentSourceId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ChargeRequestPaymentMethod) GetPaymentSourceIdOk() (*string, bool) {
-	if o == nil || IsNil(o.PaymentSourceId) {
-		return nil, false
-	}
-	return o.PaymentSourceId, true
-}
-
-// HasPaymentSourceId returns a boolean if a field has been set.
-func (o *ChargeRequestPaymentMethod) HasPaymentSourceId() bool {
-	if o != nil && !IsNil(o.PaymentSourceId) {
-		return true
-	}
-
-	return false
-}
-
-// SetPaymentSourceId gets a reference to the given string and assigns it to the PaymentSourceId field.
-func (o *ChargeRequestPaymentMethod) SetPaymentSourceId(v string) {
-	o.PaymentSourceId = &v
-}
-
-// GetContractId returns the ContractId field value if set, zero value otherwise.
-func (o *ChargeRequestPaymentMethod) GetContractId() string {
-	if o == nil || IsNil(o.ContractId) {
-		var ret string
-		return ret
-	}
-	return *o.ContractId
-}
-
-// GetContractIdOk returns a tuple with the ContractId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ChargeRequestPaymentMethod) GetContractIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ContractId) {
-		return nil, false
-	}
-	return o.ContractId, true
-}
-
-// HasContractId returns a boolean if a field has been set.
-func (o *ChargeRequestPaymentMethod) HasContractId() bool {
-	if o != nil && !IsNil(o.ContractId) {
-		return true
-	}
-
-	return false
-}
-
-// SetContractId gets a reference to the given string and assigns it to the ContractId field.
-func (o *ChargeRequestPaymentMethod) SetContractId(v string) {
-	o.ContractId = &v
-}
-
-func (o ChargeRequestPaymentMethod) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
-}
-
-func (o ChargeRequestPaymentMethod) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ExpiresAt) {
-		toSerialize["expires_at"] = o.ExpiresAt
-	}
-	if !IsNil(o.MonthlyInstallments) {
-		toSerialize["monthly_installments"] = o.MonthlyInstallments
-	}
-	toSerialize["type"] = o.Type
-	if !IsNil(o.TokenId) {
-		toSerialize["token_id"] = o.TokenId
-	}
-	if !IsNil(o.PaymentSourceId) {
-		toSerialize["payment_source_id"] = o.PaymentSourceId
-	}
-	if !IsNil(o.ContractId) {
-		toSerialize["contract_id"] = o.ContractId
-	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
-	return toSerialize, nil
-}
-
-func (o *ChargeRequestPaymentMethod) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"type",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *ChargeRequestPaymentMethod) UnmarshalJSON(data []byte) error {
+	var err error
+	match := 0
+	// try to unmarshal data into PaymentMethodCardRequest
+	err = json.Unmarshal(data, &dst.PaymentMethodCardRequest)
+	if err == nil {
+		jsonPaymentMethodCardRequest, _ := json.Marshal(dst.PaymentMethodCardRequest)
+		if string(jsonPaymentMethodCardRequest) == "{}" { // empty struct
+			dst.PaymentMethodCardRequest = nil
+		} else {
+			match++
 		}
+	} else {
+		dst.PaymentMethodCardRequest = nil
 	}
 
-	varChargeRequestPaymentMethod := _ChargeRequestPaymentMethod{}
-
-	err = json.Unmarshal(data, &varChargeRequestPaymentMethod)
-
-	if err != nil {
-		return err
+	// try to unmarshal data into PaymentMethodGeneralRequest
+	err = json.Unmarshal(data, &dst.PaymentMethodGeneralRequest)
+	if err == nil {
+		jsonPaymentMethodGeneralRequest, _ := json.Marshal(dst.PaymentMethodGeneralRequest)
+		if string(jsonPaymentMethodGeneralRequest) == "{}" { // empty struct
+			dst.PaymentMethodGeneralRequest = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.PaymentMethodGeneralRequest = nil
 	}
 
-	*o = ChargeRequestPaymentMethod(varChargeRequestPaymentMethod)
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.PaymentMethodCardRequest = nil
+		dst.PaymentMethodGeneralRequest = nil
 
-	additionalProperties := make(map[string]interface{})
+		return fmt.Errorf("data matches more than one schema in oneOf(ChargeRequestPaymentMethod)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(ChargeRequestPaymentMethod)")
+	}
+}
 
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "expires_at")
-		delete(additionalProperties, "monthly_installments")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "token_id")
-		delete(additionalProperties, "payment_source_id")
-		delete(additionalProperties, "contract_id")
-		o.AdditionalProperties = additionalProperties
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src ChargeRequestPaymentMethod) MarshalJSON() ([]byte, error) {
+	if src.PaymentMethodCardRequest != nil {
+		return json.Marshal(&src.PaymentMethodCardRequest)
 	}
 
-	return err
+	if src.PaymentMethodGeneralRequest != nil {
+		return json.Marshal(&src.PaymentMethodGeneralRequest)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *ChargeRequestPaymentMethod) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
+	if obj.PaymentMethodCardRequest != nil {
+		return obj.PaymentMethodCardRequest
+	}
+
+	if obj.PaymentMethodGeneralRequest != nil {
+		return obj.PaymentMethodGeneralRequest
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableChargeRequestPaymentMethod struct {
@@ -353,3 +145,5 @@ func (v *NullableChargeRequestPaymentMethod) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

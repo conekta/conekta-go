@@ -33,7 +33,7 @@ type WebhookKeyResponse struct {
 	// Indicates if the webhook key is in live mode
 	Livemode *bool `json:"livemode,omitempty"`
 	// Object name, value is webhook_key
-	Object               *string `json:"object,omitempty"`
+	Object *string `json:"object,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -184,7 +184,6 @@ func (o *WebhookKeyResponse) HasDeactivatedAt() bool {
 func (o *WebhookKeyResponse) SetDeactivatedAt(v int64) {
 	o.DeactivatedAt.Set(&v)
 }
-
 // SetDeactivatedAtNil sets the value for DeactivatedAt to be an explicit nil
 func (o *WebhookKeyResponse) SetDeactivatedAtNil() {
 	o.DeactivatedAt.Set(nil)
@@ -292,7 +291,7 @@ func (o *WebhookKeyResponse) SetObject(v string) {
 }
 
 func (o WebhookKeyResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -392,3 +391,5 @@ func (v *NullableWebhookKeyResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

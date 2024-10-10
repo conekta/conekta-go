@@ -23,25 +23,27 @@ var _ MappedNullable = &Checkout{}
 type Checkout struct {
 	// Those are the payment methods that will be available for the link
 	AllowedPaymentMethods []string `json:"allowed_payment_methods"`
-	// It is the time when the link will expire. It is expressed in seconds since the Unix epoch. The valid range is from 2 to 365 days (the valid range will be taken from the next day of the creation date at 00:01 hrs)
+	// It is the time when the link will expire. It is expressed in seconds since the Unix epoch. The valid range is from 2 to 365 days (the valid range will be taken from the next day of the creation date at 00:01 hrs) 
 	ExpiresAt int64 `json:"expires_at"`
 	// This flag allows you to specify if months without interest will be active.
 	MonthlyInstallmentsEnabled *bool `json:"monthly_installments_enabled,omitempty"`
 	// This field allows you to specify the number of months without interest.
 	MonthlyInstallmentsOptions []int32 `json:"monthly_installments_options,omitempty"`
+	// Indicates the 3DS2 mode for the order, either smart or strict.
+	ThreeDsMode *string `json:"three_ds_mode,omitempty"`
 	// Reason for charge
 	Name string `json:"name"`
 	// This flag allows you to fill in the shipping information at checkout.
 	NeedsShippingContact *bool `json:"needs_shipping_contact,omitempty"`
 	// This flag allows you to specify if the link will be on demand.
-	OnDemandEnabled NullableBool          `json:"on_demand_enabled,omitempty"`
-	OrderTemplate   CheckoutOrderTemplate `json:"order_template"`
+	OnDemandEnabled NullableBool `json:"on_demand_enabled,omitempty"`
+	OrderTemplate CheckoutOrderTemplate `json:"order_template"`
 	// It is the number of payments that can be made through the link.
 	PaymentsLimitCount *int32 `json:"payments_limit_count,omitempty"`
 	// false: single use. true: multiple payments
 	Recurrent bool `json:"recurrent"`
 	// It is the type of link that will be created. It must be a valid type.
-	Type                 string `json:"type"`
+	Type string `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -182,6 +184,38 @@ func (o *Checkout) SetMonthlyInstallmentsOptions(v []int32) {
 	o.MonthlyInstallmentsOptions = v
 }
 
+// GetThreeDsMode returns the ThreeDsMode field value if set, zero value otherwise.
+func (o *Checkout) GetThreeDsMode() string {
+	if o == nil || IsNil(o.ThreeDsMode) {
+		var ret string
+		return ret
+	}
+	return *o.ThreeDsMode
+}
+
+// GetThreeDsModeOk returns a tuple with the ThreeDsMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Checkout) GetThreeDsModeOk() (*string, bool) {
+	if o == nil || IsNil(o.ThreeDsMode) {
+		return nil, false
+	}
+	return o.ThreeDsMode, true
+}
+
+// HasThreeDsMode returns a boolean if a field has been set.
+func (o *Checkout) HasThreeDsMode() bool {
+	if o != nil && !IsNil(o.ThreeDsMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetThreeDsMode gets a reference to the given string and assigns it to the ThreeDsMode field.
+func (o *Checkout) SetThreeDsMode(v string) {
+	o.ThreeDsMode = &v
+}
+
 // GetName returns the Name field value
 func (o *Checkout) GetName() string {
 	if o == nil {
@@ -270,7 +304,6 @@ func (o *Checkout) HasOnDemandEnabled() bool {
 func (o *Checkout) SetOnDemandEnabled(v bool) {
 	o.OnDemandEnabled.Set(&v)
 }
-
 // SetOnDemandEnabledNil sets the value for OnDemandEnabled to be an explicit nil
 func (o *Checkout) SetOnDemandEnabledNil() {
 	o.OnDemandEnabled.Set(nil)
@@ -386,7 +419,7 @@ func (o *Checkout) SetType(v string) {
 }
 
 func (o Checkout) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -402,6 +435,9 @@ func (o Checkout) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.MonthlyInstallmentsOptions) {
 		toSerialize["monthly_installments_options"] = o.MonthlyInstallmentsOptions
+	}
+	if !IsNil(o.ThreeDsMode) {
+		toSerialize["three_ds_mode"] = o.ThreeDsMode
 	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.NeedsShippingContact) {
@@ -442,10 +478,10 @@ func (o *Checkout) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -468,6 +504,7 @@ func (o *Checkout) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "expires_at")
 		delete(additionalProperties, "monthly_installments_enabled")
 		delete(additionalProperties, "monthly_installments_options")
+		delete(additionalProperties, "three_ds_mode")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "needs_shipping_contact")
 		delete(additionalProperties, "on_demand_enabled")
@@ -516,3 +553,5 @@ func (v *NullableCheckout) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

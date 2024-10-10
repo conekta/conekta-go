@@ -36,14 +36,14 @@ type UpdateCustomer struct {
 	// It is a value that allows identifying if the email is corporate or not.
 	Corporate *bool `json:"corporate,omitempty"`
 	// It is an undefined value.
-	CustomReference *string                         `json:"custom_reference,omitempty"`
-	FiscalEntities  []CustomerFiscalEntitiesRequest `json:"fiscal_entities,omitempty"`
-	Metadata        map[string]interface{}          `json:"metadata,omitempty"`
+	CustomReference *string `json:"custom_reference,omitempty"`
+	FiscalEntities []CustomerFiscalEntitiesRequest `json:"fiscal_entities,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// Contains details of the payment methods that the customer has active or has used in Conekta
 	PaymentSources []CustomerPaymentMethodsRequest `json:"payment_sources,omitempty"`
 	// Contains the detail of the shipping addresses that the client has active or has used in Conekta
-	ShippingContacts     []CustomerShippingContacts `json:"shipping_contacts,omitempty"`
-	Subscription         *SubscriptionRequest       `json:"subscription,omitempty"`
+	ShippingContacts []CustomerShippingContacts `json:"shipping_contacts,omitempty"`
+	Subscription *SubscriptionRequest `json:"subscription,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -102,7 +102,6 @@ func (o *UpdateCustomer) HasAntifraudInfo() bool {
 func (o *UpdateCustomer) SetAntifraudInfo(v UpdateCustomerAntifraudInfo) {
 	o.AntifraudInfo.Set(&v)
 }
-
 // SetAntifraudInfoNil sets the value for AntifraudInfo to be an explicit nil
 func (o *UpdateCustomer) SetAntifraudInfoNil() {
 	o.AntifraudInfo.Set(nil)
@@ -530,7 +529,7 @@ func (o *UpdateCustomer) SetSubscription(v SubscriptionRequest) {
 }
 
 func (o UpdateCustomer) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -658,3 +657,5 @@ func (v *NullableUpdateCustomer) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

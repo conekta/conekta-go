@@ -43,7 +43,7 @@ type ApiKeyCreateResponse struct {
 	// Indicates if the api key is private or public
 	Role *string `json:"role,omitempty"`
 	// It is occupied as a user when authenticated with basic authentication, with a blank password. This value will only appear once, in the request to create a new key. Copy and save it in a safe place.
-	AuthenticationToken  *string `json:"authentication_token,omitempty"`
+	AuthenticationToken *string `json:"authentication_token,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -194,7 +194,6 @@ func (o *ApiKeyCreateResponse) HasDeactivatedAt() bool {
 func (o *ApiKeyCreateResponse) SetDeactivatedAt(v int64) {
 	o.DeactivatedAt.Set(&v)
 }
-
 // SetDeactivatedAtNil sets the value for DeactivatedAt to be an explicit nil
 func (o *ApiKeyCreateResponse) SetDeactivatedAtNil() {
 	o.DeactivatedAt.Set(nil)
@@ -462,7 +461,7 @@ func (o *ApiKeyCreateResponse) SetAuthenticationToken(v string) {
 }
 
 func (o ApiKeyCreateResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -582,3 +581,5 @@ func (v *NullableApiKeyCreateResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

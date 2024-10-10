@@ -13,11 +13,11 @@ Name | Type | Description | Notes
 **DeviceFingerprint** | Pointer to **string** |  | [optional] 
 **FailureCode** | Pointer to **string** |  | [optional] 
 **FailureMessage** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
-**Livemode** | Pointer to **bool** |  | [optional] 
+**Id** | Pointer to **string** | Charge ID | [optional] 
+**Livemode** | Pointer to **bool** | Whether the charge was made in live mode or not | [optional] 
 **Object** | Pointer to **string** |  | [optional] 
-**OrderId** | Pointer to **string** |  | [optional] 
-**PaidAt** | Pointer to **NullableInt32** |  | [optional] 
+**OrderId** | Pointer to **string** | Order ID | [optional] 
+**PaidAt** | Pointer to **NullableInt64** | Payment date | [optional] 
 **PaymentMethod** | Pointer to [**ChargeResponsePaymentMethod**](ChargeResponsePaymentMethod.md) |  | [optional] 
 **ReferenceId** | Pointer to **NullableString** | Reference ID of the charge | [optional] 
 **Refunds** | Pointer to [**NullableChargeResponseRefunds**](ChargeResponseRefunds.md) |  | [optional] 
@@ -369,20 +369,20 @@ HasOrderId returns a boolean if a field has been set.
 
 ### GetPaidAt
 
-`func (o *ChargesDataResponse) GetPaidAt() int32`
+`func (o *ChargesDataResponse) GetPaidAt() int64`
 
 GetPaidAt returns the PaidAt field if non-nil, zero value otherwise.
 
 ### GetPaidAtOk
 
-`func (o *ChargesDataResponse) GetPaidAtOk() (*int32, bool)`
+`func (o *ChargesDataResponse) GetPaidAtOk() (*int64, bool)`
 
 GetPaidAtOk returns a tuple with the PaidAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPaidAt
 
-`func (o *ChargesDataResponse) SetPaidAt(v int32)`
+`func (o *ChargesDataResponse) SetPaidAt(v int64)`
 
 SetPaidAt sets PaidAt field to given value.
 

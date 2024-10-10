@@ -22,7 +22,7 @@ var _ MappedNullable = &OrderCaptureRequest{}
 // OrderCaptureRequest struct for OrderCaptureRequest
 type OrderCaptureRequest struct {
 	// Amount to capture
-	Amount               int64 `json:"amount"`
+	Amount int64 `json:"amount"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -71,7 +71,7 @@ func (o *OrderCaptureRequest) SetAmount(v int64) {
 }
 
 func (o OrderCaptureRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -102,10 +102,10 @@ func (o *OrderCaptureRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -166,3 +166,5 @@ func (v *NullableOrderCaptureRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

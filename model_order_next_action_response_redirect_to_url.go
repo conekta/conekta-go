@@ -23,7 +23,7 @@ type OrderNextActionResponseRedirectToUrl struct {
 	// pay.conekta.com/{id} Indicates the url of the Conekta component to authenticate the flow through 3DS2.
 	Url *string `json:"url,omitempty"`
 	// Indicates the url to which the 3DS2 flow returns at the end, when the integration is redirected.
-	ReturnUrl            *string `json:"return_url,omitempty"`
+	ReturnUrl *string `json:"return_url,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -111,7 +111,7 @@ func (o *OrderNextActionResponseRedirectToUrl) SetReturnUrl(v string) {
 }
 
 func (o OrderNextActionResponseRedirectToUrl) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -191,3 +191,5 @@ func (v *NullableOrderNextActionResponseRedirectToUrl) UnmarshalJSON(src []byte)
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

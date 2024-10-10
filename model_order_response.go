@@ -23,34 +23,34 @@ type OrderResponse struct {
 	// The total amount to be collected in cents
 	Amount *int32 `json:"amount,omitempty"`
 	// The total amount refunded in cents
-	AmountRefunded *int32                 `json:"amount_refunded,omitempty"`
-	Channel        *ChargeResponseChannel `json:"channel,omitempty"`
-	Charges        *OrderResponseCharges  `json:"charges,omitempty"`
-	Checkout       *OrderResponseCheckout `json:"checkout,omitempty"`
+	AmountRefunded *int32 `json:"amount_refunded,omitempty"`
+	Channel *ChargeResponseChannel `json:"channel,omitempty"`
+	Charges *OrderResponseCharges `json:"charges,omitempty"`
+	Checkout *OrderResponseCheckout `json:"checkout,omitempty"`
 	// The time at which the object was created in seconds since the Unix epoch
 	CreatedAt *int64 `json:"created_at,omitempty"`
 	// The three-letter ISO 4217 currency code. The currency of the order.
-	Currency      *string                           `json:"currency,omitempty"`
-	CustomerInfo  *OrderResponseCustomerInfo        `json:"customer_info,omitempty"`
-	DiscountLines *OrderResponseDiscountLines       `json:"discount_lines,omitempty"`
-	FiscalEntity  NullableOrderFiscalEntityResponse `json:"fiscal_entity,omitempty"`
-	Id            *string                           `json:"id,omitempty"`
-	IsRefundable  *bool                             `json:"is_refundable,omitempty"`
-	LineItems     *OrderResponseProducts            `json:"line_items,omitempty"`
+	Currency *string `json:"currency,omitempty"`
+	CustomerInfo *OrderResponseCustomerInfo `json:"customer_info,omitempty"`
+	DiscountLines *OrderResponseDiscountLines `json:"discount_lines,omitempty"`
+	FiscalEntity NullableOrderFiscalEntityResponse `json:"fiscal_entity,omitempty"`
+	Id *string `json:"id,omitempty"`
+	IsRefundable *bool `json:"is_refundable,omitempty"`
+	LineItems *OrderResponseProducts `json:"line_items,omitempty"`
 	// Whether the object exists in live mode or test mode
 	Livemode *bool `json:"livemode,omitempty"`
 	// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
-	Metadata   map[string]interface{}   `json:"metadata,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	NextAction *OrderNextActionResponse `json:"next_action,omitempty"`
 	// String representing the object’s type. Objects of the same type share the same value.
 	Object *string `json:"object,omitempty"`
 	// The payment status of the order.
 	PaymentStatus *string `json:"payment_status,omitempty"`
 	// Indicates the processing mode for the order, either ecommerce, recurrent or validation.
-	ProcessingMode  *string                       `json:"processing_mode,omitempty"`
+	ProcessingMode *string `json:"processing_mode,omitempty"`
 	ShippingContact *OrderResponseShippingContact `json:"shipping_contact,omitempty"`
 	// The time at which the object was last updated in seconds since the Unix epoch
-	UpdatedAt            *int64 `json:"updated_at,omitempty"`
+	UpdatedAt *int64 `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -393,7 +393,6 @@ func (o *OrderResponse) HasFiscalEntity() bool {
 func (o *OrderResponse) SetFiscalEntity(v OrderFiscalEntityResponse) {
 	o.FiscalEntity.Set(&v)
 }
-
 // SetFiscalEntityNil sets the value for FiscalEntity to be an explicit nil
 func (o *OrderResponse) SetFiscalEntityNil() {
 	o.FiscalEntity.Set(nil)
@@ -757,7 +756,7 @@ func (o *OrderResponse) SetUpdatedAt(v int64) {
 }
 
 func (o OrderResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -913,3 +912,5 @@ func (v *NullableOrderResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

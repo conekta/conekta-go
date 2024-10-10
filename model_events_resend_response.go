@@ -20,13 +20,13 @@ var _ MappedNullable = &EventsResendResponse{}
 
 // EventsResendResponse event model
 type EventsResendResponse struct {
-	FailedAttempts         *int32                 `json:"failed_attempts,omitempty"`
-	Id                     *string                `json:"id,omitempty"`
-	LastAttemptedAt        *int32                 `json:"last_attempted_at,omitempty"`
-	LastHttpResponseStatus *int32                 `json:"last_http_response_status,omitempty"`
-	ResponseData           map[string]interface{} `json:"response_data,omitempty"`
-	Url                    *string                `json:"url,omitempty"`
-	AdditionalProperties   map[string]interface{}
+	FailedAttempts *int32 `json:"failed_attempts,omitempty"`
+	Id *string `json:"id,omitempty"`
+	LastAttemptedAt *int32 `json:"last_attempted_at,omitempty"`
+	LastHttpResponseStatus *int32 `json:"last_http_response_status,omitempty"`
+	ResponseData map[string]interface{} `json:"response_data,omitempty"`
+	Url *string `json:"url,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EventsResendResponse EventsResendResponse
@@ -241,7 +241,7 @@ func (o *EventsResendResponse) SetUrl(v string) {
 }
 
 func (o EventsResendResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -337,3 +337,5 @@ func (v *NullableEventsResendResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

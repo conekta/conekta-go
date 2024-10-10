@@ -25,11 +25,11 @@ type CustomerUpdateShippingContacts struct {
 	// Name of the person who will receive the order
 	Receiver *string `json:"receiver,omitempty"`
 	// The street names between which the order will be delivered.
-	BetweenStreets       *string                          `json:"between_streets,omitempty"`
-	Address              *CustomerShippingContactsAddress `json:"address,omitempty"`
-	ParentId             *string                          `json:"parent_id,omitempty"`
-	Default              NullableBool                     `json:"default,omitempty"`
-	Deleted              NullableBool                     `json:"deleted,omitempty"`
+	BetweenStreets *string `json:"between_streets,omitempty"`
+	Address *CustomerShippingContactsAddress `json:"address,omitempty"`
+	ParentId *string `json:"parent_id,omitempty"`
+	Default NullableBool `json:"default,omitempty"`
+	Deleted NullableBool `json:"deleted,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -244,7 +244,6 @@ func (o *CustomerUpdateShippingContacts) HasDefault() bool {
 func (o *CustomerUpdateShippingContacts) SetDefault(v bool) {
 	o.Default.Set(&v)
 }
-
 // SetDefaultNil sets the value for Default to be an explicit nil
 func (o *CustomerUpdateShippingContacts) SetDefaultNil() {
 	o.Default.Set(nil)
@@ -287,7 +286,6 @@ func (o *CustomerUpdateShippingContacts) HasDeleted() bool {
 func (o *CustomerUpdateShippingContacts) SetDeleted(v bool) {
 	o.Deleted.Set(&v)
 }
-
 // SetDeletedNil sets the value for Deleted to be an explicit nil
 func (o *CustomerUpdateShippingContacts) SetDeletedNil() {
 	o.Deleted.Set(nil)
@@ -299,7 +297,7 @@ func (o *CustomerUpdateShippingContacts) UnsetDeleted() {
 }
 
 func (o CustomerUpdateShippingContacts) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -399,3 +397,5 @@ func (v *NullableCustomerUpdateShippingContacts) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

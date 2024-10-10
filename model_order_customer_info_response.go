@@ -22,12 +22,12 @@ var _ MappedNullable = &OrderCustomerInfoResponse{}
 type OrderCustomerInfoResponse struct {
 	// Custom reference
 	CustomerCustomReference NullableString `json:"customer_custom_reference,omitempty"`
-	Name                    *string        `json:"name,omitempty"`
-	Email                   *string        `json:"email,omitempty"`
-	Phone                   *string        `json:"phone,omitempty"`
-	Corporate               *bool          `json:"corporate,omitempty"`
-	Object                  *string        `json:"object,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	Name *string `json:"name,omitempty"`
+	Email *string `json:"email,omitempty"`
+	Phone *string `json:"phone,omitempty"`
+	Corporate *bool `json:"corporate,omitempty"`
+	Object *string `json:"object,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrderCustomerInfoResponse OrderCustomerInfoResponse
@@ -85,7 +85,6 @@ func (o *OrderCustomerInfoResponse) HasCustomerCustomReference() bool {
 func (o *OrderCustomerInfoResponse) SetCustomerCustomReference(v string) {
 	o.CustomerCustomReference.Set(&v)
 }
-
 // SetCustomerCustomReferenceNil sets the value for CustomerCustomReference to be an explicit nil
 func (o *OrderCustomerInfoResponse) SetCustomerCustomReferenceNil() {
 	o.CustomerCustomReference.Set(nil)
@@ -257,7 +256,7 @@ func (o *OrderCustomerInfoResponse) SetObject(v string) {
 }
 
 func (o OrderCustomerInfoResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -353,3 +352,5 @@ func (v *NullableOrderCustomerInfoResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

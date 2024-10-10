@@ -20,17 +20,17 @@ var _ MappedNullable = &PlanResponse{}
 
 // PlanResponse plans model
 type PlanResponse struct {
-	Amount               *int32        `json:"amount,omitempty"`
-	CreatedAt            *int64        `json:"created_at,omitempty"`
-	Currency             *string       `json:"currency,omitempty"`
-	ExpiryCount          NullableInt32 `json:"expiry_count,omitempty"`
-	Frequency            *int32        `json:"frequency,omitempty"`
-	Id                   *string       `json:"id,omitempty"`
-	Interval             *string       `json:"interval,omitempty"`
-	Livemode             *bool         `json:"livemode,omitempty"`
-	Name                 *string       `json:"name,omitempty"`
-	Object               *string       `json:"object,omitempty"`
-	TrialPeriodDays      NullableInt32 `json:"trial_period_days,omitempty"`
+	Amount *int32 `json:"amount,omitempty"`
+	CreatedAt *int64 `json:"created_at,omitempty"`
+	Currency *string `json:"currency,omitempty"`
+	ExpiryCount NullableInt32 `json:"expiry_count,omitempty"`
+	Frequency *int32 `json:"frequency,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Interval *string `json:"interval,omitempty"`
+	Livemode *bool `json:"livemode,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Object *string `json:"object,omitempty"`
+	TrialPeriodDays NullableInt32 `json:"trial_period_days,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -181,7 +181,6 @@ func (o *PlanResponse) HasExpiryCount() bool {
 func (o *PlanResponse) SetExpiryCount(v int32) {
 	o.ExpiryCount.Set(&v)
 }
-
 // SetExpiryCountNil sets the value for ExpiryCount to be an explicit nil
 func (o *PlanResponse) SetExpiryCountNil() {
 	o.ExpiryCount.Set(nil)
@@ -416,7 +415,6 @@ func (o *PlanResponse) HasTrialPeriodDays() bool {
 func (o *PlanResponse) SetTrialPeriodDays(v int32) {
 	o.TrialPeriodDays.Set(&v)
 }
-
 // SetTrialPeriodDaysNil sets the value for TrialPeriodDays to be an explicit nil
 func (o *PlanResponse) SetTrialPeriodDaysNil() {
 	o.TrialPeriodDays.Set(nil)
@@ -428,7 +426,7 @@ func (o *PlanResponse) UnsetTrialPeriodDays() {
 }
 
 func (o PlanResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -544,3 +542,5 @@ func (v *NullablePlanResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

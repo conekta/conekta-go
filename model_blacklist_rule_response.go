@@ -27,7 +27,7 @@ type BlacklistRuleResponse struct {
 	// value used for blacklists rule
 	Value *string `json:"value,omitempty"`
 	// use an description for blacklisted rule
-	Description          *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -179,7 +179,7 @@ func (o *BlacklistRuleResponse) SetDescription(v string) {
 }
 
 func (o BlacklistRuleResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -267,3 +267,5 @@ func (v *NullableBlacklistRuleResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

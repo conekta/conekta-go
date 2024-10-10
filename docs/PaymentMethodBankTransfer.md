@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **ReceivingAccountTaxId** | Pointer to **NullableString** |  | [optional] 
 **ReferenceNumber** | Pointer to **NullableString** |  | [optional] 
 **TrackingCode** | Pointer to **NullableString** |  | [optional] 
+**CustomerIpAddress** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -587,6 +588,31 @@ HasTrackingCode returns a boolean if a field has been set.
 `func (o *PaymentMethodBankTransfer) UnsetTrackingCode()`
 
 UnsetTrackingCode ensures that no value is present for TrackingCode, not even an explicit nil
+### GetCustomerIpAddress
+
+`func (o *PaymentMethodBankTransfer) GetCustomerIpAddress() string`
+
+GetCustomerIpAddress returns the CustomerIpAddress field if non-nil, zero value otherwise.
+
+### GetCustomerIpAddressOk
+
+`func (o *PaymentMethodBankTransfer) GetCustomerIpAddressOk() (*string, bool)`
+
+GetCustomerIpAddressOk returns a tuple with the CustomerIpAddress field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomerIpAddress
+
+`func (o *PaymentMethodBankTransfer) SetCustomerIpAddress(v string)`
+
+SetCustomerIpAddress sets CustomerIpAddress field to given value.
+
+### HasCustomerIpAddress
+
+`func (o *PaymentMethodBankTransfer) HasCustomerIpAddress() bool`
+
+HasCustomerIpAddress returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
