@@ -45,6 +45,11 @@ func Test_conekta_ChargesApiService(t *testing.T) {
 	t.Run("Test ChargesApiService OrdersCreateCharge", func(t *testing.T) {
 		req := conekta.ChargeRequest{
 			Amount: conekta.PtrInt32(1000),
+			PaymentMethod: conekta.ChargeRequestPaymentMethod{
+				PaymentMethodCardRequest: &conekta.PaymentMethodCardRequest{
+					Type: "card",
+				},
+			},
 		}
 		resp, httpRes, err := apiClient.ChargesAPI.OrdersCreateCharge(context.TODO(), "ord_2tUigJ8DgBhbp6w5D").
 			ChargeRequest(req).
