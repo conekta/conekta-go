@@ -23,8 +23,8 @@ type UpdateOrderTaxRequest struct {
 	// The amount to be collected for tax in cents
 	Amount *int64 `json:"amount,omitempty"`
 	// description or tax's name
-	Description          *string                           `json:"description,omitempty"`
-	Metadata             map[string]map[string]interface{} `json:"metadata,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Metadata map[string]map[string]interface{} `json:"metadata,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -144,7 +144,7 @@ func (o *UpdateOrderTaxRequest) SetMetadata(v map[string]map[string]interface{})
 }
 
 func (o UpdateOrderTaxRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -228,3 +228,5 @@ func (v *NullableUpdateOrderTaxRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

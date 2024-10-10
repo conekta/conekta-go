@@ -22,24 +22,24 @@ var _ MappedNullable = &TokenResponseCheckout{}
 type TokenResponseCheckout struct {
 	AllowedPaymentMethods []string `json:"allowed_payment_methods,omitempty"`
 	// Indicates if the checkout can not expire.
-	CanNotExpire        *bool    `json:"can_not_expire,omitempty"`
-	EmailsSent          *int32   `json:"emails_sent,omitempty"`
+	CanNotExpire *bool `json:"can_not_expire,omitempty"`
+	EmailsSent *int32 `json:"emails_sent,omitempty"`
 	ExcludeCardNetworks []string `json:"exclude_card_networks,omitempty"`
 	// Date and time when the checkout expires.
 	ExpiresAt *int64 `json:"expires_at,omitempty"`
 	// URL to redirect the customer to if the payment process fails.
 	FailureUrl *string `json:"failure_url,omitempty"`
 	// Indicates if the checkout forces the 3DS flow.
-	Force3dsFlow *bool                  `json:"force_3ds_flow,omitempty"`
-	Id           *string                `json:"id,omitempty"`
-	Livemode     *bool                  `json:"livemode,omitempty"`
-	Metadata     map[string]interface{} `json:"metadata,omitempty"`
+	Force3dsFlow *bool `json:"force_3ds_flow,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Livemode *bool `json:"livemode,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// Indicates if the checkout allows monthly installments.
 	MonthlyInstallmentsEnabled *bool `json:"monthly_installments_enabled,omitempty"`
 	// List of monthly installments options.
 	MonthlyInstallmentsOptions []int32 `json:"monthly_installments_options,omitempty"`
-	Name                       *string `json:"name,omitempty"`
-	NeedsShippingContact       *bool   `json:"needs_shipping_contact,omitempty"`
+	Name *string `json:"name,omitempty"`
+	NeedsShippingContact *bool `json:"needs_shipping_contact,omitempty"`
 	// Indicates the type of object, in this case checkout.
 	Object *string `json:"object,omitempty"`
 	// Indicates if the checkout allows on demand payments.
@@ -47,8 +47,8 @@ type TokenResponseCheckout struct {
 	// Number of payments that have been paid.
 	PaidPaymentsCount *int32 `json:"paid_payments_count,omitempty"`
 	// Indicates if the checkout is recurrent.
-	Recurrent *bool  `json:"recurrent,omitempty"`
-	SmsSent   *int32 `json:"sms_sent,omitempty"`
+	Recurrent *bool `json:"recurrent,omitempty"`
+	SmsSent *int32 `json:"sms_sent,omitempty"`
 	// Date and time when the checkout starts.
 	StartsAt *int64 `json:"starts_at,omitempty"`
 	// Status of the checkout.
@@ -56,7 +56,7 @@ type TokenResponseCheckout struct {
 	// URL to redirect the customer to after the payment process is completed.
 	SuccessUrl *string `json:"success_url,omitempty"`
 	// Type of checkout.
-	Type                 *string `json:"type,omitempty"`
+	Type *string `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -816,7 +816,7 @@ func (o *TokenResponseCheckout) SetType(v string) {
 }
 
 func (o TokenResponseCheckout) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -980,3 +980,5 @@ func (v *NullableTokenResponseCheckout) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

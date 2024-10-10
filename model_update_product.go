@@ -20,15 +20,15 @@ var _ MappedNullable = &UpdateProduct{}
 
 // UpdateProduct struct for UpdateProduct
 type UpdateProduct struct {
-	AntifraudInfo        map[string]map[string]interface{} `json:"antifraud_info,omitempty"`
-	Description          *string                           `json:"description,omitempty"`
-	Sku                  *string                           `json:"sku,omitempty"`
-	Name                 *string                           `json:"name,omitempty"`
-	UnitPrice            *int64                            `json:"unit_price,omitempty"`
-	Quantity             *int32                            `json:"quantity,omitempty"`
-	Tags                 []string                          `json:"tags,omitempty"`
-	Brand                *string                           `json:"brand,omitempty"`
-	Metadata             *map[string]string                `json:"metadata,omitempty"`
+	AntifraudInfo map[string]map[string]interface{} `json:"antifraud_info,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Sku *string `json:"sku,omitempty"`
+	Name *string `json:"name,omitempty"`
+	UnitPrice *int64 `json:"unit_price,omitempty"`
+	Quantity *int32 `json:"quantity,omitempty"`
+	Tags []string `json:"tags,omitempty"`
+	Brand *string `json:"brand,omitempty"`
+	Metadata *map[string]string `json:"metadata,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -340,7 +340,7 @@ func (o *UpdateProduct) SetMetadata(v map[string]string) {
 }
 
 func (o UpdateProduct) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -448,3 +448,5 @@ func (v *NullableUpdateProduct) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

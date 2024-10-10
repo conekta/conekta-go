@@ -21,7 +21,7 @@ var _ MappedNullable = &TokenCheckout{}
 // TokenCheckout struct for TokenCheckout
 type TokenCheckout struct {
 	// It is a value that allows identifying the returns control on.
-	ReturnsControlOn     *string `json:"returns_control_on,omitempty"`
+	ReturnsControlOn *string `json:"returns_control_on,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -77,7 +77,7 @@ func (o *TokenCheckout) SetReturnsControlOn(v string) {
 }
 
 func (o TokenCheckout) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -153,3 +153,5 @@ func (v *NullableTokenCheckout) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -31,9 +31,9 @@ type CompanyResponse struct {
 	// Id of the parent company
 	ParentCompanyId *string `json:"parent_company_id,omitempty"`
 	// Whether the parent company's fiscal data is to be used for liquidation and tax purposes
-	UseParentFiscalData  *bool                             `json:"use_parent_fiscal_data,omitempty"`
-	PayoutDestination    *CompanyPayoutDestinationResponse `json:"payout_destination,omitempty"`
-	FiscalInfo           *CompanyFiscalInfoResponse        `json:"fiscal_info,omitempty"`
+	UseParentFiscalData *bool `json:"use_parent_fiscal_data,omitempty"`
+	PayoutDestination *CompanyPayoutDestinationResponse `json:"payout_destination,omitempty"`
+	FiscalInfo *CompanyFiscalInfoResponse `json:"fiscal_info,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -313,7 +313,7 @@ func (o *CompanyResponse) SetFiscalInfo(v CompanyFiscalInfoResponse) {
 }
 
 func (o CompanyResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -417,3 +417,5 @@ func (v *NullableCompanyResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

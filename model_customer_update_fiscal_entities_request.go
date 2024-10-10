@@ -20,12 +20,12 @@ var _ MappedNullable = &CustomerUpdateFiscalEntitiesRequest{}
 
 // CustomerUpdateFiscalEntitiesRequest struct for CustomerUpdateFiscalEntitiesRequest
 type CustomerUpdateFiscalEntitiesRequest struct {
-	Address              *CustomerAddress                  `json:"address,omitempty"`
-	TaxId                *string                           `json:"tax_id,omitempty"`
-	Email                *string                           `json:"email,omitempty"`
-	Phone                *string                           `json:"phone,omitempty"`
-	Metadata             map[string]map[string]interface{} `json:"metadata,omitempty"`
-	CompanyName          *string                           `json:"company_name,omitempty"`
+	Address *CustomerAddress `json:"address,omitempty"`
+	TaxId *string `json:"tax_id,omitempty"`
+	Email *string `json:"email,omitempty"`
+	Phone *string `json:"phone,omitempty"`
+	Metadata map[string]map[string]interface{} `json:"metadata,omitempty"`
+	CompanyName *string `json:"company_name,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -241,7 +241,7 @@ func (o *CustomerUpdateFiscalEntitiesRequest) SetCompanyName(v string) {
 }
 
 func (o CustomerUpdateFiscalEntitiesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -337,3 +337,5 @@ func (v *NullableCustomerUpdateFiscalEntitiesRequest) UnmarshalJSON(src []byte) 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

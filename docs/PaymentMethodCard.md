@@ -6,17 +6,18 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | Pointer to **string** |  | [optional] 
 **Object** | **string** |  | 
-**AccountType** | Pointer to **string** |  | [optional] 
+**AccountType** | Pointer to **string** | Account type of the card | [optional] 
 **AuthCode** | Pointer to **string** |  | [optional] 
-**Brand** | Pointer to **string** |  | [optional] 
+**Brand** | Pointer to **string** | Brand of the card | [optional] 
 **ContractId** | Pointer to **string** | Id sent for recurrent charges. | [optional] 
-**Country** | Pointer to **string** |  | [optional] 
-**ExpMonth** | Pointer to **string** |  | [optional] 
-**ExpYear** | Pointer to **string** |  | [optional] 
+**Country** | Pointer to **string** | Country of the card | [optional] 
+**ExpMonth** | Pointer to **string** | Expiration month of the card | [optional] 
+**ExpYear** | Pointer to **string** | Expiration year of the card | [optional] 
 **FraudIndicators** | Pointer to **[]interface{}** |  | [optional] 
-**Issuer** | Pointer to **string** |  | [optional] 
-**Last4** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
+**Issuer** | Pointer to **string** | Issuer of the card | [optional] 
+**Last4** | Pointer to **string** | Last 4 digits of the card | [optional] 
+**Name** | Pointer to **string** | Name of the cardholder | [optional] 
+**CustomerIpAddress** | Pointer to **string** | Optional field used to capture the customer&#39;s IP address for fraud prevention and security monitoring purposes | [optional] 
 
 ## Methods
 
@@ -356,6 +357,31 @@ SetName sets Name field to given value.
 `func (o *PaymentMethodCard) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetCustomerIpAddress
+
+`func (o *PaymentMethodCard) GetCustomerIpAddress() string`
+
+GetCustomerIpAddress returns the CustomerIpAddress field if non-nil, zero value otherwise.
+
+### GetCustomerIpAddressOk
+
+`func (o *PaymentMethodCard) GetCustomerIpAddressOk() (*string, bool)`
+
+GetCustomerIpAddressOk returns a tuple with the CustomerIpAddress field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomerIpAddress
+
+`func (o *PaymentMethodCard) SetCustomerIpAddress(v string)`
+
+SetCustomerIpAddress sets CustomerIpAddress field to given value.
+
+### HasCustomerIpAddress
+
+`func (o *PaymentMethodCard) HasCustomerIpAddress() bool`
+
+HasCustomerIpAddress returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

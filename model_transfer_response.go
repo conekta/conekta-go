@@ -29,7 +29,7 @@ type TransferResponse struct {
 	// Unique identifier of the transfer.
 	Id *string `json:"id,omitempty"`
 	// Indicates whether the transfer was created in live mode or test mode.
-	Livemode    *bool                        `json:"livemode,omitempty"`
+	Livemode *bool `json:"livemode,omitempty"`
 	Destination *TransferDestinationResponse `json:"destination,omitempty"`
 	// Object name, which is transfer.
 	Object *string `json:"object,omitempty"`
@@ -38,7 +38,7 @@ type TransferResponse struct {
 	// Reference number of the transfer.
 	StatementReference *string `json:"statement_reference,omitempty"`
 	// Code indicating transfer status.
-	Status               *string `json:"status,omitempty"`
+	Status *string `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -382,7 +382,7 @@ func (o *TransferResponse) SetStatus(v string) {
 }
 
 func (o TransferResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -494,3 +494,5 @@ func (v *NullableTransferResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -20,34 +20,34 @@ var _ MappedNullable = &OrderResponseCheckout{}
 
 // OrderResponseCheckout struct for OrderResponseCheckout
 type OrderResponseCheckout struct {
-	AllowedPaymentMethods      []string                 `json:"allowed_payment_methods,omitempty"`
-	CanNotExpire               *bool                    `json:"can_not_expire,omitempty"`
-	EmailsSent                 *int32                   `json:"emails_sent,omitempty"`
-	ExcludeCardNetworks        []map[string]interface{} `json:"exclude_card_networks,omitempty"`
-	ExpiresAt                  *int64                   `json:"expires_at,omitempty"`
-	FailureUrl                 *string                  `json:"failure_url,omitempty"`
-	Force3dsFlow               *bool                    `json:"force_3ds_flow,omitempty"`
-	Id                         *string                  `json:"id,omitempty"`
-	IsRedirectOnFailure        *bool                    `json:"is_redirect_on_failure,omitempty"`
-	Livemode                   *bool                    `json:"livemode,omitempty"`
-	Metadata                   map[string]interface{}   `json:"metadata,omitempty"`
-	MonthlyInstallmentsEnabled *bool                    `json:"monthly_installments_enabled,omitempty"`
-	MonthlyInstallmentsOptions []int32                  `json:"monthly_installments_options,omitempty"`
-	Name                       *string                  `json:"name,omitempty"`
-	NeedsShippingContact       *bool                    `json:"needs_shipping_contact,omitempty"`
-	Object                     *string                  `json:"object,omitempty"`
-	OnDemandEnabled            NullableBool             `json:"on_demand_enabled,omitempty"`
-	PaidPaymentsCount          *int32                   `json:"paid_payments_count,omitempty"`
-	Recurrent                  *bool                    `json:"recurrent,omitempty"`
+	AllowedPaymentMethods []string `json:"allowed_payment_methods,omitempty"`
+	CanNotExpire *bool `json:"can_not_expire,omitempty"`
+	EmailsSent *int32 `json:"emails_sent,omitempty"`
+	ExcludeCardNetworks []map[string]interface{} `json:"exclude_card_networks,omitempty"`
+	ExpiresAt *int64 `json:"expires_at,omitempty"`
+	FailureUrl *string `json:"failure_url,omitempty"`
+	Force3dsFlow *bool `json:"force_3ds_flow,omitempty"`
+	Id *string `json:"id,omitempty"`
+	IsRedirectOnFailure *bool `json:"is_redirect_on_failure,omitempty"`
+	Livemode *bool `json:"livemode,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	MonthlyInstallmentsEnabled *bool `json:"monthly_installments_enabled,omitempty"`
+	MonthlyInstallmentsOptions []int32 `json:"monthly_installments_options,omitempty"`
+	Name *string `json:"name,omitempty"`
+	NeedsShippingContact *bool `json:"needs_shipping_contact,omitempty"`
+	Object *string `json:"object,omitempty"`
+	OnDemandEnabled NullableBool `json:"on_demand_enabled,omitempty"`
+	PaidPaymentsCount *int32 `json:"paid_payments_count,omitempty"`
+	Recurrent *bool `json:"recurrent,omitempty"`
 	// number of seconds to wait before redirecting to the success_url
-	RedirectionTime      NullableInt32 `json:"redirection_time,omitempty"`
-	Slug                 *string       `json:"slug,omitempty"`
-	SmsSent              *int32        `json:"sms_sent,omitempty"`
-	SuccessUrl           *string       `json:"success_url,omitempty"`
-	StartsAt             *int32        `json:"starts_at,omitempty"`
-	Status               *string       `json:"status,omitempty"`
-	Type                 *string       `json:"type,omitempty"`
-	Url                  *string       `json:"url,omitempty"`
+	RedirectionTime NullableInt32 `json:"redirection_time,omitempty"`
+	Slug *string `json:"slug,omitempty"`
+	SmsSent *int32 `json:"sms_sent,omitempty"`
+	SuccessUrl *string `json:"success_url,omitempty"`
+	StartsAt *int32 `json:"starts_at,omitempty"`
+	Status *string `json:"status,omitempty"`
+	Type *string `json:"type,omitempty"`
+	Url *string `json:"url,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -614,7 +614,6 @@ func (o *OrderResponseCheckout) HasOnDemandEnabled() bool {
 func (o *OrderResponseCheckout) SetOnDemandEnabled(v bool) {
 	o.OnDemandEnabled.Set(&v)
 }
-
 // SetOnDemandEnabledNil sets the value for OnDemandEnabled to be an explicit nil
 func (o *OrderResponseCheckout) SetOnDemandEnabledNil() {
 	o.OnDemandEnabled.Set(nil)
@@ -721,7 +720,6 @@ func (o *OrderResponseCheckout) HasRedirectionTime() bool {
 func (o *OrderResponseCheckout) SetRedirectionTime(v int32) {
 	o.RedirectionTime.Set(&v)
 }
-
 // SetRedirectionTimeNil sets the value for RedirectionTime to be an explicit nil
 func (o *OrderResponseCheckout) SetRedirectionTimeNil() {
 	o.RedirectionTime.Set(nil)
@@ -957,7 +955,7 @@ func (o *OrderResponseCheckout) SetUrl(v string) {
 }
 
 func (o OrderResponseCheckout) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -1137,3 +1135,5 @@ func (v *NullableOrderResponseCheckout) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

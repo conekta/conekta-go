@@ -23,8 +23,18 @@ var _ MappedNullable = &PaymentMethodCardRequest{}
 type PaymentMethodCardRequest struct {
 	// Type of payment method
 	Type string `json:"type"`
-	// Token id that will be used to create a \"card\" type payment method. See the (subscriptions)[https://developers.conekta.com/v2.1.0/reference/createsubscription] tutorial for more information on how to tokenize cards.
-	TokenId              string `json:"token_id"`
+	// Card security code
+	Cvc string `json:"cvc"`
+	// Card expiration month
+	ExpMonth string `json:"exp_month"`
+	// Card expiration year
+	ExpYear string `json:"exp_year"`
+	// Cardholder name
+	Name string `json:"name"`
+	// Card number
+	Number string `json:"number"`
+	// Optional field used to capture the customer's IP address for fraud prevention and security monitoring purposes
+	CustomerIpAddress *string `json:"customer_ip_address,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,10 +44,14 @@ type _PaymentMethodCardRequest PaymentMethodCardRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPaymentMethodCardRequest(type_ string, tokenId string) *PaymentMethodCardRequest {
+func NewPaymentMethodCardRequest(type_ string, cvc string, expMonth string, expYear string, name string, number string) *PaymentMethodCardRequest {
 	this := PaymentMethodCardRequest{}
 	this.Type = type_
-	this.TokenId = tokenId
+	this.Cvc = cvc
+	this.ExpMonth = expMonth
+	this.ExpYear = expYear
+	this.Name = name
+	this.Number = number
 	return &this
 }
 
@@ -73,32 +87,160 @@ func (o *PaymentMethodCardRequest) SetType(v string) {
 	o.Type = v
 }
 
-// GetTokenId returns the TokenId field value
-func (o *PaymentMethodCardRequest) GetTokenId() string {
+// GetCvc returns the Cvc field value
+func (o *PaymentMethodCardRequest) GetCvc() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.TokenId
+	return o.Cvc
 }
 
-// GetTokenIdOk returns a tuple with the TokenId field value
+// GetCvcOk returns a tuple with the Cvc field value
 // and a boolean to check if the value has been set.
-func (o *PaymentMethodCardRequest) GetTokenIdOk() (*string, bool) {
+func (o *PaymentMethodCardRequest) GetCvcOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.TokenId, true
+	return &o.Cvc, true
 }
 
-// SetTokenId sets field value
-func (o *PaymentMethodCardRequest) SetTokenId(v string) {
-	o.TokenId = v
+// SetCvc sets field value
+func (o *PaymentMethodCardRequest) SetCvc(v string) {
+	o.Cvc = v
+}
+
+// GetExpMonth returns the ExpMonth field value
+func (o *PaymentMethodCardRequest) GetExpMonth() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ExpMonth
+}
+
+// GetExpMonthOk returns a tuple with the ExpMonth field value
+// and a boolean to check if the value has been set.
+func (o *PaymentMethodCardRequest) GetExpMonthOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ExpMonth, true
+}
+
+// SetExpMonth sets field value
+func (o *PaymentMethodCardRequest) SetExpMonth(v string) {
+	o.ExpMonth = v
+}
+
+// GetExpYear returns the ExpYear field value
+func (o *PaymentMethodCardRequest) GetExpYear() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ExpYear
+}
+
+// GetExpYearOk returns a tuple with the ExpYear field value
+// and a boolean to check if the value has been set.
+func (o *PaymentMethodCardRequest) GetExpYearOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ExpYear, true
+}
+
+// SetExpYear sets field value
+func (o *PaymentMethodCardRequest) SetExpYear(v string) {
+	o.ExpYear = v
+}
+
+// GetName returns the Name field value
+func (o *PaymentMethodCardRequest) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *PaymentMethodCardRequest) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *PaymentMethodCardRequest) SetName(v string) {
+	o.Name = v
+}
+
+// GetNumber returns the Number field value
+func (o *PaymentMethodCardRequest) GetNumber() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Number
+}
+
+// GetNumberOk returns a tuple with the Number field value
+// and a boolean to check if the value has been set.
+func (o *PaymentMethodCardRequest) GetNumberOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Number, true
+}
+
+// SetNumber sets field value
+func (o *PaymentMethodCardRequest) SetNumber(v string) {
+	o.Number = v
+}
+
+// GetCustomerIpAddress returns the CustomerIpAddress field value if set, zero value otherwise.
+func (o *PaymentMethodCardRequest) GetCustomerIpAddress() string {
+	if o == nil || IsNil(o.CustomerIpAddress) {
+		var ret string
+		return ret
+	}
+	return *o.CustomerIpAddress
+}
+
+// GetCustomerIpAddressOk returns a tuple with the CustomerIpAddress field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaymentMethodCardRequest) GetCustomerIpAddressOk() (*string, bool) {
+	if o == nil || IsNil(o.CustomerIpAddress) {
+		return nil, false
+	}
+	return o.CustomerIpAddress, true
+}
+
+// HasCustomerIpAddress returns a boolean if a field has been set.
+func (o *PaymentMethodCardRequest) HasCustomerIpAddress() bool {
+	if o != nil && !IsNil(o.CustomerIpAddress) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomerIpAddress gets a reference to the given string and assigns it to the CustomerIpAddress field.
+func (o *PaymentMethodCardRequest) SetCustomerIpAddress(v string) {
+	o.CustomerIpAddress = &v
 }
 
 func (o PaymentMethodCardRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -108,7 +250,14 @@ func (o PaymentMethodCardRequest) MarshalJSON() ([]byte, error) {
 func (o PaymentMethodCardRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
-	toSerialize["token_id"] = o.TokenId
+	toSerialize["cvc"] = o.Cvc
+	toSerialize["exp_month"] = o.ExpMonth
+	toSerialize["exp_year"] = o.ExpYear
+	toSerialize["name"] = o.Name
+	toSerialize["number"] = o.Number
+	if !IsNil(o.CustomerIpAddress) {
+		toSerialize["customer_ip_address"] = o.CustomerIpAddress
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -123,7 +272,11 @@ func (o *PaymentMethodCardRequest) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"type",
-		"token_id",
+		"cvc",
+		"exp_month",
+		"exp_year",
+		"name",
+		"number",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -131,10 +284,10 @@ func (o *PaymentMethodCardRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -154,7 +307,12 @@ func (o *PaymentMethodCardRequest) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "type")
-		delete(additionalProperties, "token_id")
+		delete(additionalProperties, "cvc")
+		delete(additionalProperties, "exp_month")
+		delete(additionalProperties, "exp_year")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "number")
+		delete(additionalProperties, "customer_ip_address")
 		o.AdditionalProperties = additionalProperties
 	}
 
@@ -196,3 +354,5 @@ func (v *NullablePaymentMethodCardRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -27,7 +27,7 @@ type PlanUpdateRequest struct {
 	// Number of repetitions of the frequency NUMBER OF CHARGES TO BE MADE, considering the interval and frequency, this evolves over time, but is subject to the expiration count.
 	ExpiryCount *int32 `json:"expiry_count,omitempty"`
 	// The name of the plan.
-	Name                 *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -179,7 +179,7 @@ func (o *PlanUpdateRequest) SetName(v string) {
 }
 
 func (o PlanUpdateRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -267,3 +267,5 @@ func (v *NullablePlanUpdateRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

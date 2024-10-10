@@ -21,7 +21,7 @@ var _ MappedNullable = &WebhookKeyUpdateRequest{}
 // WebhookKeyUpdateRequest struct for WebhookKeyUpdateRequest
 type WebhookKeyUpdateRequest struct {
 	// Indicates if the webhook key is active
-	Active               *bool `json:"active,omitempty"`
+	Active *bool `json:"active,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -81,7 +81,7 @@ func (o *WebhookKeyUpdateRequest) SetActive(v bool) {
 }
 
 func (o WebhookKeyUpdateRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -157,3 +157,5 @@ func (v *NullableWebhookKeyUpdateRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

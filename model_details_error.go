@@ -20,10 +20,10 @@ var _ MappedNullable = &DetailsError{}
 
 // DetailsError struct for DetailsError
 type DetailsError struct {
-	Code                 *string        `json:"code,omitempty"`
-	Param                NullableString `json:"param,omitempty"`
-	Message              *string        `json:"message,omitempty"`
-	DebugMessage         *string        `json:"debug_message,omitempty"`
+	Code *string `json:"code,omitempty"`
+	Param NullableString `json:"param,omitempty"`
+	Message *string `json:"message,omitempty"`
+	DebugMessage *string `json:"debug_message,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -110,7 +110,6 @@ func (o *DetailsError) HasParam() bool {
 func (o *DetailsError) SetParam(v string) {
 	o.Param.Set(&v)
 }
-
 // SetParamNil sets the value for Param to be an explicit nil
 func (o *DetailsError) SetParamNil() {
 	o.Param.Set(nil)
@@ -186,7 +185,7 @@ func (o *DetailsError) SetDebugMessage(v string) {
 }
 
 func (o DetailsError) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -274,3 +273,5 @@ func (v *NullableDetailsError) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **BillingCycleStart** | Pointer to **NullableInt64** |  | [optional] 
 **BillingCycleEnd** | Pointer to **NullableInt64** |  | [optional] 
 **CanceledAt** | Pointer to **NullableInt64** |  | [optional] 
+**CanceledReason** | Pointer to **string** | Reason for cancellation. This field appears when the subscription status is &#39;canceled&#39;. | [optional] 
 **CardId** | Pointer to **string** |  | [optional] 
 **ChargeId** | Pointer to **NullableString** |  | [optional] 
 **CreatedAt** | Pointer to **int64** |  | [optional] 
@@ -146,6 +147,31 @@ HasCanceledAt returns a boolean if a field has been set.
 `func (o *SubscriptionResponse) UnsetCanceledAt()`
 
 UnsetCanceledAt ensures that no value is present for CanceledAt, not even an explicit nil
+### GetCanceledReason
+
+`func (o *SubscriptionResponse) GetCanceledReason() string`
+
+GetCanceledReason returns the CanceledReason field if non-nil, zero value otherwise.
+
+### GetCanceledReasonOk
+
+`func (o *SubscriptionResponse) GetCanceledReasonOk() (*string, bool)`
+
+GetCanceledReasonOk returns a tuple with the CanceledReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCanceledReason
+
+`func (o *SubscriptionResponse) SetCanceledReason(v string)`
+
+SetCanceledReason sets CanceledReason field to given value.
+
+### HasCanceledReason
+
+`func (o *SubscriptionResponse) HasCanceledReason() bool`
+
+HasCanceledReason returns a boolean if a field has been set.
+
 ### GetCardId
 
 `func (o *SubscriptionResponse) GetCardId() string`

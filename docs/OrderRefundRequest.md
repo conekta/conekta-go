@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | **int32** |  | 
+**Amount** | **int32** | Amount to be refunded in cents | 
 **ExpiresAt** | Pointer to **NullableInt64** |  | [optional] 
-**Reason** | **string** |  | 
+**Reason** | **string** | Reason for the refund | 
 
 ## Methods
 

@@ -22,9 +22,9 @@ var _ MappedNullable = &ModelError{}
 type ModelError struct {
 	Details []DetailsError `json:"details,omitempty"`
 	// log id
-	LogId                NullableString `json:"log_id,omitempty"`
-	Type                 *string        `json:"type,omitempty"`
-	Object               *string        `json:"object,omitempty"`
+	LogId NullableString `json:"log_id,omitempty"`
+	Type *string `json:"type,omitempty"`
+	Object *string `json:"object,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -111,7 +111,6 @@ func (o *ModelError) HasLogId() bool {
 func (o *ModelError) SetLogId(v string) {
 	o.LogId.Set(&v)
 }
-
 // SetLogIdNil sets the value for LogId to be an explicit nil
 func (o *ModelError) SetLogIdNil() {
 	o.LogId.Set(nil)
@@ -187,7 +186,7 @@ func (o *ModelError) SetObject(v string) {
 }
 
 func (o ModelError) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -275,3 +274,5 @@ func (v *NullableModelError) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

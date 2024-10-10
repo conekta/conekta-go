@@ -21,9 +21,9 @@ var _ MappedNullable = &SubscriptionRequest{}
 
 // SubscriptionRequest It is a parameter that allows to identify in the response, the detailed content of the plans to which the client has subscribed
 type SubscriptionRequest struct {
-	PlanId               string  `json:"plan_id"`
-	CardId               *string `json:"card_id,omitempty"`
-	TrialEnd             *int32  `json:"trial_end,omitempty"`
+	PlanId string `json:"plan_id"`
+	CardId *string `json:"card_id,omitempty"`
+	TrialEnd *int32 `json:"trial_end,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -136,7 +136,7 @@ func (o *SubscriptionRequest) SetTrialEnd(v int32) {
 }
 
 func (o SubscriptionRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -173,10 +173,10 @@ func (o *SubscriptionRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -239,3 +239,5 @@ func (v *NullableSubscriptionRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -26,9 +26,8 @@ func Test_conekta_PaymentMethodsApiService(t *testing.T) {
 
 	t.Run("Test PaymentMethodsApiService CreateCustomerPaymentMethods", func(t *testing.T) {
 		req := conekta.CreateCustomerPaymentMethodsRequest{
-			PaymentMethodCardRequest: &conekta.PaymentMethodCardRequest{
-				Type:    "oxxo_recurrent",
-				TokenId: "tokenID",
+			PaymentMethodCashRequest: &conekta.PaymentMethodCashRequest{
+				Type: "oxxo_recurrent",
 			},
 		}
 		resp, httpRes, err := apiClient.PaymentMethodsAPI.CreateCustomerPaymentMethods(context.TODO(), "cus_2tXyF9BwPG14UMkkg").

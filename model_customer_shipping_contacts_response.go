@@ -20,18 +20,18 @@ var _ MappedNullable = &CustomerShippingContactsResponse{}
 
 // CustomerShippingContactsResponse Contains the detail of the shipping addresses that the client has active or has used in Conekta
 type CustomerShippingContactsResponse struct {
-	Phone          *string                                  `json:"phone,omitempty"`
-	Receiver       *string                                  `json:"receiver,omitempty"`
-	BetweenStreets NullableString                           `json:"between_streets,omitempty"`
-	Address        *CustomerShippingContactsResponseAddress `json:"address,omitempty"`
-	ParentId       *string                                  `json:"parent_id,omitempty"`
-	Default        *bool                                    `json:"default,omitempty"`
-	Id             *string                                  `json:"id,omitempty"`
-	CreatedAt      *int64                                   `json:"created_at,omitempty"`
+	Phone *string `json:"phone,omitempty"`
+	Receiver *string `json:"receiver,omitempty"`
+	BetweenStreets NullableString `json:"between_streets,omitempty"`
+	Address *CustomerShippingContactsResponseAddress `json:"address,omitempty"`
+	ParentId *string `json:"parent_id,omitempty"`
+	Default *bool `json:"default,omitempty"`
+	Id *string `json:"id,omitempty"`
+	CreatedAt *int64 `json:"created_at,omitempty"`
 	// Metadata associated with the shipping contact
-	Metadata             map[string]interface{} `json:"metadata,omitempty"`
-	Object               *string                `json:"object,omitempty"`
-	Deleted              *bool                  `json:"deleted,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	Object *string `json:"object,omitempty"`
+	Deleted *bool `json:"deleted,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -150,7 +150,6 @@ func (o *CustomerShippingContactsResponse) HasBetweenStreets() bool {
 func (o *CustomerShippingContactsResponse) SetBetweenStreets(v string) {
 	o.BetweenStreets.Set(&v)
 }
-
 // SetBetweenStreetsNil sets the value for BetweenStreets to be an explicit nil
 func (o *CustomerShippingContactsResponse) SetBetweenStreetsNil() {
 	o.BetweenStreets.Set(nil)
@@ -418,7 +417,7 @@ func (o *CustomerShippingContactsResponse) SetDeleted(v bool) {
 }
 
 func (o CustomerShippingContactsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -534,3 +533,5 @@ func (v *NullableCustomerShippingContactsResponse) UnmarshalJSON(src []byte) err
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

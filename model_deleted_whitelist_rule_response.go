@@ -27,7 +27,7 @@ type DeletedWhitelistRuleResponse struct {
 	// value used for whitelists rule deleted
 	Value *string `json:"value,omitempty"`
 	// use an description for whitelisted rule
-	Description          *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -179,7 +179,7 @@ func (o *DeletedWhitelistRuleResponse) SetDescription(v string) {
 }
 
 func (o DeletedWhitelistRuleResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -267,3 +267,5 @@ func (v *NullableDeletedWhitelistRuleResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -4,9 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Type** | **string** | Type of payment method | 
+**Cvc** | **string** | Optional, It is a value that allows identifying the security code of the card. Only for PCI merchants | 
+**ExpMonth** | **string** | Card expiration month | 
+**ExpYear** | **string** | Card expiration year | 
+**Name** | **string** | Cardholder name | 
+**Number** | **string** | Card number | 
+**CustomerIpAddress** | Pointer to **string** | Optional field used to capture the customer&#39;s IP address for fraud prevention and security monitoring purposes | [optional] 
 **ExpiresAt** | Pointer to **int64** | Method expiration date as unix timestamp | [optional] 
 **MonthlyInstallments** | Pointer to **int32** | How many months without interest to apply, it can be 3, 6, 9, 12 or 18 | [optional] 
-**Type** | **string** |  | 
 **TokenId** | Pointer to **string** |  | [optional] 
 **PaymentSourceId** | Pointer to **string** |  | [optional] 
 **ContractId** | Pointer to **string** | Optional id sent to indicate the bank contract for recurrent card charges. | [optional] 
@@ -15,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewChargeRequestPaymentMethod
 
-`func NewChargeRequestPaymentMethod(type_ string, ) *ChargeRequestPaymentMethod`
+`func NewChargeRequestPaymentMethod(type_ string, cvc string, expMonth string, expYear string, name string, number string, ) *ChargeRequestPaymentMethod`
 
 NewChargeRequestPaymentMethod instantiates a new ChargeRequestPaymentMethod object
 This constructor will assign default values to properties that have it defined,
@@ -29,6 +35,151 @@ will change when the set of required properties is changed
 NewChargeRequestPaymentMethodWithDefaults instantiates a new ChargeRequestPaymentMethod object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetType
+
+`func (o *ChargeRequestPaymentMethod) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *ChargeRequestPaymentMethod) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *ChargeRequestPaymentMethod) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
+### GetCvc
+
+`func (o *ChargeRequestPaymentMethod) GetCvc() string`
+
+GetCvc returns the Cvc field if non-nil, zero value otherwise.
+
+### GetCvcOk
+
+`func (o *ChargeRequestPaymentMethod) GetCvcOk() (*string, bool)`
+
+GetCvcOk returns a tuple with the Cvc field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCvc
+
+`func (o *ChargeRequestPaymentMethod) SetCvc(v string)`
+
+SetCvc sets Cvc field to given value.
+
+
+### GetExpMonth
+
+`func (o *ChargeRequestPaymentMethod) GetExpMonth() string`
+
+GetExpMonth returns the ExpMonth field if non-nil, zero value otherwise.
+
+### GetExpMonthOk
+
+`func (o *ChargeRequestPaymentMethod) GetExpMonthOk() (*string, bool)`
+
+GetExpMonthOk returns a tuple with the ExpMonth field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpMonth
+
+`func (o *ChargeRequestPaymentMethod) SetExpMonth(v string)`
+
+SetExpMonth sets ExpMonth field to given value.
+
+
+### GetExpYear
+
+`func (o *ChargeRequestPaymentMethod) GetExpYear() string`
+
+GetExpYear returns the ExpYear field if non-nil, zero value otherwise.
+
+### GetExpYearOk
+
+`func (o *ChargeRequestPaymentMethod) GetExpYearOk() (*string, bool)`
+
+GetExpYearOk returns a tuple with the ExpYear field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpYear
+
+`func (o *ChargeRequestPaymentMethod) SetExpYear(v string)`
+
+SetExpYear sets ExpYear field to given value.
+
+
+### GetName
+
+`func (o *ChargeRequestPaymentMethod) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ChargeRequestPaymentMethod) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ChargeRequestPaymentMethod) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetNumber
+
+`func (o *ChargeRequestPaymentMethod) GetNumber() string`
+
+GetNumber returns the Number field if non-nil, zero value otherwise.
+
+### GetNumberOk
+
+`func (o *ChargeRequestPaymentMethod) GetNumberOk() (*string, bool)`
+
+GetNumberOk returns a tuple with the Number field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNumber
+
+`func (o *ChargeRequestPaymentMethod) SetNumber(v string)`
+
+SetNumber sets Number field to given value.
+
+
+### GetCustomerIpAddress
+
+`func (o *ChargeRequestPaymentMethod) GetCustomerIpAddress() string`
+
+GetCustomerIpAddress returns the CustomerIpAddress field if non-nil, zero value otherwise.
+
+### GetCustomerIpAddressOk
+
+`func (o *ChargeRequestPaymentMethod) GetCustomerIpAddressOk() (*string, bool)`
+
+GetCustomerIpAddressOk returns a tuple with the CustomerIpAddress field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomerIpAddress
+
+`func (o *ChargeRequestPaymentMethod) SetCustomerIpAddress(v string)`
+
+SetCustomerIpAddress sets CustomerIpAddress field to given value.
+
+### HasCustomerIpAddress
+
+`func (o *ChargeRequestPaymentMethod) HasCustomerIpAddress() bool`
+
+HasCustomerIpAddress returns a boolean if a field has been set.
 
 ### GetExpiresAt
 
@@ -79,26 +230,6 @@ SetMonthlyInstallments sets MonthlyInstallments field to given value.
 `func (o *ChargeRequestPaymentMethod) HasMonthlyInstallments() bool`
 
 HasMonthlyInstallments returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *ChargeRequestPaymentMethod) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *ChargeRequestPaymentMethod) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *ChargeRequestPaymentMethod) SetType(v string)`
-
-SetType sets Type field to given value.
-
 
 ### GetTokenId
 

@@ -24,8 +24,8 @@ type OrderTaxRequest struct {
 	// The amount to be collected for tax in cents
 	Amount int64 `json:"amount"`
 	// description or tax's name
-	Description          string                 `json:"description"`
-	Metadata             map[string]interface{} `json:"metadata,omitempty"`
+	Description string `json:"description"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -131,7 +131,7 @@ func (o *OrderTaxRequest) SetMetadata(v map[string]interface{}) {
 }
 
 func (o OrderTaxRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -167,10 +167,10 @@ func (o *OrderTaxRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -233,3 +233,5 @@ func (v *NullableOrderTaxRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

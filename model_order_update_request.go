@@ -20,23 +20,23 @@ var _ MappedNullable = &OrderUpdateRequest{}
 
 // OrderUpdateRequest a order
 type OrderUpdateRequest struct {
-	Charges  []ChargeRequest  `json:"charges,omitempty"`
+	Charges []ChargeRequest `json:"charges,omitempty"`
 	Checkout *CheckoutRequest `json:"checkout,omitempty"`
 	// Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)
-	Currency     *string                         `json:"currency,omitempty"`
+	Currency *string `json:"currency,omitempty"`
 	CustomerInfo *OrderUpdateRequestCustomerInfo `json:"customer_info,omitempty"`
 	// List of [discounts](https://developers.conekta.com/v2.1.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount.
-	DiscountLines []OrderDiscountLinesRequest     `json:"discount_lines,omitempty"`
-	FiscalEntity  *OrderUpdateFiscalEntityRequest `json:"fiscal_entity,omitempty"`
+	DiscountLines []OrderDiscountLinesRequest `json:"discount_lines,omitempty"`
+	FiscalEntity *OrderUpdateFiscalEntityRequest `json:"fiscal_entity,omitempty"`
 	// List of [products](https://developers.conekta.com/v2.1.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
-	LineItems []Product          `json:"line_items,omitempty"`
-	Metadata  *map[string]string `json:"metadata,omitempty"`
+	LineItems []Product `json:"line_items,omitempty"`
+	Metadata *map[string]string `json:"metadata,omitempty"`
 	// Indicates whether the order charges must be preauthorized
-	PreAuthorize    *bool                     `json:"pre_authorize,omitempty"`
+	PreAuthorize *bool `json:"pre_authorize,omitempty"`
 	ShippingContact *CustomerShippingContacts `json:"shipping_contact,omitempty"`
 	// List of [shipping costs](https://developers.conekta.com/v2.1.0/reference/orderscreateshipping). If the online store offers digital products.
-	ShippingLines        []ShippingRequest `json:"shipping_lines,omitempty"`
-	TaxLines             []OrderTaxRequest `json:"tax_lines,omitempty"`
+	ShippingLines []ShippingRequest `json:"shipping_lines,omitempty"`
+	TaxLines []OrderTaxRequest `json:"tax_lines,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -448,7 +448,7 @@ func (o *OrderUpdateRequest) SetTaxLines(v []OrderTaxRequest) {
 }
 
 func (o OrderUpdateRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -568,3 +568,5 @@ func (v *NullableOrderUpdateRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

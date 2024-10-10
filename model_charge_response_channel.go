@@ -20,10 +20,10 @@ var _ MappedNullable = &ChargeResponseChannel{}
 
 // ChargeResponseChannel struct for ChargeResponseChannel
 type ChargeResponseChannel struct {
-	Segment              *string `json:"segment,omitempty"`
-	CheckoutRequestId    *string `json:"checkout_request_id,omitempty"`
-	CheckoutRequestType  *string `json:"checkout_request_type,omitempty"`
-	Id                   *string `json:"id,omitempty"`
+	Segment *string `json:"segment,omitempty"`
+	CheckoutRequestId *string `json:"checkout_request_id,omitempty"`
+	CheckoutRequestType *string `json:"checkout_request_type,omitempty"`
+	Id *string `json:"id,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -175,7 +175,7 @@ func (o *ChargeResponseChannel) SetId(v string) {
 }
 
 func (o ChargeResponseChannel) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -263,3 +263,5 @@ func (v *NullableChargeResponseChannel) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -21,32 +21,32 @@ var _ MappedNullable = &CheckoutResponse{}
 
 // CheckoutResponse checkout response
 type CheckoutResponse struct {
-	AllowedPaymentMethods      []string                 `json:"allowed_payment_methods,omitempty"`
-	CanNotExpire               *bool                    `json:"can_not_expire,omitempty"`
-	EmailsSent                 *int32                   `json:"emails_sent,omitempty"`
-	ExcludeCardNetworks        []map[string]interface{} `json:"exclude_card_networks,omitempty"`
-	ExpiresAt                  *int64                   `json:"expires_at,omitempty"`
-	FailureUrl                 *string                  `json:"failure_url,omitempty"`
-	Force3dsFlow               *bool                    `json:"force_3ds_flow,omitempty"`
-	Id                         string                   `json:"id"`
-	Livemode                   bool                     `json:"livemode"`
-	Metadata                   map[string]interface{}   `json:"metadata,omitempty"`
-	MonthlyInstallmentsEnabled *bool                    `json:"monthly_installments_enabled,omitempty"`
-	MonthlyInstallmentsOptions []int32                  `json:"monthly_installments_options,omitempty"`
+	AllowedPaymentMethods []string `json:"allowed_payment_methods,omitempty"`
+	CanNotExpire *bool `json:"can_not_expire,omitempty"`
+	EmailsSent *int32 `json:"emails_sent,omitempty"`
+	ExcludeCardNetworks []map[string]interface{} `json:"exclude_card_networks,omitempty"`
+	ExpiresAt *int64 `json:"expires_at,omitempty"`
+	FailureUrl *string `json:"failure_url,omitempty"`
+	Force3dsFlow *bool `json:"force_3ds_flow,omitempty"`
+	Id string `json:"id"`
+	Livemode bool `json:"livemode"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	MonthlyInstallmentsEnabled *bool `json:"monthly_installments_enabled,omitempty"`
+	MonthlyInstallmentsOptions []int32 `json:"monthly_installments_options,omitempty"`
 	// Reason for charge
-	Name                 string        `json:"name"`
-	NeedsShippingContact *bool         `json:"needs_shipping_contact,omitempty"`
-	Object               string        `json:"object"`
-	PaidPaymentsCount    *int32        `json:"paid_payments_count,omitempty"`
-	PaymentsLimitCount   NullableInt32 `json:"payments_limit_count,omitempty"`
-	Recurrent            *bool         `json:"recurrent,omitempty"`
-	Slug                 *string       `json:"slug,omitempty"`
-	SmsSent              *int32        `json:"sms_sent,omitempty"`
-	StartsAt             *int32        `json:"starts_at,omitempty"`
-	Status               *string       `json:"status,omitempty"`
-	SuccessUrl           *string       `json:"success_url,omitempty"`
-	Type                 *string       `json:"type,omitempty"`
-	Url                  *string       `json:"url,omitempty"`
+	Name string `json:"name"`
+	NeedsShippingContact *bool `json:"needs_shipping_contact,omitempty"`
+	Object string `json:"object"`
+	PaidPaymentsCount *int32 `json:"paid_payments_count,omitempty"`
+	PaymentsLimitCount NullableInt32 `json:"payments_limit_count,omitempty"`
+	Recurrent *bool `json:"recurrent,omitempty"`
+	Slug *string `json:"slug,omitempty"`
+	SmsSent *int32 `json:"sms_sent,omitempty"`
+	StartsAt *int32 `json:"starts_at,omitempty"`
+	Status *string `json:"status,omitempty"`
+	SuccessUrl *string `json:"success_url,omitempty"`
+	Type *string `json:"type,omitempty"`
+	Url *string `json:"url,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -585,7 +585,6 @@ func (o *CheckoutResponse) HasPaymentsLimitCount() bool {
 func (o *CheckoutResponse) SetPaymentsLimitCount(v int32) {
 	o.PaymentsLimitCount.Set(&v)
 }
-
 // SetPaymentsLimitCountNil sets the value for PaymentsLimitCount to be an explicit nil
 func (o *CheckoutResponse) SetPaymentsLimitCountNil() {
 	o.PaymentsLimitCount.Set(nil)
@@ -853,7 +852,7 @@ func (o *CheckoutResponse) SetUrl(v string) {
 }
 
 func (o CheckoutResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -953,10 +952,10 @@ func (o *CheckoutResponse) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -1041,3 +1040,5 @@ func (v *NullableCheckoutResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

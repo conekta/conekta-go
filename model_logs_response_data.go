@@ -20,26 +20,26 @@ var _ MappedNullable = &LogsResponseData{}
 
 // LogsResponseData struct for LogsResponseData
 type LogsResponseData struct {
-	CreatedAt            *int64                 `json:"created_at,omitempty"`
-	Id                   *string                `json:"id,omitempty"`
-	IpAddress            *string                `json:"ip_address,omitempty"`
-	Livemode             *bool                  `json:"livemode,omitempty"`
-	LoggableId           NullableString         `json:"loggable_id,omitempty"`
-	LoggableType         NullableString         `json:"loggable_type,omitempty"`
-	Method               *string                `json:"method,omitempty"`
-	OauthTokenId         NullableString         `json:"oauth_token_id,omitempty"`
-	QueryString          map[string]interface{} `json:"query_string,omitempty"`
-	Related              *string                `json:"related,omitempty"`
-	RequestBody          map[string]interface{} `json:"request_body,omitempty"`
-	RequestHeaders       *map[string]string     `json:"request_headers,omitempty"`
-	ResponseBody         map[string]interface{} `json:"response_body,omitempty"`
-	ResponseHeaders      *map[string]string     `json:"response_headers,omitempty"`
-	SearchableTags       []string               `json:"searchable_tags,omitempty"`
-	Status               *string                `json:"status,omitempty"`
-	UpdatedAt            *string                `json:"updated_at,omitempty"`
-	Url                  *string                `json:"url,omitempty"`
-	UserAccountId        *string                `json:"user_account_id,omitempty"`
-	Version              *string                `json:"version,omitempty"`
+	CreatedAt *int64 `json:"created_at,omitempty"`
+	Id *string `json:"id,omitempty"`
+	IpAddress *string `json:"ip_address,omitempty"`
+	Livemode *bool `json:"livemode,omitempty"`
+	LoggableId NullableString `json:"loggable_id,omitempty"`
+	LoggableType NullableString `json:"loggable_type,omitempty"`
+	Method *string `json:"method,omitempty"`
+	OauthTokenId NullableString `json:"oauth_token_id,omitempty"`
+	QueryString map[string]interface{} `json:"query_string,omitempty"`
+	Related *string `json:"related,omitempty"`
+	RequestBody map[string]interface{} `json:"request_body,omitempty"`
+	RequestHeaders *map[string]string `json:"request_headers,omitempty"`
+	ResponseBody map[string]interface{} `json:"response_body,omitempty"`
+	ResponseHeaders *map[string]string `json:"response_headers,omitempty"`
+	SearchableTags []string `json:"searchable_tags,omitempty"`
+	Status *string `json:"status,omitempty"`
+	UpdatedAt *string `json:"updated_at,omitempty"`
+	Url *string `json:"url,omitempty"`
+	UserAccountId *string `json:"user_account_id,omitempty"`
+	Version *string `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -222,7 +222,6 @@ func (o *LogsResponseData) HasLoggableId() bool {
 func (o *LogsResponseData) SetLoggableId(v string) {
 	o.LoggableId.Set(&v)
 }
-
 // SetLoggableIdNil sets the value for LoggableId to be an explicit nil
 func (o *LogsResponseData) SetLoggableIdNil() {
 	o.LoggableId.Set(nil)
@@ -265,7 +264,6 @@ func (o *LogsResponseData) HasLoggableType() bool {
 func (o *LogsResponseData) SetLoggableType(v string) {
 	o.LoggableType.Set(&v)
 }
-
 // SetLoggableTypeNil sets the value for LoggableType to be an explicit nil
 func (o *LogsResponseData) SetLoggableTypeNil() {
 	o.LoggableType.Set(nil)
@@ -340,7 +338,6 @@ func (o *LogsResponseData) HasOauthTokenId() bool {
 func (o *LogsResponseData) SetOauthTokenId(v string) {
 	o.OauthTokenId.Set(&v)
 }
-
 // SetOauthTokenIdNil sets the value for OauthTokenId to be an explicit nil
 func (o *LogsResponseData) SetOauthTokenIdNil() {
 	o.OauthTokenId.Set(nil)
@@ -736,7 +733,7 @@ func (o *LogsResponseData) SetVersion(v string) {
 }
 
 func (o LogsResponseData) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -888,3 +885,5 @@ func (v *NullableLogsResponseData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

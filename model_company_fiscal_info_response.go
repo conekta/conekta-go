@@ -31,9 +31,9 @@ type CompanyFiscalInfoResponse struct {
 	// Phone number of the company
 	Phone *string `json:"phone,omitempty"`
 	// Business type if 'persona_fisica'
-	PhysicalPersonBusinessType *string                           `json:"physical_person_business_type,omitempty"`
-	Address                    *CompanyFiscalInfoAddressResponse `json:"address,omitempty"`
-	AdditionalProperties       map[string]interface{}
+	PhysicalPersonBusinessType *string `json:"physical_person_business_type,omitempty"`
+	Address *CompanyFiscalInfoAddressResponse `json:"address,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CompanyFiscalInfoResponse CompanyFiscalInfoResponse
@@ -280,7 +280,7 @@ func (o *CompanyFiscalInfoResponse) SetAddress(v CompanyFiscalInfoAddressRespons
 }
 
 func (o CompanyFiscalInfoResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -380,3 +380,5 @@ func (v *NullableCompanyFiscalInfoResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+
