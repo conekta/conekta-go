@@ -30,7 +30,7 @@ type GetTransactionsResponse struct {
 	// Url of the previous page.
 	PreviousPageUrl NullableString `json:"previous_page_url,omitempty"`
 	// Transactions
-	Data                 []TransactionResponse `json:"data,omitempty"`
+	Data []TransactionResponse `json:"data,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -135,7 +135,6 @@ func (o *GetTransactionsResponse) HasNextPageUrl() bool {
 func (o *GetTransactionsResponse) SetNextPageUrl(v string) {
 	o.NextPageUrl.Set(&v)
 }
-
 // SetNextPageUrlNil sets the value for NextPageUrl to be an explicit nil
 func (o *GetTransactionsResponse) SetNextPageUrlNil() {
 	o.NextPageUrl.Set(nil)
@@ -178,7 +177,6 @@ func (o *GetTransactionsResponse) HasPreviousPageUrl() bool {
 func (o *GetTransactionsResponse) SetPreviousPageUrl(v string) {
 	o.PreviousPageUrl.Set(&v)
 }
-
 // SetPreviousPageUrlNil sets the value for PreviousPageUrl to be an explicit nil
 func (o *GetTransactionsResponse) SetPreviousPageUrlNil() {
 	o.PreviousPageUrl.Set(nil)
@@ -222,7 +220,7 @@ func (o *GetTransactionsResponse) SetData(v []TransactionResponse) {
 }
 
 func (o GetTransactionsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -264,10 +262,10 @@ func (o *GetTransactionsResponse) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -332,3 +330,5 @@ func (v *NullableGetTransactionsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

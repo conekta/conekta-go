@@ -18,16 +18,9 @@ import (
 
 // CreateCustomerPaymentMethodsRequest - Contains details of the payment methods that the customer has active or has used in Conekta
 type CreateCustomerPaymentMethodsRequest struct {
-	PaymentMethodCardRequest *PaymentMethodCardRequest
 	PaymentMethodCashRequest *PaymentMethodCashRequest
 	PaymentMethodSpeiRequest *PaymentMethodSpeiRequest
-}
-
-// PaymentMethodCardRequestAsCreateCustomerPaymentMethodsRequest is a convenience function that returns PaymentMethodCardRequest wrapped in CreateCustomerPaymentMethodsRequest
-func PaymentMethodCardRequestAsCreateCustomerPaymentMethodsRequest(v *PaymentMethodCardRequest) CreateCustomerPaymentMethodsRequest {
-	return CreateCustomerPaymentMethodsRequest{
-		PaymentMethodCardRequest: v,
-	}
+	PaymentMethodTokenRequest *PaymentMethodTokenRequest
 }
 
 // PaymentMethodCashRequestAsCreateCustomerPaymentMethodsRequest is a convenience function that returns PaymentMethodCashRequest wrapped in CreateCustomerPaymentMethodsRequest
@@ -44,24 +37,18 @@ func PaymentMethodSpeiRequestAsCreateCustomerPaymentMethodsRequest(v *PaymentMet
 	}
 }
 
+// PaymentMethodTokenRequestAsCreateCustomerPaymentMethodsRequest is a convenience function that returns PaymentMethodTokenRequest wrapped in CreateCustomerPaymentMethodsRequest
+func PaymentMethodTokenRequestAsCreateCustomerPaymentMethodsRequest(v *PaymentMethodTokenRequest) CreateCustomerPaymentMethodsRequest {
+	return CreateCustomerPaymentMethodsRequest{
+		PaymentMethodTokenRequest: v,
+	}
+}
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *CreateCustomerPaymentMethodsRequest) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into PaymentMethodCardRequest
-	err = json.Unmarshal(data, &dst.PaymentMethodCardRequest)
-	if err == nil {
-		jsonPaymentMethodCardRequest, _ := json.Marshal(dst.PaymentMethodCardRequest)
-		if string(jsonPaymentMethodCardRequest) == "{}" { // empty struct
-			dst.PaymentMethodCardRequest = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.PaymentMethodCardRequest = nil
-	}
-
 	// try to unmarshal data into PaymentMethodCashRequest
 	err = json.Unmarshal(data, &dst.PaymentMethodCashRequest)
 	if err == nil {
@@ -88,11 +75,24 @@ func (dst *CreateCustomerPaymentMethodsRequest) UnmarshalJSON(data []byte) error
 		dst.PaymentMethodSpeiRequest = nil
 	}
 
+	// try to unmarshal data into PaymentMethodTokenRequest
+	err = json.Unmarshal(data, &dst.PaymentMethodTokenRequest)
+	if err == nil {
+		jsonPaymentMethodTokenRequest, _ := json.Marshal(dst.PaymentMethodTokenRequest)
+		if string(jsonPaymentMethodTokenRequest) == "{}" { // empty struct
+			dst.PaymentMethodTokenRequest = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.PaymentMethodTokenRequest = nil
+	}
+
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.PaymentMethodCardRequest = nil
 		dst.PaymentMethodCashRequest = nil
 		dst.PaymentMethodSpeiRequest = nil
+		dst.PaymentMethodTokenRequest = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(CreateCustomerPaymentMethodsRequest)")
 	} else if match == 1 {
@@ -104,16 +104,16 @@ func (dst *CreateCustomerPaymentMethodsRequest) UnmarshalJSON(data []byte) error
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src CreateCustomerPaymentMethodsRequest) MarshalJSON() ([]byte, error) {
-	if src.PaymentMethodCardRequest != nil {
-		return json.Marshal(&src.PaymentMethodCardRequest)
-	}
-
 	if src.PaymentMethodCashRequest != nil {
 		return json.Marshal(&src.PaymentMethodCashRequest)
 	}
 
 	if src.PaymentMethodSpeiRequest != nil {
 		return json.Marshal(&src.PaymentMethodSpeiRequest)
+	}
+
+	if src.PaymentMethodTokenRequest != nil {
+		return json.Marshal(&src.PaymentMethodTokenRequest)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -124,16 +124,16 @@ func (obj *CreateCustomerPaymentMethodsRequest) GetActualInstance() (interface{}
 	if obj == nil {
 		return nil
 	}
-	if obj.PaymentMethodCardRequest != nil {
-		return obj.PaymentMethodCardRequest
-	}
-
 	if obj.PaymentMethodCashRequest != nil {
 		return obj.PaymentMethodCashRequest
 	}
 
 	if obj.PaymentMethodSpeiRequest != nil {
 		return obj.PaymentMethodSpeiRequest
+	}
+
+	if obj.PaymentMethodTokenRequest != nil {
+		return obj.PaymentMethodTokenRequest
 	}
 
 	// all schemas are nil

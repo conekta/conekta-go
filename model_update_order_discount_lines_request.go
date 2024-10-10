@@ -22,8 +22,8 @@ var _ MappedNullable = &UpdateOrderDiscountLinesRequest{}
 type UpdateOrderDiscountLinesRequest struct {
 	Amount *int64 `json:"amount,omitempty"`
 	// Discount code.
-	Code                 *string `json:"code,omitempty"`
-	Type                 *string `json:"type,omitempty"`
+	Code *string `json:"code,omitempty"`
+	Type *string `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -143,7 +143,7 @@ func (o *UpdateOrderDiscountLinesRequest) SetType(v string) {
 }
 
 func (o UpdateOrderDiscountLinesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -227,3 +227,5 @@ func (v *NullableUpdateOrderDiscountLinesRequest) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

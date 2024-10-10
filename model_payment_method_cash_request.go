@@ -22,8 +22,8 @@ var _ MappedNullable = &PaymentMethodCashRequest{}
 // PaymentMethodCashRequest struct for PaymentMethodCashRequest
 type PaymentMethodCashRequest struct {
 	// Type of payment method
-	Type                 string `json:"type"`
-	ExpiresAt            *int64 `json:"expires_at,omitempty"`
+	Type string `json:"type"`
+	ExpiresAt *int64 `json:"expires_at,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -104,7 +104,7 @@ func (o *PaymentMethodCashRequest) SetExpiresAt(v int64) {
 }
 
 func (o PaymentMethodCashRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -138,10 +138,10 @@ func (o *PaymentMethodCashRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -203,3 +203,5 @@ func (v *NullablePaymentMethodCashRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

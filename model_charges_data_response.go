@@ -20,25 +20,29 @@ var _ MappedNullable = &ChargesDataResponse{}
 
 // ChargesDataResponse struct for ChargesDataResponse
 type ChargesDataResponse struct {
-	Amount            *int32                       `json:"amount,omitempty"`
-	Channel           *ChargeResponseChannel       `json:"channel,omitempty"`
-	CreatedAt         *int64                       `json:"created_at,omitempty"`
-	Currency          *string                      `json:"currency,omitempty"`
-	CustomerId        *string                      `json:"customer_id,omitempty"`
-	Description       *string                      `json:"description,omitempty"`
-	DeviceFingerprint *string                      `json:"device_fingerprint,omitempty"`
-	FailureCode       *string                      `json:"failure_code,omitempty"`
-	FailureMessage    *string                      `json:"failure_message,omitempty"`
-	Id                *string                      `json:"id,omitempty"`
-	Livemode          *bool                        `json:"livemode,omitempty"`
-	Object            *string                      `json:"object,omitempty"`
-	OrderId           *string                      `json:"order_id,omitempty"`
-	PaidAt            NullableInt32                `json:"paid_at,omitempty"`
-	PaymentMethod     *ChargeResponsePaymentMethod `json:"payment_method,omitempty"`
+	Amount *int32 `json:"amount,omitempty"`
+	Channel *ChargeResponseChannel `json:"channel,omitempty"`
+	CreatedAt *int64 `json:"created_at,omitempty"`
+	Currency *string `json:"currency,omitempty"`
+	CustomerId *string `json:"customer_id,omitempty"`
+	Description *string `json:"description,omitempty"`
+	DeviceFingerprint *string `json:"device_fingerprint,omitempty"`
+	FailureCode *string `json:"failure_code,omitempty"`
+	FailureMessage *string `json:"failure_message,omitempty"`
+	// Charge ID
+	Id *string `json:"id,omitempty"`
+	// Whether the charge was made in live mode or not
+	Livemode *bool `json:"livemode,omitempty"`
+	Object *string `json:"object,omitempty"`
+	// Order ID
+	OrderId *string `json:"order_id,omitempty"`
+	// Payment date
+	PaidAt NullableInt64 `json:"paid_at,omitempty"`
+	PaymentMethod *ChargeResponsePaymentMethod `json:"payment_method,omitempty"`
 	// Reference ID of the charge
-	ReferenceId          NullableString                `json:"reference_id,omitempty"`
-	Refunds              NullableChargeResponseRefunds `json:"refunds,omitempty"`
-	Status               *string                       `json:"status,omitempty"`
+	ReferenceId NullableString `json:"reference_id,omitempty"`
+	Refunds NullableChargeResponseRefunds `json:"refunds,omitempty"`
+	Status *string `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -478,9 +482,9 @@ func (o *ChargesDataResponse) SetOrderId(v string) {
 }
 
 // GetPaidAt returns the PaidAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ChargesDataResponse) GetPaidAt() int32 {
+func (o *ChargesDataResponse) GetPaidAt() int64 {
 	if o == nil || IsNil(o.PaidAt.Get()) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.PaidAt.Get()
@@ -489,7 +493,7 @@ func (o *ChargesDataResponse) GetPaidAt() int32 {
 // GetPaidAtOk returns a tuple with the PaidAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ChargesDataResponse) GetPaidAtOk() (*int32, bool) {
+func (o *ChargesDataResponse) GetPaidAtOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -505,11 +509,10 @@ func (o *ChargesDataResponse) HasPaidAt() bool {
 	return false
 }
 
-// SetPaidAt gets a reference to the given NullableInt32 and assigns it to the PaidAt field.
-func (o *ChargesDataResponse) SetPaidAt(v int32) {
+// SetPaidAt gets a reference to the given NullableInt64 and assigns it to the PaidAt field.
+func (o *ChargesDataResponse) SetPaidAt(v int64) {
 	o.PaidAt.Set(&v)
 }
-
 // SetPaidAtNil sets the value for PaidAt to be an explicit nil
 func (o *ChargesDataResponse) SetPaidAtNil() {
 	o.PaidAt.Set(nil)
@@ -584,7 +587,6 @@ func (o *ChargesDataResponse) HasReferenceId() bool {
 func (o *ChargesDataResponse) SetReferenceId(v string) {
 	o.ReferenceId.Set(&v)
 }
-
 // SetReferenceIdNil sets the value for ReferenceId to be an explicit nil
 func (o *ChargesDataResponse) SetReferenceIdNil() {
 	o.ReferenceId.Set(nil)
@@ -627,7 +629,6 @@ func (o *ChargesDataResponse) HasRefunds() bool {
 func (o *ChargesDataResponse) SetRefunds(v ChargeResponseRefunds) {
 	o.Refunds.Set(&v)
 }
-
 // SetRefundsNil sets the value for Refunds to be an explicit nil
 func (o *ChargesDataResponse) SetRefundsNil() {
 	o.Refunds.Set(nil)
@@ -671,7 +672,7 @@ func (o *ChargesDataResponse) SetStatus(v string) {
 }
 
 func (o ChargesDataResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -815,3 +816,5 @@ func (v *NullableChargesDataResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

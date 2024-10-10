@@ -20,8 +20,8 @@ var _ MappedNullable = &UpdateCustomerAntifraudInfo{}
 
 // UpdateCustomerAntifraudInfo struct for UpdateCustomerAntifraudInfo
 type UpdateCustomerAntifraudInfo struct {
-	AccountCreatedAt     *int64 `json:"account_created_at,omitempty"`
-	FirstPaidAt          *int32 `json:"first_paid_at,omitempty"`
+	AccountCreatedAt *int64 `json:"account_created_at,omitempty"`
+	FirstPaidAt *int32 `json:"first_paid_at,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -109,7 +109,7 @@ func (o *UpdateCustomerAntifraudInfo) SetFirstPaidAt(v int32) {
 }
 
 func (o UpdateCustomerAntifraudInfo) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -189,3 +189,5 @@ func (v *NullableUpdateCustomerAntifraudInfo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

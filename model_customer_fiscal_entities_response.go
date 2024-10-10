@@ -24,8 +24,8 @@ type CustomerFiscalEntitiesResponse struct {
 	// Indicates if there are more pages to be requested
 	HasMore bool `json:"has_more"`
 	// Object type, in this case is list
-	Object               string                               `json:"object"`
-	Data                 []CustomerFiscalEntitiesDataResponse `json:"data,omitempty"`
+	Object string `json:"object"`
+	Data []CustomerFiscalEntitiesDataResponse `json:"data,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -131,7 +131,7 @@ func (o *CustomerFiscalEntitiesResponse) SetData(v []CustomerFiscalEntitiesDataR
 }
 
 func (o CustomerFiscalEntitiesResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -167,10 +167,10 @@ func (o *CustomerFiscalEntitiesResponse) UnmarshalJSON(data []byte) (err error) 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -233,3 +233,5 @@ func (v *NullableCustomerFiscalEntitiesResponse) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

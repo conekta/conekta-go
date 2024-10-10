@@ -22,7 +22,7 @@ var _ MappedNullable = &Token{}
 type Token struct {
 	Card NullableTokenCard `json:"card,omitempty"`
 	// Deprecated
-	Checkout             NullableTokenCheckout `json:"checkout,omitempty"`
+	Checkout NullableTokenCheckout `json:"checkout,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -77,7 +77,6 @@ func (o *Token) HasCard() bool {
 func (o *Token) SetCard(v TokenCard) {
 	o.Card.Set(&v)
 }
-
 // SetCardNil sets the value for Card to be an explicit nil
 func (o *Token) SetCardNil() {
 	o.Card.Set(nil)
@@ -123,7 +122,6 @@ func (o *Token) HasCheckout() bool {
 func (o *Token) SetCheckout(v TokenCheckout) {
 	o.Checkout.Set(&v)
 }
-
 // SetCheckoutNil sets the value for Checkout to be an explicit nil
 func (o *Token) SetCheckoutNil() {
 	o.Checkout.Set(nil)
@@ -135,7 +133,7 @@ func (o *Token) UnsetCheckout() {
 }
 
 func (o Token) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -215,3 +213,5 @@ func (v *NullableToken) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

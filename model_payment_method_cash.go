@@ -21,16 +21,17 @@ var _ MappedNullable = &PaymentMethodCash{}
 
 // PaymentMethodCash struct for PaymentMethodCash
 type PaymentMethodCash struct {
-	Type                 *string        `json:"type,omitempty"`
-	Object               string         `json:"object"`
-	AuthCode             NullableInt32  `json:"auth_code,omitempty"`
-	CashierId            NullableString `json:"cashier_id,omitempty"`
-	Reference            *string        `json:"reference,omitempty"`
-	BarcodeUrl           *string        `json:"barcode_url,omitempty"`
-	ExpiresAt            *int64         `json:"expires_at,omitempty"`
-	ServiceName          *string        `json:"service_name,omitempty"`
-	Store                NullableString `json:"store,omitempty"`
-	StoreName            *string        `json:"store_name,omitempty"`
+	Type *string `json:"type,omitempty"`
+	Object string `json:"object"`
+	AuthCode NullableInt32 `json:"auth_code,omitempty"`
+	CashierId NullableString `json:"cashier_id,omitempty"`
+	Reference *string `json:"reference,omitempty"`
+	BarcodeUrl *string `json:"barcode_url,omitempty"`
+	ExpiresAt *int64 `json:"expires_at,omitempty"`
+	ServiceName *string `json:"service_name,omitempty"`
+	Store NullableString `json:"store,omitempty"`
+	StoreName *string `json:"store_name,omitempty"`
+	CustomerIpAddress *string `json:"customer_ip_address,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -142,7 +143,6 @@ func (o *PaymentMethodCash) HasAuthCode() bool {
 func (o *PaymentMethodCash) SetAuthCode(v int32) {
 	o.AuthCode.Set(&v)
 }
-
 // SetAuthCodeNil sets the value for AuthCode to be an explicit nil
 func (o *PaymentMethodCash) SetAuthCodeNil() {
 	o.AuthCode.Set(nil)
@@ -185,7 +185,6 @@ func (o *PaymentMethodCash) HasCashierId() bool {
 func (o *PaymentMethodCash) SetCashierId(v string) {
 	o.CashierId.Set(&v)
 }
-
 // SetCashierIdNil sets the value for CashierId to be an explicit nil
 func (o *PaymentMethodCash) SetCashierIdNil() {
 	o.CashierId.Set(nil)
@@ -356,7 +355,6 @@ func (o *PaymentMethodCash) HasStore() bool {
 func (o *PaymentMethodCash) SetStore(v string) {
 	o.Store.Set(&v)
 }
-
 // SetStoreNil sets the value for Store to be an explicit nil
 func (o *PaymentMethodCash) SetStoreNil() {
 	o.Store.Set(nil)
@@ -399,8 +397,40 @@ func (o *PaymentMethodCash) SetStoreName(v string) {
 	o.StoreName = &v
 }
 
+// GetCustomerIpAddress returns the CustomerIpAddress field value if set, zero value otherwise.
+func (o *PaymentMethodCash) GetCustomerIpAddress() string {
+	if o == nil || IsNil(o.CustomerIpAddress) {
+		var ret string
+		return ret
+	}
+	return *o.CustomerIpAddress
+}
+
+// GetCustomerIpAddressOk returns a tuple with the CustomerIpAddress field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaymentMethodCash) GetCustomerIpAddressOk() (*string, bool) {
+	if o == nil || IsNil(o.CustomerIpAddress) {
+		return nil, false
+	}
+	return o.CustomerIpAddress, true
+}
+
+// HasCustomerIpAddress returns a boolean if a field has been set.
+func (o *PaymentMethodCash) HasCustomerIpAddress() bool {
+	if o != nil && !IsNil(o.CustomerIpAddress) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomerIpAddress gets a reference to the given string and assigns it to the CustomerIpAddress field.
+func (o *PaymentMethodCash) SetCustomerIpAddress(v string) {
+	o.CustomerIpAddress = &v
+}
+
 func (o PaymentMethodCash) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -437,6 +467,9 @@ func (o PaymentMethodCash) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.StoreName) {
 		toSerialize["store_name"] = o.StoreName
 	}
+	if !IsNil(o.CustomerIpAddress) {
+		toSerialize["customer_ip_address"] = o.CustomerIpAddress
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -458,10 +491,10 @@ func (o *PaymentMethodCash) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -490,6 +523,7 @@ func (o *PaymentMethodCash) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "service_name")
 		delete(additionalProperties, "store")
 		delete(additionalProperties, "store_name")
+		delete(additionalProperties, "customer_ip_address")
 		o.AdditionalProperties = additionalProperties
 	}
 
@@ -531,3 +565,5 @@ func (v *NullablePaymentMethodCash) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

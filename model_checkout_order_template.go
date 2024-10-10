@@ -22,12 +22,12 @@ var _ MappedNullable = &CheckoutOrderTemplate{}
 // CheckoutOrderTemplate It maintains the attributes with which the order will be created when receiving a new payment.
 type CheckoutOrderTemplate struct {
 	// It is the currency in which the order will be created. It must be a valid ISO 4217 currency code.
-	Currency     string                             `json:"currency"`
+	Currency string `json:"currency"`
 	CustomerInfo *CheckoutOrderTemplateCustomerInfo `json:"customer_info,omitempty"`
 	// They are the products to buy. Each contains the \"unit price\" and \"quantity\" parameters that are used to calculate the total amount of the order.
 	LineItems []Product `json:"line_items"`
 	// It is a set of key-value pairs that you can attach to the order. It can be used to store additional information about the order in a structured format.
-	Metadata             map[string]interface{} `json:"metadata,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -165,7 +165,7 @@ func (o *CheckoutOrderTemplate) SetMetadata(v map[string]interface{}) {
 }
 
 func (o CheckoutOrderTemplate) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -204,10 +204,10 @@ func (o *CheckoutOrderTemplate) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -271,3 +271,5 @@ func (v *NullableCheckoutOrderTemplate) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

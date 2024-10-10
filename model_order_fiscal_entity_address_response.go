@@ -34,8 +34,8 @@ type OrderFiscalEntityAddressResponse struct {
 	// this field follows the [ISO 3166-1 alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
 	Country string `json:"country"`
 	// External number
-	ExternalNumber       string  `json:"external_number"`
-	Object               *string `json:"object,omitempty"`
+	ExternalNumber string `json:"external_number"`
+	Object *string `json:"object,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -119,7 +119,6 @@ func (o *OrderFiscalEntityAddressResponse) HasStreet2() bool {
 func (o *OrderFiscalEntityAddressResponse) SetStreet2(v string) {
 	o.Street2.Set(&v)
 }
-
 // SetStreet2Nil sets the value for Street2 to be an explicit nil
 func (o *OrderFiscalEntityAddressResponse) SetStreet2Nil() {
 	o.Street2.Set(nil)
@@ -291,7 +290,7 @@ func (o *OrderFiscalEntityAddressResponse) SetObject(v string) {
 }
 
 func (o OrderFiscalEntityAddressResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -339,10 +338,10 @@ func (o *OrderFiscalEntityAddressResponse) UnmarshalJSON(data []byte) (err error
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -410,3 +409,5 @@ func (v *NullableOrderFiscalEntityAddressResponse) UnmarshalJSON(src []byte) err
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

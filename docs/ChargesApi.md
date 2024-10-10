@@ -106,7 +106,7 @@ import (
 
 func main() {
 	id := "6307a60c41de27127515a575" // string | Identifier of the resource
-	chargeRequest := *openapiclient.NewChargeRequest(*openapiclient.NewChargeRequestPaymentMethod("card")) // ChargeRequest | requested field for a charge
+	chargeRequest := *openapiclient.NewChargeRequest(openapiclient.charge_request_payment_method{PaymentMethodCardRequest: openapiclient.NewPaymentMethodCardRequest("card | cash | spei", "198", "12", "2025", "John Doe", "4242424242424242")}) // ChargeRequest | requested field for a charge
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 

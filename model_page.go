@@ -23,7 +23,7 @@ type Page struct {
 	// URL of the next page.
 	NextPageUrl NullableString `json:"next_page_url,omitempty"`
 	// Url of the previous page.
-	PreviousPageUrl      NullableString `json:"previous_page_url,omitempty"`
+	PreviousPageUrl NullableString `json:"previous_page_url,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -78,7 +78,6 @@ func (o *Page) HasNextPageUrl() bool {
 func (o *Page) SetNextPageUrl(v string) {
 	o.NextPageUrl.Set(&v)
 }
-
 // SetNextPageUrlNil sets the value for NextPageUrl to be an explicit nil
 func (o *Page) SetNextPageUrlNil() {
 	o.NextPageUrl.Set(nil)
@@ -121,7 +120,6 @@ func (o *Page) HasPreviousPageUrl() bool {
 func (o *Page) SetPreviousPageUrl(v string) {
 	o.PreviousPageUrl.Set(&v)
 }
-
 // SetPreviousPageUrlNil sets the value for PreviousPageUrl to be an explicit nil
 func (o *Page) SetPreviousPageUrlNil() {
 	o.PreviousPageUrl.Set(nil)
@@ -133,7 +131,7 @@ func (o *Page) UnsetPreviousPageUrl() {
 }
 
 func (o Page) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -213,3 +211,5 @@ func (v *NullablePage) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

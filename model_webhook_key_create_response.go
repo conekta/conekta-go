@@ -31,7 +31,7 @@ type WebhookKeyCreateResponse struct {
 	// Object name, value is webhook_key
 	Object *string `json:"object,omitempty"`
 	// Public key to be used in the webhook
-	PublicKey            *string `json:"public_key,omitempty"`
+	PublicKey *string `json:"public_key,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -247,7 +247,7 @@ func (o *WebhookKeyCreateResponse) SetPublicKey(v string) {
 }
 
 func (o WebhookKeyCreateResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -343,3 +343,5 @@ func (v *NullableWebhookKeyCreateResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

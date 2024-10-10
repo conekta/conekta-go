@@ -27,7 +27,7 @@ type WhitelistlistRuleResponse struct {
 	// value used for whitelists rule
 	Value *string `json:"value,omitempty"`
 	// use an description for whitelisted rule
-	Description          *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -179,7 +179,7 @@ func (o *WhitelistlistRuleResponse) SetDescription(v string) {
 }
 
 func (o WhitelistlistRuleResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -267,3 +267,5 @@ func (v *NullableWhitelistlistRuleResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

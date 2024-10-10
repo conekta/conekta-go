@@ -31,7 +31,7 @@ type CompanyPayoutDestinationResponse struct {
 	// Type of the payout destination
 	Type *string `json:"type,omitempty"`
 	// Account number of the receiving account
-	AccountNumber        *string `json:"account_number,omitempty"`
+	AccountNumber *string `json:"account_number,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -247,7 +247,7 @@ func (o *CompanyPayoutDestinationResponse) SetAccountNumber(v string) {
 }
 
 func (o CompanyPayoutDestinationResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -343,3 +343,5 @@ func (v *NullableCompanyPayoutDestinationResponse) UnmarshalJSON(src []byte) err
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

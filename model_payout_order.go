@@ -26,13 +26,13 @@ type PayoutOrder struct {
 	// The amount of the payout order.
 	Amount int32 `json:"amount"`
 	// The currency in which the payout order is made.
-	Currency     string                     `json:"currency"`
+	Currency string `json:"currency"`
 	CustomerInfo CustomerInfoJustCustomerId `json:"customer_info"`
 	// The metadata of the payout order.
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
-	Payout   Payout                 `json:"payout"`
+	Payout Payout `json:"payout"`
 	// The reason for the payout order.
-	Reason               string `json:"reason"`
+	Reason string `json:"reason"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -240,7 +240,7 @@ func (o *PayoutOrder) SetReason(v string) {
 }
 
 func (o PayoutOrder) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -284,10 +284,10 @@ func (o *PayoutOrder) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -354,3 +354,5 @@ func (v *NullablePayoutOrder) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -37,7 +37,7 @@ type CompanyFiscalInfoAddressResponse struct {
 	// Street number
 	ExternalNumber *string `json:"external_number,omitempty"`
 	// Unit / apartment number
-	InternalNumber       *string `json:"internal_number,omitempty"`
+	InternalNumber *string `json:"internal_number,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -349,7 +349,7 @@ func (o *CompanyFiscalInfoAddressResponse) SetInternalNumber(v string) {
 }
 
 func (o CompanyFiscalInfoAddressResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -457,3 +457,5 @@ func (v *NullableCompanyFiscalInfoAddressResponse) UnmarshalJSON(src []byte) err
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

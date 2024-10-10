@@ -32,7 +32,7 @@ type TokenCard struct {
 	// It is a value that allows identifying the name of the cardholder.
 	Name string `json:"name"`
 	// It is a value that allows identifying the number of the card.
-	Number               string `json:"number"`
+	Number string `json:"number"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -213,7 +213,7 @@ func (o *TokenCard) SetNumber(v string) {
 }
 
 func (o TokenCard) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -255,10 +255,10 @@ func (o *TokenCard) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -324,3 +324,5 @@ func (v *NullableTokenCard) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

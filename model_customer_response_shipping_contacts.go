@@ -24,8 +24,8 @@ type CustomerResponseShippingContacts struct {
 	// Indicates if there are more pages to be requested
 	HasMore bool `json:"has_more"`
 	// Object type, in this case is list
-	Object               string                                 `json:"object"`
-	Data                 []CustomerShippingContactsDataResponse `json:"data,omitempty"`
+	Object string `json:"object"`
+	Data []CustomerShippingContactsDataResponse `json:"data,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -131,7 +131,7 @@ func (o *CustomerResponseShippingContacts) SetData(v []CustomerShippingContactsD
 }
 
 func (o CustomerResponseShippingContacts) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -167,10 +167,10 @@ func (o *CustomerResponseShippingContacts) UnmarshalJSON(data []byte) (err error
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -233,3 +233,5 @@ func (v *NullableCustomerResponseShippingContacts) UnmarshalJSON(src []byte) err
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

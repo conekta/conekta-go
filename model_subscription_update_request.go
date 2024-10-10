@@ -20,9 +20,9 @@ var _ MappedNullable = &SubscriptionUpdateRequest{}
 
 // SubscriptionUpdateRequest You can modify the subscription to change the plan used by your customers.
 type SubscriptionUpdateRequest struct {
-	PlanId               *string `json:"plan_id,omitempty"`
-	CardId               *string `json:"card_id,omitempty"`
-	TrialEnd             *int32  `json:"trial_end,omitempty"`
+	PlanId *string `json:"plan_id,omitempty"`
+	CardId *string `json:"card_id,omitempty"`
+	TrialEnd *int32 `json:"trial_end,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -142,7 +142,7 @@ func (o *SubscriptionUpdateRequest) SetTrialEnd(v int32) {
 }
 
 func (o SubscriptionUpdateRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -226,3 +226,5 @@ func (v *NullableSubscriptionUpdateRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -20,26 +20,26 @@ var _ MappedNullable = &ChargeOrderResponse{}
 
 // ChargeOrderResponse struct for ChargeOrderResponse
 type ChargeOrderResponse struct {
-	Amount              *int32                            `json:"amount,omitempty"`
-	Channel             *ChargeResponseChannel            `json:"channel,omitempty"`
-	CreatedAt           *int64                            `json:"created_at,omitempty"`
-	Currency            *string                           `json:"currency,omitempty"`
-	CustomerId          *string                           `json:"customer_id,omitempty"`
-	Description         *string                           `json:"description,omitempty"`
-	DeviceFingerprint   NullableString                    `json:"device_fingerprint,omitempty"`
-	FailureCode         *string                           `json:"failure_code,omitempty"`
-	FailureMessage      *string                           `json:"failure_message,omitempty"`
-	Id                  *string                           `json:"id,omitempty"`
-	Livemode            *bool                             `json:"livemode,omitempty"`
-	MonthlyInstallments NullableInt32                     `json:"monthly_installments,omitempty"`
-	Object              *string                           `json:"object,omitempty"`
-	OrderId             *string                           `json:"order_id,omitempty"`
-	PaidAt              NullableInt32                     `json:"paid_at,omitempty"`
-	PaymentMethod       *ChargeOrderResponsePaymentMethod `json:"payment_method,omitempty"`
+	Amount *int32 `json:"amount,omitempty"`
+	Channel *ChargeResponseChannel `json:"channel,omitempty"`
+	CreatedAt *int64 `json:"created_at,omitempty"`
+	Currency *string `json:"currency,omitempty"`
+	CustomerId *string `json:"customer_id,omitempty"`
+	Description *string `json:"description,omitempty"`
+	DeviceFingerprint NullableString `json:"device_fingerprint,omitempty"`
+	FailureCode *string `json:"failure_code,omitempty"`
+	FailureMessage *string `json:"failure_message,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Livemode *bool `json:"livemode,omitempty"`
+	MonthlyInstallments NullableInt32 `json:"monthly_installments,omitempty"`
+	Object *string `json:"object,omitempty"`
+	OrderId *string `json:"order_id,omitempty"`
+	PaidAt NullableInt32 `json:"paid_at,omitempty"`
+	PaymentMethod *ChargeOrderResponsePaymentMethod `json:"payment_method,omitempty"`
 	// Reference ID of the charge
-	ReferenceId          NullableString           `json:"reference_id,omitempty"`
-	Refunds              []map[string]interface{} `json:"refunds,omitempty"`
-	Status               *string                  `json:"status,omitempty"`
+	ReferenceId NullableString `json:"reference_id,omitempty"`
+	Refunds []map[string]interface{} `json:"refunds,omitempty"`
+	Status *string `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -286,7 +286,6 @@ func (o *ChargeOrderResponse) HasDeviceFingerprint() bool {
 func (o *ChargeOrderResponse) SetDeviceFingerprint(v string) {
 	o.DeviceFingerprint.Set(&v)
 }
-
 // SetDeviceFingerprintNil sets the value for DeviceFingerprint to be an explicit nil
 func (o *ChargeOrderResponse) SetDeviceFingerprintNil() {
 	o.DeviceFingerprint.Set(nil)
@@ -457,7 +456,6 @@ func (o *ChargeOrderResponse) HasMonthlyInstallments() bool {
 func (o *ChargeOrderResponse) SetMonthlyInstallments(v int32) {
 	o.MonthlyInstallments.Set(&v)
 }
-
 // SetMonthlyInstallmentsNil sets the value for MonthlyInstallments to be an explicit nil
 func (o *ChargeOrderResponse) SetMonthlyInstallmentsNil() {
 	o.MonthlyInstallments.Set(nil)
@@ -564,7 +562,6 @@ func (o *ChargeOrderResponse) HasPaidAt() bool {
 func (o *ChargeOrderResponse) SetPaidAt(v int32) {
 	o.PaidAt.Set(&v)
 }
-
 // SetPaidAtNil sets the value for PaidAt to be an explicit nil
 func (o *ChargeOrderResponse) SetPaidAtNil() {
 	o.PaidAt.Set(nil)
@@ -639,7 +636,6 @@ func (o *ChargeOrderResponse) HasReferenceId() bool {
 func (o *ChargeOrderResponse) SetReferenceId(v string) {
 	o.ReferenceId.Set(&v)
 }
-
 // SetReferenceIdNil sets the value for ReferenceId to be an explicit nil
 func (o *ChargeOrderResponse) SetReferenceIdNil() {
 	o.ReferenceId.Set(nil)
@@ -715,7 +711,7 @@ func (o *ChargeOrderResponse) SetStatus(v string) {
 }
 
 func (o ChargeOrderResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -863,3 +859,5 @@ func (v *NullableChargeOrderResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

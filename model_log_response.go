@@ -21,26 +21,26 @@ var _ MappedNullable = &LogResponse{}
 
 // LogResponse log model
 type LogResponse struct {
-	CreatedAt            int64                  `json:"created_at"`
-	Id                   string                 `json:"id"`
-	IpAddress            *string                `json:"ip_address,omitempty"`
-	Livemode             bool                   `json:"livemode"`
-	LoggableId           NullableString         `json:"loggable_id,omitempty"`
-	LoggableType         NullableString         `json:"loggable_type,omitempty"`
-	Method               *string                `json:"method,omitempty"`
-	OauthTokenId         NullableString         `json:"oauth_token_id,omitempty"`
-	QueryString          map[string]interface{} `json:"query_string,omitempty"`
-	Related              *string                `json:"related,omitempty"`
-	RequestBody          map[string]interface{} `json:"request_body,omitempty"`
-	RequestHeaders       *map[string]string     `json:"request_headers,omitempty"`
-	ResponseBody         map[string]interface{} `json:"response_body,omitempty"`
-	ResponseHeaders      *map[string]string     `json:"response_headers,omitempty"`
-	SearchableTags       []string               `json:"searchable_tags,omitempty"`
-	Status               *string                `json:"status,omitempty"`
-	UpdatedAt            *string                `json:"updated_at,omitempty"`
-	Url                  *string                `json:"url,omitempty"`
-	UserAccountId        *string                `json:"user_account_id,omitempty"`
-	Version              *string                `json:"version,omitempty"`
+	CreatedAt int64 `json:"created_at"`
+	Id string `json:"id"`
+	IpAddress *string `json:"ip_address,omitempty"`
+	Livemode bool `json:"livemode"`
+	LoggableId NullableString `json:"loggable_id,omitempty"`
+	LoggableType NullableString `json:"loggable_type,omitempty"`
+	Method *string `json:"method,omitempty"`
+	OauthTokenId NullableString `json:"oauth_token_id,omitempty"`
+	QueryString map[string]interface{} `json:"query_string,omitempty"`
+	Related *string `json:"related,omitempty"`
+	RequestBody map[string]interface{} `json:"request_body,omitempty"`
+	RequestHeaders *map[string]string `json:"request_headers,omitempty"`
+	ResponseBody map[string]interface{} `json:"response_body,omitempty"`
+	ResponseHeaders *map[string]string `json:"response_headers,omitempty"`
+	SearchableTags []string `json:"searchable_tags,omitempty"`
+	Status *string `json:"status,omitempty"`
+	UpdatedAt *string `json:"updated_at,omitempty"`
+	Url *string `json:"url,omitempty"`
+	UserAccountId *string `json:"user_account_id,omitempty"`
+	Version *string `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -202,7 +202,6 @@ func (o *LogResponse) HasLoggableId() bool {
 func (o *LogResponse) SetLoggableId(v string) {
 	o.LoggableId.Set(&v)
 }
-
 // SetLoggableIdNil sets the value for LoggableId to be an explicit nil
 func (o *LogResponse) SetLoggableIdNil() {
 	o.LoggableId.Set(nil)
@@ -245,7 +244,6 @@ func (o *LogResponse) HasLoggableType() bool {
 func (o *LogResponse) SetLoggableType(v string) {
 	o.LoggableType.Set(&v)
 }
-
 // SetLoggableTypeNil sets the value for LoggableType to be an explicit nil
 func (o *LogResponse) SetLoggableTypeNil() {
 	o.LoggableType.Set(nil)
@@ -320,7 +318,6 @@ func (o *LogResponse) HasOauthTokenId() bool {
 func (o *LogResponse) SetOauthTokenId(v string) {
 	o.OauthTokenId.Set(&v)
 }
-
 // SetOauthTokenIdNil sets the value for OauthTokenId to be an explicit nil
 func (o *LogResponse) SetOauthTokenIdNil() {
 	o.OauthTokenId.Set(nil)
@@ -716,7 +713,7 @@ func (o *LogResponse) SetVersion(v string) {
 }
 
 func (o LogResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -802,10 +799,10 @@ func (o *LogResponse) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -885,3 +882,5 @@ func (v *NullableLogResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

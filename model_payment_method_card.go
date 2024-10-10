@@ -21,20 +21,30 @@ var _ MappedNullable = &PaymentMethodCard{}
 
 // PaymentMethodCard struct for PaymentMethodCard
 type PaymentMethodCard struct {
-	Type        *string `json:"type,omitempty"`
-	Object      string  `json:"object"`
+	Type *string `json:"type,omitempty"`
+	Object string `json:"object"`
+	// Account type of the card
 	AccountType *string `json:"account_type,omitempty"`
-	AuthCode    *string `json:"auth_code,omitempty"`
-	Brand       *string `json:"brand,omitempty"`
+	AuthCode *string `json:"auth_code,omitempty"`
+	// Brand of the card
+	Brand *string `json:"brand,omitempty"`
 	// Id sent for recurrent charges.
-	ContractId           *string       `json:"contract_id,omitempty"`
-	Country              *string       `json:"country,omitempty"`
-	ExpMonth             *string       `json:"exp_month,omitempty"`
-	ExpYear              *string       `json:"exp_year,omitempty"`
-	FraudIndicators      []interface{} `json:"fraud_indicators,omitempty"`
-	Issuer               *string       `json:"issuer,omitempty"`
-	Last4                *string       `json:"last4,omitempty"`
-	Name                 *string       `json:"name,omitempty"`
+	ContractId *string `json:"contract_id,omitempty"`
+	// Country of the card
+	Country *string `json:"country,omitempty"`
+	// Expiration month of the card
+	ExpMonth *string `json:"exp_month,omitempty"`
+	// Expiration year of the card
+	ExpYear *string `json:"exp_year,omitempty"`
+	FraudIndicators []interface{} `json:"fraud_indicators,omitempty"`
+	// Issuer of the card
+	Issuer *string `json:"issuer,omitempty"`
+	// Last 4 digits of the card
+	Last4 *string `json:"last4,omitempty"`
+	// Name of the cardholder
+	Name *string `json:"name,omitempty"`
+	// Optional field used to capture the customer's IP address for fraud prevention and security monitoring purposes
+	CustomerIpAddress *string `json:"customer_ip_address,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -466,8 +476,40 @@ func (o *PaymentMethodCard) SetName(v string) {
 	o.Name = &v
 }
 
+// GetCustomerIpAddress returns the CustomerIpAddress field value if set, zero value otherwise.
+func (o *PaymentMethodCard) GetCustomerIpAddress() string {
+	if o == nil || IsNil(o.CustomerIpAddress) {
+		var ret string
+		return ret
+	}
+	return *o.CustomerIpAddress
+}
+
+// GetCustomerIpAddressOk returns a tuple with the CustomerIpAddress field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaymentMethodCard) GetCustomerIpAddressOk() (*string, bool) {
+	if o == nil || IsNil(o.CustomerIpAddress) {
+		return nil, false
+	}
+	return o.CustomerIpAddress, true
+}
+
+// HasCustomerIpAddress returns a boolean if a field has been set.
+func (o *PaymentMethodCard) HasCustomerIpAddress() bool {
+	if o != nil && !IsNil(o.CustomerIpAddress) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomerIpAddress gets a reference to the given string and assigns it to the CustomerIpAddress field.
+func (o *PaymentMethodCard) SetCustomerIpAddress(v string) {
+	o.CustomerIpAddress = &v
+}
+
 func (o PaymentMethodCard) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -513,6 +555,9 @@ func (o PaymentMethodCard) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+	if !IsNil(o.CustomerIpAddress) {
+		toSerialize["customer_ip_address"] = o.CustomerIpAddress
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -534,10 +579,10 @@ func (o *PaymentMethodCard) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -569,6 +614,7 @@ func (o *PaymentMethodCard) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "issuer")
 		delete(additionalProperties, "last4")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "customer_ip_address")
 		o.AdditionalProperties = additionalProperties
 	}
 
@@ -610,3 +656,5 @@ func (v *NullablePaymentMethodCard) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

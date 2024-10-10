@@ -21,21 +21,21 @@ var _ MappedNullable = &PaymentMethodCardResponse{}
 
 // PaymentMethodCardResponse struct for PaymentMethodCardResponse
 type PaymentMethodCardResponse struct {
-	Type                 string  `json:"type"`
-	Id                   string  `json:"id"`
-	Object               string  `json:"object"`
-	CreatedAt            int64   `json:"created_at"`
-	ParentId             *string `json:"parent_id,omitempty"`
-	Last4                *string `json:"last4,omitempty"`
-	Bin                  *string `json:"bin,omitempty"`
-	CardType             *string `json:"card_type,omitempty"`
-	ExpMonth             *string `json:"exp_month,omitempty"`
-	ExpYear              *string `json:"exp_year,omitempty"`
-	Brand                *string `json:"brand,omitempty"`
-	Name                 *string `json:"name,omitempty"`
-	Default              *bool   `json:"default,omitempty"`
-	VisibleOnCheckout    *bool   `json:"visible_on_checkout,omitempty"`
-	PaymentSourceStatus  *string `json:"payment_source_status,omitempty"`
+	Type string `json:"type"`
+	Id string `json:"id"`
+	Object string `json:"object"`
+	CreatedAt int64 `json:"created_at"`
+	ParentId *string `json:"parent_id,omitempty"`
+	Last4 *string `json:"last4,omitempty"`
+	Bin *string `json:"bin,omitempty"`
+	CardType *string `json:"card_type,omitempty"`
+	ExpMonth *string `json:"exp_month,omitempty"`
+	ExpYear *string `json:"exp_year,omitempty"`
+	Brand *string `json:"brand,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Default *bool `json:"default,omitempty"`
+	VisibleOnCheckout *bool `json:"visible_on_checkout,omitempty"`
+	PaymentSourceStatus *string `json:"payment_source_status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -511,7 +511,7 @@ func (o *PaymentMethodCardResponse) SetPaymentSourceStatus(v string) {
 }
 
 func (o PaymentMethodCardResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -581,10 +581,10 @@ func (o *PaymentMethodCardResponse) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -659,3 +659,5 @@ func (v *NullablePaymentMethodCardResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

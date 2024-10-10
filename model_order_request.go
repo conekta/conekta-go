@@ -22,14 +22,14 @@ var _ MappedNullable = &OrderRequest{}
 // OrderRequest a order
 type OrderRequest struct {
 	// List of [charges](https://developers.conekta.com/v2.1.0/reference/orderscreatecharge) that are applied to the order
-	Charges  []ChargeRequest  `json:"charges,omitempty"`
+	Charges []ChargeRequest `json:"charges,omitempty"`
 	Checkout *CheckoutRequest `json:"checkout,omitempty"`
 	// Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)
-	Currency     string                   `json:"currency"`
+	Currency string `json:"currency"`
 	CustomerInfo OrderRequestCustomerInfo `json:"customer_info"`
 	// List of [discounts](https://developers.conekta.com/v2.1.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount.
 	DiscountLines []OrderDiscountLinesRequest `json:"discount_lines,omitempty"`
-	FiscalEntity  *OrderFiscalEntityRequest   `json:"fiscal_entity,omitempty"`
+	FiscalEntity *OrderFiscalEntityRequest `json:"fiscal_entity,omitempty"`
 	// List of [products](https://developers.conekta.com/v2.1.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
 	LineItems []Product `json:"line_items"`
 	// Metadata associated with the order
@@ -40,15 +40,15 @@ type OrderRequest struct {
 	PreAuthorize *bool `json:"pre_authorize,omitempty"`
 	// Indicates the processing mode for the order, either ecommerce, recurrent or validation.
 	ProcessingMode *string `json:"processing_mode,omitempty"`
-	// Indicates the redirection callback upon completion of the 3DS2 flow.
-	ReturnUrl       *string                   `json:"return_url,omitempty"`
+	// Indicates the redirection callback upon completion of the 3DS2 flow. Do not use this parameter if your order has a checkout parameter
+	ReturnUrl *string `json:"return_url,omitempty"`
 	ShippingContact *CustomerShippingContacts `json:"shipping_contact,omitempty"`
 	// List of [shipping costs](https://developers.conekta.com/v2.1.0/reference/orderscreateshipping). If the online store offers digital products.
 	ShippingLines []ShippingRequest `json:"shipping_lines,omitempty"`
 	// List of [taxes](https://developers.conekta.com/v2.1.0/reference/orderscreatetaxes) that are applied to the order.
 	TaxLines []OrderTaxRequest `json:"tax_lines,omitempty"`
 	// Indicates the 3DS2 mode for the order, either smart or strict.
-	ThreeDsMode          *string `json:"three_ds_mode,omitempty"`
+	ThreeDsMode *string `json:"three_ds_mode,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -567,7 +567,7 @@ func (o *OrderRequest) SetThreeDsMode(v string) {
 }
 
 func (o OrderRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -641,10 +641,10 @@ func (o *OrderRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -720,3 +720,5 @@ func (v *NullableOrderRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -21,17 +21,17 @@ var _ MappedNullable = &UpdateCustomerFiscalEntitiesResponse{}
 
 // UpdateCustomerFiscalEntitiesResponse struct for UpdateCustomerFiscalEntitiesResponse
 type UpdateCustomerFiscalEntitiesResponse struct {
-	Address              CustomerAddress                   `json:"address"`
-	TaxId                *string                           `json:"tax_id,omitempty"`
-	Email                *string                           `json:"email,omitempty"`
-	Phone                *string                           `json:"phone,omitempty"`
-	Metadata             map[string]map[string]interface{} `json:"metadata,omitempty"`
-	CompanyName          *string                           `json:"company_name,omitempty"`
-	Id                   string                            `json:"id"`
-	Object               string                            `json:"object"`
-	CreatedAt            int64                             `json:"created_at"`
-	ParentId             *string                           `json:"parent_id,omitempty"`
-	Default              *bool                             `json:"default,omitempty"`
+	Address CustomerAddress `json:"address"`
+	TaxId *string `json:"tax_id,omitempty"`
+	Email *string `json:"email,omitempty"`
+	Phone *string `json:"phone,omitempty"`
+	Metadata map[string]map[string]interface{} `json:"metadata,omitempty"`
+	CompanyName *string `json:"company_name,omitempty"`
+	Id string `json:"id"`
+	Object string `json:"object"`
+	CreatedAt int64 `json:"created_at"`
+	ParentId *string `json:"parent_id,omitempty"`
+	Default *bool `json:"default,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -379,7 +379,7 @@ func (o *UpdateCustomerFiscalEntitiesResponse) SetDefault(v bool) {
 }
 
 func (o UpdateCustomerFiscalEntitiesResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -437,10 +437,10 @@ func (o *UpdateCustomerFiscalEntitiesResponse) UnmarshalJSON(data []byte) (err e
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -511,3 +511,5 @@ func (v *NullableUpdateCustomerFiscalEntitiesResponse) UnmarshalJSON(src []byte)
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+
