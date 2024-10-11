@@ -1,12 +1,12 @@
 {
-  "packageVersion": "6.0.5",
+  "packageVersion": "6.0.6",
   "packageName": "conekta",
   "hideGenerationTimestamp": false,
   "generateInterfaces": true,
   "disallowAdditionalPropertiesIfNotPresent": false,
   "gitUserId": "conekta",
   "gitRepoId": "conekta-go",
-  "httpUserAgent": "Conekta/v2 GoBindings/6.0.5",
+  "httpUserAgent": "Conekta/v2 GoBindings/6.0.6",
   "files": {
     "/local/CODE_OF_CONDUCT.md" : {},
     "/local/AUTHORS.md": {},
