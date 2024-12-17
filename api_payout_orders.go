@@ -24,6 +24,21 @@ import (
 type PayoutOrdersAPI interface {
 
 	/*
+	CancelPayoutOrderById Cancel Payout Order
+
+	Cancel a payout Order resource that corresponds to a payout order ID.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiCancelPayoutOrderByIdRequest
+	*/
+	CancelPayoutOrderById(ctx context.Context, id string) ApiCancelPayoutOrderByIdRequest
+
+	// CancelPayoutOrderByIdExecute executes the request
+	//  @return PayoutOrderResponse
+	CancelPayoutOrderByIdExecute(r ApiCancelPayoutOrderByIdRequest) (*PayoutOrderResponse, *http.Response, error)
+
+	/*
 	CreatePayoutOrder Create payout order
 
 	Create a new payout order.
@@ -69,6 +84,151 @@ type PayoutOrdersAPI interface {
 
 // PayoutOrdersAPIService PayoutOrdersAPI service
 type PayoutOrdersAPIService service
+
+type ApiCancelPayoutOrderByIdRequest struct {
+	ctx context.Context
+	ApiService PayoutOrdersAPI
+	id string
+	acceptLanguage *string
+}
+
+// Use for knowing which language to use
+func (r ApiCancelPayoutOrderByIdRequest) AcceptLanguage(acceptLanguage string) ApiCancelPayoutOrderByIdRequest {
+	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+func (r ApiCancelPayoutOrderByIdRequest) Execute() (*PayoutOrderResponse, *http.Response, error) {
+	return r.ApiService.CancelPayoutOrderByIdExecute(r)
+}
+
+/*
+CancelPayoutOrderById Cancel Payout Order
+
+Cancel a payout Order resource that corresponds to a payout order ID.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Identifier of the resource
+ @return ApiCancelPayoutOrderByIdRequest
+*/
+func (a *PayoutOrdersAPIService) CancelPayoutOrderById(ctx context.Context, id string) ApiCancelPayoutOrderByIdRequest {
+	return ApiCancelPayoutOrderByIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return PayoutOrderResponse
+func (a *PayoutOrdersAPIService) CancelPayoutOrderByIdExecute(r ApiCancelPayoutOrderByIdRequest) (*PayoutOrderResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PayoutOrderResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PayoutOrdersAPIService.CancelPayoutOrderById")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/payout_orders/{id}/cancel"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptLanguage != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ApiCreatePayoutOrderRequest struct {
 	ctx context.Context

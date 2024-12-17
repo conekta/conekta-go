@@ -6,11 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | Pointer to **string** |  | [optional] 
 **Object** | **string** |  | 
+**Agreement** | Pointer to **string** | Agreement ID | [optional] 
 **AuthCode** | Pointer to **NullableInt32** |  | [optional] 
 **CashierId** | Pointer to **NullableString** |  | [optional] 
 **Reference** | Pointer to **string** |  | [optional] 
 **BarcodeUrl** | Pointer to **string** |  | [optional] 
 **ExpiresAt** | Pointer to **int64** |  | [optional] 
+**ProductType** | Pointer to **string** | Product type, e.g. bbva_cash_in, cash_in, pespay_cash_in, etc. | [optional] 
 **ServiceName** | Pointer to **string** |  | [optional] 
 **Store** | Pointer to **NullableString** |  | [optional] 
 **StoreName** | Pointer to **string** |  | [optional] 
@@ -79,6 +81,31 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+
+### GetAgreement
+
+`func (o *PaymentMethodCash) GetAgreement() string`
+
+GetAgreement returns the Agreement field if non-nil, zero value otherwise.
+
+### GetAgreementOk
+
+`func (o *PaymentMethodCash) GetAgreementOk() (*string, bool)`
+
+GetAgreementOk returns a tuple with the Agreement field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAgreement
+
+`func (o *PaymentMethodCash) SetAgreement(v string)`
+
+SetAgreement sets Agreement field to given value.
+
+### HasAgreement
+
+`func (o *PaymentMethodCash) HasAgreement() bool`
+
+HasAgreement returns a boolean if a field has been set.
 
 ### GetAuthCode
 
@@ -224,6 +251,31 @@ SetExpiresAt sets ExpiresAt field to given value.
 `func (o *PaymentMethodCash) HasExpiresAt() bool`
 
 HasExpiresAt returns a boolean if a field has been set.
+
+### GetProductType
+
+`func (o *PaymentMethodCash) GetProductType() string`
+
+GetProductType returns the ProductType field if non-nil, zero value otherwise.
+
+### GetProductTypeOk
+
+`func (o *PaymentMethodCash) GetProductTypeOk() (*string, bool)`
+
+GetProductTypeOk returns a tuple with the ProductType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProductType
+
+`func (o *PaymentMethodCash) SetProductType(v string)`
+
+SetProductType sets ProductType field to given value.
+
+### HasProductType
+
+`func (o *PaymentMethodCash) HasProductType() bool`
+
+HasProductType returns a boolean if a field has been set.
 
 ### GetServiceName
 

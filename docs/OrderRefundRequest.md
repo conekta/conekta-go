@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | **int32** | Amount to be refunded in cents | 
-**ExpiresAt** | Pointer to **NullableInt64** |  | [optional] 
+**ExpiresAt** | Pointer to **int64** |  | [optional] 
 **Reason** | **string** | Reason for the refund | 
 
 ## Methods
@@ -72,16 +72,6 @@ SetExpiresAt sets ExpiresAt field to given value.
 
 HasExpiresAt returns a boolean if a field has been set.
 
-### SetExpiresAtNil
-
-`func (o *OrderRefundRequest) SetExpiresAtNil(b bool)`
-
- SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
-
-### UnsetExpiresAt
-`func (o *OrderRefundRequest) UnsetExpiresAt()`
-
-UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
 ### GetReason
 
 `func (o *OrderRefundRequest) GetReason() string`

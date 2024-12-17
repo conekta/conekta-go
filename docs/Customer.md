@@ -7,12 +7,14 @@ Name | Type | Description | Notes
 **AntifraudInfo** | Pointer to [**NullableCustomerAntifraudInfo**](CustomerAntifraudInfo.md) |  | [optional] 
 **Corporate** | Pointer to **bool** | It is a value that allows identifying if the email is corporate or not. | [optional] [default to false]
 **CustomReference** | Pointer to **string** | It is an undefined value. | [optional] 
+**DateOfBirth** | Pointer to **string** | It is a parameter that allows to identify the date of birth of the client. | [optional] 
 **Email** | **string** | An email address is a series of customizable characters followed by a universal Internet symbol, the at symbol (@), the name of a host server, and a web domain ending (.mx, .com, .org, . net, etc). | 
 **DefaultPaymentSourceId** | Pointer to **string** | It is a parameter that allows to identify in the response, the Conekta ID of a payment method (payment_id) | [optional] 
 **DefaultShippingContactId** | Pointer to **string** | It is a parameter that allows to identify in the response, the Conekta ID of the shipping address (shipping_contact) | [optional] 
 **FiscalEntities** | Pointer to [**[]CustomerFiscalEntitiesRequest**](CustomerFiscalEntitiesRequest.md) |  | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Name** | **string** | Client&#39;s name | 
+**NationalId** | Pointer to **string** | It is a parameter that allows to identify the national identification number of the client. | [optional] 
 **PaymentSources** | Pointer to [**[]CustomerPaymentMethodsRequest**](CustomerPaymentMethodsRequest.md) | Contains details of the payment methods that the customer has active or has used in Conekta | [optional] 
 **Phone** | **string** | Is the customer&#39;s phone number | 
 **PlanId** | Pointer to **string** | Contains the ID of a plan, which could together with name, email and phone create a client directly to a subscription | [optional] 
@@ -122,6 +124,31 @@ SetCustomReference sets CustomReference field to given value.
 `func (o *Customer) HasCustomReference() bool`
 
 HasCustomReference returns a boolean if a field has been set.
+
+### GetDateOfBirth
+
+`func (o *Customer) GetDateOfBirth() string`
+
+GetDateOfBirth returns the DateOfBirth field if non-nil, zero value otherwise.
+
+### GetDateOfBirthOk
+
+`func (o *Customer) GetDateOfBirthOk() (*string, bool)`
+
+GetDateOfBirthOk returns a tuple with the DateOfBirth field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDateOfBirth
+
+`func (o *Customer) SetDateOfBirth(v string)`
+
+SetDateOfBirth sets DateOfBirth field to given value.
+
+### HasDateOfBirth
+
+`func (o *Customer) HasDateOfBirth() bool`
+
+HasDateOfBirth returns a boolean if a field has been set.
 
 ### GetEmail
 
@@ -262,6 +289,31 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+
+### GetNationalId
+
+`func (o *Customer) GetNationalId() string`
+
+GetNationalId returns the NationalId field if non-nil, zero value otherwise.
+
+### GetNationalIdOk
+
+`func (o *Customer) GetNationalIdOk() (*string, bool)`
+
+GetNationalIdOk returns a tuple with the NationalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNationalId
+
+`func (o *Customer) SetNationalId(v string)`
+
+SetNationalId sets NationalId field to given value.
+
+### HasNationalId
+
+`func (o *Customer) HasNationalId() bool`
+
+HasNationalId returns a boolean if a field has been set.
 
 ### GetPaymentSources
 

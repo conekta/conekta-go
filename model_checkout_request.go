@@ -29,6 +29,8 @@ type CheckoutRequest struct {
 	FailureUrl *string `json:"failure_url,omitempty"`
 	MonthlyInstallmentsEnabled *bool `json:"monthly_installments_enabled,omitempty"`
 	MonthlyInstallmentsOptions []int32 `json:"monthly_installments_options,omitempty"`
+	// Number of retries allowed before the checkout is marked as failed
+	MaxFailedRetries *int32 `json:"max_failed_retries,omitempty"`
 	// Reason for payment
 	Name *string `json:"name,omitempty"`
 	OnDemandEnabled *bool `json:"on_demand_enabled,omitempty"`
@@ -211,6 +213,38 @@ func (o *CheckoutRequest) HasMonthlyInstallmentsOptions() bool {
 // SetMonthlyInstallmentsOptions gets a reference to the given []int32 and assigns it to the MonthlyInstallmentsOptions field.
 func (o *CheckoutRequest) SetMonthlyInstallmentsOptions(v []int32) {
 	o.MonthlyInstallmentsOptions = v
+}
+
+// GetMaxFailedRetries returns the MaxFailedRetries field value if set, zero value otherwise.
+func (o *CheckoutRequest) GetMaxFailedRetries() int32 {
+	if o == nil || IsNil(o.MaxFailedRetries) {
+		var ret int32
+		return ret
+	}
+	return *o.MaxFailedRetries
+}
+
+// GetMaxFailedRetriesOk returns a tuple with the MaxFailedRetries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CheckoutRequest) GetMaxFailedRetriesOk() (*int32, bool) {
+	if o == nil || IsNil(o.MaxFailedRetries) {
+		return nil, false
+	}
+	return o.MaxFailedRetries, true
+}
+
+// HasMaxFailedRetries returns a boolean if a field has been set.
+func (o *CheckoutRequest) HasMaxFailedRetries() bool {
+	if o != nil && !IsNil(o.MaxFailedRetries) {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxFailedRetries gets a reference to the given int32 and assigns it to the MaxFailedRetries field.
+func (o *CheckoutRequest) SetMaxFailedRetries(v int32) {
+	o.MaxFailedRetries = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -396,6 +430,9 @@ func (o CheckoutRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MonthlyInstallmentsOptions) {
 		toSerialize["monthly_installments_options"] = o.MonthlyInstallmentsOptions
 	}
+	if !IsNil(o.MaxFailedRetries) {
+		toSerialize["max_failed_retries"] = o.MaxFailedRetries
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -459,6 +496,7 @@ func (o *CheckoutRequest) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "failure_url")
 		delete(additionalProperties, "monthly_installments_enabled")
 		delete(additionalProperties, "monthly_installments_options")
+		delete(additionalProperties, "max_failed_retries")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "on_demand_enabled")
 		delete(additionalProperties, "redirection_time")

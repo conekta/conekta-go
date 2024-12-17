@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **IsRedirectOnFailure** | Pointer to **bool** |  | [optional] 
 **Livemode** | Pointer to **bool** |  | [optional] 
+**MaxFailedRetries** | Pointer to **NullableInt32** | Number of retries allowed before the checkout is marked as failed | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 **MonthlyInstallmentsEnabled** | Pointer to **bool** |  | [optional] 
 **MonthlyInstallmentsOptions** | Pointer to **[]int32** |  | [optional] 
@@ -301,6 +302,41 @@ SetLivemode sets Livemode field to given value.
 
 HasLivemode returns a boolean if a field has been set.
 
+### GetMaxFailedRetries
+
+`func (o *OrderResponseCheckout) GetMaxFailedRetries() int32`
+
+GetMaxFailedRetries returns the MaxFailedRetries field if non-nil, zero value otherwise.
+
+### GetMaxFailedRetriesOk
+
+`func (o *OrderResponseCheckout) GetMaxFailedRetriesOk() (*int32, bool)`
+
+GetMaxFailedRetriesOk returns a tuple with the MaxFailedRetries field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxFailedRetries
+
+`func (o *OrderResponseCheckout) SetMaxFailedRetries(v int32)`
+
+SetMaxFailedRetries sets MaxFailedRetries field to given value.
+
+### HasMaxFailedRetries
+
+`func (o *OrderResponseCheckout) HasMaxFailedRetries() bool`
+
+HasMaxFailedRetries returns a boolean if a field has been set.
+
+### SetMaxFailedRetriesNil
+
+`func (o *OrderResponseCheckout) SetMaxFailedRetriesNil(b bool)`
+
+ SetMaxFailedRetriesNil sets the value for MaxFailedRetries to be an explicit nil
+
+### UnsetMaxFailedRetries
+`func (o *OrderResponseCheckout) UnsetMaxFailedRetries()`
+
+UnsetMaxFailedRetries ensures that no value is present for MaxFailedRetries, not even an explicit nil
 ### GetMetadata
 
 `func (o *OrderResponseCheckout) GetMetadata() map[string]interface{}`
