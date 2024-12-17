@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Corporate** | Pointer to **bool** | true if the customer is a company | [optional] 
 **CreatedAt** | **int64** | Creation date of the object | 
 **CustomReference** | Pointer to **string** | Custom reference | [optional] 
+**DateOfBirth** | Pointer to **string** | It is a parameter that allows to identify the date of birth of the client. | [optional] 
 **DefaultFiscalEntityId** | Pointer to **NullableString** |  | [optional] 
 **DefaultShippingContactId** | Pointer to **string** |  | [optional] 
 **DefaultPaymentSourceId** | Pointer to **NullableString** |  | [optional] 
@@ -16,6 +17,7 @@ Name | Type | Description | Notes
 **Id** | **string** | Customer&#39;s ID | 
 **Livemode** | **bool** | true if the object exists in live mode or the value false if the object exists in test mode | 
 **Name** | **string** | Customer&#39;s name | 
+**NationalId** | Pointer to **string** | It is a parameter that allows to identify the national identification number of the client. | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Object** | **string** |  | 
 **PaymentSources** | Pointer to [**CustomerPaymentMethodsResponse**](CustomerPaymentMethodsResponse.md) |  | [optional] 
@@ -146,6 +148,31 @@ SetCustomReference sets CustomReference field to given value.
 `func (o *CustomerResponse) HasCustomReference() bool`
 
 HasCustomReference returns a boolean if a field has been set.
+
+### GetDateOfBirth
+
+`func (o *CustomerResponse) GetDateOfBirth() string`
+
+GetDateOfBirth returns the DateOfBirth field if non-nil, zero value otherwise.
+
+### GetDateOfBirthOk
+
+`func (o *CustomerResponse) GetDateOfBirthOk() (*string, bool)`
+
+GetDateOfBirthOk returns a tuple with the DateOfBirth field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDateOfBirth
+
+`func (o *CustomerResponse) SetDateOfBirth(v string)`
+
+SetDateOfBirth sets DateOfBirth field to given value.
+
+### HasDateOfBirth
+
+`func (o *CustomerResponse) HasDateOfBirth() bool`
+
+HasDateOfBirth returns a boolean if a field has been set.
 
 ### GetDefaultFiscalEntityId
 
@@ -351,6 +378,31 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+
+### GetNationalId
+
+`func (o *CustomerResponse) GetNationalId() string`
+
+GetNationalId returns the NationalId field if non-nil, zero value otherwise.
+
+### GetNationalIdOk
+
+`func (o *CustomerResponse) GetNationalIdOk() (*string, bool)`
+
+GetNationalIdOk returns a tuple with the NationalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNationalId
+
+`func (o *CustomerResponse) SetNationalId(v string)`
+
+SetNationalId sets NationalId field to given value.
+
+### HasNationalId
+
+`func (o *CustomerResponse) HasNationalId() bool`
+
+HasNationalId returns a boolean if a field has been set.
 
 ### GetMetadata
 

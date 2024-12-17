@@ -30,6 +30,8 @@ type OrderResponseCheckout struct {
 	Id *string `json:"id,omitempty"`
 	IsRedirectOnFailure *bool `json:"is_redirect_on_failure,omitempty"`
 	Livemode *bool `json:"livemode,omitempty"`
+	// Number of retries allowed before the checkout is marked as failed
+	MaxFailedRetries NullableInt32 `json:"max_failed_retries,omitempty"`
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	MonthlyInstallmentsEnabled *bool `json:"monthly_installments_enabled,omitempty"`
 	MonthlyInstallmentsOptions []int32 `json:"monthly_installments_options,omitempty"`
@@ -388,6 +390,48 @@ func (o *OrderResponseCheckout) HasLivemode() bool {
 // SetLivemode gets a reference to the given bool and assigns it to the Livemode field.
 func (o *OrderResponseCheckout) SetLivemode(v bool) {
 	o.Livemode = &v
+}
+
+// GetMaxFailedRetries returns the MaxFailedRetries field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *OrderResponseCheckout) GetMaxFailedRetries() int32 {
+	if o == nil || IsNil(o.MaxFailedRetries.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.MaxFailedRetries.Get()
+}
+
+// GetMaxFailedRetriesOk returns a tuple with the MaxFailedRetries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OrderResponseCheckout) GetMaxFailedRetriesOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MaxFailedRetries.Get(), o.MaxFailedRetries.IsSet()
+}
+
+// HasMaxFailedRetries returns a boolean if a field has been set.
+func (o *OrderResponseCheckout) HasMaxFailedRetries() bool {
+	if o != nil && o.MaxFailedRetries.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxFailedRetries gets a reference to the given NullableInt32 and assigns it to the MaxFailedRetries field.
+func (o *OrderResponseCheckout) SetMaxFailedRetries(v int32) {
+	o.MaxFailedRetries.Set(&v)
+}
+// SetMaxFailedRetriesNil sets the value for MaxFailedRetries to be an explicit nil
+func (o *OrderResponseCheckout) SetMaxFailedRetriesNil() {
+	o.MaxFailedRetries.Set(nil)
+}
+
+// UnsetMaxFailedRetries ensures that no value is present for MaxFailedRetries, not even an explicit nil
+func (o *OrderResponseCheckout) UnsetMaxFailedRetries() {
+	o.MaxFailedRetries.Unset()
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -994,6 +1038,9 @@ func (o OrderResponseCheckout) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Livemode) {
 		toSerialize["livemode"] = o.Livemode
 	}
+	if o.MaxFailedRetries.IsSet() {
+		toSerialize["max_failed_retries"] = o.MaxFailedRetries.Get()
+	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
@@ -1077,6 +1124,7 @@ func (o *OrderResponseCheckout) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "is_redirect_on_failure")
 		delete(additionalProperties, "livemode")
+		delete(additionalProperties, "max_failed_retries")
 		delete(additionalProperties, "metadata")
 		delete(additionalProperties, "monthly_installments_enabled")
 		delete(additionalProperties, "monthly_installments_options")

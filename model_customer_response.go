@@ -28,6 +28,8 @@ type CustomerResponse struct {
 	CreatedAt int64 `json:"created_at"`
 	// Custom reference
 	CustomReference *string `json:"custom_reference,omitempty"`
+	// It is a parameter that allows to identify the date of birth of the client.
+	DateOfBirth *string `json:"date_of_birth,omitempty"`
 	DefaultFiscalEntityId NullableString `json:"default_fiscal_entity_id,omitempty"`
 	DefaultShippingContactId *string `json:"default_shipping_contact_id,omitempty"`
 	DefaultPaymentSourceId NullableString `json:"default_payment_source_id,omitempty"`
@@ -39,6 +41,8 @@ type CustomerResponse struct {
 	Livemode bool `json:"livemode"`
 	// Customer's name
 	Name string `json:"name"`
+	// It is a parameter that allows to identify the national identification number of the client.
+	NationalId *string `json:"national_id,omitempty"`
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	Object string `json:"object"`
 	PaymentSources *CustomerPaymentMethodsResponse `json:"payment_sources,omitempty"`
@@ -201,6 +205,38 @@ func (o *CustomerResponse) HasCustomReference() bool {
 // SetCustomReference gets a reference to the given string and assigns it to the CustomReference field.
 func (o *CustomerResponse) SetCustomReference(v string) {
 	o.CustomReference = &v
+}
+
+// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise.
+func (o *CustomerResponse) GetDateOfBirth() string {
+	if o == nil || IsNil(o.DateOfBirth) {
+		var ret string
+		return ret
+	}
+	return *o.DateOfBirth
+}
+
+// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomerResponse) GetDateOfBirthOk() (*string, bool) {
+	if o == nil || IsNil(o.DateOfBirth) {
+		return nil, false
+	}
+	return o.DateOfBirth, true
+}
+
+// HasDateOfBirth returns a boolean if a field has been set.
+func (o *CustomerResponse) HasDateOfBirth() bool {
+	if o != nil && !IsNil(o.DateOfBirth) {
+		return true
+	}
+
+	return false
+}
+
+// SetDateOfBirth gets a reference to the given string and assigns it to the DateOfBirth field.
+func (o *CustomerResponse) SetDateOfBirth(v string) {
+	o.DateOfBirth = &v
 }
 
 // GetDefaultFiscalEntityId returns the DefaultFiscalEntityId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -455,6 +491,38 @@ func (o *CustomerResponse) SetName(v string) {
 	o.Name = v
 }
 
+// GetNationalId returns the NationalId field value if set, zero value otherwise.
+func (o *CustomerResponse) GetNationalId() string {
+	if o == nil || IsNil(o.NationalId) {
+		var ret string
+		return ret
+	}
+	return *o.NationalId
+}
+
+// GetNationalIdOk returns a tuple with the NationalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomerResponse) GetNationalIdOk() (*string, bool) {
+	if o == nil || IsNil(o.NationalId) {
+		return nil, false
+	}
+	return o.NationalId, true
+}
+
+// HasNationalId returns a boolean if a field has been set.
+func (o *CustomerResponse) HasNationalId() bool {
+	if o != nil && !IsNil(o.NationalId) {
+		return true
+	}
+
+	return false
+}
+
+// SetNationalId gets a reference to the given string and assigns it to the NationalId field.
+func (o *CustomerResponse) SetNationalId(v string) {
+	o.NationalId = &v
+}
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *CustomerResponse) GetMetadata() map[string]interface{} {
 	if o == nil || IsNil(o.Metadata) {
@@ -659,6 +727,9 @@ func (o CustomerResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CustomReference) {
 		toSerialize["custom_reference"] = o.CustomReference
 	}
+	if !IsNil(o.DateOfBirth) {
+		toSerialize["date_of_birth"] = o.DateOfBirth
+	}
 	if o.DefaultFiscalEntityId.IsSet() {
 		toSerialize["default_fiscal_entity_id"] = o.DefaultFiscalEntityId.Get()
 	}
@@ -677,6 +748,9 @@ func (o CustomerResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["livemode"] = o.Livemode
 	toSerialize["name"] = o.Name
+	if !IsNil(o.NationalId) {
+		toSerialize["national_id"] = o.NationalId
+	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
@@ -744,6 +818,7 @@ func (o *CustomerResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "corporate")
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "custom_reference")
+		delete(additionalProperties, "date_of_birth")
 		delete(additionalProperties, "default_fiscal_entity_id")
 		delete(additionalProperties, "default_shipping_contact_id")
 		delete(additionalProperties, "default_payment_source_id")
@@ -752,6 +827,7 @@ func (o *CustomerResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "livemode")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "national_id")
 		delete(additionalProperties, "metadata")
 		delete(additionalProperties, "object")
 		delete(additionalProperties, "payment_sources")

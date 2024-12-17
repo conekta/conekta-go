@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **FailureUrl** | Pointer to **string** | Redirection url back to the site in case of failed payment, applies only to HostedPayment. | [optional] 
 **MonthlyInstallmentsEnabled** | Pointer to **bool** |  | [optional] 
 **MonthlyInstallmentsOptions** | Pointer to **[]int32** |  | [optional] 
+**MaxFailedRetries** | Pointer to **int32** | Number of retries allowed before the checkout is marked as failed | [optional] 
 **Name** | Pointer to **string** | Reason for payment | [optional] 
 **OnDemandEnabled** | Pointer to **bool** |  | [optional] 
 **RedirectionTime** | Pointer to **int32** | number of seconds to wait before redirecting to the success_url | [optional] 
@@ -153,6 +154,31 @@ SetMonthlyInstallmentsOptions sets MonthlyInstallmentsOptions field to given val
 `func (o *CheckoutRequest) HasMonthlyInstallmentsOptions() bool`
 
 HasMonthlyInstallmentsOptions returns a boolean if a field has been set.
+
+### GetMaxFailedRetries
+
+`func (o *CheckoutRequest) GetMaxFailedRetries() int32`
+
+GetMaxFailedRetries returns the MaxFailedRetries field if non-nil, zero value otherwise.
+
+### GetMaxFailedRetriesOk
+
+`func (o *CheckoutRequest) GetMaxFailedRetriesOk() (*int32, bool)`
+
+GetMaxFailedRetriesOk returns a tuple with the MaxFailedRetries field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxFailedRetries
+
+`func (o *CheckoutRequest) SetMaxFailedRetries(v int32)`
+
+SetMaxFailedRetries sets MaxFailedRetries field to given value.
+
+### HasMaxFailedRetries
+
+`func (o *CheckoutRequest) HasMaxFailedRetries() bool`
+
+HasMaxFailedRetries returns a boolean if a field has been set.
 
 ### GetName
 

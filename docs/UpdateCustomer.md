@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AntifraudInfo** | Pointer to [**NullableUpdateCustomerAntifraudInfo**](UpdateCustomerAntifraudInfo.md) |  | [optional] 
+**DateOfBirth** | Pointer to **string** | It is a parameter that allows to identify the date of birth of the client. | [optional] 
 **DefaultPaymentSourceId** | Pointer to **string** | It is a parameter that allows to identify in the response, the Conekta ID of a payment method (payment_id) | [optional] 
 **Email** | Pointer to **string** | An email address is a series of customizable characters followed by a universal Internet symbol, the at symbol (@), the name of a host server, and a web domain ending (.mx, .com, .org, . net, etc). | [optional] 
 **Name** | Pointer to **string** | Client&#39;s name | [optional] 
@@ -15,6 +16,7 @@ Name | Type | Description | Notes
 **CustomReference** | Pointer to **string** | It is an undefined value. | [optional] 
 **FiscalEntities** | Pointer to [**[]CustomerFiscalEntitiesRequest**](CustomerFiscalEntitiesRequest.md) |  | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
+**NationalId** | Pointer to **string** | It is a parameter that allows to identify the national identification number of the client. | [optional] 
 **PaymentSources** | Pointer to [**[]CustomerPaymentMethodsRequest**](CustomerPaymentMethodsRequest.md) | Contains details of the payment methods that the customer has active or has used in Conekta | [optional] 
 **ShippingContacts** | Pointer to [**[]CustomerShippingContacts**](CustomerShippingContacts.md) | Contains the detail of the shipping addresses that the client has active or has used in Conekta | [optional] 
 **Subscription** | Pointer to [**SubscriptionRequest**](SubscriptionRequest.md) |  | [optional] 
@@ -73,6 +75,31 @@ HasAntifraudInfo returns a boolean if a field has been set.
 `func (o *UpdateCustomer) UnsetAntifraudInfo()`
 
 UnsetAntifraudInfo ensures that no value is present for AntifraudInfo, not even an explicit nil
+### GetDateOfBirth
+
+`func (o *UpdateCustomer) GetDateOfBirth() string`
+
+GetDateOfBirth returns the DateOfBirth field if non-nil, zero value otherwise.
+
+### GetDateOfBirthOk
+
+`func (o *UpdateCustomer) GetDateOfBirthOk() (*string, bool)`
+
+GetDateOfBirthOk returns a tuple with the DateOfBirth field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDateOfBirth
+
+`func (o *UpdateCustomer) SetDateOfBirth(v string)`
+
+SetDateOfBirth sets DateOfBirth field to given value.
+
+### HasDateOfBirth
+
+`func (o *UpdateCustomer) HasDateOfBirth() bool`
+
+HasDateOfBirth returns a boolean if a field has been set.
+
 ### GetDefaultPaymentSourceId
 
 `func (o *UpdateCustomer) GetDefaultPaymentSourceId() string`
@@ -322,6 +349,31 @@ SetMetadata sets Metadata field to given value.
 `func (o *UpdateCustomer) HasMetadata() bool`
 
 HasMetadata returns a boolean if a field has been set.
+
+### GetNationalId
+
+`func (o *UpdateCustomer) GetNationalId() string`
+
+GetNationalId returns the NationalId field if non-nil, zero value otherwise.
+
+### GetNationalIdOk
+
+`func (o *UpdateCustomer) GetNationalIdOk() (*string, bool)`
+
+GetNationalIdOk returns a tuple with the NationalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNationalId
+
+`func (o *UpdateCustomer) SetNationalId(v string)`
+
+SetNationalId sets NationalId field to given value.
+
+### HasNationalId
+
+`func (o *UpdateCustomer) HasNationalId() bool`
+
+HasNationalId returns a boolean if a field has been set.
 
 ### GetPaymentSources
 

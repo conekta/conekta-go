@@ -4,10 +4,83 @@ All URIs are relative to *https://api.conekta.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CancelPayoutOrderById**](PayoutOrdersAPI.md#CancelPayoutOrderById) | **Put** /payout_orders/{id}/cancel | Cancel Payout Order
 [**CreatePayoutOrder**](PayoutOrdersAPI.md#CreatePayoutOrder) | **Post** /payout_orders | Create payout order
 [**GetPayoutOrderById**](PayoutOrdersAPI.md#GetPayoutOrderById) | **Get** /payout_orders/{id} | Get Payout Order
 [**GetPayoutOrders**](PayoutOrdersAPI.md#GetPayoutOrders) | **Get** /payout_orders | Get a list of Payout Orders
 
+
+
+## CancelPayoutOrderById
+
+> PayoutOrderResponse CancelPayoutOrderById(ctx, id).AcceptLanguage(acceptLanguage).Execute()
+
+Cancel Payout Order
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
+)
+
+func main() {
+	id := "6307a60c41de27127515a575" // string | Identifier of the resource
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PayoutOrdersAPI.CancelPayoutOrderById(context.Background(), id).AcceptLanguage(acceptLanguage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PayoutOrdersAPI.CancelPayoutOrderById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CancelPayoutOrderById`: PayoutOrderResponse
+	fmt.Fprintf(os.Stdout, "Response from `PayoutOrdersAPI.CancelPayoutOrderById`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Identifier of the resource | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCancelPayoutOrderByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+
+### Return type
+
+[**PayoutOrderResponse**](PayoutOrderResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/vnd.conekta-v2.1.0+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreatePayoutOrder
