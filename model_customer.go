@@ -26,6 +26,8 @@ type Customer struct {
 	Corporate *bool `json:"corporate,omitempty"`
 	// It is an undefined value.
 	CustomReference *string `json:"custom_reference,omitempty"`
+	// It is a parameter that allows to identify the date of birth of the client.
+	DateOfBirth *string `json:"date_of_birth,omitempty"`
 	// An email address is a series of customizable characters followed by a universal Internet symbol, the at symbol (@), the name of a host server, and a web domain ending (.mx, .com, .org, . net, etc).
 	Email string `json:"email"`
 	// It is a parameter that allows to identify in the response, the Conekta ID of a payment method (payment_id)
@@ -36,6 +38,8 @@ type Customer struct {
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// Client's name
 	Name string `json:"name"`
+	// It is a parameter that allows to identify the national identification number of the client.
+	NationalId *string `json:"national_id,omitempty"`
 	// Contains details of the payment methods that the customer has active or has used in Conekta
 	PaymentSources []CustomerPaymentMethodsRequest `json:"payment_sources,omitempty"`
 	// Is the customer's phone number
@@ -178,6 +182,38 @@ func (o *Customer) HasCustomReference() bool {
 // SetCustomReference gets a reference to the given string and assigns it to the CustomReference field.
 func (o *Customer) SetCustomReference(v string) {
 	o.CustomReference = &v
+}
+
+// GetDateOfBirth returns the DateOfBirth field value if set, zero value otherwise.
+func (o *Customer) GetDateOfBirth() string {
+	if o == nil || IsNil(o.DateOfBirth) {
+		var ret string
+		return ret
+	}
+	return *o.DateOfBirth
+}
+
+// GetDateOfBirthOk returns a tuple with the DateOfBirth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Customer) GetDateOfBirthOk() (*string, bool) {
+	if o == nil || IsNil(o.DateOfBirth) {
+		return nil, false
+	}
+	return o.DateOfBirth, true
+}
+
+// HasDateOfBirth returns a boolean if a field has been set.
+func (o *Customer) HasDateOfBirth() bool {
+	if o != nil && !IsNil(o.DateOfBirth) {
+		return true
+	}
+
+	return false
+}
+
+// SetDateOfBirth gets a reference to the given string and assigns it to the DateOfBirth field.
+func (o *Customer) SetDateOfBirth(v string) {
+	o.DateOfBirth = &v
 }
 
 // GetEmail returns the Email field value
@@ -356,6 +392,38 @@ func (o *Customer) SetName(v string) {
 	o.Name = v
 }
 
+// GetNationalId returns the NationalId field value if set, zero value otherwise.
+func (o *Customer) GetNationalId() string {
+	if o == nil || IsNil(o.NationalId) {
+		var ret string
+		return ret
+	}
+	return *o.NationalId
+}
+
+// GetNationalIdOk returns a tuple with the NationalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Customer) GetNationalIdOk() (*string, bool) {
+	if o == nil || IsNil(o.NationalId) {
+		return nil, false
+	}
+	return o.NationalId, true
+}
+
+// HasNationalId returns a boolean if a field has been set.
+func (o *Customer) HasNationalId() bool {
+	if o != nil && !IsNil(o.NationalId) {
+		return true
+	}
+
+	return false
+}
+
+// SetNationalId gets a reference to the given string and assigns it to the NationalId field.
+func (o *Customer) SetNationalId(v string) {
+	o.NationalId = &v
+}
+
 // GetPaymentSources returns the PaymentSources field value if set, zero value otherwise.
 func (o *Customer) GetPaymentSources() []CustomerPaymentMethodsRequest {
 	if o == nil || IsNil(o.PaymentSources) {
@@ -527,6 +595,9 @@ func (o Customer) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CustomReference) {
 		toSerialize["custom_reference"] = o.CustomReference
 	}
+	if !IsNil(o.DateOfBirth) {
+		toSerialize["date_of_birth"] = o.DateOfBirth
+	}
 	toSerialize["email"] = o.Email
 	if !IsNil(o.DefaultPaymentSourceId) {
 		toSerialize["default_payment_source_id"] = o.DefaultPaymentSourceId
@@ -541,6 +612,9 @@ func (o Customer) ToMap() (map[string]interface{}, error) {
 		toSerialize["metadata"] = o.Metadata
 	}
 	toSerialize["name"] = o.Name
+	if !IsNil(o.NationalId) {
+		toSerialize["national_id"] = o.NationalId
+	}
 	if !IsNil(o.PaymentSources) {
 		toSerialize["payment_sources"] = o.PaymentSources
 	}
@@ -602,12 +676,14 @@ func (o *Customer) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "antifraud_info")
 		delete(additionalProperties, "corporate")
 		delete(additionalProperties, "custom_reference")
+		delete(additionalProperties, "date_of_birth")
 		delete(additionalProperties, "email")
 		delete(additionalProperties, "default_payment_source_id")
 		delete(additionalProperties, "default_shipping_contact_id")
 		delete(additionalProperties, "fiscal_entities")
 		delete(additionalProperties, "metadata")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "national_id")
 		delete(additionalProperties, "payment_sources")
 		delete(additionalProperties, "phone")
 		delete(additionalProperties, "plan_id")

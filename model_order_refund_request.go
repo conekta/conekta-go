@@ -23,7 +23,7 @@ var _ MappedNullable = &OrderRefundRequest{}
 type OrderRefundRequest struct {
 	// Amount to be refunded in cents
 	Amount int32 `json:"amount"`
-	ExpiresAt NullableInt64 `json:"expires_at,omitempty"`
+	ExpiresAt *int64 `json:"expires_at,omitempty"`
 	// Reason for the refund
 	Reason string `json:"reason"`
 	AdditionalProperties map[string]interface{}
@@ -74,46 +74,36 @@ func (o *OrderRefundRequest) SetAmount(v int32) {
 	o.Amount = v
 }
 
-// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *OrderRefundRequest) GetExpiresAt() int64 {
-	if o == nil || IsNil(o.ExpiresAt.Get()) {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret int64
 		return ret
 	}
-	return *o.ExpiresAt.Get()
+	return *o.ExpiresAt
 }
 
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OrderRefundRequest) GetExpiresAtOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		return nil, false
 	}
-	return o.ExpiresAt.Get(), o.ExpiresAt.IsSet()
+	return o.ExpiresAt, true
 }
 
 // HasExpiresAt returns a boolean if a field has been set.
 func (o *OrderRefundRequest) HasExpiresAt() bool {
-	if o != nil && o.ExpiresAt.IsSet() {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
 	return false
 }
 
-// SetExpiresAt gets a reference to the given NullableInt64 and assigns it to the ExpiresAt field.
+// SetExpiresAt gets a reference to the given int64 and assigns it to the ExpiresAt field.
 func (o *OrderRefundRequest) SetExpiresAt(v int64) {
-	o.ExpiresAt.Set(&v)
-}
-// SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
-func (o *OrderRefundRequest) SetExpiresAtNil() {
-	o.ExpiresAt.Set(nil)
-}
-
-// UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
-func (o *OrderRefundRequest) UnsetExpiresAt() {
-	o.ExpiresAt.Unset()
+	o.ExpiresAt = &v
 }
 
 // GetReason returns the Reason field value
@@ -151,8 +141,8 @@ func (o OrderRefundRequest) MarshalJSON() ([]byte, error) {
 func (o OrderRefundRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["amount"] = o.Amount
-	if o.ExpiresAt.IsSet() {
-		toSerialize["expires_at"] = o.ExpiresAt.Get()
+	if !IsNil(o.ExpiresAt) {
+		toSerialize["expires_at"] = o.ExpiresAt
 	}
 	toSerialize["reason"] = o.Reason
 

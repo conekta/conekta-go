@@ -53,6 +53,8 @@ docs/ChargeResponseRefundsData.md
 docs/ChargeUpdateRequest.md
 docs/ChargesAPI.md
 docs/ChargesDataResponse.md
+docs/ChargesOrderResponse.md
+docs/ChargesOrderResponseAllOfData.md
 docs/Checkout.md
 docs/CheckoutOrderTemplate.md
 docs/CheckoutOrderTemplateCustomerInfo.md
@@ -248,6 +250,8 @@ model_charge_response_refunds.go
 model_charge_response_refunds_data.go
 model_charge_update_request.go
 model_charges_data_response.go
+model_charges_order_response.go
+model_charges_order_response_all_of_data.go
 model_checkout.go
 model_checkout_order_template.go
 model_checkout_order_template_customer_info.go

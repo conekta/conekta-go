@@ -23,11 +23,15 @@ var _ MappedNullable = &PaymentMethodCash{}
 type PaymentMethodCash struct {
 	Type *string `json:"type,omitempty"`
 	Object string `json:"object"`
+	// Agreement ID
+	Agreement *string `json:"agreement,omitempty"`
 	AuthCode NullableInt32 `json:"auth_code,omitempty"`
 	CashierId NullableString `json:"cashier_id,omitempty"`
 	Reference *string `json:"reference,omitempty"`
 	BarcodeUrl *string `json:"barcode_url,omitempty"`
 	ExpiresAt *int64 `json:"expires_at,omitempty"`
+	// Product type, e.g. bbva_cash_in, cash_in, pespay_cash_in, etc.
+	ProductType *string `json:"product_type,omitempty"`
 	ServiceName *string `json:"service_name,omitempty"`
 	Store NullableString `json:"store,omitempty"`
 	StoreName *string `json:"store_name,omitempty"`
@@ -109,6 +113,38 @@ func (o *PaymentMethodCash) GetObjectOk() (*string, bool) {
 // SetObject sets field value
 func (o *PaymentMethodCash) SetObject(v string) {
 	o.Object = v
+}
+
+// GetAgreement returns the Agreement field value if set, zero value otherwise.
+func (o *PaymentMethodCash) GetAgreement() string {
+	if o == nil || IsNil(o.Agreement) {
+		var ret string
+		return ret
+	}
+	return *o.Agreement
+}
+
+// GetAgreementOk returns a tuple with the Agreement field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaymentMethodCash) GetAgreementOk() (*string, bool) {
+	if o == nil || IsNil(o.Agreement) {
+		return nil, false
+	}
+	return o.Agreement, true
+}
+
+// HasAgreement returns a boolean if a field has been set.
+func (o *PaymentMethodCash) HasAgreement() bool {
+	if o != nil && !IsNil(o.Agreement) {
+		return true
+	}
+
+	return false
+}
+
+// SetAgreement gets a reference to the given string and assigns it to the Agreement field.
+func (o *PaymentMethodCash) SetAgreement(v string) {
+	o.Agreement = &v
 }
 
 // GetAuthCode returns the AuthCode field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -291,6 +327,38 @@ func (o *PaymentMethodCash) SetExpiresAt(v int64) {
 	o.ExpiresAt = &v
 }
 
+// GetProductType returns the ProductType field value if set, zero value otherwise.
+func (o *PaymentMethodCash) GetProductType() string {
+	if o == nil || IsNil(o.ProductType) {
+		var ret string
+		return ret
+	}
+	return *o.ProductType
+}
+
+// GetProductTypeOk returns a tuple with the ProductType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaymentMethodCash) GetProductTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.ProductType) {
+		return nil, false
+	}
+	return o.ProductType, true
+}
+
+// HasProductType returns a boolean if a field has been set.
+func (o *PaymentMethodCash) HasProductType() bool {
+	if o != nil && !IsNil(o.ProductType) {
+		return true
+	}
+
+	return false
+}
+
+// SetProductType gets a reference to the given string and assigns it to the ProductType field.
+func (o *PaymentMethodCash) SetProductType(v string) {
+	o.ProductType = &v
+}
+
 // GetServiceName returns the ServiceName field value if set, zero value otherwise.
 func (o *PaymentMethodCash) GetServiceName() string {
 	if o == nil || IsNil(o.ServiceName) {
@@ -443,6 +511,9 @@ func (o PaymentMethodCash) ToMap() (map[string]interface{}, error) {
 		toSerialize["type"] = o.Type
 	}
 	toSerialize["object"] = o.Object
+	if !IsNil(o.Agreement) {
+		toSerialize["agreement"] = o.Agreement
+	}
 	if o.AuthCode.IsSet() {
 		toSerialize["auth_code"] = o.AuthCode.Get()
 	}
@@ -457,6 +528,9 @@ func (o PaymentMethodCash) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ExpiresAt) {
 		toSerialize["expires_at"] = o.ExpiresAt
+	}
+	if !IsNil(o.ProductType) {
+		toSerialize["product_type"] = o.ProductType
 	}
 	if !IsNil(o.ServiceName) {
 		toSerialize["service_name"] = o.ServiceName
@@ -515,11 +589,13 @@ func (o *PaymentMethodCash) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "object")
+		delete(additionalProperties, "agreement")
 		delete(additionalProperties, "auth_code")
 		delete(additionalProperties, "cashier_id")
 		delete(additionalProperties, "reference")
 		delete(additionalProperties, "barcode_url")
 		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "product_type")
 		delete(additionalProperties, "service_name")
 		delete(additionalProperties, "store")
 		delete(additionalProperties, "store_name")
