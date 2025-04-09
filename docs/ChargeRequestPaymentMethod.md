@@ -5,6 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** | Type of payment method | 
+**CancelUrl** | **string** | URL to redirect the customer after a canceled payment | 
+**CanNotExpire** | **bool** | Indicates if the payment method can not expire | 
+**FailureUrl** | **string** | URL to redirect the customer after a failed payment | 
+**ProductType** | **string** | Product type of the payment method, use for the payment method to know the product type | 
+**SuccessUrl** | **string** | URL to redirect the customer after a successful payment | 
 **Cvc** | **string** | Optional, It is a value that allows identifying the security code of the card. Only for PCI merchants | 
 **ExpMonth** | **string** | Card expiration month | 
 **ExpYear** | **string** | Card expiration year | 
@@ -21,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewChargeRequestPaymentMethod
 
-`func NewChargeRequestPaymentMethod(type_ string, cvc string, expMonth string, expYear string, name string, number string, ) *ChargeRequestPaymentMethod`
+`func NewChargeRequestPaymentMethod(type_ string, cancelUrl string, canNotExpire bool, failureUrl string, productType string, successUrl string, cvc string, expMonth string, expYear string, name string, number string, ) *ChargeRequestPaymentMethod`
 
 NewChargeRequestPaymentMethod instantiates a new ChargeRequestPaymentMethod object
 This constructor will assign default values to properties that have it defined,
@@ -54,6 +59,106 @@ and a boolean to check if the value has been set.
 `func (o *ChargeRequestPaymentMethod) SetType(v string)`
 
 SetType sets Type field to given value.
+
+
+### GetCancelUrl
+
+`func (o *ChargeRequestPaymentMethod) GetCancelUrl() string`
+
+GetCancelUrl returns the CancelUrl field if non-nil, zero value otherwise.
+
+### GetCancelUrlOk
+
+`func (o *ChargeRequestPaymentMethod) GetCancelUrlOk() (*string, bool)`
+
+GetCancelUrlOk returns a tuple with the CancelUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCancelUrl
+
+`func (o *ChargeRequestPaymentMethod) SetCancelUrl(v string)`
+
+SetCancelUrl sets CancelUrl field to given value.
+
+
+### GetCanNotExpire
+
+`func (o *ChargeRequestPaymentMethod) GetCanNotExpire() bool`
+
+GetCanNotExpire returns the CanNotExpire field if non-nil, zero value otherwise.
+
+### GetCanNotExpireOk
+
+`func (o *ChargeRequestPaymentMethod) GetCanNotExpireOk() (*bool, bool)`
+
+GetCanNotExpireOk returns a tuple with the CanNotExpire field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCanNotExpire
+
+`func (o *ChargeRequestPaymentMethod) SetCanNotExpire(v bool)`
+
+SetCanNotExpire sets CanNotExpire field to given value.
+
+
+### GetFailureUrl
+
+`func (o *ChargeRequestPaymentMethod) GetFailureUrl() string`
+
+GetFailureUrl returns the FailureUrl field if non-nil, zero value otherwise.
+
+### GetFailureUrlOk
+
+`func (o *ChargeRequestPaymentMethod) GetFailureUrlOk() (*string, bool)`
+
+GetFailureUrlOk returns a tuple with the FailureUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFailureUrl
+
+`func (o *ChargeRequestPaymentMethod) SetFailureUrl(v string)`
+
+SetFailureUrl sets FailureUrl field to given value.
+
+
+### GetProductType
+
+`func (o *ChargeRequestPaymentMethod) GetProductType() string`
+
+GetProductType returns the ProductType field if non-nil, zero value otherwise.
+
+### GetProductTypeOk
+
+`func (o *ChargeRequestPaymentMethod) GetProductTypeOk() (*string, bool)`
+
+GetProductTypeOk returns a tuple with the ProductType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProductType
+
+`func (o *ChargeRequestPaymentMethod) SetProductType(v string)`
+
+SetProductType sets ProductType field to given value.
+
+
+### GetSuccessUrl
+
+`func (o *ChargeRequestPaymentMethod) GetSuccessUrl() string`
+
+GetSuccessUrl returns the SuccessUrl field if non-nil, zero value otherwise.
+
+### GetSuccessUrlOk
+
+`func (o *ChargeRequestPaymentMethod) GetSuccessUrlOk() (*string, bool)`
+
+GetSuccessUrlOk returns a tuple with the SuccessUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSuccessUrl
+
+`func (o *ChargeRequestPaymentMethod) SetSuccessUrl(v string)`
+
+SetSuccessUrl sets SuccessUrl field to given value.
 
 
 ### GetCvc

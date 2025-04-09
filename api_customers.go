@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -214,7 +214,7 @@ func (a *CustomersAPIService) CreateCustomerExecute(r ApiCreateCustomerRequest) 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -392,7 +392,7 @@ func (a *CustomersAPIService) CreateCustomerFiscalEntitiesExecute(r ApiCreateCus
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -560,7 +560,7 @@ func (a *CustomersAPIService) DeleteCustomerByIdExecute(r ApiDeleteCustomerByIdR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -726,7 +726,7 @@ func (a *CustomersAPIService) GetCustomerByIdExecute(r ApiGetCustomerByIdRequest
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -920,7 +920,7 @@ func (a *CustomersAPIService) GetCustomersExecute(r ApiGetCustomersRequest) (*Cu
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1074,7 +1074,7 @@ func (a *CustomersAPIService) UpdateCustomerExecute(r ApiUpdateCustomerRequest) 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1256,7 +1256,7 @@ func (a *CustomersAPIService) UpdateCustomerFiscalEntitiesExecute(r ApiUpdateCus
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -53,14 +53,13 @@ type EventsAPI interface {
 	/*
 	ResendEvent Resend Event
 
-	Try to send an event
+	Resend event to selected webhooks
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param eventId event identifier
-	@param webhookLogId webhook log identifier
 	@return ApiResendEventRequest
 	*/
-	ResendEvent(ctx context.Context, eventId string, webhookLogId string) ApiResendEventRequest
+	ResendEvent(ctx context.Context, eventId string) ApiResendEventRequest
 
 	// ResendEventExecute executes the request
 	//  @return EventsResendResponse
@@ -143,7 +142,7 @@ func (a *EventsAPIService) GetEventExecute(r ApiGetEventRequest) (*EventResponse
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -335,7 +334,7 @@ func (a *EventsAPIService) GetEventsExecute(r ApiGetEventsRequest) (*GetEventsRe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -410,8 +409,14 @@ type ApiResendEventRequest struct {
 	ctx context.Context
 	ApiService EventsAPI
 	eventId string
-	webhookLogId string
+	resendRequest *ResendRequest
 	acceptLanguage *string
+}
+
+// requested fields for resend an event
+func (r ApiResendEventRequest) ResendRequest(resendRequest ResendRequest) ApiResendEventRequest {
+	r.resendRequest = &resendRequest
+	return r
 }
 
 // Use for knowing which language to use
@@ -427,19 +432,17 @@ func (r ApiResendEventRequest) Execute() (*EventsResendResponse, *http.Response,
 /*
 ResendEvent Resend Event
 
-Try to send an event
+Resend event to selected webhooks
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param eventId event identifier
- @param webhookLogId webhook log identifier
  @return ApiResendEventRequest
 */
-func (a *EventsAPIService) ResendEvent(ctx context.Context, eventId string, webhookLogId string) ApiResendEventRequest {
+func (a *EventsAPIService) ResendEvent(ctx context.Context, eventId string) ApiResendEventRequest {
 	return ApiResendEventRequest{
 		ApiService: a,
 		ctx: ctx,
 		eventId: eventId,
-		webhookLogId: webhookLogId,
 	}
 }
 
@@ -458,16 +461,18 @@ func (a *EventsAPIService) ResendEventExecute(r ApiResendEventRequest) (*EventsR
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/events/{event_id}/webhook_logs/{webhook_log_id}/resend"
+	localVarPath := localBasePath + "/events/{event_id}/resend"
 	localVarPath = strings.Replace(localVarPath, "{"+"event_id"+"}", url.PathEscape(parameterValueToString(r.eventId, "eventId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"webhook_log_id"+"}", url.PathEscape(parameterValueToString(r.webhookLogId, "webhookLogId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.resendRequest == nil {
+		return localVarReturnValue, nil, reportError("resendRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -476,7 +481,7 @@ func (a *EventsAPIService) ResendEventExecute(r ApiResendEventRequest) (*EventsR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -486,6 +491,8 @@ func (a *EventsAPIService) ResendEventExecute(r ApiResendEventRequest) (*EventsR
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
 	}
+	// body params
+	localVarPostBody = r.resendRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

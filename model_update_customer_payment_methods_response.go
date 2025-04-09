@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -69,6 +69,18 @@ func (dst *UpdateCustomerPaymentMethodsResponse) UnmarshalJSON(data []byte) erro
 
 	// check if the discriminator value is 'cash'
 	if jsonDict["type"] == "cash" {
+		// try to unmarshal JSON data into PaymentMethodCashResponse
+		err = json.Unmarshal(data, &dst.PaymentMethodCashResponse)
+		if err == nil {
+			return nil // data stored in dst.PaymentMethodCashResponse, return on the first match
+		} else {
+			dst.PaymentMethodCashResponse = nil
+			return fmt.Errorf("failed to unmarshal UpdateCustomerPaymentMethodsResponse as PaymentMethodCashResponse: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'cash_recurrent'
+	if jsonDict["type"] == "cash_recurrent" {
 		// try to unmarshal JSON data into PaymentMethodCashResponse
 		err = json.Unmarshal(data, &dst.PaymentMethodCashResponse)
 		if err == nil {

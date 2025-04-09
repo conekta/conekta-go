@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | Pointer to **int32** | The total amount to be collected in cents | [optional] 
 **AmountRefunded** | Pointer to **int32** | The total amount refunded in cents | [optional] 
-**Channel** | Pointer to [**ChargeResponseChannel**](ChargeResponseChannel.md) |  | [optional] 
-**Charges** | Pointer to [**OrderResponseCharges**](OrderResponseCharges.md) |  | [optional] 
+**Channel** | Pointer to [**OrderChannelResponse**](OrderChannelResponse.md) |  | [optional] 
+**Charges** | Pointer to [**OrderChargesResponse**](OrderChargesResponse.md) |  | [optional] 
 **Checkout** | Pointer to [**OrderResponseCheckout**](OrderResponseCheckout.md) |  | [optional] 
 **CreatedAt** | Pointer to **int64** | The time at which the object was created in seconds since the Unix epoch | [optional] 
 **Currency** | Pointer to **string** | The three-letter ISO 4217 currency code. The currency of the order. | [optional] 
 **CustomerInfo** | Pointer to [**OrderResponseCustomerInfo**](OrderResponseCustomerInfo.md) |  | [optional] 
-**DiscountLines** | Pointer to [**OrderResponseDiscountLines**](OrderResponseDiscountLines.md) |  | [optional] 
+**DiscountLines** | Pointer to [**OrderDiscountLinesResponse**](OrderDiscountLinesResponse.md) |  | [optional] 
 **FiscalEntity** | Pointer to [**NullableOrderFiscalEntityResponse**](OrderFiscalEntityResponse.md) |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **IsRefundable** | Pointer to **bool** |  | [optional] 
@@ -97,20 +97,20 @@ HasAmountRefunded returns a boolean if a field has been set.
 
 ### GetChannel
 
-`func (o *OrderResponse) GetChannel() ChargeResponseChannel`
+`func (o *OrderResponse) GetChannel() OrderChannelResponse`
 
 GetChannel returns the Channel field if non-nil, zero value otherwise.
 
 ### GetChannelOk
 
-`func (o *OrderResponse) GetChannelOk() (*ChargeResponseChannel, bool)`
+`func (o *OrderResponse) GetChannelOk() (*OrderChannelResponse, bool)`
 
 GetChannelOk returns a tuple with the Channel field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChannel
 
-`func (o *OrderResponse) SetChannel(v ChargeResponseChannel)`
+`func (o *OrderResponse) SetChannel(v OrderChannelResponse)`
 
 SetChannel sets Channel field to given value.
 
@@ -122,20 +122,20 @@ HasChannel returns a boolean if a field has been set.
 
 ### GetCharges
 
-`func (o *OrderResponse) GetCharges() OrderResponseCharges`
+`func (o *OrderResponse) GetCharges() OrderChargesResponse`
 
 GetCharges returns the Charges field if non-nil, zero value otherwise.
 
 ### GetChargesOk
 
-`func (o *OrderResponse) GetChargesOk() (*OrderResponseCharges, bool)`
+`func (o *OrderResponse) GetChargesOk() (*OrderChargesResponse, bool)`
 
 GetChargesOk returns a tuple with the Charges field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCharges
 
-`func (o *OrderResponse) SetCharges(v OrderResponseCharges)`
+`func (o *OrderResponse) SetCharges(v OrderChargesResponse)`
 
 SetCharges sets Charges field to given value.
 
@@ -247,20 +247,20 @@ HasCustomerInfo returns a boolean if a field has been set.
 
 ### GetDiscountLines
 
-`func (o *OrderResponse) GetDiscountLines() OrderResponseDiscountLines`
+`func (o *OrderResponse) GetDiscountLines() OrderDiscountLinesResponse`
 
 GetDiscountLines returns the DiscountLines field if non-nil, zero value otherwise.
 
 ### GetDiscountLinesOk
 
-`func (o *OrderResponse) GetDiscountLinesOk() (*OrderResponseDiscountLines, bool)`
+`func (o *OrderResponse) GetDiscountLinesOk() (*OrderDiscountLinesResponse, bool)`
 
 GetDiscountLinesOk returns a tuple with the DiscountLines field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDiscountLines
 
-`func (o *OrderResponse) SetDiscountLines(v OrderResponseDiscountLines)`
+`func (o *OrderResponse) SetDiscountLines(v OrderDiscountLinesResponse)`
 
 SetDiscountLines sets DiscountLines field to given value.
 

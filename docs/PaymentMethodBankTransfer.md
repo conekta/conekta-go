@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Bank** | Pointer to **string** |  | [optional] 
 **Clabe** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **NullableString** |  | [optional] 
-**ExecutedAt** | Pointer to **NullableInt32** |  | [optional] 
+**ExecutedAt** | Pointer to **NullableString** |  | [optional] 
 **ExpiresAt** | Pointer to **int64** |  | [optional] 
 **IssuingAccountBank** | Pointer to **NullableString** |  | [optional] 
 **IssuingAccountNumber** | Pointer to **NullableString** |  | [optional] 
@@ -175,20 +175,20 @@ HasDescription returns a boolean if a field has been set.
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetExecutedAt
 
-`func (o *PaymentMethodBankTransfer) GetExecutedAt() int32`
+`func (o *PaymentMethodBankTransfer) GetExecutedAt() string`
 
 GetExecutedAt returns the ExecutedAt field if non-nil, zero value otherwise.
 
 ### GetExecutedAtOk
 
-`func (o *PaymentMethodBankTransfer) GetExecutedAtOk() (*int32, bool)`
+`func (o *PaymentMethodBankTransfer) GetExecutedAtOk() (*string, bool)`
 
 GetExecutedAtOk returns a tuple with the ExecutedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExecutedAt
 
-`func (o *PaymentMethodBankTransfer) SetExecutedAt(v int32)`
+`func (o *PaymentMethodBankTransfer) SetExecutedAt(v string)`
 
 SetExecutedAt sets ExecutedAt field to given value.
 

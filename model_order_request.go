@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -21,16 +21,16 @@ var _ MappedNullable = &OrderRequest{}
 
 // OrderRequest a order
 type OrderRequest struct {
-	// List of [charges](https://developers.conekta.com/v2.1.0/reference/orderscreatecharge) that are applied to the order
+	// List of [charges](https://developers.conekta.com/v2.2.0/reference/orderscreatecharge) that are applied to the order
 	Charges []ChargeRequest `json:"charges,omitempty"`
 	Checkout *CheckoutRequest `json:"checkout,omitempty"`
 	// Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)
 	Currency string `json:"currency"`
 	CustomerInfo OrderRequestCustomerInfo `json:"customer_info"`
-	// List of [discounts](https://developers.conekta.com/v2.1.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount.
+	// List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount.
 	DiscountLines []OrderDiscountLinesRequest `json:"discount_lines,omitempty"`
 	FiscalEntity *OrderFiscalEntityRequest `json:"fiscal_entity,omitempty"`
-	// List of [products](https://developers.conekta.com/v2.1.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
+	// List of [products](https://developers.conekta.com/v2.2.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
 	LineItems []Product `json:"line_items"`
 	// Metadata associated with the order
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
@@ -43,9 +43,9 @@ type OrderRequest struct {
 	// Indicates the redirection callback upon completion of the 3DS2 flow. Do not use this parameter if your order has a checkout parameter
 	ReturnUrl *string `json:"return_url,omitempty"`
 	ShippingContact *CustomerShippingContacts `json:"shipping_contact,omitempty"`
-	// List of [shipping costs](https://developers.conekta.com/v2.1.0/reference/orderscreateshipping). If the online store offers digital products.
+	// List of [shipping costs](https://developers.conekta.com/v2.2.0/reference/orderscreateshipping). If the online store offers digital products.
 	ShippingLines []ShippingRequest `json:"shipping_lines,omitempty"`
-	// List of [taxes](https://developers.conekta.com/v2.1.0/reference/orderscreatetaxes) that are applied to the order.
+	// List of [taxes](https://developers.conekta.com/v2.2.0/reference/orderscreatetaxes) that are applied to the order.
 	TaxLines []OrderTaxRequest `json:"tax_lines,omitempty"`
 	// Indicates the 3DS2 mode for the order, either smart or strict.
 	ThreeDsMode *string `json:"three_ds_mode,omitempty"`

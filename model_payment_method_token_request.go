@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -23,7 +23,7 @@ var _ MappedNullable = &PaymentMethodTokenRequest{}
 type PaymentMethodTokenRequest struct {
 	// Type of payment method
 	Type string `json:"type"`
-	// Token id that will be used to create a \"card\" type payment method. See the (subscriptions)[https://developers.conekta.com/v2.1.0/reference/createsubscription] tutorial for more information on how to tokenize cards.
+	// Token id that will be used to create a \"card\" type payment method. See the (subscriptions)[https://developers.conekta.com/v2.2.0/reference/createsubscription] tutorial for more information on how to tokenize cards.
 	TokenId string `json:"token_id"`
 	AdditionalProperties map[string]interface{}
 }

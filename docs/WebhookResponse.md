@@ -4,16 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Deleted** | Pointer to **NullableBool** |  | [optional] 
-**DevelopmentEnabled** | Pointer to **bool** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
-**Livemode** | Pointer to **bool** |  | [optional] 
-**Object** | Pointer to **string** |  | [optional] 
-**ProductionEnabled** | Pointer to **bool** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**SubscribedEvents** | Pointer to **[]string** |  | [optional] 
-**Synchronous** | Pointer to **bool** |  | [optional] 
-**Url** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** | id of the webhook | [optional] 
+**Description** | Pointer to **string** | A name or brief explanation of what this webhook is used for | [optional] 
+**Livemode** | Pointer to **bool** | Indicates if the webhook is in production | [optional] 
+**Active** | Pointer to **bool** | Indicates if the webhook is actived or not | [optional] 
+**Object** | Pointer to **string** | Object name, value is &#39;webhook&#39; | [optional] 
+**Status** | Pointer to **string** | Indicates if the webhook is ready to receive events or failing | [optional] 
+**SubscribedEvents** | Pointer to **[]string** | lists the events that will be sent to the webhook | [optional] 
+**Url** | Pointer to **string** | url or endpoint of the webhook | [optional] 
 
 ## Methods
 
@@ -33,66 +31,6 @@ will change when the set of required properties is changed
 NewWebhookResponseWithDefaults instantiates a new WebhookResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetDeleted
-
-`func (o *WebhookResponse) GetDeleted() bool`
-
-GetDeleted returns the Deleted field if non-nil, zero value otherwise.
-
-### GetDeletedOk
-
-`func (o *WebhookResponse) GetDeletedOk() (*bool, bool)`
-
-GetDeletedOk returns a tuple with the Deleted field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDeleted
-
-`func (o *WebhookResponse) SetDeleted(v bool)`
-
-SetDeleted sets Deleted field to given value.
-
-### HasDeleted
-
-`func (o *WebhookResponse) HasDeleted() bool`
-
-HasDeleted returns a boolean if a field has been set.
-
-### SetDeletedNil
-
-`func (o *WebhookResponse) SetDeletedNil(b bool)`
-
- SetDeletedNil sets the value for Deleted to be an explicit nil
-
-### UnsetDeleted
-`func (o *WebhookResponse) UnsetDeleted()`
-
-UnsetDeleted ensures that no value is present for Deleted, not even an explicit nil
-### GetDevelopmentEnabled
-
-`func (o *WebhookResponse) GetDevelopmentEnabled() bool`
-
-GetDevelopmentEnabled returns the DevelopmentEnabled field if non-nil, zero value otherwise.
-
-### GetDevelopmentEnabledOk
-
-`func (o *WebhookResponse) GetDevelopmentEnabledOk() (*bool, bool)`
-
-GetDevelopmentEnabledOk returns a tuple with the DevelopmentEnabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDevelopmentEnabled
-
-`func (o *WebhookResponse) SetDevelopmentEnabled(v bool)`
-
-SetDevelopmentEnabled sets DevelopmentEnabled field to given value.
-
-### HasDevelopmentEnabled
-
-`func (o *WebhookResponse) HasDevelopmentEnabled() bool`
-
-HasDevelopmentEnabled returns a boolean if a field has been set.
 
 ### GetId
 
@@ -119,6 +57,31 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
+### GetDescription
+
+`func (o *WebhookResponse) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *WebhookResponse) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *WebhookResponse) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *WebhookResponse) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
 ### GetLivemode
 
 `func (o *WebhookResponse) GetLivemode() bool`
@@ -144,6 +107,31 @@ SetLivemode sets Livemode field to given value.
 
 HasLivemode returns a boolean if a field has been set.
 
+### GetActive
+
+`func (o *WebhookResponse) GetActive() bool`
+
+GetActive returns the Active field if non-nil, zero value otherwise.
+
+### GetActiveOk
+
+`func (o *WebhookResponse) GetActiveOk() (*bool, bool)`
+
+GetActiveOk returns a tuple with the Active field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetActive
+
+`func (o *WebhookResponse) SetActive(v bool)`
+
+SetActive sets Active field to given value.
+
+### HasActive
+
+`func (o *WebhookResponse) HasActive() bool`
+
+HasActive returns a boolean if a field has been set.
+
 ### GetObject
 
 `func (o *WebhookResponse) GetObject() string`
@@ -168,31 +156,6 @@ SetObject sets Object field to given value.
 `func (o *WebhookResponse) HasObject() bool`
 
 HasObject returns a boolean if a field has been set.
-
-### GetProductionEnabled
-
-`func (o *WebhookResponse) GetProductionEnabled() bool`
-
-GetProductionEnabled returns the ProductionEnabled field if non-nil, zero value otherwise.
-
-### GetProductionEnabledOk
-
-`func (o *WebhookResponse) GetProductionEnabledOk() (*bool, bool)`
-
-GetProductionEnabledOk returns a tuple with the ProductionEnabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProductionEnabled
-
-`func (o *WebhookResponse) SetProductionEnabled(v bool)`
-
-SetProductionEnabled sets ProductionEnabled field to given value.
-
-### HasProductionEnabled
-
-`func (o *WebhookResponse) HasProductionEnabled() bool`
-
-HasProductionEnabled returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -243,31 +206,6 @@ SetSubscribedEvents sets SubscribedEvents field to given value.
 `func (o *WebhookResponse) HasSubscribedEvents() bool`
 
 HasSubscribedEvents returns a boolean if a field has been set.
-
-### GetSynchronous
-
-`func (o *WebhookResponse) GetSynchronous() bool`
-
-GetSynchronous returns the Synchronous field if non-nil, zero value otherwise.
-
-### GetSynchronousOk
-
-`func (o *WebhookResponse) GetSynchronousOk() (*bool, bool)`
-
-GetSynchronousOk returns a tuple with the Synchronous field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSynchronous
-
-`func (o *WebhookResponse) SetSynchronous(v bool)`
-
-SetSynchronous sets Synchronous field to given value.
-
-### HasSynchronous
-
-`func (o *WebhookResponse) HasSynchronous() bool`
-
-HasSynchronous returns a boolean if a field has been set.
 
 ### GetUrl
 

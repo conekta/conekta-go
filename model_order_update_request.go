@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -25,16 +25,16 @@ type OrderUpdateRequest struct {
 	// Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)
 	Currency *string `json:"currency,omitempty"`
 	CustomerInfo *OrderUpdateRequestCustomerInfo `json:"customer_info,omitempty"`
-	// List of [discounts](https://developers.conekta.com/v2.1.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount.
+	// List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount.
 	DiscountLines []OrderDiscountLinesRequest `json:"discount_lines,omitempty"`
 	FiscalEntity *OrderUpdateFiscalEntityRequest `json:"fiscal_entity,omitempty"`
-	// List of [products](https://developers.conekta.com/v2.1.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
+	// List of [products](https://developers.conekta.com/v2.2.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
 	LineItems []Product `json:"line_items,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	// Indicates whether the order charges must be preauthorized
 	PreAuthorize *bool `json:"pre_authorize,omitempty"`
 	ShippingContact *CustomerShippingContacts `json:"shipping_contact,omitempty"`
-	// List of [shipping costs](https://developers.conekta.com/v2.1.0/reference/orderscreateshipping). If the online store offers digital products.
+	// List of [shipping costs](https://developers.conekta.com/v2.2.0/reference/orderscreateshipping). If the online store offers digital products.
 	ShippingLines []ShippingRequest `json:"shipping_lines,omitempty"`
 	TaxLines []OrderTaxRequest `json:"tax_lines,omitempty"`
 	AdditionalProperties map[string]interface{}

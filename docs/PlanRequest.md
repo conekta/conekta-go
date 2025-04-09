@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **Interval** | **string** | The interval of time between each charge. | 
 **Name** | **string** | The name of the plan. | 
 **TrialPeriodDays** | Pointer to **int32** | The number of days the customer will have a free trial. | [optional] 
+**MaxRetries** | Pointer to **int32** | (optional) Specifies the maximum number of retry attempts for a subscription payment before it is canceled. | [optional] 
+**RetryDelayHours** | Pointer to **int32** | (optional)  Defines the number of hours between subscription payment retry attempts. | [optional] 
 
 ## Methods
 
@@ -211,6 +213,56 @@ SetTrialPeriodDays sets TrialPeriodDays field to given value.
 `func (o *PlanRequest) HasTrialPeriodDays() bool`
 
 HasTrialPeriodDays returns a boolean if a field has been set.
+
+### GetMaxRetries
+
+`func (o *PlanRequest) GetMaxRetries() int32`
+
+GetMaxRetries returns the MaxRetries field if non-nil, zero value otherwise.
+
+### GetMaxRetriesOk
+
+`func (o *PlanRequest) GetMaxRetriesOk() (*int32, bool)`
+
+GetMaxRetriesOk returns a tuple with the MaxRetries field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxRetries
+
+`func (o *PlanRequest) SetMaxRetries(v int32)`
+
+SetMaxRetries sets MaxRetries field to given value.
+
+### HasMaxRetries
+
+`func (o *PlanRequest) HasMaxRetries() bool`
+
+HasMaxRetries returns a boolean if a field has been set.
+
+### GetRetryDelayHours
+
+`func (o *PlanRequest) GetRetryDelayHours() int32`
+
+GetRetryDelayHours returns the RetryDelayHours field if non-nil, zero value otherwise.
+
+### GetRetryDelayHoursOk
+
+`func (o *PlanRequest) GetRetryDelayHoursOk() (*int32, bool)`
+
+GetRetryDelayHoursOk returns a tuple with the RetryDelayHours field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetryDelayHours
+
+`func (o *PlanRequest) SetRetryDelayHours(v int32)`
+
+SetRetryDelayHours sets RetryDelayHours field to given value.
+
+### HasRetryDelayHours
+
+`func (o *PlanRequest) HasRetryDelayHours() bool`
+
+HasRetryDelayHours returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

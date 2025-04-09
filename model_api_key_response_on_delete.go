@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -34,8 +34,8 @@ type ApiKeyResponseOnDelete struct {
 	Id *string `json:"id,omitempty"`
 	// Object name, value is 'api_key'
 	Object *string `json:"object,omitempty"`
-	// Indicates if the api key was deleted
-	Deleted *bool `json:"deleted,omitempty"`
+	// Unix timestamp in seconds with the api key was used
+	LastUsedAt NullableInt64 `json:"last_used_at,omitempty"`
 	// Indicates if the api key is private or public
 	Role *string `json:"role,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -284,36 +284,46 @@ func (o *ApiKeyResponseOnDelete) SetObject(v string) {
 	o.Object = &v
 }
 
-// GetDeleted returns the Deleted field value if set, zero value otherwise.
-func (o *ApiKeyResponseOnDelete) GetDeleted() bool {
-	if o == nil || IsNil(o.Deleted) {
-		var ret bool
+// GetLastUsedAt returns the LastUsedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ApiKeyResponseOnDelete) GetLastUsedAt() int64 {
+	if o == nil || IsNil(o.LastUsedAt.Get()) {
+		var ret int64
 		return ret
 	}
-	return *o.Deleted
+	return *o.LastUsedAt.Get()
 }
 
-// GetDeletedOk returns a tuple with the Deleted field value if set, nil otherwise
+// GetLastUsedAtOk returns a tuple with the LastUsedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiKeyResponseOnDelete) GetDeletedOk() (*bool, bool) {
-	if o == nil || IsNil(o.Deleted) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ApiKeyResponseOnDelete) GetLastUsedAtOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Deleted, true
+	return o.LastUsedAt.Get(), o.LastUsedAt.IsSet()
 }
 
-// HasDeleted returns a boolean if a field has been set.
-func (o *ApiKeyResponseOnDelete) HasDeleted() bool {
-	if o != nil && !IsNil(o.Deleted) {
+// HasLastUsedAt returns a boolean if a field has been set.
+func (o *ApiKeyResponseOnDelete) HasLastUsedAt() bool {
+	if o != nil && o.LastUsedAt.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDeleted gets a reference to the given bool and assigns it to the Deleted field.
-func (o *ApiKeyResponseOnDelete) SetDeleted(v bool) {
-	o.Deleted = &v
+// SetLastUsedAt gets a reference to the given NullableInt64 and assigns it to the LastUsedAt field.
+func (o *ApiKeyResponseOnDelete) SetLastUsedAt(v int64) {
+	o.LastUsedAt.Set(&v)
+}
+// SetLastUsedAtNil sets the value for LastUsedAt to be an explicit nil
+func (o *ApiKeyResponseOnDelete) SetLastUsedAtNil() {
+	o.LastUsedAt.Set(nil)
+}
+
+// UnsetLastUsedAt ensures that no value is present for LastUsedAt, not even an explicit nil
+func (o *ApiKeyResponseOnDelete) UnsetLastUsedAt() {
+	o.LastUsedAt.Unset()
 }
 
 // GetRole returns the Role field value if set, zero value otherwise.
@@ -379,8 +389,8 @@ func (o ApiKeyResponseOnDelete) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object
 	}
-	if !IsNil(o.Deleted) {
-		toSerialize["deleted"] = o.Deleted
+	if o.LastUsedAt.IsSet() {
+		toSerialize["last_used_at"] = o.LastUsedAt.Get()
 	}
 	if !IsNil(o.Role) {
 		toSerialize["role"] = o.Role
@@ -414,7 +424,7 @@ func (o *ApiKeyResponseOnDelete) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "prefix")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "object")
-		delete(additionalProperties, "deleted")
+		delete(additionalProperties, "last_used_at")
 		delete(additionalProperties, "role")
 		o.AdditionalProperties = additionalProperties
 	}

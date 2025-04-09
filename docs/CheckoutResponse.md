@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AllowedPaymentMethods** | Pointer to **[]string** |  | [optional] 
+**AllowedPaymentMethods** | Pointer to **[]string** | Are the payment methods available for this link | [optional] 
 **CanNotExpire** | Pointer to **bool** |  | [optional] 
 **EmailsSent** | Pointer to **int32** |  | [optional] 
 **ExcludeCardNetworks** | Pointer to **[]map[string]interface{}** |  | [optional] 

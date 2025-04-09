@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Url** | **string** | Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security. | 
-**Synchronous** | **bool** | It is a value that allows to decide if the events will be synchronous or asynchronous. We recommend asynchronous &#x3D; false | [default to false]
+**SubscribedEvents** | Pointer to **[]string** | events that will be sent to the webhook | [optional] 
 
 ## Methods
 
 ### NewWebhookRequest
 
-`func NewWebhookRequest(url string, synchronous bool, ) *WebhookRequest`
+`func NewWebhookRequest(url string, ) *WebhookRequest`
 
 NewWebhookRequest instantiates a new WebhookRequest object
 This constructor will assign default values to properties that have it defined,
@@ -46,25 +46,30 @@ and a boolean to check if the value has been set.
 SetUrl sets Url field to given value.
 
 
-### GetSynchronous
+### GetSubscribedEvents
 
-`func (o *WebhookRequest) GetSynchronous() bool`
+`func (o *WebhookRequest) GetSubscribedEvents() []string`
 
-GetSynchronous returns the Synchronous field if non-nil, zero value otherwise.
+GetSubscribedEvents returns the SubscribedEvents field if non-nil, zero value otherwise.
 
-### GetSynchronousOk
+### GetSubscribedEventsOk
 
-`func (o *WebhookRequest) GetSynchronousOk() (*bool, bool)`
+`func (o *WebhookRequest) GetSubscribedEventsOk() (*[]string, bool)`
 
-GetSynchronousOk returns a tuple with the Synchronous field if it's non-nil, zero value otherwise
+GetSubscribedEventsOk returns a tuple with the SubscribedEvents field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSynchronous
+### SetSubscribedEvents
 
-`func (o *WebhookRequest) SetSynchronous(v bool)`
+`func (o *WebhookRequest) SetSubscribedEvents(v []string)`
 
-SetSynchronous sets Synchronous field to given value.
+SetSubscribedEvents sets SubscribedEvents field to given value.
 
+### HasSubscribedEvents
+
+`func (o *WebhookRequest) HasSubscribedEvents() bool`
+
+HasSubscribedEvents returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

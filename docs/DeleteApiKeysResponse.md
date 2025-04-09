@@ -11,8 +11,9 @@ Name | Type | Description | Notes
 **Prefix** | Pointer to **string** | The first few characters of the authentication_token | [optional] 
 **Id** | Pointer to **string** | Unique identifier of the api key | [optional] 
 **Object** | Pointer to **string** | Object name, value is &#39;api_key&#39; | [optional] 
-**Deleted** | Pointer to **bool** |  | [optional] 
+**LastUsedAt** | Pointer to **NullableInt64** | Unix timestamp in seconds with the api key was used | [optional] 
 **Role** | Pointer to **string** | Indicates if the api key is private or public | [optional] 
+**Deleted** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -208,31 +209,41 @@ SetObject sets Object field to given value.
 
 HasObject returns a boolean if a field has been set.
 
-### GetDeleted
+### GetLastUsedAt
 
-`func (o *DeleteApiKeysResponse) GetDeleted() bool`
+`func (o *DeleteApiKeysResponse) GetLastUsedAt() int64`
 
-GetDeleted returns the Deleted field if non-nil, zero value otherwise.
+GetLastUsedAt returns the LastUsedAt field if non-nil, zero value otherwise.
 
-### GetDeletedOk
+### GetLastUsedAtOk
 
-`func (o *DeleteApiKeysResponse) GetDeletedOk() (*bool, bool)`
+`func (o *DeleteApiKeysResponse) GetLastUsedAtOk() (*int64, bool)`
 
-GetDeletedOk returns a tuple with the Deleted field if it's non-nil, zero value otherwise
+GetLastUsedAtOk returns a tuple with the LastUsedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeleted
+### SetLastUsedAt
 
-`func (o *DeleteApiKeysResponse) SetDeleted(v bool)`
+`func (o *DeleteApiKeysResponse) SetLastUsedAt(v int64)`
 
-SetDeleted sets Deleted field to given value.
+SetLastUsedAt sets LastUsedAt field to given value.
 
-### HasDeleted
+### HasLastUsedAt
 
-`func (o *DeleteApiKeysResponse) HasDeleted() bool`
+`func (o *DeleteApiKeysResponse) HasLastUsedAt() bool`
 
-HasDeleted returns a boolean if a field has been set.
+HasLastUsedAt returns a boolean if a field has been set.
 
+### SetLastUsedAtNil
+
+`func (o *DeleteApiKeysResponse) SetLastUsedAtNil(b bool)`
+
+ SetLastUsedAtNil sets the value for LastUsedAt to be an explicit nil
+
+### UnsetLastUsedAt
+`func (o *DeleteApiKeysResponse) UnsetLastUsedAt()`
+
+UnsetLastUsedAt ensures that no value is present for LastUsedAt, not even an explicit nil
 ### GetRole
 
 `func (o *DeleteApiKeysResponse) GetRole() string`
@@ -257,6 +268,31 @@ SetRole sets Role field to given value.
 `func (o *DeleteApiKeysResponse) HasRole() bool`
 
 HasRole returns a boolean if a field has been set.
+
+### GetDeleted
+
+`func (o *DeleteApiKeysResponse) GetDeleted() bool`
+
+GetDeleted returns the Deleted field if non-nil, zero value otherwise.
+
+### GetDeletedOk
+
+`func (o *DeleteApiKeysResponse) GetDeletedOk() (*bool, bool)`
+
+GetDeletedOk returns a tuple with the Deleted field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeleted
+
+`func (o *DeleteApiKeysResponse) SetDeleted(v bool)`
+
+SetDeleted sets Deleted field to given value.
+
+### HasDeleted
+
+`func (o *DeleteApiKeysResponse) HasDeleted() bool`
+
+HasDeleted returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

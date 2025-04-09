@@ -8,10 +8,10 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **int64** | Unix timestamp in seconds of when the api key was created | [optional] 
 **UpdatedAt** | Pointer to **int64** | Unix timestamp in seconds of when the api key was last updated | [optional] 
 **DeactivatedAt** | Pointer to **NullableInt64** | Unix timestamp in seconds of when the api key was deleted | [optional] 
+**LastUsedAt** | Pointer to **NullableInt64** | Unix timestamp in seconds with the api key was used | [optional] 
 **Description** | Pointer to **string** | A name or brief explanation of what this api key is used for | [optional] 
 **Id** | Pointer to **string** | Unique identifier of the api key | [optional] 
 **Livemode** | Pointer to **bool** | Indicates if the api key is in production | [optional] 
-**Deleted** | Pointer to **bool** | Indicates if the api key was deleted | [optional] 
 **Object** | Pointer to **string** | Object name, value is &#39;api_key&#39; | [optional] 
 **Prefix** | Pointer to **string** | The first few characters of the authentication_token | [optional] 
 **Role** | Pointer to **string** | Indicates if the api key is private or public | [optional] 
@@ -146,6 +146,41 @@ HasDeactivatedAt returns a boolean if a field has been set.
 `func (o *ApiKeyCreateResponse) UnsetDeactivatedAt()`
 
 UnsetDeactivatedAt ensures that no value is present for DeactivatedAt, not even an explicit nil
+### GetLastUsedAt
+
+`func (o *ApiKeyCreateResponse) GetLastUsedAt() int64`
+
+GetLastUsedAt returns the LastUsedAt field if non-nil, zero value otherwise.
+
+### GetLastUsedAtOk
+
+`func (o *ApiKeyCreateResponse) GetLastUsedAtOk() (*int64, bool)`
+
+GetLastUsedAtOk returns a tuple with the LastUsedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastUsedAt
+
+`func (o *ApiKeyCreateResponse) SetLastUsedAt(v int64)`
+
+SetLastUsedAt sets LastUsedAt field to given value.
+
+### HasLastUsedAt
+
+`func (o *ApiKeyCreateResponse) HasLastUsedAt() bool`
+
+HasLastUsedAt returns a boolean if a field has been set.
+
+### SetLastUsedAtNil
+
+`func (o *ApiKeyCreateResponse) SetLastUsedAtNil(b bool)`
+
+ SetLastUsedAtNil sets the value for LastUsedAt to be an explicit nil
+
+### UnsetLastUsedAt
+`func (o *ApiKeyCreateResponse) UnsetLastUsedAt()`
+
+UnsetLastUsedAt ensures that no value is present for LastUsedAt, not even an explicit nil
 ### GetDescription
 
 `func (o *ApiKeyCreateResponse) GetDescription() string`
@@ -220,31 +255,6 @@ SetLivemode sets Livemode field to given value.
 `func (o *ApiKeyCreateResponse) HasLivemode() bool`
 
 HasLivemode returns a boolean if a field has been set.
-
-### GetDeleted
-
-`func (o *ApiKeyCreateResponse) GetDeleted() bool`
-
-GetDeleted returns the Deleted field if non-nil, zero value otherwise.
-
-### GetDeletedOk
-
-`func (o *ApiKeyCreateResponse) GetDeletedOk() (*bool, bool)`
-
-GetDeletedOk returns a tuple with the Deleted field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDeleted
-
-`func (o *ApiKeyCreateResponse) SetDeleted(v bool)`
-
-SetDeleted sets Deleted field to given value.
-
-### HasDeleted
-
-`func (o *ApiKeyCreateResponse) HasDeleted() bool`
-
-HasDeleted returns a boolean if a field has been set.
 
 ### GetObject
 

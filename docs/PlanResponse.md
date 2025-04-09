@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Object** | Pointer to **string** |  | [optional] 
 **TrialPeriodDays** | Pointer to **NullableInt32** |  | [optional] 
+**MaxRetries** | Pointer to **int32** |  | [optional] 
+**RetryDelayHours** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -330,6 +332,56 @@ HasTrialPeriodDays returns a boolean if a field has been set.
 `func (o *PlanResponse) UnsetTrialPeriodDays()`
 
 UnsetTrialPeriodDays ensures that no value is present for TrialPeriodDays, not even an explicit nil
+### GetMaxRetries
+
+`func (o *PlanResponse) GetMaxRetries() int32`
+
+GetMaxRetries returns the MaxRetries field if non-nil, zero value otherwise.
+
+### GetMaxRetriesOk
+
+`func (o *PlanResponse) GetMaxRetriesOk() (*int32, bool)`
+
+GetMaxRetriesOk returns a tuple with the MaxRetries field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxRetries
+
+`func (o *PlanResponse) SetMaxRetries(v int32)`
+
+SetMaxRetries sets MaxRetries field to given value.
+
+### HasMaxRetries
+
+`func (o *PlanResponse) HasMaxRetries() bool`
+
+HasMaxRetries returns a boolean if a field has been set.
+
+### GetRetryDelayHours
+
+`func (o *PlanResponse) GetRetryDelayHours() int32`
+
+GetRetryDelayHours returns the RetryDelayHours field if non-nil, zero value otherwise.
+
+### GetRetryDelayHoursOk
+
+`func (o *PlanResponse) GetRetryDelayHoursOk() (*int32, bool)`
+
+GetRetryDelayHoursOk returns a tuple with the RetryDelayHours field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetryDelayHours
+
+`func (o *PlanResponse) SetRetryDelayHours(v int32)`
+
+SetRetryDelayHours sets RetryDelayHours field to given value.
+
+### HasRetryDelayHours
+
+`func (o *PlanResponse) HasRetryDelayHours() bool`
+
+HasRetryDelayHours returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
