@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetEvent**](EventsAPI.md#GetEvent) | **Get** /events/{id} | Get Event
 [**GetEvents**](EventsAPI.md#GetEvents) | **Get** /events | Get list of Events
-[**ResendEvent**](EventsAPI.md#ResendEvent) | **Post** /events/{event_id}/webhook_logs/{webhook_log_id}/resend | Resend Event
+[**ResendEvent**](EventsAPI.md#ResendEvent) | **Post** /events/{event_id}/resend | Resend Event
 
 
 
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## ResendEvent
 
-> EventsResendResponse ResendEvent(ctx, eventId, webhookLogId).AcceptLanguage(acceptLanguage).Execute()
+> EventsResendResponse ResendEvent(ctx, eventId).ResendRequest(resendRequest).AcceptLanguage(acceptLanguage).Execute()
 
 Resend Event
 
@@ -180,12 +180,12 @@ import (
 
 func main() {
 	eventId := "6463d6e35a4c3e001819e760" // string | event identifier
-	webhookLogId := "webhl_2tsv6NzWJHBWCkqGt" // string | webhook log identifier
+	resendRequest := *openapiclient.NewResendRequest([]string{"WebhooksIds_example"}) // ResendRequest | requested fields for resend an event
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EventsAPI.ResendEvent(context.Background(), eventId, webhookLogId).AcceptLanguage(acceptLanguage).Execute()
+	resp, r, err := apiClient.EventsAPI.ResendEvent(context.Background(), eventId).ResendRequest(resendRequest).AcceptLanguage(acceptLanguage).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.ResendEvent``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -202,7 +202,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **eventId** | **string** | event identifier | 
-**webhookLogId** | **string** | webhook log identifier | 
 
 ### Other Parameters
 
@@ -212,7 +211,7 @@ Other parameters are passed through a pointer to a apiResendEventRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
+ **resendRequest** | [**ResendRequest**](ResendRequest.md) | requested fields for resend an event | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
 
 ### Return type
@@ -225,8 +224,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.1.0+json
+- **Content-Type**: application/json
+- **Accept**: application/vnd.conekta-v2.2.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

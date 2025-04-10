@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Prefix** | Pointer to **string** | The first few characters of the authentication_token | [optional] 
 **Id** | Pointer to **string** | Unique identifier of the api key | [optional] 
 **Object** | Pointer to **string** | Object name, value is &#39;api_key&#39; | [optional] 
-**Deleted** | Pointer to **bool** | Indicates if the api key was deleted | [optional] 
+**LastUsedAt** | Pointer to **NullableInt64** | Unix timestamp in seconds with the api key was used | [optional] 
 **Role** | Pointer to **string** | Indicates if the api key is private or public | [optional] 
 
 ## Methods
@@ -208,31 +208,41 @@ SetObject sets Object field to given value.
 
 HasObject returns a boolean if a field has been set.
 
-### GetDeleted
+### GetLastUsedAt
 
-`func (o *ApiKeyResponseOnDelete) GetDeleted() bool`
+`func (o *ApiKeyResponseOnDelete) GetLastUsedAt() int64`
 
-GetDeleted returns the Deleted field if non-nil, zero value otherwise.
+GetLastUsedAt returns the LastUsedAt field if non-nil, zero value otherwise.
 
-### GetDeletedOk
+### GetLastUsedAtOk
 
-`func (o *ApiKeyResponseOnDelete) GetDeletedOk() (*bool, bool)`
+`func (o *ApiKeyResponseOnDelete) GetLastUsedAtOk() (*int64, bool)`
 
-GetDeletedOk returns a tuple with the Deleted field if it's non-nil, zero value otherwise
+GetLastUsedAtOk returns a tuple with the LastUsedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeleted
+### SetLastUsedAt
 
-`func (o *ApiKeyResponseOnDelete) SetDeleted(v bool)`
+`func (o *ApiKeyResponseOnDelete) SetLastUsedAt(v int64)`
 
-SetDeleted sets Deleted field to given value.
+SetLastUsedAt sets LastUsedAt field to given value.
 
-### HasDeleted
+### HasLastUsedAt
 
-`func (o *ApiKeyResponseOnDelete) HasDeleted() bool`
+`func (o *ApiKeyResponseOnDelete) HasLastUsedAt() bool`
 
-HasDeleted returns a boolean if a field has been set.
+HasLastUsedAt returns a boolean if a field has been set.
 
+### SetLastUsedAtNil
+
+`func (o *ApiKeyResponseOnDelete) SetLastUsedAtNil(b bool)`
+
+ SetLastUsedAtNil sets the value for LastUsedAt to be an explicit nil
+
+### UnsetLastUsedAt
+`func (o *ApiKeyResponseOnDelete) UnsetLastUsedAt()`
+
+UnsetLastUsedAt ensures that no value is present for LastUsedAt, not even an explicit nil
 ### GetRole
 
 `func (o *ApiKeyResponseOnDelete) GetRole() string`

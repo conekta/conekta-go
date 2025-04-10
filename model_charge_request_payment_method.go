@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -18,8 +18,16 @@ import (
 
 // ChargeRequestPaymentMethod - struct for ChargeRequestPaymentMethod
 type ChargeRequestPaymentMethod struct {
+	PaymentMethodBnplRequest *PaymentMethodBnplRequest
 	PaymentMethodCardRequest *PaymentMethodCardRequest
 	PaymentMethodGeneralRequest *PaymentMethodGeneralRequest
+}
+
+// PaymentMethodBnplRequestAsChargeRequestPaymentMethod is a convenience function that returns PaymentMethodBnplRequest wrapped in ChargeRequestPaymentMethod
+func PaymentMethodBnplRequestAsChargeRequestPaymentMethod(v *PaymentMethodBnplRequest) ChargeRequestPaymentMethod {
+	return ChargeRequestPaymentMethod{
+		PaymentMethodBnplRequest: v,
+	}
 }
 
 // PaymentMethodCardRequestAsChargeRequestPaymentMethod is a convenience function that returns PaymentMethodCardRequest wrapped in ChargeRequestPaymentMethod
@@ -41,6 +49,19 @@ func PaymentMethodGeneralRequestAsChargeRequestPaymentMethod(v *PaymentMethodGen
 func (dst *ChargeRequestPaymentMethod) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
+	// try to unmarshal data into PaymentMethodBnplRequest
+	err = json.Unmarshal(data, &dst.PaymentMethodBnplRequest)
+	if err == nil {
+		jsonPaymentMethodBnplRequest, _ := json.Marshal(dst.PaymentMethodBnplRequest)
+		if string(jsonPaymentMethodBnplRequest) == "{}" { // empty struct
+			dst.PaymentMethodBnplRequest = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.PaymentMethodBnplRequest = nil
+	}
+
 	// try to unmarshal data into PaymentMethodCardRequest
 	err = json.Unmarshal(data, &dst.PaymentMethodCardRequest)
 	if err == nil {
@@ -69,6 +90,7 @@ func (dst *ChargeRequestPaymentMethod) UnmarshalJSON(data []byte) error {
 
 	if match > 1 { // more than 1 match
 		// reset to nil
+		dst.PaymentMethodBnplRequest = nil
 		dst.PaymentMethodCardRequest = nil
 		dst.PaymentMethodGeneralRequest = nil
 
@@ -82,6 +104,10 @@ func (dst *ChargeRequestPaymentMethod) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src ChargeRequestPaymentMethod) MarshalJSON() ([]byte, error) {
+	if src.PaymentMethodBnplRequest != nil {
+		return json.Marshal(&src.PaymentMethodBnplRequest)
+	}
+
 	if src.PaymentMethodCardRequest != nil {
 		return json.Marshal(&src.PaymentMethodCardRequest)
 	}
@@ -98,6 +124,10 @@ func (obj *ChargeRequestPaymentMethod) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
+	if obj.PaymentMethodBnplRequest != nil {
+		return obj.PaymentMethodBnplRequest
+	}
+
 	if obj.PaymentMethodCardRequest != nil {
 		return obj.PaymentMethodCardRequest
 	}

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **int32** | Amount to be charged in cents | [optional] 
+**Amount** | Pointer to **int64** | Amount to be charged in cents | [optional] 
 **PaymentMethod** | [**ChargeRequestPaymentMethod**](ChargeRequestPaymentMethod.md) |  | 
 **ReferenceId** | Pointer to **string** | Custom reference to add to the charge | [optional] 
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAmount
 
-`func (o *ChargeRequest) GetAmount() int32`
+`func (o *ChargeRequest) GetAmount() int64`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *ChargeRequest) GetAmountOk() (*int32, bool)`
+`func (o *ChargeRequest) GetAmountOk() (*int64, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *ChargeRequest) SetAmount(v int32)`
+`func (o *ChargeRequest) SetAmount(v int64)`
 
 SetAmount sets Amount field to given value.
 

@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -28,14 +28,14 @@ type ApiKeyResponse struct {
 	UpdatedAt *int64 `json:"updated_at,omitempty"`
 	// Unix timestamp in seconds of when the api key was deleted
 	DeactivatedAt NullableInt64 `json:"deactivated_at,omitempty"`
+	// Unix timestamp in seconds with the api key was used
+	LastUsedAt NullableInt64 `json:"last_used_at,omitempty"`
 	// A name or brief explanation of what this api key is used for
 	Description *string `json:"description,omitempty"`
 	// Unique identifier of the api key
 	Id *string `json:"id,omitempty"`
 	// Indicates if the api key is in production
 	Livemode *bool `json:"livemode,omitempty"`
-	// Indicates if the api key was deleted
-	Deleted *bool `json:"deleted,omitempty"`
 	// Object name, value is 'api_key'
 	Object *string `json:"object,omitempty"`
 	// The first few characters of the authentication_token
@@ -202,6 +202,48 @@ func (o *ApiKeyResponse) UnsetDeactivatedAt() {
 	o.DeactivatedAt.Unset()
 }
 
+// GetLastUsedAt returns the LastUsedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ApiKeyResponse) GetLastUsedAt() int64 {
+	if o == nil || IsNil(o.LastUsedAt.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.LastUsedAt.Get()
+}
+
+// GetLastUsedAtOk returns a tuple with the LastUsedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ApiKeyResponse) GetLastUsedAtOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LastUsedAt.Get(), o.LastUsedAt.IsSet()
+}
+
+// HasLastUsedAt returns a boolean if a field has been set.
+func (o *ApiKeyResponse) HasLastUsedAt() bool {
+	if o != nil && o.LastUsedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastUsedAt gets a reference to the given NullableInt64 and assigns it to the LastUsedAt field.
+func (o *ApiKeyResponse) SetLastUsedAt(v int64) {
+	o.LastUsedAt.Set(&v)
+}
+// SetLastUsedAtNil sets the value for LastUsedAt to be an explicit nil
+func (o *ApiKeyResponse) SetLastUsedAtNil() {
+	o.LastUsedAt.Set(nil)
+}
+
+// UnsetLastUsedAt ensures that no value is present for LastUsedAt, not even an explicit nil
+func (o *ApiKeyResponse) UnsetLastUsedAt() {
+	o.LastUsedAt.Unset()
+}
+
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *ApiKeyResponse) GetDescription() string {
 	if o == nil || IsNil(o.Description) {
@@ -296,38 +338,6 @@ func (o *ApiKeyResponse) HasLivemode() bool {
 // SetLivemode gets a reference to the given bool and assigns it to the Livemode field.
 func (o *ApiKeyResponse) SetLivemode(v bool) {
 	o.Livemode = &v
-}
-
-// GetDeleted returns the Deleted field value if set, zero value otherwise.
-func (o *ApiKeyResponse) GetDeleted() bool {
-	if o == nil || IsNil(o.Deleted) {
-		var ret bool
-		return ret
-	}
-	return *o.Deleted
-}
-
-// GetDeletedOk returns a tuple with the Deleted field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ApiKeyResponse) GetDeletedOk() (*bool, bool) {
-	if o == nil || IsNil(o.Deleted) {
-		return nil, false
-	}
-	return o.Deleted, true
-}
-
-// HasDeleted returns a boolean if a field has been set.
-func (o *ApiKeyResponse) HasDeleted() bool {
-	if o != nil && !IsNil(o.Deleted) {
-		return true
-	}
-
-	return false
-}
-
-// SetDeleted gets a reference to the given bool and assigns it to the Deleted field.
-func (o *ApiKeyResponse) SetDeleted(v bool) {
-	o.Deleted = &v
 }
 
 // GetObject returns the Object field value if set, zero value otherwise.
@@ -448,6 +458,9 @@ func (o ApiKeyResponse) ToMap() (map[string]interface{}, error) {
 	if o.DeactivatedAt.IsSet() {
 		toSerialize["deactivated_at"] = o.DeactivatedAt.Get()
 	}
+	if o.LastUsedAt.IsSet() {
+		toSerialize["last_used_at"] = o.LastUsedAt.Get()
+	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
@@ -456,9 +469,6 @@ func (o ApiKeyResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Livemode) {
 		toSerialize["livemode"] = o.Livemode
-	}
-	if !IsNil(o.Deleted) {
-		toSerialize["deleted"] = o.Deleted
 	}
 	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object
@@ -495,10 +505,10 @@ func (o *ApiKeyResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "updated_at")
 		delete(additionalProperties, "deactivated_at")
+		delete(additionalProperties, "last_used_at")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "livemode")
-		delete(additionalProperties, "deleted")
 		delete(additionalProperties, "object")
 		delete(additionalProperties, "prefix")
 		delete(additionalProperties, "role")

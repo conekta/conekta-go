@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -102,7 +102,7 @@ func (a *BalancesAPIService) GetBalanceExecute(r ApiGetBalanceRequest) (*Balance
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

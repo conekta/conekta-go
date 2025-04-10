@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -23,8 +23,8 @@ var _ MappedNullable = &WebhookRequest{}
 type WebhookRequest struct {
 	// Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security.
 	Url string `json:"url"`
-	// It is a value that allows to decide if the events will be synchronous or asynchronous. We recommend asynchronous = false
-	Synchronous bool `json:"synchronous"`
+	// events that will be sent to the webhook
+	SubscribedEvents []string `json:"subscribed_events,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,10 +34,9 @@ type _WebhookRequest WebhookRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebhookRequest(url string, synchronous bool) *WebhookRequest {
+func NewWebhookRequest(url string) *WebhookRequest {
 	this := WebhookRequest{}
 	this.Url = url
-	this.Synchronous = synchronous
 	return &this
 }
 
@@ -46,8 +45,6 @@ func NewWebhookRequest(url string, synchronous bool) *WebhookRequest {
 // but it doesn't guarantee that properties required by API are set
 func NewWebhookRequestWithDefaults() *WebhookRequest {
 	this := WebhookRequest{}
-	var synchronous bool = false
-	this.Synchronous = synchronous
 	return &this
 }
 
@@ -75,28 +72,36 @@ func (o *WebhookRequest) SetUrl(v string) {
 	o.Url = v
 }
 
-// GetSynchronous returns the Synchronous field value
-func (o *WebhookRequest) GetSynchronous() bool {
-	if o == nil {
-		var ret bool
+// GetSubscribedEvents returns the SubscribedEvents field value if set, zero value otherwise.
+func (o *WebhookRequest) GetSubscribedEvents() []string {
+	if o == nil || IsNil(o.SubscribedEvents) {
+		var ret []string
 		return ret
 	}
-
-	return o.Synchronous
+	return o.SubscribedEvents
 }
 
-// GetSynchronousOk returns a tuple with the Synchronous field value
+// GetSubscribedEventsOk returns a tuple with the SubscribedEvents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookRequest) GetSynchronousOk() (*bool, bool) {
-	if o == nil {
+func (o *WebhookRequest) GetSubscribedEventsOk() ([]string, bool) {
+	if o == nil || IsNil(o.SubscribedEvents) {
 		return nil, false
 	}
-	return &o.Synchronous, true
+	return o.SubscribedEvents, true
 }
 
-// SetSynchronous sets field value
-func (o *WebhookRequest) SetSynchronous(v bool) {
-	o.Synchronous = v
+// HasSubscribedEvents returns a boolean if a field has been set.
+func (o *WebhookRequest) HasSubscribedEvents() bool {
+	if o != nil && !IsNil(o.SubscribedEvents) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscribedEvents gets a reference to the given []string and assigns it to the SubscribedEvents field.
+func (o *WebhookRequest) SetSubscribedEvents(v []string) {
+	o.SubscribedEvents = v
 }
 
 func (o WebhookRequest) MarshalJSON() ([]byte, error) {
@@ -110,7 +115,9 @@ func (o WebhookRequest) MarshalJSON() ([]byte, error) {
 func (o WebhookRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["url"] = o.Url
-	toSerialize["synchronous"] = o.Synchronous
+	if !IsNil(o.SubscribedEvents) {
+		toSerialize["subscribed_events"] = o.SubscribedEvents
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -125,7 +132,6 @@ func (o *WebhookRequest) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"url",
-		"synchronous",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -156,7 +162,7 @@ func (o *WebhookRequest) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "url")
-		delete(additionalProperties, "synchronous")
+		delete(additionalProperties, "subscribed_events")
 		o.AdditionalProperties = additionalProperties
 	}
 

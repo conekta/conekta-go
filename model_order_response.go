@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -24,15 +24,15 @@ type OrderResponse struct {
 	Amount *int32 `json:"amount,omitempty"`
 	// The total amount refunded in cents
 	AmountRefunded *int32 `json:"amount_refunded,omitempty"`
-	Channel *ChargeResponseChannel `json:"channel,omitempty"`
-	Charges *OrderResponseCharges `json:"charges,omitempty"`
+	Channel *OrderChannelResponse `json:"channel,omitempty"`
+	Charges *OrderChargesResponse `json:"charges,omitempty"`
 	Checkout *OrderResponseCheckout `json:"checkout,omitempty"`
 	// The time at which the object was created in seconds since the Unix epoch
 	CreatedAt *int64 `json:"created_at,omitempty"`
 	// The three-letter ISO 4217 currency code. The currency of the order.
 	Currency *string `json:"currency,omitempty"`
 	CustomerInfo *OrderResponseCustomerInfo `json:"customer_info,omitempty"`
-	DiscountLines *OrderResponseDiscountLines `json:"discount_lines,omitempty"`
+	DiscountLines *OrderDiscountLinesResponse `json:"discount_lines,omitempty"`
 	FiscalEntity NullableOrderFiscalEntityResponse `json:"fiscal_entity,omitempty"`
 	Id *string `json:"id,omitempty"`
 	IsRefundable *bool `json:"is_refundable,omitempty"`
@@ -138,9 +138,9 @@ func (o *OrderResponse) SetAmountRefunded(v int32) {
 }
 
 // GetChannel returns the Channel field value if set, zero value otherwise.
-func (o *OrderResponse) GetChannel() ChargeResponseChannel {
+func (o *OrderResponse) GetChannel() OrderChannelResponse {
 	if o == nil || IsNil(o.Channel) {
-		var ret ChargeResponseChannel
+		var ret OrderChannelResponse
 		return ret
 	}
 	return *o.Channel
@@ -148,7 +148,7 @@ func (o *OrderResponse) GetChannel() ChargeResponseChannel {
 
 // GetChannelOk returns a tuple with the Channel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderResponse) GetChannelOk() (*ChargeResponseChannel, bool) {
+func (o *OrderResponse) GetChannelOk() (*OrderChannelResponse, bool) {
 	if o == nil || IsNil(o.Channel) {
 		return nil, false
 	}
@@ -164,15 +164,15 @@ func (o *OrderResponse) HasChannel() bool {
 	return false
 }
 
-// SetChannel gets a reference to the given ChargeResponseChannel and assigns it to the Channel field.
-func (o *OrderResponse) SetChannel(v ChargeResponseChannel) {
+// SetChannel gets a reference to the given OrderChannelResponse and assigns it to the Channel field.
+func (o *OrderResponse) SetChannel(v OrderChannelResponse) {
 	o.Channel = &v
 }
 
 // GetCharges returns the Charges field value if set, zero value otherwise.
-func (o *OrderResponse) GetCharges() OrderResponseCharges {
+func (o *OrderResponse) GetCharges() OrderChargesResponse {
 	if o == nil || IsNil(o.Charges) {
-		var ret OrderResponseCharges
+		var ret OrderChargesResponse
 		return ret
 	}
 	return *o.Charges
@@ -180,7 +180,7 @@ func (o *OrderResponse) GetCharges() OrderResponseCharges {
 
 // GetChargesOk returns a tuple with the Charges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderResponse) GetChargesOk() (*OrderResponseCharges, bool) {
+func (o *OrderResponse) GetChargesOk() (*OrderChargesResponse, bool) {
 	if o == nil || IsNil(o.Charges) {
 		return nil, false
 	}
@@ -196,8 +196,8 @@ func (o *OrderResponse) HasCharges() bool {
 	return false
 }
 
-// SetCharges gets a reference to the given OrderResponseCharges and assigns it to the Charges field.
-func (o *OrderResponse) SetCharges(v OrderResponseCharges) {
+// SetCharges gets a reference to the given OrderChargesResponse and assigns it to the Charges field.
+func (o *OrderResponse) SetCharges(v OrderChargesResponse) {
 	o.Charges = &v
 }
 
@@ -330,9 +330,9 @@ func (o *OrderResponse) SetCustomerInfo(v OrderResponseCustomerInfo) {
 }
 
 // GetDiscountLines returns the DiscountLines field value if set, zero value otherwise.
-func (o *OrderResponse) GetDiscountLines() OrderResponseDiscountLines {
+func (o *OrderResponse) GetDiscountLines() OrderDiscountLinesResponse {
 	if o == nil || IsNil(o.DiscountLines) {
-		var ret OrderResponseDiscountLines
+		var ret OrderDiscountLinesResponse
 		return ret
 	}
 	return *o.DiscountLines
@@ -340,7 +340,7 @@ func (o *OrderResponse) GetDiscountLines() OrderResponseDiscountLines {
 
 // GetDiscountLinesOk returns a tuple with the DiscountLines field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderResponse) GetDiscountLinesOk() (*OrderResponseDiscountLines, bool) {
+func (o *OrderResponse) GetDiscountLinesOk() (*OrderDiscountLinesResponse, bool) {
 	if o == nil || IsNil(o.DiscountLines) {
 		return nil, false
 	}
@@ -356,8 +356,8 @@ func (o *OrderResponse) HasDiscountLines() bool {
 	return false
 }
 
-// SetDiscountLines gets a reference to the given OrderResponseDiscountLines and assigns it to the DiscountLines field.
-func (o *OrderResponse) SetDiscountLines(v OrderResponseDiscountLines) {
+// SetDiscountLines gets a reference to the given OrderDiscountLinesResponse and assigns it to the DiscountLines field.
+func (o *OrderResponse) SetDiscountLines(v OrderDiscountLinesResponse) {
 	o.DiscountLines = &v
 }
 

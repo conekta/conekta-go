@@ -11,8 +11,8 @@ Name | Type | Description | Notes
 **CashierId** | Pointer to **NullableString** |  | [optional] 
 **Reference** | Pointer to **string** |  | [optional] 
 **BarcodeUrl** | Pointer to **string** |  | [optional] 
-**ExpiresAt** | Pointer to **int64** |  | [optional] 
-**ProductType** | Pointer to **string** | Product type, e.g. bbva_cash_in, cash_in, pespay_cash_in, etc. | [optional] 
+**ExpiresAt** | **int64** | Expiration date of the charge | 
+**ProductType** | **string** | Product type of the charge | 
 **ServiceName** | Pointer to **string** |  | [optional] 
 **Store** | Pointer to **NullableString** |  | [optional] 
 **StoreName** | Pointer to **string** |  | [optional] 
@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 **Bank** | Pointer to **string** |  | [optional] 
 **Clabe** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **NullableString** |  | [optional] 
-**ExecutedAt** | Pointer to **NullableInt32** |  | [optional] 
+**ExecutedAt** | Pointer to **NullableString** |  | [optional] 
 **IssuingAccountBank** | Pointer to **NullableString** |  | [optional] 
 **IssuingAccountNumber** | Pointer to **NullableString** |  | [optional] 
 **IssuingAccountHolderName** | Pointer to **NullableString** |  | [optional] 
@@ -42,12 +42,16 @@ Name | Type | Description | Notes
 **ReceivingAccountTaxId** | Pointer to **NullableString** |  | [optional] 
 **ReferenceNumber** | Pointer to **NullableString** |  | [optional] 
 **TrackingCode** | Pointer to **NullableString** |  | [optional] 
+**CancelUrl** | Pointer to **string** | URL to redirect the customer after a canceled payment | [optional] 
+**FailureUrl** | Pointer to **string** | URL to redirect the customer after a failed payment | [optional] 
+**RedirectUrl** | Pointer to **string** | URL to redirect the customer to complete the payment | [optional] 
+**SuccessUrl** | Pointer to **string** | URL to redirect the customer after a successful payment | [optional] 
 
 ## Methods
 
 ### NewChargeResponsePaymentMethod
 
-`func NewChargeResponsePaymentMethod(object string, ) *ChargeResponsePaymentMethod`
+`func NewChargeResponsePaymentMethod(object string, expiresAt int64, productType string, ) *ChargeResponsePaymentMethod`
 
 NewChargeResponsePaymentMethod instantiates a new ChargeResponsePaymentMethod object
 This constructor will assign default values to properties that have it defined,
@@ -261,11 +265,6 @@ and a boolean to check if the value has been set.
 
 SetExpiresAt sets ExpiresAt field to given value.
 
-### HasExpiresAt
-
-`func (o *ChargeResponsePaymentMethod) HasExpiresAt() bool`
-
-HasExpiresAt returns a boolean if a field has been set.
 
 ### GetProductType
 
@@ -286,11 +285,6 @@ and a boolean to check if the value has been set.
 
 SetProductType sets ProductType field to given value.
 
-### HasProductType
-
-`func (o *ChargeResponsePaymentMethod) HasProductType() bool`
-
-HasProductType returns a boolean if a field has been set.
 
 ### GetServiceName
 
@@ -739,20 +733,20 @@ HasDescription returns a boolean if a field has been set.
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetExecutedAt
 
-`func (o *ChargeResponsePaymentMethod) GetExecutedAt() int32`
+`func (o *ChargeResponsePaymentMethod) GetExecutedAt() string`
 
 GetExecutedAt returns the ExecutedAt field if non-nil, zero value otherwise.
 
 ### GetExecutedAtOk
 
-`func (o *ChargeResponsePaymentMethod) GetExecutedAtOk() (*int32, bool)`
+`func (o *ChargeResponsePaymentMethod) GetExecutedAtOk() (*string, bool)`
 
 GetExecutedAtOk returns a tuple with the ExecutedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExecutedAt
 
-`func (o *ChargeResponsePaymentMethod) SetExecutedAt(v int32)`
+`func (o *ChargeResponsePaymentMethod) SetExecutedAt(v string)`
 
 SetExecutedAt sets ExecutedAt field to given value.
 
@@ -1127,6 +1121,106 @@ HasTrackingCode returns a boolean if a field has been set.
 `func (o *ChargeResponsePaymentMethod) UnsetTrackingCode()`
 
 UnsetTrackingCode ensures that no value is present for TrackingCode, not even an explicit nil
+### GetCancelUrl
+
+`func (o *ChargeResponsePaymentMethod) GetCancelUrl() string`
+
+GetCancelUrl returns the CancelUrl field if non-nil, zero value otherwise.
+
+### GetCancelUrlOk
+
+`func (o *ChargeResponsePaymentMethod) GetCancelUrlOk() (*string, bool)`
+
+GetCancelUrlOk returns a tuple with the CancelUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCancelUrl
+
+`func (o *ChargeResponsePaymentMethod) SetCancelUrl(v string)`
+
+SetCancelUrl sets CancelUrl field to given value.
+
+### HasCancelUrl
+
+`func (o *ChargeResponsePaymentMethod) HasCancelUrl() bool`
+
+HasCancelUrl returns a boolean if a field has been set.
+
+### GetFailureUrl
+
+`func (o *ChargeResponsePaymentMethod) GetFailureUrl() string`
+
+GetFailureUrl returns the FailureUrl field if non-nil, zero value otherwise.
+
+### GetFailureUrlOk
+
+`func (o *ChargeResponsePaymentMethod) GetFailureUrlOk() (*string, bool)`
+
+GetFailureUrlOk returns a tuple with the FailureUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFailureUrl
+
+`func (o *ChargeResponsePaymentMethod) SetFailureUrl(v string)`
+
+SetFailureUrl sets FailureUrl field to given value.
+
+### HasFailureUrl
+
+`func (o *ChargeResponsePaymentMethod) HasFailureUrl() bool`
+
+HasFailureUrl returns a boolean if a field has been set.
+
+### GetRedirectUrl
+
+`func (o *ChargeResponsePaymentMethod) GetRedirectUrl() string`
+
+GetRedirectUrl returns the RedirectUrl field if non-nil, zero value otherwise.
+
+### GetRedirectUrlOk
+
+`func (o *ChargeResponsePaymentMethod) GetRedirectUrlOk() (*string, bool)`
+
+GetRedirectUrlOk returns a tuple with the RedirectUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRedirectUrl
+
+`func (o *ChargeResponsePaymentMethod) SetRedirectUrl(v string)`
+
+SetRedirectUrl sets RedirectUrl field to given value.
+
+### HasRedirectUrl
+
+`func (o *ChargeResponsePaymentMethod) HasRedirectUrl() bool`
+
+HasRedirectUrl returns a boolean if a field has been set.
+
+### GetSuccessUrl
+
+`func (o *ChargeResponsePaymentMethod) GetSuccessUrl() string`
+
+GetSuccessUrl returns the SuccessUrl field if non-nil, zero value otherwise.
+
+### GetSuccessUrlOk
+
+`func (o *ChargeResponsePaymentMethod) GetSuccessUrlOk() (*string, bool)`
+
+GetSuccessUrlOk returns a tuple with the SuccessUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSuccessUrl
+
+`func (o *ChargeResponsePaymentMethod) SetSuccessUrl(v string)`
+
+SetSuccessUrl sets SuccessUrl field to given value.
+
+### HasSuccessUrl
+
+`func (o *ChargeResponsePaymentMethod) HasSuccessUrl() bool`
+
+HasSuccessUrl returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

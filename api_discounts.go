@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -188,7 +188,7 @@ func (a *DiscountsAPIService) OrdersCreateDiscountLineExecute(r ApiOrdersCreateD
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -349,7 +349,7 @@ func (a *DiscountsAPIService) OrdersDeleteDiscountLinesExecute(r ApiOrdersDelete
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -519,7 +519,7 @@ func (a *DiscountsAPIService) OrdersGetDiscountLineExecute(r ApiOrdersGetDiscoun
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -728,7 +728,7 @@ func (a *DiscountsAPIService) OrdersGetDiscountLinesExecute(r ApiOrdersGetDiscou
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -886,7 +886,7 @@ func (a *DiscountsAPIService) OrdersUpdateDiscountLinesExecute(r ApiOrdersUpdate
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

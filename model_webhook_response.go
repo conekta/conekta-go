@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -20,15 +20,21 @@ var _ MappedNullable = &WebhookResponse{}
 
 // WebhookResponse webhooks model
 type WebhookResponse struct {
-	Deleted NullableBool `json:"deleted,omitempty"`
-	DevelopmentEnabled *bool `json:"development_enabled,omitempty"`
+	// id of the webhook
 	Id *string `json:"id,omitempty"`
+	// A name or brief explanation of what this webhook is used for
+	Description *string `json:"description,omitempty"`
+	// Indicates if the webhook is in production
 	Livemode *bool `json:"livemode,omitempty"`
+	// Indicates if the webhook is actived or not
+	Active *bool `json:"active,omitempty"`
+	// Object name, value is 'webhook'
 	Object *string `json:"object,omitempty"`
-	ProductionEnabled *bool `json:"production_enabled,omitempty"`
+	// Indicates if the webhook is ready to receive events or failing
 	Status *string `json:"status,omitempty"`
+	// lists the events that will be sent to the webhook
 	SubscribedEvents []string `json:"subscribed_events,omitempty"`
-	Synchronous *bool `json:"synchronous,omitempty"`
+	// url or endpoint of the webhook
 	Url *string `json:"url,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -50,80 +56,6 @@ func NewWebhookResponse() *WebhookResponse {
 func NewWebhookResponseWithDefaults() *WebhookResponse {
 	this := WebhookResponse{}
 	return &this
-}
-
-// GetDeleted returns the Deleted field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebhookResponse) GetDeleted() bool {
-	if o == nil || IsNil(o.Deleted.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.Deleted.Get()
-}
-
-// GetDeletedOk returns a tuple with the Deleted field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebhookResponse) GetDeletedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Deleted.Get(), o.Deleted.IsSet()
-}
-
-// HasDeleted returns a boolean if a field has been set.
-func (o *WebhookResponse) HasDeleted() bool {
-	if o != nil && o.Deleted.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDeleted gets a reference to the given NullableBool and assigns it to the Deleted field.
-func (o *WebhookResponse) SetDeleted(v bool) {
-	o.Deleted.Set(&v)
-}
-// SetDeletedNil sets the value for Deleted to be an explicit nil
-func (o *WebhookResponse) SetDeletedNil() {
-	o.Deleted.Set(nil)
-}
-
-// UnsetDeleted ensures that no value is present for Deleted, not even an explicit nil
-func (o *WebhookResponse) UnsetDeleted() {
-	o.Deleted.Unset()
-}
-
-// GetDevelopmentEnabled returns the DevelopmentEnabled field value if set, zero value otherwise.
-func (o *WebhookResponse) GetDevelopmentEnabled() bool {
-	if o == nil || IsNil(o.DevelopmentEnabled) {
-		var ret bool
-		return ret
-	}
-	return *o.DevelopmentEnabled
-}
-
-// GetDevelopmentEnabledOk returns a tuple with the DevelopmentEnabled field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WebhookResponse) GetDevelopmentEnabledOk() (*bool, bool) {
-	if o == nil || IsNil(o.DevelopmentEnabled) {
-		return nil, false
-	}
-	return o.DevelopmentEnabled, true
-}
-
-// HasDevelopmentEnabled returns a boolean if a field has been set.
-func (o *WebhookResponse) HasDevelopmentEnabled() bool {
-	if o != nil && !IsNil(o.DevelopmentEnabled) {
-		return true
-	}
-
-	return false
-}
-
-// SetDevelopmentEnabled gets a reference to the given bool and assigns it to the DevelopmentEnabled field.
-func (o *WebhookResponse) SetDevelopmentEnabled(v bool) {
-	o.DevelopmentEnabled = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -158,6 +90,38 @@ func (o *WebhookResponse) SetId(v string) {
 	o.Id = &v
 }
 
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *WebhookResponse) GetDescription() string {
+	if o == nil || IsNil(o.Description) {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebhookResponse) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *WebhookResponse) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *WebhookResponse) SetDescription(v string) {
+	o.Description = &v
+}
+
 // GetLivemode returns the Livemode field value if set, zero value otherwise.
 func (o *WebhookResponse) GetLivemode() bool {
 	if o == nil || IsNil(o.Livemode) {
@@ -190,6 +154,38 @@ func (o *WebhookResponse) SetLivemode(v bool) {
 	o.Livemode = &v
 }
 
+// GetActive returns the Active field value if set, zero value otherwise.
+func (o *WebhookResponse) GetActive() bool {
+	if o == nil || IsNil(o.Active) {
+		var ret bool
+		return ret
+	}
+	return *o.Active
+}
+
+// GetActiveOk returns a tuple with the Active field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebhookResponse) GetActiveOk() (*bool, bool) {
+	if o == nil || IsNil(o.Active) {
+		return nil, false
+	}
+	return o.Active, true
+}
+
+// HasActive returns a boolean if a field has been set.
+func (o *WebhookResponse) HasActive() bool {
+	if o != nil && !IsNil(o.Active) {
+		return true
+	}
+
+	return false
+}
+
+// SetActive gets a reference to the given bool and assigns it to the Active field.
+func (o *WebhookResponse) SetActive(v bool) {
+	o.Active = &v
+}
+
 // GetObject returns the Object field value if set, zero value otherwise.
 func (o *WebhookResponse) GetObject() string {
 	if o == nil || IsNil(o.Object) {
@@ -220,38 +216,6 @@ func (o *WebhookResponse) HasObject() bool {
 // SetObject gets a reference to the given string and assigns it to the Object field.
 func (o *WebhookResponse) SetObject(v string) {
 	o.Object = &v
-}
-
-// GetProductionEnabled returns the ProductionEnabled field value if set, zero value otherwise.
-func (o *WebhookResponse) GetProductionEnabled() bool {
-	if o == nil || IsNil(o.ProductionEnabled) {
-		var ret bool
-		return ret
-	}
-	return *o.ProductionEnabled
-}
-
-// GetProductionEnabledOk returns a tuple with the ProductionEnabled field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WebhookResponse) GetProductionEnabledOk() (*bool, bool) {
-	if o == nil || IsNil(o.ProductionEnabled) {
-		return nil, false
-	}
-	return o.ProductionEnabled, true
-}
-
-// HasProductionEnabled returns a boolean if a field has been set.
-func (o *WebhookResponse) HasProductionEnabled() bool {
-	if o != nil && !IsNil(o.ProductionEnabled) {
-		return true
-	}
-
-	return false
-}
-
-// SetProductionEnabled gets a reference to the given bool and assigns it to the ProductionEnabled field.
-func (o *WebhookResponse) SetProductionEnabled(v bool) {
-	o.ProductionEnabled = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -318,38 +282,6 @@ func (o *WebhookResponse) SetSubscribedEvents(v []string) {
 	o.SubscribedEvents = v
 }
 
-// GetSynchronous returns the Synchronous field value if set, zero value otherwise.
-func (o *WebhookResponse) GetSynchronous() bool {
-	if o == nil || IsNil(o.Synchronous) {
-		var ret bool
-		return ret
-	}
-	return *o.Synchronous
-}
-
-// GetSynchronousOk returns a tuple with the Synchronous field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WebhookResponse) GetSynchronousOk() (*bool, bool) {
-	if o == nil || IsNil(o.Synchronous) {
-		return nil, false
-	}
-	return o.Synchronous, true
-}
-
-// HasSynchronous returns a boolean if a field has been set.
-func (o *WebhookResponse) HasSynchronous() bool {
-	if o != nil && !IsNil(o.Synchronous) {
-		return true
-	}
-
-	return false
-}
-
-// SetSynchronous gets a reference to the given bool and assigns it to the Synchronous field.
-func (o *WebhookResponse) SetSynchronous(v bool) {
-	o.Synchronous = &v
-}
-
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *WebhookResponse) GetUrl() string {
 	if o == nil || IsNil(o.Url) {
@@ -392,32 +324,26 @@ func (o WebhookResponse) MarshalJSON() ([]byte, error) {
 
 func (o WebhookResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Deleted.IsSet() {
-		toSerialize["deleted"] = o.Deleted.Get()
-	}
-	if !IsNil(o.DevelopmentEnabled) {
-		toSerialize["development_enabled"] = o.DevelopmentEnabled
-	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
 	}
 	if !IsNil(o.Livemode) {
 		toSerialize["livemode"] = o.Livemode
 	}
+	if !IsNil(o.Active) {
+		toSerialize["active"] = o.Active
+	}
 	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object
-	}
-	if !IsNil(o.ProductionEnabled) {
-		toSerialize["production_enabled"] = o.ProductionEnabled
 	}
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
 	if !IsNil(o.SubscribedEvents) {
 		toSerialize["subscribed_events"] = o.SubscribedEvents
-	}
-	if !IsNil(o.Synchronous) {
-		toSerialize["synchronous"] = o.Synchronous
 	}
 	if !IsNil(o.Url) {
 		toSerialize["url"] = o.Url
@@ -444,15 +370,13 @@ func (o *WebhookResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "deleted")
-		delete(additionalProperties, "development_enabled")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "description")
 		delete(additionalProperties, "livemode")
+		delete(additionalProperties, "active")
 		delete(additionalProperties, "object")
-		delete(additionalProperties, "production_enabled")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "subscribed_events")
-		delete(additionalProperties, "synchronous")
 		delete(additionalProperties, "url")
 		o.AdditionalProperties = additionalProperties
 	}

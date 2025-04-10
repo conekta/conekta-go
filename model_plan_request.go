@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -37,6 +37,10 @@ type PlanRequest struct {
 	Name string `json:"name"`
 	// The number of days the customer will have a free trial.
 	TrialPeriodDays *int32 `json:"trial_period_days,omitempty"`
+	// (optional) Specifies the maximum number of retry attempts for a subscription payment before it is canceled.
+	MaxRetries *int32 `json:"max_retries,omitempty"`
+	// (optional)  Defines the number of hours between subscription payment retry attempts.
+	RetryDelayHours *int32 `json:"retry_delay_hours,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -287,6 +291,70 @@ func (o *PlanRequest) SetTrialPeriodDays(v int32) {
 	o.TrialPeriodDays = &v
 }
 
+// GetMaxRetries returns the MaxRetries field value if set, zero value otherwise.
+func (o *PlanRequest) GetMaxRetries() int32 {
+	if o == nil || IsNil(o.MaxRetries) {
+		var ret int32
+		return ret
+	}
+	return *o.MaxRetries
+}
+
+// GetMaxRetriesOk returns a tuple with the MaxRetries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlanRequest) GetMaxRetriesOk() (*int32, bool) {
+	if o == nil || IsNil(o.MaxRetries) {
+		return nil, false
+	}
+	return o.MaxRetries, true
+}
+
+// HasMaxRetries returns a boolean if a field has been set.
+func (o *PlanRequest) HasMaxRetries() bool {
+	if o != nil && !IsNil(o.MaxRetries) {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxRetries gets a reference to the given int32 and assigns it to the MaxRetries field.
+func (o *PlanRequest) SetMaxRetries(v int32) {
+	o.MaxRetries = &v
+}
+
+// GetRetryDelayHours returns the RetryDelayHours field value if set, zero value otherwise.
+func (o *PlanRequest) GetRetryDelayHours() int32 {
+	if o == nil || IsNil(o.RetryDelayHours) {
+		var ret int32
+		return ret
+	}
+	return *o.RetryDelayHours
+}
+
+// GetRetryDelayHoursOk returns a tuple with the RetryDelayHours field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlanRequest) GetRetryDelayHoursOk() (*int32, bool) {
+	if o == nil || IsNil(o.RetryDelayHours) {
+		return nil, false
+	}
+	return o.RetryDelayHours, true
+}
+
+// HasRetryDelayHours returns a boolean if a field has been set.
+func (o *PlanRequest) HasRetryDelayHours() bool {
+	if o != nil && !IsNil(o.RetryDelayHours) {
+		return true
+	}
+
+	return false
+}
+
+// SetRetryDelayHours gets a reference to the given int32 and assigns it to the RetryDelayHours field.
+func (o *PlanRequest) SetRetryDelayHours(v int32) {
+	o.RetryDelayHours = &v
+}
+
 func (o PlanRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -312,6 +380,12 @@ func (o PlanRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	if !IsNil(o.TrialPeriodDays) {
 		toSerialize["trial_period_days"] = o.TrialPeriodDays
+	}
+	if !IsNil(o.MaxRetries) {
+		toSerialize["max_retries"] = o.MaxRetries
+	}
+	if !IsNil(o.RetryDelayHours) {
+		toSerialize["retry_delay_hours"] = o.RetryDelayHours
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -367,6 +441,8 @@ func (o *PlanRequest) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "interval")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "trial_period_days")
+		delete(additionalProperties, "max_retries")
+		delete(additionalProperties, "retry_delay_hours")
 		o.AdditionalProperties = additionalProperties
 	}
 

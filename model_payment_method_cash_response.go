@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -26,8 +26,10 @@ type PaymentMethodCashResponse struct {
 	Object string `json:"object"`
 	CreatedAt int64 `json:"created_at"`
 	ParentId *string `json:"parent_id,omitempty"`
+	Agreements []PaymentMethodCashResponseAllOfAgreements `json:"agreements,omitempty"`
 	Reference *string `json:"reference,omitempty"`
 	Barcode *string `json:"barcode,omitempty"`
+	// URL to the barcode image, reference is the same as barcode
 	BarcodeUrl *string `json:"barcode_url,omitempty"`
 	ExpiresAt *int64 `json:"expires_at,omitempty"`
 	Provider *string `json:"provider,omitempty"`
@@ -183,6 +185,38 @@ func (o *PaymentMethodCashResponse) HasParentId() bool {
 // SetParentId gets a reference to the given string and assigns it to the ParentId field.
 func (o *PaymentMethodCashResponse) SetParentId(v string) {
 	o.ParentId = &v
+}
+
+// GetAgreements returns the Agreements field value if set, zero value otherwise.
+func (o *PaymentMethodCashResponse) GetAgreements() []PaymentMethodCashResponseAllOfAgreements {
+	if o == nil || IsNil(o.Agreements) {
+		var ret []PaymentMethodCashResponseAllOfAgreements
+		return ret
+	}
+	return o.Agreements
+}
+
+// GetAgreementsOk returns a tuple with the Agreements field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaymentMethodCashResponse) GetAgreementsOk() ([]PaymentMethodCashResponseAllOfAgreements, bool) {
+	if o == nil || IsNil(o.Agreements) {
+		return nil, false
+	}
+	return o.Agreements, true
+}
+
+// HasAgreements returns a boolean if a field has been set.
+func (o *PaymentMethodCashResponse) HasAgreements() bool {
+	if o != nil && !IsNil(o.Agreements) {
+		return true
+	}
+
+	return false
+}
+
+// SetAgreements gets a reference to the given []PaymentMethodCashResponseAllOfAgreements and assigns it to the Agreements field.
+func (o *PaymentMethodCashResponse) SetAgreements(v []PaymentMethodCashResponseAllOfAgreements) {
+	o.Agreements = v
 }
 
 // GetReference returns the Reference field value if set, zero value otherwise.
@@ -362,6 +396,9 @@ func (o PaymentMethodCashResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ParentId) {
 		toSerialize["parent_id"] = o.ParentId
 	}
+	if !IsNil(o.Agreements) {
+		toSerialize["agreements"] = o.Agreements
+	}
 	if !IsNil(o.Reference) {
 		toSerialize["reference"] = o.Reference
 	}
@@ -428,6 +465,7 @@ func (o *PaymentMethodCashResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "object")
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "parent_id")
+		delete(additionalProperties, "agreements")
 		delete(additionalProperties, "reference")
 		delete(additionalProperties, "barcode")
 		delete(additionalProperties, "barcode_url")

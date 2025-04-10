@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -175,7 +175,7 @@ func (a *AntifraudAPIService) CreateRuleBlacklistExecute(r ApiCreateRuleBlacklis
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -311,7 +311,7 @@ func (a *AntifraudAPIService) CreateRuleWhitelistExecute(r ApiCreateRuleWhitelis
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -463,7 +463,7 @@ func (a *AntifraudAPIService) DeleteRuleBlacklistExecute(r ApiDeleteRuleBlacklis
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -616,7 +616,7 @@ func (a *AntifraudAPIService) DeleteRuleWhitelistExecute(r ApiDeleteRuleWhitelis
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -771,7 +771,7 @@ func (a *AntifraudAPIService) GetRuleBlacklistExecute(r ApiGetRuleBlacklistReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -901,7 +901,7 @@ func (a *AntifraudAPIService) GetRuleWhitelistExecute(r ApiGetRuleWhitelistReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

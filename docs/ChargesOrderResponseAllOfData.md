@@ -4,30 +4,30 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **int32** |  | [optional] 
+**Amount** | **int32** |  | 
 **Channel** | Pointer to [**ChargeResponseChannel**](ChargeResponseChannel.md) |  | [optional] 
-**CreatedAt** | Pointer to **int64** |  | [optional] 
-**Currency** | Pointer to **string** |  | [optional] 
+**CreatedAt** | **int64** |  | 
+**Currency** | **string** |  | 
 **CustomerId** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **DeviceFingerprint** | Pointer to **string** |  | [optional] 
 **FailureCode** | Pointer to **string** |  | [optional] 
 **FailureMessage** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** | Charge ID | [optional] 
-**Livemode** | Pointer to **bool** | Whether the charge was made in live mode or not | [optional] 
-**Object** | Pointer to **string** |  | [optional] 
-**OrderId** | Pointer to **string** | Order ID | [optional] 
+**Id** | **string** | Charge ID | 
+**Livemode** | **bool** | Whether the charge was made in live mode or not | 
+**Object** | **string** |  | 
+**OrderId** | **string** | Order ID | 
 **PaidAt** | Pointer to **NullableInt64** | Payment date | [optional] 
 **PaymentMethod** | Pointer to [**ChargeResponsePaymentMethod**](ChargeResponsePaymentMethod.md) |  | [optional] 
 **ReferenceId** | Pointer to **NullableString** | Reference ID of the charge | [optional] 
 **Refunds** | Pointer to [**NullableChargeResponseRefunds**](ChargeResponseRefunds.md) |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**Status** | **string** | Charge status | 
 
 ## Methods
 
 ### NewChargesOrderResponseAllOfData
 
-`func NewChargesOrderResponseAllOfData() *ChargesOrderResponseAllOfData`
+`func NewChargesOrderResponseAllOfData(amount int32, createdAt int64, currency string, id string, livemode bool, object string, orderId string, status string, ) *ChargesOrderResponseAllOfData`
 
 NewChargesOrderResponseAllOfData instantiates a new ChargesOrderResponseAllOfData object
 This constructor will assign default values to properties that have it defined,
@@ -61,11 +61,6 @@ and a boolean to check if the value has been set.
 
 SetAmount sets Amount field to given value.
 
-### HasAmount
-
-`func (o *ChargesOrderResponseAllOfData) HasAmount() bool`
-
-HasAmount returns a boolean if a field has been set.
 
 ### GetChannel
 
@@ -111,11 +106,6 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
-### HasCreatedAt
-
-`func (o *ChargesOrderResponseAllOfData) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
 
 ### GetCurrency
 
@@ -136,11 +126,6 @@ and a boolean to check if the value has been set.
 
 SetCurrency sets Currency field to given value.
 
-### HasCurrency
-
-`func (o *ChargesOrderResponseAllOfData) HasCurrency() bool`
-
-HasCurrency returns a boolean if a field has been set.
 
 ### GetCustomerId
 
@@ -286,11 +271,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *ChargesOrderResponseAllOfData) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetLivemode
 
@@ -311,11 +291,6 @@ and a boolean to check if the value has been set.
 
 SetLivemode sets Livemode field to given value.
 
-### HasLivemode
-
-`func (o *ChargesOrderResponseAllOfData) HasLivemode() bool`
-
-HasLivemode returns a boolean if a field has been set.
 
 ### GetObject
 
@@ -336,11 +311,6 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
-### HasObject
-
-`func (o *ChargesOrderResponseAllOfData) HasObject() bool`
-
-HasObject returns a boolean if a field has been set.
 
 ### GetOrderId
 
@@ -361,11 +331,6 @@ and a boolean to check if the value has been set.
 
 SetOrderId sets OrderId field to given value.
 
-### HasOrderId
-
-`func (o *ChargesOrderResponseAllOfData) HasOrderId() bool`
-
-HasOrderId returns a boolean if a field has been set.
 
 ### GetPaidAt
 
@@ -516,11 +481,6 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
-### HasStatus
-
-`func (o *ChargesOrderResponseAllOfData) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

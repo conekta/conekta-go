@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -21,6 +21,7 @@ var _ MappedNullable = &CheckoutResponse{}
 
 // CheckoutResponse checkout response
 type CheckoutResponse struct {
+	// Are the payment methods available for this link
 	AllowedPaymentMethods []string `json:"allowed_payment_methods,omitempty"`
 	CanNotExpire *bool `json:"can_not_expire,omitempty"`
 	EmailsSent *int32 `json:"emails_sent,omitempty"`

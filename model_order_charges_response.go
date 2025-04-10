@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -16,42 +16,42 @@ import (
 	"fmt"
 )
 
-// checks if the OrderResponseDiscountLines type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &OrderResponseDiscountLines{}
+// checks if the OrderChargesResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OrderChargesResponse{}
 
-// OrderResponseDiscountLines struct for OrderResponseDiscountLines
-type OrderResponseDiscountLines struct {
+// OrderChargesResponse The charges associated with the order
+type OrderChargesResponse struct {
 	// Indicates if there are more pages to be requested
 	HasMore bool `json:"has_more"`
 	// Object type, in this case is list
 	Object string `json:"object"`
-	Data []DiscountLinesDataResponse `json:"data,omitempty"`
+	Data []ChargesDataResponse `json:"data,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _OrderResponseDiscountLines OrderResponseDiscountLines
+type _OrderChargesResponse OrderChargesResponse
 
-// NewOrderResponseDiscountLines instantiates a new OrderResponseDiscountLines object
+// NewOrderChargesResponse instantiates a new OrderChargesResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrderResponseDiscountLines(hasMore bool, object string) *OrderResponseDiscountLines {
-	this := OrderResponseDiscountLines{}
+func NewOrderChargesResponse(hasMore bool, object string) *OrderChargesResponse {
+	this := OrderChargesResponse{}
 	this.HasMore = hasMore
 	this.Object = object
 	return &this
 }
 
-// NewOrderResponseDiscountLinesWithDefaults instantiates a new OrderResponseDiscountLines object
+// NewOrderChargesResponseWithDefaults instantiates a new OrderChargesResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewOrderResponseDiscountLinesWithDefaults() *OrderResponseDiscountLines {
-	this := OrderResponseDiscountLines{}
+func NewOrderChargesResponseWithDefaults() *OrderChargesResponse {
+	this := OrderChargesResponse{}
 	return &this
 }
 
 // GetHasMore returns the HasMore field value
-func (o *OrderResponseDiscountLines) GetHasMore() bool {
+func (o *OrderChargesResponse) GetHasMore() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -62,7 +62,7 @@ func (o *OrderResponseDiscountLines) GetHasMore() bool {
 
 // GetHasMoreOk returns a tuple with the HasMore field value
 // and a boolean to check if the value has been set.
-func (o *OrderResponseDiscountLines) GetHasMoreOk() (*bool, bool) {
+func (o *OrderChargesResponse) GetHasMoreOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -70,12 +70,12 @@ func (o *OrderResponseDiscountLines) GetHasMoreOk() (*bool, bool) {
 }
 
 // SetHasMore sets field value
-func (o *OrderResponseDiscountLines) SetHasMore(v bool) {
+func (o *OrderChargesResponse) SetHasMore(v bool) {
 	o.HasMore = v
 }
 
 // GetObject returns the Object field value
-func (o *OrderResponseDiscountLines) GetObject() string {
+func (o *OrderChargesResponse) GetObject() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -86,7 +86,7 @@ func (o *OrderResponseDiscountLines) GetObject() string {
 
 // GetObjectOk returns a tuple with the Object field value
 // and a boolean to check if the value has been set.
-func (o *OrderResponseDiscountLines) GetObjectOk() (*string, bool) {
+func (o *OrderChargesResponse) GetObjectOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -94,14 +94,14 @@ func (o *OrderResponseDiscountLines) GetObjectOk() (*string, bool) {
 }
 
 // SetObject sets field value
-func (o *OrderResponseDiscountLines) SetObject(v string) {
+func (o *OrderChargesResponse) SetObject(v string) {
 	o.Object = v
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *OrderResponseDiscountLines) GetData() []DiscountLinesDataResponse {
+func (o *OrderChargesResponse) GetData() []ChargesDataResponse {
 	if o == nil || IsNil(o.Data) {
-		var ret []DiscountLinesDataResponse
+		var ret []ChargesDataResponse
 		return ret
 	}
 	return o.Data
@@ -109,7 +109,7 @@ func (o *OrderResponseDiscountLines) GetData() []DiscountLinesDataResponse {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderResponseDiscountLines) GetDataOk() ([]DiscountLinesDataResponse, bool) {
+func (o *OrderChargesResponse) GetDataOk() ([]ChargesDataResponse, bool) {
 	if o == nil || IsNil(o.Data) {
 		return nil, false
 	}
@@ -117,7 +117,7 @@ func (o *OrderResponseDiscountLines) GetDataOk() ([]DiscountLinesDataResponse, b
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *OrderResponseDiscountLines) HasData() bool {
+func (o *OrderChargesResponse) HasData() bool {
 	if o != nil && !IsNil(o.Data) {
 		return true
 	}
@@ -125,12 +125,12 @@ func (o *OrderResponseDiscountLines) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given []DiscountLinesDataResponse and assigns it to the Data field.
-func (o *OrderResponseDiscountLines) SetData(v []DiscountLinesDataResponse) {
+// SetData gets a reference to the given []ChargesDataResponse and assigns it to the Data field.
+func (o *OrderChargesResponse) SetData(v []ChargesDataResponse) {
 	o.Data = v
 }
 
-func (o OrderResponseDiscountLines) MarshalJSON() ([]byte, error) {
+func (o OrderChargesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -138,7 +138,7 @@ func (o OrderResponseDiscountLines) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o OrderResponseDiscountLines) ToMap() (map[string]interface{}, error) {
+func (o OrderChargesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["has_more"] = o.HasMore
 	toSerialize["object"] = o.Object
@@ -153,7 +153,7 @@ func (o OrderResponseDiscountLines) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *OrderResponseDiscountLines) UnmarshalJSON(data []byte) (err error) {
+func (o *OrderChargesResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -176,15 +176,15 @@ func (o *OrderResponseDiscountLines) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varOrderResponseDiscountLines := _OrderResponseDiscountLines{}
+	varOrderChargesResponse := _OrderChargesResponse{}
 
-	err = json.Unmarshal(data, &varOrderResponseDiscountLines)
+	err = json.Unmarshal(data, &varOrderChargesResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = OrderResponseDiscountLines(varOrderResponseDiscountLines)
+	*o = OrderChargesResponse(varOrderChargesResponse)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -198,38 +198,38 @@ func (o *OrderResponseDiscountLines) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableOrderResponseDiscountLines struct {
-	value *OrderResponseDiscountLines
+type NullableOrderChargesResponse struct {
+	value *OrderChargesResponse
 	isSet bool
 }
 
-func (v NullableOrderResponseDiscountLines) Get() *OrderResponseDiscountLines {
+func (v NullableOrderChargesResponse) Get() *OrderChargesResponse {
 	return v.value
 }
 
-func (v *NullableOrderResponseDiscountLines) Set(val *OrderResponseDiscountLines) {
+func (v *NullableOrderChargesResponse) Set(val *OrderChargesResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableOrderResponseDiscountLines) IsSet() bool {
+func (v NullableOrderChargesResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableOrderResponseDiscountLines) Unset() {
+func (v *NullableOrderChargesResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableOrderResponseDiscountLines(val *OrderResponseDiscountLines) *NullableOrderResponseDiscountLines {
-	return &NullableOrderResponseDiscountLines{value: val, isSet: true}
+func NewNullableOrderChargesResponse(val *OrderChargesResponse) *NullableOrderChargesResponse {
+	return &NullableOrderChargesResponse{value: val, isSet: true}
 }
 
-func (v NullableOrderResponseDiscountLines) MarshalJSON() ([]byte, error) {
+func (v NullableOrderChargesResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableOrderResponseDiscountLines) UnmarshalJSON(src []byte) error {
+func (v *NullableOrderChargesResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

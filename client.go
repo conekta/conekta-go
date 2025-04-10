@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -50,7 +50,7 @@ const (
 	UnknownPlatform string = "unknown platform"
 )
 
-// APIClient manages communication with the Conekta API API v2.1.0
+// APIClient manages communication with the Conekta API API v2.2.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration

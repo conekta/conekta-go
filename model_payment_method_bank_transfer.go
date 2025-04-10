@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -26,7 +26,7 @@ type PaymentMethodBankTransfer struct {
 	Bank *string `json:"bank,omitempty"`
 	Clabe *string `json:"clabe,omitempty"`
 	Description NullableString `json:"description,omitempty"`
-	ExecutedAt NullableInt32 `json:"executed_at,omitempty"`
+	ExecutedAt NullableString `json:"executed_at,omitempty"`
 	ExpiresAt *int64 `json:"expires_at,omitempty"`
 	IssuingAccountBank NullableString `json:"issuing_account_bank,omitempty"`
 	IssuingAccountNumber NullableString `json:"issuing_account_number,omitempty"`
@@ -226,9 +226,9 @@ func (o *PaymentMethodBankTransfer) UnsetDescription() {
 }
 
 // GetExecutedAt returns the ExecutedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PaymentMethodBankTransfer) GetExecutedAt() int32 {
+func (o *PaymentMethodBankTransfer) GetExecutedAt() string {
 	if o == nil || IsNil(o.ExecutedAt.Get()) {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return *o.ExecutedAt.Get()
@@ -237,7 +237,7 @@ func (o *PaymentMethodBankTransfer) GetExecutedAt() int32 {
 // GetExecutedAtOk returns a tuple with the ExecutedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PaymentMethodBankTransfer) GetExecutedAtOk() (*int32, bool) {
+func (o *PaymentMethodBankTransfer) GetExecutedAtOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -253,8 +253,8 @@ func (o *PaymentMethodBankTransfer) HasExecutedAt() bool {
 	return false
 }
 
-// SetExecutedAt gets a reference to the given NullableInt32 and assigns it to the ExecutedAt field.
-func (o *PaymentMethodBankTransfer) SetExecutedAt(v int32) {
+// SetExecutedAt gets a reference to the given NullableString and assigns it to the ExecutedAt field.
+func (o *PaymentMethodBankTransfer) SetExecutedAt(v string) {
 	o.ExecutedAt.Set(&v)
 }
 // SetExecutedAtNil sets the value for ExecutedAt to be an explicit nil

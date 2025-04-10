@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -24,106 +24,271 @@ import (
 type SubscriptionsAPI interface {
 
 	/*
-	CancelSubscription Cancel Subscription
+	CancelSubscription Cancel Subscription [Deprecated]
 
-	You can cancel the subscription to stop the plans that your customers consume
+	DEPRECATED: This endpoint will be removed in version 2.3.0.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id Identifier of the resource
 	@return ApiCancelSubscriptionRequest
+
+	Deprecated
 	*/
 	CancelSubscription(ctx context.Context, id string) ApiCancelSubscriptionRequest
 
 	// CancelSubscriptionExecute executes the request
 	//  @return SubscriptionResponse
+	// Deprecated
 	CancelSubscriptionExecute(r ApiCancelSubscriptionRequest) (*SubscriptionResponse, *http.Response, error)
 
 	/*
-	CreateSubscription Create Subscription
+	CreateSubscription Create Subscription [Deprecated]
 
-	You can create the subscription to include the plans that your customers consume
+	DEPRECATED: This endpoint will be removed in version 2.3.0. You can create the subscription to include the plans that your customers consume
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id Identifier of the resource
 	@return ApiCreateSubscriptionRequest
+
+	Deprecated
 	*/
 	CreateSubscription(ctx context.Context, id string) ApiCreateSubscriptionRequest
 
 	// CreateSubscriptionExecute executes the request
 	//  @return SubscriptionResponse
+	// Deprecated
 	CreateSubscriptionExecute(r ApiCreateSubscriptionRequest) (*SubscriptionResponse, *http.Response, error)
 
 	/*
-	GetAllEventsFromSubscription Get Events By Subscription
+	GetSubscription Get Subscription [Deprecated]
 
-	You can get the events of the subscription(s) of a client, with the customer id
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Identifier of the resource
-	@return ApiGetAllEventsFromSubscriptionRequest
-	*/
-	GetAllEventsFromSubscription(ctx context.Context, id string) ApiGetAllEventsFromSubscriptionRequest
-
-	// GetAllEventsFromSubscriptionExecute executes the request
-	//  @return SubscriptionEventsResponse
-	GetAllEventsFromSubscriptionExecute(r ApiGetAllEventsFromSubscriptionRequest) (*SubscriptionEventsResponse, *http.Response, error)
-
-	/*
-	GetSubscription Get Subscription
+	DEPRECATED: This endpoint will be removed in version 2.3.0.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id Identifier of the resource
 	@return ApiGetSubscriptionRequest
+
+	Deprecated
 	*/
 	GetSubscription(ctx context.Context, id string) ApiGetSubscriptionRequest
 
 	// GetSubscriptionExecute executes the request
 	//  @return SubscriptionResponse
+	// Deprecated
 	GetSubscriptionExecute(r ApiGetSubscriptionRequest) (*SubscriptionResponse, *http.Response, error)
 
 	/*
-	PauseSubscription Pause Subscription
+	GetSubscriptionEvents Get Subscription Events [Deprecated]
 
-	You can pause the subscription to stop the plans that your customers consume
+	DEPRECATED: This endpoint will be removed in version 2.3.0. You can get the events of the subscription(s) of a client, with the customer id
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiGetSubscriptionEventsRequest
+
+	Deprecated
+	*/
+	GetSubscriptionEvents(ctx context.Context, id string) ApiGetSubscriptionEventsRequest
+
+	// GetSubscriptionEventsExecute executes the request
+	//  @return SubscriptionEventsResponse
+	// Deprecated
+	GetSubscriptionEventsExecute(r ApiGetSubscriptionEventsRequest) (*SubscriptionEventsResponse, *http.Response, error)
+
+	/*
+	PauseSubscription Pause Subscription [Deprecated]
+
+	DEPRECATED: This endpoint will be removed in version 2.3.0.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id Identifier of the resource
 	@return ApiPauseSubscriptionRequest
+
+	Deprecated
 	*/
 	PauseSubscription(ctx context.Context, id string) ApiPauseSubscriptionRequest
 
 	// PauseSubscriptionExecute executes the request
 	//  @return SubscriptionResponse
+	// Deprecated
 	PauseSubscriptionExecute(r ApiPauseSubscriptionRequest) (*SubscriptionResponse, *http.Response, error)
 
 	/*
-	ResumeSubscription Resume Subscription
+	ResumeSubscription Resume Subscription [Deprecated]
 
-	You can resume the subscription to start the plans that your customers consume
+	DEPRECATED: This endpoint will be removed in version 2.3.0.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id Identifier of the resource
 	@return ApiResumeSubscriptionRequest
+
+	Deprecated
 	*/
 	ResumeSubscription(ctx context.Context, id string) ApiResumeSubscriptionRequest
 
 	// ResumeSubscriptionExecute executes the request
 	//  @return SubscriptionResponse
+	// Deprecated
 	ResumeSubscriptionExecute(r ApiResumeSubscriptionRequest) (*SubscriptionResponse, *http.Response, error)
 
 	/*
-	UpdateSubscription Update Subscription
+	SubscriptionCancel Cancel Subscription
 
-	You can modify the subscription to change the plans that your customers consume
+	Cancel a specific subscription
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param customerId Identifier of the customer resource
+	@param id Identifier of the subscription resource
+	@return ApiSubscriptionCancelRequest
+	*/
+	SubscriptionCancel(ctx context.Context, customerId string, id string) ApiSubscriptionCancelRequest
+
+	// SubscriptionCancelExecute executes the request
+	//  @return SubscriptionResponse
+	SubscriptionCancelExecute(r ApiSubscriptionCancelRequest) (*SubscriptionResponse, *http.Response, error)
+
+	/*
+	SubscriptionCreate Create Subscription
+
+	Create a new subscription for a customer (keeps existing subscriptions active)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param customerId Identifier of the customer resource
+	@return ApiSubscriptionCreateRequest
+	*/
+	SubscriptionCreate(ctx context.Context, customerId string) ApiSubscriptionCreateRequest
+
+	// SubscriptionCreateExecute executes the request
+	//  @return SubscriptionResponse
+	SubscriptionCreateExecute(r ApiSubscriptionCreateRequest) (*SubscriptionResponse, *http.Response, error)
+
+	/*
+	SubscriptionEvents Get Subscription Events
+
+	Get events for a specific subscription
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param customerId Identifier of the customer resource
+	@param id Identifier of the subscription resource
+	@return ApiSubscriptionEventsRequest
+	*/
+	SubscriptionEvents(ctx context.Context, customerId string, id string) ApiSubscriptionEventsRequest
+
+	// SubscriptionEventsExecute executes the request
+	//  @return SubscriptionEventsResponse
+	SubscriptionEventsExecute(r ApiSubscriptionEventsRequest) (*SubscriptionEventsResponse, *http.Response, error)
+
+	/*
+	SubscriptionList List Subscriptions
+
+	Get a list of subscriptions for a customer
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param customerId Identifier of the customer resource
+	@return ApiSubscriptionListRequest
+	*/
+	SubscriptionList(ctx context.Context, customerId string) ApiSubscriptionListRequest
+
+	// SubscriptionListExecute executes the request
+	//  @return SubscriptionResponse
+	SubscriptionListExecute(r ApiSubscriptionListRequest) (*SubscriptionResponse, *http.Response, error)
+
+	/*
+	SubscriptionPause Pause Subscription
+
+	Pause a specific subscription
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param customerId Identifier of the customer resource
+	@param id Identifier of the subscription resource
+	@return ApiSubscriptionPauseRequest
+	*/
+	SubscriptionPause(ctx context.Context, customerId string, id string) ApiSubscriptionPauseRequest
+
+	// SubscriptionPauseExecute executes the request
+	//  @return SubscriptionResponse
+	SubscriptionPauseExecute(r ApiSubscriptionPauseRequest) (*SubscriptionResponse, *http.Response, error)
+
+	/*
+	SubscriptionResume Resume Subscription
+
+	Resume a specific paused subscription
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param customerId Identifier of the customer resource
+	@param id Identifier of the subscription resource
+	@return ApiSubscriptionResumeRequest
+	*/
+	SubscriptionResume(ctx context.Context, customerId string, id string) ApiSubscriptionResumeRequest
+
+	// SubscriptionResumeExecute executes the request
+	//  @return SubscriptionResponse
+	SubscriptionResumeExecute(r ApiSubscriptionResumeRequest) (*SubscriptionResponse, *http.Response, error)
+
+	/*
+	SubscriptionUpdate Update Subscription
+
+	Update a specific subscription
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param customerId Identifier of the customer resource
+	@param id Identifier of the subscription resource
+	@return ApiSubscriptionUpdateRequest
+	*/
+	SubscriptionUpdate(ctx context.Context, customerId string, id string) ApiSubscriptionUpdateRequest
+
+	// SubscriptionUpdateExecute executes the request
+	//  @return SubscriptionResponse
+	SubscriptionUpdateExecute(r ApiSubscriptionUpdateRequest) (*SubscriptionResponse, *http.Response, error)
+
+	/*
+	SubscriptionsGet Get Subscription
+
+	Retrieve a specific subscription
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param customerId Identifier of the customer resource
+	@param id Identifier of the subscription resource
+	@return ApiSubscriptionsGetRequest
+	*/
+	SubscriptionsGet(ctx context.Context, customerId string, id string) ApiSubscriptionsGetRequest
+
+	// SubscriptionsGetExecute executes the request
+	//  @return SubscriptionResponse
+	SubscriptionsGetExecute(r ApiSubscriptionsGetRequest) (*SubscriptionResponse, *http.Response, error)
+
+	/*
+	SubscriptionsRetry Retry Failed Payment
+
+	Retry a failed payment for a specific subscription
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param customerId Identifier of the customer resource
+	@param id Identifier of the subscription resource
+	@return ApiSubscriptionsRetryRequest
+	*/
+	SubscriptionsRetry(ctx context.Context, customerId string, id string) ApiSubscriptionsRetryRequest
+
+	// SubscriptionsRetryExecute executes the request
+	//  @return SubscriptionResponse
+	SubscriptionsRetryExecute(r ApiSubscriptionsRetryRequest) (*SubscriptionResponse, *http.Response, error)
+
+	/*
+	UpdateSubscription Update Subscription [Deprecated]
+
+	DEPRECATED: This endpoint will be removed in version 2.3.0. You can modify the subscription to change the plans that your customers consume
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id Identifier of the resource
 	@return ApiUpdateSubscriptionRequest
+
+	Deprecated
 	*/
 	UpdateSubscription(ctx context.Context, id string) ApiUpdateSubscriptionRequest
 
 	// UpdateSubscriptionExecute executes the request
 	//  @return SubscriptionResponse
+	// Deprecated
 	UpdateSubscriptionExecute(r ApiUpdateSubscriptionRequest) (*SubscriptionResponse, *http.Response, error)
 }
 
@@ -155,13 +320,15 @@ func (r ApiCancelSubscriptionRequest) Execute() (*SubscriptionResponse, *http.Re
 }
 
 /*
-CancelSubscription Cancel Subscription
+CancelSubscription Cancel Subscription [Deprecated]
 
-You can cancel the subscription to stop the plans that your customers consume
+DEPRECATED: This endpoint will be removed in version 2.3.0.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Identifier of the resource
  @return ApiCancelSubscriptionRequest
+
+Deprecated
 */
 func (a *SubscriptionsAPIService) CancelSubscription(ctx context.Context, id string) ApiCancelSubscriptionRequest {
 	return ApiCancelSubscriptionRequest{
@@ -173,6 +340,7 @@ func (a *SubscriptionsAPIService) CancelSubscription(ctx context.Context, id str
 
 // Execute executes the request
 //  @return SubscriptionResponse
+// Deprecated
 func (a *SubscriptionsAPIService) CancelSubscriptionExecute(r ApiCancelSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
@@ -203,7 +371,7 @@ func (a *SubscriptionsAPIService) CancelSubscriptionExecute(r ApiCancelSubscript
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -317,13 +485,15 @@ func (r ApiCreateSubscriptionRequest) Execute() (*SubscriptionResponse, *http.Re
 }
 
 /*
-CreateSubscription Create Subscription
+CreateSubscription Create Subscription [Deprecated]
 
-You can create the subscription to include the plans that your customers consume
+DEPRECATED: This endpoint will be removed in version 2.3.0. You can create the subscription to include the plans that your customers consume
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Identifier of the resource
  @return ApiCreateSubscriptionRequest
+
+Deprecated
 */
 func (a *SubscriptionsAPIService) CreateSubscription(ctx context.Context, id string) ApiCreateSubscriptionRequest {
 	return ApiCreateSubscriptionRequest{
@@ -335,6 +505,7 @@ func (a *SubscriptionsAPIService) CreateSubscription(ctx context.Context, id str
 
 // Execute executes the request
 //  @return SubscriptionResponse
+// Deprecated
 func (a *SubscriptionsAPIService) CreateSubscriptionExecute(r ApiCreateSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
@@ -368,7 +539,7 @@ func (a *SubscriptionsAPIService) CreateSubscriptionExecute(r ApiCreateSubscript
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -463,7 +634,155 @@ func (a *SubscriptionsAPIService) CreateSubscriptionExecute(r ApiCreateSubscript
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetAllEventsFromSubscriptionRequest struct {
+type ApiGetSubscriptionRequest struct {
+	ctx context.Context
+	ApiService SubscriptionsAPI
+	id string
+	acceptLanguage *string
+}
+
+// Use for knowing which language to use
+func (r ApiGetSubscriptionRequest) AcceptLanguage(acceptLanguage string) ApiGetSubscriptionRequest {
+	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+func (r ApiGetSubscriptionRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+	return r.ApiService.GetSubscriptionExecute(r)
+}
+
+/*
+GetSubscription Get Subscription [Deprecated]
+
+DEPRECATED: This endpoint will be removed in version 2.3.0.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Identifier of the resource
+ @return ApiGetSubscriptionRequest
+
+Deprecated
+*/
+func (a *SubscriptionsAPIService) GetSubscription(ctx context.Context, id string) ApiGetSubscriptionRequest {
+	return ApiGetSubscriptionRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return SubscriptionResponse
+// Deprecated
+func (a *SubscriptionsAPIService) GetSubscriptionExecute(r ApiGetSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SubscriptionResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.GetSubscription")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/customers/{id}/subscription"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptLanguage != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetSubscriptionEventsRequest struct {
 	ctx context.Context
 	ApiService SubscriptionsAPI
 	id string
@@ -472,32 +791,34 @@ type ApiGetAllEventsFromSubscriptionRequest struct {
 }
 
 // Use for knowing which language to use
-func (r ApiGetAllEventsFromSubscriptionRequest) AcceptLanguage(acceptLanguage string) ApiGetAllEventsFromSubscriptionRequest {
+func (r ApiGetSubscriptionEventsRequest) AcceptLanguage(acceptLanguage string) ApiGetSubscriptionEventsRequest {
 	r.acceptLanguage = &acceptLanguage
 	return r
 }
 
 // In the case of a holding company, the company id of the child company to which will process the request.
-func (r ApiGetAllEventsFromSubscriptionRequest) XChildCompanyId(xChildCompanyId string) ApiGetAllEventsFromSubscriptionRequest {
+func (r ApiGetSubscriptionEventsRequest) XChildCompanyId(xChildCompanyId string) ApiGetSubscriptionEventsRequest {
 	r.xChildCompanyId = &xChildCompanyId
 	return r
 }
 
-func (r ApiGetAllEventsFromSubscriptionRequest) Execute() (*SubscriptionEventsResponse, *http.Response, error) {
-	return r.ApiService.GetAllEventsFromSubscriptionExecute(r)
+func (r ApiGetSubscriptionEventsRequest) Execute() (*SubscriptionEventsResponse, *http.Response, error) {
+	return r.ApiService.GetSubscriptionEventsExecute(r)
 }
 
 /*
-GetAllEventsFromSubscription Get Events By Subscription
+GetSubscriptionEvents Get Subscription Events [Deprecated]
 
-You can get the events of the subscription(s) of a client, with the customer id
+DEPRECATED: This endpoint will be removed in version 2.3.0. You can get the events of the subscription(s) of a client, with the customer id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Identifier of the resource
- @return ApiGetAllEventsFromSubscriptionRequest
+ @return ApiGetSubscriptionEventsRequest
+
+Deprecated
 */
-func (a *SubscriptionsAPIService) GetAllEventsFromSubscription(ctx context.Context, id string) ApiGetAllEventsFromSubscriptionRequest {
-	return ApiGetAllEventsFromSubscriptionRequest{
+func (a *SubscriptionsAPIService) GetSubscriptionEvents(ctx context.Context, id string) ApiGetSubscriptionEventsRequest {
+	return ApiGetSubscriptionEventsRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -506,7 +827,8 @@ func (a *SubscriptionsAPIService) GetAllEventsFromSubscription(ctx context.Conte
 
 // Execute executes the request
 //  @return SubscriptionEventsResponse
-func (a *SubscriptionsAPIService) GetAllEventsFromSubscriptionExecute(r ApiGetAllEventsFromSubscriptionRequest) (*SubscriptionEventsResponse, *http.Response, error) {
+// Deprecated
+func (a *SubscriptionsAPIService) GetSubscriptionEventsExecute(r ApiGetSubscriptionEventsRequest) (*SubscriptionEventsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -514,7 +836,7 @@ func (a *SubscriptionsAPIService) GetAllEventsFromSubscriptionExecute(r ApiGetAl
 		localVarReturnValue  *SubscriptionEventsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.GetAllEventsFromSubscription")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.GetSubscriptionEvents")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -536,7 +858,7 @@ func (a *SubscriptionsAPIService) GetAllEventsFromSubscriptionExecute(r ApiGetAl
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -640,149 +962,6 @@ func (a *SubscriptionsAPIService) GetAllEventsFromSubscriptionExecute(r ApiGetAl
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetSubscriptionRequest struct {
-	ctx context.Context
-	ApiService SubscriptionsAPI
-	id string
-	acceptLanguage *string
-}
-
-// Use for knowing which language to use
-func (r ApiGetSubscriptionRequest) AcceptLanguage(acceptLanguage string) ApiGetSubscriptionRequest {
-	r.acceptLanguage = &acceptLanguage
-	return r
-}
-
-func (r ApiGetSubscriptionRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
-	return r.ApiService.GetSubscriptionExecute(r)
-}
-
-/*
-GetSubscription Get Subscription
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Identifier of the resource
- @return ApiGetSubscriptionRequest
-*/
-func (a *SubscriptionsAPIService) GetSubscription(ctx context.Context, id string) ApiGetSubscriptionRequest {
-	return ApiGetSubscriptionRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-	}
-}
-
-// Execute executes the request
-//  @return SubscriptionResponse
-func (a *SubscriptionsAPIService) GetSubscriptionExecute(r ApiGetSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.GetSubscription")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/customers/{id}/subscription"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiPauseSubscriptionRequest struct {
 	ctx context.Context
 	ApiService SubscriptionsAPI
@@ -808,13 +987,15 @@ func (r ApiPauseSubscriptionRequest) Execute() (*SubscriptionResponse, *http.Res
 }
 
 /*
-PauseSubscription Pause Subscription
+PauseSubscription Pause Subscription [Deprecated]
 
-You can pause the subscription to stop the plans that your customers consume
+DEPRECATED: This endpoint will be removed in version 2.3.0.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Identifier of the resource
  @return ApiPauseSubscriptionRequest
+
+Deprecated
 */
 func (a *SubscriptionsAPIService) PauseSubscription(ctx context.Context, id string) ApiPauseSubscriptionRequest {
 	return ApiPauseSubscriptionRequest{
@@ -826,6 +1007,7 @@ func (a *SubscriptionsAPIService) PauseSubscription(ctx context.Context, id stri
 
 // Execute executes the request
 //  @return SubscriptionResponse
+// Deprecated
 func (a *SubscriptionsAPIService) PauseSubscriptionExecute(r ApiPauseSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
@@ -856,7 +1038,7 @@ func (a *SubscriptionsAPIService) PauseSubscriptionExecute(r ApiPauseSubscriptio
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -974,13 +1156,15 @@ func (r ApiResumeSubscriptionRequest) Execute() (*SubscriptionResponse, *http.Re
 }
 
 /*
-ResumeSubscription Resume Subscription
+ResumeSubscription Resume Subscription [Deprecated]
 
-You can resume the subscription to start the plans that your customers consume
+DEPRECATED: This endpoint will be removed in version 2.3.0.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Identifier of the resource
  @return ApiResumeSubscriptionRequest
+
+Deprecated
 */
 func (a *SubscriptionsAPIService) ResumeSubscription(ctx context.Context, id string) ApiResumeSubscriptionRequest {
 	return ApiResumeSubscriptionRequest{
@@ -992,6 +1176,7 @@ func (a *SubscriptionsAPIService) ResumeSubscription(ctx context.Context, id str
 
 // Execute executes the request
 //  @return SubscriptionResponse
+// Deprecated
 func (a *SubscriptionsAPIService) ResumeSubscriptionExecute(r ApiResumeSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
@@ -1022,7 +1207,7 @@ func (a *SubscriptionsAPIService) ResumeSubscriptionExecute(r ApiResumeSubscript
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1126,6 +1311,1572 @@ func (a *SubscriptionsAPIService) ResumeSubscriptionExecute(r ApiResumeSubscript
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiSubscriptionCancelRequest struct {
+	ctx context.Context
+	ApiService SubscriptionsAPI
+	customerId string
+	id string
+	acceptLanguage *string
+	xChildCompanyId *string
+}
+
+// Use for knowing which language to use
+func (r ApiSubscriptionCancelRequest) AcceptLanguage(acceptLanguage string) ApiSubscriptionCancelRequest {
+	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiSubscriptionCancelRequest) XChildCompanyId(xChildCompanyId string) ApiSubscriptionCancelRequest {
+	r.xChildCompanyId = &xChildCompanyId
+	return r
+}
+
+func (r ApiSubscriptionCancelRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+	return r.ApiService.SubscriptionCancelExecute(r)
+}
+
+/*
+SubscriptionCancel Cancel Subscription
+
+Cancel a specific subscription
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param customerId Identifier of the customer resource
+ @param id Identifier of the subscription resource
+ @return ApiSubscriptionCancelRequest
+*/
+func (a *SubscriptionsAPIService) SubscriptionCancel(ctx context.Context, customerId string, id string) ApiSubscriptionCancelRequest {
+	return ApiSubscriptionCancelRequest{
+		ApiService: a,
+		ctx: ctx,
+		customerId: customerId,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return SubscriptionResponse
+func (a *SubscriptionsAPIService) SubscriptionCancelExecute(r ApiSubscriptionCancelRequest) (*SubscriptionResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SubscriptionResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionCancel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/customers/{customer_id}/subscriptions/{id}/cancel"
+	localVarPath = strings.Replace(localVarPath, "{"+"customer_id"+"}", url.PathEscape(parameterValueToString(r.customerId, "customerId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptLanguage != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSubscriptionCreateRequest struct {
+	ctx context.Context
+	ApiService SubscriptionsAPI
+	customerId string
+	subscriptionRequest *SubscriptionRequest
+	acceptLanguage *string
+	xChildCompanyId *string
+}
+
+// requested field for subscriptions
+func (r ApiSubscriptionCreateRequest) SubscriptionRequest(subscriptionRequest SubscriptionRequest) ApiSubscriptionCreateRequest {
+	r.subscriptionRequest = &subscriptionRequest
+	return r
+}
+
+// Use for knowing which language to use
+func (r ApiSubscriptionCreateRequest) AcceptLanguage(acceptLanguage string) ApiSubscriptionCreateRequest {
+	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiSubscriptionCreateRequest) XChildCompanyId(xChildCompanyId string) ApiSubscriptionCreateRequest {
+	r.xChildCompanyId = &xChildCompanyId
+	return r
+}
+
+func (r ApiSubscriptionCreateRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+	return r.ApiService.SubscriptionCreateExecute(r)
+}
+
+/*
+SubscriptionCreate Create Subscription
+
+Create a new subscription for a customer (keeps existing subscriptions active)
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param customerId Identifier of the customer resource
+ @return ApiSubscriptionCreateRequest
+*/
+func (a *SubscriptionsAPIService) SubscriptionCreate(ctx context.Context, customerId string) ApiSubscriptionCreateRequest {
+	return ApiSubscriptionCreateRequest{
+		ApiService: a,
+		ctx: ctx,
+		customerId: customerId,
+	}
+}
+
+// Execute executes the request
+//  @return SubscriptionResponse
+func (a *SubscriptionsAPIService) SubscriptionCreateExecute(r ApiSubscriptionCreateRequest) (*SubscriptionResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SubscriptionResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionCreate")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/customers/{customer_id}/subscriptions"
+	localVarPath = strings.Replace(localVarPath, "{"+"customer_id"+"}", url.PathEscape(parameterValueToString(r.customerId, "customerId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.subscriptionRequest == nil {
+		return localVarReturnValue, nil, reportError("subscriptionRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptLanguage != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+	}
+	// body params
+	localVarPostBody = r.subscriptionRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSubscriptionEventsRequest struct {
+	ctx context.Context
+	ApiService SubscriptionsAPI
+	customerId string
+	id string
+	acceptLanguage *string
+	xChildCompanyId *string
+	limit *int32
+	search *string
+	next *string
+	previous *string
+}
+
+// Use for knowing which language to use
+func (r ApiSubscriptionEventsRequest) AcceptLanguage(acceptLanguage string) ApiSubscriptionEventsRequest {
+	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiSubscriptionEventsRequest) XChildCompanyId(xChildCompanyId string) ApiSubscriptionEventsRequest {
+	r.xChildCompanyId = &xChildCompanyId
+	return r
+}
+
+// The numbers of items to return, the maximum value is 250
+func (r ApiSubscriptionEventsRequest) Limit(limit int32) ApiSubscriptionEventsRequest {
+	r.limit = &limit
+	return r
+}
+
+// General order search, e.g. by mail, reference etc.
+func (r ApiSubscriptionEventsRequest) Search(search string) ApiSubscriptionEventsRequest {
+	r.search = &search
+	return r
+}
+
+// next page
+func (r ApiSubscriptionEventsRequest) Next(next string) ApiSubscriptionEventsRequest {
+	r.next = &next
+	return r
+}
+
+// previous page
+func (r ApiSubscriptionEventsRequest) Previous(previous string) ApiSubscriptionEventsRequest {
+	r.previous = &previous
+	return r
+}
+
+func (r ApiSubscriptionEventsRequest) Execute() (*SubscriptionEventsResponse, *http.Response, error) {
+	return r.ApiService.SubscriptionEventsExecute(r)
+}
+
+/*
+SubscriptionEvents Get Subscription Events
+
+Get events for a specific subscription
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param customerId Identifier of the customer resource
+ @param id Identifier of the subscription resource
+ @return ApiSubscriptionEventsRequest
+*/
+func (a *SubscriptionsAPIService) SubscriptionEvents(ctx context.Context, customerId string, id string) ApiSubscriptionEventsRequest {
+	return ApiSubscriptionEventsRequest{
+		ApiService: a,
+		ctx: ctx,
+		customerId: customerId,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return SubscriptionEventsResponse
+func (a *SubscriptionsAPIService) SubscriptionEventsExecute(r ApiSubscriptionEventsRequest) (*SubscriptionEventsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SubscriptionEventsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionEvents")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/customers/{customer_id}/subscriptions/{id}/events"
+	localVarPath = strings.Replace(localVarPath, "{"+"customer_id"+"}", url.PathEscape(parameterValueToString(r.customerId, "customerId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
+	}
+	if r.next != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "next", r.next, "")
+	}
+	if r.previous != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "previous", r.previous, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptLanguage != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSubscriptionListRequest struct {
+	ctx context.Context
+	ApiService SubscriptionsAPI
+	customerId string
+	acceptLanguage *string
+	xChildCompanyId *string
+	limit *int32
+	search *string
+	next *string
+	previous *string
+}
+
+// Use for knowing which language to use
+func (r ApiSubscriptionListRequest) AcceptLanguage(acceptLanguage string) ApiSubscriptionListRequest {
+	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiSubscriptionListRequest) XChildCompanyId(xChildCompanyId string) ApiSubscriptionListRequest {
+	r.xChildCompanyId = &xChildCompanyId
+	return r
+}
+
+// The numbers of items to return, the maximum value is 250
+func (r ApiSubscriptionListRequest) Limit(limit int32) ApiSubscriptionListRequest {
+	r.limit = &limit
+	return r
+}
+
+// General order search, e.g. by mail, reference etc.
+func (r ApiSubscriptionListRequest) Search(search string) ApiSubscriptionListRequest {
+	r.search = &search
+	return r
+}
+
+// next page
+func (r ApiSubscriptionListRequest) Next(next string) ApiSubscriptionListRequest {
+	r.next = &next
+	return r
+}
+
+// previous page
+func (r ApiSubscriptionListRequest) Previous(previous string) ApiSubscriptionListRequest {
+	r.previous = &previous
+	return r
+}
+
+func (r ApiSubscriptionListRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+	return r.ApiService.SubscriptionListExecute(r)
+}
+
+/*
+SubscriptionList List Subscriptions
+
+Get a list of subscriptions for a customer
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param customerId Identifier of the customer resource
+ @return ApiSubscriptionListRequest
+*/
+func (a *SubscriptionsAPIService) SubscriptionList(ctx context.Context, customerId string) ApiSubscriptionListRequest {
+	return ApiSubscriptionListRequest{
+		ApiService: a,
+		ctx: ctx,
+		customerId: customerId,
+	}
+}
+
+// Execute executes the request
+//  @return SubscriptionResponse
+func (a *SubscriptionsAPIService) SubscriptionListExecute(r ApiSubscriptionListRequest) (*SubscriptionResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SubscriptionResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionList")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/customers/{customer_id}/subscriptions"
+	localVarPath = strings.Replace(localVarPath, "{"+"customer_id"+"}", url.PathEscape(parameterValueToString(r.customerId, "customerId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
+	}
+	if r.next != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "next", r.next, "")
+	}
+	if r.previous != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "previous", r.previous, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptLanguage != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSubscriptionPauseRequest struct {
+	ctx context.Context
+	ApiService SubscriptionsAPI
+	customerId string
+	id string
+	acceptLanguage *string
+	xChildCompanyId *string
+}
+
+// Use for knowing which language to use
+func (r ApiSubscriptionPauseRequest) AcceptLanguage(acceptLanguage string) ApiSubscriptionPauseRequest {
+	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiSubscriptionPauseRequest) XChildCompanyId(xChildCompanyId string) ApiSubscriptionPauseRequest {
+	r.xChildCompanyId = &xChildCompanyId
+	return r
+}
+
+func (r ApiSubscriptionPauseRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+	return r.ApiService.SubscriptionPauseExecute(r)
+}
+
+/*
+SubscriptionPause Pause Subscription
+
+Pause a specific subscription
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param customerId Identifier of the customer resource
+ @param id Identifier of the subscription resource
+ @return ApiSubscriptionPauseRequest
+*/
+func (a *SubscriptionsAPIService) SubscriptionPause(ctx context.Context, customerId string, id string) ApiSubscriptionPauseRequest {
+	return ApiSubscriptionPauseRequest{
+		ApiService: a,
+		ctx: ctx,
+		customerId: customerId,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return SubscriptionResponse
+func (a *SubscriptionsAPIService) SubscriptionPauseExecute(r ApiSubscriptionPauseRequest) (*SubscriptionResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SubscriptionResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionPause")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/customers/{customer_id}/subscriptions/{id}/pause"
+	localVarPath = strings.Replace(localVarPath, "{"+"customer_id"+"}", url.PathEscape(parameterValueToString(r.customerId, "customerId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptLanguage != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSubscriptionResumeRequest struct {
+	ctx context.Context
+	ApiService SubscriptionsAPI
+	customerId string
+	id string
+	acceptLanguage *string
+	xChildCompanyId *string
+}
+
+// Use for knowing which language to use
+func (r ApiSubscriptionResumeRequest) AcceptLanguage(acceptLanguage string) ApiSubscriptionResumeRequest {
+	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiSubscriptionResumeRequest) XChildCompanyId(xChildCompanyId string) ApiSubscriptionResumeRequest {
+	r.xChildCompanyId = &xChildCompanyId
+	return r
+}
+
+func (r ApiSubscriptionResumeRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+	return r.ApiService.SubscriptionResumeExecute(r)
+}
+
+/*
+SubscriptionResume Resume Subscription
+
+Resume a specific paused subscription
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param customerId Identifier of the customer resource
+ @param id Identifier of the subscription resource
+ @return ApiSubscriptionResumeRequest
+*/
+func (a *SubscriptionsAPIService) SubscriptionResume(ctx context.Context, customerId string, id string) ApiSubscriptionResumeRequest {
+	return ApiSubscriptionResumeRequest{
+		ApiService: a,
+		ctx: ctx,
+		customerId: customerId,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return SubscriptionResponse
+func (a *SubscriptionsAPIService) SubscriptionResumeExecute(r ApiSubscriptionResumeRequest) (*SubscriptionResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SubscriptionResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionResume")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/customers/{customer_id}/subscriptions/{id}/resume"
+	localVarPath = strings.Replace(localVarPath, "{"+"customer_id"+"}", url.PathEscape(parameterValueToString(r.customerId, "customerId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptLanguage != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSubscriptionUpdateRequest struct {
+	ctx context.Context
+	ApiService SubscriptionsAPI
+	customerId string
+	id string
+	subscriptionUpdateRequest *SubscriptionUpdateRequest
+	acceptLanguage *string
+	xChildCompanyId *string
+}
+
+// requested field for update a subscription
+func (r ApiSubscriptionUpdateRequest) SubscriptionUpdateRequest(subscriptionUpdateRequest SubscriptionUpdateRequest) ApiSubscriptionUpdateRequest {
+	r.subscriptionUpdateRequest = &subscriptionUpdateRequest
+	return r
+}
+
+// Use for knowing which language to use
+func (r ApiSubscriptionUpdateRequest) AcceptLanguage(acceptLanguage string) ApiSubscriptionUpdateRequest {
+	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiSubscriptionUpdateRequest) XChildCompanyId(xChildCompanyId string) ApiSubscriptionUpdateRequest {
+	r.xChildCompanyId = &xChildCompanyId
+	return r
+}
+
+func (r ApiSubscriptionUpdateRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+	return r.ApiService.SubscriptionUpdateExecute(r)
+}
+
+/*
+SubscriptionUpdate Update Subscription
+
+Update a specific subscription
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param customerId Identifier of the customer resource
+ @param id Identifier of the subscription resource
+ @return ApiSubscriptionUpdateRequest
+*/
+func (a *SubscriptionsAPIService) SubscriptionUpdate(ctx context.Context, customerId string, id string) ApiSubscriptionUpdateRequest {
+	return ApiSubscriptionUpdateRequest{
+		ApiService: a,
+		ctx: ctx,
+		customerId: customerId,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return SubscriptionResponse
+func (a *SubscriptionsAPIService) SubscriptionUpdateExecute(r ApiSubscriptionUpdateRequest) (*SubscriptionResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SubscriptionResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionUpdate")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/customers/{customer_id}/subscriptions/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"customer_id"+"}", url.PathEscape(parameterValueToString(r.customerId, "customerId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.subscriptionUpdateRequest == nil {
+		return localVarReturnValue, nil, reportError("subscriptionUpdateRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptLanguage != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+	}
+	// body params
+	localVarPostBody = r.subscriptionUpdateRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSubscriptionsGetRequest struct {
+	ctx context.Context
+	ApiService SubscriptionsAPI
+	customerId string
+	id string
+	acceptLanguage *string
+	xChildCompanyId *string
+}
+
+// Use for knowing which language to use
+func (r ApiSubscriptionsGetRequest) AcceptLanguage(acceptLanguage string) ApiSubscriptionsGetRequest {
+	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiSubscriptionsGetRequest) XChildCompanyId(xChildCompanyId string) ApiSubscriptionsGetRequest {
+	r.xChildCompanyId = &xChildCompanyId
+	return r
+}
+
+func (r ApiSubscriptionsGetRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+	return r.ApiService.SubscriptionsGetExecute(r)
+}
+
+/*
+SubscriptionsGet Get Subscription
+
+Retrieve a specific subscription
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param customerId Identifier of the customer resource
+ @param id Identifier of the subscription resource
+ @return ApiSubscriptionsGetRequest
+*/
+func (a *SubscriptionsAPIService) SubscriptionsGet(ctx context.Context, customerId string, id string) ApiSubscriptionsGetRequest {
+	return ApiSubscriptionsGetRequest{
+		ApiService: a,
+		ctx: ctx,
+		customerId: customerId,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return SubscriptionResponse
+func (a *SubscriptionsAPIService) SubscriptionsGetExecute(r ApiSubscriptionsGetRequest) (*SubscriptionResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SubscriptionResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionsGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/customers/{customer_id}/subscriptions/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"customer_id"+"}", url.PathEscape(parameterValueToString(r.customerId, "customerId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptLanguage != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSubscriptionsRetryRequest struct {
+	ctx context.Context
+	ApiService SubscriptionsAPI
+	customerId string
+	id string
+	acceptLanguage *string
+	xChildCompanyId *string
+}
+
+// Use for knowing which language to use
+func (r ApiSubscriptionsRetryRequest) AcceptLanguage(acceptLanguage string) ApiSubscriptionsRetryRequest {
+	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+// In the case of a holding company, the company id of the child company to which will process the request.
+func (r ApiSubscriptionsRetryRequest) XChildCompanyId(xChildCompanyId string) ApiSubscriptionsRetryRequest {
+	r.xChildCompanyId = &xChildCompanyId
+	return r
+}
+
+func (r ApiSubscriptionsRetryRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+	return r.ApiService.SubscriptionsRetryExecute(r)
+}
+
+/*
+SubscriptionsRetry Retry Failed Payment
+
+Retry a failed payment for a specific subscription
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param customerId Identifier of the customer resource
+ @param id Identifier of the subscription resource
+ @return ApiSubscriptionsRetryRequest
+*/
+func (a *SubscriptionsAPIService) SubscriptionsRetry(ctx context.Context, customerId string, id string) ApiSubscriptionsRetryRequest {
+	return ApiSubscriptionsRetryRequest{
+		ApiService: a,
+		ctx: ctx,
+		customerId: customerId,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return SubscriptionResponse
+func (a *SubscriptionsAPIService) SubscriptionsRetryExecute(r ApiSubscriptionsRetryRequest) (*SubscriptionResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SubscriptionResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionsRetry")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/customers/{customer_id}/subscriptions/{id}/retry"
+	localVarPath = strings.Replace(localVarPath, "{"+"customer_id"+"}", url.PathEscape(parameterValueToString(r.customerId, "customerId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptLanguage != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	if r.xChildCompanyId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiUpdateSubscriptionRequest struct {
 	ctx context.Context
 	ApiService SubscriptionsAPI
@@ -1158,13 +2909,15 @@ func (r ApiUpdateSubscriptionRequest) Execute() (*SubscriptionResponse, *http.Re
 }
 
 /*
-UpdateSubscription Update Subscription
+UpdateSubscription Update Subscription [Deprecated]
 
-You can modify the subscription to change the plans that your customers consume
+DEPRECATED: This endpoint will be removed in version 2.3.0. You can modify the subscription to change the plans that your customers consume
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Identifier of the resource
  @return ApiUpdateSubscriptionRequest
+
+Deprecated
 */
 func (a *SubscriptionsAPIService) UpdateSubscription(ctx context.Context, id string) ApiUpdateSubscriptionRequest {
 	return ApiUpdateSubscriptionRequest{
@@ -1176,6 +2929,7 @@ func (a *SubscriptionsAPIService) UpdateSubscription(ctx context.Context, id str
 
 // Execute executes the request
 //  @return SubscriptionResponse
+// Deprecated
 func (a *SubscriptionsAPIService) UpdateSubscriptionExecute(r ApiUpdateSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
@@ -1209,7 +2963,7 @@ func (a *SubscriptionsAPIService) UpdateSubscriptionExecute(r ApiUpdateSubscript
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.1.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

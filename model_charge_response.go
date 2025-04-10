@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ChargeResponse type satisfies the MappedNullable interface at compile time
@@ -20,29 +21,30 @@ var _ MappedNullable = &ChargeResponse{}
 
 // ChargeResponse struct for ChargeResponse
 type ChargeResponse struct {
-	Amount *int32 `json:"amount,omitempty"`
+	Amount int32 `json:"amount"`
 	Channel *ChargeResponseChannel `json:"channel,omitempty"`
-	CreatedAt *int64 `json:"created_at,omitempty"`
-	Currency *string `json:"currency,omitempty"`
+	CreatedAt int64 `json:"created_at"`
+	Currency string `json:"currency"`
 	CustomerId *string `json:"customer_id,omitempty"`
 	Description *string `json:"description,omitempty"`
 	DeviceFingerprint *string `json:"device_fingerprint,omitempty"`
 	FailureCode *string `json:"failure_code,omitempty"`
 	FailureMessage *string `json:"failure_message,omitempty"`
 	// Charge ID
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 	// Whether the charge was made in live mode or not
-	Livemode *bool `json:"livemode,omitempty"`
-	Object *string `json:"object,omitempty"`
+	Livemode bool `json:"livemode"`
+	Object string `json:"object"`
 	// Order ID
-	OrderId *string `json:"order_id,omitempty"`
+	OrderId string `json:"order_id"`
 	// Payment date
 	PaidAt NullableInt64 `json:"paid_at,omitempty"`
 	PaymentMethod *ChargeResponsePaymentMethod `json:"payment_method,omitempty"`
 	// Reference ID of the charge
 	ReferenceId NullableString `json:"reference_id,omitempty"`
 	Refunds NullableChargeResponseRefunds `json:"refunds,omitempty"`
-	Status *string `json:"status,omitempty"`
+	// Charge status
+	Status string `json:"status"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -52,8 +54,16 @@ type _ChargeResponse ChargeResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChargeResponse() *ChargeResponse {
+func NewChargeResponse(amount int32, createdAt int64, currency string, id string, livemode bool, object string, orderId string, status string) *ChargeResponse {
 	this := ChargeResponse{}
+	this.Amount = amount
+	this.CreatedAt = createdAt
+	this.Currency = currency
+	this.Id = id
+	this.Livemode = livemode
+	this.Object = object
+	this.OrderId = orderId
+	this.Status = status
 	return &this
 }
 
@@ -65,36 +75,28 @@ func NewChargeResponseWithDefaults() *ChargeResponse {
 	return &this
 }
 
-// GetAmount returns the Amount field value if set, zero value otherwise.
+// GetAmount returns the Amount field value
 func (o *ChargeResponse) GetAmount() int32 {
-	if o == nil || IsNil(o.Amount) {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.Amount
+
+	return o.Amount
 }
 
-// GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
+// GetAmountOk returns a tuple with the Amount field value
 // and a boolean to check if the value has been set.
 func (o *ChargeResponse) GetAmountOk() (*int32, bool) {
-	if o == nil || IsNil(o.Amount) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Amount, true
+	return &o.Amount, true
 }
 
-// HasAmount returns a boolean if a field has been set.
-func (o *ChargeResponse) HasAmount() bool {
-	if o != nil && !IsNil(o.Amount) {
-		return true
-	}
-
-	return false
-}
-
-// SetAmount gets a reference to the given int32 and assigns it to the Amount field.
+// SetAmount sets field value
 func (o *ChargeResponse) SetAmount(v int32) {
-	o.Amount = &v
+	o.Amount = v
 }
 
 // GetChannel returns the Channel field value if set, zero value otherwise.
@@ -129,68 +131,52 @@ func (o *ChargeResponse) SetChannel(v ChargeResponseChannel) {
 	o.Channel = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+// GetCreatedAt returns the CreatedAt field value
 func (o *ChargeResponse) GetCreatedAt() int64 {
-	if o == nil || IsNil(o.CreatedAt) {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.CreatedAt
+
+	return o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 func (o *ChargeResponse) GetCreatedAtOk() (*int64, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
+	if o == nil {
 		return nil, false
 	}
-	return o.CreatedAt, true
+	return &o.CreatedAt, true
 }
 
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *ChargeResponse) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
+// SetCreatedAt sets field value
 func (o *ChargeResponse) SetCreatedAt(v int64) {
-	o.CreatedAt = &v
+	o.CreatedAt = v
 }
 
-// GetCurrency returns the Currency field value if set, zero value otherwise.
+// GetCurrency returns the Currency field value
 func (o *ChargeResponse) GetCurrency() string {
-	if o == nil || IsNil(o.Currency) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Currency
+
+	return o.Currency
 }
 
-// GetCurrencyOk returns a tuple with the Currency field value if set, nil otherwise
+// GetCurrencyOk returns a tuple with the Currency field value
 // and a boolean to check if the value has been set.
 func (o *ChargeResponse) GetCurrencyOk() (*string, bool) {
-	if o == nil || IsNil(o.Currency) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Currency, true
+	return &o.Currency, true
 }
 
-// HasCurrency returns a boolean if a field has been set.
-func (o *ChargeResponse) HasCurrency() bool {
-	if o != nil && !IsNil(o.Currency) {
-		return true
-	}
-
-	return false
-}
-
-// SetCurrency gets a reference to the given string and assigns it to the Currency field.
+// SetCurrency sets field value
 func (o *ChargeResponse) SetCurrency(v string) {
-	o.Currency = &v
+	o.Currency = v
 }
 
 // GetCustomerId returns the CustomerId field value if set, zero value otherwise.
@@ -353,132 +339,100 @@ func (o *ChargeResponse) SetFailureMessage(v string) {
 	o.FailureMessage = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value
 func (o *ChargeResponse) GetId() string {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *ChargeResponse) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *ChargeResponse) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value
 func (o *ChargeResponse) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
-// GetLivemode returns the Livemode field value if set, zero value otherwise.
+// GetLivemode returns the Livemode field value
 func (o *ChargeResponse) GetLivemode() bool {
-	if o == nil || IsNil(o.Livemode) {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Livemode
+
+	return o.Livemode
 }
 
-// GetLivemodeOk returns a tuple with the Livemode field value if set, nil otherwise
+// GetLivemodeOk returns a tuple with the Livemode field value
 // and a boolean to check if the value has been set.
 func (o *ChargeResponse) GetLivemodeOk() (*bool, bool) {
-	if o == nil || IsNil(o.Livemode) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Livemode, true
+	return &o.Livemode, true
 }
 
-// HasLivemode returns a boolean if a field has been set.
-func (o *ChargeResponse) HasLivemode() bool {
-	if o != nil && !IsNil(o.Livemode) {
-		return true
-	}
-
-	return false
-}
-
-// SetLivemode gets a reference to the given bool and assigns it to the Livemode field.
+// SetLivemode sets field value
 func (o *ChargeResponse) SetLivemode(v bool) {
-	o.Livemode = &v
+	o.Livemode = v
 }
 
-// GetObject returns the Object field value if set, zero value otherwise.
+// GetObject returns the Object field value
 func (o *ChargeResponse) GetObject() string {
-	if o == nil || IsNil(o.Object) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Object
+
+	return o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
+// GetObjectOk returns a tuple with the Object field value
 // and a boolean to check if the value has been set.
 func (o *ChargeResponse) GetObjectOk() (*string, bool) {
-	if o == nil || IsNil(o.Object) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Object, true
+	return &o.Object, true
 }
 
-// HasObject returns a boolean if a field has been set.
-func (o *ChargeResponse) HasObject() bool {
-	if o != nil && !IsNil(o.Object) {
-		return true
-	}
-
-	return false
-}
-
-// SetObject gets a reference to the given string and assigns it to the Object field.
+// SetObject sets field value
 func (o *ChargeResponse) SetObject(v string) {
-	o.Object = &v
+	o.Object = v
 }
 
-// GetOrderId returns the OrderId field value if set, zero value otherwise.
+// GetOrderId returns the OrderId field value
 func (o *ChargeResponse) GetOrderId() string {
-	if o == nil || IsNil(o.OrderId) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.OrderId
+
+	return o.OrderId
 }
 
-// GetOrderIdOk returns a tuple with the OrderId field value if set, nil otherwise
+// GetOrderIdOk returns a tuple with the OrderId field value
 // and a boolean to check if the value has been set.
 func (o *ChargeResponse) GetOrderIdOk() (*string, bool) {
-	if o == nil || IsNil(o.OrderId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.OrderId, true
+	return &o.OrderId, true
 }
 
-// HasOrderId returns a boolean if a field has been set.
-func (o *ChargeResponse) HasOrderId() bool {
-	if o != nil && !IsNil(o.OrderId) {
-		return true
-	}
-
-	return false
-}
-
-// SetOrderId gets a reference to the given string and assigns it to the OrderId field.
+// SetOrderId sets field value
 func (o *ChargeResponse) SetOrderId(v string) {
-	o.OrderId = &v
+	o.OrderId = v
 }
 
 // GetPaidAt returns the PaidAt field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -639,36 +593,28 @@ func (o *ChargeResponse) UnsetRefunds() {
 	o.Refunds.Unset()
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
+// GetStatus returns the Status field value
 func (o *ChargeResponse) GetStatus() string {
-	if o == nil || IsNil(o.Status) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Status
+
+	return o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
 func (o *ChargeResponse) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Status, true
+	return &o.Status, true
 }
 
-// HasStatus returns a boolean if a field has been set.
-func (o *ChargeResponse) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given string and assigns it to the Status field.
+// SetStatus sets field value
 func (o *ChargeResponse) SetStatus(v string) {
-	o.Status = &v
+	o.Status = v
 }
 
 func (o ChargeResponse) MarshalJSON() ([]byte, error) {
@@ -681,18 +627,12 @@ func (o ChargeResponse) MarshalJSON() ([]byte, error) {
 
 func (o ChargeResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Amount) {
-		toSerialize["amount"] = o.Amount
-	}
+	toSerialize["amount"] = o.Amount
 	if !IsNil(o.Channel) {
 		toSerialize["channel"] = o.Channel
 	}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if !IsNil(o.Currency) {
-		toSerialize["currency"] = o.Currency
-	}
+	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["currency"] = o.Currency
 	if !IsNil(o.CustomerId) {
 		toSerialize["customer_id"] = o.CustomerId
 	}
@@ -708,18 +648,10 @@ func (o ChargeResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.FailureMessage) {
 		toSerialize["failure_message"] = o.FailureMessage
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !IsNil(o.Livemode) {
-		toSerialize["livemode"] = o.Livemode
-	}
-	if !IsNil(o.Object) {
-		toSerialize["object"] = o.Object
-	}
-	if !IsNil(o.OrderId) {
-		toSerialize["order_id"] = o.OrderId
-	}
+	toSerialize["id"] = o.Id
+	toSerialize["livemode"] = o.Livemode
+	toSerialize["object"] = o.Object
+	toSerialize["order_id"] = o.OrderId
 	if o.PaidAt.IsSet() {
 		toSerialize["paid_at"] = o.PaidAt.Get()
 	}
@@ -732,9 +664,7 @@ func (o ChargeResponse) ToMap() (map[string]interface{}, error) {
 	if o.Refunds.IsSet() {
 		toSerialize["refunds"] = o.Refunds.Get()
 	}
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
+	toSerialize["status"] = o.Status
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -744,6 +674,34 @@ func (o ChargeResponse) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *ChargeResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"amount",
+		"created_at",
+		"currency",
+		"id",
+		"livemode",
+		"object",
+		"order_id",
+		"status",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varChargeResponse := _ChargeResponse{}
 
 	err = json.Unmarshal(data, &varChargeResponse)

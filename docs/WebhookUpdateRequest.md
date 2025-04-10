@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | **string** | Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security. | 
-**Synchronous** | Pointer to **bool** | It is a value that allows to decide if the events will be synchronous or asynchronous. We recommend asynchronous &#x3D; false | [optional] [default to false]
-**Events** | Pointer to **[]string** |  | [optional] 
+**Url** | Pointer to **string** | Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security. | [optional] 
+**SubscribedEvents** | Pointer to **[]string** | events that will be sent to the webhook | [optional] 
+**Active** | Pointer to **bool** | whether the webhook is active or not | [optional] 
 
 ## Methods
 
 ### NewWebhookUpdateRequest
 
-`func NewWebhookUpdateRequest(url string, ) *WebhookUpdateRequest`
+`func NewWebhookUpdateRequest() *WebhookUpdateRequest`
 
 NewWebhookUpdateRequest instantiates a new WebhookUpdateRequest object
 This constructor will assign default values to properties that have it defined,
@@ -46,56 +46,61 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
+### HasUrl
 
-### GetSynchronous
+`func (o *WebhookUpdateRequest) HasUrl() bool`
 
-`func (o *WebhookUpdateRequest) GetSynchronous() bool`
+HasUrl returns a boolean if a field has been set.
 
-GetSynchronous returns the Synchronous field if non-nil, zero value otherwise.
+### GetSubscribedEvents
 
-### GetSynchronousOk
+`func (o *WebhookUpdateRequest) GetSubscribedEvents() []string`
 
-`func (o *WebhookUpdateRequest) GetSynchronousOk() (*bool, bool)`
+GetSubscribedEvents returns the SubscribedEvents field if non-nil, zero value otherwise.
 
-GetSynchronousOk returns a tuple with the Synchronous field if it's non-nil, zero value otherwise
+### GetSubscribedEventsOk
+
+`func (o *WebhookUpdateRequest) GetSubscribedEventsOk() (*[]string, bool)`
+
+GetSubscribedEventsOk returns a tuple with the SubscribedEvents field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSynchronous
+### SetSubscribedEvents
 
-`func (o *WebhookUpdateRequest) SetSynchronous(v bool)`
+`func (o *WebhookUpdateRequest) SetSubscribedEvents(v []string)`
 
-SetSynchronous sets Synchronous field to given value.
+SetSubscribedEvents sets SubscribedEvents field to given value.
 
-### HasSynchronous
+### HasSubscribedEvents
 
-`func (o *WebhookUpdateRequest) HasSynchronous() bool`
+`func (o *WebhookUpdateRequest) HasSubscribedEvents() bool`
 
-HasSynchronous returns a boolean if a field has been set.
+HasSubscribedEvents returns a boolean if a field has been set.
 
-### GetEvents
+### GetActive
 
-`func (o *WebhookUpdateRequest) GetEvents() []string`
+`func (o *WebhookUpdateRequest) GetActive() bool`
 
-GetEvents returns the Events field if non-nil, zero value otherwise.
+GetActive returns the Active field if non-nil, zero value otherwise.
 
-### GetEventsOk
+### GetActiveOk
 
-`func (o *WebhookUpdateRequest) GetEventsOk() (*[]string, bool)`
+`func (o *WebhookUpdateRequest) GetActiveOk() (*bool, bool)`
 
-GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
+GetActiveOk returns a tuple with the Active field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEvents
+### SetActive
 
-`func (o *WebhookUpdateRequest) SetEvents(v []string)`
+`func (o *WebhookUpdateRequest) SetActive(v bool)`
 
-SetEvents sets Events field to given value.
+SetActive sets Active field to given value.
 
-### HasEvents
+### HasActive
 
-`func (o *WebhookUpdateRequest) HasEvents() bool`
+`func (o *WebhookUpdateRequest) HasActive() bool`
 
-HasEvents returns a boolean if a field has been set.
+HasActive returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

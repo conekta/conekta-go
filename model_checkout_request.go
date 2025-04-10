@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.1.0
+API version: 2.2.0
 Contact: engineering@conekta.com
 */
 
@@ -19,7 +19,7 @@ import (
 // checks if the CheckoutRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CheckoutRequest{}
 
-// CheckoutRequest [Checkout](https://developers.conekta.com/v2.1.0/reference/payment-link) details 
+// CheckoutRequest [Checkout](https://developers.conekta.com/v2.2.0/reference/payment-link) details 
 type CheckoutRequest struct {
 	// Are the payment methods available for this link
 	AllowedPaymentMethods []string `json:"allowed_payment_methods"`
