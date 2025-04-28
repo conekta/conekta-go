@@ -23,6 +23,8 @@ var _ MappedNullable = &CheckoutResponse{}
 type CheckoutResponse struct {
 	// Are the payment methods available for this link
 	AllowedPaymentMethods []string `json:"allowed_payment_methods,omitempty"`
+	// List of plan IDs that are available for subscription
+	PlanIds []string `json:"plan_ids,omitempty"`
 	CanNotExpire *bool `json:"can_not_expire,omitempty"`
 	EmailsSent *int32 `json:"emails_sent,omitempty"`
 	ExcludeCardNetworks []map[string]interface{} `json:"exclude_card_networks,omitempty"`
@@ -104,6 +106,38 @@ func (o *CheckoutResponse) HasAllowedPaymentMethods() bool {
 // SetAllowedPaymentMethods gets a reference to the given []string and assigns it to the AllowedPaymentMethods field.
 func (o *CheckoutResponse) SetAllowedPaymentMethods(v []string) {
 	o.AllowedPaymentMethods = v
+}
+
+// GetPlanIds returns the PlanIds field value if set, zero value otherwise.
+func (o *CheckoutResponse) GetPlanIds() []string {
+	if o == nil || IsNil(o.PlanIds) {
+		var ret []string
+		return ret
+	}
+	return o.PlanIds
+}
+
+// GetPlanIdsOk returns a tuple with the PlanIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CheckoutResponse) GetPlanIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.PlanIds) {
+		return nil, false
+	}
+	return o.PlanIds, true
+}
+
+// HasPlanIds returns a boolean if a field has been set.
+func (o *CheckoutResponse) HasPlanIds() bool {
+	if o != nil && !IsNil(o.PlanIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetPlanIds gets a reference to the given []string and assigns it to the PlanIds field.
+func (o *CheckoutResponse) SetPlanIds(v []string) {
+	o.PlanIds = v
 }
 
 // GetCanNotExpire returns the CanNotExpire field value if set, zero value otherwise.
@@ -865,6 +899,9 @@ func (o CheckoutResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AllowedPaymentMethods) {
 		toSerialize["allowed_payment_methods"] = o.AllowedPaymentMethods
 	}
+	if !IsNil(o.PlanIds) {
+		toSerialize["plan_ids"] = o.PlanIds
+	}
 	if !IsNil(o.CanNotExpire) {
 		toSerialize["can_not_expire"] = o.CanNotExpire
 	}
@@ -976,6 +1013,7 @@ func (o *CheckoutResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "allowed_payment_methods")
+		delete(additionalProperties, "plan_ids")
 		delete(additionalProperties, "can_not_expire")
 		delete(additionalProperties, "emails_sent")
 		delete(additionalProperties, "exclude_card_networks")

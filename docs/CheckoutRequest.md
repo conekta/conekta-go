@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AllowedPaymentMethods** | **[]string** | Are the payment methods available for this link | 
+**AllowedPaymentMethods** | **[]string** | Are the payment methods available for this link. For subscriptions, only &#39;card&#39; is allowed due to the recurring nature of the payments. | 
+**PlanIds** | Pointer to **[]string** | List of plan IDs that will be available for subscription. This field is required for subscription payments. | [optional] 
 **ExpiresAt** | Pointer to **int64** | Unix timestamp of checkout expiration | [optional] 
 **FailureUrl** | Pointer to **string** | Redirection url back to the site in case of failed payment, applies only to HostedPayment. | [optional] 
 **MonthlyInstallmentsEnabled** | Pointer to **bool** |  | [optional] 
@@ -54,6 +55,31 @@ and a boolean to check if the value has been set.
 
 SetAllowedPaymentMethods sets AllowedPaymentMethods field to given value.
 
+
+### GetPlanIds
+
+`func (o *CheckoutRequest) GetPlanIds() []string`
+
+GetPlanIds returns the PlanIds field if non-nil, zero value otherwise.
+
+### GetPlanIdsOk
+
+`func (o *CheckoutRequest) GetPlanIdsOk() (*[]string, bool)`
+
+GetPlanIdsOk returns a tuple with the PlanIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlanIds
+
+`func (o *CheckoutRequest) SetPlanIds(v []string)`
+
+SetPlanIds sets PlanIds field to given value.
+
+### HasPlanIds
+
+`func (o *CheckoutRequest) HasPlanIds() bool`
+
+HasPlanIds returns a boolean if a field has been set.
 
 ### GetExpiresAt
 
