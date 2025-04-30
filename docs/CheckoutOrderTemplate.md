@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Currency** | **string** | It is the currency in which the order will be created. It must be a valid ISO 4217 currency code. | 
 **CustomerInfo** | Pointer to [**CheckoutOrderTemplateCustomerInfo**](CheckoutOrderTemplateCustomerInfo.md) |  | [optional] 
 **LineItems** | [**[]Product**](Product.md) | They are the products to buy. Each contains the \&quot;unit price\&quot; and \&quot;quantity\&quot; parameters that are used to calculate the total amount of the order. | 
+**PlanIds** | Pointer to **[]string** | It is a list of plan IDs that will be associated with the order. | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** | It is a set of key-value pairs that you can attach to the order. It can be used to store additional information about the order in a structured format. | [optional] 
 
 ## Methods
@@ -92,6 +93,31 @@ and a boolean to check if the value has been set.
 
 SetLineItems sets LineItems field to given value.
 
+
+### GetPlanIds
+
+`func (o *CheckoutOrderTemplate) GetPlanIds() []string`
+
+GetPlanIds returns the PlanIds field if non-nil, zero value otherwise.
+
+### GetPlanIdsOk
+
+`func (o *CheckoutOrderTemplate) GetPlanIdsOk() (*[]string, bool)`
+
+GetPlanIdsOk returns a tuple with the PlanIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlanIds
+
+`func (o *CheckoutOrderTemplate) SetPlanIds(v []string)`
+
+SetPlanIds sets PlanIds field to given value.
+
+### HasPlanIds
+
+`func (o *CheckoutOrderTemplate) HasPlanIds() bool`
+
+HasPlanIds returns a boolean if a field has been set.
 
 ### GetMetadata
 

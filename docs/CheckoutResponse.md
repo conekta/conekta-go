@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AllowedPaymentMethods** | Pointer to **[]string** | Are the payment methods available for this link | [optional] 
+**PlanIds** | Pointer to **[]string** | List of plan IDs that are available for subscription | [optional] 
 **CanNotExpire** | Pointer to **bool** |  | [optional] 
 **EmailsSent** | Pointer to **int32** |  | [optional] 
 **ExcludeCardNetworks** | Pointer to **[]map[string]interface{}** |  | [optional] 
@@ -73,6 +74,31 @@ SetAllowedPaymentMethods sets AllowedPaymentMethods field to given value.
 `func (o *CheckoutResponse) HasAllowedPaymentMethods() bool`
 
 HasAllowedPaymentMethods returns a boolean if a field has been set.
+
+### GetPlanIds
+
+`func (o *CheckoutResponse) GetPlanIds() []string`
+
+GetPlanIds returns the PlanIds field if non-nil, zero value otherwise.
+
+### GetPlanIdsOk
+
+`func (o *CheckoutResponse) GetPlanIdsOk() (*[]string, bool)`
+
+GetPlanIdsOk returns a tuple with the PlanIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlanIds
+
+`func (o *CheckoutResponse) SetPlanIds(v []string)`
+
+SetPlanIds sets PlanIds field to given value.
+
+### HasPlanIds
+
+`func (o *CheckoutResponse) HasPlanIds() bool`
+
+HasPlanIds returns a boolean if a field has been set.
 
 ### GetCanNotExpire
 

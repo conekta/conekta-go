@@ -21,8 +21,10 @@ var _ MappedNullable = &CheckoutRequest{}
 
 // CheckoutRequest [Checkout](https://developers.conekta.com/v2.2.0/reference/payment-link) details 
 type CheckoutRequest struct {
-	// Are the payment methods available for this link
+	// Are the payment methods available for this link. For subscriptions, only 'card' is allowed due to the recurring nature of the payments.
 	AllowedPaymentMethods []string `json:"allowed_payment_methods"`
+	// List of plan IDs that will be available for subscription. This field is required for subscription payments.
+	PlanIds []string `json:"plan_ids,omitempty"`
 	// Unix timestamp of checkout expiration
 	ExpiresAt *int64 `json:"expires_at,omitempty"`
 	// Redirection url back to the site in case of failed payment, applies only to HostedPayment.
@@ -85,6 +87,38 @@ func (o *CheckoutRequest) GetAllowedPaymentMethodsOk() ([]string, bool) {
 // SetAllowedPaymentMethods sets field value
 func (o *CheckoutRequest) SetAllowedPaymentMethods(v []string) {
 	o.AllowedPaymentMethods = v
+}
+
+// GetPlanIds returns the PlanIds field value if set, zero value otherwise.
+func (o *CheckoutRequest) GetPlanIds() []string {
+	if o == nil || IsNil(o.PlanIds) {
+		var ret []string
+		return ret
+	}
+	return o.PlanIds
+}
+
+// GetPlanIdsOk returns a tuple with the PlanIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CheckoutRequest) GetPlanIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.PlanIds) {
+		return nil, false
+	}
+	return o.PlanIds, true
+}
+
+// HasPlanIds returns a boolean if a field has been set.
+func (o *CheckoutRequest) HasPlanIds() bool {
+	if o != nil && !IsNil(o.PlanIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetPlanIds gets a reference to the given []string and assigns it to the PlanIds field.
+func (o *CheckoutRequest) SetPlanIds(v []string) {
+	o.PlanIds = v
 }
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
@@ -418,6 +452,9 @@ func (o CheckoutRequest) MarshalJSON() ([]byte, error) {
 func (o CheckoutRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["allowed_payment_methods"] = o.AllowedPaymentMethods
+	if !IsNil(o.PlanIds) {
+		toSerialize["plan_ids"] = o.PlanIds
+	}
 	if !IsNil(o.ExpiresAt) {
 		toSerialize["expires_at"] = o.ExpiresAt
 	}
@@ -492,6 +529,7 @@ func (o *CheckoutRequest) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "allowed_payment_methods")
+		delete(additionalProperties, "plan_ids")
 		delete(additionalProperties, "expires_at")
 		delete(additionalProperties, "failure_url")
 		delete(additionalProperties, "monthly_installments_enabled")

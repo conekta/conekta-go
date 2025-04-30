@@ -26,6 +26,8 @@ type CheckoutOrderTemplate struct {
 	CustomerInfo *CheckoutOrderTemplateCustomerInfo `json:"customer_info,omitempty"`
 	// They are the products to buy. Each contains the \"unit price\" and \"quantity\" parameters that are used to calculate the total amount of the order.
 	LineItems []Product `json:"line_items"`
+	// It is a list of plan IDs that will be associated with the order.
+	PlanIds []string `json:"plan_ids,omitempty"`
 	// It is a set of key-value pairs that you can attach to the order. It can be used to store additional information about the order in a structured format.
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -132,6 +134,38 @@ func (o *CheckoutOrderTemplate) SetLineItems(v []Product) {
 	o.LineItems = v
 }
 
+// GetPlanIds returns the PlanIds field value if set, zero value otherwise.
+func (o *CheckoutOrderTemplate) GetPlanIds() []string {
+	if o == nil || IsNil(o.PlanIds) {
+		var ret []string
+		return ret
+	}
+	return o.PlanIds
+}
+
+// GetPlanIdsOk returns a tuple with the PlanIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CheckoutOrderTemplate) GetPlanIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.PlanIds) {
+		return nil, false
+	}
+	return o.PlanIds, true
+}
+
+// HasPlanIds returns a boolean if a field has been set.
+func (o *CheckoutOrderTemplate) HasPlanIds() bool {
+	if o != nil && !IsNil(o.PlanIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetPlanIds gets a reference to the given []string and assigns it to the PlanIds field.
+func (o *CheckoutOrderTemplate) SetPlanIds(v []string) {
+	o.PlanIds = v
+}
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *CheckoutOrderTemplate) GetMetadata() map[string]interface{} {
 	if o == nil || IsNil(o.Metadata) {
@@ -179,6 +213,9 @@ func (o CheckoutOrderTemplate) ToMap() (map[string]interface{}, error) {
 		toSerialize["customer_info"] = o.CustomerInfo
 	}
 	toSerialize["line_items"] = o.LineItems
+	if !IsNil(o.PlanIds) {
+		toSerialize["plan_ids"] = o.PlanIds
+	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
@@ -229,6 +266,7 @@ func (o *CheckoutOrderTemplate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "currency")
 		delete(additionalProperties, "customer_info")
 		delete(additionalProperties, "line_items")
+		delete(additionalProperties, "plan_ids")
 		delete(additionalProperties, "metadata")
 		o.AdditionalProperties = additionalProperties
 	}
