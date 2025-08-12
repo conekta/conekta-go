@@ -4,20 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The child company&#39;s unique identifier | [optional] 
-**CreatedAt** | Pointer to **int64** | The resource&#39;s creation date (unix timestamp) | [optional] 
-**Name** | Pointer to **string** | The child company&#39;s name | [optional] 
-**Object** | Pointer to **string** | The resource&#39;s type | [optional] 
-**ParentCompanyId** | Pointer to **string** | Id of the parent company | [optional] 
-**UseParentFiscalData** | Pointer to **bool** | Whether the parent company&#39;s fiscal data is to be used for liquidation and tax purposes | [optional] 
-**PayoutDestination** | Pointer to [**CompanyPayoutDestinationResponse**](CompanyPayoutDestinationResponse.md) |  | [optional] 
-**FiscalInfo** | Pointer to [**CompanyFiscalInfoResponse**](CompanyFiscalInfoResponse.md) |  | [optional] 
+**Id** | **string** | The unique identifier for the company. | 
+**Name** | **string** | The name of the company. | 
+**Active** | **bool** | Indicates if the company is active. | 
+**AccountStatus** | **string** | The current status of the company&#39;s account. | 
+**ParentCompanyId** | Pointer to **NullableString** | The identifier of the parent company, if any. | [optional] 
+**OnboardingStatus** | **string** | The current status of the company&#39;s onboarding process. | 
+**Documents** | [**[]CompanyResponseDocumentsInner**](CompanyResponseDocumentsInner.md) | A list of documents related to the company. | 
+**CreatedAt** | **int64** | Timestamp of when the company was created. | 
+**Object** | **string** | The type of object, typically \&quot;company\&quot;. | 
 
 ## Methods
 
 ### NewCompanyResponse
 
-`func NewCompanyResponse() *CompanyResponse`
+`func NewCompanyResponse(id string, name string, active bool, accountStatus string, onboardingStatus string, documents []CompanyResponseDocumentsInner, createdAt int64, object string, ) *CompanyResponse`
 
 NewCompanyResponse instantiates a new CompanyResponse object
 This constructor will assign default values to properties that have it defined,
@@ -51,36 +52,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *CompanyResponse) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### GetCreatedAt
-
-`func (o *CompanyResponse) GetCreatedAt() int64`
-
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
-
-### GetCreatedAtOk
-
-`func (o *CompanyResponse) GetCreatedAtOk() (*int64, bool)`
-
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedAt
-
-`func (o *CompanyResponse) SetCreatedAt(v int64)`
-
-SetCreatedAt sets CreatedAt field to given value.
-
-### HasCreatedAt
-
-`func (o *CompanyResponse) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
 
 ### GetName
 
@@ -101,36 +72,46 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
 
-`func (o *CompanyResponse) HasName() bool`
+### GetActive
 
-HasName returns a boolean if a field has been set.
+`func (o *CompanyResponse) GetActive() bool`
 
-### GetObject
+GetActive returns the Active field if non-nil, zero value otherwise.
 
-`func (o *CompanyResponse) GetObject() string`
+### GetActiveOk
 
-GetObject returns the Object field if non-nil, zero value otherwise.
+`func (o *CompanyResponse) GetActiveOk() (*bool, bool)`
 
-### GetObjectOk
-
-`func (o *CompanyResponse) GetObjectOk() (*string, bool)`
-
-GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
+GetActiveOk returns a tuple with the Active field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetObject
+### SetActive
 
-`func (o *CompanyResponse) SetObject(v string)`
+`func (o *CompanyResponse) SetActive(v bool)`
 
-SetObject sets Object field to given value.
+SetActive sets Active field to given value.
 
-### HasObject
 
-`func (o *CompanyResponse) HasObject() bool`
+### GetAccountStatus
 
-HasObject returns a boolean if a field has been set.
+`func (o *CompanyResponse) GetAccountStatus() string`
+
+GetAccountStatus returns the AccountStatus field if non-nil, zero value otherwise.
+
+### GetAccountStatusOk
+
+`func (o *CompanyResponse) GetAccountStatusOk() (*string, bool)`
+
+GetAccountStatusOk returns a tuple with the AccountStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountStatus
+
+`func (o *CompanyResponse) SetAccountStatus(v string)`
+
+SetAccountStatus sets AccountStatus field to given value.
+
 
 ### GetParentCompanyId
 
@@ -157,80 +138,95 @@ SetParentCompanyId sets ParentCompanyId field to given value.
 
 HasParentCompanyId returns a boolean if a field has been set.
 
-### GetUseParentFiscalData
+### SetParentCompanyIdNil
 
-`func (o *CompanyResponse) GetUseParentFiscalData() bool`
+`func (o *CompanyResponse) SetParentCompanyIdNil(b bool)`
 
-GetUseParentFiscalData returns the UseParentFiscalData field if non-nil, zero value otherwise.
+ SetParentCompanyIdNil sets the value for ParentCompanyId to be an explicit nil
 
-### GetUseParentFiscalDataOk
+### UnsetParentCompanyId
+`func (o *CompanyResponse) UnsetParentCompanyId()`
 
-`func (o *CompanyResponse) GetUseParentFiscalDataOk() (*bool, bool)`
+UnsetParentCompanyId ensures that no value is present for ParentCompanyId, not even an explicit nil
+### GetOnboardingStatus
 
-GetUseParentFiscalDataOk returns a tuple with the UseParentFiscalData field if it's non-nil, zero value otherwise
+`func (o *CompanyResponse) GetOnboardingStatus() string`
+
+GetOnboardingStatus returns the OnboardingStatus field if non-nil, zero value otherwise.
+
+### GetOnboardingStatusOk
+
+`func (o *CompanyResponse) GetOnboardingStatusOk() (*string, bool)`
+
+GetOnboardingStatusOk returns a tuple with the OnboardingStatus field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUseParentFiscalData
+### SetOnboardingStatus
 
-`func (o *CompanyResponse) SetUseParentFiscalData(v bool)`
+`func (o *CompanyResponse) SetOnboardingStatus(v string)`
 
-SetUseParentFiscalData sets UseParentFiscalData field to given value.
+SetOnboardingStatus sets OnboardingStatus field to given value.
 
-### HasUseParentFiscalData
 
-`func (o *CompanyResponse) HasUseParentFiscalData() bool`
+### GetDocuments
 
-HasUseParentFiscalData returns a boolean if a field has been set.
+`func (o *CompanyResponse) GetDocuments() []CompanyResponseDocumentsInner`
 
-### GetPayoutDestination
+GetDocuments returns the Documents field if non-nil, zero value otherwise.
 
-`func (o *CompanyResponse) GetPayoutDestination() CompanyPayoutDestinationResponse`
+### GetDocumentsOk
 
-GetPayoutDestination returns the PayoutDestination field if non-nil, zero value otherwise.
+`func (o *CompanyResponse) GetDocumentsOk() (*[]CompanyResponseDocumentsInner, bool)`
 
-### GetPayoutDestinationOk
-
-`func (o *CompanyResponse) GetPayoutDestinationOk() (*CompanyPayoutDestinationResponse, bool)`
-
-GetPayoutDestinationOk returns a tuple with the PayoutDestination field if it's non-nil, zero value otherwise
+GetDocumentsOk returns a tuple with the Documents field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPayoutDestination
+### SetDocuments
 
-`func (o *CompanyResponse) SetPayoutDestination(v CompanyPayoutDestinationResponse)`
+`func (o *CompanyResponse) SetDocuments(v []CompanyResponseDocumentsInner)`
 
-SetPayoutDestination sets PayoutDestination field to given value.
+SetDocuments sets Documents field to given value.
 
-### HasPayoutDestination
 
-`func (o *CompanyResponse) HasPayoutDestination() bool`
+### GetCreatedAt
 
-HasPayoutDestination returns a boolean if a field has been set.
+`func (o *CompanyResponse) GetCreatedAt() int64`
 
-### GetFiscalInfo
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
-`func (o *CompanyResponse) GetFiscalInfo() CompanyFiscalInfoResponse`
+### GetCreatedAtOk
 
-GetFiscalInfo returns the FiscalInfo field if non-nil, zero value otherwise.
+`func (o *CompanyResponse) GetCreatedAtOk() (*int64, bool)`
 
-### GetFiscalInfoOk
-
-`func (o *CompanyResponse) GetFiscalInfoOk() (*CompanyFiscalInfoResponse, bool)`
-
-GetFiscalInfoOk returns a tuple with the FiscalInfo field if it's non-nil, zero value otherwise
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFiscalInfo
+### SetCreatedAt
 
-`func (o *CompanyResponse) SetFiscalInfo(v CompanyFiscalInfoResponse)`
+`func (o *CompanyResponse) SetCreatedAt(v int64)`
 
-SetFiscalInfo sets FiscalInfo field to given value.
+SetCreatedAt sets CreatedAt field to given value.
 
-### HasFiscalInfo
 
-`func (o *CompanyResponse) HasFiscalInfo() bool`
+### GetObject
 
-HasFiscalInfo returns a boolean if a field has been set.
+`func (o *CompanyResponse) GetObject() string`
+
+GetObject returns the Object field if non-nil, zero value otherwise.
+
+### GetObjectOk
+
+`func (o *CompanyResponse) GetObjectOk() (*string, bool)`
+
+GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetObject
+
+`func (o *CompanyResponse) SetObject(v string)`
+
+SetObject sets Object field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

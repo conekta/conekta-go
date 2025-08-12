@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Object** | **string** |  | 
 **CreatedAt** | **int64** |  | 
 **ParentId** | Pointer to **string** |  | [optional] 
+**Bank** | Pointer to **string** | Bank name for the SPEI payment method | [optional] 
 **Reference** | Pointer to **string** |  | [optional] 
 **ExpiresAt** | Pointer to **string** |  | [optional] 
 
@@ -135,6 +136,31 @@ SetParentId sets ParentId field to given value.
 `func (o *PaymentMethodSpeiRecurrent) HasParentId() bool`
 
 HasParentId returns a boolean if a field has been set.
+
+### GetBank
+
+`func (o *PaymentMethodSpeiRecurrent) GetBank() string`
+
+GetBank returns the Bank field if non-nil, zero value otherwise.
+
+### GetBankOk
+
+`func (o *PaymentMethodSpeiRecurrent) GetBankOk() (*string, bool)`
+
+GetBankOk returns a tuple with the Bank field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBank
+
+`func (o *PaymentMethodSpeiRecurrent) SetBank(v string)`
+
+SetBank sets Bank field to given value.
+
+### HasBank
+
+`func (o *PaymentMethodSpeiRecurrent) HasBank() bool`
+
+HasBank returns a boolean if a field has been set.
 
 ### GetReference
 

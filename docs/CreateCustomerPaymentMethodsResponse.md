@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **Default** | Pointer to **bool** |  | [optional] 
 **VisibleOnCheckout** | Pointer to **bool** |  | [optional] 
 **PaymentSourceStatus** | Pointer to **string** |  | [optional] 
+**Bank** | Pointer to **string** | Bank name for the SPEI payment method | [optional] 
 
 ## Methods
 
@@ -549,6 +550,31 @@ SetPaymentSourceStatus sets PaymentSourceStatus field to given value.
 `func (o *CreateCustomerPaymentMethodsResponse) HasPaymentSourceStatus() bool`
 
 HasPaymentSourceStatus returns a boolean if a field has been set.
+
+### GetBank
+
+`func (o *CreateCustomerPaymentMethodsResponse) GetBank() string`
+
+GetBank returns the Bank field if non-nil, zero value otherwise.
+
+### GetBankOk
+
+`func (o *CreateCustomerPaymentMethodsResponse) GetBankOk() (*string, bool)`
+
+GetBankOk returns a tuple with the Bank field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBank
+
+`func (o *CreateCustomerPaymentMethodsResponse) SetBank(v string)`
+
+SetBank sets Bank field to given value.
+
+### HasBank
+
+`func (o *CreateCustomerPaymentMethodsResponse) HasBank() bool`
+
+HasBank returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

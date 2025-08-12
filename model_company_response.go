@@ -13,27 +13,32 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CompanyResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CompanyResponse{}
 
-// CompanyResponse Company model
+// CompanyResponse struct for CompanyResponse
 type CompanyResponse struct {
-	// The child company's unique identifier
-	Id *string `json:"id,omitempty"`
-	// The resource's creation date (unix timestamp)
-	CreatedAt *int64 `json:"created_at,omitempty"`
-	// The child company's name
-	Name *string `json:"name,omitempty"`
-	// The resource's type
-	Object *string `json:"object,omitempty"`
-	// Id of the parent company
-	ParentCompanyId *string `json:"parent_company_id,omitempty"`
-	// Whether the parent company's fiscal data is to be used for liquidation and tax purposes
-	UseParentFiscalData *bool `json:"use_parent_fiscal_data,omitempty"`
-	PayoutDestination *CompanyPayoutDestinationResponse `json:"payout_destination,omitempty"`
-	FiscalInfo *CompanyFiscalInfoResponse `json:"fiscal_info,omitempty"`
+	// The unique identifier for the company.
+	Id string `json:"id"`
+	// The name of the company.
+	Name string `json:"name"`
+	// Indicates if the company is active.
+	Active bool `json:"active"`
+	// The current status of the company's account.
+	AccountStatus string `json:"account_status"`
+	// The identifier of the parent company, if any.
+	ParentCompanyId NullableString `json:"parent_company_id,omitempty"`
+	// The current status of the company's onboarding process.
+	OnboardingStatus string `json:"onboarding_status"`
+	// A list of documents related to the company.
+	Documents []CompanyResponseDocumentsInner `json:"documents"`
+	// Timestamp of when the company was created.
+	CreatedAt int64 `json:"created_at"`
+	// The type of object, typically \"company\".
+	Object string `json:"object"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,8 +48,16 @@ type _CompanyResponse CompanyResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCompanyResponse() *CompanyResponse {
+func NewCompanyResponse(id string, name string, active bool, accountStatus string, onboardingStatus string, documents []CompanyResponseDocumentsInner, createdAt int64, object string) *CompanyResponse {
 	this := CompanyResponse{}
+	this.Id = id
+	this.Name = name
+	this.Active = active
+	this.AccountStatus = accountStatus
+	this.OnboardingStatus = onboardingStatus
+	this.Documents = documents
+	this.CreatedAt = createdAt
+	this.Object = object
 	return &this
 }
 
@@ -56,260 +69,238 @@ func NewCompanyResponseWithDefaults() *CompanyResponse {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value
 func (o *CompanyResponse) GetId() string {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *CompanyResponse) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *CompanyResponse) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value
 func (o *CompanyResponse) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *CompanyResponse) GetCreatedAt() int64 {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret int64
-		return ret
-	}
-	return *o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CompanyResponse) GetCreatedAtOk() (*int64, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
-		return nil, false
-	}
-	return o.CreatedAt, true
-}
-
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *CompanyResponse) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
-func (o *CompanyResponse) SetCreatedAt(v int64) {
-	o.CreatedAt = &v
-}
-
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *CompanyResponse) GetName() string {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *CompanyResponse) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *CompanyResponse) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *CompanyResponse) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetObject returns the Object field value if set, zero value otherwise.
-func (o *CompanyResponse) GetObject() string {
-	if o == nil || IsNil(o.Object) {
-		var ret string
+// GetActive returns the Active field value
+func (o *CompanyResponse) GetActive() bool {
+	if o == nil {
+		var ret bool
 		return ret
 	}
-	return *o.Object
+
+	return o.Active
 }
 
-// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
+// GetActiveOk returns a tuple with the Active field value
 // and a boolean to check if the value has been set.
-func (o *CompanyResponse) GetObjectOk() (*string, bool) {
-	if o == nil || IsNil(o.Object) {
+func (o *CompanyResponse) GetActiveOk() (*bool, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Object, true
+	return &o.Active, true
 }
 
-// HasObject returns a boolean if a field has been set.
-func (o *CompanyResponse) HasObject() bool {
-	if o != nil && !IsNil(o.Object) {
-		return true
-	}
-
-	return false
+// SetActive sets field value
+func (o *CompanyResponse) SetActive(v bool) {
+	o.Active = v
 }
 
-// SetObject gets a reference to the given string and assigns it to the Object field.
-func (o *CompanyResponse) SetObject(v string) {
-	o.Object = &v
-}
-
-// GetParentCompanyId returns the ParentCompanyId field value if set, zero value otherwise.
-func (o *CompanyResponse) GetParentCompanyId() string {
-	if o == nil || IsNil(o.ParentCompanyId) {
+// GetAccountStatus returns the AccountStatus field value
+func (o *CompanyResponse) GetAccountStatus() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ParentCompanyId
+
+	return o.AccountStatus
+}
+
+// GetAccountStatusOk returns a tuple with the AccountStatus field value
+// and a boolean to check if the value has been set.
+func (o *CompanyResponse) GetAccountStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountStatus, true
+}
+
+// SetAccountStatus sets field value
+func (o *CompanyResponse) SetAccountStatus(v string) {
+	o.AccountStatus = v
+}
+
+// GetParentCompanyId returns the ParentCompanyId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CompanyResponse) GetParentCompanyId() string {
+	if o == nil || IsNil(o.ParentCompanyId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ParentCompanyId.Get()
 }
 
 // GetParentCompanyIdOk returns a tuple with the ParentCompanyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CompanyResponse) GetParentCompanyIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ParentCompanyId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ParentCompanyId, true
+	return o.ParentCompanyId.Get(), o.ParentCompanyId.IsSet()
 }
 
 // HasParentCompanyId returns a boolean if a field has been set.
 func (o *CompanyResponse) HasParentCompanyId() bool {
-	if o != nil && !IsNil(o.ParentCompanyId) {
+	if o != nil && o.ParentCompanyId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetParentCompanyId gets a reference to the given string and assigns it to the ParentCompanyId field.
+// SetParentCompanyId gets a reference to the given NullableString and assigns it to the ParentCompanyId field.
 func (o *CompanyResponse) SetParentCompanyId(v string) {
-	o.ParentCompanyId = &v
+	o.ParentCompanyId.Set(&v)
+}
+// SetParentCompanyIdNil sets the value for ParentCompanyId to be an explicit nil
+func (o *CompanyResponse) SetParentCompanyIdNil() {
+	o.ParentCompanyId.Set(nil)
 }
 
-// GetUseParentFiscalData returns the UseParentFiscalData field value if set, zero value otherwise.
-func (o *CompanyResponse) GetUseParentFiscalData() bool {
-	if o == nil || IsNil(o.UseParentFiscalData) {
-		var ret bool
+// UnsetParentCompanyId ensures that no value is present for ParentCompanyId, not even an explicit nil
+func (o *CompanyResponse) UnsetParentCompanyId() {
+	o.ParentCompanyId.Unset()
+}
+
+// GetOnboardingStatus returns the OnboardingStatus field value
+func (o *CompanyResponse) GetOnboardingStatus() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
-	return *o.UseParentFiscalData
+
+	return o.OnboardingStatus
 }
 
-// GetUseParentFiscalDataOk returns a tuple with the UseParentFiscalData field value if set, nil otherwise
+// GetOnboardingStatusOk returns a tuple with the OnboardingStatus field value
 // and a boolean to check if the value has been set.
-func (o *CompanyResponse) GetUseParentFiscalDataOk() (*bool, bool) {
-	if o == nil || IsNil(o.UseParentFiscalData) {
+func (o *CompanyResponse) GetOnboardingStatusOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.UseParentFiscalData, true
+	return &o.OnboardingStatus, true
 }
 
-// HasUseParentFiscalData returns a boolean if a field has been set.
-func (o *CompanyResponse) HasUseParentFiscalData() bool {
-	if o != nil && !IsNil(o.UseParentFiscalData) {
-		return true
-	}
-
-	return false
+// SetOnboardingStatus sets field value
+func (o *CompanyResponse) SetOnboardingStatus(v string) {
+	o.OnboardingStatus = v
 }
 
-// SetUseParentFiscalData gets a reference to the given bool and assigns it to the UseParentFiscalData field.
-func (o *CompanyResponse) SetUseParentFiscalData(v bool) {
-	o.UseParentFiscalData = &v
-}
-
-// GetPayoutDestination returns the PayoutDestination field value if set, zero value otherwise.
-func (o *CompanyResponse) GetPayoutDestination() CompanyPayoutDestinationResponse {
-	if o == nil || IsNil(o.PayoutDestination) {
-		var ret CompanyPayoutDestinationResponse
+// GetDocuments returns the Documents field value
+func (o *CompanyResponse) GetDocuments() []CompanyResponseDocumentsInner {
+	if o == nil {
+		var ret []CompanyResponseDocumentsInner
 		return ret
 	}
-	return *o.PayoutDestination
+
+	return o.Documents
 }
 
-// GetPayoutDestinationOk returns a tuple with the PayoutDestination field value if set, nil otherwise
+// GetDocumentsOk returns a tuple with the Documents field value
 // and a boolean to check if the value has been set.
-func (o *CompanyResponse) GetPayoutDestinationOk() (*CompanyPayoutDestinationResponse, bool) {
-	if o == nil || IsNil(o.PayoutDestination) {
+func (o *CompanyResponse) GetDocumentsOk() ([]CompanyResponseDocumentsInner, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.PayoutDestination, true
+	return o.Documents, true
 }
 
-// HasPayoutDestination returns a boolean if a field has been set.
-func (o *CompanyResponse) HasPayoutDestination() bool {
-	if o != nil && !IsNil(o.PayoutDestination) {
-		return true
-	}
-
-	return false
+// SetDocuments sets field value
+func (o *CompanyResponse) SetDocuments(v []CompanyResponseDocumentsInner) {
+	o.Documents = v
 }
 
-// SetPayoutDestination gets a reference to the given CompanyPayoutDestinationResponse and assigns it to the PayoutDestination field.
-func (o *CompanyResponse) SetPayoutDestination(v CompanyPayoutDestinationResponse) {
-	o.PayoutDestination = &v
-}
-
-// GetFiscalInfo returns the FiscalInfo field value if set, zero value otherwise.
-func (o *CompanyResponse) GetFiscalInfo() CompanyFiscalInfoResponse {
-	if o == nil || IsNil(o.FiscalInfo) {
-		var ret CompanyFiscalInfoResponse
+// GetCreatedAt returns the CreatedAt field value
+func (o *CompanyResponse) GetCreatedAt() int64 {
+	if o == nil {
+		var ret int64
 		return ret
 	}
-	return *o.FiscalInfo
+
+	return o.CreatedAt
 }
 
-// GetFiscalInfoOk returns a tuple with the FiscalInfo field value if set, nil otherwise
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *CompanyResponse) GetFiscalInfoOk() (*CompanyFiscalInfoResponse, bool) {
-	if o == nil || IsNil(o.FiscalInfo) {
+func (o *CompanyResponse) GetCreatedAtOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.FiscalInfo, true
+	return &o.CreatedAt, true
 }
 
-// HasFiscalInfo returns a boolean if a field has been set.
-func (o *CompanyResponse) HasFiscalInfo() bool {
-	if o != nil && !IsNil(o.FiscalInfo) {
-		return true
+// SetCreatedAt sets field value
+func (o *CompanyResponse) SetCreatedAt(v int64) {
+	o.CreatedAt = v
+}
+
+// GetObject returns the Object field value
+func (o *CompanyResponse) GetObject() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
 
-	return false
+	return o.Object
 }
 
-// SetFiscalInfo gets a reference to the given CompanyFiscalInfoResponse and assigns it to the FiscalInfo field.
-func (o *CompanyResponse) SetFiscalInfo(v CompanyFiscalInfoResponse) {
-	o.FiscalInfo = &v
+// GetObjectOk returns a tuple with the Object field value
+// and a boolean to check if the value has been set.
+func (o *CompanyResponse) GetObjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Object, true
+}
+
+// SetObject sets field value
+func (o *CompanyResponse) SetObject(v string) {
+	o.Object = v
 }
 
 func (o CompanyResponse) MarshalJSON() ([]byte, error) {
@@ -322,30 +313,17 @@ func (o CompanyResponse) MarshalJSON() ([]byte, error) {
 
 func (o CompanyResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	toSerialize["id"] = o.Id
+	toSerialize["name"] = o.Name
+	toSerialize["active"] = o.Active
+	toSerialize["account_status"] = o.AccountStatus
+	if o.ParentCompanyId.IsSet() {
+		toSerialize["parent_company_id"] = o.ParentCompanyId.Get()
 	}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !IsNil(o.Object) {
-		toSerialize["object"] = o.Object
-	}
-	if !IsNil(o.ParentCompanyId) {
-		toSerialize["parent_company_id"] = o.ParentCompanyId
-	}
-	if !IsNil(o.UseParentFiscalData) {
-		toSerialize["use_parent_fiscal_data"] = o.UseParentFiscalData
-	}
-	if !IsNil(o.PayoutDestination) {
-		toSerialize["payout_destination"] = o.PayoutDestination
-	}
-	if !IsNil(o.FiscalInfo) {
-		toSerialize["fiscal_info"] = o.FiscalInfo
-	}
+	toSerialize["onboarding_status"] = o.OnboardingStatus
+	toSerialize["documents"] = o.Documents
+	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["object"] = o.Object
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -355,6 +333,34 @@ func (o CompanyResponse) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *CompanyResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"name",
+		"active",
+		"account_status",
+		"onboarding_status",
+		"documents",
+		"created_at",
+		"object",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varCompanyResponse := _CompanyResponse{}
 
 	err = json.Unmarshal(data, &varCompanyResponse)
@@ -369,13 +375,14 @@ func (o *CompanyResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "id")
-		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "object")
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "account_status")
 		delete(additionalProperties, "parent_company_id")
-		delete(additionalProperties, "use_parent_fiscal_data")
-		delete(additionalProperties, "payout_destination")
-		delete(additionalProperties, "fiscal_info")
+		delete(additionalProperties, "onboarding_status")
+		delete(additionalProperties, "documents")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "object")
 		o.AdditionalProperties = additionalProperties
 	}
 

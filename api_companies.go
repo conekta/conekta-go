@@ -24,6 +24,20 @@ import (
 type CompaniesAPI interface {
 
 	/*
+	CreateCompany Create Company
+
+	Create a new company.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateCompanyRequest
+	*/
+	CreateCompany(ctx context.Context) ApiCreateCompanyRequest
+
+	// CreateCompanyExecute executes the request
+	//  @return CompanyResponse
+	CreateCompanyExecute(r ApiCreateCompanyRequest) (*CompanyResponse, *http.Response, error)
+
+	/*
 	GetCompanies Get List of Companies
 
 	Consume the list of child companies.  This is used for holding companies with several child entities.
@@ -49,10 +63,187 @@ type CompaniesAPI interface {
 	// GetCompanyExecute executes the request
 	//  @return CompanyResponse
 	GetCompanyExecute(r ApiGetCompanyRequest) (*CompanyResponse, *http.Response, error)
+
+	/*
+	GetCompanyDocuments Get Company Documents
+
+	Retrieve a list of documents associated with a specific company.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param companyId The unique identifier of the company.
+	@return ApiGetCompanyDocumentsRequest
+	*/
+	GetCompanyDocuments(ctx context.Context, companyId string) ApiGetCompanyDocumentsRequest
+
+	// GetCompanyDocumentsExecute executes the request
+	//  @return []CompanyDocumentResponse
+	GetCompanyDocumentsExecute(r ApiGetCompanyDocumentsRequest) ([]CompanyDocumentResponse, *http.Response, error)
+
+	/*
+	UpdateCompanyDocument Update Company Document
+
+	Updates an existing document associated with a specific company.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param companyId The unique identifier of the company.
+	@return ApiUpdateCompanyDocumentRequest
+	*/
+	UpdateCompanyDocument(ctx context.Context, companyId string) ApiUpdateCompanyDocumentRequest
+
+	// UpdateCompanyDocumentExecute executes the request
+	//  @return CompanyDocumentResponse
+	UpdateCompanyDocumentExecute(r ApiUpdateCompanyDocumentRequest) (*CompanyDocumentResponse, *http.Response, error)
+
+	/*
+	UploadCompanyDocument Upload Company Document
+
+	Uploads a document associated with a specific company.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param companyId The unique identifier of the company.
+	@return ApiUploadCompanyDocumentRequest
+	*/
+	UploadCompanyDocument(ctx context.Context, companyId string) ApiUploadCompanyDocumentRequest
+
+	// UploadCompanyDocumentExecute executes the request
+	//  @return CompanyDocumentResponse
+	UploadCompanyDocumentExecute(r ApiUploadCompanyDocumentRequest) (*CompanyDocumentResponse, *http.Response, error)
 }
 
 // CompaniesAPIService CompaniesAPI service
 type CompaniesAPIService service
+
+type ApiCreateCompanyRequest struct {
+	ctx context.Context
+	ApiService CompaniesAPI
+	createCompanyRequest *CreateCompanyRequest
+}
+
+// Company data
+func (r ApiCreateCompanyRequest) CreateCompanyRequest(createCompanyRequest CreateCompanyRequest) ApiCreateCompanyRequest {
+	r.createCompanyRequest = &createCompanyRequest
+	return r
+}
+
+func (r ApiCreateCompanyRequest) Execute() (*CompanyResponse, *http.Response, error) {
+	return r.ApiService.CreateCompanyExecute(r)
+}
+
+/*
+CreateCompany Create Company
+
+Create a new company.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateCompanyRequest
+*/
+func (a *CompaniesAPIService) CreateCompany(ctx context.Context) ApiCreateCompanyRequest {
+	return ApiCreateCompanyRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return CompanyResponse
+func (a *CompaniesAPIService) CreateCompanyExecute(r ApiCreateCompanyRequest) (*CompanyResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CompanyResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CompaniesAPIService.CreateCompany")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/companies"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createCompanyRequest == nil {
+		return localVarReturnValue, nil, reportError("createCompanyRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createCompanyRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ApiGetCompaniesRequest struct {
 	ctx context.Context
@@ -301,6 +492,465 @@ func (a *CompaniesAPIService) GetCompanyExecute(r ApiGetCompanyRequest) (*Compan
 	if r.acceptLanguage != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetCompanyDocumentsRequest struct {
+	ctx context.Context
+	ApiService CompaniesAPI
+	companyId string
+	acceptLanguage *string
+}
+
+// Use for knowing which language to use
+func (r ApiGetCompanyDocumentsRequest) AcceptLanguage(acceptLanguage string) ApiGetCompanyDocumentsRequest {
+	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+func (r ApiGetCompanyDocumentsRequest) Execute() ([]CompanyDocumentResponse, *http.Response, error) {
+	return r.ApiService.GetCompanyDocumentsExecute(r)
+}
+
+/*
+GetCompanyDocuments Get Company Documents
+
+Retrieve a list of documents associated with a specific company.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param companyId The unique identifier of the company.
+ @return ApiGetCompanyDocumentsRequest
+*/
+func (a *CompaniesAPIService) GetCompanyDocuments(ctx context.Context, companyId string) ApiGetCompanyDocumentsRequest {
+	return ApiGetCompanyDocumentsRequest{
+		ApiService: a,
+		ctx: ctx,
+		companyId: companyId,
+	}
+}
+
+// Execute executes the request
+//  @return []CompanyDocumentResponse
+func (a *CompaniesAPIService) GetCompanyDocumentsExecute(r ApiGetCompanyDocumentsRequest) ([]CompanyDocumentResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []CompanyDocumentResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CompaniesAPIService.GetCompanyDocuments")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/companies/{company_id}/documents"
+	localVarPath = strings.Replace(localVarPath, "{"+"company_id"+"}", url.PathEscape(parameterValueToString(r.companyId, "companyId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptLanguage != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUpdateCompanyDocumentRequest struct {
+	ctx context.Context
+	ApiService CompaniesAPI
+	companyId string
+	companyDocumentRequest *CompanyDocumentRequest
+	acceptLanguage *string
+}
+
+// Document information to update.
+func (r ApiUpdateCompanyDocumentRequest) CompanyDocumentRequest(companyDocumentRequest CompanyDocumentRequest) ApiUpdateCompanyDocumentRequest {
+	r.companyDocumentRequest = &companyDocumentRequest
+	return r
+}
+
+// Use for knowing which language to use
+func (r ApiUpdateCompanyDocumentRequest) AcceptLanguage(acceptLanguage string) ApiUpdateCompanyDocumentRequest {
+	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+func (r ApiUpdateCompanyDocumentRequest) Execute() (*CompanyDocumentResponse, *http.Response, error) {
+	return r.ApiService.UpdateCompanyDocumentExecute(r)
+}
+
+/*
+UpdateCompanyDocument Update Company Document
+
+Updates an existing document associated with a specific company.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param companyId The unique identifier of the company.
+ @return ApiUpdateCompanyDocumentRequest
+*/
+func (a *CompaniesAPIService) UpdateCompanyDocument(ctx context.Context, companyId string) ApiUpdateCompanyDocumentRequest {
+	return ApiUpdateCompanyDocumentRequest{
+		ApiService: a,
+		ctx: ctx,
+		companyId: companyId,
+	}
+}
+
+// Execute executes the request
+//  @return CompanyDocumentResponse
+func (a *CompaniesAPIService) UpdateCompanyDocumentExecute(r ApiUpdateCompanyDocumentRequest) (*CompanyDocumentResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CompanyDocumentResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CompaniesAPIService.UpdateCompanyDocument")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/companies/{company_id}/document"
+	localVarPath = strings.Replace(localVarPath, "{"+"company_id"+"}", url.PathEscape(parameterValueToString(r.companyId, "companyId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.companyDocumentRequest == nil {
+		return localVarReturnValue, nil, reportError("companyDocumentRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptLanguage != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	// body params
+	localVarPostBody = r.companyDocumentRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUploadCompanyDocumentRequest struct {
+	ctx context.Context
+	ApiService CompaniesAPI
+	companyId string
+	companyDocumentRequest *CompanyDocumentRequest
+	acceptLanguage *string
+}
+
+// Document information to upload.
+func (r ApiUploadCompanyDocumentRequest) CompanyDocumentRequest(companyDocumentRequest CompanyDocumentRequest) ApiUploadCompanyDocumentRequest {
+	r.companyDocumentRequest = &companyDocumentRequest
+	return r
+}
+
+// Use for knowing which language to use
+func (r ApiUploadCompanyDocumentRequest) AcceptLanguage(acceptLanguage string) ApiUploadCompanyDocumentRequest {
+	r.acceptLanguage = &acceptLanguage
+	return r
+}
+
+func (r ApiUploadCompanyDocumentRequest) Execute() (*CompanyDocumentResponse, *http.Response, error) {
+	return r.ApiService.UploadCompanyDocumentExecute(r)
+}
+
+/*
+UploadCompanyDocument Upload Company Document
+
+Uploads a document associated with a specific company.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param companyId The unique identifier of the company.
+ @return ApiUploadCompanyDocumentRequest
+*/
+func (a *CompaniesAPIService) UploadCompanyDocument(ctx context.Context, companyId string) ApiUploadCompanyDocumentRequest {
+	return ApiUploadCompanyDocumentRequest{
+		ApiService: a,
+		ctx: ctx,
+		companyId: companyId,
+	}
+}
+
+// Execute executes the request
+//  @return CompanyDocumentResponse
+func (a *CompaniesAPIService) UploadCompanyDocumentExecute(r ApiUploadCompanyDocumentRequest) (*CompanyDocumentResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CompanyDocumentResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CompaniesAPIService.UploadCompanyDocument")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/companies/{company_id}/document"
+	localVarPath = strings.Replace(localVarPath, "{"+"company_id"+"}", url.PathEscape(parameterValueToString(r.companyId, "companyId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.companyDocumentRequest == nil {
+		return localVarReturnValue, nil, reportError("companyDocumentRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.acceptLanguage != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+	}
+	// body params
+	localVarPostBody = r.companyDocumentRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

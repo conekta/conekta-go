@@ -26,6 +26,8 @@ type PaymentMethodSpeiRecurrent struct {
 	Object string `json:"object"`
 	CreatedAt int64 `json:"created_at"`
 	ParentId *string `json:"parent_id,omitempty"`
+	// Bank name for the SPEI payment method
+	Bank *string `json:"bank,omitempty"`
 	Reference *string `json:"reference,omitempty"`
 	ExpiresAt *string `json:"expires_at,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -182,6 +184,38 @@ func (o *PaymentMethodSpeiRecurrent) SetParentId(v string) {
 	o.ParentId = &v
 }
 
+// GetBank returns the Bank field value if set, zero value otherwise.
+func (o *PaymentMethodSpeiRecurrent) GetBank() string {
+	if o == nil || IsNil(o.Bank) {
+		var ret string
+		return ret
+	}
+	return *o.Bank
+}
+
+// GetBankOk returns a tuple with the Bank field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaymentMethodSpeiRecurrent) GetBankOk() (*string, bool) {
+	if o == nil || IsNil(o.Bank) {
+		return nil, false
+	}
+	return o.Bank, true
+}
+
+// HasBank returns a boolean if a field has been set.
+func (o *PaymentMethodSpeiRecurrent) HasBank() bool {
+	if o != nil && !IsNil(o.Bank) {
+		return true
+	}
+
+	return false
+}
+
+// SetBank gets a reference to the given string and assigns it to the Bank field.
+func (o *PaymentMethodSpeiRecurrent) SetBank(v string) {
+	o.Bank = &v
+}
+
 // GetReference returns the Reference field value if set, zero value otherwise.
 func (o *PaymentMethodSpeiRecurrent) GetReference() string {
 	if o == nil || IsNil(o.Reference) {
@@ -263,6 +297,9 @@ func (o PaymentMethodSpeiRecurrent) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ParentId) {
 		toSerialize["parent_id"] = o.ParentId
 	}
+	if !IsNil(o.Bank) {
+		toSerialize["bank"] = o.Bank
+	}
 	if !IsNil(o.Reference) {
 		toSerialize["reference"] = o.Reference
 	}
@@ -320,6 +357,7 @@ func (o *PaymentMethodSpeiRecurrent) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "object")
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "parent_id")
+		delete(additionalProperties, "bank")
 		delete(additionalProperties, "reference")
 		delete(additionalProperties, "expires_at")
 		o.AdditionalProperties = additionalProperties
