@@ -19,9 +19,10 @@ import (
 // ChargeResponsePaymentMethod - struct for ChargeResponsePaymentMethod
 type ChargeResponsePaymentMethod struct {
 	PaymentMethodBankTransfer *PaymentMethodBankTransfer
-	PaymentMethodBnplPayment *PaymentMethodBnplPayment
-	PaymentMethodCard *PaymentMethodCard
-	PaymentMethodCash *PaymentMethodCash
+	PaymentMethodBnplPayment  *PaymentMethodBnplPayment
+	PaymentMethodCard         *PaymentMethodCard
+	PaymentMethodCash         *PaymentMethodCash
+	PaymentMethodPbbPayment   *PaymentMethodPbbPayment
 }
 
 // PaymentMethodBankTransferAsChargeResponsePaymentMethod is a convenience function that returns PaymentMethodBankTransfer wrapped in ChargeResponsePaymentMethod
@@ -52,6 +53,12 @@ func PaymentMethodCashAsChargeResponsePaymentMethod(v *PaymentMethodCash) Charge
 	}
 }
 
+// PaymentMethodPbbPaymentAsChargeResponsePaymentMethod is a convenience function that returns PaymentMethodPbbPayment wrapped in ChargeResponsePaymentMethod
+func PaymentMethodPbbPaymentAsChargeResponsePaymentMethod(v *PaymentMethodPbbPayment) ChargeResponsePaymentMethod {
+	return ChargeResponsePaymentMethod{
+		PaymentMethodPbbPayment: v,
+	}
+}
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ChargeResponsePaymentMethod) UnmarshalJSON(data []byte) error {
@@ -111,6 +118,18 @@ func (dst *ChargeResponsePaymentMethod) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'pay_by_bank_payment'
+	if jsonDict["object"] == "pay_by_bank_payment" {
+		// try to unmarshal JSON data into PaymentMethodPbbPayment
+		err = json.Unmarshal(data, &dst.PaymentMethodPbbPayment)
+		if err == nil {
+			return nil // data stored in dst.PaymentMethodPbbPayment, return on the first match
+		} else {
+			dst.PaymentMethodPbbPayment = nil
+			return fmt.Errorf("failed to unmarshal ChargeResponsePaymentMethod as PaymentMethodPbbPayment: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'payment_method_bank_transfer'
 	if jsonDict["object"] == "payment_method_bank_transfer" {
 		// try to unmarshal JSON data into PaymentMethodBankTransfer
@@ -159,6 +178,18 @@ func (dst *ChargeResponsePaymentMethod) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'payment_method_pbb_payment'
+	if jsonDict["object"] == "payment_method_pbb_payment" {
+		// try to unmarshal JSON data into PaymentMethodPbbPayment
+		err = json.Unmarshal(data, &dst.PaymentMethodPbbPayment)
+		if err == nil {
+			return nil // data stored in dst.PaymentMethodPbbPayment, return on the first match
+		} else {
+			dst.PaymentMethodPbbPayment = nil
+			return fmt.Errorf("failed to unmarshal ChargeResponsePaymentMethod as PaymentMethodPbbPayment: %s", err.Error())
+		}
+	}
+
 	return nil
 }
 
@@ -180,11 +211,15 @@ func (src ChargeResponsePaymentMethod) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.PaymentMethodCash)
 	}
 
+	if src.PaymentMethodPbbPayment != nil {
+		return json.Marshal(&src.PaymentMethodPbbPayment)
+	}
+
 	return nil, nil // no data in oneOf schemas
 }
 
 // Get the actual instance
-func (obj *ChargeResponsePaymentMethod) GetActualInstance() (interface{}) {
+func (obj *ChargeResponsePaymentMethod) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -202,6 +237,10 @@ func (obj *ChargeResponsePaymentMethod) GetActualInstance() (interface{}) {
 
 	if obj.PaymentMethodCash != nil {
 		return obj.PaymentMethodCash
+	}
+
+	if obj.PaymentMethodPbbPayment != nil {
+		return obj.PaymentMethodPbbPayment
 	}
 
 	// all schemas are nil
@@ -243,5 +282,3 @@ func (v *NullableChargeResponsePaymentMethod) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

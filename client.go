@@ -25,25 +25,25 @@ import (
 	"net/http/httputil"
 	"net/url"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"reflect"
 	"regexp"
+	"runtime"
 	"strconv"
 	"strings"
 	"time"
 	"unicode/utf8"
-	"runtime"
-	"os/exec"
-
 )
 
 var (
-	JsonCheck       = regexp.MustCompile(`(?i:(?:application|text)/(?:[^;]+\+)?json)`)
-	XmlCheck        = regexp.MustCompile(`(?i:(?:application|text)/(?:[^;]+\+)?xml)`)
-	queryParamSplit = regexp.MustCompile(`(^|&)([^&]+)`)
-	queryDescape    = strings.NewReplacer( "%5B", "[", "%5D", "]" )
+	JsonCheck               = regexp.MustCompile(`(?i:(?:application|text)/(?:[^;]+\+)?json)`)
+	XmlCheck                = regexp.MustCompile(`(?i:(?:application|text)/(?:[^;]+\+)?xml)`)
+	queryParamSplit         = regexp.MustCompile(`(^|&)([^&]+)`)
+	queryDescape            = strings.NewReplacer("%5B", "[", "%5D", "]")
 	encodedConektaUserAgent string
 )
+
 const (
 	// UnknownPlatform is the string returned as the system name if we couldn't get
 	// one from `uname`.
@@ -107,14 +107,13 @@ type APIClient struct {
 	WebhooksAPI WebhooksAPI
 }
 
-
 func init() {
 	initUserAgent()
 }
 
 func initUserAgent() {
 	data := map[string]string{
-		"bindings_version": "7.0.2",
+		"bindings_version": "7.0.3",
 		"lang":             "go",
 		"lang_version":     runtime.Version(),
 		"publisher":        "conekta",
@@ -145,6 +144,7 @@ func getUname() string {
 
 	return out.String()
 }
+
 type service struct {
 	client *APIClient
 }
@@ -241,15 +241,15 @@ func typeCheckParameter(obj interface{}, expected string, name string) error {
 	return nil
 }
 
-func parameterValueToString( obj interface{}, key string ) string {
+func parameterValueToString(obj interface{}, key string) string {
 	if reflect.TypeOf(obj).Kind() != reflect.Ptr {
 		return fmt.Sprintf("%v", obj)
 	}
-	var param,ok = obj.(MappedNullable)
+	var param, ok = obj.(MappedNullable)
 	if !ok {
 		return ""
 	}
-	dataMap,err := param.ToMap()
+	dataMap, err := param.ToMap()
 	if err != nil {
 		return ""
 	}
@@ -265,81 +265,81 @@ func parameterAddToHeaderOrQuery(headerOrQueryParams interface{}, keyPrefix stri
 		value = "null"
 	} else {
 		switch v.Kind() {
-			case reflect.Invalid:
-				value = "invalid"
+		case reflect.Invalid:
+			value = "invalid"
 
-			case reflect.Struct:
-				if t,ok := obj.(MappedNullable); ok {
-					dataMap,err := t.ToMap()
-					if err != nil {
-						return
-					}
-					parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, dataMap, collectionType)
+		case reflect.Struct:
+			if t, ok := obj.(MappedNullable); ok {
+				dataMap, err := t.ToMap()
+				if err != nil {
 					return
 				}
-				if t, ok := obj.(time.Time); ok {
-					parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, t.Format(time.RFC3339), collectionType)
-					return
-				}
-				value = v.Type().String() + " value"
-			case reflect.Slice:
-				var indValue = reflect.ValueOf(obj)
-				if indValue == reflect.ValueOf(nil) {
-					return
-				}
-				var lenIndValue = indValue.Len()
-				for i:=0;i<lenIndValue;i++ {
-					var arrayValue = indValue.Index(i)
-					parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, arrayValue.Interface(), collectionType)
-				}
+				parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, dataMap, collectionType)
 				return
-
-			case reflect.Map:
-				var indValue = reflect.ValueOf(obj)
-				if indValue == reflect.ValueOf(nil) {
-					return
-				}
-				iter := indValue.MapRange()
-				for iter.Next() {
-					k,v := iter.Key(), iter.Value()
-					parameterAddToHeaderOrQuery(headerOrQueryParams, fmt.Sprintf("%s[%s]", keyPrefix, k.String()), v.Interface(), collectionType)
-				}
+			}
+			if t, ok := obj.(time.Time); ok {
+				parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, t.Format(time.RFC3339), collectionType)
 				return
-
-			case reflect.Interface:
-				fallthrough
-			case reflect.Ptr:
-				parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, v.Elem().Interface(), collectionType)
+			}
+			value = v.Type().String() + " value"
+		case reflect.Slice:
+			var indValue = reflect.ValueOf(obj)
+			if indValue == reflect.ValueOf(nil) {
 				return
+			}
+			var lenIndValue = indValue.Len()
+			for i := 0; i < lenIndValue; i++ {
+				var arrayValue = indValue.Index(i)
+				parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, arrayValue.Interface(), collectionType)
+			}
+			return
 
-			case reflect.Int, reflect.Int8, reflect.Int16,
-				reflect.Int32, reflect.Int64:
-				value = strconv.FormatInt(v.Int(), 10)
-			case reflect.Uint, reflect.Uint8, reflect.Uint16,
-				reflect.Uint32, reflect.Uint64, reflect.Uintptr:
-				value = strconv.FormatUint(v.Uint(), 10)
-			case reflect.Float32, reflect.Float64:
-				value = strconv.FormatFloat(v.Float(), 'g', -1, 32)
-			case reflect.Bool:
-				value = strconv.FormatBool(v.Bool())
-			case reflect.String:
-				value = v.String()
-			default:
-				value = v.Type().String() + " value"
+		case reflect.Map:
+			var indValue = reflect.ValueOf(obj)
+			if indValue == reflect.ValueOf(nil) {
+				return
+			}
+			iter := indValue.MapRange()
+			for iter.Next() {
+				k, v := iter.Key(), iter.Value()
+				parameterAddToHeaderOrQuery(headerOrQueryParams, fmt.Sprintf("%s[%s]", keyPrefix, k.String()), v.Interface(), collectionType)
+			}
+			return
+
+		case reflect.Interface:
+			fallthrough
+		case reflect.Ptr:
+			parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, v.Elem().Interface(), collectionType)
+			return
+
+		case reflect.Int, reflect.Int8, reflect.Int16,
+			reflect.Int32, reflect.Int64:
+			value = strconv.FormatInt(v.Int(), 10)
+		case reflect.Uint, reflect.Uint8, reflect.Uint16,
+			reflect.Uint32, reflect.Uint64, reflect.Uintptr:
+			value = strconv.FormatUint(v.Uint(), 10)
+		case reflect.Float32, reflect.Float64:
+			value = strconv.FormatFloat(v.Float(), 'g', -1, 32)
+		case reflect.Bool:
+			value = strconv.FormatBool(v.Bool())
+		case reflect.String:
+			value = v.String()
+		default:
+			value = v.Type().String() + " value"
 		}
 	}
 
 	switch valuesMap := headerOrQueryParams.(type) {
-		case url.Values:
-			if collectionType == "csv" && valuesMap.Get(keyPrefix) != "" {
-				valuesMap.Set(keyPrefix, valuesMap.Get(keyPrefix) + "," + value)
-			} else {
-				valuesMap.Add(keyPrefix, value)
-			}
-			break
-		case map[string]string:
-			valuesMap[keyPrefix] = value
-			break
+	case url.Values:
+		if collectionType == "csv" && valuesMap.Get(keyPrefix) != "" {
+			valuesMap.Set(keyPrefix, valuesMap.Get(keyPrefix)+","+value)
+		} else {
+			valuesMap.Add(keyPrefix, value)
+		}
+		break
+	case map[string]string:
+		valuesMap[keyPrefix] = value
+		break
 	}
 }
 
@@ -384,9 +384,9 @@ func (c *APIClient) GetConfig() *Configuration {
 }
 
 type formFile struct {
-		fileBytes []byte
-		fileName string
-		formFileName string
+	fileBytes    []byte
+	fileName     string
+	formFileName string
 }
 
 // prepareRequest build the request
@@ -442,11 +442,11 @@ func (c *APIClient) prepareRequest(
 				w.Boundary()
 				part, err := w.CreateFormFile(formFile.formFileName, filepath.Base(formFile.fileName))
 				if err != nil {
-						return nil, err
+					return nil, err
 				}
 				_, err = part.Write(formFile.fileBytes)
 				if err != nil {
-						return nil, err
+					return nil, err
 				}
 			}
 		}

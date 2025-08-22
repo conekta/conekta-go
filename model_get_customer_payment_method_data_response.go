@@ -18,15 +18,23 @@ import (
 
 // GetCustomerPaymentMethodDataResponse - struct for GetCustomerPaymentMethodDataResponse
 type GetCustomerPaymentMethodDataResponse struct {
-	PaymentMethodCardResponse *PaymentMethodCardResponse
-	PaymentMethodCashResponse *PaymentMethodCashResponse
-	PaymentMethodSpeiRecurrent *PaymentMethodSpeiRecurrent
+	PaymentMethodCardResponse          *PaymentMethodCardResponse
+	PaymentMethodCashRecurrentResponse *PaymentMethodCashRecurrentResponse
+	PaymentMethodCashResponse          *PaymentMethodCashResponse
+	PaymentMethodSpeiRecurrent         *PaymentMethodSpeiRecurrent
 }
 
 // PaymentMethodCardResponseAsGetCustomerPaymentMethodDataResponse is a convenience function that returns PaymentMethodCardResponse wrapped in GetCustomerPaymentMethodDataResponse
 func PaymentMethodCardResponseAsGetCustomerPaymentMethodDataResponse(v *PaymentMethodCardResponse) GetCustomerPaymentMethodDataResponse {
 	return GetCustomerPaymentMethodDataResponse{
 		PaymentMethodCardResponse: v,
+	}
+}
+
+// PaymentMethodCashRecurrentResponseAsGetCustomerPaymentMethodDataResponse is a convenience function that returns PaymentMethodCashRecurrentResponse wrapped in GetCustomerPaymentMethodDataResponse
+func PaymentMethodCashRecurrentResponseAsGetCustomerPaymentMethodDataResponse(v *PaymentMethodCashRecurrentResponse) GetCustomerPaymentMethodDataResponse {
+	return GetCustomerPaymentMethodDataResponse{
+		PaymentMethodCashRecurrentResponse: v,
 	}
 }
 
@@ -43,7 +51,6 @@ func PaymentMethodSpeiRecurrentAsGetCustomerPaymentMethodDataResponse(v *Payment
 		PaymentMethodSpeiRecurrent: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *GetCustomerPaymentMethodDataResponse) UnmarshalJSON(data []byte) error {
@@ -81,25 +88,13 @@ func (dst *GetCustomerPaymentMethodDataResponse) UnmarshalJSON(data []byte) erro
 
 	// check if the discriminator value is 'cash_recurrent'
 	if jsonDict["type"] == "cash_recurrent" {
-		// try to unmarshal JSON data into PaymentMethodCashResponse
-		err = json.Unmarshal(data, &dst.PaymentMethodCashResponse)
+		// try to unmarshal JSON data into PaymentMethodCashRecurrentResponse
+		err = json.Unmarshal(data, &dst.PaymentMethodCashRecurrentResponse)
 		if err == nil {
-			return nil // data stored in dst.PaymentMethodCashResponse, return on the first match
+			return nil // data stored in dst.PaymentMethodCashRecurrentResponse, return on the first match
 		} else {
-			dst.PaymentMethodCashResponse = nil
-			return fmt.Errorf("failed to unmarshal GetCustomerPaymentMethodDataResponse as PaymentMethodCashResponse: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'oxxo_recurrent'
-	if jsonDict["type"] == "oxxo_recurrent" {
-		// try to unmarshal JSON data into PaymentMethodCashResponse
-		err = json.Unmarshal(data, &dst.PaymentMethodCashResponse)
-		if err == nil {
-			return nil // data stored in dst.PaymentMethodCashResponse, return on the first match
-		} else {
-			dst.PaymentMethodCashResponse = nil
-			return fmt.Errorf("failed to unmarshal GetCustomerPaymentMethodDataResponse as PaymentMethodCashResponse: %s", err.Error())
+			dst.PaymentMethodCashRecurrentResponse = nil
+			return fmt.Errorf("failed to unmarshal GetCustomerPaymentMethodDataResponse as PaymentMethodCashRecurrentResponse: %s", err.Error())
 		}
 	}
 
@@ -124,6 +119,18 @@ func (dst *GetCustomerPaymentMethodDataResponse) UnmarshalJSON(data []byte) erro
 		} else {
 			dst.PaymentMethodCardResponse = nil
 			return fmt.Errorf("failed to unmarshal GetCustomerPaymentMethodDataResponse as PaymentMethodCardResponse: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'payment_method_cash_recurrent_response'
+	if jsonDict["type"] == "payment_method_cash_recurrent_response" {
+		// try to unmarshal JSON data into PaymentMethodCashRecurrentResponse
+		err = json.Unmarshal(data, &dst.PaymentMethodCashRecurrentResponse)
+		if err == nil {
+			return nil // data stored in dst.PaymentMethodCashRecurrentResponse, return on the first match
+		} else {
+			dst.PaymentMethodCashRecurrentResponse = nil
+			return fmt.Errorf("failed to unmarshal GetCustomerPaymentMethodDataResponse as PaymentMethodCashRecurrentResponse: %s", err.Error())
 		}
 	}
 
@@ -160,6 +167,10 @@ func (src GetCustomerPaymentMethodDataResponse) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.PaymentMethodCardResponse)
 	}
 
+	if src.PaymentMethodCashRecurrentResponse != nil {
+		return json.Marshal(&src.PaymentMethodCashRecurrentResponse)
+	}
+
 	if src.PaymentMethodCashResponse != nil {
 		return json.Marshal(&src.PaymentMethodCashResponse)
 	}
@@ -172,12 +183,16 @@ func (src GetCustomerPaymentMethodDataResponse) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *GetCustomerPaymentMethodDataResponse) GetActualInstance() (interface{}) {
+func (obj *GetCustomerPaymentMethodDataResponse) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
 	if obj.PaymentMethodCardResponse != nil {
 		return obj.PaymentMethodCardResponse
+	}
+
+	if obj.PaymentMethodCashRecurrentResponse != nil {
+		return obj.PaymentMethodCashRecurrentResponse
 	}
 
 	if obj.PaymentMethodCashResponse != nil {
@@ -227,5 +242,3 @@ func (v *NullableGetCustomerPaymentMethodDataResponse) UnmarshalJSON(src []byte)
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

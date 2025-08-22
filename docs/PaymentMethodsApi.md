@@ -33,7 +33,7 @@ import (
 
 func main() {
 	id := "6307a60c41de27127515a575" // string | Identifier of the resource
-	createCustomerPaymentMethodsRequest := openapiclient.CreateCustomerPaymentMethods_request{PaymentMethodCashRequest: openapiclient.NewPaymentMethodCashRequest("card | cash | spei | bnpl")} // CreateCustomerPaymentMethodsRequest | requested field for customer payment methods
+	createCustomerPaymentMethodsRequest := openapiclient.CreateCustomerPaymentMethods_request{PaymentMethodCashRequest: openapiclient.NewPaymentMethodCashRequest("card | cash | spei | bnpl | pay_by_bank")} // CreateCustomerPaymentMethodsRequest | requested field for customer payment methods
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 

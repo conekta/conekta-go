@@ -18,9 +18,10 @@ import (
 
 // ChargeRequestPaymentMethod - struct for ChargeRequestPaymentMethod
 type ChargeRequestPaymentMethod struct {
-	PaymentMethodBnplRequest *PaymentMethodBnplRequest
-	PaymentMethodCardRequest *PaymentMethodCardRequest
+	PaymentMethodBnplRequest    *PaymentMethodBnplRequest
+	PaymentMethodCardRequest    *PaymentMethodCardRequest
 	PaymentMethodGeneralRequest *PaymentMethodGeneralRequest
+	PaymentMethodPbbRequest     *PaymentMethodPbbRequest
 }
 
 // PaymentMethodBnplRequestAsChargeRequestPaymentMethod is a convenience function that returns PaymentMethodBnplRequest wrapped in ChargeRequestPaymentMethod
@@ -44,6 +45,12 @@ func PaymentMethodGeneralRequestAsChargeRequestPaymentMethod(v *PaymentMethodGen
 	}
 }
 
+// PaymentMethodPbbRequestAsChargeRequestPaymentMethod is a convenience function that returns PaymentMethodPbbRequest wrapped in ChargeRequestPaymentMethod
+func PaymentMethodPbbRequestAsChargeRequestPaymentMethod(v *PaymentMethodPbbRequest) ChargeRequestPaymentMethod {
+	return ChargeRequestPaymentMethod{
+		PaymentMethodPbbRequest: v,
+	}
+}
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ChargeRequestPaymentMethod) UnmarshalJSON(data []byte) error {
@@ -88,11 +95,25 @@ func (dst *ChargeRequestPaymentMethod) UnmarshalJSON(data []byte) error {
 		dst.PaymentMethodGeneralRequest = nil
 	}
 
+	// try to unmarshal data into PaymentMethodPbbRequest
+	err = json.Unmarshal(data, &dst.PaymentMethodPbbRequest)
+	if err == nil {
+		jsonPaymentMethodPbbRequest, _ := json.Marshal(dst.PaymentMethodPbbRequest)
+		if string(jsonPaymentMethodPbbRequest) == "{}" { // empty struct
+			dst.PaymentMethodPbbRequest = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.PaymentMethodPbbRequest = nil
+	}
+
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.PaymentMethodBnplRequest = nil
 		dst.PaymentMethodCardRequest = nil
 		dst.PaymentMethodGeneralRequest = nil
+		dst.PaymentMethodPbbRequest = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(ChargeRequestPaymentMethod)")
 	} else if match == 1 {
@@ -116,11 +137,15 @@ func (src ChargeRequestPaymentMethod) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.PaymentMethodGeneralRequest)
 	}
 
+	if src.PaymentMethodPbbRequest != nil {
+		return json.Marshal(&src.PaymentMethodPbbRequest)
+	}
+
 	return nil, nil // no data in oneOf schemas
 }
 
 // Get the actual instance
-func (obj *ChargeRequestPaymentMethod) GetActualInstance() (interface{}) {
+func (obj *ChargeRequestPaymentMethod) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -134,6 +159,10 @@ func (obj *ChargeRequestPaymentMethod) GetActualInstance() (interface{}) {
 
 	if obj.PaymentMethodGeneralRequest != nil {
 		return obj.PaymentMethodGeneralRequest
+	}
+
+	if obj.PaymentMethodPbbRequest != nil {
+		return obj.PaymentMethodPbbRequest
 	}
 
 	// all schemas are nil
@@ -175,5 +204,3 @@ func (v *NullableChargeRequestPaymentMethod) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
