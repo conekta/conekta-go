@@ -21,6 +21,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"runtime"
+	"os/exec"
 	"unicode/utf8"
 
 	{{#hasOAuthMethods}}
@@ -346,6 +348,8 @@ func (c *APIClient) prepareRequest(
 	queryParams url.Values,
 	formParams url.Values,
 	formFiles []formFile) (localVarRequest *http.Request, err error) {
+
+	headerParams["X-Conekta-Client-User-Agent"] = encodedConektaUserAgent
 
 	var body *bytes.Buffer
 

@@ -407,6 +407,8 @@ func (c *APIClient) prepareRequest(
 	formParams url.Values,
 	formFiles []formFile) (localVarRequest *http.Request, err error) {
 
+	headerParams["X-Conekta-Client-User-Agent"] = encodedConektaUserAgent
+
 	var body *bytes.Buffer
 
 	// Detect postBody type and post.
