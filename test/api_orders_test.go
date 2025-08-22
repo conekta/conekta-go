@@ -11,10 +11,13 @@ package conekta
 
 import (
 	"context"
+	"fmt"
+	"os"
+	"testing"
+
+	openapiclient "github.com/conekta/conekta-go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/conekta/conekta-go"
 )
 
 func Test_conekta_OrdersAPIService(t *testing.T) {
@@ -24,7 +27,7 @@ func Test_conekta_OrdersAPIService(t *testing.T) {
 
 	t.Run("Test OrdersAPIService CancelOrder", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var id string
 
@@ -37,20 +40,65 @@ func Test_conekta_OrdersAPIService(t *testing.T) {
 	})
 
 	t.Run("Test OrdersAPIService CreateOrder", func(t *testing.T) {
+		configuration := openapiclient.NewConfiguration()
+		ctx := context.WithValue(context.TODO(), openapiclient.ContextAccessToken, os.Getenv("CONEKTA_PRIVATE_KEY"))
+		apiClient := openapiclient.NewAPIClient(configuration)
+		phone := "31431590545"
+		name := "fran carrero"
+		OrderRequest := openapiclient.OrderRequest{
+			Charges: []openapiclient.ChargeRequest{
+				{
+					PaymentMethod: openapiclient.ChargeRequestPaymentMethod{PaymentMethodBnplRequest: &openapiclient.PaymentMethodBnplRequest{
+						Type:        "bnpl",
+						CancelUrl:   "https://example.com/cancel",
+						FailureUrl:  "https://example.com/failure",
+						ProductType: "creditea_bnpl",
+						SuccessUrl:  "https://example.com/success",
+					}},
+				},
+			},
+			Currency:     "MXN",
+			CustomerInfo: openapiclient.OrderRequestCustomerInfo{},
+			LineItems: []openapiclient.Product{
+				{
+					UnitPrice: 5000,
+					Quantity:  1,
+					Name:      "Test Product",
+					Tags:      []string{"test", "product"},
+				},
+			},
+			ShippingContact: &openapiclient.CustomerShippingContacts{
+				Phone:    &phone,
+				Receiver: &name,
+				Address: openapiclient.CustomerShippingContactsAddress{
+					Street1:    openapiclient.PtrString("123 Main St"),
+					Street2:    openapiclient.PtrString("Apt 4B"),
+					City:       openapiclient.PtrString("Mexico City"),
+					State:      openapiclient.PtrString("CDMX"),
+					PostalCode: openapiclient.PtrString("01234"),
+					Country:    openapiclient.PtrString("MX"),
+				},
+			},
+			ShippingLines: []openapiclient.ShippingRequest{
+				{
+					Carrier:        openapiclient.PtrString("DHL"),
+					TrackingNumber: openapiclient.PtrString("123456789"),
+					Amount:         1000,
+				},
+			},
+		}
+		resp, _, _ := apiClient.OrdersAPI.CreateOrder(ctx).OrderRequest(OrderRequest).AcceptLanguage("es").Execute()
 
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.OrdersAPI.CreateOrder(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
+		fmt.Println(resp)
+		fmt.Println("order id:", resp.Id)
+		fmt.Println("redirect_url:", resp.Charges.Data[0].PaymentMethod.PaymentMethodBnplPayment.RedirectUrl)
+		fmt.Println("type:", resp.Charges.Data[0].PaymentMethod.PaymentMethodBnplPayment.Type)
 
 	})
 
 	t.Run("Test OrdersAPIService GetOrderById", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var id string
 
@@ -64,7 +112,7 @@ func Test_conekta_OrdersAPIService(t *testing.T) {
 
 	t.Run("Test OrdersAPIService GetOrders", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.OrdersAPI.GetOrders(context.Background()).Execute()
 
@@ -76,7 +124,7 @@ func Test_conekta_OrdersAPIService(t *testing.T) {
 
 	t.Run("Test OrdersAPIService OrderCancelRefund", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var id string
 		var refundId string
@@ -91,7 +139,7 @@ func Test_conekta_OrdersAPIService(t *testing.T) {
 
 	t.Run("Test OrdersAPIService OrderRefund", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var id string
 
@@ -105,7 +153,7 @@ func Test_conekta_OrdersAPIService(t *testing.T) {
 
 	t.Run("Test OrdersAPIService OrdersCreateCapture", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var id string
 
@@ -119,7 +167,7 @@ func Test_conekta_OrdersAPIService(t *testing.T) {
 
 	t.Run("Test OrdersAPIService UpdateOrder", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var id string
 
