@@ -20,17 +20,16 @@ import (
 	"strings"
 )
 
-
 type LogsAPI interface {
 
 	/*
-	GetLogById Get Log
+		GetLogById Get Log
 
-	Get the details of a specific log
+		Get the details of a specific log
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Identifier of the resource
-	@return ApiGetLogByIdRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Identifier of the resource
+		@return ApiGetLogByIdRequest
 	*/
 	GetLogById(ctx context.Context, id string) ApiGetLogByIdRequest
 
@@ -39,12 +38,12 @@ type LogsAPI interface {
 	GetLogByIdExecute(r ApiGetLogByIdRequest) (*LogResponse, *http.Response, error)
 
 	/*
-	GetLogs Get List Of Logs
+		GetLogs Get List Of Logs
 
-	Get log details in the form of a list
+		Get log details in the form of a list
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetLogsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiGetLogsRequest
 	*/
 	GetLogs(ctx context.Context) ApiGetLogsRequest
 
@@ -57,10 +56,10 @@ type LogsAPI interface {
 type LogsAPIService service
 
 type ApiGetLogByIdRequest struct {
-	ctx context.Context
-	ApiService LogsAPI
-	id string
-	acceptLanguage *string
+	ctx             context.Context
+	ApiService      LogsAPI
+	id              string
+	acceptLanguage  *string
 	xChildCompanyId *string
 }
 
@@ -92,8 +91,8 @@ Get the details of a specific log
 func (a *LogsAPIService) GetLogById(ctx context.Context, id string) ApiGetLogByIdRequest {
 	return ApiGetLogByIdRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -101,10 +100,10 @@ func (a *LogsAPIService) GetLogById(ctx context.Context, id string) ApiGetLogByI
 //  @return LogResponse
 func (a *LogsAPIService) GetLogByIdExecute(r ApiGetLogByIdRequest) (*LogResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *LogResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *LogResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsAPIService.GetLogById")
@@ -137,10 +136,10 @@ func (a *LogsAPIService) GetLogByIdExecute(r ApiGetLogByIdRequest) (*LogResponse
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -171,8 +170,8 @@ func (a *LogsAPIService) GetLogByIdExecute(r ApiGetLogByIdRequest) (*LogResponse
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -182,8 +181,8 @@ func (a *LogsAPIService) GetLogByIdExecute(r ApiGetLogByIdRequest) (*LogResponse
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -193,8 +192,8 @@ func (a *LogsAPIService) GetLogByIdExecute(r ApiGetLogByIdRequest) (*LogResponse
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -212,14 +211,14 @@ func (a *LogsAPIService) GetLogByIdExecute(r ApiGetLogByIdRequest) (*LogResponse
 }
 
 type ApiGetLogsRequest struct {
-	ctx context.Context
-	ApiService LogsAPI
-	acceptLanguage *string
+	ctx             context.Context
+	ApiService      LogsAPI
+	acceptLanguage  *string
 	xChildCompanyId *string
-	limit *int32
-	search *string
-	next *string
-	previous *string
+	limit           *int32
+	search          *string
+	next            *string
+	previous        *string
 }
 
 // Use for knowing which language to use
@@ -273,7 +272,7 @@ Get log details in the form of a list
 func (a *LogsAPIService) GetLogs(ctx context.Context) ApiGetLogsRequest {
 	return ApiGetLogsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -281,10 +280,10 @@ func (a *LogsAPIService) GetLogs(ctx context.Context) ApiGetLogsRequest {
 //  @return LogsResponse
 func (a *LogsAPIService) GetLogsExecute(r ApiGetLogsRequest) (*LogsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *LogsResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *LogsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsAPIService.GetLogs")
@@ -299,19 +298,19 @@ func (a *LogsAPIService) GetLogsExecute(r ApiGetLogsRequest) (*LogsResponse, *ht
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
 		r.limit = &defaultValue
 	}
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
 	}
 	if r.next != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "next", r.next, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "next", r.next, "form", "")
 	}
 	if r.previous != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "previous", r.previous, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "previous", r.previous, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -331,10 +330,10 @@ func (a *LogsAPIService) GetLogsExecute(r ApiGetLogsRequest) (*LogsResponse, *ht
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -365,8 +364,8 @@ func (a *LogsAPIService) GetLogsExecute(r ApiGetLogsRequest) (*LogsResponse, *ht
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -376,8 +375,8 @@ func (a *LogsAPIService) GetLogsExecute(r ApiGetLogsRequest) (*LogsResponse, *ht
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

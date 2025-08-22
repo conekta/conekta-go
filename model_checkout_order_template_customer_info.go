@@ -18,7 +18,7 @@ import (
 
 // CheckoutOrderTemplateCustomerInfo - It is the information of the customer who will be created when receiving a new payment.
 type CheckoutOrderTemplateCustomerInfo struct {
-	CustomerInfo *CustomerInfo
+	CustomerInfo               *CustomerInfo
 	CustomerInfoJustCustomerId *CustomerInfoJustCustomerId
 }
 
@@ -35,7 +35,6 @@ func CustomerInfoJustCustomerIdAsCheckoutOrderTemplateCustomerInfo(v *CustomerIn
 		CustomerInfoJustCustomerId: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *CheckoutOrderTemplateCustomerInfo) UnmarshalJSON(data []byte) error {
@@ -94,7 +93,7 @@ func (src CheckoutOrderTemplateCustomerInfo) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *CheckoutOrderTemplateCustomerInfo) GetActualInstance() (interface{}) {
+func (obj *CheckoutOrderTemplateCustomerInfo) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -104,6 +103,20 @@ func (obj *CheckoutOrderTemplateCustomerInfo) GetActualInstance() (interface{}) 
 
 	if obj.CustomerInfoJustCustomerId != nil {
 		return obj.CustomerInfoJustCustomerId
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj CheckoutOrderTemplateCustomerInfo) GetActualInstanceValue() interface{} {
+	if obj.CustomerInfo != nil {
+		return *obj.CustomerInfo
+	}
+
+	if obj.CustomerInfoJustCustomerId != nil {
+		return *obj.CustomerInfoJustCustomerId
 	}
 
 	// all schemas are nil
@@ -145,5 +158,3 @@ func (v *NullableCheckoutOrderTemplateCustomerInfo) UnmarshalJSON(src []byte) er
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

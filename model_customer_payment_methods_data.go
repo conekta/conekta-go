@@ -110,54 +110,6 @@ func (dst *CustomerPaymentMethodsData) UnmarshalJSON(data []byte) error {
 		}
 	}
 
-	// check if the discriminator value is 'payment_method_card_response'
-	if jsonDict["type"] == "payment_method_card_response" {
-		// try to unmarshal JSON data into PaymentMethodCardResponse
-		err = json.Unmarshal(data, &dst.PaymentMethodCardResponse)
-		if err == nil {
-			return nil // data stored in dst.PaymentMethodCardResponse, return on the first match
-		} else {
-			dst.PaymentMethodCardResponse = nil
-			return fmt.Errorf("failed to unmarshal CustomerPaymentMethodsData as PaymentMethodCardResponse: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'payment_method_cash_recurrent_response'
-	if jsonDict["type"] == "payment_method_cash_recurrent_response" {
-		// try to unmarshal JSON data into PaymentMethodCashRecurrentResponse
-		err = json.Unmarshal(data, &dst.PaymentMethodCashRecurrentResponse)
-		if err == nil {
-			return nil // data stored in dst.PaymentMethodCashRecurrentResponse, return on the first match
-		} else {
-			dst.PaymentMethodCashRecurrentResponse = nil
-			return fmt.Errorf("failed to unmarshal CustomerPaymentMethodsData as PaymentMethodCashRecurrentResponse: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'payment_method_cash_response'
-	if jsonDict["type"] == "payment_method_cash_response" {
-		// try to unmarshal JSON data into PaymentMethodCashResponse
-		err = json.Unmarshal(data, &dst.PaymentMethodCashResponse)
-		if err == nil {
-			return nil // data stored in dst.PaymentMethodCashResponse, return on the first match
-		} else {
-			dst.PaymentMethodCashResponse = nil
-			return fmt.Errorf("failed to unmarshal CustomerPaymentMethodsData as PaymentMethodCashResponse: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'payment_method_spei_recurrent'
-	if jsonDict["type"] == "payment_method_spei_recurrent" {
-		// try to unmarshal JSON data into PaymentMethodSpeiRecurrent
-		err = json.Unmarshal(data, &dst.PaymentMethodSpeiRecurrent)
-		if err == nil {
-			return nil // data stored in dst.PaymentMethodSpeiRecurrent, return on the first match
-		} else {
-			dst.PaymentMethodSpeiRecurrent = nil
-			return fmt.Errorf("failed to unmarshal CustomerPaymentMethodsData as PaymentMethodSpeiRecurrent: %s", err.Error())
-		}
-	}
-
 	return nil
 }
 
@@ -201,6 +153,28 @@ func (obj *CustomerPaymentMethodsData) GetActualInstance() interface{} {
 
 	if obj.PaymentMethodSpeiRecurrent != nil {
 		return obj.PaymentMethodSpeiRecurrent
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj CustomerPaymentMethodsData) GetActualInstanceValue() interface{} {
+	if obj.PaymentMethodCardResponse != nil {
+		return *obj.PaymentMethodCardResponse
+	}
+
+	if obj.PaymentMethodCashRecurrentResponse != nil {
+		return *obj.PaymentMethodCashRecurrentResponse
+	}
+
+	if obj.PaymentMethodCashResponse != nil {
+		return *obj.PaymentMethodCashResponse
+	}
+
+	if obj.PaymentMethodSpeiRecurrent != nil {
+		return *obj.PaymentMethodSpeiRecurrent
 	}
 
 	// all schemas are nil

@@ -169,6 +169,28 @@ func (obj *ChargeRequestPaymentMethod) GetActualInstance() interface{} {
 	return nil
 }
 
+// Get the actual instance value
+func (obj ChargeRequestPaymentMethod) GetActualInstanceValue() interface{} {
+	if obj.PaymentMethodBnplRequest != nil {
+		return *obj.PaymentMethodBnplRequest
+	}
+
+	if obj.PaymentMethodCardRequest != nil {
+		return *obj.PaymentMethodCardRequest
+	}
+
+	if obj.PaymentMethodGeneralRequest != nil {
+		return *obj.PaymentMethodGeneralRequest
+	}
+
+	if obj.PaymentMethodPbbRequest != nil {
+		return *obj.PaymentMethodPbbRequest
+	}
+
+	// all schemas are nil
+	return nil
+}
+
 type NullableChargeRequestPaymentMethod struct {
 	value *ChargeRequestPaymentMethod
 	isSet bool

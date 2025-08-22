@@ -18,7 +18,7 @@ import (
 
 // OrderUpdateRequestCustomerInfo - struct for OrderUpdateRequestCustomerInfo
 type OrderUpdateRequestCustomerInfo struct {
-	CustomerInfo *CustomerInfo
+	CustomerInfo               *CustomerInfo
 	CustomerInfoJustCustomerId *CustomerInfoJustCustomerId
 }
 
@@ -35,7 +35,6 @@ func CustomerInfoJustCustomerIdAsOrderUpdateRequestCustomerInfo(v *CustomerInfoJ
 		CustomerInfoJustCustomerId: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *OrderUpdateRequestCustomerInfo) UnmarshalJSON(data []byte) error {
@@ -94,7 +93,7 @@ func (src OrderUpdateRequestCustomerInfo) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *OrderUpdateRequestCustomerInfo) GetActualInstance() (interface{}) {
+func (obj *OrderUpdateRequestCustomerInfo) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -104,6 +103,20 @@ func (obj *OrderUpdateRequestCustomerInfo) GetActualInstance() (interface{}) {
 
 	if obj.CustomerInfoJustCustomerId != nil {
 		return obj.CustomerInfoJustCustomerId
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj OrderUpdateRequestCustomerInfo) GetActualInstanceValue() interface{} {
+	if obj.CustomerInfo != nil {
+		return *obj.CustomerInfo
+	}
+
+	if obj.CustomerInfoJustCustomerId != nil {
+		return *obj.CustomerInfoJustCustomerId
 	}
 
 	// all schemas are nil
@@ -145,5 +158,3 @@ func (v *NullableOrderUpdateRequestCustomerInfo) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

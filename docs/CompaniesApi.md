@@ -317,7 +317,7 @@ import (
 
 func main() {
 	companyId := "6827206b1ec60400015eb09a" // string | The unique identifier of the company.
-	companyDocumentRequest := *openapiclient.NewCompanyDocumentRequest("id_legal_representative", "application/pdf", "example_document.pdf", string([B@51f1e931)) // CompanyDocumentRequest | Document information to update.
+	companyDocumentRequest := *openapiclient.NewCompanyDocumentRequest("id_legal_representative", "application/pdf", "example_document.pdf", string([B@6a4fb518)) // CompanyDocumentRequest | Document information to update.
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 
 	configuration := openapiclient.NewConfiguration()
@@ -391,7 +391,7 @@ import (
 
 func main() {
 	companyId := "6827206b1ec60400015eb09a" // string | The unique identifier of the company.
-	companyDocumentRequest := *openapiclient.NewCompanyDocumentRequest("id_legal_representative", "application/pdf", "example_document.pdf", string([B@51f1e931)) // CompanyDocumentRequest | Document information to upload.
+	companyDocumentRequest := *openapiclient.NewCompanyDocumentRequest("id_legal_representative", "application/pdf", "example_document.pdf", string([B@6a4fb518)) // CompanyDocumentRequest | Document information to upload.
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 
 	configuration := openapiclient.NewConfiguration()

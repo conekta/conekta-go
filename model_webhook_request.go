@@ -22,9 +22,9 @@ var _ MappedNullable = &WebhookRequest{}
 // WebhookRequest a webhook
 type WebhookRequest struct {
 	// Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security.
-	Url string `json:"url"`
+	Url string `json:"url" validate:"regexp=^(?!.*(localhost|127\\\\.0\\\\.0\\\\.1)).*$"`
 	// events that will be sent to the webhook
-	SubscribedEvents []string `json:"subscribed_events,omitempty"`
+	SubscribedEvents     []string `json:"subscribed_events,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -105,7 +105,7 @@ func (o *WebhookRequest) SetSubscribedEvents(v []string) {
 }
 
 func (o WebhookRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -139,10 +139,10 @@ func (o *WebhookRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -204,5 +204,3 @@ func (v *NullableWebhookRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

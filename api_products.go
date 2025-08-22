@@ -20,17 +20,16 @@ import (
 	"strings"
 )
 
-
 type ProductsAPI interface {
 
 	/*
-	OrdersCreateProduct Create Product
+		OrdersCreateProduct Create Product
 
-	Create a new product for an existing order.
+		Create a new product for an existing order.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Identifier of the resource
-	@return ApiOrdersCreateProductRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Identifier of the resource
+		@return ApiOrdersCreateProductRequest
 	*/
 	OrdersCreateProduct(ctx context.Context, id string) ApiOrdersCreateProductRequest
 
@@ -39,14 +38,14 @@ type ProductsAPI interface {
 	OrdersCreateProductExecute(r ApiOrdersCreateProductRequest) (*ProductOrderResponse, *http.Response, error)
 
 	/*
-	OrdersDeleteProduct Delete Product
+		OrdersDeleteProduct Delete Product
 
-	Delete product for an existing orden
+		Delete product for an existing orden
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Identifier of the resource
-	@param lineItemId identifier
-	@return ApiOrdersDeleteProductRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Identifier of the resource
+		@param lineItemId identifier
+		@return ApiOrdersDeleteProductRequest
 	*/
 	OrdersDeleteProduct(ctx context.Context, id string, lineItemId string) ApiOrdersDeleteProductRequest
 
@@ -55,14 +54,14 @@ type ProductsAPI interface {
 	OrdersDeleteProductExecute(r ApiOrdersDeleteProductRequest) (*ProductOrderResponse, *http.Response, error)
 
 	/*
-	OrdersUpdateProduct Update Product
+		OrdersUpdateProduct Update Product
 
-	Update an existing product for an existing orden
+		Update an existing product for an existing orden
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Identifier of the resource
-	@param lineItemId identifier
-	@return ApiOrdersUpdateProductRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Identifier of the resource
+		@param lineItemId identifier
+		@return ApiOrdersUpdateProductRequest
 	*/
 	OrdersUpdateProduct(ctx context.Context, id string, lineItemId string) ApiOrdersUpdateProductRequest
 
@@ -75,11 +74,11 @@ type ProductsAPI interface {
 type ProductsAPIService service
 
 type ApiOrdersCreateProductRequest struct {
-	ctx context.Context
-	ApiService ProductsAPI
-	id string
-	product *Product
-	acceptLanguage *string
+	ctx             context.Context
+	ApiService      ProductsAPI
+	id              string
+	product         *Product
+	acceptLanguage  *string
 	xChildCompanyId *string
 }
 
@@ -117,8 +116,8 @@ Create a new product for an existing order.
 func (a *ProductsAPIService) OrdersCreateProduct(ctx context.Context, id string) ApiOrdersCreateProductRequest {
 	return ApiOrdersCreateProductRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -126,10 +125,10 @@ func (a *ProductsAPIService) OrdersCreateProduct(ctx context.Context, id string)
 //  @return ProductOrderResponse
 func (a *ProductsAPIService) OrdersCreateProductExecute(r ApiOrdersCreateProductRequest) (*ProductOrderResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ProductOrderResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ProductOrderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductsAPIService.OrdersCreateProduct")
@@ -165,10 +164,10 @@ func (a *ProductsAPIService) OrdersCreateProductExecute(r ApiOrdersCreateProduct
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.product
@@ -201,8 +200,8 @@ func (a *ProductsAPIService) OrdersCreateProductExecute(r ApiOrdersCreateProduct
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -212,8 +211,8 @@ func (a *ProductsAPIService) OrdersCreateProductExecute(r ApiOrdersCreateProduct
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -223,8 +222,8 @@ func (a *ProductsAPIService) OrdersCreateProductExecute(r ApiOrdersCreateProduct
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -242,11 +241,11 @@ func (a *ProductsAPIService) OrdersCreateProductExecute(r ApiOrdersCreateProduct
 }
 
 type ApiOrdersDeleteProductRequest struct {
-	ctx context.Context
-	ApiService ProductsAPI
-	id string
-	lineItemId string
-	acceptLanguage *string
+	ctx             context.Context
+	ApiService      ProductsAPI
+	id              string
+	lineItemId      string
+	acceptLanguage  *string
 	xChildCompanyId *string
 }
 
@@ -279,8 +278,8 @@ Delete product for an existing orden
 func (a *ProductsAPIService) OrdersDeleteProduct(ctx context.Context, id string, lineItemId string) ApiOrdersDeleteProductRequest {
 	return ApiOrdersDeleteProductRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 		lineItemId: lineItemId,
 	}
 }
@@ -289,10 +288,10 @@ func (a *ProductsAPIService) OrdersDeleteProduct(ctx context.Context, id string,
 //  @return ProductOrderResponse
 func (a *ProductsAPIService) OrdersDeleteProductExecute(r ApiOrdersDeleteProductRequest) (*ProductOrderResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ProductOrderResponse
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ProductOrderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductsAPIService.OrdersDeleteProduct")
@@ -326,10 +325,10 @@ func (a *ProductsAPIService) OrdersDeleteProductExecute(r ApiOrdersDeleteProduct
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -360,8 +359,8 @@ func (a *ProductsAPIService) OrdersDeleteProductExecute(r ApiOrdersDeleteProduct
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -371,8 +370,8 @@ func (a *ProductsAPIService) OrdersDeleteProductExecute(r ApiOrdersDeleteProduct
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -382,8 +381,8 @@ func (a *ProductsAPIService) OrdersDeleteProductExecute(r ApiOrdersDeleteProduct
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -393,8 +392,8 @@ func (a *ProductsAPIService) OrdersDeleteProductExecute(r ApiOrdersDeleteProduct
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -412,12 +411,12 @@ func (a *ProductsAPIService) OrdersDeleteProductExecute(r ApiOrdersDeleteProduct
 }
 
 type ApiOrdersUpdateProductRequest struct {
-	ctx context.Context
-	ApiService ProductsAPI
-	id string
-	lineItemId string
-	updateProduct *UpdateProduct
-	acceptLanguage *string
+	ctx             context.Context
+	ApiService      ProductsAPI
+	id              string
+	lineItemId      string
+	updateProduct   *UpdateProduct
+	acceptLanguage  *string
 	xChildCompanyId *string
 }
 
@@ -456,8 +455,8 @@ Update an existing product for an existing orden
 func (a *ProductsAPIService) OrdersUpdateProduct(ctx context.Context, id string, lineItemId string) ApiOrdersUpdateProductRequest {
 	return ApiOrdersUpdateProductRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 		lineItemId: lineItemId,
 	}
 }
@@ -466,10 +465,10 @@ func (a *ProductsAPIService) OrdersUpdateProduct(ctx context.Context, id string,
 //  @return ProductOrderResponse
 func (a *ProductsAPIService) OrdersUpdateProductExecute(r ApiOrdersUpdateProductRequest) (*ProductOrderResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ProductOrderResponse
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ProductOrderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductsAPIService.OrdersUpdateProduct")
@@ -506,10 +505,10 @@ func (a *ProductsAPIService) OrdersUpdateProductExecute(r ApiOrdersUpdateProduct
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.updateProduct
@@ -542,8 +541,8 @@ func (a *ProductsAPIService) OrdersUpdateProductExecute(r ApiOrdersUpdateProduct
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -553,8 +552,8 @@ func (a *ProductsAPIService) OrdersUpdateProductExecute(r ApiOrdersUpdateProduct
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -564,8 +563,8 @@ func (a *ProductsAPIService) OrdersUpdateProductExecute(r ApiOrdersUpdateProduct
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -575,8 +574,8 @@ func (a *ProductsAPIService) OrdersUpdateProductExecute(r ApiOrdersUpdateProduct
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

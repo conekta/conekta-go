@@ -18,8 +18,8 @@ import (
 
 // CustomerPaymentMethodsRequest - struct for CustomerPaymentMethodsRequest
 type CustomerPaymentMethodsRequest struct {
-	PaymentMethodCashRequest *PaymentMethodCashRequest
-	PaymentMethodSpeiRequest *PaymentMethodSpeiRequest
+	PaymentMethodCashRequest  *PaymentMethodCashRequest
+	PaymentMethodSpeiRequest  *PaymentMethodSpeiRequest
 	PaymentMethodTokenRequest *PaymentMethodTokenRequest
 }
 
@@ -43,7 +43,6 @@ func PaymentMethodTokenRequestAsCustomerPaymentMethodsRequest(v *PaymentMethodTo
 		PaymentMethodTokenRequest: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *CustomerPaymentMethodsRequest) UnmarshalJSON(data []byte) error {
@@ -120,7 +119,7 @@ func (src CustomerPaymentMethodsRequest) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *CustomerPaymentMethodsRequest) GetActualInstance() (interface{}) {
+func (obj *CustomerPaymentMethodsRequest) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -134,6 +133,24 @@ func (obj *CustomerPaymentMethodsRequest) GetActualInstance() (interface{}) {
 
 	if obj.PaymentMethodTokenRequest != nil {
 		return obj.PaymentMethodTokenRequest
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj CustomerPaymentMethodsRequest) GetActualInstanceValue() interface{} {
+	if obj.PaymentMethodCashRequest != nil {
+		return *obj.PaymentMethodCashRequest
+	}
+
+	if obj.PaymentMethodSpeiRequest != nil {
+		return *obj.PaymentMethodSpeiRequest
+	}
+
+	if obj.PaymentMethodTokenRequest != nil {
+		return *obj.PaymentMethodTokenRequest
 	}
 
 	// all schemas are nil
@@ -175,5 +192,3 @@ func (v *NullableCustomerPaymentMethodsRequest) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

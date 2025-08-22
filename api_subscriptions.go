@@ -20,19 +20,18 @@ import (
 	"strings"
 )
 
-
 type SubscriptionsAPI interface {
 
 	/*
-	CancelSubscription Cancel Subscription [Deprecated]
+		CancelSubscription Cancel Subscription [Deprecated]
 
-	DEPRECATED: This endpoint will be removed in version 2.3.0.
+		DEPRECATED: This endpoint will be removed in version 2.3.0.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Identifier of the resource
-	@return ApiCancelSubscriptionRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Identifier of the resource
+		@return ApiCancelSubscriptionRequest
 
-	Deprecated
+		Deprecated
 	*/
 	CancelSubscription(ctx context.Context, id string) ApiCancelSubscriptionRequest
 
@@ -42,15 +41,15 @@ type SubscriptionsAPI interface {
 	CancelSubscriptionExecute(r ApiCancelSubscriptionRequest) (*SubscriptionResponse, *http.Response, error)
 
 	/*
-	CreateSubscription Create Subscription [Deprecated]
+		CreateSubscription Create Subscription [Deprecated]
 
-	DEPRECATED: This endpoint will be removed in version 2.3.0. You can create the subscription to include the plans that your customers consume
+		DEPRECATED: This endpoint will be removed in version 2.3.0. You can create the subscription to include the plans that your customers consume
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Identifier of the resource
-	@return ApiCreateSubscriptionRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Identifier of the resource
+		@return ApiCreateSubscriptionRequest
 
-	Deprecated
+		Deprecated
 	*/
 	CreateSubscription(ctx context.Context, id string) ApiCreateSubscriptionRequest
 
@@ -60,15 +59,15 @@ type SubscriptionsAPI interface {
 	CreateSubscriptionExecute(r ApiCreateSubscriptionRequest) (*SubscriptionResponse, *http.Response, error)
 
 	/*
-	GetSubscription Get Subscription [Deprecated]
+		GetSubscription Get Subscription [Deprecated]
 
-	DEPRECATED: This endpoint will be removed in version 2.3.0.
+		DEPRECATED: This endpoint will be removed in version 2.3.0.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Identifier of the resource
-	@return ApiGetSubscriptionRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Identifier of the resource
+		@return ApiGetSubscriptionRequest
 
-	Deprecated
+		Deprecated
 	*/
 	GetSubscription(ctx context.Context, id string) ApiGetSubscriptionRequest
 
@@ -78,15 +77,15 @@ type SubscriptionsAPI interface {
 	GetSubscriptionExecute(r ApiGetSubscriptionRequest) (*SubscriptionResponse, *http.Response, error)
 
 	/*
-	GetSubscriptionEvents Get Subscription Events [Deprecated]
+		GetSubscriptionEvents Get Subscription Events [Deprecated]
 
-	DEPRECATED: This endpoint will be removed in version 2.3.0. You can get the events of the subscription(s) of a client, with the customer id
+		DEPRECATED: This endpoint will be removed in version 2.3.0. You can get the events of the subscription(s) of a client, with the customer id
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Identifier of the resource
-	@return ApiGetSubscriptionEventsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Identifier of the resource
+		@return ApiGetSubscriptionEventsRequest
 
-	Deprecated
+		Deprecated
 	*/
 	GetSubscriptionEvents(ctx context.Context, id string) ApiGetSubscriptionEventsRequest
 
@@ -96,15 +95,15 @@ type SubscriptionsAPI interface {
 	GetSubscriptionEventsExecute(r ApiGetSubscriptionEventsRequest) (*SubscriptionEventsResponse, *http.Response, error)
 
 	/*
-	PauseSubscription Pause Subscription [Deprecated]
+		PauseSubscription Pause Subscription [Deprecated]
 
-	DEPRECATED: This endpoint will be removed in version 2.3.0.
+		DEPRECATED: This endpoint will be removed in version 2.3.0.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Identifier of the resource
-	@return ApiPauseSubscriptionRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Identifier of the resource
+		@return ApiPauseSubscriptionRequest
 
-	Deprecated
+		Deprecated
 	*/
 	PauseSubscription(ctx context.Context, id string) ApiPauseSubscriptionRequest
 
@@ -114,15 +113,15 @@ type SubscriptionsAPI interface {
 	PauseSubscriptionExecute(r ApiPauseSubscriptionRequest) (*SubscriptionResponse, *http.Response, error)
 
 	/*
-	ResumeSubscription Resume Subscription [Deprecated]
+		ResumeSubscription Resume Subscription [Deprecated]
 
-	DEPRECATED: This endpoint will be removed in version 2.3.0.
+		DEPRECATED: This endpoint will be removed in version 2.3.0.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Identifier of the resource
-	@return ApiResumeSubscriptionRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Identifier of the resource
+		@return ApiResumeSubscriptionRequest
 
-	Deprecated
+		Deprecated
 	*/
 	ResumeSubscription(ctx context.Context, id string) ApiResumeSubscriptionRequest
 
@@ -132,14 +131,14 @@ type SubscriptionsAPI interface {
 	ResumeSubscriptionExecute(r ApiResumeSubscriptionRequest) (*SubscriptionResponse, *http.Response, error)
 
 	/*
-	SubscriptionCancel Cancel Subscription
+		SubscriptionCancel Cancel Subscription
 
-	Cancel a specific subscription
+		Cancel a specific subscription
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param customerId Identifier of the customer resource
-	@param id Identifier of the subscription resource
-	@return ApiSubscriptionCancelRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param customerId Identifier of the customer resource
+		@param id Identifier of the subscription resource
+		@return ApiSubscriptionCancelRequest
 	*/
 	SubscriptionCancel(ctx context.Context, customerId string, id string) ApiSubscriptionCancelRequest
 
@@ -148,13 +147,13 @@ type SubscriptionsAPI interface {
 	SubscriptionCancelExecute(r ApiSubscriptionCancelRequest) (*SubscriptionResponse, *http.Response, error)
 
 	/*
-	SubscriptionCreate Create Subscription
+		SubscriptionCreate Create Subscription
 
-	Create a new subscription for a customer (keeps existing subscriptions active)
+		Create a new subscription for a customer (keeps existing subscriptions active)
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param customerId Identifier of the customer resource
-	@return ApiSubscriptionCreateRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param customerId Identifier of the customer resource
+		@return ApiSubscriptionCreateRequest
 	*/
 	SubscriptionCreate(ctx context.Context, customerId string) ApiSubscriptionCreateRequest
 
@@ -163,14 +162,14 @@ type SubscriptionsAPI interface {
 	SubscriptionCreateExecute(r ApiSubscriptionCreateRequest) (*SubscriptionResponse, *http.Response, error)
 
 	/*
-	SubscriptionEvents Get Subscription Events
+		SubscriptionEvents Get Subscription Events
 
-	Get events for a specific subscription
+		Get events for a specific subscription
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param customerId Identifier of the customer resource
-	@param id Identifier of the subscription resource
-	@return ApiSubscriptionEventsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param customerId Identifier of the customer resource
+		@param id Identifier of the subscription resource
+		@return ApiSubscriptionEventsRequest
 	*/
 	SubscriptionEvents(ctx context.Context, customerId string, id string) ApiSubscriptionEventsRequest
 
@@ -179,13 +178,13 @@ type SubscriptionsAPI interface {
 	SubscriptionEventsExecute(r ApiSubscriptionEventsRequest) (*SubscriptionEventsResponse, *http.Response, error)
 
 	/*
-	SubscriptionList List Subscriptions
+		SubscriptionList List Subscriptions
 
-	Get a list of subscriptions for a customer
+		Get a list of subscriptions for a customer
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param customerId Identifier of the customer resource
-	@return ApiSubscriptionListRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param customerId Identifier of the customer resource
+		@return ApiSubscriptionListRequest
 	*/
 	SubscriptionList(ctx context.Context, customerId string) ApiSubscriptionListRequest
 
@@ -194,14 +193,14 @@ type SubscriptionsAPI interface {
 	SubscriptionListExecute(r ApiSubscriptionListRequest) (*SubscriptionResponse, *http.Response, error)
 
 	/*
-	SubscriptionPause Pause Subscription
+		SubscriptionPause Pause Subscription
 
-	Pause a specific subscription
+		Pause a specific subscription
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param customerId Identifier of the customer resource
-	@param id Identifier of the subscription resource
-	@return ApiSubscriptionPauseRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param customerId Identifier of the customer resource
+		@param id Identifier of the subscription resource
+		@return ApiSubscriptionPauseRequest
 	*/
 	SubscriptionPause(ctx context.Context, customerId string, id string) ApiSubscriptionPauseRequest
 
@@ -210,14 +209,14 @@ type SubscriptionsAPI interface {
 	SubscriptionPauseExecute(r ApiSubscriptionPauseRequest) (*SubscriptionResponse, *http.Response, error)
 
 	/*
-	SubscriptionResume Resume Subscription
+		SubscriptionResume Resume Subscription
 
-	Resume a specific paused subscription
+		Resume a specific paused subscription
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param customerId Identifier of the customer resource
-	@param id Identifier of the subscription resource
-	@return ApiSubscriptionResumeRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param customerId Identifier of the customer resource
+		@param id Identifier of the subscription resource
+		@return ApiSubscriptionResumeRequest
 	*/
 	SubscriptionResume(ctx context.Context, customerId string, id string) ApiSubscriptionResumeRequest
 
@@ -226,14 +225,14 @@ type SubscriptionsAPI interface {
 	SubscriptionResumeExecute(r ApiSubscriptionResumeRequest) (*SubscriptionResponse, *http.Response, error)
 
 	/*
-	SubscriptionUpdate Update Subscription
+		SubscriptionUpdate Update Subscription
 
-	Update a specific subscription
+		Update a specific subscription
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param customerId Identifier of the customer resource
-	@param id Identifier of the subscription resource
-	@return ApiSubscriptionUpdateRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param customerId Identifier of the customer resource
+		@param id Identifier of the subscription resource
+		@return ApiSubscriptionUpdateRequest
 	*/
 	SubscriptionUpdate(ctx context.Context, customerId string, id string) ApiSubscriptionUpdateRequest
 
@@ -242,14 +241,14 @@ type SubscriptionsAPI interface {
 	SubscriptionUpdateExecute(r ApiSubscriptionUpdateRequest) (*SubscriptionResponse, *http.Response, error)
 
 	/*
-	SubscriptionsGet Get Subscription
+		SubscriptionsGet Get Subscription
 
-	Retrieve a specific subscription
+		Retrieve a specific subscription
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param customerId Identifier of the customer resource
-	@param id Identifier of the subscription resource
-	@return ApiSubscriptionsGetRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param customerId Identifier of the customer resource
+		@param id Identifier of the subscription resource
+		@return ApiSubscriptionsGetRequest
 	*/
 	SubscriptionsGet(ctx context.Context, customerId string, id string) ApiSubscriptionsGetRequest
 
@@ -258,14 +257,14 @@ type SubscriptionsAPI interface {
 	SubscriptionsGetExecute(r ApiSubscriptionsGetRequest) (*SubscriptionResponse, *http.Response, error)
 
 	/*
-	SubscriptionsRetry Retry Failed Payment
+		SubscriptionsRetry Retry Failed Payment
 
-	Retry a failed payment for a specific subscription
+		Retry a failed payment for a specific subscription
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param customerId Identifier of the customer resource
-	@param id Identifier of the subscription resource
-	@return ApiSubscriptionsRetryRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param customerId Identifier of the customer resource
+		@param id Identifier of the subscription resource
+		@return ApiSubscriptionsRetryRequest
 	*/
 	SubscriptionsRetry(ctx context.Context, customerId string, id string) ApiSubscriptionsRetryRequest
 
@@ -274,15 +273,15 @@ type SubscriptionsAPI interface {
 	SubscriptionsRetryExecute(r ApiSubscriptionsRetryRequest) (*SubscriptionResponse, *http.Response, error)
 
 	/*
-	UpdateSubscription Update Subscription [Deprecated]
+		UpdateSubscription Update Subscription [Deprecated]
 
-	DEPRECATED: This endpoint will be removed in version 2.3.0. You can modify the subscription to change the plans that your customers consume
+		DEPRECATED: This endpoint will be removed in version 2.3.0. You can modify the subscription to change the plans that your customers consume
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Identifier of the resource
-	@return ApiUpdateSubscriptionRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Identifier of the resource
+		@return ApiUpdateSubscriptionRequest
 
-	Deprecated
+		Deprecated
 	*/
 	UpdateSubscription(ctx context.Context, id string) ApiUpdateSubscriptionRequest
 
@@ -296,10 +295,10 @@ type SubscriptionsAPI interface {
 type SubscriptionsAPIService service
 
 type ApiCancelSubscriptionRequest struct {
-	ctx context.Context
-	ApiService SubscriptionsAPI
-	id string
-	acceptLanguage *string
+	ctx             context.Context
+	ApiService      SubscriptionsAPI
+	id              string
+	acceptLanguage  *string
 	xChildCompanyId *string
 }
 
@@ -333,8 +332,8 @@ Deprecated
 func (a *SubscriptionsAPIService) CancelSubscription(ctx context.Context, id string) ApiCancelSubscriptionRequest {
 	return ApiCancelSubscriptionRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -343,10 +342,10 @@ func (a *SubscriptionsAPIService) CancelSubscription(ctx context.Context, id str
 // Deprecated
 func (a *SubscriptionsAPIService) CancelSubscriptionExecute(r ApiCancelSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriptionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.CancelSubscription")
@@ -379,10 +378,10 @@ func (a *SubscriptionsAPIService) CancelSubscriptionExecute(r ApiCancelSubscript
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -413,8 +412,8 @@ func (a *SubscriptionsAPIService) CancelSubscriptionExecute(r ApiCancelSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -424,8 +423,8 @@ func (a *SubscriptionsAPIService) CancelSubscriptionExecute(r ApiCancelSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -435,8 +434,8 @@ func (a *SubscriptionsAPIService) CancelSubscriptionExecute(r ApiCancelSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -454,12 +453,12 @@ func (a *SubscriptionsAPIService) CancelSubscriptionExecute(r ApiCancelSubscript
 }
 
 type ApiCreateSubscriptionRequest struct {
-	ctx context.Context
-	ApiService SubscriptionsAPI
-	id string
+	ctx                 context.Context
+	ApiService          SubscriptionsAPI
+	id                  string
 	subscriptionRequest *SubscriptionRequest
-	acceptLanguage *string
-	xChildCompanyId *string
+	acceptLanguage      *string
+	xChildCompanyId     *string
 }
 
 // requested field for subscriptions
@@ -498,8 +497,8 @@ Deprecated
 func (a *SubscriptionsAPIService) CreateSubscription(ctx context.Context, id string) ApiCreateSubscriptionRequest {
 	return ApiCreateSubscriptionRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -508,10 +507,10 @@ func (a *SubscriptionsAPIService) CreateSubscription(ctx context.Context, id str
 // Deprecated
 func (a *SubscriptionsAPIService) CreateSubscriptionExecute(r ApiCreateSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriptionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.CreateSubscription")
@@ -547,10 +546,10 @@ func (a *SubscriptionsAPIService) CreateSubscriptionExecute(r ApiCreateSubscript
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.subscriptionRequest
@@ -583,8 +582,8 @@ func (a *SubscriptionsAPIService) CreateSubscriptionExecute(r ApiCreateSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -594,8 +593,8 @@ func (a *SubscriptionsAPIService) CreateSubscriptionExecute(r ApiCreateSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -605,8 +604,8 @@ func (a *SubscriptionsAPIService) CreateSubscriptionExecute(r ApiCreateSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -616,8 +615,8 @@ func (a *SubscriptionsAPIService) CreateSubscriptionExecute(r ApiCreateSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -635,9 +634,9 @@ func (a *SubscriptionsAPIService) CreateSubscriptionExecute(r ApiCreateSubscript
 }
 
 type ApiGetSubscriptionRequest struct {
-	ctx context.Context
-	ApiService SubscriptionsAPI
-	id string
+	ctx            context.Context
+	ApiService     SubscriptionsAPI
+	id             string
 	acceptLanguage *string
 }
 
@@ -665,8 +664,8 @@ Deprecated
 func (a *SubscriptionsAPIService) GetSubscription(ctx context.Context, id string) ApiGetSubscriptionRequest {
 	return ApiGetSubscriptionRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -675,10 +674,10 @@ func (a *SubscriptionsAPIService) GetSubscription(ctx context.Context, id string
 // Deprecated
 func (a *SubscriptionsAPIService) GetSubscriptionExecute(r ApiGetSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriptionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.GetSubscription")
@@ -711,7 +710,7 @@ func (a *SubscriptionsAPIService) GetSubscriptionExecute(r ApiGetSubscriptionReq
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -742,8 +741,8 @@ func (a *SubscriptionsAPIService) GetSubscriptionExecute(r ApiGetSubscriptionReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -753,8 +752,8 @@ func (a *SubscriptionsAPIService) GetSubscriptionExecute(r ApiGetSubscriptionReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -764,8 +763,8 @@ func (a *SubscriptionsAPIService) GetSubscriptionExecute(r ApiGetSubscriptionReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -783,10 +782,10 @@ func (a *SubscriptionsAPIService) GetSubscriptionExecute(r ApiGetSubscriptionReq
 }
 
 type ApiGetSubscriptionEventsRequest struct {
-	ctx context.Context
-	ApiService SubscriptionsAPI
-	id string
-	acceptLanguage *string
+	ctx             context.Context
+	ApiService      SubscriptionsAPI
+	id              string
+	acceptLanguage  *string
 	xChildCompanyId *string
 }
 
@@ -820,8 +819,8 @@ Deprecated
 func (a *SubscriptionsAPIService) GetSubscriptionEvents(ctx context.Context, id string) ApiGetSubscriptionEventsRequest {
 	return ApiGetSubscriptionEventsRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -830,10 +829,10 @@ func (a *SubscriptionsAPIService) GetSubscriptionEvents(ctx context.Context, id 
 // Deprecated
 func (a *SubscriptionsAPIService) GetSubscriptionEventsExecute(r ApiGetSubscriptionEventsRequest) (*SubscriptionEventsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionEventsResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriptionEventsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.GetSubscriptionEvents")
@@ -866,10 +865,10 @@ func (a *SubscriptionsAPIService) GetSubscriptionEventsExecute(r ApiGetSubscript
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -900,8 +899,8 @@ func (a *SubscriptionsAPIService) GetSubscriptionEventsExecute(r ApiGetSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
@@ -911,8 +910,8 @@ func (a *SubscriptionsAPIService) GetSubscriptionEventsExecute(r ApiGetSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -922,8 +921,8 @@ func (a *SubscriptionsAPIService) GetSubscriptionEventsExecute(r ApiGetSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -933,8 +932,8 @@ func (a *SubscriptionsAPIService) GetSubscriptionEventsExecute(r ApiGetSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -944,8 +943,8 @@ func (a *SubscriptionsAPIService) GetSubscriptionEventsExecute(r ApiGetSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -963,10 +962,10 @@ func (a *SubscriptionsAPIService) GetSubscriptionEventsExecute(r ApiGetSubscript
 }
 
 type ApiPauseSubscriptionRequest struct {
-	ctx context.Context
-	ApiService SubscriptionsAPI
-	id string
-	acceptLanguage *string
+	ctx             context.Context
+	ApiService      SubscriptionsAPI
+	id              string
+	acceptLanguage  *string
 	xChildCompanyId *string
 }
 
@@ -1000,8 +999,8 @@ Deprecated
 func (a *SubscriptionsAPIService) PauseSubscription(ctx context.Context, id string) ApiPauseSubscriptionRequest {
 	return ApiPauseSubscriptionRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -1010,10 +1009,10 @@ func (a *SubscriptionsAPIService) PauseSubscription(ctx context.Context, id stri
 // Deprecated
 func (a *SubscriptionsAPIService) PauseSubscriptionExecute(r ApiPauseSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriptionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.PauseSubscription")
@@ -1046,10 +1045,10 @@ func (a *SubscriptionsAPIService) PauseSubscriptionExecute(r ApiPauseSubscriptio
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1080,8 +1079,8 @@ func (a *SubscriptionsAPIService) PauseSubscriptionExecute(r ApiPauseSubscriptio
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
@@ -1091,8 +1090,8 @@ func (a *SubscriptionsAPIService) PauseSubscriptionExecute(r ApiPauseSubscriptio
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1102,8 +1101,8 @@ func (a *SubscriptionsAPIService) PauseSubscriptionExecute(r ApiPauseSubscriptio
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1113,8 +1112,8 @@ func (a *SubscriptionsAPIService) PauseSubscriptionExecute(r ApiPauseSubscriptio
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1132,10 +1131,10 @@ func (a *SubscriptionsAPIService) PauseSubscriptionExecute(r ApiPauseSubscriptio
 }
 
 type ApiResumeSubscriptionRequest struct {
-	ctx context.Context
-	ApiService SubscriptionsAPI
-	id string
-	acceptLanguage *string
+	ctx             context.Context
+	ApiService      SubscriptionsAPI
+	id              string
+	acceptLanguage  *string
 	xChildCompanyId *string
 }
 
@@ -1169,8 +1168,8 @@ Deprecated
 func (a *SubscriptionsAPIService) ResumeSubscription(ctx context.Context, id string) ApiResumeSubscriptionRequest {
 	return ApiResumeSubscriptionRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -1179,10 +1178,10 @@ func (a *SubscriptionsAPIService) ResumeSubscription(ctx context.Context, id str
 // Deprecated
 func (a *SubscriptionsAPIService) ResumeSubscriptionExecute(r ApiResumeSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriptionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.ResumeSubscription")
@@ -1215,10 +1214,10 @@ func (a *SubscriptionsAPIService) ResumeSubscriptionExecute(r ApiResumeSubscript
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1249,8 +1248,8 @@ func (a *SubscriptionsAPIService) ResumeSubscriptionExecute(r ApiResumeSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
@@ -1260,8 +1259,8 @@ func (a *SubscriptionsAPIService) ResumeSubscriptionExecute(r ApiResumeSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1271,8 +1270,8 @@ func (a *SubscriptionsAPIService) ResumeSubscriptionExecute(r ApiResumeSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -1282,8 +1281,8 @@ func (a *SubscriptionsAPIService) ResumeSubscriptionExecute(r ApiResumeSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1293,8 +1292,8 @@ func (a *SubscriptionsAPIService) ResumeSubscriptionExecute(r ApiResumeSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1312,11 +1311,11 @@ func (a *SubscriptionsAPIService) ResumeSubscriptionExecute(r ApiResumeSubscript
 }
 
 type ApiSubscriptionCancelRequest struct {
-	ctx context.Context
-	ApiService SubscriptionsAPI
-	customerId string
-	id string
-	acceptLanguage *string
+	ctx             context.Context
+	ApiService      SubscriptionsAPI
+	customerId      string
+	id              string
+	acceptLanguage  *string
 	xChildCompanyId *string
 }
 
@@ -1349,9 +1348,9 @@ Cancel a specific subscription
 func (a *SubscriptionsAPIService) SubscriptionCancel(ctx context.Context, customerId string, id string) ApiSubscriptionCancelRequest {
 	return ApiSubscriptionCancelRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		customerId: customerId,
-		id: id,
+		id:         id,
 	}
 }
 
@@ -1359,10 +1358,10 @@ func (a *SubscriptionsAPIService) SubscriptionCancel(ctx context.Context, custom
 //  @return SubscriptionResponse
 func (a *SubscriptionsAPIService) SubscriptionCancelExecute(r ApiSubscriptionCancelRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriptionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionCancel")
@@ -1396,10 +1395,10 @@ func (a *SubscriptionsAPIService) SubscriptionCancelExecute(r ApiSubscriptionCan
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1430,8 +1429,8 @@ func (a *SubscriptionsAPIService) SubscriptionCancelExecute(r ApiSubscriptionCan
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1441,8 +1440,8 @@ func (a *SubscriptionsAPIService) SubscriptionCancelExecute(r ApiSubscriptionCan
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1452,8 +1451,8 @@ func (a *SubscriptionsAPIService) SubscriptionCancelExecute(r ApiSubscriptionCan
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1471,12 +1470,12 @@ func (a *SubscriptionsAPIService) SubscriptionCancelExecute(r ApiSubscriptionCan
 }
 
 type ApiSubscriptionCreateRequest struct {
-	ctx context.Context
-	ApiService SubscriptionsAPI
-	customerId string
+	ctx                 context.Context
+	ApiService          SubscriptionsAPI
+	customerId          string
 	subscriptionRequest *SubscriptionRequest
-	acceptLanguage *string
-	xChildCompanyId *string
+	acceptLanguage      *string
+	xChildCompanyId     *string
 }
 
 // requested field for subscriptions
@@ -1513,7 +1512,7 @@ Create a new subscription for a customer (keeps existing subscriptions active)
 func (a *SubscriptionsAPIService) SubscriptionCreate(ctx context.Context, customerId string) ApiSubscriptionCreateRequest {
 	return ApiSubscriptionCreateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		customerId: customerId,
 	}
 }
@@ -1522,10 +1521,10 @@ func (a *SubscriptionsAPIService) SubscriptionCreate(ctx context.Context, custom
 //  @return SubscriptionResponse
 func (a *SubscriptionsAPIService) SubscriptionCreateExecute(r ApiSubscriptionCreateRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriptionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionCreate")
@@ -1561,10 +1560,10 @@ func (a *SubscriptionsAPIService) SubscriptionCreateExecute(r ApiSubscriptionCre
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.subscriptionRequest
@@ -1597,8 +1596,8 @@ func (a *SubscriptionsAPIService) SubscriptionCreateExecute(r ApiSubscriptionCre
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1608,8 +1607,8 @@ func (a *SubscriptionsAPIService) SubscriptionCreateExecute(r ApiSubscriptionCre
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1619,8 +1618,8 @@ func (a *SubscriptionsAPIService) SubscriptionCreateExecute(r ApiSubscriptionCre
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1630,8 +1629,8 @@ func (a *SubscriptionsAPIService) SubscriptionCreateExecute(r ApiSubscriptionCre
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1649,16 +1648,16 @@ func (a *SubscriptionsAPIService) SubscriptionCreateExecute(r ApiSubscriptionCre
 }
 
 type ApiSubscriptionEventsRequest struct {
-	ctx context.Context
-	ApiService SubscriptionsAPI
-	customerId string
-	id string
-	acceptLanguage *string
+	ctx             context.Context
+	ApiService      SubscriptionsAPI
+	customerId      string
+	id              string
+	acceptLanguage  *string
 	xChildCompanyId *string
-	limit *int32
-	search *string
-	next *string
-	previous *string
+	limit           *int32
+	search          *string
+	next            *string
+	previous        *string
 }
 
 // Use for knowing which language to use
@@ -1714,9 +1713,9 @@ Get events for a specific subscription
 func (a *SubscriptionsAPIService) SubscriptionEvents(ctx context.Context, customerId string, id string) ApiSubscriptionEventsRequest {
 	return ApiSubscriptionEventsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		customerId: customerId,
-		id: id,
+		id:         id,
 	}
 }
 
@@ -1724,10 +1723,10 @@ func (a *SubscriptionsAPIService) SubscriptionEvents(ctx context.Context, custom
 //  @return SubscriptionEventsResponse
 func (a *SubscriptionsAPIService) SubscriptionEventsExecute(r ApiSubscriptionEventsRequest) (*SubscriptionEventsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionEventsResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriptionEventsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionEvents")
@@ -1744,19 +1743,19 @@ func (a *SubscriptionsAPIService) SubscriptionEventsExecute(r ApiSubscriptionEve
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
 		r.limit = &defaultValue
 	}
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
 	}
 	if r.next != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "next", r.next, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "next", r.next, "form", "")
 	}
 	if r.previous != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "previous", r.previous, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "previous", r.previous, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1776,10 +1775,10 @@ func (a *SubscriptionsAPIService) SubscriptionEventsExecute(r ApiSubscriptionEve
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1810,8 +1809,8 @@ func (a *SubscriptionsAPIService) SubscriptionEventsExecute(r ApiSubscriptionEve
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1821,8 +1820,8 @@ func (a *SubscriptionsAPIService) SubscriptionEventsExecute(r ApiSubscriptionEve
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1832,8 +1831,8 @@ func (a *SubscriptionsAPIService) SubscriptionEventsExecute(r ApiSubscriptionEve
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1851,15 +1850,15 @@ func (a *SubscriptionsAPIService) SubscriptionEventsExecute(r ApiSubscriptionEve
 }
 
 type ApiSubscriptionListRequest struct {
-	ctx context.Context
-	ApiService SubscriptionsAPI
-	customerId string
-	acceptLanguage *string
+	ctx             context.Context
+	ApiService      SubscriptionsAPI
+	customerId      string
+	acceptLanguage  *string
 	xChildCompanyId *string
-	limit *int32
-	search *string
-	next *string
-	previous *string
+	limit           *int32
+	search          *string
+	next            *string
+	previous        *string
 }
 
 // Use for knowing which language to use
@@ -1914,7 +1913,7 @@ Get a list of subscriptions for a customer
 func (a *SubscriptionsAPIService) SubscriptionList(ctx context.Context, customerId string) ApiSubscriptionListRequest {
 	return ApiSubscriptionListRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		customerId: customerId,
 	}
 }
@@ -1923,10 +1922,10 @@ func (a *SubscriptionsAPIService) SubscriptionList(ctx context.Context, customer
 //  @return SubscriptionResponse
 func (a *SubscriptionsAPIService) SubscriptionListExecute(r ApiSubscriptionListRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriptionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionList")
@@ -1942,19 +1941,19 @@ func (a *SubscriptionsAPIService) SubscriptionListExecute(r ApiSubscriptionListR
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
 		r.limit = &defaultValue
 	}
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
 	}
 	if r.next != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "next", r.next, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "next", r.next, "form", "")
 	}
 	if r.previous != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "previous", r.previous, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "previous", r.previous, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1974,10 +1973,10 @@ func (a *SubscriptionsAPIService) SubscriptionListExecute(r ApiSubscriptionListR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -2008,8 +2007,8 @@ func (a *SubscriptionsAPIService) SubscriptionListExecute(r ApiSubscriptionListR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2019,8 +2018,8 @@ func (a *SubscriptionsAPIService) SubscriptionListExecute(r ApiSubscriptionListR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2030,8 +2029,8 @@ func (a *SubscriptionsAPIService) SubscriptionListExecute(r ApiSubscriptionListR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2049,11 +2048,11 @@ func (a *SubscriptionsAPIService) SubscriptionListExecute(r ApiSubscriptionListR
 }
 
 type ApiSubscriptionPauseRequest struct {
-	ctx context.Context
-	ApiService SubscriptionsAPI
-	customerId string
-	id string
-	acceptLanguage *string
+	ctx             context.Context
+	ApiService      SubscriptionsAPI
+	customerId      string
+	id              string
+	acceptLanguage  *string
 	xChildCompanyId *string
 }
 
@@ -2086,9 +2085,9 @@ Pause a specific subscription
 func (a *SubscriptionsAPIService) SubscriptionPause(ctx context.Context, customerId string, id string) ApiSubscriptionPauseRequest {
 	return ApiSubscriptionPauseRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		customerId: customerId,
-		id: id,
+		id:         id,
 	}
 }
 
@@ -2096,10 +2095,10 @@ func (a *SubscriptionsAPIService) SubscriptionPause(ctx context.Context, custome
 //  @return SubscriptionResponse
 func (a *SubscriptionsAPIService) SubscriptionPauseExecute(r ApiSubscriptionPauseRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriptionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionPause")
@@ -2133,10 +2132,10 @@ func (a *SubscriptionsAPIService) SubscriptionPauseExecute(r ApiSubscriptionPaus
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -2167,8 +2166,8 @@ func (a *SubscriptionsAPIService) SubscriptionPauseExecute(r ApiSubscriptionPaus
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2178,8 +2177,8 @@ func (a *SubscriptionsAPIService) SubscriptionPauseExecute(r ApiSubscriptionPaus
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2189,8 +2188,8 @@ func (a *SubscriptionsAPIService) SubscriptionPauseExecute(r ApiSubscriptionPaus
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2208,11 +2207,11 @@ func (a *SubscriptionsAPIService) SubscriptionPauseExecute(r ApiSubscriptionPaus
 }
 
 type ApiSubscriptionResumeRequest struct {
-	ctx context.Context
-	ApiService SubscriptionsAPI
-	customerId string
-	id string
-	acceptLanguage *string
+	ctx             context.Context
+	ApiService      SubscriptionsAPI
+	customerId      string
+	id              string
+	acceptLanguage  *string
 	xChildCompanyId *string
 }
 
@@ -2245,9 +2244,9 @@ Resume a specific paused subscription
 func (a *SubscriptionsAPIService) SubscriptionResume(ctx context.Context, customerId string, id string) ApiSubscriptionResumeRequest {
 	return ApiSubscriptionResumeRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		customerId: customerId,
-		id: id,
+		id:         id,
 	}
 }
 
@@ -2255,10 +2254,10 @@ func (a *SubscriptionsAPIService) SubscriptionResume(ctx context.Context, custom
 //  @return SubscriptionResponse
 func (a *SubscriptionsAPIService) SubscriptionResumeExecute(r ApiSubscriptionResumeRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriptionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionResume")
@@ -2292,10 +2291,10 @@ func (a *SubscriptionsAPIService) SubscriptionResumeExecute(r ApiSubscriptionRes
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -2326,8 +2325,8 @@ func (a *SubscriptionsAPIService) SubscriptionResumeExecute(r ApiSubscriptionRes
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2337,8 +2336,8 @@ func (a *SubscriptionsAPIService) SubscriptionResumeExecute(r ApiSubscriptionRes
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2348,8 +2347,8 @@ func (a *SubscriptionsAPIService) SubscriptionResumeExecute(r ApiSubscriptionRes
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2367,13 +2366,13 @@ func (a *SubscriptionsAPIService) SubscriptionResumeExecute(r ApiSubscriptionRes
 }
 
 type ApiSubscriptionUpdateRequest struct {
-	ctx context.Context
-	ApiService SubscriptionsAPI
-	customerId string
-	id string
+	ctx                       context.Context
+	ApiService                SubscriptionsAPI
+	customerId                string
+	id                        string
 	subscriptionUpdateRequest *SubscriptionUpdateRequest
-	acceptLanguage *string
-	xChildCompanyId *string
+	acceptLanguage            *string
+	xChildCompanyId           *string
 }
 
 // requested field for update a subscription
@@ -2411,9 +2410,9 @@ Update a specific subscription
 func (a *SubscriptionsAPIService) SubscriptionUpdate(ctx context.Context, customerId string, id string) ApiSubscriptionUpdateRequest {
 	return ApiSubscriptionUpdateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		customerId: customerId,
-		id: id,
+		id:         id,
 	}
 }
 
@@ -2421,10 +2420,10 @@ func (a *SubscriptionsAPIService) SubscriptionUpdate(ctx context.Context, custom
 //  @return SubscriptionResponse
 func (a *SubscriptionsAPIService) SubscriptionUpdateExecute(r ApiSubscriptionUpdateRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriptionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionUpdate")
@@ -2461,10 +2460,10 @@ func (a *SubscriptionsAPIService) SubscriptionUpdateExecute(r ApiSubscriptionUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.subscriptionUpdateRequest
@@ -2497,8 +2496,8 @@ func (a *SubscriptionsAPIService) SubscriptionUpdateExecute(r ApiSubscriptionUpd
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -2508,8 +2507,8 @@ func (a *SubscriptionsAPIService) SubscriptionUpdateExecute(r ApiSubscriptionUpd
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2519,8 +2518,8 @@ func (a *SubscriptionsAPIService) SubscriptionUpdateExecute(r ApiSubscriptionUpd
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2530,8 +2529,8 @@ func (a *SubscriptionsAPIService) SubscriptionUpdateExecute(r ApiSubscriptionUpd
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2549,11 +2548,11 @@ func (a *SubscriptionsAPIService) SubscriptionUpdateExecute(r ApiSubscriptionUpd
 }
 
 type ApiSubscriptionsGetRequest struct {
-	ctx context.Context
-	ApiService SubscriptionsAPI
-	customerId string
-	id string
-	acceptLanguage *string
+	ctx             context.Context
+	ApiService      SubscriptionsAPI
+	customerId      string
+	id              string
+	acceptLanguage  *string
 	xChildCompanyId *string
 }
 
@@ -2586,9 +2585,9 @@ Retrieve a specific subscription
 func (a *SubscriptionsAPIService) SubscriptionsGet(ctx context.Context, customerId string, id string) ApiSubscriptionsGetRequest {
 	return ApiSubscriptionsGetRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		customerId: customerId,
-		id: id,
+		id:         id,
 	}
 }
 
@@ -2596,10 +2595,10 @@ func (a *SubscriptionsAPIService) SubscriptionsGet(ctx context.Context, customer
 //  @return SubscriptionResponse
 func (a *SubscriptionsAPIService) SubscriptionsGetExecute(r ApiSubscriptionsGetRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriptionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionsGet")
@@ -2633,10 +2632,10 @@ func (a *SubscriptionsAPIService) SubscriptionsGetExecute(r ApiSubscriptionsGetR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -2667,8 +2666,8 @@ func (a *SubscriptionsAPIService) SubscriptionsGetExecute(r ApiSubscriptionsGetR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2678,8 +2677,8 @@ func (a *SubscriptionsAPIService) SubscriptionsGetExecute(r ApiSubscriptionsGetR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2689,8 +2688,8 @@ func (a *SubscriptionsAPIService) SubscriptionsGetExecute(r ApiSubscriptionsGetR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2708,11 +2707,11 @@ func (a *SubscriptionsAPIService) SubscriptionsGetExecute(r ApiSubscriptionsGetR
 }
 
 type ApiSubscriptionsRetryRequest struct {
-	ctx context.Context
-	ApiService SubscriptionsAPI
-	customerId string
-	id string
-	acceptLanguage *string
+	ctx             context.Context
+	ApiService      SubscriptionsAPI
+	customerId      string
+	id              string
+	acceptLanguage  *string
 	xChildCompanyId *string
 }
 
@@ -2745,9 +2744,9 @@ Retry a failed payment for a specific subscription
 func (a *SubscriptionsAPIService) SubscriptionsRetry(ctx context.Context, customerId string, id string) ApiSubscriptionsRetryRequest {
 	return ApiSubscriptionsRetryRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		customerId: customerId,
-		id: id,
+		id:         id,
 	}
 }
 
@@ -2755,10 +2754,10 @@ func (a *SubscriptionsAPIService) SubscriptionsRetry(ctx context.Context, custom
 //  @return SubscriptionResponse
 func (a *SubscriptionsAPIService) SubscriptionsRetryExecute(r ApiSubscriptionsRetryRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriptionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionsRetry")
@@ -2792,10 +2791,10 @@ func (a *SubscriptionsAPIService) SubscriptionsRetryExecute(r ApiSubscriptionsRe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -2826,8 +2825,8 @@ func (a *SubscriptionsAPIService) SubscriptionsRetryExecute(r ApiSubscriptionsRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2837,8 +2836,8 @@ func (a *SubscriptionsAPIService) SubscriptionsRetryExecute(r ApiSubscriptionsRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -2848,8 +2847,8 @@ func (a *SubscriptionsAPIService) SubscriptionsRetryExecute(r ApiSubscriptionsRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2859,8 +2858,8 @@ func (a *SubscriptionsAPIService) SubscriptionsRetryExecute(r ApiSubscriptionsRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2878,12 +2877,12 @@ func (a *SubscriptionsAPIService) SubscriptionsRetryExecute(r ApiSubscriptionsRe
 }
 
 type ApiUpdateSubscriptionRequest struct {
-	ctx context.Context
-	ApiService SubscriptionsAPI
-	id string
+	ctx                       context.Context
+	ApiService                SubscriptionsAPI
+	id                        string
 	subscriptionUpdateRequest *SubscriptionUpdateRequest
-	acceptLanguage *string
-	xChildCompanyId *string
+	acceptLanguage            *string
+	xChildCompanyId           *string
 }
 
 // requested field for update a subscription
@@ -2922,8 +2921,8 @@ Deprecated
 func (a *SubscriptionsAPIService) UpdateSubscription(ctx context.Context, id string) ApiUpdateSubscriptionRequest {
 	return ApiUpdateSubscriptionRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -2932,10 +2931,10 @@ func (a *SubscriptionsAPIService) UpdateSubscription(ctx context.Context, id str
 // Deprecated
 func (a *SubscriptionsAPIService) UpdateSubscriptionExecute(r ApiUpdateSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriptionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.UpdateSubscription")
@@ -2971,10 +2970,10 @@ func (a *SubscriptionsAPIService) UpdateSubscriptionExecute(r ApiUpdateSubscript
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.subscriptionUpdateRequest
@@ -3007,8 +3006,8 @@ func (a *SubscriptionsAPIService) UpdateSubscriptionExecute(r ApiUpdateSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -3018,8 +3017,8 @@ func (a *SubscriptionsAPIService) UpdateSubscriptionExecute(r ApiUpdateSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -3029,8 +3028,8 @@ func (a *SubscriptionsAPIService) UpdateSubscriptionExecute(r ApiUpdateSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -3040,8 +3039,8 @@ func (a *SubscriptionsAPIService) UpdateSubscriptionExecute(r ApiUpdateSubscript
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
