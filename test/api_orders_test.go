@@ -40,6 +40,7 @@ func Test_conekta_OrdersAPIService(t *testing.T) {
 	})
 
 	t.Run("Test OrdersAPIService CreateOrder", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
 		configuration := openapiclient.NewConfiguration()
 		ctx := context.WithValue(context.TODO(), openapiclient.ContextAccessToken, os.Getenv("CONEKTA_PRIVATE_KEY"))
 		apiClient := openapiclient.NewAPIClient(configuration)
