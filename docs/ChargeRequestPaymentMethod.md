@@ -5,10 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** | Type of payment method | 
+**ExpiresAt** | Pointer to **int64** | Method expiration date as unix timestamp | [optional] 
+**ProductType** | **string** | Product type of the payment method, use for the payment method to know the product type | 
 **CancelUrl** | **string** | URL to redirect the customer after a canceled payment | 
 **CanNotExpire** | **bool** | Indicates if the payment method can not expire | 
 **FailureUrl** | **string** | URL to redirect the customer after a failed payment | 
-**ProductType** | **string** | Product type of the payment method, use for the payment method to know the product type | 
 **SuccessUrl** | **string** | URL to redirect the customer after a successful payment | 
 **Cvc** | **string** | Optional, It is a value that allows identifying the security code of the card. Only for PCI merchants | 
 **ExpMonth** | **string** | Card expiration month | 
@@ -16,7 +17,6 @@ Name | Type | Description | Notes
 **Name** | **string** | Cardholder name | 
 **Number** | **string** | Card number | 
 **CustomerIpAddress** | Pointer to **string** | Optional field used to capture the customer&#39;s IP address for fraud prevention and security monitoring purposes | [optional] 
-**ExpiresAt** | Pointer to **int64** | Method expiration date as unix timestamp | [optional] 
 **MonthlyInstallments** | Pointer to **int32** | How many months without interest to apply, it can be 3, 6, 9, 12 or 18 | [optional] 
 **TokenId** | Pointer to **string** |  | [optional] 
 **PaymentSourceId** | Pointer to **string** |  | [optional] 
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewChargeRequestPaymentMethod
 
-`func NewChargeRequestPaymentMethod(type_ string, cancelUrl string, canNotExpire bool, failureUrl string, productType string, successUrl string, cvc string, expMonth string, expYear string, name string, number string, ) *ChargeRequestPaymentMethod`
+`func NewChargeRequestPaymentMethod(type_ string, productType string, cancelUrl string, canNotExpire bool, failureUrl string, successUrl string, cvc string, expMonth string, expYear string, name string, number string, ) *ChargeRequestPaymentMethod`
 
 NewChargeRequestPaymentMethod instantiates a new ChargeRequestPaymentMethod object
 This constructor will assign default values to properties that have it defined,
@@ -59,6 +59,51 @@ and a boolean to check if the value has been set.
 `func (o *ChargeRequestPaymentMethod) SetType(v string)`
 
 SetType sets Type field to given value.
+
+
+### GetExpiresAt
+
+`func (o *ChargeRequestPaymentMethod) GetExpiresAt() int64`
+
+GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
+
+### GetExpiresAtOk
+
+`func (o *ChargeRequestPaymentMethod) GetExpiresAtOk() (*int64, bool)`
+
+GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpiresAt
+
+`func (o *ChargeRequestPaymentMethod) SetExpiresAt(v int64)`
+
+SetExpiresAt sets ExpiresAt field to given value.
+
+### HasExpiresAt
+
+`func (o *ChargeRequestPaymentMethod) HasExpiresAt() bool`
+
+HasExpiresAt returns a boolean if a field has been set.
+
+### GetProductType
+
+`func (o *ChargeRequestPaymentMethod) GetProductType() string`
+
+GetProductType returns the ProductType field if non-nil, zero value otherwise.
+
+### GetProductTypeOk
+
+`func (o *ChargeRequestPaymentMethod) GetProductTypeOk() (*string, bool)`
+
+GetProductTypeOk returns a tuple with the ProductType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProductType
+
+`func (o *ChargeRequestPaymentMethod) SetProductType(v string)`
+
+SetProductType sets ProductType field to given value.
 
 
 ### GetCancelUrl
@@ -119,26 +164,6 @@ and a boolean to check if the value has been set.
 `func (o *ChargeRequestPaymentMethod) SetFailureUrl(v string)`
 
 SetFailureUrl sets FailureUrl field to given value.
-
-
-### GetProductType
-
-`func (o *ChargeRequestPaymentMethod) GetProductType() string`
-
-GetProductType returns the ProductType field if non-nil, zero value otherwise.
-
-### GetProductTypeOk
-
-`func (o *ChargeRequestPaymentMethod) GetProductTypeOk() (*string, bool)`
-
-GetProductTypeOk returns a tuple with the ProductType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProductType
-
-`func (o *ChargeRequestPaymentMethod) SetProductType(v string)`
-
-SetProductType sets ProductType field to given value.
 
 
 ### GetSuccessUrl
@@ -285,31 +310,6 @@ SetCustomerIpAddress sets CustomerIpAddress field to given value.
 `func (o *ChargeRequestPaymentMethod) HasCustomerIpAddress() bool`
 
 HasCustomerIpAddress returns a boolean if a field has been set.
-
-### GetExpiresAt
-
-`func (o *ChargeRequestPaymentMethod) GetExpiresAt() int64`
-
-GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
-
-### GetExpiresAtOk
-
-`func (o *ChargeRequestPaymentMethod) GetExpiresAtOk() (*int64, bool)`
-
-GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExpiresAt
-
-`func (o *ChargeRequestPaymentMethod) SetExpiresAt(v int64)`
-
-SetExpiresAt sets ExpiresAt field to given value.
-
-### HasExpiresAt
-
-`func (o *ChargeRequestPaymentMethod) HasExpiresAt() bool`
-
-HasExpiresAt returns a boolean if a field has been set.
 
 ### GetMonthlyInstallments
 

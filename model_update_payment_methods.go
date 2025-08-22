@@ -20,7 +20,10 @@ var _ MappedNullable = &UpdatePaymentMethods{}
 
 // UpdatePaymentMethods struct for UpdatePaymentMethods
 type UpdatePaymentMethods struct {
+	// The name of the payment method holder
 	Name *string `json:"name,omitempty"`
+	// The expiration date of the payment method in Unix timestamp format
+	ExpiresAt            *int64 `json:"expires_at,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -75,8 +78,40 @@ func (o *UpdatePaymentMethods) SetName(v string) {
 	o.Name = &v
 }
 
+// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
+func (o *UpdatePaymentMethods) GetExpiresAt() int64 {
+	if o == nil || IsNil(o.ExpiresAt) {
+		var ret int64
+		return ret
+	}
+	return *o.ExpiresAt
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdatePaymentMethods) GetExpiresAtOk() (*int64, bool) {
+	if o == nil || IsNil(o.ExpiresAt) {
+		return nil, false
+	}
+	return o.ExpiresAt, true
+}
+
+// HasExpiresAt returns a boolean if a field has been set.
+func (o *UpdatePaymentMethods) HasExpiresAt() bool {
+	if o != nil && !IsNil(o.ExpiresAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiresAt gets a reference to the given int64 and assigns it to the ExpiresAt field.
+func (o *UpdatePaymentMethods) SetExpiresAt(v int64) {
+	o.ExpiresAt = &v
+}
+
 func (o UpdatePaymentMethods) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -87,6 +122,9 @@ func (o UpdatePaymentMethods) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.ExpiresAt) {
+		toSerialize["expires_at"] = o.ExpiresAt
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -111,6 +149,7 @@ func (o *UpdatePaymentMethods) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "expires_at")
 		o.AdditionalProperties = additionalProperties
 	}
 
@@ -152,5 +191,3 @@ func (v *NullableUpdatePaymentMethods) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -20,17 +20,16 @@ import (
 	"strings"
 )
 
-
 type ShippingsAPI interface {
 
 	/*
-	OrdersCreateShipping Create Shipping
+		OrdersCreateShipping Create Shipping
 
-	Create new shipping for an existing orden
+		Create new shipping for an existing orden
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Identifier of the resource
-	@return ApiOrdersCreateShippingRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Identifier of the resource
+		@return ApiOrdersCreateShippingRequest
 	*/
 	OrdersCreateShipping(ctx context.Context, id string) ApiOrdersCreateShippingRequest
 
@@ -39,14 +38,14 @@ type ShippingsAPI interface {
 	OrdersCreateShippingExecute(r ApiOrdersCreateShippingRequest) (*ShippingOrderResponse, *http.Response, error)
 
 	/*
-	OrdersDeleteShipping Delete Shipping
+		OrdersDeleteShipping Delete Shipping
 
-	Delete shipping
+		Delete shipping
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Identifier of the resource
-	@param shippingId identifier
-	@return ApiOrdersDeleteShippingRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Identifier of the resource
+		@param shippingId identifier
+		@return ApiOrdersDeleteShippingRequest
 	*/
 	OrdersDeleteShipping(ctx context.Context, id string, shippingId string) ApiOrdersDeleteShippingRequest
 
@@ -55,14 +54,14 @@ type ShippingsAPI interface {
 	OrdersDeleteShippingExecute(r ApiOrdersDeleteShippingRequest) (*ShippingOrderResponse, *http.Response, error)
 
 	/*
-	OrdersUpdateShipping Update Shipping
+		OrdersUpdateShipping Update Shipping
 
-	Update existing shipping for an existing orden
+		Update existing shipping for an existing orden
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Identifier of the resource
-	@param shippingId identifier
-	@return ApiOrdersUpdateShippingRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Identifier of the resource
+		@param shippingId identifier
+		@return ApiOrdersUpdateShippingRequest
 	*/
 	OrdersUpdateShipping(ctx context.Context, id string, shippingId string) ApiOrdersUpdateShippingRequest
 
@@ -75,11 +74,11 @@ type ShippingsAPI interface {
 type ShippingsAPIService service
 
 type ApiOrdersCreateShippingRequest struct {
-	ctx context.Context
-	ApiService ShippingsAPI
-	id string
+	ctx             context.Context
+	ApiService      ShippingsAPI
+	id              string
 	shippingRequest *ShippingRequest
-	acceptLanguage *string
+	acceptLanguage  *string
 	xChildCompanyId *string
 }
 
@@ -117,8 +116,8 @@ Create new shipping for an existing orden
 func (a *ShippingsAPIService) OrdersCreateShipping(ctx context.Context, id string) ApiOrdersCreateShippingRequest {
 	return ApiOrdersCreateShippingRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -126,10 +125,10 @@ func (a *ShippingsAPIService) OrdersCreateShipping(ctx context.Context, id strin
 //  @return ShippingOrderResponse
 func (a *ShippingsAPIService) OrdersCreateShippingExecute(r ApiOrdersCreateShippingRequest) (*ShippingOrderResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ShippingOrderResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ShippingOrderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShippingsAPIService.OrdersCreateShipping")
@@ -165,10 +164,10 @@ func (a *ShippingsAPIService) OrdersCreateShippingExecute(r ApiOrdersCreateShipp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.shippingRequest
@@ -201,8 +200,8 @@ func (a *ShippingsAPIService) OrdersCreateShippingExecute(r ApiOrdersCreateShipp
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -212,8 +211,8 @@ func (a *ShippingsAPIService) OrdersCreateShippingExecute(r ApiOrdersCreateShipp
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -223,8 +222,8 @@ func (a *ShippingsAPIService) OrdersCreateShippingExecute(r ApiOrdersCreateShipp
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -242,11 +241,11 @@ func (a *ShippingsAPIService) OrdersCreateShippingExecute(r ApiOrdersCreateShipp
 }
 
 type ApiOrdersDeleteShippingRequest struct {
-	ctx context.Context
-	ApiService ShippingsAPI
-	id string
-	shippingId string
-	acceptLanguage *string
+	ctx             context.Context
+	ApiService      ShippingsAPI
+	id              string
+	shippingId      string
+	acceptLanguage  *string
 	xChildCompanyId *string
 }
 
@@ -279,8 +278,8 @@ Delete shipping
 func (a *ShippingsAPIService) OrdersDeleteShipping(ctx context.Context, id string, shippingId string) ApiOrdersDeleteShippingRequest {
 	return ApiOrdersDeleteShippingRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 		shippingId: shippingId,
 	}
 }
@@ -289,10 +288,10 @@ func (a *ShippingsAPIService) OrdersDeleteShipping(ctx context.Context, id strin
 //  @return ShippingOrderResponse
 func (a *ShippingsAPIService) OrdersDeleteShippingExecute(r ApiOrdersDeleteShippingRequest) (*ShippingOrderResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ShippingOrderResponse
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ShippingOrderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShippingsAPIService.OrdersDeleteShipping")
@@ -326,10 +325,10 @@ func (a *ShippingsAPIService) OrdersDeleteShippingExecute(r ApiOrdersDeleteShipp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -360,8 +359,8 @@ func (a *ShippingsAPIService) OrdersDeleteShippingExecute(r ApiOrdersDeleteShipp
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -371,8 +370,8 @@ func (a *ShippingsAPIService) OrdersDeleteShippingExecute(r ApiOrdersDeleteShipp
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -382,8 +381,8 @@ func (a *ShippingsAPIService) OrdersDeleteShippingExecute(r ApiOrdersDeleteShipp
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 428 {
@@ -393,8 +392,8 @@ func (a *ShippingsAPIService) OrdersDeleteShippingExecute(r ApiOrdersDeleteShipp
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -404,8 +403,8 @@ func (a *ShippingsAPIService) OrdersDeleteShippingExecute(r ApiOrdersDeleteShipp
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -423,12 +422,12 @@ func (a *ShippingsAPIService) OrdersDeleteShippingExecute(r ApiOrdersDeleteShipp
 }
 
 type ApiOrdersUpdateShippingRequest struct {
-	ctx context.Context
-	ApiService ShippingsAPI
-	id string
-	shippingId string
+	ctx             context.Context
+	ApiService      ShippingsAPI
+	id              string
+	shippingId      string
 	shippingRequest *ShippingRequest
-	acceptLanguage *string
+	acceptLanguage  *string
 	xChildCompanyId *string
 }
 
@@ -467,8 +466,8 @@ Update existing shipping for an existing orden
 func (a *ShippingsAPIService) OrdersUpdateShipping(ctx context.Context, id string, shippingId string) ApiOrdersUpdateShippingRequest {
 	return ApiOrdersUpdateShippingRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 		shippingId: shippingId,
 	}
 }
@@ -477,10 +476,10 @@ func (a *ShippingsAPIService) OrdersUpdateShipping(ctx context.Context, id strin
 //  @return ShippingOrderResponse
 func (a *ShippingsAPIService) OrdersUpdateShippingExecute(r ApiOrdersUpdateShippingRequest) (*ShippingOrderResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ShippingOrderResponse
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ShippingOrderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShippingsAPIService.OrdersUpdateShipping")
@@ -517,10 +516,10 @@ func (a *ShippingsAPIService) OrdersUpdateShippingExecute(r ApiOrdersUpdateShipp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.shippingRequest
@@ -553,8 +552,8 @@ func (a *ShippingsAPIService) OrdersUpdateShippingExecute(r ApiOrdersUpdateShipp
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -564,8 +563,8 @@ func (a *ShippingsAPIService) OrdersUpdateShippingExecute(r ApiOrdersUpdateShipp
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -575,8 +574,8 @@ func (a *ShippingsAPIService) OrdersUpdateShippingExecute(r ApiOrdersUpdateShipp
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -586,8 +585,8 @@ func (a *ShippingsAPIService) OrdersUpdateShippingExecute(r ApiOrdersUpdateShipp
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

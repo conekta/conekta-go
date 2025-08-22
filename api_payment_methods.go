@@ -20,17 +20,16 @@ import (
 	"strings"
 )
 
-
 type PaymentMethodsAPI interface {
 
 	/*
-	CreateCustomerPaymentMethods Create Payment Method
+		CreateCustomerPaymentMethods Create Payment Method
 
-	Create a payment method for a customer.
+		Create a payment method for a customer.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Identifier of the resource
-	@return ApiCreateCustomerPaymentMethodsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Identifier of the resource
+		@return ApiCreateCustomerPaymentMethodsRequest
 	*/
 	CreateCustomerPaymentMethods(ctx context.Context, id string) ApiCreateCustomerPaymentMethodsRequest
 
@@ -39,14 +38,14 @@ type PaymentMethodsAPI interface {
 	CreateCustomerPaymentMethodsExecute(r ApiCreateCustomerPaymentMethodsRequest) (*CreateCustomerPaymentMethodsResponse, *http.Response, error)
 
 	/*
-	DeleteCustomerPaymentMethods Delete Payment Method
+		DeleteCustomerPaymentMethods Delete Payment Method
 
-	Delete an existing payment method
+		Delete an existing payment method
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Identifier of the resource
-	@param paymentMethodId Identifier of the payment method
-	@return ApiDeleteCustomerPaymentMethodsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Identifier of the resource
+		@param paymentMethodId Identifier of the payment method
+		@return ApiDeleteCustomerPaymentMethodsRequest
 	*/
 	DeleteCustomerPaymentMethods(ctx context.Context, id string, paymentMethodId string) ApiDeleteCustomerPaymentMethodsRequest
 
@@ -55,13 +54,13 @@ type PaymentMethodsAPI interface {
 	DeleteCustomerPaymentMethodsExecute(r ApiDeleteCustomerPaymentMethodsRequest) (*UpdateCustomerPaymentMethodsResponse, *http.Response, error)
 
 	/*
-	GetCustomerPaymentMethods Get Payment Methods
+		GetCustomerPaymentMethods Get Payment Methods
 
-	Get a list of Payment Methods
+		Get a list of Payment Methods
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Identifier of the resource
-	@return ApiGetCustomerPaymentMethodsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Identifier of the resource
+		@return ApiGetCustomerPaymentMethodsRequest
 	*/
 	GetCustomerPaymentMethods(ctx context.Context, id string) ApiGetCustomerPaymentMethodsRequest
 
@@ -70,14 +69,14 @@ type PaymentMethodsAPI interface {
 	GetCustomerPaymentMethodsExecute(r ApiGetCustomerPaymentMethodsRequest) (*GetPaymentMethodResponse, *http.Response, error)
 
 	/*
-	UpdateCustomerPaymentMethods Update Payment Method
+		UpdateCustomerPaymentMethods Update Payment Method
 
-	Gets a payment Method that corresponds to a customer ID.
+		Gets a payment Method that corresponds to a customer ID.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Identifier of the resource
-	@param paymentMethodId Identifier of the payment method
-	@return ApiUpdateCustomerPaymentMethodsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Identifier of the resource
+		@param paymentMethodId Identifier of the payment method
+		@return ApiUpdateCustomerPaymentMethodsRequest
 	*/
 	UpdateCustomerPaymentMethods(ctx context.Context, id string, paymentMethodId string) ApiUpdateCustomerPaymentMethodsRequest
 
@@ -90,12 +89,12 @@ type PaymentMethodsAPI interface {
 type PaymentMethodsAPIService service
 
 type ApiCreateCustomerPaymentMethodsRequest struct {
-	ctx context.Context
-	ApiService PaymentMethodsAPI
-	id string
+	ctx                                 context.Context
+	ApiService                          PaymentMethodsAPI
+	id                                  string
 	createCustomerPaymentMethodsRequest *CreateCustomerPaymentMethodsRequest
-	acceptLanguage *string
-	xChildCompanyId *string
+	acceptLanguage                      *string
+	xChildCompanyId                     *string
 }
 
 // requested field for customer payment methods
@@ -132,8 +131,8 @@ Create a payment method for a customer.
 func (a *PaymentMethodsAPIService) CreateCustomerPaymentMethods(ctx context.Context, id string) ApiCreateCustomerPaymentMethodsRequest {
 	return ApiCreateCustomerPaymentMethodsRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -141,10 +140,10 @@ func (a *PaymentMethodsAPIService) CreateCustomerPaymentMethods(ctx context.Cont
 //  @return CreateCustomerPaymentMethodsResponse
 func (a *PaymentMethodsAPIService) CreateCustomerPaymentMethodsExecute(r ApiCreateCustomerPaymentMethodsRequest) (*CreateCustomerPaymentMethodsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CreateCustomerPaymentMethodsResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CreateCustomerPaymentMethodsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentMethodsAPIService.CreateCustomerPaymentMethods")
@@ -180,10 +179,10 @@ func (a *PaymentMethodsAPIService) CreateCustomerPaymentMethodsExecute(r ApiCrea
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.createCustomerPaymentMethodsRequest
@@ -216,8 +215,8 @@ func (a *PaymentMethodsAPIService) CreateCustomerPaymentMethodsExecute(r ApiCrea
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -227,8 +226,8 @@ func (a *PaymentMethodsAPIService) CreateCustomerPaymentMethodsExecute(r ApiCrea
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -238,8 +237,8 @@ func (a *PaymentMethodsAPIService) CreateCustomerPaymentMethodsExecute(r ApiCrea
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -249,8 +248,8 @@ func (a *PaymentMethodsAPIService) CreateCustomerPaymentMethodsExecute(r ApiCrea
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -268,11 +267,11 @@ func (a *PaymentMethodsAPIService) CreateCustomerPaymentMethodsExecute(r ApiCrea
 }
 
 type ApiDeleteCustomerPaymentMethodsRequest struct {
-	ctx context.Context
-	ApiService PaymentMethodsAPI
-	id string
+	ctx             context.Context
+	ApiService      PaymentMethodsAPI
+	id              string
 	paymentMethodId string
-	acceptLanguage *string
+	acceptLanguage  *string
 	xChildCompanyId *string
 }
 
@@ -304,9 +303,9 @@ Delete an existing payment method
 */
 func (a *PaymentMethodsAPIService) DeleteCustomerPaymentMethods(ctx context.Context, id string, paymentMethodId string) ApiDeleteCustomerPaymentMethodsRequest {
 	return ApiDeleteCustomerPaymentMethodsRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ApiService:      a,
+		ctx:             ctx,
+		id:              id,
 		paymentMethodId: paymentMethodId,
 	}
 }
@@ -315,10 +314,10 @@ func (a *PaymentMethodsAPIService) DeleteCustomerPaymentMethods(ctx context.Cont
 //  @return UpdateCustomerPaymentMethodsResponse
 func (a *PaymentMethodsAPIService) DeleteCustomerPaymentMethodsExecute(r ApiDeleteCustomerPaymentMethodsRequest) (*UpdateCustomerPaymentMethodsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *UpdateCustomerPaymentMethodsResponse
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UpdateCustomerPaymentMethodsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentMethodsAPIService.DeleteCustomerPaymentMethods")
@@ -352,10 +351,10 @@ func (a *PaymentMethodsAPIService) DeleteCustomerPaymentMethodsExecute(r ApiDele
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -386,8 +385,8 @@ func (a *PaymentMethodsAPIService) DeleteCustomerPaymentMethodsExecute(r ApiDele
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -397,8 +396,8 @@ func (a *PaymentMethodsAPIService) DeleteCustomerPaymentMethodsExecute(r ApiDele
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -408,8 +407,8 @@ func (a *PaymentMethodsAPIService) DeleteCustomerPaymentMethodsExecute(r ApiDele
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -419,8 +418,8 @@ func (a *PaymentMethodsAPIService) DeleteCustomerPaymentMethodsExecute(r ApiDele
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -438,15 +437,15 @@ func (a *PaymentMethodsAPIService) DeleteCustomerPaymentMethodsExecute(r ApiDele
 }
 
 type ApiGetCustomerPaymentMethodsRequest struct {
-	ctx context.Context
-	ApiService PaymentMethodsAPI
-	id string
-	acceptLanguage *string
+	ctx             context.Context
+	ApiService      PaymentMethodsAPI
+	id              string
+	acceptLanguage  *string
 	xChildCompanyId *string
-	limit *int32
-	next *string
-	previous *string
-	search *string
+	limit           *int32
+	next            *string
+	previous        *string
+	search          *string
 }
 
 // Use for knowing which language to use
@@ -501,8 +500,8 @@ Get a list of Payment Methods
 func (a *PaymentMethodsAPIService) GetCustomerPaymentMethods(ctx context.Context, id string) ApiGetCustomerPaymentMethodsRequest {
 	return ApiGetCustomerPaymentMethodsRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -510,10 +509,10 @@ func (a *PaymentMethodsAPIService) GetCustomerPaymentMethods(ctx context.Context
 //  @return GetPaymentMethodResponse
 func (a *PaymentMethodsAPIService) GetCustomerPaymentMethodsExecute(r ApiGetCustomerPaymentMethodsRequest) (*GetPaymentMethodResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetPaymentMethodResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetPaymentMethodResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentMethodsAPIService.GetCustomerPaymentMethods")
@@ -529,19 +528,19 @@ func (a *PaymentMethodsAPIService) GetCustomerPaymentMethodsExecute(r ApiGetCust
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
 		r.limit = &defaultValue
 	}
 	if r.next != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "next", r.next, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "next", r.next, "form", "")
 	}
 	if r.previous != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "previous", r.previous, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "previous", r.previous, "form", "")
 	}
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -561,10 +560,10 @@ func (a *PaymentMethodsAPIService) GetCustomerPaymentMethodsExecute(r ApiGetCust
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -595,8 +594,8 @@ func (a *PaymentMethodsAPIService) GetCustomerPaymentMethodsExecute(r ApiGetCust
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -606,8 +605,8 @@ func (a *PaymentMethodsAPIService) GetCustomerPaymentMethodsExecute(r ApiGetCust
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -617,8 +616,8 @@ func (a *PaymentMethodsAPIService) GetCustomerPaymentMethodsExecute(r ApiGetCust
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -636,13 +635,13 @@ func (a *PaymentMethodsAPIService) GetCustomerPaymentMethodsExecute(r ApiGetCust
 }
 
 type ApiUpdateCustomerPaymentMethodsRequest struct {
-	ctx context.Context
-	ApiService PaymentMethodsAPI
-	id string
-	paymentMethodId string
+	ctx                  context.Context
+	ApiService           PaymentMethodsAPI
+	id                   string
+	paymentMethodId      string
 	updatePaymentMethods *UpdatePaymentMethods
-	acceptLanguage *string
-	xChildCompanyId *string
+	acceptLanguage       *string
+	xChildCompanyId      *string
 }
 
 // requested field for customer payment methods
@@ -679,9 +678,9 @@ Gets a payment Method that corresponds to a customer ID.
 */
 func (a *PaymentMethodsAPIService) UpdateCustomerPaymentMethods(ctx context.Context, id string, paymentMethodId string) ApiUpdateCustomerPaymentMethodsRequest {
 	return ApiUpdateCustomerPaymentMethodsRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ApiService:      a,
+		ctx:             ctx,
+		id:              id,
 		paymentMethodId: paymentMethodId,
 	}
 }
@@ -690,10 +689,10 @@ func (a *PaymentMethodsAPIService) UpdateCustomerPaymentMethods(ctx context.Cont
 //  @return UpdateCustomerPaymentMethodsResponse
 func (a *PaymentMethodsAPIService) UpdateCustomerPaymentMethodsExecute(r ApiUpdateCustomerPaymentMethodsRequest) (*UpdateCustomerPaymentMethodsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *UpdateCustomerPaymentMethodsResponse
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UpdateCustomerPaymentMethodsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentMethodsAPIService.UpdateCustomerPaymentMethods")
@@ -730,10 +729,10 @@ func (a *PaymentMethodsAPIService) UpdateCustomerPaymentMethodsExecute(r ApiUpda
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.acceptLanguage != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	if r.xChildCompanyId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.updatePaymentMethods
@@ -766,8 +765,8 @@ func (a *PaymentMethodsAPIService) UpdateCustomerPaymentMethodsExecute(r ApiUpda
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -777,8 +776,8 @@ func (a *PaymentMethodsAPIService) UpdateCustomerPaymentMethodsExecute(r ApiUpda
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -788,8 +787,8 @@ func (a *PaymentMethodsAPIService) UpdateCustomerPaymentMethodsExecute(r ApiUpda
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -799,8 +798,8 @@ func (a *PaymentMethodsAPIService) UpdateCustomerPaymentMethodsExecute(r ApiUpda
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

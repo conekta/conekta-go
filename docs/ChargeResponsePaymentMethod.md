@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Agreement** | Pointer to **string** | Agreement ID | [optional] 
 **AuthCode** | Pointer to **string** |  | [optional] 
 **CashierId** | Pointer to **NullableString** |  | [optional] 
-**Reference** | Pointer to **string** |  | [optional] 
+**Reference** | **string** | Reference for the payment | 
 **BarcodeUrl** | Pointer to **string** |  | [optional] 
 **ExpiresAt** | **int64** | Expiration date of the charge | 
 **ProductType** | **string** | Product type of the charge | 
@@ -44,14 +44,15 @@ Name | Type | Description | Notes
 **TrackingCode** | Pointer to **NullableString** |  | [optional] 
 **CancelUrl** | Pointer to **string** | URL to redirect the customer after a canceled payment | [optional] 
 **FailureUrl** | Pointer to **string** | URL to redirect the customer after a failed payment | [optional] 
-**RedirectUrl** | Pointer to **string** | URL to redirect the customer to complete the payment | [optional] 
+**RedirectUrl** | **string** | URL to redirect the customer to complete the payment | 
 **SuccessUrl** | Pointer to **string** | URL to redirect the customer after a successful payment | [optional] 
+**DeepLink** | **string** | Deep link for the payment, use for mobile apps/flows | 
 
 ## Methods
 
 ### NewChargeResponsePaymentMethod
 
-`func NewChargeResponsePaymentMethod(object string, expiresAt int64, productType string, ) *ChargeResponsePaymentMethod`
+`func NewChargeResponsePaymentMethod(object string, reference string, expiresAt int64, productType string, redirectUrl string, deepLink string, ) *ChargeResponsePaymentMethod`
 
 NewChargeResponsePaymentMethod instantiates a new ChargeResponsePaymentMethod object
 This constructor will assign default values to properties that have it defined,
@@ -215,11 +216,6 @@ and a boolean to check if the value has been set.
 
 SetReference sets Reference field to given value.
 
-### HasReference
-
-`func (o *ChargeResponsePaymentMethod) HasReference() bool`
-
-HasReference returns a boolean if a field has been set.
 
 ### GetBarcodeUrl
 
@@ -1190,11 +1186,6 @@ and a boolean to check if the value has been set.
 
 SetRedirectUrl sets RedirectUrl field to given value.
 
-### HasRedirectUrl
-
-`func (o *ChargeResponsePaymentMethod) HasRedirectUrl() bool`
-
-HasRedirectUrl returns a boolean if a field has been set.
 
 ### GetSuccessUrl
 
@@ -1220,6 +1211,26 @@ SetSuccessUrl sets SuccessUrl field to given value.
 `func (o *ChargeResponsePaymentMethod) HasSuccessUrl() bool`
 
 HasSuccessUrl returns a boolean if a field has been set.
+
+### GetDeepLink
+
+`func (o *ChargeResponsePaymentMethod) GetDeepLink() string`
+
+GetDeepLink returns the DeepLink field if non-nil, zero value otherwise.
+
+### GetDeepLinkOk
+
+`func (o *ChargeResponsePaymentMethod) GetDeepLinkOk() (*string, bool)`
+
+GetDeepLinkOk returns a tuple with the DeepLink field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeepLink
+
+`func (o *ChargeResponsePaymentMethod) SetDeepLink(v string)`
+
+SetDeepLink sets DeepLink field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
