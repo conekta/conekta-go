@@ -20,13 +20,14 @@ import (
 	"strings"
 )
 
+
 type ChargesAPI interface {
 
 	/*
-		GetCharges Get A List of Charges
+	GetCharges Get A List of Charges
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetChargesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetChargesRequest
 	*/
 	GetCharges(ctx context.Context) ApiGetChargesRequest
 
@@ -35,13 +36,13 @@ type ChargesAPI interface {
 	GetChargesExecute(r ApiGetChargesRequest) (*GetChargesResponse, *http.Response, error)
 
 	/*
-		OrdersCreateCharge Create charge
+	OrdersCreateCharge Create charge
 
-		Create charge for an existing orden
+	Create charge for an existing orden
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiOrdersCreateChargeRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiOrdersCreateChargeRequest
 	*/
 	OrdersCreateCharge(ctx context.Context, id string) ApiOrdersCreateChargeRequest
 
@@ -50,13 +51,13 @@ type ChargesAPI interface {
 	OrdersCreateChargeExecute(r ApiOrdersCreateChargeRequest) (*ChargeOrderResponse, *http.Response, error)
 
 	/*
-		OrdersCreateCharges Create charges
+	OrdersCreateCharges Create charges
 
-		Create charges for an existing orden
+	Create charges for an existing orden
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiOrdersCreateChargesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiOrdersCreateChargesRequest
 	*/
 	OrdersCreateCharges(ctx context.Context, id string) ApiOrdersCreateChargesRequest
 
@@ -65,11 +66,11 @@ type ChargesAPI interface {
 	OrdersCreateChargesExecute(r ApiOrdersCreateChargesRequest) (*ChargesOrderResponse, *http.Response, error)
 
 	/*
-		UpdateCharge Update a charge
+	UpdateCharge Update a charge
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiUpdateChargeRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiUpdateChargeRequest
 	*/
 	UpdateCharge(ctx context.Context, id string) ApiUpdateChargeRequest
 
@@ -82,14 +83,14 @@ type ChargesAPI interface {
 type ChargesAPIService service
 
 type ApiGetChargesRequest struct {
-	ctx             context.Context
-	ApiService      ChargesAPI
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService ChargesAPI
+	acceptLanguage *string
 	xChildCompanyId *string
-	limit           *int32
-	search          *string
-	next            *string
-	previous        *string
+	limit *int32
+	search *string
+	next *string
+	previous *string
 }
 
 // Use for knowing which language to use
@@ -141,7 +142,7 @@ GetCharges Get A List of Charges
 func (a *ChargesAPIService) GetCharges(ctx context.Context) ApiGetChargesRequest {
 	return ApiGetChargesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -149,10 +150,10 @@ func (a *ChargesAPIService) GetCharges(ctx context.Context) ApiGetChargesRequest
 //  @return GetChargesResponse
 func (a *ChargesAPIService) GetChargesExecute(r ApiGetChargesRequest) (*GetChargesResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GetChargesResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetChargesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChargesAPIService.GetCharges")
@@ -233,8 +234,8 @@ func (a *ChargesAPIService) GetChargesExecute(r ApiGetChargesRequest) (*GetCharg
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -244,8 +245,8 @@ func (a *ChargesAPIService) GetChargesExecute(r ApiGetChargesRequest) (*GetCharg
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -263,11 +264,11 @@ func (a *ChargesAPIService) GetChargesExecute(r ApiGetChargesRequest) (*GetCharg
 }
 
 type ApiOrdersCreateChargeRequest struct {
-	ctx             context.Context
-	ApiService      ChargesAPI
-	id              string
-	chargeRequest   *ChargeRequest
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService ChargesAPI
+	id string
+	chargeRequest *ChargeRequest
+	acceptLanguage *string
 	xChildCompanyId *string
 }
 
@@ -305,8 +306,8 @@ Create charge for an existing orden
 func (a *ChargesAPIService) OrdersCreateCharge(ctx context.Context, id string) ApiOrdersCreateChargeRequest {
 	return ApiOrdersCreateChargeRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -314,10 +315,10 @@ func (a *ChargesAPIService) OrdersCreateCharge(ctx context.Context, id string) A
 //  @return ChargeOrderResponse
 func (a *ChargesAPIService) OrdersCreateChargeExecute(r ApiOrdersCreateChargeRequest) (*ChargeOrderResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ChargeOrderResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ChargeOrderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChargesAPIService.OrdersCreateCharge")
@@ -389,8 +390,8 @@ func (a *ChargesAPIService) OrdersCreateChargeExecute(r ApiOrdersCreateChargeReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -400,8 +401,8 @@ func (a *ChargesAPIService) OrdersCreateChargeExecute(r ApiOrdersCreateChargeReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 428 {
@@ -411,8 +412,8 @@ func (a *ChargesAPIService) OrdersCreateChargeExecute(r ApiOrdersCreateChargeReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -422,8 +423,8 @@ func (a *ChargesAPIService) OrdersCreateChargeExecute(r ApiOrdersCreateChargeReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -441,11 +442,11 @@ func (a *ChargesAPIService) OrdersCreateChargeExecute(r ApiOrdersCreateChargeReq
 }
 
 type ApiOrdersCreateChargesRequest struct {
-	ctx             context.Context
-	ApiService      ChargesAPI
-	id              string
-	chargeRequest   *ChargeRequest
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService ChargesAPI
+	id string
+	chargeRequest *ChargeRequest
+	acceptLanguage *string
 	xChildCompanyId *string
 }
 
@@ -483,8 +484,8 @@ Create charges for an existing orden
 func (a *ChargesAPIService) OrdersCreateCharges(ctx context.Context, id string) ApiOrdersCreateChargesRequest {
 	return ApiOrdersCreateChargesRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -492,10 +493,10 @@ func (a *ChargesAPIService) OrdersCreateCharges(ctx context.Context, id string) 
 //  @return ChargesOrderResponse
 func (a *ChargesAPIService) OrdersCreateChargesExecute(r ApiOrdersCreateChargesRequest) (*ChargesOrderResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ChargesOrderResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ChargesOrderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChargesAPIService.OrdersCreateCharges")
@@ -567,8 +568,8 @@ func (a *ChargesAPIService) OrdersCreateChargesExecute(r ApiOrdersCreateChargesR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -578,8 +579,8 @@ func (a *ChargesAPIService) OrdersCreateChargesExecute(r ApiOrdersCreateChargesR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 428 {
@@ -589,8 +590,8 @@ func (a *ChargesAPIService) OrdersCreateChargesExecute(r ApiOrdersCreateChargesR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -600,8 +601,8 @@ func (a *ChargesAPIService) OrdersCreateChargesExecute(r ApiOrdersCreateChargesR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -619,12 +620,12 @@ func (a *ChargesAPIService) OrdersCreateChargesExecute(r ApiOrdersCreateChargesR
 }
 
 type ApiUpdateChargeRequest struct {
-	ctx                 context.Context
-	ApiService          ChargesAPI
-	id                  string
+	ctx context.Context
+	ApiService ChargesAPI
+	id string
 	chargeUpdateRequest *ChargeUpdateRequest
-	acceptLanguage      *string
-	xChildCompanyId     *string
+	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for update a charge
@@ -659,8 +660,8 @@ UpdateCharge Update a charge
 func (a *ChargesAPIService) UpdateCharge(ctx context.Context, id string) ApiUpdateChargeRequest {
 	return ApiUpdateChargeRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -668,10 +669,10 @@ func (a *ChargesAPIService) UpdateCharge(ctx context.Context, id string) ApiUpda
 //  @return ChargeResponse
 func (a *ChargesAPIService) UpdateChargeExecute(r ApiUpdateChargeRequest) (*ChargeResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ChargeResponse
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ChargeResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChargesAPIService.UpdateCharge")
@@ -743,8 +744,8 @@ func (a *ChargesAPIService) UpdateChargeExecute(r ApiUpdateChargeRequest) (*Char
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -754,8 +755,8 @@ func (a *ChargesAPIService) UpdateChargeExecute(r ApiUpdateChargeRequest) (*Char
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -765,8 +766,8 @@ func (a *ChargesAPIService) UpdateChargeExecute(r ApiUpdateChargeRequest) (*Char
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

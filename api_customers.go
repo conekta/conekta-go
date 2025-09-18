@@ -20,17 +20,18 @@ import (
 	"strings"
 )
 
+
 type CustomersAPI interface {
 
 	/*
-		CreateCustomer Create customer
+	CreateCustomer Create customer
 
-		The purpose of business is to create and keep a customer, you will learn what elements you need to create a customer.
-	Remember the credit and debit card tokenization process: [https://developers.conekta.com/page/web-checkout-tokenizer](https://developers.conekta.com/page/web-checkout-tokenizer)
+	The purpose of business is to create and keep a customer, you will learn what elements you need to create a customer.
+Remember the credit and debit card tokenization process: [https://developers.conekta.com/page/web-checkout-tokenizer](https://developers.conekta.com/page/web-checkout-tokenizer)
 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiCreateCustomerRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateCustomerRequest
 	*/
 	CreateCustomer(ctx context.Context) ApiCreateCustomerRequest
 
@@ -39,13 +40,13 @@ type CustomersAPI interface {
 	CreateCustomerExecute(r ApiCreateCustomerRequest) (*CustomerResponse, *http.Response, error)
 
 	/*
-		CreateCustomerFiscalEntities Create Fiscal Entity
+	CreateCustomerFiscalEntities Create Fiscal Entity
 
-		Create Fiscal entity resource that corresponds to a customer ID.
+	Create Fiscal entity resource that corresponds to a customer ID.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiCreateCustomerFiscalEntitiesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiCreateCustomerFiscalEntitiesRequest
 	*/
 	CreateCustomerFiscalEntities(ctx context.Context, id string) ApiCreateCustomerFiscalEntitiesRequest
 
@@ -54,13 +55,13 @@ type CustomersAPI interface {
 	CreateCustomerFiscalEntitiesExecute(r ApiCreateCustomerFiscalEntitiesRequest) (*CreateCustomerFiscalEntitiesResponse, *http.Response, error)
 
 	/*
-		DeleteCustomerById Delete Customer
+	DeleteCustomerById Delete Customer
 
-		Deleted a customer resource that corresponds to a customer ID.
+	Deleted a customer resource that corresponds to a customer ID.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiDeleteCustomerByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiDeleteCustomerByIdRequest
 	*/
 	DeleteCustomerById(ctx context.Context, id string) ApiDeleteCustomerByIdRequest
 
@@ -69,13 +70,13 @@ type CustomersAPI interface {
 	DeleteCustomerByIdExecute(r ApiDeleteCustomerByIdRequest) (*CustomerResponse, *http.Response, error)
 
 	/*
-		GetCustomerById Get Customer
+	GetCustomerById Get Customer
 
-		Gets a customer resource that corresponds to a customer ID.
+	Gets a customer resource that corresponds to a customer ID.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiGetCustomerByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiGetCustomerByIdRequest
 	*/
 	GetCustomerById(ctx context.Context, id string) ApiGetCustomerByIdRequest
 
@@ -84,12 +85,12 @@ type CustomersAPI interface {
 	GetCustomerByIdExecute(r ApiGetCustomerByIdRequest) (*CustomerResponse, *http.Response, error)
 
 	/*
-		GetCustomers Get a list of customers
+	GetCustomers Get a list of customers
 
-		The purpose of business is to create and maintain a client, you will learn what elements you need to obtain a list of clients, which can be paged.
+	The purpose of business is to create and maintain a client, you will learn what elements you need to obtain a list of clients, which can be paged.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetCustomersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetCustomersRequest
 	*/
 	GetCustomers(ctx context.Context) ApiGetCustomersRequest
 
@@ -98,13 +99,13 @@ type CustomersAPI interface {
 	GetCustomersExecute(r ApiGetCustomersRequest) (*CustomersResponse, *http.Response, error)
 
 	/*
-		UpdateCustomer Update customer
+	UpdateCustomer Update customer
 
-		You can update customer-related data
+	You can update customer-related data
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiUpdateCustomerRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiUpdateCustomerRequest
 	*/
 	UpdateCustomer(ctx context.Context, id string) ApiUpdateCustomerRequest
 
@@ -113,14 +114,14 @@ type CustomersAPI interface {
 	UpdateCustomerExecute(r ApiUpdateCustomerRequest) (*CustomerResponse, *http.Response, error)
 
 	/*
-		UpdateCustomerFiscalEntities Update  Fiscal Entity
+	UpdateCustomerFiscalEntities Update  Fiscal Entity
 
-		Update Fiscal Entity resource that corresponds to a customer ID.
+	Update Fiscal Entity resource that corresponds to a customer ID.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@param fiscalEntitiesId identifier
-		@return ApiUpdateCustomerFiscalEntitiesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@param fiscalEntitiesId identifier
+	@return ApiUpdateCustomerFiscalEntitiesRequest
 	*/
 	UpdateCustomerFiscalEntities(ctx context.Context, id string, fiscalEntitiesId string) ApiUpdateCustomerFiscalEntitiesRequest
 
@@ -133,10 +134,10 @@ type CustomersAPI interface {
 type CustomersAPIService service
 
 type ApiCreateCustomerRequest struct {
-	ctx             context.Context
-	ApiService      CustomersAPI
-	customer        *Customer
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService CustomersAPI
+	customer *Customer
+	acceptLanguage *string
 	xChildCompanyId *string
 }
 
@@ -175,7 +176,7 @@ Remember the credit and debit card tokenization process: [https://developers.con
 func (a *CustomersAPIService) CreateCustomer(ctx context.Context) ApiCreateCustomerRequest {
 	return ApiCreateCustomerRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -183,10 +184,10 @@ func (a *CustomersAPIService) CreateCustomer(ctx context.Context) ApiCreateCusto
 //  @return CustomerResponse
 func (a *CustomersAPIService) CreateCustomerExecute(r ApiCreateCustomerRequest) (*CustomerResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *CustomerResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CustomerResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersAPIService.CreateCustomer")
@@ -257,8 +258,8 @@ func (a *CustomersAPIService) CreateCustomerExecute(r ApiCreateCustomerRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
@@ -268,8 +269,8 @@ func (a *CustomersAPIService) CreateCustomerExecute(r ApiCreateCustomerRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -279,8 +280,8 @@ func (a *CustomersAPIService) CreateCustomerExecute(r ApiCreateCustomerRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -290,8 +291,8 @@ func (a *CustomersAPIService) CreateCustomerExecute(r ApiCreateCustomerRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -309,12 +310,12 @@ func (a *CustomersAPIService) CreateCustomerExecute(r ApiCreateCustomerRequest) 
 }
 
 type ApiCreateCustomerFiscalEntitiesRequest struct {
-	ctx                           context.Context
-	ApiService                    CustomersAPI
-	id                            string
+	ctx context.Context
+	ApiService CustomersAPI
+	id string
 	customerFiscalEntitiesRequest *CustomerFiscalEntitiesRequest
-	acceptLanguage                *string
-	xChildCompanyId               *string
+	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for customer fiscal entities
@@ -351,8 +352,8 @@ Create Fiscal entity resource that corresponds to a customer ID.
 func (a *CustomersAPIService) CreateCustomerFiscalEntities(ctx context.Context, id string) ApiCreateCustomerFiscalEntitiesRequest {
 	return ApiCreateCustomerFiscalEntitiesRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -360,10 +361,10 @@ func (a *CustomersAPIService) CreateCustomerFiscalEntities(ctx context.Context, 
 //  @return CreateCustomerFiscalEntitiesResponse
 func (a *CustomersAPIService) CreateCustomerFiscalEntitiesExecute(r ApiCreateCustomerFiscalEntitiesRequest) (*CreateCustomerFiscalEntitiesResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *CreateCustomerFiscalEntitiesResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CreateCustomerFiscalEntitiesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersAPIService.CreateCustomerFiscalEntities")
@@ -435,8 +436,8 @@ func (a *CustomersAPIService) CreateCustomerFiscalEntitiesExecute(r ApiCreateCus
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -446,8 +447,8 @@ func (a *CustomersAPIService) CreateCustomerFiscalEntitiesExecute(r ApiCreateCus
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -457,8 +458,8 @@ func (a *CustomersAPIService) CreateCustomerFiscalEntitiesExecute(r ApiCreateCus
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -468,8 +469,8 @@ func (a *CustomersAPIService) CreateCustomerFiscalEntitiesExecute(r ApiCreateCus
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -487,10 +488,10 @@ func (a *CustomersAPIService) CreateCustomerFiscalEntitiesExecute(r ApiCreateCus
 }
 
 type ApiDeleteCustomerByIdRequest struct {
-	ctx             context.Context
-	ApiService      CustomersAPI
-	id              string
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService CustomersAPI
+	id string
+	acceptLanguage *string
 	xChildCompanyId *string
 }
 
@@ -522,8 +523,8 @@ Deleted a customer resource that corresponds to a customer ID.
 func (a *CustomersAPIService) DeleteCustomerById(ctx context.Context, id string) ApiDeleteCustomerByIdRequest {
 	return ApiDeleteCustomerByIdRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -531,10 +532,10 @@ func (a *CustomersAPIService) DeleteCustomerById(ctx context.Context, id string)
 //  @return CustomerResponse
 func (a *CustomersAPIService) DeleteCustomerByIdExecute(r ApiDeleteCustomerByIdRequest) (*CustomerResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodDelete
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *CustomerResponse
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CustomerResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersAPIService.DeleteCustomerById")
@@ -601,8 +602,8 @@ func (a *CustomersAPIService) DeleteCustomerByIdExecute(r ApiDeleteCustomerByIdR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -612,8 +613,8 @@ func (a *CustomersAPIService) DeleteCustomerByIdExecute(r ApiDeleteCustomerByIdR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -623,8 +624,8 @@ func (a *CustomersAPIService) DeleteCustomerByIdExecute(r ApiDeleteCustomerByIdR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -634,8 +635,8 @@ func (a *CustomersAPIService) DeleteCustomerByIdExecute(r ApiDeleteCustomerByIdR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -653,10 +654,10 @@ func (a *CustomersAPIService) DeleteCustomerByIdExecute(r ApiDeleteCustomerByIdR
 }
 
 type ApiGetCustomerByIdRequest struct {
-	ctx             context.Context
-	ApiService      CustomersAPI
-	id              string
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService CustomersAPI
+	id string
+	acceptLanguage *string
 	xChildCompanyId *string
 }
 
@@ -688,8 +689,8 @@ Gets a customer resource that corresponds to a customer ID.
 func (a *CustomersAPIService) GetCustomerById(ctx context.Context, id string) ApiGetCustomerByIdRequest {
 	return ApiGetCustomerByIdRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -697,10 +698,10 @@ func (a *CustomersAPIService) GetCustomerById(ctx context.Context, id string) Ap
 //  @return CustomerResponse
 func (a *CustomersAPIService) GetCustomerByIdExecute(r ApiGetCustomerByIdRequest) (*CustomerResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *CustomerResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CustomerResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersAPIService.GetCustomerById")
@@ -767,8 +768,8 @@ func (a *CustomersAPIService) GetCustomerByIdExecute(r ApiGetCustomerByIdRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -778,8 +779,8 @@ func (a *CustomersAPIService) GetCustomerByIdExecute(r ApiGetCustomerByIdRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -789,8 +790,8 @@ func (a *CustomersAPIService) GetCustomerByIdExecute(r ApiGetCustomerByIdRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -808,14 +809,14 @@ func (a *CustomersAPIService) GetCustomerByIdExecute(r ApiGetCustomerByIdRequest
 }
 
 type ApiGetCustomersRequest struct {
-	ctx             context.Context
-	ApiService      CustomersAPI
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService CustomersAPI
+	acceptLanguage *string
 	xChildCompanyId *string
-	limit           *int32
-	search          *string
-	next            *string
-	previous        *string
+	limit *int32
+	search *string
+	next *string
+	previous *string
 }
 
 // Use for knowing which language to use
@@ -869,7 +870,7 @@ The purpose of business is to create and maintain a client, you will learn what 
 func (a *CustomersAPIService) GetCustomers(ctx context.Context) ApiGetCustomersRequest {
 	return ApiGetCustomersRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -877,10 +878,10 @@ func (a *CustomersAPIService) GetCustomers(ctx context.Context) ApiGetCustomersR
 //  @return CustomersResponse
 func (a *CustomersAPIService) GetCustomersExecute(r ApiGetCustomersRequest) (*CustomersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *CustomersResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CustomersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersAPIService.GetCustomers")
@@ -961,8 +962,8 @@ func (a *CustomersAPIService) GetCustomersExecute(r ApiGetCustomersRequest) (*Cu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -972,8 +973,8 @@ func (a *CustomersAPIService) GetCustomersExecute(r ApiGetCustomersRequest) (*Cu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -991,11 +992,11 @@ func (a *CustomersAPIService) GetCustomersExecute(r ApiGetCustomersRequest) (*Cu
 }
 
 type ApiUpdateCustomerRequest struct {
-	ctx             context.Context
-	ApiService      CustomersAPI
-	id              string
-	updateCustomer  *UpdateCustomer
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService CustomersAPI
+	id string
+	updateCustomer *UpdateCustomer
+	acceptLanguage *string
 	xChildCompanyId *string
 }
 
@@ -1033,8 +1034,8 @@ You can update customer-related data
 func (a *CustomersAPIService) UpdateCustomer(ctx context.Context, id string) ApiUpdateCustomerRequest {
 	return ApiUpdateCustomerRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -1042,10 +1043,10 @@ func (a *CustomersAPIService) UpdateCustomer(ctx context.Context, id string) Api
 //  @return CustomerResponse
 func (a *CustomersAPIService) UpdateCustomerExecute(r ApiUpdateCustomerRequest) (*CustomerResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *CustomerResponse
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CustomerResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersAPIService.UpdateCustomer")
@@ -1117,8 +1118,8 @@ func (a *CustomersAPIService) UpdateCustomerExecute(r ApiUpdateCustomerRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
@@ -1128,8 +1129,8 @@ func (a *CustomersAPIService) UpdateCustomerExecute(r ApiUpdateCustomerRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -1139,8 +1140,8 @@ func (a *CustomersAPIService) UpdateCustomerExecute(r ApiUpdateCustomerRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1150,8 +1151,8 @@ func (a *CustomersAPIService) UpdateCustomerExecute(r ApiUpdateCustomerRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1169,13 +1170,13 @@ func (a *CustomersAPIService) UpdateCustomerExecute(r ApiUpdateCustomerRequest) 
 }
 
 type ApiUpdateCustomerFiscalEntitiesRequest struct {
-	ctx                                 context.Context
-	ApiService                          CustomersAPI
-	id                                  string
-	fiscalEntitiesId                    string
+	ctx context.Context
+	ApiService CustomersAPI
+	id string
+	fiscalEntitiesId string
 	customerUpdateFiscalEntitiesRequest *CustomerUpdateFiscalEntitiesRequest
-	acceptLanguage                      *string
-	xChildCompanyId                     *string
+	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for customer update fiscal entities
@@ -1212,9 +1213,9 @@ Update Fiscal Entity resource that corresponds to a customer ID.
 */
 func (a *CustomersAPIService) UpdateCustomerFiscalEntities(ctx context.Context, id string, fiscalEntitiesId string) ApiUpdateCustomerFiscalEntitiesRequest {
 	return ApiUpdateCustomerFiscalEntitiesRequest{
-		ApiService:       a,
-		ctx:              ctx,
-		id:               id,
+		ApiService: a,
+		ctx: ctx,
+		id: id,
 		fiscalEntitiesId: fiscalEntitiesId,
 	}
 }
@@ -1223,10 +1224,10 @@ func (a *CustomersAPIService) UpdateCustomerFiscalEntities(ctx context.Context, 
 //  @return UpdateCustomerFiscalEntitiesResponse
 func (a *CustomersAPIService) UpdateCustomerFiscalEntitiesExecute(r ApiUpdateCustomerFiscalEntitiesRequest) (*UpdateCustomerFiscalEntitiesResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *UpdateCustomerFiscalEntitiesResponse
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UpdateCustomerFiscalEntitiesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersAPIService.UpdateCustomerFiscalEntities")
@@ -1299,8 +1300,8 @@ func (a *CustomersAPIService) UpdateCustomerFiscalEntitiesExecute(r ApiUpdateCus
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1310,8 +1311,8 @@ func (a *CustomersAPIService) UpdateCustomerFiscalEntitiesExecute(r ApiUpdateCus
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -1321,8 +1322,8 @@ func (a *CustomersAPIService) UpdateCustomerFiscalEntitiesExecute(r ApiUpdateCus
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1332,8 +1333,8 @@ func (a *CustomersAPIService) UpdateCustomerFiscalEntitiesExecute(r ApiUpdateCus
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

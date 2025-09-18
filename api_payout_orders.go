@@ -20,16 +20,17 @@ import (
 	"strings"
 )
 
+
 type PayoutOrdersAPI interface {
 
 	/*
-		CancelPayoutOrderById Cancel Payout Order
+	CancelPayoutOrderById Cancel Payout Order
 
-		Cancel a payout Order resource that corresponds to a payout order ID.
+	Cancel a payout Order resource that corresponds to a payout order ID.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiCancelPayoutOrderByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiCancelPayoutOrderByIdRequest
 	*/
 	CancelPayoutOrderById(ctx context.Context, id string) ApiCancelPayoutOrderByIdRequest
 
@@ -38,12 +39,12 @@ type PayoutOrdersAPI interface {
 	CancelPayoutOrderByIdExecute(r ApiCancelPayoutOrderByIdRequest) (*PayoutOrderResponse, *http.Response, error)
 
 	/*
-		CreatePayoutOrder Create payout order
+	CreatePayoutOrder Create payout order
 
-		Create a new payout order.
+	Create a new payout order.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiCreatePayoutOrderRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreatePayoutOrderRequest
 	*/
 	CreatePayoutOrder(ctx context.Context) ApiCreatePayoutOrderRequest
 
@@ -52,13 +53,13 @@ type PayoutOrdersAPI interface {
 	CreatePayoutOrderExecute(r ApiCreatePayoutOrderRequest) (*PayoutOrderResponse, *http.Response, error)
 
 	/*
-		GetPayoutOrderById Get Payout Order
+	GetPayoutOrderById Get Payout Order
 
-		Gets a payout Order resource that corresponds to a payout order ID.
+	Gets a payout Order resource that corresponds to a payout order ID.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiGetPayoutOrderByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiGetPayoutOrderByIdRequest
 	*/
 	GetPayoutOrderById(ctx context.Context, id string) ApiGetPayoutOrderByIdRequest
 
@@ -67,12 +68,12 @@ type PayoutOrdersAPI interface {
 	GetPayoutOrderByIdExecute(r ApiGetPayoutOrderByIdRequest) (*PayoutOrderResponse, *http.Response, error)
 
 	/*
-		GetPayoutOrders Get a list of Payout Orders
+	GetPayoutOrders Get a list of Payout Orders
 
-		Get Payout order details in the form of a list
+	Get Payout order details in the form of a list
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetPayoutOrdersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetPayoutOrdersRequest
 	*/
 	GetPayoutOrders(ctx context.Context) ApiGetPayoutOrdersRequest
 
@@ -85,9 +86,9 @@ type PayoutOrdersAPI interface {
 type PayoutOrdersAPIService service
 
 type ApiCancelPayoutOrderByIdRequest struct {
-	ctx            context.Context
-	ApiService     PayoutOrdersAPI
-	id             string
+	ctx context.Context
+	ApiService PayoutOrdersAPI
+	id string
 	acceptLanguage *string
 }
 
@@ -113,8 +114,8 @@ Cancel a payout Order resource that corresponds to a payout order ID.
 func (a *PayoutOrdersAPIService) CancelPayoutOrderById(ctx context.Context, id string) ApiCancelPayoutOrderByIdRequest {
 	return ApiCancelPayoutOrderByIdRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -122,10 +123,10 @@ func (a *PayoutOrdersAPIService) CancelPayoutOrderById(ctx context.Context, id s
 //  @return PayoutOrderResponse
 func (a *PayoutOrdersAPIService) CancelPayoutOrderByIdExecute(r ApiCancelPayoutOrderByIdRequest) (*PayoutOrderResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PayoutOrderResponse
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PayoutOrderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PayoutOrdersAPIService.CancelPayoutOrderById")
@@ -189,8 +190,8 @@ func (a *PayoutOrdersAPIService) CancelPayoutOrderByIdExecute(r ApiCancelPayoutO
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -200,8 +201,8 @@ func (a *PayoutOrdersAPIService) CancelPayoutOrderByIdExecute(r ApiCancelPayoutO
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -211,8 +212,8 @@ func (a *PayoutOrdersAPIService) CancelPayoutOrderByIdExecute(r ApiCancelPayoutO
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -230,9 +231,9 @@ func (a *PayoutOrdersAPIService) CancelPayoutOrderByIdExecute(r ApiCancelPayoutO
 }
 
 type ApiCreatePayoutOrderRequest struct {
-	ctx            context.Context
-	ApiService     PayoutOrdersAPI
-	payoutOrder    *PayoutOrder
+	ctx context.Context
+	ApiService PayoutOrdersAPI
+	payoutOrder *PayoutOrder
 	acceptLanguage *string
 }
 
@@ -263,7 +264,7 @@ Create a new payout order.
 func (a *PayoutOrdersAPIService) CreatePayoutOrder(ctx context.Context) ApiCreatePayoutOrderRequest {
 	return ApiCreatePayoutOrderRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -271,10 +272,10 @@ func (a *PayoutOrdersAPIService) CreatePayoutOrder(ctx context.Context) ApiCreat
 //  @return PayoutOrderResponse
 func (a *PayoutOrdersAPIService) CreatePayoutOrderExecute(r ApiCreatePayoutOrderRequest) (*PayoutOrderResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PayoutOrderResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PayoutOrderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PayoutOrdersAPIService.CreatePayoutOrder")
@@ -342,8 +343,8 @@ func (a *PayoutOrdersAPIService) CreatePayoutOrderExecute(r ApiCreatePayoutOrder
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -353,8 +354,8 @@ func (a *PayoutOrdersAPIService) CreatePayoutOrderExecute(r ApiCreatePayoutOrder
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
@@ -364,8 +365,8 @@ func (a *PayoutOrdersAPIService) CreatePayoutOrderExecute(r ApiCreatePayoutOrder
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -375,8 +376,8 @@ func (a *PayoutOrdersAPIService) CreatePayoutOrderExecute(r ApiCreatePayoutOrder
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -386,8 +387,8 @@ func (a *PayoutOrdersAPIService) CreatePayoutOrderExecute(r ApiCreatePayoutOrder
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -405,9 +406,9 @@ func (a *PayoutOrdersAPIService) CreatePayoutOrderExecute(r ApiCreatePayoutOrder
 }
 
 type ApiGetPayoutOrderByIdRequest struct {
-	ctx            context.Context
-	ApiService     PayoutOrdersAPI
-	id             string
+	ctx context.Context
+	ApiService PayoutOrdersAPI
+	id string
 	acceptLanguage *string
 }
 
@@ -433,8 +434,8 @@ Gets a payout Order resource that corresponds to a payout order ID.
 func (a *PayoutOrdersAPIService) GetPayoutOrderById(ctx context.Context, id string) ApiGetPayoutOrderByIdRequest {
 	return ApiGetPayoutOrderByIdRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -442,10 +443,10 @@ func (a *PayoutOrdersAPIService) GetPayoutOrderById(ctx context.Context, id stri
 //  @return PayoutOrderResponse
 func (a *PayoutOrdersAPIService) GetPayoutOrderByIdExecute(r ApiGetPayoutOrderByIdRequest) (*PayoutOrderResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PayoutOrderResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PayoutOrderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PayoutOrdersAPIService.GetPayoutOrderById")
@@ -509,8 +510,8 @@ func (a *PayoutOrdersAPIService) GetPayoutOrderByIdExecute(r ApiGetPayoutOrderBy
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -520,8 +521,8 @@ func (a *PayoutOrdersAPIService) GetPayoutOrderByIdExecute(r ApiGetPayoutOrderBy
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -531,8 +532,8 @@ func (a *PayoutOrdersAPIService) GetPayoutOrderByIdExecute(r ApiGetPayoutOrderBy
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -550,13 +551,13 @@ func (a *PayoutOrdersAPIService) GetPayoutOrderByIdExecute(r ApiGetPayoutOrderBy
 }
 
 type ApiGetPayoutOrdersRequest struct {
-	ctx            context.Context
-	ApiService     PayoutOrdersAPI
+	ctx context.Context
+	ApiService PayoutOrdersAPI
 	acceptLanguage *string
-	limit          *int32
-	search         *string
-	next           *string
-	previous       *string
+	limit *int32
+	search *string
+	next *string
+	previous *string
 }
 
 // Use for knowing which language to use
@@ -604,7 +605,7 @@ Get Payout order details in the form of a list
 func (a *PayoutOrdersAPIService) GetPayoutOrders(ctx context.Context) ApiGetPayoutOrdersRequest {
 	return ApiGetPayoutOrdersRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -612,10 +613,10 @@ func (a *PayoutOrdersAPIService) GetPayoutOrders(ctx context.Context) ApiGetPayo
 //  @return PayoutOrdersResponse
 func (a *PayoutOrdersAPIService) GetPayoutOrdersExecute(r ApiGetPayoutOrdersRequest) (*PayoutOrdersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PayoutOrdersResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PayoutOrdersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PayoutOrdersAPIService.GetPayoutOrders")
@@ -693,8 +694,8 @@ func (a *PayoutOrdersAPIService) GetPayoutOrdersExecute(r ApiGetPayoutOrdersRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -704,8 +705,8 @@ func (a *PayoutOrdersAPIService) GetPayoutOrdersExecute(r ApiGetPayoutOrdersRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

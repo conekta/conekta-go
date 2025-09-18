@@ -20,16 +20,17 @@ import (
 	"strings"
 )
 
+
 type TransfersAPI interface {
 
 	/*
-		GetTransfer Get Transfer
+	GetTransfer Get Transfer
 
-		Get the details of a Transfer
+	Get the details of a Transfer
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiGetTransferRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiGetTransferRequest
 	*/
 	GetTransfer(ctx context.Context, id string) ApiGetTransferRequest
 
@@ -38,12 +39,12 @@ type TransfersAPI interface {
 	GetTransferExecute(r ApiGetTransferRequest) (*TransferResponse, *http.Response, error)
 
 	/*
-		GetTransfers Get a list of transfers
+	GetTransfers Get a list of transfers
 
-		Get transfers details in the form of a list
+	Get transfers details in the form of a list
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetTransfersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetTransfersRequest
 	*/
 	GetTransfers(ctx context.Context) ApiGetTransfersRequest
 
@@ -56,10 +57,10 @@ type TransfersAPI interface {
 type TransfersAPIService service
 
 type ApiGetTransferRequest struct {
-	ctx             context.Context
-	ApiService      TransfersAPI
-	id              string
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService TransfersAPI
+	id string
+	acceptLanguage *string
 	xChildCompanyId *string
 }
 
@@ -91,8 +92,8 @@ Get the details of a Transfer
 func (a *TransfersAPIService) GetTransfer(ctx context.Context, id string) ApiGetTransferRequest {
 	return ApiGetTransferRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -100,10 +101,10 @@ func (a *TransfersAPIService) GetTransfer(ctx context.Context, id string) ApiGet
 //  @return TransferResponse
 func (a *TransfersAPIService) GetTransferExecute(r ApiGetTransferRequest) (*TransferResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *TransferResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TransferResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransfersAPIService.GetTransfer")
@@ -170,8 +171,8 @@ func (a *TransfersAPIService) GetTransferExecute(r ApiGetTransferRequest) (*Tran
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -181,8 +182,8 @@ func (a *TransfersAPIService) GetTransferExecute(r ApiGetTransferRequest) (*Tran
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -192,8 +193,8 @@ func (a *TransfersAPIService) GetTransferExecute(r ApiGetTransferRequest) (*Tran
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -211,14 +212,14 @@ func (a *TransfersAPIService) GetTransferExecute(r ApiGetTransferRequest) (*Tran
 }
 
 type ApiGetTransfersRequest struct {
-	ctx             context.Context
-	ApiService      TransfersAPI
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService TransfersAPI
+	acceptLanguage *string
 	xChildCompanyId *string
-	limit           *int32
-	search          *string
-	next            *string
-	previous        *string
+	limit *int32
+	search *string
+	next *string
+	previous *string
 }
 
 // Use for knowing which language to use
@@ -272,7 +273,7 @@ Get transfers details in the form of a list
 func (a *TransfersAPIService) GetTransfers(ctx context.Context) ApiGetTransfersRequest {
 	return ApiGetTransfersRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -280,10 +281,10 @@ func (a *TransfersAPIService) GetTransfers(ctx context.Context) ApiGetTransfersR
 //  @return GetTransfersResponse
 func (a *TransfersAPIService) GetTransfersExecute(r ApiGetTransfersRequest) (*GetTransfersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GetTransfersResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetTransfersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransfersAPIService.GetTransfers")
@@ -364,8 +365,8 @@ func (a *TransfersAPIService) GetTransfersExecute(r ApiGetTransfersRequest) (*Ge
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -375,8 +376,8 @@ func (a *TransfersAPIService) GetTransfersExecute(r ApiGetTransfersRequest) (*Ge
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

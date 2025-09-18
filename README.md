@@ -133,6 +133,7 @@ Class | Method | HTTP request | Description
 *CompaniesAPI* | [**GetCompanies**](docs/CompaniesAPI.md#getcompanies) | **Get** /companies | Get List of Companies
 *CompaniesAPI* | [**GetCompany**](docs/CompaniesAPI.md#getcompany) | **Get** /companies/{id} | Get Company
 *CompaniesAPI* | [**GetCompanyDocuments**](docs/CompaniesAPI.md#getcompanydocuments) | **Get** /companies/{company_id}/documents | Get Company Documents
+*CompaniesAPI* | [**GetCurrentCompany**](docs/CompaniesAPI.md#getcurrentcompany) | **Get** /companies/current | Get Current Company
 *CompaniesAPI* | [**UpdateCompanyDocument**](docs/CompaniesAPI.md#updatecompanydocument) | **Patch** /companies/{company_id}/document | Update Company Document
 *CompaniesAPI* | [**UploadCompanyDocument**](docs/CompaniesAPI.md#uploadcompanydocument) | **Post** /companies/{company_id}/document | Upload Company Document
 *CustomersAPI* | [**CreateCustomer**](docs/CustomersAPI.md#createcustomer) | **Post** /customers | Create customer

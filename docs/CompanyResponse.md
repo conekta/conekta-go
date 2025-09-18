@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **Documents** | [**[]CompanyResponseDocumentsInner**](CompanyResponseDocumentsInner.md) | A list of documents related to the company. | 
 **CreatedAt** | **int64** | Timestamp of when the company was created. | 
 **Object** | **string** | The type of object, typically \&quot;company\&quot;. | 
+**ThreeDsEnabled** | Pointer to **bool** | Indicates if 3DS authentication is enabled for the company. | [optional] 
+**ThreeDsMode** | Pointer to **NullableString** | The 3DS mode for the company, either &#39;smart&#39; or &#39;strict&#39;. This property is only applicable when three_ds_enabled is true. When three_ds_enabled is false, this field will be null. | [optional] 
 
 ## Methods
 
@@ -228,6 +230,66 @@ and a boolean to check if the value has been set.
 SetObject sets Object field to given value.
 
 
+### GetThreeDsEnabled
+
+`func (o *CompanyResponse) GetThreeDsEnabled() bool`
+
+GetThreeDsEnabled returns the ThreeDsEnabled field if non-nil, zero value otherwise.
+
+### GetThreeDsEnabledOk
+
+`func (o *CompanyResponse) GetThreeDsEnabledOk() (*bool, bool)`
+
+GetThreeDsEnabledOk returns a tuple with the ThreeDsEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThreeDsEnabled
+
+`func (o *CompanyResponse) SetThreeDsEnabled(v bool)`
+
+SetThreeDsEnabled sets ThreeDsEnabled field to given value.
+
+### HasThreeDsEnabled
+
+`func (o *CompanyResponse) HasThreeDsEnabled() bool`
+
+HasThreeDsEnabled returns a boolean if a field has been set.
+
+### GetThreeDsMode
+
+`func (o *CompanyResponse) GetThreeDsMode() string`
+
+GetThreeDsMode returns the ThreeDsMode field if non-nil, zero value otherwise.
+
+### GetThreeDsModeOk
+
+`func (o *CompanyResponse) GetThreeDsModeOk() (*string, bool)`
+
+GetThreeDsModeOk returns a tuple with the ThreeDsMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThreeDsMode
+
+`func (o *CompanyResponse) SetThreeDsMode(v string)`
+
+SetThreeDsMode sets ThreeDsMode field to given value.
+
+### HasThreeDsMode
+
+`func (o *CompanyResponse) HasThreeDsMode() bool`
+
+HasThreeDsMode returns a boolean if a field has been set.
+
+### SetThreeDsModeNil
+
+`func (o *CompanyResponse) SetThreeDsModeNil(b bool)`
+
+ SetThreeDsModeNil sets the value for ThreeDsMode to be an explicit nil
+
+### UnsetThreeDsMode
+`func (o *CompanyResponse) UnsetThreeDsMode()`
+
+UnsetThreeDsMode ensures that no value is present for ThreeDsMode, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

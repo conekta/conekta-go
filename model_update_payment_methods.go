@@ -23,7 +23,7 @@ type UpdatePaymentMethods struct {
 	// The name of the payment method holder
 	Name *string `json:"name,omitempty"`
 	// The expiration date of the payment method in Unix timestamp format
-	ExpiresAt            *int64 `json:"expires_at,omitempty"`
+	ExpiresAt *int64 `json:"expires_at,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -111,7 +111,7 @@ func (o *UpdatePaymentMethods) SetExpiresAt(v int64) {
 }
 
 func (o UpdatePaymentMethods) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -191,3 +191,5 @@ func (v *NullableUpdatePaymentMethods) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

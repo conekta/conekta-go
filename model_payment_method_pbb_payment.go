@@ -21,8 +21,8 @@ var _ MappedNullable = &PaymentMethodPbbPayment{}
 
 // PaymentMethodPbbPayment struct for PaymentMethodPbbPayment
 type PaymentMethodPbbPayment struct {
-	Type   *string `json:"type,omitempty"`
-	Object string  `json:"object"`
+	Type *string `json:"type,omitempty"`
+	Object string `json:"object"`
 	// Deep link for the payment, use for mobile apps/flows
 	DeepLink string `json:"deep_link"`
 	// Expiration date of the charge
@@ -32,7 +32,7 @@ type PaymentMethodPbbPayment struct {
 	// URL to redirect the customer to complete the payment
 	RedirectUrl string `json:"redirect_url"`
 	// Reference for the payment
-	Reference            string `json:"reference"`
+	Reference string `json:"reference"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -238,7 +238,7 @@ func (o *PaymentMethodPbbPayment) SetReference(v string) {
 }
 
 func (o PaymentMethodPbbPayment) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -282,10 +282,10 @@ func (o *PaymentMethodPbbPayment) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -352,3 +352,5 @@ func (v *NullablePaymentMethodPbbPayment) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

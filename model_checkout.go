@@ -29,8 +29,8 @@ type Checkout struct {
 	MonthlyInstallmentsEnabled *bool `json:"monthly_installments_enabled,omitempty"`
 	// This field allows you to specify the number of months without interest.
 	MonthlyInstallmentsOptions []int32 `json:"monthly_installments_options,omitempty"`
-	// Indicates the 3DS2 mode for the order, either smart or strict.
-	ThreeDsMode *string `json:"three_ds_mode,omitempty"`
+	// Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null.
+	ThreeDsMode NullableString `json:"three_ds_mode,omitempty"`
 	// Reason for charge
 	Name string `json:"name"`
 	// This flag allows you to fill in the shipping information at checkout.
@@ -184,36 +184,46 @@ func (o *Checkout) SetMonthlyInstallmentsOptions(v []int32) {
 	o.MonthlyInstallmentsOptions = v
 }
 
-// GetThreeDsMode returns the ThreeDsMode field value if set, zero value otherwise.
+// GetThreeDsMode returns the ThreeDsMode field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Checkout) GetThreeDsMode() string {
-	if o == nil || IsNil(o.ThreeDsMode) {
+	if o == nil || IsNil(o.ThreeDsMode.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.ThreeDsMode
+	return *o.ThreeDsMode.Get()
 }
 
 // GetThreeDsModeOk returns a tuple with the ThreeDsMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Checkout) GetThreeDsModeOk() (*string, bool) {
-	if o == nil || IsNil(o.ThreeDsMode) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ThreeDsMode, true
+	return o.ThreeDsMode.Get(), o.ThreeDsMode.IsSet()
 }
 
 // HasThreeDsMode returns a boolean if a field has been set.
 func (o *Checkout) HasThreeDsMode() bool {
-	if o != nil && !IsNil(o.ThreeDsMode) {
+	if o != nil && o.ThreeDsMode.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetThreeDsMode gets a reference to the given string and assigns it to the ThreeDsMode field.
+// SetThreeDsMode gets a reference to the given NullableString and assigns it to the ThreeDsMode field.
 func (o *Checkout) SetThreeDsMode(v string) {
-	o.ThreeDsMode = &v
+	o.ThreeDsMode.Set(&v)
+}
+// SetThreeDsModeNil sets the value for ThreeDsMode to be an explicit nil
+func (o *Checkout) SetThreeDsModeNil() {
+	o.ThreeDsMode.Set(nil)
+}
+
+// UnsetThreeDsMode ensures that no value is present for ThreeDsMode, not even an explicit nil
+func (o *Checkout) UnsetThreeDsMode() {
+	o.ThreeDsMode.Unset()
 }
 
 // GetName returns the Name field value
@@ -436,8 +446,8 @@ func (o Checkout) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MonthlyInstallmentsOptions) {
 		toSerialize["monthly_installments_options"] = o.MonthlyInstallmentsOptions
 	}
-	if !IsNil(o.ThreeDsMode) {
-		toSerialize["three_ds_mode"] = o.ThreeDsMode
+	if o.ThreeDsMode.IsSet() {
+		toSerialize["three_ds_mode"] = o.ThreeDsMode.Get()
 	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.NeedsShippingContact) {

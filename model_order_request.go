@@ -47,8 +47,8 @@ type OrderRequest struct {
 	ShippingLines []ShippingRequest `json:"shipping_lines,omitempty"`
 	// List of [taxes](https://developers.conekta.com/v2.2.0/reference/orderscreatetaxes) that are applied to the order.
 	TaxLines []OrderTaxRequest `json:"tax_lines,omitempty"`
-	// Indicates the 3DS2 mode for the order, either smart or strict.
-	ThreeDsMode *string `json:"three_ds_mode,omitempty"`
+	// Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null.
+	ThreeDsMode NullableString `json:"three_ds_mode,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -534,36 +534,46 @@ func (o *OrderRequest) SetTaxLines(v []OrderTaxRequest) {
 	o.TaxLines = v
 }
 
-// GetThreeDsMode returns the ThreeDsMode field value if set, zero value otherwise.
+// GetThreeDsMode returns the ThreeDsMode field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OrderRequest) GetThreeDsMode() string {
-	if o == nil || IsNil(o.ThreeDsMode) {
+	if o == nil || IsNil(o.ThreeDsMode.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.ThreeDsMode
+	return *o.ThreeDsMode.Get()
 }
 
 // GetThreeDsModeOk returns a tuple with the ThreeDsMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OrderRequest) GetThreeDsModeOk() (*string, bool) {
-	if o == nil || IsNil(o.ThreeDsMode) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ThreeDsMode, true
+	return o.ThreeDsMode.Get(), o.ThreeDsMode.IsSet()
 }
 
 // HasThreeDsMode returns a boolean if a field has been set.
 func (o *OrderRequest) HasThreeDsMode() bool {
-	if o != nil && !IsNil(o.ThreeDsMode) {
+	if o != nil && o.ThreeDsMode.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetThreeDsMode gets a reference to the given string and assigns it to the ThreeDsMode field.
+// SetThreeDsMode gets a reference to the given NullableString and assigns it to the ThreeDsMode field.
 func (o *OrderRequest) SetThreeDsMode(v string) {
-	o.ThreeDsMode = &v
+	o.ThreeDsMode.Set(&v)
+}
+// SetThreeDsModeNil sets the value for ThreeDsMode to be an explicit nil
+func (o *OrderRequest) SetThreeDsModeNil() {
+	o.ThreeDsMode.Set(nil)
+}
+
+// UnsetThreeDsMode ensures that no value is present for ThreeDsMode, not even an explicit nil
+func (o *OrderRequest) UnsetThreeDsMode() {
+	o.ThreeDsMode.Unset()
 }
 
 func (o OrderRequest) MarshalJSON() ([]byte, error) {
@@ -615,8 +625,8 @@ func (o OrderRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TaxLines) {
 		toSerialize["tax_lines"] = o.TaxLines
 	}
-	if !IsNil(o.ThreeDsMode) {
-		toSerialize["three_ds_mode"] = o.ThreeDsMode
+	if o.ThreeDsMode.IsSet() {
+		toSerialize["three_ds_mode"] = o.ThreeDsMode.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {

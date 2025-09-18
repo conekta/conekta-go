@@ -20,16 +20,17 @@ import (
 	"strings"
 )
 
+
 type OrdersAPI interface {
 
 	/*
-		CancelOrder Cancel Order
+	CancelOrder Cancel Order
 
-		Cancel an order that has been previously created.
+	Cancel an order that has been previously created.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiCancelOrderRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiCancelOrderRequest
 	*/
 	CancelOrder(ctx context.Context, id string) ApiCancelOrderRequest
 
@@ -38,12 +39,12 @@ type OrdersAPI interface {
 	CancelOrderExecute(r ApiCancelOrderRequest) (*OrderResponse, *http.Response, error)
 
 	/*
-		CreateOrder Create order
+	CreateOrder Create order
 
-		Create a new order.
+	Create a new order.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiCreateOrderRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateOrderRequest
 	*/
 	CreateOrder(ctx context.Context) ApiCreateOrderRequest
 
@@ -52,13 +53,13 @@ type OrdersAPI interface {
 	CreateOrderExecute(r ApiCreateOrderRequest) (*OrderResponse, *http.Response, error)
 
 	/*
-		GetOrderById Get Order
+	GetOrderById Get Order
 
-		Info for a specific order
+	Info for a specific order
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiGetOrderByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiGetOrderByIdRequest
 	*/
 	GetOrderById(ctx context.Context, id string) ApiGetOrderByIdRequest
 
@@ -67,12 +68,12 @@ type OrdersAPI interface {
 	GetOrderByIdExecute(r ApiGetOrderByIdRequest) (*OrderResponse, *http.Response, error)
 
 	/*
-		GetOrders Get a list of Orders
+	GetOrders Get a list of Orders
 
-		Get order details in the form of a list
+	Get order details in the form of a list
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetOrdersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetOrdersRequest
 	*/
 	GetOrders(ctx context.Context) ApiGetOrdersRequest
 
@@ -81,14 +82,14 @@ type OrdersAPI interface {
 	GetOrdersExecute(r ApiGetOrdersRequest) (*GetOrdersResponse, *http.Response, error)
 
 	/*
-		OrderCancelRefund Cancel Refund
+	OrderCancelRefund Cancel Refund
 
-		A refunded order describes the items, amount, and reason an order is being refunded.
+	A refunded order describes the items, amount, and reason an order is being refunded.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@param refundId refund identifier
-		@return ApiOrderCancelRefundRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@param refundId refund identifier
+	@return ApiOrderCancelRefundRequest
 	*/
 	OrderCancelRefund(ctx context.Context, id string, refundId string) ApiOrderCancelRefundRequest
 
@@ -97,13 +98,13 @@ type OrdersAPI interface {
 	OrderCancelRefundExecute(r ApiOrderCancelRefundRequest) (*OrderResponse, *http.Response, error)
 
 	/*
-		OrderRefund Refund Order
+	OrderRefund Refund Order
 
-		A refunded order describes the items, amount, and reason an order is being refunded.
+	A refunded order describes the items, amount, and reason an order is being refunded.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiOrderRefundRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiOrderRefundRequest
 	*/
 	OrderRefund(ctx context.Context, id string) ApiOrderRefundRequest
 
@@ -112,13 +113,13 @@ type OrdersAPI interface {
 	OrderRefundExecute(r ApiOrderRefundRequest) (*OrderResponse, *http.Response, error)
 
 	/*
-		OrdersCreateCapture Capture Order
+	OrdersCreateCapture Capture Order
 
-		Processes an order that has been previously authorized.
+	Processes an order that has been previously authorized.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiOrdersCreateCaptureRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiOrdersCreateCaptureRequest
 	*/
 	OrdersCreateCapture(ctx context.Context, id string) ApiOrdersCreateCaptureRequest
 
@@ -127,13 +128,13 @@ type OrdersAPI interface {
 	OrdersCreateCaptureExecute(r ApiOrdersCreateCaptureRequest) (*OrderResponse, *http.Response, error)
 
 	/*
-		UpdateOrder Update Order
+	UpdateOrder Update Order
 
-		Update an existing Order.
+	Update an existing Order.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiUpdateOrderRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiUpdateOrderRequest
 	*/
 	UpdateOrder(ctx context.Context, id string) ApiUpdateOrderRequest
 
@@ -146,10 +147,10 @@ type OrdersAPI interface {
 type OrdersAPIService service
 
 type ApiCancelOrderRequest struct {
-	ctx             context.Context
-	ApiService      OrdersAPI
-	id              string
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService OrdersAPI
+	id string
+	acceptLanguage *string
 	xChildCompanyId *string
 }
 
@@ -181,8 +182,8 @@ Cancel an order that has been previously created.
 func (a *OrdersAPIService) CancelOrder(ctx context.Context, id string) ApiCancelOrderRequest {
 	return ApiCancelOrderRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -190,10 +191,10 @@ func (a *OrdersAPIService) CancelOrder(ctx context.Context, id string) ApiCancel
 //  @return OrderResponse
 func (a *OrdersAPIService) CancelOrderExecute(r ApiCancelOrderRequest) (*OrderResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *OrderResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *OrderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersAPIService.CancelOrder")
@@ -260,8 +261,8 @@ func (a *OrdersAPIService) CancelOrderExecute(r ApiCancelOrderRequest) (*OrderRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
@@ -271,8 +272,8 @@ func (a *OrdersAPIService) CancelOrderExecute(r ApiCancelOrderRequest) (*OrderRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -282,8 +283,8 @@ func (a *OrdersAPIService) CancelOrderExecute(r ApiCancelOrderRequest) (*OrderRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 428 {
@@ -293,8 +294,8 @@ func (a *OrdersAPIService) CancelOrderExecute(r ApiCancelOrderRequest) (*OrderRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -304,8 +305,8 @@ func (a *OrdersAPIService) CancelOrderExecute(r ApiCancelOrderRequest) (*OrderRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -323,10 +324,10 @@ func (a *OrdersAPIService) CancelOrderExecute(r ApiCancelOrderRequest) (*OrderRe
 }
 
 type ApiCreateOrderRequest struct {
-	ctx             context.Context
-	ApiService      OrdersAPI
-	orderRequest    *OrderRequest
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService OrdersAPI
+	orderRequest *OrderRequest
+	acceptLanguage *string
 	xChildCompanyId *string
 }
 
@@ -363,7 +364,7 @@ Create a new order.
 func (a *OrdersAPIService) CreateOrder(ctx context.Context) ApiCreateOrderRequest {
 	return ApiCreateOrderRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -371,10 +372,10 @@ func (a *OrdersAPIService) CreateOrder(ctx context.Context) ApiCreateOrderReques
 //  @return OrderResponse
 func (a *OrdersAPIService) CreateOrderExecute(r ApiCreateOrderRequest) (*OrderResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *OrderResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *OrderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersAPIService.CreateOrder")
@@ -445,8 +446,8 @@ func (a *OrdersAPIService) CreateOrderExecute(r ApiCreateOrderRequest) (*OrderRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -456,8 +457,8 @@ func (a *OrdersAPIService) CreateOrderExecute(r ApiCreateOrderRequest) (*OrderRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
@@ -467,8 +468,8 @@ func (a *OrdersAPIService) CreateOrderExecute(r ApiCreateOrderRequest) (*OrderRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -478,8 +479,8 @@ func (a *OrdersAPIService) CreateOrderExecute(r ApiCreateOrderRequest) (*OrderRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -497,10 +498,10 @@ func (a *OrdersAPIService) CreateOrderExecute(r ApiCreateOrderRequest) (*OrderRe
 }
 
 type ApiGetOrderByIdRequest struct {
-	ctx             context.Context
-	ApiService      OrdersAPI
-	id              string
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService OrdersAPI
+	id string
+	acceptLanguage *string
 	xChildCompanyId *string
 }
 
@@ -532,8 +533,8 @@ Info for a specific order
 func (a *OrdersAPIService) GetOrderById(ctx context.Context, id string) ApiGetOrderByIdRequest {
 	return ApiGetOrderByIdRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -541,10 +542,10 @@ func (a *OrdersAPIService) GetOrderById(ctx context.Context, id string) ApiGetOr
 //  @return OrderResponse
 func (a *OrdersAPIService) GetOrderByIdExecute(r ApiGetOrderByIdRequest) (*OrderResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *OrderResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *OrderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersAPIService.GetOrderById")
@@ -611,8 +612,8 @@ func (a *OrdersAPIService) GetOrderByIdExecute(r ApiGetOrderByIdRequest) (*Order
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -622,8 +623,8 @@ func (a *OrdersAPIService) GetOrderByIdExecute(r ApiGetOrderByIdRequest) (*Order
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -633,8 +634,8 @@ func (a *OrdersAPIService) GetOrderByIdExecute(r ApiGetOrderByIdRequest) (*Order
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -652,21 +653,21 @@ func (a *OrdersAPIService) GetOrderByIdExecute(r ApiGetOrderByIdRequest) (*Order
 }
 
 type ApiGetOrdersRequest struct {
-	ctx                   context.Context
-	ApiService            OrdersAPI
-	acceptLanguage        *string
-	xChildCompanyId       *string
-	limit                 *int32
-	search                *string
-	next                  *string
-	previous              *string
-	paymentStatus         *string
+	ctx context.Context
+	ApiService OrdersAPI
+	acceptLanguage *string
+	xChildCompanyId *string
+	limit *int32
+	search *string
+	next *string
+	previous *string
+	paymentStatus *string
 	lastPaymentInfoStatus *string
-	createdAt             *int64
-	createdAtGte          *int64
-	createdAtLte          *int64
-	updatedAtGte          *int64
-	updatedAtLte          *int64
+	createdAt *int64
+	createdAtGte *int64
+	createdAtLte *int64
+	updatedAtGte *int64
+	updatedAtLte *int64
 }
 
 // Use for knowing which language to use
@@ -762,7 +763,7 @@ Get order details in the form of a list
 func (a *OrdersAPIService) GetOrders(ctx context.Context) ApiGetOrdersRequest {
 	return ApiGetOrdersRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -770,10 +771,10 @@ func (a *OrdersAPIService) GetOrders(ctx context.Context) ApiGetOrdersRequest {
 //  @return GetOrdersResponse
 func (a *OrdersAPIService) GetOrdersExecute(r ApiGetOrdersRequest) (*GetOrdersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GetOrdersResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetOrdersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersAPIService.GetOrders")
@@ -875,8 +876,8 @@ func (a *OrdersAPIService) GetOrdersExecute(r ApiGetOrdersRequest) (*GetOrdersRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -886,8 +887,8 @@ func (a *OrdersAPIService) GetOrdersExecute(r ApiGetOrdersRequest) (*GetOrdersRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -905,11 +906,11 @@ func (a *OrdersAPIService) GetOrdersExecute(r ApiGetOrdersRequest) (*GetOrdersRe
 }
 
 type ApiOrderCancelRefundRequest struct {
-	ctx             context.Context
-	ApiService      OrdersAPI
-	id              string
-	refundId        string
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService OrdersAPI
+	id string
+	refundId string
+	acceptLanguage *string
 	xChildCompanyId *string
 }
 
@@ -942,9 +943,9 @@ A refunded order describes the items, amount, and reason an order is being refun
 func (a *OrdersAPIService) OrderCancelRefund(ctx context.Context, id string, refundId string) ApiOrderCancelRefundRequest {
 	return ApiOrderCancelRefundRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-		refundId:   refundId,
+		ctx: ctx,
+		id: id,
+		refundId: refundId,
 	}
 }
 
@@ -952,10 +953,10 @@ func (a *OrdersAPIService) OrderCancelRefund(ctx context.Context, id string, ref
 //  @return OrderResponse
 func (a *OrdersAPIService) OrderCancelRefundExecute(r ApiOrderCancelRefundRequest) (*OrderResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodDelete
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *OrderResponse
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *OrderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersAPIService.OrderCancelRefund")
@@ -1023,8 +1024,8 @@ func (a *OrdersAPIService) OrderCancelRefundExecute(r ApiOrderCancelRefundReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
@@ -1034,8 +1035,8 @@ func (a *OrdersAPIService) OrderCancelRefundExecute(r ApiOrderCancelRefundReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1045,8 +1046,8 @@ func (a *OrdersAPIService) OrderCancelRefundExecute(r ApiOrderCancelRefundReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -1056,8 +1057,8 @@ func (a *OrdersAPIService) OrderCancelRefundExecute(r ApiOrderCancelRefundReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1067,8 +1068,8 @@ func (a *OrdersAPIService) OrderCancelRefundExecute(r ApiOrderCancelRefundReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1086,12 +1087,12 @@ func (a *OrdersAPIService) OrderCancelRefundExecute(r ApiOrderCancelRefundReques
 }
 
 type ApiOrderRefundRequest struct {
-	ctx                context.Context
-	ApiService         OrdersAPI
-	id                 string
+	ctx context.Context
+	ApiService OrdersAPI
+	id string
 	orderRefundRequest *OrderRefundRequest
-	acceptLanguage     *string
-	xChildCompanyId    *string
+	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for a refund
@@ -1128,8 +1129,8 @@ A refunded order describes the items, amount, and reason an order is being refun
 func (a *OrdersAPIService) OrderRefund(ctx context.Context, id string) ApiOrderRefundRequest {
 	return ApiOrderRefundRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -1137,10 +1138,10 @@ func (a *OrdersAPIService) OrderRefund(ctx context.Context, id string) ApiOrderR
 //  @return OrderResponse
 func (a *OrdersAPIService) OrderRefundExecute(r ApiOrderRefundRequest) (*OrderResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *OrderResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *OrderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersAPIService.OrderRefund")
@@ -1212,8 +1213,8 @@ func (a *OrdersAPIService) OrderRefundExecute(r ApiOrderRefundRequest) (*OrderRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
@@ -1223,8 +1224,8 @@ func (a *OrdersAPIService) OrderRefundExecute(r ApiOrderRefundRequest) (*OrderRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1234,8 +1235,8 @@ func (a *OrdersAPIService) OrderRefundExecute(r ApiOrderRefundRequest) (*OrderRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -1245,8 +1246,8 @@ func (a *OrdersAPIService) OrderRefundExecute(r ApiOrderRefundRequest) (*OrderRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1256,8 +1257,8 @@ func (a *OrdersAPIService) OrderRefundExecute(r ApiOrderRefundRequest) (*OrderRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1275,11 +1276,11 @@ func (a *OrdersAPIService) OrderRefundExecute(r ApiOrderRefundRequest) (*OrderRe
 }
 
 type ApiOrdersCreateCaptureRequest struct {
-	ctx                 context.Context
-	ApiService          OrdersAPI
-	id                  string
-	acceptLanguage      *string
-	xChildCompanyId     *string
+	ctx context.Context
+	ApiService OrdersAPI
+	id string
+	acceptLanguage *string
+	xChildCompanyId *string
 	orderCaptureRequest *OrderCaptureRequest
 }
 
@@ -1317,8 +1318,8 @@ Processes an order that has been previously authorized.
 func (a *OrdersAPIService) OrdersCreateCapture(ctx context.Context, id string) ApiOrdersCreateCaptureRequest {
 	return ApiOrdersCreateCaptureRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -1326,10 +1327,10 @@ func (a *OrdersAPIService) OrdersCreateCapture(ctx context.Context, id string) A
 //  @return OrderResponse
 func (a *OrdersAPIService) OrdersCreateCaptureExecute(r ApiOrdersCreateCaptureRequest) (*OrderResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *OrderResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *OrderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersAPIService.OrdersCreateCapture")
@@ -1398,8 +1399,8 @@ func (a *OrdersAPIService) OrdersCreateCaptureExecute(r ApiOrdersCreateCaptureRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1409,8 +1410,8 @@ func (a *OrdersAPIService) OrdersCreateCaptureExecute(r ApiOrdersCreateCaptureRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 428 {
@@ -1420,8 +1421,8 @@ func (a *OrdersAPIService) OrdersCreateCaptureExecute(r ApiOrdersCreateCaptureRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1431,8 +1432,8 @@ func (a *OrdersAPIService) OrdersCreateCaptureExecute(r ApiOrdersCreateCaptureRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1450,11 +1451,11 @@ func (a *OrdersAPIService) OrdersCreateCaptureExecute(r ApiOrdersCreateCaptureRe
 }
 
 type ApiUpdateOrderRequest struct {
-	ctx                context.Context
-	ApiService         OrdersAPI
-	id                 string
+	ctx context.Context
+	ApiService OrdersAPI
+	id string
 	orderUpdateRequest *OrderUpdateRequest
-	acceptLanguage     *string
+	acceptLanguage *string
 }
 
 // requested field for an order
@@ -1485,8 +1486,8 @@ Update an existing Order.
 func (a *OrdersAPIService) UpdateOrder(ctx context.Context, id string) ApiUpdateOrderRequest {
 	return ApiUpdateOrderRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -1494,10 +1495,10 @@ func (a *OrdersAPIService) UpdateOrder(ctx context.Context, id string) ApiUpdate
 //  @return OrderResponse
 func (a *OrdersAPIService) UpdateOrderExecute(r ApiUpdateOrderRequest) (*OrderResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *OrderResponse
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *OrderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersAPIService.UpdateOrder")
@@ -1566,8 +1567,8 @@ func (a *OrdersAPIService) UpdateOrderExecute(r ApiUpdateOrderRequest) (*OrderRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1577,8 +1578,8 @@ func (a *OrdersAPIService) UpdateOrderExecute(r ApiUpdateOrderRequest) (*OrderRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -1588,8 +1589,8 @@ func (a *OrdersAPIService) UpdateOrderExecute(r ApiUpdateOrderRequest) (*OrderRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1599,8 +1600,8 @@ func (a *OrdersAPIService) UpdateOrderExecute(r ApiUpdateOrderRequest) (*OrderRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
