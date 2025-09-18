@@ -90,7 +90,7 @@ type Configuration struct {
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "Conekta/v2 GoBindings/7.0.3",
+		UserAgent:     "Conekta/v2 GoBindings/7.0.5",
 		Debug:         false,
 		Servers: ServerConfigurations{
 			{
