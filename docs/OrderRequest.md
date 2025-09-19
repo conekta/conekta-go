@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **ShippingContact** | Pointer to [**CustomerShippingContacts**](CustomerShippingContacts.md) |  | [optional] 
 **ShippingLines** | Pointer to [**[]ShippingRequest**](ShippingRequest.md) | List of [shipping costs](https://developers.conekta.com/v2.2.0/reference/orderscreateshipping). If the online store offers digital products. | [optional] 
 **TaxLines** | Pointer to [**[]OrderTaxRequest**](OrderTaxRequest.md) | List of [taxes](https://developers.conekta.com/v2.2.0/reference/orderscreatetaxes) that are applied to the order. | [optional] 
-**ThreeDsMode** | Pointer to **string** | Indicates the 3DS2 mode for the order, either smart or strict. | [optional] 
+**ThreeDsMode** | Pointer to **NullableString** | Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null. | [optional] 
 
 ## Methods
 
@@ -425,6 +425,16 @@ SetThreeDsMode sets ThreeDsMode field to given value.
 
 HasThreeDsMode returns a boolean if a field has been set.
 
+### SetThreeDsModeNil
+
+`func (o *OrderRequest) SetThreeDsModeNil(b bool)`
+
+ SetThreeDsModeNil sets the value for ThreeDsMode to be an explicit nil
+
+### UnsetThreeDsMode
+`func (o *OrderRequest) UnsetThreeDsMode()`
+
+UnsetThreeDsMode ensures that no value is present for ThreeDsMode, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

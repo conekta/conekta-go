@@ -18,8 +18,8 @@ import (
 
 // CreateCustomerPaymentMethodsRequest - Contains details of the payment methods that the customer has active or has used in Conekta
 type CreateCustomerPaymentMethodsRequest struct {
-	PaymentMethodCashRequest  *PaymentMethodCashRequest
-	PaymentMethodSpeiRequest  *PaymentMethodSpeiRequest
+	PaymentMethodCashRequest *PaymentMethodCashRequest
+	PaymentMethodSpeiRequest *PaymentMethodSpeiRequest
 	PaymentMethodTokenRequest *PaymentMethodTokenRequest
 }
 
@@ -43,6 +43,7 @@ func PaymentMethodTokenRequestAsCreateCustomerPaymentMethodsRequest(v *PaymentMe
 		PaymentMethodTokenRequest: v,
 	}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *CreateCustomerPaymentMethodsRequest) UnmarshalJSON(data []byte) error {
@@ -119,7 +120,7 @@ func (src CreateCustomerPaymentMethodsRequest) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *CreateCustomerPaymentMethodsRequest) GetActualInstance() interface{} {
+func (obj *CreateCustomerPaymentMethodsRequest) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -140,7 +141,7 @@ func (obj *CreateCustomerPaymentMethodsRequest) GetActualInstance() interface{} 
 }
 
 // Get the actual instance value
-func (obj CreateCustomerPaymentMethodsRequest) GetActualInstanceValue() interface{} {
+func (obj CreateCustomerPaymentMethodsRequest) GetActualInstanceValue() (interface{}) {
 	if obj.PaymentMethodCashRequest != nil {
 		return *obj.PaymentMethodCashRequest
 	}
@@ -192,3 +193,5 @@ func (v *NullableCreateCustomerPaymentMethodsRequest) UnmarshalJSON(src []byte) 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

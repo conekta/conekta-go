@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**GetCompanies**](CompaniesAPI.md#GetCompanies) | **Get** /companies | Get List of Companies
 [**GetCompany**](CompaniesAPI.md#GetCompany) | **Get** /companies/{id} | Get Company
 [**GetCompanyDocuments**](CompaniesAPI.md#GetCompanyDocuments) | **Get** /companies/{company_id}/documents | Get Company Documents
+[**GetCurrentCompany**](CompaniesAPI.md#GetCurrentCompany) | **Get** /companies/current | Get Current Company
 [**UpdateCompanyDocument**](CompaniesAPI.md#UpdateCompanyDocument) | **Patch** /companies/{company_id}/document | Update Company Document
 [**UploadCompanyDocument**](CompaniesAPI.md#UploadCompanyDocument) | **Post** /companies/{company_id}/document | Upload Company Document
 
@@ -295,6 +296,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetCurrentCompany
+
+> CompanyResponse GetCurrentCompany(ctx).AcceptLanguage(acceptLanguage).Execute()
+
+Get Current Company
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/conekta/conekta-go"
+)
+
+func main() {
+	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CompaniesAPI.GetCurrentCompany(context.Background()).AcceptLanguage(acceptLanguage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CompaniesAPI.GetCurrentCompany``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetCurrentCompany`: CompanyResponse
+	fmt.Fprintf(os.Stdout, "Response from `CompaniesAPI.GetCurrentCompany`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetCurrentCompanyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
+
+### Return type
+
+[**CompanyResponse**](CompanyResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/vnd.conekta-v2.2.0+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateCompanyDocument
 
 > CompanyDocumentResponse UpdateCompanyDocument(ctx, companyId).CompanyDocumentRequest(companyDocumentRequest).AcceptLanguage(acceptLanguage).Execute()
@@ -317,7 +384,7 @@ import (
 
 func main() {
 	companyId := "6827206b1ec60400015eb09a" // string | The unique identifier of the company.
-	companyDocumentRequest := *openapiclient.NewCompanyDocumentRequest("id_legal_representative", "application/pdf", "example_document.pdf", string([B@6a4fb518)) // CompanyDocumentRequest | Document information to update.
+	companyDocumentRequest := *openapiclient.NewCompanyDocumentRequest("id_legal_representative", "application/pdf", "example_document.pdf", string([B@9a6c67c)) // CompanyDocumentRequest | Document information to update.
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 
 	configuration := openapiclient.NewConfiguration()
@@ -391,7 +458,7 @@ import (
 
 func main() {
 	companyId := "6827206b1ec60400015eb09a" // string | The unique identifier of the company.
-	companyDocumentRequest := *openapiclient.NewCompanyDocumentRequest("id_legal_representative", "application/pdf", "example_document.pdf", string([B@6a4fb518)) // CompanyDocumentRequest | Document information to upload.
+	companyDocumentRequest := *openapiclient.NewCompanyDocumentRequest("id_legal_representative", "application/pdf", "example_document.pdf", string([B@9a6c67c)) // CompanyDocumentRequest | Document information to upload.
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 
 	configuration := openapiclient.NewConfiguration()

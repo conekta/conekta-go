@@ -19,16 +19,17 @@ import (
 	"net/url"
 )
 
+
 type TokensAPI interface {
 
 	/*
-		CreateToken Create Token
+	CreateToken Create Token
 
-		Generate a payment token, to associate it with a card
+	Generate a payment token, to associate it with a card
 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiCreateTokenRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateTokenRequest
 	*/
 	CreateToken(ctx context.Context) ApiCreateTokenRequest
 
@@ -41,9 +42,9 @@ type TokensAPI interface {
 type TokensAPIService service
 
 type ApiCreateTokenRequest struct {
-	ctx            context.Context
-	ApiService     TokensAPI
-	token          *Token
+	ctx context.Context
+	ApiService TokensAPI
+	token *Token
 	acceptLanguage *string
 }
 
@@ -75,7 +76,7 @@ Generate a payment token, to associate it with a card
 func (a *TokensAPIService) CreateToken(ctx context.Context) ApiCreateTokenRequest {
 	return ApiCreateTokenRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -83,10 +84,10 @@ func (a *TokensAPIService) CreateToken(ctx context.Context) ApiCreateTokenReques
 //  @return TokenResponse
 func (a *TokensAPIService) CreateTokenExecute(r ApiCreateTokenRequest) (*TokenResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *TokenResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TokenResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensAPIService.CreateToken")
@@ -154,8 +155,8 @@ func (a *TokensAPIService) CreateTokenExecute(r ApiCreateTokenRequest) (*TokenRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -165,8 +166,8 @@ func (a *TokensAPIService) CreateTokenExecute(r ApiCreateTokenRequest) (*TokenRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -176,8 +177,8 @@ func (a *TokensAPIService) CreateTokenExecute(r ApiCreateTokenRequest) (*TokenRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

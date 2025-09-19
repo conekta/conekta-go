@@ -20,16 +20,17 @@ import (
 	"strings"
 )
 
+
 type TransactionsAPI interface {
 
 	/*
-		GetTransaction Get transaction
+	GetTransaction Get transaction
 
-		Get the details of a transaction
+	Get the details of a transaction
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiGetTransactionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiGetTransactionRequest
 	*/
 	GetTransaction(ctx context.Context, id string) ApiGetTransactionRequest
 
@@ -38,12 +39,12 @@ type TransactionsAPI interface {
 	GetTransactionExecute(r ApiGetTransactionRequest) (*TransactionResponse, *http.Response, error)
 
 	/*
-		GetTransactions Get List transactions
+	GetTransactions Get List transactions
 
-		Get transaction details in the form of a list
+	Get transaction details in the form of a list
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetTransactionsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetTransactionsRequest
 	*/
 	GetTransactions(ctx context.Context) ApiGetTransactionsRequest
 
@@ -56,10 +57,10 @@ type TransactionsAPI interface {
 type TransactionsAPIService service
 
 type ApiGetTransactionRequest struct {
-	ctx             context.Context
-	ApiService      TransactionsAPI
-	id              string
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService TransactionsAPI
+	id string
+	acceptLanguage *string
 	xChildCompanyId *string
 }
 
@@ -91,8 +92,8 @@ Get the details of a transaction
 func (a *TransactionsAPIService) GetTransaction(ctx context.Context, id string) ApiGetTransactionRequest {
 	return ApiGetTransactionRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -100,10 +101,10 @@ func (a *TransactionsAPIService) GetTransaction(ctx context.Context, id string) 
 //  @return TransactionResponse
 func (a *TransactionsAPIService) GetTransactionExecute(r ApiGetTransactionRequest) (*TransactionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *TransactionResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TransactionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransactionsAPIService.GetTransaction")
@@ -170,8 +171,8 @@ func (a *TransactionsAPIService) GetTransactionExecute(r ApiGetTransactionReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -181,8 +182,8 @@ func (a *TransactionsAPIService) GetTransactionExecute(r ApiGetTransactionReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -192,8 +193,8 @@ func (a *TransactionsAPIService) GetTransactionExecute(r ApiGetTransactionReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -211,17 +212,17 @@ func (a *TransactionsAPIService) GetTransactionExecute(r ApiGetTransactionReques
 }
 
 type ApiGetTransactionsRequest struct {
-	ctx             context.Context
-	ApiService      TransactionsAPI
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService TransactionsAPI
+	acceptLanguage *string
 	xChildCompanyId *string
-	limit           *int32
-	next            *string
-	previous        *string
-	id              *string
-	chargeId        *string
-	type_           *string
-	currency        *string
+	limit *int32
+	next *string
+	previous *string
+	id *string
+	chargeId *string
+	type_ *string
+	currency *string
 }
 
 // Use for knowing which language to use
@@ -293,7 +294,7 @@ Get transaction details in the form of a list
 func (a *TransactionsAPIService) GetTransactions(ctx context.Context) ApiGetTransactionsRequest {
 	return ApiGetTransactionsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -301,10 +302,10 @@ func (a *TransactionsAPIService) GetTransactions(ctx context.Context) ApiGetTran
 //  @return GetTransactionsResponse
 func (a *TransactionsAPIService) GetTransactionsExecute(r ApiGetTransactionsRequest) (*GetTransactionsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GetTransactionsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetTransactionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransactionsAPIService.GetTransactions")
@@ -394,8 +395,8 @@ func (a *TransactionsAPIService) GetTransactionsExecute(r ApiGetTransactionsRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -405,8 +406,8 @@ func (a *TransactionsAPIService) GetTransactionsExecute(r ApiGetTransactionsRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

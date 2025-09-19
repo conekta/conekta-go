@@ -20,15 +20,16 @@ import (
 	"strings"
 )
 
+
 type PlansAPI interface {
 
 	/*
-		CreatePlan Create Plan
+	CreatePlan Create Plan
 
-		Create a new plan for an existing order
+	Create a new plan for an existing order
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiCreatePlanRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreatePlanRequest
 	*/
 	CreatePlan(ctx context.Context) ApiCreatePlanRequest
 
@@ -37,11 +38,11 @@ type PlansAPI interface {
 	CreatePlanExecute(r ApiCreatePlanRequest) (*PlanResponse, *http.Response, error)
 
 	/*
-		DeletePlan Delete Plan
+	DeletePlan Delete Plan
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiDeletePlanRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiDeletePlanRequest
 	*/
 	DeletePlan(ctx context.Context, id string) ApiDeletePlanRequest
 
@@ -50,11 +51,11 @@ type PlansAPI interface {
 	DeletePlanExecute(r ApiDeletePlanRequest) (*PlanResponse, *http.Response, error)
 
 	/*
-		GetPlan Get Plan
+	GetPlan Get Plan
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiGetPlanRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiGetPlanRequest
 	*/
 	GetPlan(ctx context.Context, id string) ApiGetPlanRequest
 
@@ -63,10 +64,10 @@ type PlansAPI interface {
 	GetPlanExecute(r ApiGetPlanRequest) (*PlanResponse, *http.Response, error)
 
 	/*
-		GetPlans Get A List of Plans
+	GetPlans Get A List of Plans
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetPlansRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetPlansRequest
 	*/
 	GetPlans(ctx context.Context) ApiGetPlansRequest
 
@@ -75,11 +76,11 @@ type PlansAPI interface {
 	GetPlansExecute(r ApiGetPlansRequest) (*GetPlansResponse, *http.Response, error)
 
 	/*
-		UpdatePlan Update Plan
+	UpdatePlan Update Plan
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiUpdatePlanRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiUpdatePlanRequest
 	*/
 	UpdatePlan(ctx context.Context, id string) ApiUpdatePlanRequest
 
@@ -92,10 +93,10 @@ type PlansAPI interface {
 type PlansAPIService service
 
 type ApiCreatePlanRequest struct {
-	ctx             context.Context
-	ApiService      PlansAPI
-	planRequest     *PlanRequest
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService PlansAPI
+	planRequest *PlanRequest
+	acceptLanguage *string
 	xChildCompanyId *string
 }
 
@@ -132,7 +133,7 @@ Create a new plan for an existing order
 func (a *PlansAPIService) CreatePlan(ctx context.Context) ApiCreatePlanRequest {
 	return ApiCreatePlanRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -140,10 +141,10 @@ func (a *PlansAPIService) CreatePlan(ctx context.Context) ApiCreatePlanRequest {
 //  @return PlanResponse
 func (a *PlansAPIService) CreatePlanExecute(r ApiCreatePlanRequest) (*PlanResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PlanResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PlanResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansAPIService.CreatePlan")
@@ -214,8 +215,8 @@ func (a *PlansAPIService) CreatePlanExecute(r ApiCreatePlanRequest) (*PlanRespon
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -225,8 +226,8 @@ func (a *PlansAPIService) CreatePlanExecute(r ApiCreatePlanRequest) (*PlanRespon
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -236,8 +237,8 @@ func (a *PlansAPIService) CreatePlanExecute(r ApiCreatePlanRequest) (*PlanRespon
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -255,9 +256,9 @@ func (a *PlansAPIService) CreatePlanExecute(r ApiCreatePlanRequest) (*PlanRespon
 }
 
 type ApiDeletePlanRequest struct {
-	ctx            context.Context
-	ApiService     PlansAPI
-	id             string
+	ctx context.Context
+	ApiService PlansAPI
+	id string
 	acceptLanguage *string
 }
 
@@ -281,8 +282,8 @@ DeletePlan Delete Plan
 func (a *PlansAPIService) DeletePlan(ctx context.Context, id string) ApiDeletePlanRequest {
 	return ApiDeletePlanRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -290,10 +291,10 @@ func (a *PlansAPIService) DeletePlan(ctx context.Context, id string) ApiDeletePl
 //  @return PlanResponse
 func (a *PlansAPIService) DeletePlanExecute(r ApiDeletePlanRequest) (*PlanResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodDelete
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PlanResponse
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PlanResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansAPIService.DeletePlan")
@@ -357,8 +358,8 @@ func (a *PlansAPIService) DeletePlanExecute(r ApiDeletePlanRequest) (*PlanRespon
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -368,8 +369,8 @@ func (a *PlansAPIService) DeletePlanExecute(r ApiDeletePlanRequest) (*PlanRespon
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -379,8 +380,8 @@ func (a *PlansAPIService) DeletePlanExecute(r ApiDeletePlanRequest) (*PlanRespon
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -390,8 +391,8 @@ func (a *PlansAPIService) DeletePlanExecute(r ApiDeletePlanRequest) (*PlanRespon
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -409,10 +410,10 @@ func (a *PlansAPIService) DeletePlanExecute(r ApiDeletePlanRequest) (*PlanRespon
 }
 
 type ApiGetPlanRequest struct {
-	ctx             context.Context
-	ApiService      PlansAPI
-	id              string
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService PlansAPI
+	id string
+	acceptLanguage *string
 	xChildCompanyId *string
 }
 
@@ -442,8 +443,8 @@ GetPlan Get Plan
 func (a *PlansAPIService) GetPlan(ctx context.Context, id string) ApiGetPlanRequest {
 	return ApiGetPlanRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -451,10 +452,10 @@ func (a *PlansAPIService) GetPlan(ctx context.Context, id string) ApiGetPlanRequ
 //  @return PlanResponse
 func (a *PlansAPIService) GetPlanExecute(r ApiGetPlanRequest) (*PlanResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PlanResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PlanResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansAPIService.GetPlan")
@@ -521,8 +522,8 @@ func (a *PlansAPIService) GetPlanExecute(r ApiGetPlanRequest) (*PlanResponse, *h
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -532,8 +533,8 @@ func (a *PlansAPIService) GetPlanExecute(r ApiGetPlanRequest) (*PlanResponse, *h
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -543,8 +544,8 @@ func (a *PlansAPIService) GetPlanExecute(r ApiGetPlanRequest) (*PlanResponse, *h
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -554,8 +555,8 @@ func (a *PlansAPIService) GetPlanExecute(r ApiGetPlanRequest) (*PlanResponse, *h
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -573,14 +574,14 @@ func (a *PlansAPIService) GetPlanExecute(r ApiGetPlanRequest) (*PlanResponse, *h
 }
 
 type ApiGetPlansRequest struct {
-	ctx             context.Context
-	ApiService      PlansAPI
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService PlansAPI
+	acceptLanguage *string
 	xChildCompanyId *string
-	limit           *int32
-	search          *string
-	next            *string
-	previous        *string
+	limit *int32
+	search *string
+	next *string
+	previous *string
 }
 
 // Use for knowing which language to use
@@ -632,7 +633,7 @@ GetPlans Get A List of Plans
 func (a *PlansAPIService) GetPlans(ctx context.Context) ApiGetPlansRequest {
 	return ApiGetPlansRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -640,10 +641,10 @@ func (a *PlansAPIService) GetPlans(ctx context.Context) ApiGetPlansRequest {
 //  @return GetPlansResponse
 func (a *PlansAPIService) GetPlansExecute(r ApiGetPlansRequest) (*GetPlansResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GetPlansResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetPlansResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansAPIService.GetPlans")
@@ -724,8 +725,8 @@ func (a *PlansAPIService) GetPlansExecute(r ApiGetPlansRequest) (*GetPlansRespon
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -735,8 +736,8 @@ func (a *PlansAPIService) GetPlansExecute(r ApiGetPlansRequest) (*GetPlansRespon
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -746,8 +747,8 @@ func (a *PlansAPIService) GetPlansExecute(r ApiGetPlansRequest) (*GetPlansRespon
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -765,12 +766,12 @@ func (a *PlansAPIService) GetPlansExecute(r ApiGetPlansRequest) (*GetPlansRespon
 }
 
 type ApiUpdatePlanRequest struct {
-	ctx               context.Context
-	ApiService        PlansAPI
-	id                string
+	ctx context.Context
+	ApiService PlansAPI
+	id string
 	planUpdateRequest *PlanUpdateRequest
-	acceptLanguage    *string
-	xChildCompanyId   *string
+	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for plan
@@ -805,8 +806,8 @@ UpdatePlan Update Plan
 func (a *PlansAPIService) UpdatePlan(ctx context.Context, id string) ApiUpdatePlanRequest {
 	return ApiUpdatePlanRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -814,10 +815,10 @@ func (a *PlansAPIService) UpdatePlan(ctx context.Context, id string) ApiUpdatePl
 //  @return PlanResponse
 func (a *PlansAPIService) UpdatePlanExecute(r ApiUpdatePlanRequest) (*PlanResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PlanResponse
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PlanResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlansAPIService.UpdatePlan")
@@ -889,8 +890,8 @@ func (a *PlansAPIService) UpdatePlanExecute(r ApiUpdatePlanRequest) (*PlanRespon
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -900,8 +901,8 @@ func (a *PlansAPIService) UpdatePlanExecute(r ApiUpdatePlanRequest) (*PlanRespon
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -911,8 +912,8 @@ func (a *PlansAPIService) UpdatePlanExecute(r ApiUpdatePlanRequest) (*PlanRespon
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -922,8 +923,8 @@ func (a *PlansAPIService) UpdatePlanExecute(r ApiUpdatePlanRequest) (*PlanRespon
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

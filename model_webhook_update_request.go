@@ -25,7 +25,7 @@ type WebhookUpdateRequest struct {
 	// events that will be sent to the webhook
 	SubscribedEvents []string `json:"subscribed_events,omitempty"`
 	// whether the webhook is active or not
-	Active               *bool `json:"active,omitempty"`
+	Active *bool `json:"active,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -145,7 +145,7 @@ func (o *WebhookUpdateRequest) SetActive(v bool) {
 }
 
 func (o WebhookUpdateRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -229,3 +229,5 @@ func (v *NullableWebhookUpdateRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

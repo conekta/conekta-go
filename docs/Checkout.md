@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **ExpiresAt** | **int64** | It is the time when the link will expire. It is expressed in seconds since the Unix epoch. The valid range is from 2 to 365 days (the valid range will be taken from the next day of the creation date at 00:01 hrs)  | 
 **MonthlyInstallmentsEnabled** | Pointer to **bool** | This flag allows you to specify if months without interest will be active. | [optional] 
 **MonthlyInstallmentsOptions** | Pointer to **[]int32** | This field allows you to specify the number of months without interest. | [optional] 
-**ThreeDsMode** | Pointer to **string** | Indicates the 3DS2 mode for the order, either smart or strict. | [optional] 
+**ThreeDsMode** | Pointer to **NullableString** | Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null. | [optional] 
 **Name** | **string** | Reason for charge | 
 **NeedsShippingContact** | Pointer to **bool** | This flag allows you to fill in the shipping information at checkout. | [optional] 
 **OnDemandEnabled** | Pointer to **NullableBool** | This flag allows you to specify if the link will be on demand. | [optional] 
@@ -151,6 +151,16 @@ SetThreeDsMode sets ThreeDsMode field to given value.
 
 HasThreeDsMode returns a boolean if a field has been set.
 
+### SetThreeDsModeNil
+
+`func (o *Checkout) SetThreeDsModeNil(b bool)`
+
+ SetThreeDsModeNil sets the value for ThreeDsMode to be an explicit nil
+
+### UnsetThreeDsMode
+`func (o *Checkout) UnsetThreeDsMode()`
+
+UnsetThreeDsMode ensures that no value is present for ThreeDsMode, not even an explicit nil
 ### GetName
 
 `func (o *Checkout) GetName() string`
