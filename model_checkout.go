@@ -37,6 +37,8 @@ type Checkout struct {
 	NeedsShippingContact *bool `json:"needs_shipping_contact,omitempty"`
 	// This flag allows you to specify if the link will be on demand.
 	OnDemandEnabled NullableBool `json:"on_demand_enabled,omitempty"`
+	// It is a list of plan IDs that will be associated with the order.
+	PlanIds []string `json:"plan_ids,omitempty"`
 	OrderTemplate CheckoutOrderTemplate `json:"order_template"`
 	// It is the number of payments that can be made through the link.
 	PaymentsLimitCount *int32 `json:"payments_limit_count,omitempty"`
@@ -324,6 +326,38 @@ func (o *Checkout) UnsetOnDemandEnabled() {
 	o.OnDemandEnabled.Unset()
 }
 
+// GetPlanIds returns the PlanIds field value if set, zero value otherwise.
+func (o *Checkout) GetPlanIds() []string {
+	if o == nil || IsNil(o.PlanIds) {
+		var ret []string
+		return ret
+	}
+	return o.PlanIds
+}
+
+// GetPlanIdsOk returns a tuple with the PlanIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Checkout) GetPlanIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.PlanIds) {
+		return nil, false
+	}
+	return o.PlanIds, true
+}
+
+// HasPlanIds returns a boolean if a field has been set.
+func (o *Checkout) HasPlanIds() bool {
+	if o != nil && !IsNil(o.PlanIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetPlanIds gets a reference to the given []string and assigns it to the PlanIds field.
+func (o *Checkout) SetPlanIds(v []string) {
+	o.PlanIds = v
+}
+
 // GetOrderTemplate returns the OrderTemplate field value
 func (o *Checkout) GetOrderTemplate() CheckoutOrderTemplate {
 	if o == nil {
@@ -456,6 +490,9 @@ func (o Checkout) ToMap() (map[string]interface{}, error) {
 	if o.OnDemandEnabled.IsSet() {
 		toSerialize["on_demand_enabled"] = o.OnDemandEnabled.Get()
 	}
+	if !IsNil(o.PlanIds) {
+		toSerialize["plan_ids"] = o.PlanIds
+	}
 	toSerialize["order_template"] = o.OrderTemplate
 	if !IsNil(o.PaymentsLimitCount) {
 		toSerialize["payments_limit_count"] = o.PaymentsLimitCount
@@ -518,6 +555,7 @@ func (o *Checkout) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "needs_shipping_contact")
 		delete(additionalProperties, "on_demand_enabled")
+		delete(additionalProperties, "plan_ids")
 		delete(additionalProperties, "order_template")
 		delete(additionalProperties, "payments_limit_count")
 		delete(additionalProperties, "recurrent")

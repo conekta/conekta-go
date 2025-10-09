@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Name** | **string** | Reason for charge | 
 **NeedsShippingContact** | Pointer to **bool** | This flag allows you to fill in the shipping information at checkout. | [optional] 
 **OnDemandEnabled** | Pointer to **NullableBool** | This flag allows you to specify if the link will be on demand. | [optional] 
+**PlanIds** | Pointer to **[]string** | It is a list of plan IDs that will be associated with the order. | [optional] 
 **OrderTemplate** | [**CheckoutOrderTemplate**](CheckoutOrderTemplate.md) |  | 
 **PaymentsLimitCount** | Pointer to **int32** | It is the number of payments that can be made through the link. | [optional] 
 **Recurrent** | **bool** | false: single use. true: multiple payments | 
@@ -241,6 +242,31 @@ HasOnDemandEnabled returns a boolean if a field has been set.
 `func (o *Checkout) UnsetOnDemandEnabled()`
 
 UnsetOnDemandEnabled ensures that no value is present for OnDemandEnabled, not even an explicit nil
+### GetPlanIds
+
+`func (o *Checkout) GetPlanIds() []string`
+
+GetPlanIds returns the PlanIds field if non-nil, zero value otherwise.
+
+### GetPlanIdsOk
+
+`func (o *Checkout) GetPlanIdsOk() (*[]string, bool)`
+
+GetPlanIdsOk returns a tuple with the PlanIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlanIds
+
+`func (o *Checkout) SetPlanIds(v []string)`
+
+SetPlanIds sets PlanIds field to given value.
+
+### HasPlanIds
+
+`func (o *Checkout) HasPlanIds() bool`
+
+HasPlanIds returns a boolean if a field has been set.
+
 ### GetOrderTemplate
 
 `func (o *Checkout) GetOrderTemplate() CheckoutOrderTemplate`
