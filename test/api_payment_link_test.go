@@ -19,14 +19,11 @@ import (
 
 func Test_conekta_PaymentLinkAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test PaymentLinkAPIService CancelCheckout", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "c7734ada-e1e9-4b22-90f6-b80a1b2006d4"
 
 		resp, httpRes, err := apiClient.PaymentLinkAPI.CancelCheckout(context.Background(), id).Execute()
 
@@ -38,9 +35,7 @@ func Test_conekta_PaymentLinkAPIService(t *testing.T) {
 
 	t.Run("Test PaymentLinkAPIService CreateCheckout", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.PaymentLinkAPI.CreateCheckout(context.Background()).Execute()
+		resp, httpRes, err := apiClient.PaymentLinkAPI.CreateCheckout(context.Background()).Checkout(openapiclient.Checkout{Type: "PaymentLink", Recurrent: false}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -50,11 +45,9 @@ func Test_conekta_PaymentLinkAPIService(t *testing.T) {
 
 	t.Run("Test PaymentLinkAPIService EmailCheckout", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "102bdf5c-3ee6-48ec-a9ff-40ec6f5f054b"
 
-		var id string
-
-		resp, httpRes, err := apiClient.PaymentLinkAPI.EmailCheckout(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.PaymentLinkAPI.EmailCheckout(context.Background(), id).EmailCheckoutRequest(openapiclient.EmailCheckoutRequest{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -64,9 +57,7 @@ func Test_conekta_PaymentLinkAPIService(t *testing.T) {
 
 	t.Run("Test PaymentLinkAPIService GetCheckout", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "bac0ed14-6888-4d1d-927a-c80d3f55c009"
 
 		resp, httpRes, err := apiClient.PaymentLinkAPI.GetCheckout(context.Background(), id).Execute()
 
@@ -78,8 +69,6 @@ func Test_conekta_PaymentLinkAPIService(t *testing.T) {
 
 	t.Run("Test PaymentLinkAPIService GetCheckouts", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
 		resp, httpRes, err := apiClient.PaymentLinkAPI.GetCheckouts(context.Background()).Execute()
 
 		require.Nil(t, err)
@@ -90,11 +79,9 @@ func Test_conekta_PaymentLinkAPIService(t *testing.T) {
 
 	t.Run("Test PaymentLinkAPIService SmsCheckout", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "ce1076bb-5ee6-4d08-a0e2-ec0bfbc49883"
 
-		var id string
-
-		resp, httpRes, err := apiClient.PaymentLinkAPI.SmsCheckout(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.PaymentLinkAPI.SmsCheckout(context.Background(), id).SmsCheckoutRequest(openapiclient.SmsCheckoutRequest{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -14,19 +14,15 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/conekta/conekta-go"
 )
 
 func Test_conekta_BalancesAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test BalancesAPIService GetBalance", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.BalancesAPI.GetBalance(context.Background()).Execute()
+		resp, httpRes, err := apiClient.BalancesAPI.GetBalance(context.Background()).AcceptLanguage("es").Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

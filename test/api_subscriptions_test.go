@@ -19,14 +19,11 @@ import (
 
 func Test_conekta_SubscriptionsAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test SubscriptionsAPIService CancelSubscription", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "cus_2tZWxbTPtQgGJGh8P"
 
 		resp, httpRes, err := apiClient.SubscriptionsAPI.CancelSubscription(context.Background(), id).Execute()
 
@@ -38,11 +35,9 @@ func Test_conekta_SubscriptionsAPIService(t *testing.T) {
 
 	t.Run("Test SubscriptionsAPIService CreateSubscription", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "cus_2tZWxbTPtQgGJGh8P"
 
-		var id string
-
-		resp, httpRes, err := apiClient.SubscriptionsAPI.CreateSubscription(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.SubscriptionsAPI.CreateSubscription(context.Background(), id).SubscriptionRequest(openapiclient.SubscriptionRequest{PlanId: "plan_2tZb5q8Z3PYpg6SJd"}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -52,9 +47,7 @@ func Test_conekta_SubscriptionsAPIService(t *testing.T) {
 
 	t.Run("Test SubscriptionsAPIService GetSubscription", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "cus_2tZWxbTPtQgGJGh8P"
 
 		resp, httpRes, err := apiClient.SubscriptionsAPI.GetSubscription(context.Background(), id).Execute()
 
@@ -66,9 +59,7 @@ func Test_conekta_SubscriptionsAPIService(t *testing.T) {
 
 	t.Run("Test SubscriptionsAPIService GetSubscriptionEvents", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "cus_2rKpeXQpapLonfVke"
 
 		resp, httpRes, err := apiClient.SubscriptionsAPI.GetSubscriptionEvents(context.Background(), id).Execute()
 
@@ -80,9 +71,7 @@ func Test_conekta_SubscriptionsAPIService(t *testing.T) {
 
 	t.Run("Test SubscriptionsAPIService PauseSubscription", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "cus_2tZWxbTPtQgGJGh8P"
 
 		resp, httpRes, err := apiClient.SubscriptionsAPI.PauseSubscription(context.Background(), id).Execute()
 
@@ -94,9 +83,7 @@ func Test_conekta_SubscriptionsAPIService(t *testing.T) {
 
 	t.Run("Test SubscriptionsAPIService ResumeSubscription", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "cus_2tZWxbTPtQgGJGh8P"
 
 		resp, httpRes, err := apiClient.SubscriptionsAPI.ResumeSubscription(context.Background(), id).Execute()
 
@@ -108,10 +95,10 @@ func Test_conekta_SubscriptionsAPIService(t *testing.T) {
 
 	t.Run("Test SubscriptionsAPIService SubscriptionCancel", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("mock server (conekta_api.json) does not implement this endpoint")
 
-		var customerId string
-		var id string
+		customerId := "cus_2tZWxbTPtQgGJGh8P"
+		id := "sub_2tZWxbTPtQgGJGh8P"
 
 		resp, httpRes, err := apiClient.SubscriptionsAPI.SubscriptionCancel(context.Background(), customerId, id).Execute()
 
@@ -123,11 +110,11 @@ func Test_conekta_SubscriptionsAPIService(t *testing.T) {
 
 	t.Run("Test SubscriptionsAPIService SubscriptionCreate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("mock server (conekta_api.json) does not implement this endpoint")
 
-		var customerId string
+		customerId := "cus_2tZWxbTPtQgGJGh8P"
 
-		resp, httpRes, err := apiClient.SubscriptionsAPI.SubscriptionCreate(context.Background(), customerId).Execute()
+		resp, httpRes, err := apiClient.SubscriptionsAPI.SubscriptionCreate(context.Background(), customerId).SubscriptionRequest(openapiclient.SubscriptionRequest{PlanId: "plan_2tZb5q8Z3PYpg6SJd"}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -137,10 +124,10 @@ func Test_conekta_SubscriptionsAPIService(t *testing.T) {
 
 	t.Run("Test SubscriptionsAPIService SubscriptionEvents", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("mock server (conekta_api.json) does not implement this endpoint")
 
-		var customerId string
-		var id string
+		customerId := "cus_2tZWxbTPtQgGJGh8P"
+		id := "sub_2tZWxbTPtQgGJGh8P"
 
 		resp, httpRes, err := apiClient.SubscriptionsAPI.SubscriptionEvents(context.Background(), customerId, id).Execute()
 
@@ -152,9 +139,9 @@ func Test_conekta_SubscriptionsAPIService(t *testing.T) {
 
 	t.Run("Test SubscriptionsAPIService SubscriptionList", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("mock server (conekta_api.json) does not implement this endpoint")
 
-		var customerId string
+		customerId := "cus_2tZWxbTPtQgGJGh8P"
 
 		resp, httpRes, err := apiClient.SubscriptionsAPI.SubscriptionList(context.Background(), customerId).Execute()
 
@@ -166,10 +153,10 @@ func Test_conekta_SubscriptionsAPIService(t *testing.T) {
 
 	t.Run("Test SubscriptionsAPIService SubscriptionPause", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("mock server (conekta_api.json) does not implement this endpoint")
 
-		var customerId string
-		var id string
+		customerId := "cus_2tZWxbTPtQgGJGh8P"
+		id := "sub_2tZWxbTPtQgGJGh8P"
 
 		resp, httpRes, err := apiClient.SubscriptionsAPI.SubscriptionPause(context.Background(), customerId, id).Execute()
 
@@ -181,10 +168,10 @@ func Test_conekta_SubscriptionsAPIService(t *testing.T) {
 
 	t.Run("Test SubscriptionsAPIService SubscriptionResume", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("mock server (conekta_api.json) does not implement this endpoint")
 
-		var customerId string
-		var id string
+		customerId := "cus_2tZWxbTPtQgGJGh8P"
+		id := "sub_2tZWxbTPtQgGJGh8P"
 
 		resp, httpRes, err := apiClient.SubscriptionsAPI.SubscriptionResume(context.Background(), customerId, id).Execute()
 
@@ -196,12 +183,12 @@ func Test_conekta_SubscriptionsAPIService(t *testing.T) {
 
 	t.Run("Test SubscriptionsAPIService SubscriptionUpdate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("mock server (conekta_api.json) does not implement this endpoint")
 
-		var customerId string
-		var id string
+		customerId := "cus_2tZWxbTPtQgGJGh8P"
+		id := "sub_2tZWxbTPtQgGJGh8P"
 
-		resp, httpRes, err := apiClient.SubscriptionsAPI.SubscriptionUpdate(context.Background(), customerId, id).Execute()
+		resp, httpRes, err := apiClient.SubscriptionsAPI.SubscriptionUpdate(context.Background(), customerId, id).UpdatesASubscription(openapiclient.UpdatesASubscription{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -211,10 +198,10 @@ func Test_conekta_SubscriptionsAPIService(t *testing.T) {
 
 	t.Run("Test SubscriptionsAPIService SubscriptionsGet", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("mock server (conekta_api.json) does not implement this endpoint")
 
-		var customerId string
-		var id string
+		customerId := "cus_2tZWxbTPtQgGJGh8P"
+		id := "sub_2tZWxbTPtQgGJGh8P"
 
 		resp, httpRes, err := apiClient.SubscriptionsAPI.SubscriptionsGet(context.Background(), customerId, id).Execute()
 
@@ -226,10 +213,10 @@ func Test_conekta_SubscriptionsAPIService(t *testing.T) {
 
 	t.Run("Test SubscriptionsAPIService SubscriptionsRetry", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("mock server (conekta_api.json) does not implement this endpoint")
 
-		var customerId string
-		var id string
+		customerId := "cus_2tZWxbTPtQgGJGh8P"
+		id := "sub_2tZWxbTPtQgGJGh8P"
 
 		resp, httpRes, err := apiClient.SubscriptionsAPI.SubscriptionsRetry(context.Background(), customerId, id).Execute()
 
@@ -241,11 +228,9 @@ func Test_conekta_SubscriptionsAPIService(t *testing.T) {
 
 	t.Run("Test SubscriptionsAPIService UpdateSubscription", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "cus_2tZWxbTPtQgGJGh8P"
 
-		var id string
-
-		resp, httpRes, err := apiClient.SubscriptionsAPI.UpdateSubscription(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.SubscriptionsAPI.UpdateSubscription(context.Background(), id).UpdatesASubscription(openapiclient.UpdatesASubscription{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

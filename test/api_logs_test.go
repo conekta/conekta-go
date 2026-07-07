@@ -14,19 +14,15 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/conekta/conekta-go"
 )
 
 func Test_conekta_LogsAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test LogsAPIService GetLogById", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "6419dd15b985080001fc280e"
 
 		resp, httpRes, err := apiClient.LogsAPI.GetLogById(context.Background(), id).Execute()
 
@@ -38,9 +34,7 @@ func Test_conekta_LogsAPIService(t *testing.T) {
 
 	t.Run("Test LogsAPIService GetLogs", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.LogsAPI.GetLogs(context.Background()).Execute()
+		resp, httpRes, err := apiClient.LogsAPI.GetLogs(context.Background()).Limit(20).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
