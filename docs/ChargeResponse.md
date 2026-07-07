@@ -17,10 +17,11 @@ Name | Type | Description | Notes
 **Livemode** | **bool** | Whether the charge was made in live mode or not | 
 **Object** | **string** |  | 
 **OrderId** | **string** | Order ID | 
-**PaidAt** | Pointer to **NullableInt64** | Payment date | [optional] 
+**PaidAt** | Pointer to **int64** | charge Payment date | [optional] 
 **PaymentMethod** | Pointer to [**ChargeResponsePaymentMethod**](ChargeResponsePaymentMethod.md) |  | [optional] 
-**ReferenceId** | Pointer to **NullableString** | Reference ID of the charge | [optional] 
-**Refunds** | Pointer to [**NullableChargeResponseRefunds**](ChargeResponseRefunds.md) |  | [optional] 
+**ReferenceId** | Pointer to **string** | Reference ID of the charge | [optional] 
+**Refunds** | Pointer to [**ChargeResponseRefunds**](ChargeResponseRefunds.md) |  | [optional] 
+**Chargeback** | Pointer to [**ChargebackResponse**](ChargebackResponse.md) |  | [optional] 
 **Status** | **string** | Charge status | 
 
 ## Methods
@@ -357,16 +358,6 @@ SetPaidAt sets PaidAt field to given value.
 
 HasPaidAt returns a boolean if a field has been set.
 
-### SetPaidAtNil
-
-`func (o *ChargeResponse) SetPaidAtNil(b bool)`
-
- SetPaidAtNil sets the value for PaidAt to be an explicit nil
-
-### UnsetPaidAt
-`func (o *ChargeResponse) UnsetPaidAt()`
-
-UnsetPaidAt ensures that no value is present for PaidAt, not even an explicit nil
 ### GetPaymentMethod
 
 `func (o *ChargeResponse) GetPaymentMethod() ChargeResponsePaymentMethod`
@@ -417,16 +408,6 @@ SetReferenceId sets ReferenceId field to given value.
 
 HasReferenceId returns a boolean if a field has been set.
 
-### SetReferenceIdNil
-
-`func (o *ChargeResponse) SetReferenceIdNil(b bool)`
-
- SetReferenceIdNil sets the value for ReferenceId to be an explicit nil
-
-### UnsetReferenceId
-`func (o *ChargeResponse) UnsetReferenceId()`
-
-UnsetReferenceId ensures that no value is present for ReferenceId, not even an explicit nil
 ### GetRefunds
 
 `func (o *ChargeResponse) GetRefunds() ChargeResponseRefunds`
@@ -452,16 +433,31 @@ SetRefunds sets Refunds field to given value.
 
 HasRefunds returns a boolean if a field has been set.
 
-### SetRefundsNil
+### GetChargeback
 
-`func (o *ChargeResponse) SetRefundsNil(b bool)`
+`func (o *ChargeResponse) GetChargeback() ChargebackResponse`
 
- SetRefundsNil sets the value for Refunds to be an explicit nil
+GetChargeback returns the Chargeback field if non-nil, zero value otherwise.
 
-### UnsetRefunds
-`func (o *ChargeResponse) UnsetRefunds()`
+### GetChargebackOk
 
-UnsetRefunds ensures that no value is present for Refunds, not even an explicit nil
+`func (o *ChargeResponse) GetChargebackOk() (*ChargebackResponse, bool)`
+
+GetChargebackOk returns a tuple with the Chargeback field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetChargeback
+
+`func (o *ChargeResponse) SetChargeback(v ChargebackResponse)`
+
+SetChargeback sets Chargeback field to given value.
+
+### HasChargeback
+
+`func (o *ChargeResponse) HasChargeback() bool`
+
+HasChargeback returns a boolean if a field has been set.
+
 ### GetStatus
 
 `func (o *ChargeResponse) GetStatus() string`

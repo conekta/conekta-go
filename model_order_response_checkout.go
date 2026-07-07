@@ -13,6 +13,7 @@ package conekta
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the OrderResponseCheckout type satisfies the MappedNullable interface at compile time
@@ -21,35 +22,40 @@ var _ MappedNullable = &OrderResponseCheckout{}
 // OrderResponseCheckout struct for OrderResponseCheckout
 type OrderResponseCheckout struct {
 	// Are the payment methods available for this link
-	AllowedPaymentMethods []string `json:"allowed_payment_methods,omitempty"`
+	AllowedPaymentMethods []string `json:"allowed_payment_methods"`
 	CanNotExpire *bool `json:"can_not_expire,omitempty"`
 	EmailsSent *int32 `json:"emails_sent,omitempty"`
-	ExcludeCardNetworks []map[string]interface{} `json:"exclude_card_networks,omitempty"`
+	ExcludeCardNetworks []string `json:"exclude_card_networks,omitempty"`
 	ExpiresAt *int64 `json:"expires_at,omitempty"`
 	FailureUrl *string `json:"failure_url,omitempty"`
 	Force3dsFlow *bool `json:"force_3ds_flow,omitempty"`
-	Id *string `json:"id,omitempty"`
+	// Indicates whether the card used for the payment should be saved for future purchases. This field is only applicable for card payments.
+	ForceSaveCard *bool `json:"force_save_card,omitempty"`
+	Id string `json:"id"`
 	IsRedirectOnFailure *bool `json:"is_redirect_on_failure,omitempty"`
 	Livemode *bool `json:"livemode,omitempty"`
 	// Number of retries allowed before the checkout is marked as failed
-	MaxFailedRetries NullableInt32 `json:"max_failed_retries,omitempty"`
+	MaxFailedRetries *int32 `json:"max_failed_retries,omitempty"`
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	MonthlyInstallmentsEnabled *bool `json:"monthly_installments_enabled,omitempty"`
 	MonthlyInstallmentsOptions []int32 `json:"monthly_installments_options,omitempty"`
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	NeedsShippingContact *bool `json:"needs_shipping_contact,omitempty"`
-	Object *string `json:"object,omitempty"`
-	OnDemandEnabled NullableBool `json:"on_demand_enabled,omitempty"`
+	Object string `json:"object"`
+	OnDemandEnabled *bool `json:"on_demand_enabled,omitempty"`
 	PaidPaymentsCount *int32 `json:"paid_payments_count,omitempty"`
 	Recurrent *bool `json:"recurrent,omitempty"`
 	// number of seconds to wait before redirecting to the success_url
-	RedirectionTime NullableInt32 `json:"redirection_time,omitempty"`
+	RedirectionTime *int32 `json:"redirection_time,omitempty"`
 	Slug *string `json:"slug,omitempty"`
 	SmsSent *int32 `json:"sms_sent,omitempty"`
+	// Redirection url back to the site in case of successful payment, applies only to HostedPayment
 	SuccessUrl *string `json:"success_url,omitempty"`
 	StartsAt *int32 `json:"starts_at,omitempty"`
 	Status *string `json:"status,omitempty"`
-	Type *string `json:"type,omitempty"`
+	// This field represents the type of checkout, which determines the user experience during the payment process. 'HostedPayment' will redirect the customer to a Conekta-hosted page to complete the payment, while 'Integration' allows the payment process to be handled entirely on your site using Conekta's APIs and SDKs.
+	Type string `json:"type"`
+	// Indicate the url of the Conekta component to complete the payment. For HostedPayment, this will be a Conekta-hosted page
 	Url *string `json:"url,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -60,8 +66,13 @@ type _OrderResponseCheckout OrderResponseCheckout
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrderResponseCheckout() *OrderResponseCheckout {
+func NewOrderResponseCheckout(allowedPaymentMethods []string, id string, name string, object string, type_ string) *OrderResponseCheckout {
 	this := OrderResponseCheckout{}
+	this.AllowedPaymentMethods = allowedPaymentMethods
+	this.Id = id
+	this.Name = name
+	this.Object = object
+	this.Type = type_
 	return &this
 }
 
@@ -73,34 +84,26 @@ func NewOrderResponseCheckoutWithDefaults() *OrderResponseCheckout {
 	return &this
 }
 
-// GetAllowedPaymentMethods returns the AllowedPaymentMethods field value if set, zero value otherwise.
+// GetAllowedPaymentMethods returns the AllowedPaymentMethods field value
 func (o *OrderResponseCheckout) GetAllowedPaymentMethods() []string {
-	if o == nil || IsNil(o.AllowedPaymentMethods) {
+	if o == nil {
 		var ret []string
 		return ret
 	}
+
 	return o.AllowedPaymentMethods
 }
 
-// GetAllowedPaymentMethodsOk returns a tuple with the AllowedPaymentMethods field value if set, nil otherwise
+// GetAllowedPaymentMethodsOk returns a tuple with the AllowedPaymentMethods field value
 // and a boolean to check if the value has been set.
 func (o *OrderResponseCheckout) GetAllowedPaymentMethodsOk() ([]string, bool) {
-	if o == nil || IsNil(o.AllowedPaymentMethods) {
+	if o == nil {
 		return nil, false
 	}
 	return o.AllowedPaymentMethods, true
 }
 
-// HasAllowedPaymentMethods returns a boolean if a field has been set.
-func (o *OrderResponseCheckout) HasAllowedPaymentMethods() bool {
-	if o != nil && !IsNil(o.AllowedPaymentMethods) {
-		return true
-	}
-
-	return false
-}
-
-// SetAllowedPaymentMethods gets a reference to the given []string and assigns it to the AllowedPaymentMethods field.
+// SetAllowedPaymentMethods sets field value
 func (o *OrderResponseCheckout) SetAllowedPaymentMethods(v []string) {
 	o.AllowedPaymentMethods = v
 }
@@ -170,9 +173,9 @@ func (o *OrderResponseCheckout) SetEmailsSent(v int32) {
 }
 
 // GetExcludeCardNetworks returns the ExcludeCardNetworks field value if set, zero value otherwise.
-func (o *OrderResponseCheckout) GetExcludeCardNetworks() []map[string]interface{} {
+func (o *OrderResponseCheckout) GetExcludeCardNetworks() []string {
 	if o == nil || IsNil(o.ExcludeCardNetworks) {
-		var ret []map[string]interface{}
+		var ret []string
 		return ret
 	}
 	return o.ExcludeCardNetworks
@@ -180,7 +183,7 @@ func (o *OrderResponseCheckout) GetExcludeCardNetworks() []map[string]interface{
 
 // GetExcludeCardNetworksOk returns a tuple with the ExcludeCardNetworks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderResponseCheckout) GetExcludeCardNetworksOk() ([]map[string]interface{}, bool) {
+func (o *OrderResponseCheckout) GetExcludeCardNetworksOk() ([]string, bool) {
 	if o == nil || IsNil(o.ExcludeCardNetworks) {
 		return nil, false
 	}
@@ -196,8 +199,8 @@ func (o *OrderResponseCheckout) HasExcludeCardNetworks() bool {
 	return false
 }
 
-// SetExcludeCardNetworks gets a reference to the given []map[string]interface{} and assigns it to the ExcludeCardNetworks field.
-func (o *OrderResponseCheckout) SetExcludeCardNetworks(v []map[string]interface{}) {
+// SetExcludeCardNetworks gets a reference to the given []string and assigns it to the ExcludeCardNetworks field.
+func (o *OrderResponseCheckout) SetExcludeCardNetworks(v []string) {
 	o.ExcludeCardNetworks = v
 }
 
@@ -297,36 +300,60 @@ func (o *OrderResponseCheckout) SetForce3dsFlow(v bool) {
 	o.Force3dsFlow = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *OrderResponseCheckout) GetId() string {
-	if o == nil || IsNil(o.Id) {
-		var ret string
+// GetForceSaveCard returns the ForceSaveCard field value if set, zero value otherwise.
+func (o *OrderResponseCheckout) GetForceSaveCard() bool {
+	if o == nil || IsNil(o.ForceSaveCard) {
+		var ret bool
 		return ret
 	}
-	return *o.Id
+	return *o.ForceSaveCard
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetForceSaveCardOk returns a tuple with the ForceSaveCard field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderResponseCheckout) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
+func (o *OrderResponseCheckout) GetForceSaveCardOk() (*bool, bool) {
+	if o == nil || IsNil(o.ForceSaveCard) {
 		return nil, false
 	}
-	return o.Id, true
+	return o.ForceSaveCard, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *OrderResponseCheckout) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+// HasForceSaveCard returns a boolean if a field has been set.
+func (o *OrderResponseCheckout) HasForceSaveCard() bool {
+	if o != nil && !IsNil(o.ForceSaveCard) {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetForceSaveCard gets a reference to the given bool and assigns it to the ForceSaveCard field.
+func (o *OrderResponseCheckout) SetForceSaveCard(v bool) {
+	o.ForceSaveCard = &v
+}
+
+// GetId returns the Id field value
+func (o *OrderResponseCheckout) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *OrderResponseCheckout) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
 func (o *OrderResponseCheckout) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
 // GetIsRedirectOnFailure returns the IsRedirectOnFailure field value if set, zero value otherwise.
@@ -393,46 +420,36 @@ func (o *OrderResponseCheckout) SetLivemode(v bool) {
 	o.Livemode = &v
 }
 
-// GetMaxFailedRetries returns the MaxFailedRetries field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMaxFailedRetries returns the MaxFailedRetries field value if set, zero value otherwise.
 func (o *OrderResponseCheckout) GetMaxFailedRetries() int32 {
-	if o == nil || IsNil(o.MaxFailedRetries.Get()) {
+	if o == nil || IsNil(o.MaxFailedRetries) {
 		var ret int32
 		return ret
 	}
-	return *o.MaxFailedRetries.Get()
+	return *o.MaxFailedRetries
 }
 
 // GetMaxFailedRetriesOk returns a tuple with the MaxFailedRetries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OrderResponseCheckout) GetMaxFailedRetriesOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MaxFailedRetries) {
 		return nil, false
 	}
-	return o.MaxFailedRetries.Get(), o.MaxFailedRetries.IsSet()
+	return o.MaxFailedRetries, true
 }
 
 // HasMaxFailedRetries returns a boolean if a field has been set.
 func (o *OrderResponseCheckout) HasMaxFailedRetries() bool {
-	if o != nil && o.MaxFailedRetries.IsSet() {
+	if o != nil && !IsNil(o.MaxFailedRetries) {
 		return true
 	}
 
 	return false
 }
 
-// SetMaxFailedRetries gets a reference to the given NullableInt32 and assigns it to the MaxFailedRetries field.
+// SetMaxFailedRetries gets a reference to the given int32 and assigns it to the MaxFailedRetries field.
 func (o *OrderResponseCheckout) SetMaxFailedRetries(v int32) {
-	o.MaxFailedRetries.Set(&v)
-}
-// SetMaxFailedRetriesNil sets the value for MaxFailedRetries to be an explicit nil
-func (o *OrderResponseCheckout) SetMaxFailedRetriesNil() {
-	o.MaxFailedRetries.Set(nil)
-}
-
-// UnsetMaxFailedRetries ensures that no value is present for MaxFailedRetries, not even an explicit nil
-func (o *OrderResponseCheckout) UnsetMaxFailedRetries() {
-	o.MaxFailedRetries.Unset()
+	o.MaxFailedRetries = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -531,36 +548,28 @@ func (o *OrderResponseCheckout) SetMonthlyInstallmentsOptions(v []int32) {
 	o.MonthlyInstallmentsOptions = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *OrderResponseCheckout) GetName() string {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *OrderResponseCheckout) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *OrderResponseCheckout) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *OrderResponseCheckout) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
 // GetNeedsShippingContact returns the NeedsShippingContact field value if set, zero value otherwise.
@@ -595,78 +604,60 @@ func (o *OrderResponseCheckout) SetNeedsShippingContact(v bool) {
 	o.NeedsShippingContact = &v
 }
 
-// GetObject returns the Object field value if set, zero value otherwise.
+// GetObject returns the Object field value
 func (o *OrderResponseCheckout) GetObject() string {
-	if o == nil || IsNil(o.Object) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Object
+
+	return o.Object
 }
 
-// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
+// GetObjectOk returns a tuple with the Object field value
 // and a boolean to check if the value has been set.
 func (o *OrderResponseCheckout) GetObjectOk() (*string, bool) {
-	if o == nil || IsNil(o.Object) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Object, true
+	return &o.Object, true
 }
 
-// HasObject returns a boolean if a field has been set.
-func (o *OrderResponseCheckout) HasObject() bool {
-	if o != nil && !IsNil(o.Object) {
-		return true
-	}
-
-	return false
-}
-
-// SetObject gets a reference to the given string and assigns it to the Object field.
+// SetObject sets field value
 func (o *OrderResponseCheckout) SetObject(v string) {
-	o.Object = &v
+	o.Object = v
 }
 
-// GetOnDemandEnabled returns the OnDemandEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOnDemandEnabled returns the OnDemandEnabled field value if set, zero value otherwise.
 func (o *OrderResponseCheckout) GetOnDemandEnabled() bool {
-	if o == nil || IsNil(o.OnDemandEnabled.Get()) {
+	if o == nil || IsNil(o.OnDemandEnabled) {
 		var ret bool
 		return ret
 	}
-	return *o.OnDemandEnabled.Get()
+	return *o.OnDemandEnabled
 }
 
 // GetOnDemandEnabledOk returns a tuple with the OnDemandEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OrderResponseCheckout) GetOnDemandEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OnDemandEnabled) {
 		return nil, false
 	}
-	return o.OnDemandEnabled.Get(), o.OnDemandEnabled.IsSet()
+	return o.OnDemandEnabled, true
 }
 
 // HasOnDemandEnabled returns a boolean if a field has been set.
 func (o *OrderResponseCheckout) HasOnDemandEnabled() bool {
-	if o != nil && o.OnDemandEnabled.IsSet() {
+	if o != nil && !IsNil(o.OnDemandEnabled) {
 		return true
 	}
 
 	return false
 }
 
-// SetOnDemandEnabled gets a reference to the given NullableBool and assigns it to the OnDemandEnabled field.
+// SetOnDemandEnabled gets a reference to the given bool and assigns it to the OnDemandEnabled field.
 func (o *OrderResponseCheckout) SetOnDemandEnabled(v bool) {
-	o.OnDemandEnabled.Set(&v)
-}
-// SetOnDemandEnabledNil sets the value for OnDemandEnabled to be an explicit nil
-func (o *OrderResponseCheckout) SetOnDemandEnabledNil() {
-	o.OnDemandEnabled.Set(nil)
-}
-
-// UnsetOnDemandEnabled ensures that no value is present for OnDemandEnabled, not even an explicit nil
-func (o *OrderResponseCheckout) UnsetOnDemandEnabled() {
-	o.OnDemandEnabled.Unset()
+	o.OnDemandEnabled = &v
 }
 
 // GetPaidPaymentsCount returns the PaidPaymentsCount field value if set, zero value otherwise.
@@ -733,46 +724,36 @@ func (o *OrderResponseCheckout) SetRecurrent(v bool) {
 	o.Recurrent = &v
 }
 
-// GetRedirectionTime returns the RedirectionTime field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetRedirectionTime returns the RedirectionTime field value if set, zero value otherwise.
 func (o *OrderResponseCheckout) GetRedirectionTime() int32 {
-	if o == nil || IsNil(o.RedirectionTime.Get()) {
+	if o == nil || IsNil(o.RedirectionTime) {
 		var ret int32
 		return ret
 	}
-	return *o.RedirectionTime.Get()
+	return *o.RedirectionTime
 }
 
 // GetRedirectionTimeOk returns a tuple with the RedirectionTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OrderResponseCheckout) GetRedirectionTimeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RedirectionTime) {
 		return nil, false
 	}
-	return o.RedirectionTime.Get(), o.RedirectionTime.IsSet()
+	return o.RedirectionTime, true
 }
 
 // HasRedirectionTime returns a boolean if a field has been set.
 func (o *OrderResponseCheckout) HasRedirectionTime() bool {
-	if o != nil && o.RedirectionTime.IsSet() {
+	if o != nil && !IsNil(o.RedirectionTime) {
 		return true
 	}
 
 	return false
 }
 
-// SetRedirectionTime gets a reference to the given NullableInt32 and assigns it to the RedirectionTime field.
+// SetRedirectionTime gets a reference to the given int32 and assigns it to the RedirectionTime field.
 func (o *OrderResponseCheckout) SetRedirectionTime(v int32) {
-	o.RedirectionTime.Set(&v)
-}
-// SetRedirectionTimeNil sets the value for RedirectionTime to be an explicit nil
-func (o *OrderResponseCheckout) SetRedirectionTimeNil() {
-	o.RedirectionTime.Set(nil)
-}
-
-// UnsetRedirectionTime ensures that no value is present for RedirectionTime, not even an explicit nil
-func (o *OrderResponseCheckout) UnsetRedirectionTime() {
-	o.RedirectionTime.Unset()
+	o.RedirectionTime = &v
 }
 
 // GetSlug returns the Slug field value if set, zero value otherwise.
@@ -935,36 +916,28 @@ func (o *OrderResponseCheckout) SetStatus(v string) {
 	o.Status = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value
 func (o *OrderResponseCheckout) GetType() string {
-	if o == nil || IsNil(o.Type) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Type
+
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *OrderResponseCheckout) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *OrderResponseCheckout) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
+// SetType sets field value
 func (o *OrderResponseCheckout) SetType(v string) {
-	o.Type = &v
+	o.Type = v
 }
 
 // GetUrl returns the Url field value if set, zero value otherwise.
@@ -1009,9 +982,7 @@ func (o OrderResponseCheckout) MarshalJSON() ([]byte, error) {
 
 func (o OrderResponseCheckout) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AllowedPaymentMethods) {
-		toSerialize["allowed_payment_methods"] = o.AllowedPaymentMethods
-	}
+	toSerialize["allowed_payment_methods"] = o.AllowedPaymentMethods
 	if !IsNil(o.CanNotExpire) {
 		toSerialize["can_not_expire"] = o.CanNotExpire
 	}
@@ -1030,17 +1001,18 @@ func (o OrderResponseCheckout) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Force3dsFlow) {
 		toSerialize["force_3ds_flow"] = o.Force3dsFlow
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if !IsNil(o.ForceSaveCard) {
+		toSerialize["force_save_card"] = o.ForceSaveCard
 	}
+	toSerialize["id"] = o.Id
 	if !IsNil(o.IsRedirectOnFailure) {
 		toSerialize["is_redirect_on_failure"] = o.IsRedirectOnFailure
 	}
 	if !IsNil(o.Livemode) {
 		toSerialize["livemode"] = o.Livemode
 	}
-	if o.MaxFailedRetries.IsSet() {
-		toSerialize["max_failed_retries"] = o.MaxFailedRetries.Get()
+	if !IsNil(o.MaxFailedRetries) {
+		toSerialize["max_failed_retries"] = o.MaxFailedRetries
 	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
@@ -1051,17 +1023,13 @@ func (o OrderResponseCheckout) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MonthlyInstallmentsOptions) {
 		toSerialize["monthly_installments_options"] = o.MonthlyInstallmentsOptions
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if !IsNil(o.NeedsShippingContact) {
 		toSerialize["needs_shipping_contact"] = o.NeedsShippingContact
 	}
-	if !IsNil(o.Object) {
-		toSerialize["object"] = o.Object
-	}
-	if o.OnDemandEnabled.IsSet() {
-		toSerialize["on_demand_enabled"] = o.OnDemandEnabled.Get()
+	toSerialize["object"] = o.Object
+	if !IsNil(o.OnDemandEnabled) {
+		toSerialize["on_demand_enabled"] = o.OnDemandEnabled
 	}
 	if !IsNil(o.PaidPaymentsCount) {
 		toSerialize["paid_payments_count"] = o.PaidPaymentsCount
@@ -1069,8 +1037,8 @@ func (o OrderResponseCheckout) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Recurrent) {
 		toSerialize["recurrent"] = o.Recurrent
 	}
-	if o.RedirectionTime.IsSet() {
-		toSerialize["redirection_time"] = o.RedirectionTime.Get()
+	if !IsNil(o.RedirectionTime) {
+		toSerialize["redirection_time"] = o.RedirectionTime
 	}
 	if !IsNil(o.Slug) {
 		toSerialize["slug"] = o.Slug
@@ -1087,9 +1055,7 @@ func (o OrderResponseCheckout) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 	if !IsNil(o.Url) {
 		toSerialize["url"] = o.Url
 	}
@@ -1102,6 +1068,31 @@ func (o OrderResponseCheckout) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *OrderResponseCheckout) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"allowed_payment_methods",
+		"id",
+		"name",
+		"object",
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varOrderResponseCheckout := _OrderResponseCheckout{}
 
 	err = json.Unmarshal(data, &varOrderResponseCheckout)
@@ -1122,6 +1113,7 @@ func (o *OrderResponseCheckout) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "expires_at")
 		delete(additionalProperties, "failure_url")
 		delete(additionalProperties, "force_3ds_flow")
+		delete(additionalProperties, "force_save_card")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "is_redirect_on_failure")
 		delete(additionalProperties, "livemode")

@@ -20,25 +20,25 @@ var _ MappedNullable = &SubscriptionResponse{}
 
 // SubscriptionResponse subscription model
 type SubscriptionResponse struct {
-	BillingCycleStart NullableInt64 `json:"billing_cycle_start,omitempty"`
-	BillingCycleEnd NullableInt64 `json:"billing_cycle_end,omitempty"`
-	CanceledAt NullableInt64 `json:"canceled_at,omitempty"`
+	BillingCycleStart *int64 `json:"billing_cycle_start,omitempty"`
+	BillingCycleEnd *int64 `json:"billing_cycle_end,omitempty"`
+	CanceledAt *int64 `json:"canceled_at,omitempty"`
 	// Reason for cancellation. This field appears when the subscription status is 'canceled'.
 	CanceledReason *string `json:"canceled_reason,omitempty"`
 	CardId *string `json:"card_id,omitempty"`
-	ChargeId NullableString `json:"charge_id,omitempty"`
+	ChargeId *string `json:"charge_id,omitempty"`
 	CreatedAt *int64 `json:"created_at,omitempty"`
 	CustomerCustomReference *string `json:"customer_custom_reference,omitempty"`
 	CustomerId *string `json:"customer_id,omitempty"`
 	Id *string `json:"id,omitempty"`
 	LastBillingCycleOrderId *string `json:"last_billing_cycle_order_id,omitempty"`
 	Object *string `json:"object,omitempty"`
-	PausedAt NullableInt64 `json:"paused_at,omitempty"`
+	PausedAt *int64 `json:"paused_at,omitempty"`
 	PlanId *string `json:"plan_id,omitempty"`
 	Status *string `json:"status,omitempty"`
 	SubscriptionStart *int32 `json:"subscription_start,omitempty"`
-	TrialStart NullableInt64 `json:"trial_start,omitempty"`
-	TrialEnd NullableInt64 `json:"trial_end,omitempty"`
+	TrialStart *int64 `json:"trial_start,omitempty"`
+	TrialEnd *int64 `json:"trial_end,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -61,130 +61,100 @@ func NewSubscriptionResponseWithDefaults() *SubscriptionResponse {
 	return &this
 }
 
-// GetBillingCycleStart returns the BillingCycleStart field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetBillingCycleStart returns the BillingCycleStart field value if set, zero value otherwise.
 func (o *SubscriptionResponse) GetBillingCycleStart() int64 {
-	if o == nil || IsNil(o.BillingCycleStart.Get()) {
+	if o == nil || IsNil(o.BillingCycleStart) {
 		var ret int64
 		return ret
 	}
-	return *o.BillingCycleStart.Get()
+	return *o.BillingCycleStart
 }
 
 // GetBillingCycleStartOk returns a tuple with the BillingCycleStart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionResponse) GetBillingCycleStartOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.BillingCycleStart) {
 		return nil, false
 	}
-	return o.BillingCycleStart.Get(), o.BillingCycleStart.IsSet()
+	return o.BillingCycleStart, true
 }
 
 // HasBillingCycleStart returns a boolean if a field has been set.
 func (o *SubscriptionResponse) HasBillingCycleStart() bool {
-	if o != nil && o.BillingCycleStart.IsSet() {
+	if o != nil && !IsNil(o.BillingCycleStart) {
 		return true
 	}
 
 	return false
 }
 
-// SetBillingCycleStart gets a reference to the given NullableInt64 and assigns it to the BillingCycleStart field.
+// SetBillingCycleStart gets a reference to the given int64 and assigns it to the BillingCycleStart field.
 func (o *SubscriptionResponse) SetBillingCycleStart(v int64) {
-	o.BillingCycleStart.Set(&v)
-}
-// SetBillingCycleStartNil sets the value for BillingCycleStart to be an explicit nil
-func (o *SubscriptionResponse) SetBillingCycleStartNil() {
-	o.BillingCycleStart.Set(nil)
+	o.BillingCycleStart = &v
 }
 
-// UnsetBillingCycleStart ensures that no value is present for BillingCycleStart, not even an explicit nil
-func (o *SubscriptionResponse) UnsetBillingCycleStart() {
-	o.BillingCycleStart.Unset()
-}
-
-// GetBillingCycleEnd returns the BillingCycleEnd field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetBillingCycleEnd returns the BillingCycleEnd field value if set, zero value otherwise.
 func (o *SubscriptionResponse) GetBillingCycleEnd() int64 {
-	if o == nil || IsNil(o.BillingCycleEnd.Get()) {
+	if o == nil || IsNil(o.BillingCycleEnd) {
 		var ret int64
 		return ret
 	}
-	return *o.BillingCycleEnd.Get()
+	return *o.BillingCycleEnd
 }
 
 // GetBillingCycleEndOk returns a tuple with the BillingCycleEnd field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionResponse) GetBillingCycleEndOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.BillingCycleEnd) {
 		return nil, false
 	}
-	return o.BillingCycleEnd.Get(), o.BillingCycleEnd.IsSet()
+	return o.BillingCycleEnd, true
 }
 
 // HasBillingCycleEnd returns a boolean if a field has been set.
 func (o *SubscriptionResponse) HasBillingCycleEnd() bool {
-	if o != nil && o.BillingCycleEnd.IsSet() {
+	if o != nil && !IsNil(o.BillingCycleEnd) {
 		return true
 	}
 
 	return false
 }
 
-// SetBillingCycleEnd gets a reference to the given NullableInt64 and assigns it to the BillingCycleEnd field.
+// SetBillingCycleEnd gets a reference to the given int64 and assigns it to the BillingCycleEnd field.
 func (o *SubscriptionResponse) SetBillingCycleEnd(v int64) {
-	o.BillingCycleEnd.Set(&v)
-}
-// SetBillingCycleEndNil sets the value for BillingCycleEnd to be an explicit nil
-func (o *SubscriptionResponse) SetBillingCycleEndNil() {
-	o.BillingCycleEnd.Set(nil)
+	o.BillingCycleEnd = &v
 }
 
-// UnsetBillingCycleEnd ensures that no value is present for BillingCycleEnd, not even an explicit nil
-func (o *SubscriptionResponse) UnsetBillingCycleEnd() {
-	o.BillingCycleEnd.Unset()
-}
-
-// GetCanceledAt returns the CanceledAt field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCanceledAt returns the CanceledAt field value if set, zero value otherwise.
 func (o *SubscriptionResponse) GetCanceledAt() int64 {
-	if o == nil || IsNil(o.CanceledAt.Get()) {
+	if o == nil || IsNil(o.CanceledAt) {
 		var ret int64
 		return ret
 	}
-	return *o.CanceledAt.Get()
+	return *o.CanceledAt
 }
 
 // GetCanceledAtOk returns a tuple with the CanceledAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionResponse) GetCanceledAtOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CanceledAt) {
 		return nil, false
 	}
-	return o.CanceledAt.Get(), o.CanceledAt.IsSet()
+	return o.CanceledAt, true
 }
 
 // HasCanceledAt returns a boolean if a field has been set.
 func (o *SubscriptionResponse) HasCanceledAt() bool {
-	if o != nil && o.CanceledAt.IsSet() {
+	if o != nil && !IsNil(o.CanceledAt) {
 		return true
 	}
 
 	return false
 }
 
-// SetCanceledAt gets a reference to the given NullableInt64 and assigns it to the CanceledAt field.
+// SetCanceledAt gets a reference to the given int64 and assigns it to the CanceledAt field.
 func (o *SubscriptionResponse) SetCanceledAt(v int64) {
-	o.CanceledAt.Set(&v)
-}
-// SetCanceledAtNil sets the value for CanceledAt to be an explicit nil
-func (o *SubscriptionResponse) SetCanceledAtNil() {
-	o.CanceledAt.Set(nil)
-}
-
-// UnsetCanceledAt ensures that no value is present for CanceledAt, not even an explicit nil
-func (o *SubscriptionResponse) UnsetCanceledAt() {
-	o.CanceledAt.Unset()
+	o.CanceledAt = &v
 }
 
 // GetCanceledReason returns the CanceledReason field value if set, zero value otherwise.
@@ -251,46 +221,36 @@ func (o *SubscriptionResponse) SetCardId(v string) {
 	o.CardId = &v
 }
 
-// GetChargeId returns the ChargeId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetChargeId returns the ChargeId field value if set, zero value otherwise.
 func (o *SubscriptionResponse) GetChargeId() string {
-	if o == nil || IsNil(o.ChargeId.Get()) {
+	if o == nil || IsNil(o.ChargeId) {
 		var ret string
 		return ret
 	}
-	return *o.ChargeId.Get()
+	return *o.ChargeId
 }
 
 // GetChargeIdOk returns a tuple with the ChargeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionResponse) GetChargeIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ChargeId) {
 		return nil, false
 	}
-	return o.ChargeId.Get(), o.ChargeId.IsSet()
+	return o.ChargeId, true
 }
 
 // HasChargeId returns a boolean if a field has been set.
 func (o *SubscriptionResponse) HasChargeId() bool {
-	if o != nil && o.ChargeId.IsSet() {
+	if o != nil && !IsNil(o.ChargeId) {
 		return true
 	}
 
 	return false
 }
 
-// SetChargeId gets a reference to the given NullableString and assigns it to the ChargeId field.
+// SetChargeId gets a reference to the given string and assigns it to the ChargeId field.
 func (o *SubscriptionResponse) SetChargeId(v string) {
-	o.ChargeId.Set(&v)
-}
-// SetChargeIdNil sets the value for ChargeId to be an explicit nil
-func (o *SubscriptionResponse) SetChargeIdNil() {
-	o.ChargeId.Set(nil)
-}
-
-// UnsetChargeId ensures that no value is present for ChargeId, not even an explicit nil
-func (o *SubscriptionResponse) UnsetChargeId() {
-	o.ChargeId.Unset()
+	o.ChargeId = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -485,46 +445,36 @@ func (o *SubscriptionResponse) SetObject(v string) {
 	o.Object = &v
 }
 
-// GetPausedAt returns the PausedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPausedAt returns the PausedAt field value if set, zero value otherwise.
 func (o *SubscriptionResponse) GetPausedAt() int64 {
-	if o == nil || IsNil(o.PausedAt.Get()) {
+	if o == nil || IsNil(o.PausedAt) {
 		var ret int64
 		return ret
 	}
-	return *o.PausedAt.Get()
+	return *o.PausedAt
 }
 
 // GetPausedAtOk returns a tuple with the PausedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionResponse) GetPausedAtOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PausedAt) {
 		return nil, false
 	}
-	return o.PausedAt.Get(), o.PausedAt.IsSet()
+	return o.PausedAt, true
 }
 
 // HasPausedAt returns a boolean if a field has been set.
 func (o *SubscriptionResponse) HasPausedAt() bool {
-	if o != nil && o.PausedAt.IsSet() {
+	if o != nil && !IsNil(o.PausedAt) {
 		return true
 	}
 
 	return false
 }
 
-// SetPausedAt gets a reference to the given NullableInt64 and assigns it to the PausedAt field.
+// SetPausedAt gets a reference to the given int64 and assigns it to the PausedAt field.
 func (o *SubscriptionResponse) SetPausedAt(v int64) {
-	o.PausedAt.Set(&v)
-}
-// SetPausedAtNil sets the value for PausedAt to be an explicit nil
-func (o *SubscriptionResponse) SetPausedAtNil() {
-	o.PausedAt.Set(nil)
-}
-
-// UnsetPausedAt ensures that no value is present for PausedAt, not even an explicit nil
-func (o *SubscriptionResponse) UnsetPausedAt() {
-	o.PausedAt.Unset()
+	o.PausedAt = &v
 }
 
 // GetPlanId returns the PlanId field value if set, zero value otherwise.
@@ -623,88 +573,68 @@ func (o *SubscriptionResponse) SetSubscriptionStart(v int32) {
 	o.SubscriptionStart = &v
 }
 
-// GetTrialStart returns the TrialStart field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetTrialStart returns the TrialStart field value if set, zero value otherwise.
 func (o *SubscriptionResponse) GetTrialStart() int64 {
-	if o == nil || IsNil(o.TrialStart.Get()) {
+	if o == nil || IsNil(o.TrialStart) {
 		var ret int64
 		return ret
 	}
-	return *o.TrialStart.Get()
+	return *o.TrialStart
 }
 
 // GetTrialStartOk returns a tuple with the TrialStart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionResponse) GetTrialStartOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TrialStart) {
 		return nil, false
 	}
-	return o.TrialStart.Get(), o.TrialStart.IsSet()
+	return o.TrialStart, true
 }
 
 // HasTrialStart returns a boolean if a field has been set.
 func (o *SubscriptionResponse) HasTrialStart() bool {
-	if o != nil && o.TrialStart.IsSet() {
+	if o != nil && !IsNil(o.TrialStart) {
 		return true
 	}
 
 	return false
 }
 
-// SetTrialStart gets a reference to the given NullableInt64 and assigns it to the TrialStart field.
+// SetTrialStart gets a reference to the given int64 and assigns it to the TrialStart field.
 func (o *SubscriptionResponse) SetTrialStart(v int64) {
-	o.TrialStart.Set(&v)
-}
-// SetTrialStartNil sets the value for TrialStart to be an explicit nil
-func (o *SubscriptionResponse) SetTrialStartNil() {
-	o.TrialStart.Set(nil)
+	o.TrialStart = &v
 }
 
-// UnsetTrialStart ensures that no value is present for TrialStart, not even an explicit nil
-func (o *SubscriptionResponse) UnsetTrialStart() {
-	o.TrialStart.Unset()
-}
-
-// GetTrialEnd returns the TrialEnd field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetTrialEnd returns the TrialEnd field value if set, zero value otherwise.
 func (o *SubscriptionResponse) GetTrialEnd() int64 {
-	if o == nil || IsNil(o.TrialEnd.Get()) {
+	if o == nil || IsNil(o.TrialEnd) {
 		var ret int64
 		return ret
 	}
-	return *o.TrialEnd.Get()
+	return *o.TrialEnd
 }
 
 // GetTrialEndOk returns a tuple with the TrialEnd field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionResponse) GetTrialEndOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TrialEnd) {
 		return nil, false
 	}
-	return o.TrialEnd.Get(), o.TrialEnd.IsSet()
+	return o.TrialEnd, true
 }
 
 // HasTrialEnd returns a boolean if a field has been set.
 func (o *SubscriptionResponse) HasTrialEnd() bool {
-	if o != nil && o.TrialEnd.IsSet() {
+	if o != nil && !IsNil(o.TrialEnd) {
 		return true
 	}
 
 	return false
 }
 
-// SetTrialEnd gets a reference to the given NullableInt64 and assigns it to the TrialEnd field.
+// SetTrialEnd gets a reference to the given int64 and assigns it to the TrialEnd field.
 func (o *SubscriptionResponse) SetTrialEnd(v int64) {
-	o.TrialEnd.Set(&v)
-}
-// SetTrialEndNil sets the value for TrialEnd to be an explicit nil
-func (o *SubscriptionResponse) SetTrialEndNil() {
-	o.TrialEnd.Set(nil)
-}
-
-// UnsetTrialEnd ensures that no value is present for TrialEnd, not even an explicit nil
-func (o *SubscriptionResponse) UnsetTrialEnd() {
-	o.TrialEnd.Unset()
+	o.TrialEnd = &v
 }
 
 func (o SubscriptionResponse) MarshalJSON() ([]byte, error) {
@@ -717,14 +647,14 @@ func (o SubscriptionResponse) MarshalJSON() ([]byte, error) {
 
 func (o SubscriptionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.BillingCycleStart.IsSet() {
-		toSerialize["billing_cycle_start"] = o.BillingCycleStart.Get()
+	if !IsNil(o.BillingCycleStart) {
+		toSerialize["billing_cycle_start"] = o.BillingCycleStart
 	}
-	if o.BillingCycleEnd.IsSet() {
-		toSerialize["billing_cycle_end"] = o.BillingCycleEnd.Get()
+	if !IsNil(o.BillingCycleEnd) {
+		toSerialize["billing_cycle_end"] = o.BillingCycleEnd
 	}
-	if o.CanceledAt.IsSet() {
-		toSerialize["canceled_at"] = o.CanceledAt.Get()
+	if !IsNil(o.CanceledAt) {
+		toSerialize["canceled_at"] = o.CanceledAt
 	}
 	if !IsNil(o.CanceledReason) {
 		toSerialize["canceled_reason"] = o.CanceledReason
@@ -732,8 +662,8 @@ func (o SubscriptionResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CardId) {
 		toSerialize["card_id"] = o.CardId
 	}
-	if o.ChargeId.IsSet() {
-		toSerialize["charge_id"] = o.ChargeId.Get()
+	if !IsNil(o.ChargeId) {
+		toSerialize["charge_id"] = o.ChargeId
 	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
@@ -753,8 +683,8 @@ func (o SubscriptionResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object
 	}
-	if o.PausedAt.IsSet() {
-		toSerialize["paused_at"] = o.PausedAt.Get()
+	if !IsNil(o.PausedAt) {
+		toSerialize["paused_at"] = o.PausedAt
 	}
 	if !IsNil(o.PlanId) {
 		toSerialize["plan_id"] = o.PlanId
@@ -765,11 +695,11 @@ func (o SubscriptionResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SubscriptionStart) {
 		toSerialize["subscription_start"] = o.SubscriptionStart
 	}
-	if o.TrialStart.IsSet() {
-		toSerialize["trial_start"] = o.TrialStart.Get()
+	if !IsNil(o.TrialStart) {
+		toSerialize["trial_start"] = o.TrialStart
 	}
-	if o.TrialEnd.IsSet() {
-		toSerialize["trial_end"] = o.TrialEnd.Get()
+	if !IsNil(o.TrialEnd) {
+		toSerialize["trial_end"] = o.TrialEnd
 	}
 
 	for key, value := range o.AdditionalProperties {

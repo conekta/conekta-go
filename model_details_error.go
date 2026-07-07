@@ -21,7 +21,7 @@ var _ MappedNullable = &DetailsError{}
 // DetailsError struct for DetailsError
 type DetailsError struct {
 	Code *string `json:"code,omitempty"`
-	Param NullableString `json:"param,omitempty"`
+	Param *string `json:"param,omitempty"`
 	Message *string `json:"message,omitempty"`
 	DebugMessage *string `json:"debug_message,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -78,46 +78,36 @@ func (o *DetailsError) SetCode(v string) {
 	o.Code = &v
 }
 
-// GetParam returns the Param field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetParam returns the Param field value if set, zero value otherwise.
 func (o *DetailsError) GetParam() string {
-	if o == nil || IsNil(o.Param.Get()) {
+	if o == nil || IsNil(o.Param) {
 		var ret string
 		return ret
 	}
-	return *o.Param.Get()
+	return *o.Param
 }
 
 // GetParamOk returns a tuple with the Param field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DetailsError) GetParamOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Param) {
 		return nil, false
 	}
-	return o.Param.Get(), o.Param.IsSet()
+	return o.Param, true
 }
 
 // HasParam returns a boolean if a field has been set.
 func (o *DetailsError) HasParam() bool {
-	if o != nil && o.Param.IsSet() {
+	if o != nil && !IsNil(o.Param) {
 		return true
 	}
 
 	return false
 }
 
-// SetParam gets a reference to the given NullableString and assigns it to the Param field.
+// SetParam gets a reference to the given string and assigns it to the Param field.
 func (o *DetailsError) SetParam(v string) {
-	o.Param.Set(&v)
-}
-// SetParamNil sets the value for Param to be an explicit nil
-func (o *DetailsError) SetParamNil() {
-	o.Param.Set(nil)
-}
-
-// UnsetParam ensures that no value is present for Param, not even an explicit nil
-func (o *DetailsError) UnsetParam() {
-	o.Param.Unset()
+	o.Param = &v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
@@ -197,8 +187,8 @@ func (o DetailsError) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Code) {
 		toSerialize["code"] = o.Code
 	}
-	if o.Param.IsSet() {
-		toSerialize["param"] = o.Param.Get()
+	if !IsNil(o.Param) {
+		toSerialize["param"] = o.Param
 	}
 	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message

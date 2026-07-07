@@ -647,6 +647,7 @@ func (a *WebhooksAPIService) GetWebhooksExecute(r ApiGetWebhooksRequest) (*GetWe
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
 		r.limit = &defaultValue
 	}
 	if r.search != nil {
@@ -891,14 +892,14 @@ type ApiUpdateWebhookRequest struct {
 	ctx context.Context
 	ApiService WebhooksAPI
 	id string
-	webhookUpdateRequest *WebhookUpdateRequest
+	updateWebhook *UpdateWebhook
 	acceptLanguage *string
 	xChildCompanyId *string
 }
 
 // requested fields in order to update a webhook
-func (r ApiUpdateWebhookRequest) WebhookUpdateRequest(webhookUpdateRequest WebhookUpdateRequest) ApiUpdateWebhookRequest {
-	r.webhookUpdateRequest = &webhookUpdateRequest
+func (r ApiUpdateWebhookRequest) UpdateWebhook(updateWebhook UpdateWebhook) ApiUpdateWebhookRequest {
+	r.updateWebhook = &updateWebhook
 	return r
 }
 
@@ -956,8 +957,8 @@ func (a *WebhooksAPIService) UpdateWebhookExecute(r ApiUpdateWebhookRequest) (*W
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.webhookUpdateRequest == nil {
-		return localVarReturnValue, nil, reportError("webhookUpdateRequest is required and must be specified")
+	if r.updateWebhook == nil {
+		return localVarReturnValue, nil, reportError("updateWebhook is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -984,7 +985,7 @@ func (a *WebhooksAPIService) UpdateWebhookExecute(r ApiUpdateWebhookRequest) (*W
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.webhookUpdateRequest
+	localVarPostBody = r.updateWebhook
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

@@ -905,6 +905,7 @@ func (a *PaymentLinkAPIService) GetCheckoutsExecute(r ApiGetCheckoutsRequest) (*
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
 		r.limit = &defaultValue
 	}
 	if r.search != nil {

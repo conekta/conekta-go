@@ -23,14 +23,14 @@ type PlanResponse struct {
 	Amount *int32 `json:"amount,omitempty"`
 	CreatedAt *int64 `json:"created_at,omitempty"`
 	Currency *string `json:"currency,omitempty"`
-	ExpiryCount NullableInt32 `json:"expiry_count,omitempty"`
+	ExpiryCount *int32 `json:"expiry_count,omitempty"`
 	Frequency *int32 `json:"frequency,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Interval *string `json:"interval,omitempty"`
 	Livemode *bool `json:"livemode,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Object *string `json:"object,omitempty"`
-	TrialPeriodDays NullableInt32 `json:"trial_period_days,omitempty"`
+	TrialPeriodDays *int32 `json:"trial_period_days,omitempty"`
 	MaxRetries *int32 `json:"max_retries,omitempty"`
 	RetryDelayHours *int32 `json:"retry_delay_hours,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -151,46 +151,36 @@ func (o *PlanResponse) SetCurrency(v string) {
 	o.Currency = &v
 }
 
-// GetExpiryCount returns the ExpiryCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetExpiryCount returns the ExpiryCount field value if set, zero value otherwise.
 func (o *PlanResponse) GetExpiryCount() int32 {
-	if o == nil || IsNil(o.ExpiryCount.Get()) {
+	if o == nil || IsNil(o.ExpiryCount) {
 		var ret int32
 		return ret
 	}
-	return *o.ExpiryCount.Get()
+	return *o.ExpiryCount
 }
 
 // GetExpiryCountOk returns a tuple with the ExpiryCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PlanResponse) GetExpiryCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExpiryCount) {
 		return nil, false
 	}
-	return o.ExpiryCount.Get(), o.ExpiryCount.IsSet()
+	return o.ExpiryCount, true
 }
 
 // HasExpiryCount returns a boolean if a field has been set.
 func (o *PlanResponse) HasExpiryCount() bool {
-	if o != nil && o.ExpiryCount.IsSet() {
+	if o != nil && !IsNil(o.ExpiryCount) {
 		return true
 	}
 
 	return false
 }
 
-// SetExpiryCount gets a reference to the given NullableInt32 and assigns it to the ExpiryCount field.
+// SetExpiryCount gets a reference to the given int32 and assigns it to the ExpiryCount field.
 func (o *PlanResponse) SetExpiryCount(v int32) {
-	o.ExpiryCount.Set(&v)
-}
-// SetExpiryCountNil sets the value for ExpiryCount to be an explicit nil
-func (o *PlanResponse) SetExpiryCountNil() {
-	o.ExpiryCount.Set(nil)
-}
-
-// UnsetExpiryCount ensures that no value is present for ExpiryCount, not even an explicit nil
-func (o *PlanResponse) UnsetExpiryCount() {
-	o.ExpiryCount.Unset()
+	o.ExpiryCount = &v
 }
 
 // GetFrequency returns the Frequency field value if set, zero value otherwise.
@@ -385,46 +375,36 @@ func (o *PlanResponse) SetObject(v string) {
 	o.Object = &v
 }
 
-// GetTrialPeriodDays returns the TrialPeriodDays field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetTrialPeriodDays returns the TrialPeriodDays field value if set, zero value otherwise.
 func (o *PlanResponse) GetTrialPeriodDays() int32 {
-	if o == nil || IsNil(o.TrialPeriodDays.Get()) {
+	if o == nil || IsNil(o.TrialPeriodDays) {
 		var ret int32
 		return ret
 	}
-	return *o.TrialPeriodDays.Get()
+	return *o.TrialPeriodDays
 }
 
 // GetTrialPeriodDaysOk returns a tuple with the TrialPeriodDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PlanResponse) GetTrialPeriodDaysOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TrialPeriodDays) {
 		return nil, false
 	}
-	return o.TrialPeriodDays.Get(), o.TrialPeriodDays.IsSet()
+	return o.TrialPeriodDays, true
 }
 
 // HasTrialPeriodDays returns a boolean if a field has been set.
 func (o *PlanResponse) HasTrialPeriodDays() bool {
-	if o != nil && o.TrialPeriodDays.IsSet() {
+	if o != nil && !IsNil(o.TrialPeriodDays) {
 		return true
 	}
 
 	return false
 }
 
-// SetTrialPeriodDays gets a reference to the given NullableInt32 and assigns it to the TrialPeriodDays field.
+// SetTrialPeriodDays gets a reference to the given int32 and assigns it to the TrialPeriodDays field.
 func (o *PlanResponse) SetTrialPeriodDays(v int32) {
-	o.TrialPeriodDays.Set(&v)
-}
-// SetTrialPeriodDaysNil sets the value for TrialPeriodDays to be an explicit nil
-func (o *PlanResponse) SetTrialPeriodDaysNil() {
-	o.TrialPeriodDays.Set(nil)
-}
-
-// UnsetTrialPeriodDays ensures that no value is present for TrialPeriodDays, not even an explicit nil
-func (o *PlanResponse) UnsetTrialPeriodDays() {
-	o.TrialPeriodDays.Unset()
+	o.TrialPeriodDays = &v
 }
 
 // GetMaxRetries returns the MaxRetries field value if set, zero value otherwise.
@@ -510,8 +490,8 @@ func (o PlanResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Currency) {
 		toSerialize["currency"] = o.Currency
 	}
-	if o.ExpiryCount.IsSet() {
-		toSerialize["expiry_count"] = o.ExpiryCount.Get()
+	if !IsNil(o.ExpiryCount) {
+		toSerialize["expiry_count"] = o.ExpiryCount
 	}
 	if !IsNil(o.Frequency) {
 		toSerialize["frequency"] = o.Frequency
@@ -531,8 +511,8 @@ func (o PlanResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object
 	}
-	if o.TrialPeriodDays.IsSet() {
-		toSerialize["trial_period_days"] = o.TrialPeriodDays.Get()
+	if !IsNil(o.TrialPeriodDays) {
+		toSerialize["trial_period_days"] = o.TrialPeriodDays
 	}
 	if !IsNil(o.MaxRetries) {
 		toSerialize["max_retries"] = o.MaxRetries

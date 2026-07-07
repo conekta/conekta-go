@@ -21,15 +21,15 @@ var _ MappedNullable = &PayoutOrderResponseCustomerInfo{}
 
 // PayoutOrderResponseCustomerInfo The customer information of the payout order.
 type PayoutOrderResponseCustomerInfo struct {
+	// The id of the customer.
+	Id string `json:"id"`
 	// Custom reference
-	CustomerCustomReference NullableString `json:"customer_custom_reference,omitempty"`
+	CustomerCustomReference *string `json:"customer_custom_reference,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Email *string `json:"email,omitempty"`
 	Phone *string `json:"phone,omitempty"`
 	Corporate *bool `json:"corporate,omitempty"`
 	Object *string `json:"object,omitempty"`
-	// The id of the customer.
-	Id string `json:"id"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,9 +41,9 @@ type _PayoutOrderResponseCustomerInfo PayoutOrderResponseCustomerInfo
 // will change when the set of required properties is changed
 func NewPayoutOrderResponseCustomerInfo(id string) *PayoutOrderResponseCustomerInfo {
 	this := PayoutOrderResponseCustomerInfo{}
+	this.Id = id
 	var corporate bool = false
 	this.Corporate = &corporate
-	this.Id = id
 	return &this
 }
 
@@ -57,46 +57,60 @@ func NewPayoutOrderResponseCustomerInfoWithDefaults() *PayoutOrderResponseCustom
 	return &this
 }
 
-// GetCustomerCustomReference returns the CustomerCustomReference field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PayoutOrderResponseCustomerInfo) GetCustomerCustomReference() string {
-	if o == nil || IsNil(o.CustomerCustomReference.Get()) {
+// GetId returns the Id field value
+func (o *PayoutOrderResponseCustomerInfo) GetId() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.CustomerCustomReference.Get()
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *PayoutOrderResponseCustomerInfo) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *PayoutOrderResponseCustomerInfo) SetId(v string) {
+	o.Id = v
+}
+
+// GetCustomerCustomReference returns the CustomerCustomReference field value if set, zero value otherwise.
+func (o *PayoutOrderResponseCustomerInfo) GetCustomerCustomReference() string {
+	if o == nil || IsNil(o.CustomerCustomReference) {
+		var ret string
+		return ret
+	}
+	return *o.CustomerCustomReference
 }
 
 // GetCustomerCustomReferenceOk returns a tuple with the CustomerCustomReference field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PayoutOrderResponseCustomerInfo) GetCustomerCustomReferenceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CustomerCustomReference) {
 		return nil, false
 	}
-	return o.CustomerCustomReference.Get(), o.CustomerCustomReference.IsSet()
+	return o.CustomerCustomReference, true
 }
 
 // HasCustomerCustomReference returns a boolean if a field has been set.
 func (o *PayoutOrderResponseCustomerInfo) HasCustomerCustomReference() bool {
-	if o != nil && o.CustomerCustomReference.IsSet() {
+	if o != nil && !IsNil(o.CustomerCustomReference) {
 		return true
 	}
 
 	return false
 }
 
-// SetCustomerCustomReference gets a reference to the given NullableString and assigns it to the CustomerCustomReference field.
+// SetCustomerCustomReference gets a reference to the given string and assigns it to the CustomerCustomReference field.
 func (o *PayoutOrderResponseCustomerInfo) SetCustomerCustomReference(v string) {
-	o.CustomerCustomReference.Set(&v)
-}
-// SetCustomerCustomReferenceNil sets the value for CustomerCustomReference to be an explicit nil
-func (o *PayoutOrderResponseCustomerInfo) SetCustomerCustomReferenceNil() {
-	o.CustomerCustomReference.Set(nil)
-}
-
-// UnsetCustomerCustomReference ensures that no value is present for CustomerCustomReference, not even an explicit nil
-func (o *PayoutOrderResponseCustomerInfo) UnsetCustomerCustomReference() {
-	o.CustomerCustomReference.Unset()
+	o.CustomerCustomReference = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -259,30 +273,6 @@ func (o *PayoutOrderResponseCustomerInfo) SetObject(v string) {
 	o.Object = &v
 }
 
-// GetId returns the Id field value
-func (o *PayoutOrderResponseCustomerInfo) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *PayoutOrderResponseCustomerInfo) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *PayoutOrderResponseCustomerInfo) SetId(v string) {
-	o.Id = v
-}
-
 func (o PayoutOrderResponseCustomerInfo) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -293,8 +283,9 @@ func (o PayoutOrderResponseCustomerInfo) MarshalJSON() ([]byte, error) {
 
 func (o PayoutOrderResponseCustomerInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CustomerCustomReference.IsSet() {
-		toSerialize["customer_custom_reference"] = o.CustomerCustomReference.Get()
+	toSerialize["id"] = o.Id
+	if !IsNil(o.CustomerCustomReference) {
+		toSerialize["customer_custom_reference"] = o.CustomerCustomReference
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
@@ -311,7 +302,6 @@ func (o PayoutOrderResponseCustomerInfo) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object
 	}
-	toSerialize["id"] = o.Id
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -355,13 +345,13 @@ func (o *PayoutOrderResponseCustomerInfo) UnmarshalJSON(data []byte) (err error)
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
 		delete(additionalProperties, "customer_custom_reference")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "email")
 		delete(additionalProperties, "phone")
 		delete(additionalProperties, "corporate")
 		delete(additionalProperties, "object")
-		delete(additionalProperties, "id")
 		o.AdditionalProperties = additionalProperties
 	}
 

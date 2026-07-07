@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AntifraudInfo** | Pointer to [**NullableCustomerAntifraudInfoResponse**](CustomerAntifraudInfoResponse.md) |  | [optional] 
+**AntifraudInfo** | Pointer to [**CustomerAntifraudInfoResponse**](CustomerAntifraudInfoResponse.md) |  | [optional] 
 **Corporate** | Pointer to **bool** | true if the customer is a company | [optional] 
 **CreatedAt** | **int64** | Creation date of the object | 
 **CustomReference** | Pointer to **string** | Custom reference | [optional] 
 **DateOfBirth** | Pointer to **string** | It is a parameter that allows to identify the date of birth of the client. | [optional] 
-**DefaultFiscalEntityId** | Pointer to **NullableString** |  | [optional] 
+**DefaultFiscalEntityId** | Pointer to **string** |  | [optional] 
 **DefaultShippingContactId** | Pointer to **string** |  | [optional] 
-**DefaultPaymentSourceId** | Pointer to **NullableString** |  | [optional] 
+**DefaultPaymentSourceId** | Pointer to **string** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
 **FiscalEntities** | Pointer to [**CustomerFiscalEntitiesResponse**](CustomerFiscalEntitiesResponse.md) |  | [optional] 
 **Id** | **string** | Customer&#39;s ID | 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **PaymentSources** | Pointer to [**CustomerPaymentMethodsResponse**](CustomerPaymentMethodsResponse.md) |  | [optional] 
 **Phone** | Pointer to **string** | Customer&#39;s phone number | [optional] 
 **ShippingContacts** | Pointer to [**CustomerResponseShippingContacts**](CustomerResponseShippingContacts.md) |  | [optional] 
-**Subscription** | Pointer to [**SubscriptionResponse**](SubscriptionResponse.md) |  | [optional] 
+**Subscription** | Pointer to [**CustomerSubscriptionResponse**](CustomerSubscriptionResponse.md) |  | [optional] 
 
 ## Methods
 
@@ -69,16 +69,6 @@ SetAntifraudInfo sets AntifraudInfo field to given value.
 
 HasAntifraudInfo returns a boolean if a field has been set.
 
-### SetAntifraudInfoNil
-
-`func (o *CustomerResponse) SetAntifraudInfoNil(b bool)`
-
- SetAntifraudInfoNil sets the value for AntifraudInfo to be an explicit nil
-
-### UnsetAntifraudInfo
-`func (o *CustomerResponse) UnsetAntifraudInfo()`
-
-UnsetAntifraudInfo ensures that no value is present for AntifraudInfo, not even an explicit nil
 ### GetCorporate
 
 `func (o *CustomerResponse) GetCorporate() bool`
@@ -199,16 +189,6 @@ SetDefaultFiscalEntityId sets DefaultFiscalEntityId field to given value.
 
 HasDefaultFiscalEntityId returns a boolean if a field has been set.
 
-### SetDefaultFiscalEntityIdNil
-
-`func (o *CustomerResponse) SetDefaultFiscalEntityIdNil(b bool)`
-
- SetDefaultFiscalEntityIdNil sets the value for DefaultFiscalEntityId to be an explicit nil
-
-### UnsetDefaultFiscalEntityId
-`func (o *CustomerResponse) UnsetDefaultFiscalEntityId()`
-
-UnsetDefaultFiscalEntityId ensures that no value is present for DefaultFiscalEntityId, not even an explicit nil
 ### GetDefaultShippingContactId
 
 `func (o *CustomerResponse) GetDefaultShippingContactId() string`
@@ -259,16 +239,6 @@ SetDefaultPaymentSourceId sets DefaultPaymentSourceId field to given value.
 
 HasDefaultPaymentSourceId returns a boolean if a field has been set.
 
-### SetDefaultPaymentSourceIdNil
-
-`func (o *CustomerResponse) SetDefaultPaymentSourceIdNil(b bool)`
-
- SetDefaultPaymentSourceIdNil sets the value for DefaultPaymentSourceId to be an explicit nil
-
-### UnsetDefaultPaymentSourceId
-`func (o *CustomerResponse) UnsetDefaultPaymentSourceId()`
-
-UnsetDefaultPaymentSourceId ensures that no value is present for DefaultPaymentSourceId, not even an explicit nil
 ### GetEmail
 
 `func (o *CustomerResponse) GetEmail() string`
@@ -526,20 +496,20 @@ HasShippingContacts returns a boolean if a field has been set.
 
 ### GetSubscription
 
-`func (o *CustomerResponse) GetSubscription() SubscriptionResponse`
+`func (o *CustomerResponse) GetSubscription() CustomerSubscriptionResponse`
 
 GetSubscription returns the Subscription field if non-nil, zero value otherwise.
 
 ### GetSubscriptionOk
 
-`func (o *CustomerResponse) GetSubscriptionOk() (*SubscriptionResponse, bool)`
+`func (o *CustomerResponse) GetSubscriptionOk() (*CustomerSubscriptionResponse, bool)`
 
 GetSubscriptionOk returns a tuple with the Subscription field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubscription
 
-`func (o *CustomerResponse) SetSubscription(v SubscriptionResponse)`
+`func (o *CustomerResponse) SetSubscription(v CustomerSubscriptionResponse)`
 
 SetSubscription sets Subscription field to given value.
 

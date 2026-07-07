@@ -23,11 +23,11 @@ var _ MappedNullable = &OrderRequest{}
 type OrderRequest struct {
 	// List of [charges](https://developers.conekta.com/v2.2.0/reference/orderscreatecharge) that are applied to the order
 	Charges []ChargeRequest `json:"charges,omitempty"`
-	Checkout *CheckoutRequest `json:"checkout,omitempty"`
+	Checkout *OrderCheckoutRequest `json:"checkout,omitempty"`
 	// Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)
 	Currency string `json:"currency"`
 	CustomerInfo OrderRequestCustomerInfo `json:"customer_info"`
-	// List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount.
+	// List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order.
 	DiscountLines []OrderDiscountLinesRequest `json:"discount_lines,omitempty"`
 	FiscalEntity *OrderFiscalEntityRequest `json:"fiscal_entity,omitempty"`
 	// List of [products](https://developers.conekta.com/v2.2.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
@@ -42,13 +42,13 @@ type OrderRequest struct {
 	ProcessingMode *string `json:"processing_mode,omitempty"`
 	// Indicates the redirection callback upon completion of the 3DS2 flow. Do not use this parameter if your order has a checkout parameter
 	ReturnUrl *string `json:"return_url,omitempty"`
-	ShippingContact *CustomerShippingContacts `json:"shipping_contact,omitempty"`
+	ShippingContact *CustomerShippingContactsRequest `json:"shipping_contact,omitempty"`
 	// List of [shipping costs](https://developers.conekta.com/v2.2.0/reference/orderscreateshipping). If the online store offers digital products.
 	ShippingLines []ShippingRequest `json:"shipping_lines,omitempty"`
 	// List of [taxes](https://developers.conekta.com/v2.2.0/reference/orderscreatetaxes) that are applied to the order.
 	TaxLines []OrderTaxRequest `json:"tax_lines,omitempty"`
 	// Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null.
-	ThreeDsMode NullableString `json:"three_ds_mode,omitempty"`
+	ThreeDsMode *string `json:"three_ds_mode,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -63,8 +63,6 @@ func NewOrderRequest(currency string, customerInfo OrderRequestCustomerInfo, lin
 	this.Currency = currency
 	this.CustomerInfo = customerInfo
 	this.LineItems = lineItems
-	var preAuthorize bool = false
-	this.PreAuthorize = &preAuthorize
 	return &this
 }
 
@@ -73,8 +71,6 @@ func NewOrderRequest(currency string, customerInfo OrderRequestCustomerInfo, lin
 // but it doesn't guarantee that properties required by API are set
 func NewOrderRequestWithDefaults() *OrderRequest {
 	this := OrderRequest{}
-	var preAuthorize bool = false
-	this.PreAuthorize = &preAuthorize
 	return &this
 }
 
@@ -111,9 +107,9 @@ func (o *OrderRequest) SetCharges(v []ChargeRequest) {
 }
 
 // GetCheckout returns the Checkout field value if set, zero value otherwise.
-func (o *OrderRequest) GetCheckout() CheckoutRequest {
+func (o *OrderRequest) GetCheckout() OrderCheckoutRequest {
 	if o == nil || IsNil(o.Checkout) {
-		var ret CheckoutRequest
+		var ret OrderCheckoutRequest
 		return ret
 	}
 	return *o.Checkout
@@ -121,7 +117,7 @@ func (o *OrderRequest) GetCheckout() CheckoutRequest {
 
 // GetCheckoutOk returns a tuple with the Checkout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderRequest) GetCheckoutOk() (*CheckoutRequest, bool) {
+func (o *OrderRequest) GetCheckoutOk() (*OrderCheckoutRequest, bool) {
 	if o == nil || IsNil(o.Checkout) {
 		return nil, false
 	}
@@ -137,8 +133,8 @@ func (o *OrderRequest) HasCheckout() bool {
 	return false
 }
 
-// SetCheckout gets a reference to the given CheckoutRequest and assigns it to the Checkout field.
-func (o *OrderRequest) SetCheckout(v CheckoutRequest) {
+// SetCheckout gets a reference to the given OrderCheckoutRequest and assigns it to the Checkout field.
+func (o *OrderRequest) SetCheckout(v OrderCheckoutRequest) {
 	o.Checkout = &v
 }
 
@@ -439,9 +435,9 @@ func (o *OrderRequest) SetReturnUrl(v string) {
 }
 
 // GetShippingContact returns the ShippingContact field value if set, zero value otherwise.
-func (o *OrderRequest) GetShippingContact() CustomerShippingContacts {
+func (o *OrderRequest) GetShippingContact() CustomerShippingContactsRequest {
 	if o == nil || IsNil(o.ShippingContact) {
-		var ret CustomerShippingContacts
+		var ret CustomerShippingContactsRequest
 		return ret
 	}
 	return *o.ShippingContact
@@ -449,7 +445,7 @@ func (o *OrderRequest) GetShippingContact() CustomerShippingContacts {
 
 // GetShippingContactOk returns a tuple with the ShippingContact field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderRequest) GetShippingContactOk() (*CustomerShippingContacts, bool) {
+func (o *OrderRequest) GetShippingContactOk() (*CustomerShippingContactsRequest, bool) {
 	if o == nil || IsNil(o.ShippingContact) {
 		return nil, false
 	}
@@ -465,8 +461,8 @@ func (o *OrderRequest) HasShippingContact() bool {
 	return false
 }
 
-// SetShippingContact gets a reference to the given CustomerShippingContacts and assigns it to the ShippingContact field.
-func (o *OrderRequest) SetShippingContact(v CustomerShippingContacts) {
+// SetShippingContact gets a reference to the given CustomerShippingContactsRequest and assigns it to the ShippingContact field.
+func (o *OrderRequest) SetShippingContact(v CustomerShippingContactsRequest) {
 	o.ShippingContact = &v
 }
 
@@ -534,46 +530,36 @@ func (o *OrderRequest) SetTaxLines(v []OrderTaxRequest) {
 	o.TaxLines = v
 }
 
-// GetThreeDsMode returns the ThreeDsMode field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetThreeDsMode returns the ThreeDsMode field value if set, zero value otherwise.
 func (o *OrderRequest) GetThreeDsMode() string {
-	if o == nil || IsNil(o.ThreeDsMode.Get()) {
+	if o == nil || IsNil(o.ThreeDsMode) {
 		var ret string
 		return ret
 	}
-	return *o.ThreeDsMode.Get()
+	return *o.ThreeDsMode
 }
 
 // GetThreeDsModeOk returns a tuple with the ThreeDsMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OrderRequest) GetThreeDsModeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ThreeDsMode) {
 		return nil, false
 	}
-	return o.ThreeDsMode.Get(), o.ThreeDsMode.IsSet()
+	return o.ThreeDsMode, true
 }
 
 // HasThreeDsMode returns a boolean if a field has been set.
 func (o *OrderRequest) HasThreeDsMode() bool {
-	if o != nil && o.ThreeDsMode.IsSet() {
+	if o != nil && !IsNil(o.ThreeDsMode) {
 		return true
 	}
 
 	return false
 }
 
-// SetThreeDsMode gets a reference to the given NullableString and assigns it to the ThreeDsMode field.
+// SetThreeDsMode gets a reference to the given string and assigns it to the ThreeDsMode field.
 func (o *OrderRequest) SetThreeDsMode(v string) {
-	o.ThreeDsMode.Set(&v)
-}
-// SetThreeDsModeNil sets the value for ThreeDsMode to be an explicit nil
-func (o *OrderRequest) SetThreeDsModeNil() {
-	o.ThreeDsMode.Set(nil)
-}
-
-// UnsetThreeDsMode ensures that no value is present for ThreeDsMode, not even an explicit nil
-func (o *OrderRequest) UnsetThreeDsMode() {
-	o.ThreeDsMode.Unset()
+	o.ThreeDsMode = &v
 }
 
 func (o OrderRequest) MarshalJSON() ([]byte, error) {
@@ -625,8 +611,8 @@ func (o OrderRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TaxLines) {
 		toSerialize["tax_lines"] = o.TaxLines
 	}
-	if o.ThreeDsMode.IsSet() {
-		toSerialize["three_ds_mode"] = o.ThreeDsMode.Get()
+	if !IsNil(o.ThreeDsMode) {
+		toSerialize["three_ds_mode"] = o.ThreeDsMode
 	}
 
 	for key, value := range o.AdditionalProperties {

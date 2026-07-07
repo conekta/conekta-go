@@ -323,6 +323,7 @@ func (a *TransactionsAPIService) GetTransactionsExecute(r ApiGetTransactionsRequ
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
 		r.limit = &defaultValue
 	}
 	if r.next != nil {

@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CreatedAt** | Pointer to **int64** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Object** | Pointer to **string** |  | [optional] 
 **Phone** | Pointer to **string** |  | [optional] 
 **Receiver** | Pointer to **string** |  | [optional] 
-**BetweenStreets** | Pointer to **NullableString** |  | [optional] 
-**Address** | Pointer to [**CustomerShippingContactsResponseAddress**](CustomerShippingContactsResponseAddress.md) |  | [optional] 
+**BetweenStreets** | Pointer to **string** |  | [optional] 
+**Address** | Pointer to [**CustomerShippingContactsAddress**](CustomerShippingContactsAddress.md) |  | [optional] 
 **ParentId** | Pointer to **string** |  | [optional] 
 **Default** | Pointer to **bool** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
-**CreatedAt** | Pointer to **int64** |  | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** | Metadata associated with the shipping contact | [optional] 
-**Object** | Pointer to **string** |  | [optional] 
 **Deleted** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -34,6 +34,81 @@ will change when the set of required properties is changed
 NewOrderResponseShippingContactWithDefaults instantiates a new OrderResponseShippingContact object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCreatedAt
+
+`func (o *OrderResponseShippingContact) GetCreatedAt() int64`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *OrderResponseShippingContact) GetCreatedAtOk() (*int64, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *OrderResponseShippingContact) SetCreatedAt(v int64)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+### HasCreatedAt
+
+`func (o *OrderResponseShippingContact) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *OrderResponseShippingContact) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *OrderResponseShippingContact) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *OrderResponseShippingContact) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *OrderResponseShippingContact) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetObject
+
+`func (o *OrderResponseShippingContact) GetObject() string`
+
+GetObject returns the Object field if non-nil, zero value otherwise.
+
+### GetObjectOk
+
+`func (o *OrderResponseShippingContact) GetObjectOk() (*string, bool)`
+
+GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetObject
+
+`func (o *OrderResponseShippingContact) SetObject(v string)`
+
+SetObject sets Object field to given value.
+
+### HasObject
+
+`func (o *OrderResponseShippingContact) HasObject() bool`
+
+HasObject returns a boolean if a field has been set.
 
 ### GetPhone
 
@@ -110,32 +185,22 @@ SetBetweenStreets sets BetweenStreets field to given value.
 
 HasBetweenStreets returns a boolean if a field has been set.
 
-### SetBetweenStreetsNil
-
-`func (o *OrderResponseShippingContact) SetBetweenStreetsNil(b bool)`
-
- SetBetweenStreetsNil sets the value for BetweenStreets to be an explicit nil
-
-### UnsetBetweenStreets
-`func (o *OrderResponseShippingContact) UnsetBetweenStreets()`
-
-UnsetBetweenStreets ensures that no value is present for BetweenStreets, not even an explicit nil
 ### GetAddress
 
-`func (o *OrderResponseShippingContact) GetAddress() CustomerShippingContactsResponseAddress`
+`func (o *OrderResponseShippingContact) GetAddress() CustomerShippingContactsAddress`
 
 GetAddress returns the Address field if non-nil, zero value otherwise.
 
 ### GetAddressOk
 
-`func (o *OrderResponseShippingContact) GetAddressOk() (*CustomerShippingContactsResponseAddress, bool)`
+`func (o *OrderResponseShippingContact) GetAddressOk() (*CustomerShippingContactsAddress, bool)`
 
 GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddress
 
-`func (o *OrderResponseShippingContact) SetAddress(v CustomerShippingContactsResponseAddress)`
+`func (o *OrderResponseShippingContact) SetAddress(v CustomerShippingContactsAddress)`
 
 SetAddress sets Address field to given value.
 
@@ -195,56 +260,6 @@ SetDefault sets Default field to given value.
 
 HasDefault returns a boolean if a field has been set.
 
-### GetId
-
-`func (o *OrderResponseShippingContact) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *OrderResponseShippingContact) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *OrderResponseShippingContact) SetId(v string)`
-
-SetId sets Id field to given value.
-
-### HasId
-
-`func (o *OrderResponseShippingContact) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### GetCreatedAt
-
-`func (o *OrderResponseShippingContact) GetCreatedAt() int64`
-
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
-
-### GetCreatedAtOk
-
-`func (o *OrderResponseShippingContact) GetCreatedAtOk() (*int64, bool)`
-
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedAt
-
-`func (o *OrderResponseShippingContact) SetCreatedAt(v int64)`
-
-SetCreatedAt sets CreatedAt field to given value.
-
-### HasCreatedAt
-
-`func (o *OrderResponseShippingContact) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
-
 ### GetMetadata
 
 `func (o *OrderResponseShippingContact) GetMetadata() map[string]interface{}`
@@ -269,31 +284,6 @@ SetMetadata sets Metadata field to given value.
 `func (o *OrderResponseShippingContact) HasMetadata() bool`
 
 HasMetadata returns a boolean if a field has been set.
-
-### GetObject
-
-`func (o *OrderResponseShippingContact) GetObject() string`
-
-GetObject returns the Object field if non-nil, zero value otherwise.
-
-### GetObjectOk
-
-`func (o *OrderResponseShippingContact) GetObjectOk() (*string, bool)`
-
-GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetObject
-
-`func (o *OrderResponseShippingContact) SetObject(v string)`
-
-SetObject sets Object field to given value.
-
-### HasObject
-
-`func (o *OrderResponseShippingContact) HasObject() bool`
-
-HasObject returns a boolean if a field has been set.
 
 ### GetDeleted
 

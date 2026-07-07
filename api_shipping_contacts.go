@@ -78,14 +78,14 @@ type ApiCreateCustomerShippingContactsRequest struct {
 	ctx context.Context
 	ApiService ShippingContactsAPI
 	id string
-	customerShippingContacts *CustomerShippingContacts
+	customerShippingContactsRequest *CustomerShippingContactsRequest
 	acceptLanguage *string
 	xChildCompanyId *string
 }
 
 // requested field for customer shippings contacts
-func (r ApiCreateCustomerShippingContactsRequest) CustomerShippingContacts(customerShippingContacts CustomerShippingContacts) ApiCreateCustomerShippingContactsRequest {
-	r.customerShippingContacts = &customerShippingContacts
+func (r ApiCreateCustomerShippingContactsRequest) CustomerShippingContactsRequest(customerShippingContactsRequest CustomerShippingContactsRequest) ApiCreateCustomerShippingContactsRequest {
+	r.customerShippingContactsRequest = &customerShippingContactsRequest
 	return r
 }
 
@@ -143,8 +143,8 @@ func (a *ShippingContactsAPIService) CreateCustomerShippingContactsExecute(r Api
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.customerShippingContacts == nil {
-		return localVarReturnValue, nil, reportError("customerShippingContacts is required and must be specified")
+	if r.customerShippingContactsRequest == nil {
+		return localVarReturnValue, nil, reportError("customerShippingContactsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -171,7 +171,7 @@ func (a *ShippingContactsAPIService) CreateCustomerShippingContactsExecute(r Api
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.customerShippingContacts
+	localVarPostBody = r.customerShippingContactsRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -427,14 +427,14 @@ type ApiUpdateCustomerShippingContactsRequest struct {
 	ApiService ShippingContactsAPI
 	id string
 	shippingContactsId string
-	customerUpdateShippingContacts *CustomerUpdateShippingContacts
+	customerUpdateShippingContactsRequest *CustomerUpdateShippingContactsRequest
 	acceptLanguage *string
 	xChildCompanyId *string
 }
 
 // requested field for customer update shippings contacts
-func (r ApiUpdateCustomerShippingContactsRequest) CustomerUpdateShippingContacts(customerUpdateShippingContacts CustomerUpdateShippingContacts) ApiUpdateCustomerShippingContactsRequest {
-	r.customerUpdateShippingContacts = &customerUpdateShippingContacts
+func (r ApiUpdateCustomerShippingContactsRequest) CustomerUpdateShippingContactsRequest(customerUpdateShippingContactsRequest CustomerUpdateShippingContactsRequest) ApiUpdateCustomerShippingContactsRequest {
+	r.customerUpdateShippingContactsRequest = &customerUpdateShippingContactsRequest
 	return r
 }
 
@@ -495,8 +495,8 @@ func (a *ShippingContactsAPIService) UpdateCustomerShippingContactsExecute(r Api
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.customerUpdateShippingContacts == nil {
-		return localVarReturnValue, nil, reportError("customerUpdateShippingContacts is required and must be specified")
+	if r.customerUpdateShippingContactsRequest == nil {
+		return localVarReturnValue, nil, reportError("customerUpdateShippingContactsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -523,7 +523,7 @@ func (a *ShippingContactsAPIService) UpdateCustomerShippingContactsExecute(r Api
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.customerUpdateShippingContacts
+	localVarPostBody = r.customerUpdateShippingContactsRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

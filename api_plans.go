@@ -582,6 +582,8 @@ type ApiGetPlansRequest struct {
 	search *string
 	next *string
 	previous *string
+	currency *string
+	frequency *int32
 }
 
 // Use for knowing which language to use
@@ -617,6 +619,18 @@ func (r ApiGetPlansRequest) Next(next string) ApiGetPlansRequest {
 // previous page
 func (r ApiGetPlansRequest) Previous(previous string) ApiGetPlansRequest {
 	r.previous = &previous
+	return r
+}
+
+// currency of the object to be retrieved
+func (r ApiGetPlansRequest) Currency(currency string) ApiGetPlansRequest {
+	r.currency = &currency
+	return r
+}
+
+// frequency of the object to be retrieved
+func (r ApiGetPlansRequest) Frequency(frequency int32) ApiGetPlansRequest {
+	r.frequency = &frequency
 	return r
 }
 
@@ -662,6 +676,7 @@ func (a *PlansAPIService) GetPlansExecute(r ApiGetPlansRequest) (*GetPlansRespon
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
 		r.limit = &defaultValue
 	}
 	if r.search != nil {
@@ -672,6 +687,12 @@ func (a *PlansAPIService) GetPlansExecute(r ApiGetPlansRequest) (*GetPlansRespon
 	}
 	if r.previous != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "previous", r.previous, "form", "")
+	}
+	if r.currency != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "currency", r.currency, "form", "")
+	}
+	if r.frequency != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "frequency", r.frequency, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -769,14 +790,14 @@ type ApiUpdatePlanRequest struct {
 	ctx context.Context
 	ApiService PlansAPI
 	id string
-	planUpdateRequest *PlanUpdateRequest
+	updatePlan *UpdatePlan
 	acceptLanguage *string
 	xChildCompanyId *string
 }
 
 // requested field for plan
-func (r ApiUpdatePlanRequest) PlanUpdateRequest(planUpdateRequest PlanUpdateRequest) ApiUpdatePlanRequest {
-	r.planUpdateRequest = &planUpdateRequest
+func (r ApiUpdatePlanRequest) UpdatePlan(updatePlan UpdatePlan) ApiUpdatePlanRequest {
+	r.updatePlan = &updatePlan
 	return r
 }
 
@@ -832,8 +853,8 @@ func (a *PlansAPIService) UpdatePlanExecute(r ApiUpdatePlanRequest) (*PlanRespon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.planUpdateRequest == nil {
-		return localVarReturnValue, nil, reportError("planUpdateRequest is required and must be specified")
+	if r.updatePlan == nil {
+		return localVarReturnValue, nil, reportError("updatePlan is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -860,7 +881,7 @@ func (a *PlansAPIService) UpdatePlanExecute(r ApiUpdatePlanRequest) (*PlanRespon
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.planUpdateRequest
+	localVarPostBody = r.updatePlan
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

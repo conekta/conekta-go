@@ -21,7 +21,7 @@ var _ MappedNullable = &Customer{}
 
 // Customer a customer
 type Customer struct {
-	AntifraudInfo NullableCustomerAntifraudInfo `json:"antifraud_info,omitempty"`
+	AntifraudInfo *CustomerAntifraudInfo `json:"antifraud_info,omitempty"`
 	// It is a value that allows identifying if the email is corporate or not.
 	Corporate *bool `json:"corporate,omitempty"`
 	// It is an undefined value.
@@ -34,7 +34,7 @@ type Customer struct {
 	DefaultPaymentSourceId *string `json:"default_payment_source_id,omitempty"`
 	// It is a parameter that allows to identify in the response, the Conekta ID of the shipping address (shipping_contact)
 	DefaultShippingContactId *string `json:"default_shipping_contact_id,omitempty"`
-	FiscalEntities []CustomerFiscalEntitiesRequest `json:"fiscal_entities,omitempty"`
+	FiscalEntities []FiscalEntityRequest `json:"fiscal_entities,omitempty"`
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// Client's name
 	Name string `json:"name"`
@@ -47,7 +47,7 @@ type Customer struct {
 	// Contains the ID of a plan, which could together with name, email and phone create a client directly to a subscription
 	PlanId *string `json:"plan_id,omitempty"`
 	// Contains the detail of the shipping addresses that the client has active or has used in Conekta
-	ShippingContacts []CustomerShippingContacts `json:"shipping_contacts,omitempty"`
+	ShippingContacts []CustomerShippingContactsRequest `json:"shipping_contacts,omitempty"`
 	Subscription *SubscriptionRequest `json:"subscription,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -78,46 +78,36 @@ func NewCustomerWithDefaults() *Customer {
 	return &this
 }
 
-// GetAntifraudInfo returns the AntifraudInfo field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAntifraudInfo returns the AntifraudInfo field value if set, zero value otherwise.
 func (o *Customer) GetAntifraudInfo() CustomerAntifraudInfo {
-	if o == nil || IsNil(o.AntifraudInfo.Get()) {
+	if o == nil || IsNil(o.AntifraudInfo) {
 		var ret CustomerAntifraudInfo
 		return ret
 	}
-	return *o.AntifraudInfo.Get()
+	return *o.AntifraudInfo
 }
 
 // GetAntifraudInfoOk returns a tuple with the AntifraudInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Customer) GetAntifraudInfoOk() (*CustomerAntifraudInfo, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AntifraudInfo) {
 		return nil, false
 	}
-	return o.AntifraudInfo.Get(), o.AntifraudInfo.IsSet()
+	return o.AntifraudInfo, true
 }
 
 // HasAntifraudInfo returns a boolean if a field has been set.
 func (o *Customer) HasAntifraudInfo() bool {
-	if o != nil && o.AntifraudInfo.IsSet() {
+	if o != nil && !IsNil(o.AntifraudInfo) {
 		return true
 	}
 
 	return false
 }
 
-// SetAntifraudInfo gets a reference to the given NullableCustomerAntifraudInfo and assigns it to the AntifraudInfo field.
+// SetAntifraudInfo gets a reference to the given CustomerAntifraudInfo and assigns it to the AntifraudInfo field.
 func (o *Customer) SetAntifraudInfo(v CustomerAntifraudInfo) {
-	o.AntifraudInfo.Set(&v)
-}
-// SetAntifraudInfoNil sets the value for AntifraudInfo to be an explicit nil
-func (o *Customer) SetAntifraudInfoNil() {
-	o.AntifraudInfo.Set(nil)
-}
-
-// UnsetAntifraudInfo ensures that no value is present for AntifraudInfo, not even an explicit nil
-func (o *Customer) UnsetAntifraudInfo() {
-	o.AntifraudInfo.Unset()
+	o.AntifraudInfo = &v
 }
 
 // GetCorporate returns the Corporate field value if set, zero value otherwise.
@@ -305,9 +295,9 @@ func (o *Customer) SetDefaultShippingContactId(v string) {
 }
 
 // GetFiscalEntities returns the FiscalEntities field value if set, zero value otherwise.
-func (o *Customer) GetFiscalEntities() []CustomerFiscalEntitiesRequest {
+func (o *Customer) GetFiscalEntities() []FiscalEntityRequest {
 	if o == nil || IsNil(o.FiscalEntities) {
-		var ret []CustomerFiscalEntitiesRequest
+		var ret []FiscalEntityRequest
 		return ret
 	}
 	return o.FiscalEntities
@@ -315,7 +305,7 @@ func (o *Customer) GetFiscalEntities() []CustomerFiscalEntitiesRequest {
 
 // GetFiscalEntitiesOk returns a tuple with the FiscalEntities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Customer) GetFiscalEntitiesOk() ([]CustomerFiscalEntitiesRequest, bool) {
+func (o *Customer) GetFiscalEntitiesOk() ([]FiscalEntityRequest, bool) {
 	if o == nil || IsNil(o.FiscalEntities) {
 		return nil, false
 	}
@@ -331,8 +321,8 @@ func (o *Customer) HasFiscalEntities() bool {
 	return false
 }
 
-// SetFiscalEntities gets a reference to the given []CustomerFiscalEntitiesRequest and assigns it to the FiscalEntities field.
-func (o *Customer) SetFiscalEntities(v []CustomerFiscalEntitiesRequest) {
+// SetFiscalEntities gets a reference to the given []FiscalEntityRequest and assigns it to the FiscalEntities field.
+func (o *Customer) SetFiscalEntities(v []FiscalEntityRequest) {
 	o.FiscalEntities = v
 }
 
@@ -513,9 +503,9 @@ func (o *Customer) SetPlanId(v string) {
 }
 
 // GetShippingContacts returns the ShippingContacts field value if set, zero value otherwise.
-func (o *Customer) GetShippingContacts() []CustomerShippingContacts {
+func (o *Customer) GetShippingContacts() []CustomerShippingContactsRequest {
 	if o == nil || IsNil(o.ShippingContacts) {
-		var ret []CustomerShippingContacts
+		var ret []CustomerShippingContactsRequest
 		return ret
 	}
 	return o.ShippingContacts
@@ -523,7 +513,7 @@ func (o *Customer) GetShippingContacts() []CustomerShippingContacts {
 
 // GetShippingContactsOk returns a tuple with the ShippingContacts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Customer) GetShippingContactsOk() ([]CustomerShippingContacts, bool) {
+func (o *Customer) GetShippingContactsOk() ([]CustomerShippingContactsRequest, bool) {
 	if o == nil || IsNil(o.ShippingContacts) {
 		return nil, false
 	}
@@ -539,8 +529,8 @@ func (o *Customer) HasShippingContacts() bool {
 	return false
 }
 
-// SetShippingContacts gets a reference to the given []CustomerShippingContacts and assigns it to the ShippingContacts field.
-func (o *Customer) SetShippingContacts(v []CustomerShippingContacts) {
+// SetShippingContacts gets a reference to the given []CustomerShippingContactsRequest and assigns it to the ShippingContacts field.
+func (o *Customer) SetShippingContacts(v []CustomerShippingContactsRequest) {
 	o.ShippingContacts = v
 }
 
@@ -586,8 +576,8 @@ func (o Customer) MarshalJSON() ([]byte, error) {
 
 func (o Customer) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AntifraudInfo.IsSet() {
-		toSerialize["antifraud_info"] = o.AntifraudInfo.Get()
+	if !IsNil(o.AntifraudInfo) {
+		toSerialize["antifraud_info"] = o.AntifraudInfo
 	}
 	if !IsNil(o.Corporate) {
 		toSerialize["corporate"] = o.Corporate

@@ -21,7 +21,7 @@ var _ MappedNullable = &CustomerResponse{}
 
 // CustomerResponse customer response
 type CustomerResponse struct {
-	AntifraudInfo NullableCustomerAntifraudInfoResponse `json:"antifraud_info,omitempty"`
+	AntifraudInfo *CustomerAntifraudInfoResponse `json:"antifraud_info,omitempty"`
 	// true if the customer is a company
 	Corporate *bool `json:"corporate,omitempty"`
 	// Creation date of the object
@@ -30,9 +30,9 @@ type CustomerResponse struct {
 	CustomReference *string `json:"custom_reference,omitempty"`
 	// It is a parameter that allows to identify the date of birth of the client.
 	DateOfBirth *string `json:"date_of_birth,omitempty"`
-	DefaultFiscalEntityId NullableString `json:"default_fiscal_entity_id,omitempty"`
+	DefaultFiscalEntityId *string `json:"default_fiscal_entity_id,omitempty"`
 	DefaultShippingContactId *string `json:"default_shipping_contact_id,omitempty"`
-	DefaultPaymentSourceId NullableString `json:"default_payment_source_id,omitempty"`
+	DefaultPaymentSourceId *string `json:"default_payment_source_id,omitempty"`
 	Email *string `json:"email,omitempty"`
 	FiscalEntities *CustomerFiscalEntitiesResponse `json:"fiscal_entities,omitempty"`
 	// Customer's ID
@@ -49,7 +49,7 @@ type CustomerResponse struct {
 	// Customer's phone number
 	Phone *string `json:"phone,omitempty"`
 	ShippingContacts *CustomerResponseShippingContacts `json:"shipping_contacts,omitempty"`
-	Subscription *SubscriptionResponse `json:"subscription,omitempty"`
+	Subscription *CustomerSubscriptionResponse `json:"subscription,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -77,46 +77,36 @@ func NewCustomerResponseWithDefaults() *CustomerResponse {
 	return &this
 }
 
-// GetAntifraudInfo returns the AntifraudInfo field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAntifraudInfo returns the AntifraudInfo field value if set, zero value otherwise.
 func (o *CustomerResponse) GetAntifraudInfo() CustomerAntifraudInfoResponse {
-	if o == nil || IsNil(o.AntifraudInfo.Get()) {
+	if o == nil || IsNil(o.AntifraudInfo) {
 		var ret CustomerAntifraudInfoResponse
 		return ret
 	}
-	return *o.AntifraudInfo.Get()
+	return *o.AntifraudInfo
 }
 
 // GetAntifraudInfoOk returns a tuple with the AntifraudInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CustomerResponse) GetAntifraudInfoOk() (*CustomerAntifraudInfoResponse, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AntifraudInfo) {
 		return nil, false
 	}
-	return o.AntifraudInfo.Get(), o.AntifraudInfo.IsSet()
+	return o.AntifraudInfo, true
 }
 
 // HasAntifraudInfo returns a boolean if a field has been set.
 func (o *CustomerResponse) HasAntifraudInfo() bool {
-	if o != nil && o.AntifraudInfo.IsSet() {
+	if o != nil && !IsNil(o.AntifraudInfo) {
 		return true
 	}
 
 	return false
 }
 
-// SetAntifraudInfo gets a reference to the given NullableCustomerAntifraudInfoResponse and assigns it to the AntifraudInfo field.
+// SetAntifraudInfo gets a reference to the given CustomerAntifraudInfoResponse and assigns it to the AntifraudInfo field.
 func (o *CustomerResponse) SetAntifraudInfo(v CustomerAntifraudInfoResponse) {
-	o.AntifraudInfo.Set(&v)
-}
-// SetAntifraudInfoNil sets the value for AntifraudInfo to be an explicit nil
-func (o *CustomerResponse) SetAntifraudInfoNil() {
-	o.AntifraudInfo.Set(nil)
-}
-
-// UnsetAntifraudInfo ensures that no value is present for AntifraudInfo, not even an explicit nil
-func (o *CustomerResponse) UnsetAntifraudInfo() {
-	o.AntifraudInfo.Unset()
+	o.AntifraudInfo = &v
 }
 
 // GetCorporate returns the Corporate field value if set, zero value otherwise.
@@ -239,46 +229,36 @@ func (o *CustomerResponse) SetDateOfBirth(v string) {
 	o.DateOfBirth = &v
 }
 
-// GetDefaultFiscalEntityId returns the DefaultFiscalEntityId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetDefaultFiscalEntityId returns the DefaultFiscalEntityId field value if set, zero value otherwise.
 func (o *CustomerResponse) GetDefaultFiscalEntityId() string {
-	if o == nil || IsNil(o.DefaultFiscalEntityId.Get()) {
+	if o == nil || IsNil(o.DefaultFiscalEntityId) {
 		var ret string
 		return ret
 	}
-	return *o.DefaultFiscalEntityId.Get()
+	return *o.DefaultFiscalEntityId
 }
 
 // GetDefaultFiscalEntityIdOk returns a tuple with the DefaultFiscalEntityId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CustomerResponse) GetDefaultFiscalEntityIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DefaultFiscalEntityId) {
 		return nil, false
 	}
-	return o.DefaultFiscalEntityId.Get(), o.DefaultFiscalEntityId.IsSet()
+	return o.DefaultFiscalEntityId, true
 }
 
 // HasDefaultFiscalEntityId returns a boolean if a field has been set.
 func (o *CustomerResponse) HasDefaultFiscalEntityId() bool {
-	if o != nil && o.DefaultFiscalEntityId.IsSet() {
+	if o != nil && !IsNil(o.DefaultFiscalEntityId) {
 		return true
 	}
 
 	return false
 }
 
-// SetDefaultFiscalEntityId gets a reference to the given NullableString and assigns it to the DefaultFiscalEntityId field.
+// SetDefaultFiscalEntityId gets a reference to the given string and assigns it to the DefaultFiscalEntityId field.
 func (o *CustomerResponse) SetDefaultFiscalEntityId(v string) {
-	o.DefaultFiscalEntityId.Set(&v)
-}
-// SetDefaultFiscalEntityIdNil sets the value for DefaultFiscalEntityId to be an explicit nil
-func (o *CustomerResponse) SetDefaultFiscalEntityIdNil() {
-	o.DefaultFiscalEntityId.Set(nil)
-}
-
-// UnsetDefaultFiscalEntityId ensures that no value is present for DefaultFiscalEntityId, not even an explicit nil
-func (o *CustomerResponse) UnsetDefaultFiscalEntityId() {
-	o.DefaultFiscalEntityId.Unset()
+	o.DefaultFiscalEntityId = &v
 }
 
 // GetDefaultShippingContactId returns the DefaultShippingContactId field value if set, zero value otherwise.
@@ -313,46 +293,36 @@ func (o *CustomerResponse) SetDefaultShippingContactId(v string) {
 	o.DefaultShippingContactId = &v
 }
 
-// GetDefaultPaymentSourceId returns the DefaultPaymentSourceId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetDefaultPaymentSourceId returns the DefaultPaymentSourceId field value if set, zero value otherwise.
 func (o *CustomerResponse) GetDefaultPaymentSourceId() string {
-	if o == nil || IsNil(o.DefaultPaymentSourceId.Get()) {
+	if o == nil || IsNil(o.DefaultPaymentSourceId) {
 		var ret string
 		return ret
 	}
-	return *o.DefaultPaymentSourceId.Get()
+	return *o.DefaultPaymentSourceId
 }
 
 // GetDefaultPaymentSourceIdOk returns a tuple with the DefaultPaymentSourceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CustomerResponse) GetDefaultPaymentSourceIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DefaultPaymentSourceId) {
 		return nil, false
 	}
-	return o.DefaultPaymentSourceId.Get(), o.DefaultPaymentSourceId.IsSet()
+	return o.DefaultPaymentSourceId, true
 }
 
 // HasDefaultPaymentSourceId returns a boolean if a field has been set.
 func (o *CustomerResponse) HasDefaultPaymentSourceId() bool {
-	if o != nil && o.DefaultPaymentSourceId.IsSet() {
+	if o != nil && !IsNil(o.DefaultPaymentSourceId) {
 		return true
 	}
 
 	return false
 }
 
-// SetDefaultPaymentSourceId gets a reference to the given NullableString and assigns it to the DefaultPaymentSourceId field.
+// SetDefaultPaymentSourceId gets a reference to the given string and assigns it to the DefaultPaymentSourceId field.
 func (o *CustomerResponse) SetDefaultPaymentSourceId(v string) {
-	o.DefaultPaymentSourceId.Set(&v)
-}
-// SetDefaultPaymentSourceIdNil sets the value for DefaultPaymentSourceId to be an explicit nil
-func (o *CustomerResponse) SetDefaultPaymentSourceIdNil() {
-	o.DefaultPaymentSourceId.Set(nil)
-}
-
-// UnsetDefaultPaymentSourceId ensures that no value is present for DefaultPaymentSourceId, not even an explicit nil
-func (o *CustomerResponse) UnsetDefaultPaymentSourceId() {
-	o.DefaultPaymentSourceId.Unset()
+	o.DefaultPaymentSourceId = &v
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise.
@@ -676,9 +646,9 @@ func (o *CustomerResponse) SetShippingContacts(v CustomerResponseShippingContact
 }
 
 // GetSubscription returns the Subscription field value if set, zero value otherwise.
-func (o *CustomerResponse) GetSubscription() SubscriptionResponse {
+func (o *CustomerResponse) GetSubscription() CustomerSubscriptionResponse {
 	if o == nil || IsNil(o.Subscription) {
-		var ret SubscriptionResponse
+		var ret CustomerSubscriptionResponse
 		return ret
 	}
 	return *o.Subscription
@@ -686,7 +656,7 @@ func (o *CustomerResponse) GetSubscription() SubscriptionResponse {
 
 // GetSubscriptionOk returns a tuple with the Subscription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerResponse) GetSubscriptionOk() (*SubscriptionResponse, bool) {
+func (o *CustomerResponse) GetSubscriptionOk() (*CustomerSubscriptionResponse, bool) {
 	if o == nil || IsNil(o.Subscription) {
 		return nil, false
 	}
@@ -702,8 +672,8 @@ func (o *CustomerResponse) HasSubscription() bool {
 	return false
 }
 
-// SetSubscription gets a reference to the given SubscriptionResponse and assigns it to the Subscription field.
-func (o *CustomerResponse) SetSubscription(v SubscriptionResponse) {
+// SetSubscription gets a reference to the given CustomerSubscriptionResponse and assigns it to the Subscription field.
+func (o *CustomerResponse) SetSubscription(v CustomerSubscriptionResponse) {
 	o.Subscription = &v
 }
 
@@ -717,8 +687,8 @@ func (o CustomerResponse) MarshalJSON() ([]byte, error) {
 
 func (o CustomerResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AntifraudInfo.IsSet() {
-		toSerialize["antifraud_info"] = o.AntifraudInfo.Get()
+	if !IsNil(o.AntifraudInfo) {
+		toSerialize["antifraud_info"] = o.AntifraudInfo
 	}
 	if !IsNil(o.Corporate) {
 		toSerialize["corporate"] = o.Corporate
@@ -730,14 +700,14 @@ func (o CustomerResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DateOfBirth) {
 		toSerialize["date_of_birth"] = o.DateOfBirth
 	}
-	if o.DefaultFiscalEntityId.IsSet() {
-		toSerialize["default_fiscal_entity_id"] = o.DefaultFiscalEntityId.Get()
+	if !IsNil(o.DefaultFiscalEntityId) {
+		toSerialize["default_fiscal_entity_id"] = o.DefaultFiscalEntityId
 	}
 	if !IsNil(o.DefaultShippingContactId) {
 		toSerialize["default_shipping_contact_id"] = o.DefaultShippingContactId
 	}
-	if o.DefaultPaymentSourceId.IsSet() {
-		toSerialize["default_payment_source_id"] = o.DefaultPaymentSourceId.Get()
+	if !IsNil(o.DefaultPaymentSourceId) {
+		toSerialize["default_payment_source_id"] = o.DefaultPaymentSourceId
 	}
 	if !IsNil(o.Email) {
 		toSerialize["email"] = o.Email

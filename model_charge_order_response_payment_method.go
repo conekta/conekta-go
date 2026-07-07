@@ -119,8 +119,8 @@ func (dst *ChargeOrderResponsePaymentMethod) UnmarshalJSON(data []byte) error {
 		}
 	}
 
-	// check if the discriminator value is 'pbb_payment'
-	if jsonDict["object"] == "pbb_payment" {
+	// check if the discriminator value is 'pay_by_bank_payment'
+	if jsonDict["object"] == "pay_by_bank_payment" {
 		// try to unmarshal JSON data into PaymentMethodPbbPayment
 		err = json.Unmarshal(data, &dst.PaymentMethodPbbPayment)
 		if err == nil {

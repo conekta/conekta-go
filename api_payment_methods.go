@@ -532,6 +532,7 @@ func (a *PaymentMethodsAPIService) GetCustomerPaymentMethodsExecute(r ApiGetCust
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
 		r.limit = &defaultValue
 	}
 	if r.next != nil {
@@ -640,14 +641,14 @@ type ApiUpdateCustomerPaymentMethodsRequest struct {
 	ApiService PaymentMethodsAPI
 	id string
 	paymentMethodId string
-	updatePaymentMethods *UpdatePaymentMethods
+	updatePaymentMethodsCard *UpdatePaymentMethodsCard
 	acceptLanguage *string
 	xChildCompanyId *string
 }
 
 // requested field for customer payment methods
-func (r ApiUpdateCustomerPaymentMethodsRequest) UpdatePaymentMethods(updatePaymentMethods UpdatePaymentMethods) ApiUpdateCustomerPaymentMethodsRequest {
-	r.updatePaymentMethods = &updatePaymentMethods
+func (r ApiUpdateCustomerPaymentMethodsRequest) UpdatePaymentMethodsCard(updatePaymentMethodsCard UpdatePaymentMethodsCard) ApiUpdateCustomerPaymentMethodsRequest {
+	r.updatePaymentMethodsCard = &updatePaymentMethodsCard
 	return r
 }
 
@@ -708,8 +709,8 @@ func (a *PaymentMethodsAPIService) UpdateCustomerPaymentMethodsExecute(r ApiUpda
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updatePaymentMethods == nil {
-		return localVarReturnValue, nil, reportError("updatePaymentMethods is required and must be specified")
+	if r.updatePaymentMethodsCard == nil {
+		return localVarReturnValue, nil, reportError("updatePaymentMethodsCard is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -736,7 +737,7 @@ func (a *PaymentMethodsAPIService) UpdateCustomerPaymentMethodsExecute(r ApiUpda
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.updatePaymentMethods
+	localVarPostBody = r.updatePaymentMethodsCard
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

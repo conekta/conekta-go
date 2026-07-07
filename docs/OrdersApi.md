@@ -554,7 +554,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrder
 
-> OrderResponse UpdateOrder(ctx, id).OrderUpdateRequest(orderUpdateRequest).AcceptLanguage(acceptLanguage).Execute()
+> OrderResponse UpdateOrder(ctx, id).OrderUpdate(orderUpdate).AcceptLanguage(acceptLanguage).Execute()
 
 Update Order
 
@@ -574,12 +574,12 @@ import (
 
 func main() {
 	id := "6307a60c41de27127515a575" // string | Identifier of the resource
-	orderUpdateRequest := *openapiclient.NewOrderUpdateRequest() // OrderUpdateRequest | requested field for an order
+	orderUpdate := *openapiclient.NewOrderUpdate() // OrderUpdate | requested field for an order
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrdersAPI.UpdateOrder(context.Background(), id).OrderUpdateRequest(orderUpdateRequest).AcceptLanguage(acceptLanguage).Execute()
+	resp, r, err := apiClient.OrdersAPI.UpdateOrder(context.Background(), id).OrderUpdate(orderUpdate).AcceptLanguage(acceptLanguage).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OrdersAPI.UpdateOrder``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -605,7 +605,7 @@ Other parameters are passed through a pointer to a apiUpdateOrderRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **orderUpdateRequest** | [**OrderUpdateRequest**](OrderUpdateRequest.md) | requested field for an order | 
+ **orderUpdate** | [**OrderUpdate**](OrderUpdate.md) | requested field for an order | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
 
 ### Return type

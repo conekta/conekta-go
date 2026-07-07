@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 **Phone** | Pointer to **string** | Phone contact | [optional] 
 **Receiver** | Pointer to **string** | Name of the person who will receive the order | [optional] 
 **BetweenStreets** | Pointer to **string** | The street names between which the order will be delivered. | [optional] 
-**Address** | [**CustomerShippingContactsAddress**](CustomerShippingContactsAddress.md) |  | 
+**Address** | [**CustomerShippingContactsRequestAddress**](CustomerShippingContactsRequestAddress.md) |  | 
 **ParentId** | Pointer to **string** |  | [optional] 
-**Default** | Pointer to **NullableBool** |  | [optional] 
-**Deleted** | Pointer to **NullableBool** |  | [optional] 
+**Default** | Pointer to **bool** |  | [optional] 
+**Deleted** | Pointer to **bool** |  | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** | Metadata associated with the shipping contact | [optional] 
 **Id** | **string** |  | 
 **Object** | **string** |  | 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewCustomerShippingContactsDataResponse
 
-`func NewCustomerShippingContactsDataResponse(address CustomerShippingContactsAddress, id string, object string, createdAt int64, ) *CustomerShippingContactsDataResponse`
+`func NewCustomerShippingContactsDataResponse(address CustomerShippingContactsRequestAddress, id string, object string, createdAt int64, ) *CustomerShippingContactsDataResponse`
 
 NewCustomerShippingContactsDataResponse instantiates a new CustomerShippingContactsDataResponse object
 This constructor will assign default values to properties that have it defined,
@@ -112,20 +112,20 @@ HasBetweenStreets returns a boolean if a field has been set.
 
 ### GetAddress
 
-`func (o *CustomerShippingContactsDataResponse) GetAddress() CustomerShippingContactsAddress`
+`func (o *CustomerShippingContactsDataResponse) GetAddress() CustomerShippingContactsRequestAddress`
 
 GetAddress returns the Address field if non-nil, zero value otherwise.
 
 ### GetAddressOk
 
-`func (o *CustomerShippingContactsDataResponse) GetAddressOk() (*CustomerShippingContactsAddress, bool)`
+`func (o *CustomerShippingContactsDataResponse) GetAddressOk() (*CustomerShippingContactsRequestAddress, bool)`
 
 GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddress
 
-`func (o *CustomerShippingContactsDataResponse) SetAddress(v CustomerShippingContactsAddress)`
+`func (o *CustomerShippingContactsDataResponse) SetAddress(v CustomerShippingContactsRequestAddress)`
 
 SetAddress sets Address field to given value.
 
@@ -180,16 +180,6 @@ SetDefault sets Default field to given value.
 
 HasDefault returns a boolean if a field has been set.
 
-### SetDefaultNil
-
-`func (o *CustomerShippingContactsDataResponse) SetDefaultNil(b bool)`
-
- SetDefaultNil sets the value for Default to be an explicit nil
-
-### UnsetDefault
-`func (o *CustomerShippingContactsDataResponse) UnsetDefault()`
-
-UnsetDefault ensures that no value is present for Default, not even an explicit nil
 ### GetDeleted
 
 `func (o *CustomerShippingContactsDataResponse) GetDeleted() bool`
@@ -215,16 +205,6 @@ SetDeleted sets Deleted field to given value.
 
 HasDeleted returns a boolean if a field has been set.
 
-### SetDeletedNil
-
-`func (o *CustomerShippingContactsDataResponse) SetDeletedNil(b bool)`
-
- SetDeletedNil sets the value for Deleted to be an explicit nil
-
-### UnsetDeleted
-`func (o *CustomerShippingContactsDataResponse) UnsetDeleted()`
-
-UnsetDeleted ensures that no value is present for Deleted, not even an explicit nil
 ### GetMetadata
 
 `func (o *CustomerShippingContactsDataResponse) GetMetadata() map[string]interface{}`

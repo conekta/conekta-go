@@ -25,15 +25,15 @@ type PaymentMethodCash struct {
 	Object string `json:"object"`
 	// Agreement ID
 	Agreement *string `json:"agreement,omitempty"`
-	AuthCode NullableInt32 `json:"auth_code,omitempty"`
-	CashierId NullableString `json:"cashier_id,omitempty"`
+	AuthCode *int32 `json:"auth_code,omitempty"`
+	CashierId *string `json:"cashier_id,omitempty"`
 	Reference *string `json:"reference,omitempty"`
 	BarcodeUrl *string `json:"barcode_url,omitempty"`
 	ExpiresAt *int64 `json:"expires_at,omitempty"`
 	// Product type, e.g. bbva_cash_in, cash_in, pespay_cash_in, etc.
 	ProductType *string `json:"product_type,omitempty"`
 	ServiceName *string `json:"service_name,omitempty"`
-	Store NullableString `json:"store,omitempty"`
+	Store *string `json:"store,omitempty"`
 	StoreName *string `json:"store_name,omitempty"`
 	CustomerIpAddress *string `json:"customer_ip_address,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -147,88 +147,68 @@ func (o *PaymentMethodCash) SetAgreement(v string) {
 	o.Agreement = &v
 }
 
-// GetAuthCode returns the AuthCode field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAuthCode returns the AuthCode field value if set, zero value otherwise.
 func (o *PaymentMethodCash) GetAuthCode() int32 {
-	if o == nil || IsNil(o.AuthCode.Get()) {
+	if o == nil || IsNil(o.AuthCode) {
 		var ret int32
 		return ret
 	}
-	return *o.AuthCode.Get()
+	return *o.AuthCode
 }
 
 // GetAuthCodeOk returns a tuple with the AuthCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PaymentMethodCash) GetAuthCodeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AuthCode) {
 		return nil, false
 	}
-	return o.AuthCode.Get(), o.AuthCode.IsSet()
+	return o.AuthCode, true
 }
 
 // HasAuthCode returns a boolean if a field has been set.
 func (o *PaymentMethodCash) HasAuthCode() bool {
-	if o != nil && o.AuthCode.IsSet() {
+	if o != nil && !IsNil(o.AuthCode) {
 		return true
 	}
 
 	return false
 }
 
-// SetAuthCode gets a reference to the given NullableInt32 and assigns it to the AuthCode field.
+// SetAuthCode gets a reference to the given int32 and assigns it to the AuthCode field.
 func (o *PaymentMethodCash) SetAuthCode(v int32) {
-	o.AuthCode.Set(&v)
-}
-// SetAuthCodeNil sets the value for AuthCode to be an explicit nil
-func (o *PaymentMethodCash) SetAuthCodeNil() {
-	o.AuthCode.Set(nil)
+	o.AuthCode = &v
 }
 
-// UnsetAuthCode ensures that no value is present for AuthCode, not even an explicit nil
-func (o *PaymentMethodCash) UnsetAuthCode() {
-	o.AuthCode.Unset()
-}
-
-// GetCashierId returns the CashierId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCashierId returns the CashierId field value if set, zero value otherwise.
 func (o *PaymentMethodCash) GetCashierId() string {
-	if o == nil || IsNil(o.CashierId.Get()) {
+	if o == nil || IsNil(o.CashierId) {
 		var ret string
 		return ret
 	}
-	return *o.CashierId.Get()
+	return *o.CashierId
 }
 
 // GetCashierIdOk returns a tuple with the CashierId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PaymentMethodCash) GetCashierIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CashierId) {
 		return nil, false
 	}
-	return o.CashierId.Get(), o.CashierId.IsSet()
+	return o.CashierId, true
 }
 
 // HasCashierId returns a boolean if a field has been set.
 func (o *PaymentMethodCash) HasCashierId() bool {
-	if o != nil && o.CashierId.IsSet() {
+	if o != nil && !IsNil(o.CashierId) {
 		return true
 	}
 
 	return false
 }
 
-// SetCashierId gets a reference to the given NullableString and assigns it to the CashierId field.
+// SetCashierId gets a reference to the given string and assigns it to the CashierId field.
 func (o *PaymentMethodCash) SetCashierId(v string) {
-	o.CashierId.Set(&v)
-}
-// SetCashierIdNil sets the value for CashierId to be an explicit nil
-func (o *PaymentMethodCash) SetCashierIdNil() {
-	o.CashierId.Set(nil)
-}
-
-// UnsetCashierId ensures that no value is present for CashierId, not even an explicit nil
-func (o *PaymentMethodCash) UnsetCashierId() {
-	o.CashierId.Unset()
+	o.CashierId = &v
 }
 
 // GetReference returns the Reference field value if set, zero value otherwise.
@@ -391,46 +371,36 @@ func (o *PaymentMethodCash) SetServiceName(v string) {
 	o.ServiceName = &v
 }
 
-// GetStore returns the Store field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetStore returns the Store field value if set, zero value otherwise.
 func (o *PaymentMethodCash) GetStore() string {
-	if o == nil || IsNil(o.Store.Get()) {
+	if o == nil || IsNil(o.Store) {
 		var ret string
 		return ret
 	}
-	return *o.Store.Get()
+	return *o.Store
 }
 
 // GetStoreOk returns a tuple with the Store field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PaymentMethodCash) GetStoreOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Store) {
 		return nil, false
 	}
-	return o.Store.Get(), o.Store.IsSet()
+	return o.Store, true
 }
 
 // HasStore returns a boolean if a field has been set.
 func (o *PaymentMethodCash) HasStore() bool {
-	if o != nil && o.Store.IsSet() {
+	if o != nil && !IsNil(o.Store) {
 		return true
 	}
 
 	return false
 }
 
-// SetStore gets a reference to the given NullableString and assigns it to the Store field.
+// SetStore gets a reference to the given string and assigns it to the Store field.
 func (o *PaymentMethodCash) SetStore(v string) {
-	o.Store.Set(&v)
-}
-// SetStoreNil sets the value for Store to be an explicit nil
-func (o *PaymentMethodCash) SetStoreNil() {
-	o.Store.Set(nil)
-}
-
-// UnsetStore ensures that no value is present for Store, not even an explicit nil
-func (o *PaymentMethodCash) UnsetStore() {
-	o.Store.Unset()
+	o.Store = &v
 }
 
 // GetStoreName returns the StoreName field value if set, zero value otherwise.
@@ -514,11 +484,11 @@ func (o PaymentMethodCash) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Agreement) {
 		toSerialize["agreement"] = o.Agreement
 	}
-	if o.AuthCode.IsSet() {
-		toSerialize["auth_code"] = o.AuthCode.Get()
+	if !IsNil(o.AuthCode) {
+		toSerialize["auth_code"] = o.AuthCode
 	}
-	if o.CashierId.IsSet() {
-		toSerialize["cashier_id"] = o.CashierId.Get()
+	if !IsNil(o.CashierId) {
+		toSerialize["cashier_id"] = o.CashierId
 	}
 	if !IsNil(o.Reference) {
 		toSerialize["reference"] = o.Reference
@@ -535,8 +505,8 @@ func (o PaymentMethodCash) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ServiceName) {
 		toSerialize["service_name"] = o.ServiceName
 	}
-	if o.Store.IsSet() {
-		toSerialize["store"] = o.Store.Get()
+	if !IsNil(o.Store) {
+		toSerialize["store"] = o.Store
 	}
 	if !IsNil(o.StoreName) {
 		toSerialize["store_name"] = o.StoreName

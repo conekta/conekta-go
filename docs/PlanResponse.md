@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 **Amount** | Pointer to **int32** |  | [optional] 
 **CreatedAt** | Pointer to **int64** |  | [optional] 
 **Currency** | Pointer to **string** |  | [optional] 
-**ExpiryCount** | Pointer to **NullableInt32** |  | [optional] 
+**ExpiryCount** | Pointer to **int32** |  | [optional] 
 **Frequency** | Pointer to **int32** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Interval** | Pointer to **string** |  | [optional] 
 **Livemode** | Pointer to **bool** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Object** | Pointer to **string** |  | [optional] 
-**TrialPeriodDays** | Pointer to **NullableInt32** |  | [optional] 
+**TrialPeriodDays** | Pointer to **int32** |  | [optional] 
 **MaxRetries** | Pointer to **int32** |  | [optional] 
 **RetryDelayHours** | Pointer to **int32** |  | [optional] 
 
@@ -137,16 +137,6 @@ SetExpiryCount sets ExpiryCount field to given value.
 
 HasExpiryCount returns a boolean if a field has been set.
 
-### SetExpiryCountNil
-
-`func (o *PlanResponse) SetExpiryCountNil(b bool)`
-
- SetExpiryCountNil sets the value for ExpiryCount to be an explicit nil
-
-### UnsetExpiryCount
-`func (o *PlanResponse) UnsetExpiryCount()`
-
-UnsetExpiryCount ensures that no value is present for ExpiryCount, not even an explicit nil
 ### GetFrequency
 
 `func (o *PlanResponse) GetFrequency() int32`
@@ -322,16 +312,6 @@ SetTrialPeriodDays sets TrialPeriodDays field to given value.
 
 HasTrialPeriodDays returns a boolean if a field has been set.
 
-### SetTrialPeriodDaysNil
-
-`func (o *PlanResponse) SetTrialPeriodDaysNil(b bool)`
-
- SetTrialPeriodDaysNil sets the value for TrialPeriodDays to be an explicit nil
-
-### UnsetTrialPeriodDays
-`func (o *PlanResponse) UnsetTrialPeriodDays()`
-
-UnsetTrialPeriodDays ensures that no value is present for TrialPeriodDays, not even an explicit nil
 ### GetMaxRetries
 
 `func (o *PlanResponse) GetMaxRetries() int32`

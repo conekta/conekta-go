@@ -8,20 +8,20 @@ Name | Type | Description | Notes
 **Object** | **string** |  | 
 **Bank** | Pointer to **string** |  | [optional] 
 **Clabe** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **NullableString** |  | [optional] 
-**ExecutedAt** | Pointer to **NullableString** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**ExecutedAt** | Pointer to **string** |  | [optional] 
 **ExpiresAt** | Pointer to **int64** |  | [optional] 
-**IssuingAccountBank** | Pointer to **NullableString** |  | [optional] 
-**IssuingAccountNumber** | Pointer to **NullableString** |  | [optional] 
-**IssuingAccountHolderName** | Pointer to **NullableString** |  | [optional] 
-**IssuingAccountTaxId** | Pointer to **NullableString** |  | [optional] 
+**IssuingAccountBank** | Pointer to **string** |  | [optional] 
+**IssuingAccountNumber** | Pointer to **string** |  | [optional] 
+**IssuingAccountHolderName** | Pointer to **string** |  | [optional] 
+**IssuingAccountTaxId** | Pointer to **string** |  | [optional] 
 **PaymentAttempts** | Pointer to **[]interface{}** |  | [optional] 
-**ReceivingAccountHolderName** | Pointer to **NullableString** |  | [optional] 
+**ReceivingAccountHolderName** | Pointer to **string** |  | [optional] 
 **ReceivingAccountNumber** | Pointer to **string** |  | [optional] 
 **ReceivingAccountBank** | Pointer to **string** |  | [optional] 
-**ReceivingAccountTaxId** | Pointer to **NullableString** |  | [optional] 
-**ReferenceNumber** | Pointer to **NullableString** |  | [optional] 
-**TrackingCode** | Pointer to **NullableString** |  | [optional] 
+**ReceivingAccountTaxId** | Pointer to **string** |  | [optional] 
+**ReferenceNumber** | Pointer to **string** |  | [optional] 
+**TrackingCode** | Pointer to **string** |  | [optional] 
 **CustomerIpAddress** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -163,16 +163,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### SetDescriptionNil
-
-`func (o *PaymentMethodBankTransfer) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *PaymentMethodBankTransfer) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetExecutedAt
 
 `func (o *PaymentMethodBankTransfer) GetExecutedAt() string`
@@ -198,16 +188,6 @@ SetExecutedAt sets ExecutedAt field to given value.
 
 HasExecutedAt returns a boolean if a field has been set.
 
-### SetExecutedAtNil
-
-`func (o *PaymentMethodBankTransfer) SetExecutedAtNil(b bool)`
-
- SetExecutedAtNil sets the value for ExecutedAt to be an explicit nil
-
-### UnsetExecutedAt
-`func (o *PaymentMethodBankTransfer) UnsetExecutedAt()`
-
-UnsetExecutedAt ensures that no value is present for ExecutedAt, not even an explicit nil
 ### GetExpiresAt
 
 `func (o *PaymentMethodBankTransfer) GetExpiresAt() int64`
@@ -258,16 +238,6 @@ SetIssuingAccountBank sets IssuingAccountBank field to given value.
 
 HasIssuingAccountBank returns a boolean if a field has been set.
 
-### SetIssuingAccountBankNil
-
-`func (o *PaymentMethodBankTransfer) SetIssuingAccountBankNil(b bool)`
-
- SetIssuingAccountBankNil sets the value for IssuingAccountBank to be an explicit nil
-
-### UnsetIssuingAccountBank
-`func (o *PaymentMethodBankTransfer) UnsetIssuingAccountBank()`
-
-UnsetIssuingAccountBank ensures that no value is present for IssuingAccountBank, not even an explicit nil
 ### GetIssuingAccountNumber
 
 `func (o *PaymentMethodBankTransfer) GetIssuingAccountNumber() string`
@@ -293,16 +263,6 @@ SetIssuingAccountNumber sets IssuingAccountNumber field to given value.
 
 HasIssuingAccountNumber returns a boolean if a field has been set.
 
-### SetIssuingAccountNumberNil
-
-`func (o *PaymentMethodBankTransfer) SetIssuingAccountNumberNil(b bool)`
-
- SetIssuingAccountNumberNil sets the value for IssuingAccountNumber to be an explicit nil
-
-### UnsetIssuingAccountNumber
-`func (o *PaymentMethodBankTransfer) UnsetIssuingAccountNumber()`
-
-UnsetIssuingAccountNumber ensures that no value is present for IssuingAccountNumber, not even an explicit nil
 ### GetIssuingAccountHolderName
 
 `func (o *PaymentMethodBankTransfer) GetIssuingAccountHolderName() string`
@@ -328,16 +288,6 @@ SetIssuingAccountHolderName sets IssuingAccountHolderName field to given value.
 
 HasIssuingAccountHolderName returns a boolean if a field has been set.
 
-### SetIssuingAccountHolderNameNil
-
-`func (o *PaymentMethodBankTransfer) SetIssuingAccountHolderNameNil(b bool)`
-
- SetIssuingAccountHolderNameNil sets the value for IssuingAccountHolderName to be an explicit nil
-
-### UnsetIssuingAccountHolderName
-`func (o *PaymentMethodBankTransfer) UnsetIssuingAccountHolderName()`
-
-UnsetIssuingAccountHolderName ensures that no value is present for IssuingAccountHolderName, not even an explicit nil
 ### GetIssuingAccountTaxId
 
 `func (o *PaymentMethodBankTransfer) GetIssuingAccountTaxId() string`
@@ -363,16 +313,6 @@ SetIssuingAccountTaxId sets IssuingAccountTaxId field to given value.
 
 HasIssuingAccountTaxId returns a boolean if a field has been set.
 
-### SetIssuingAccountTaxIdNil
-
-`func (o *PaymentMethodBankTransfer) SetIssuingAccountTaxIdNil(b bool)`
-
- SetIssuingAccountTaxIdNil sets the value for IssuingAccountTaxId to be an explicit nil
-
-### UnsetIssuingAccountTaxId
-`func (o *PaymentMethodBankTransfer) UnsetIssuingAccountTaxId()`
-
-UnsetIssuingAccountTaxId ensures that no value is present for IssuingAccountTaxId, not even an explicit nil
 ### GetPaymentAttempts
 
 `func (o *PaymentMethodBankTransfer) GetPaymentAttempts() []interface{}`
@@ -423,16 +363,6 @@ SetReceivingAccountHolderName sets ReceivingAccountHolderName field to given val
 
 HasReceivingAccountHolderName returns a boolean if a field has been set.
 
-### SetReceivingAccountHolderNameNil
-
-`func (o *PaymentMethodBankTransfer) SetReceivingAccountHolderNameNil(b bool)`
-
- SetReceivingAccountHolderNameNil sets the value for ReceivingAccountHolderName to be an explicit nil
-
-### UnsetReceivingAccountHolderName
-`func (o *PaymentMethodBankTransfer) UnsetReceivingAccountHolderName()`
-
-UnsetReceivingAccountHolderName ensures that no value is present for ReceivingAccountHolderName, not even an explicit nil
 ### GetReceivingAccountNumber
 
 `func (o *PaymentMethodBankTransfer) GetReceivingAccountNumber() string`
@@ -508,16 +438,6 @@ SetReceivingAccountTaxId sets ReceivingAccountTaxId field to given value.
 
 HasReceivingAccountTaxId returns a boolean if a field has been set.
 
-### SetReceivingAccountTaxIdNil
-
-`func (o *PaymentMethodBankTransfer) SetReceivingAccountTaxIdNil(b bool)`
-
- SetReceivingAccountTaxIdNil sets the value for ReceivingAccountTaxId to be an explicit nil
-
-### UnsetReceivingAccountTaxId
-`func (o *PaymentMethodBankTransfer) UnsetReceivingAccountTaxId()`
-
-UnsetReceivingAccountTaxId ensures that no value is present for ReceivingAccountTaxId, not even an explicit nil
 ### GetReferenceNumber
 
 `func (o *PaymentMethodBankTransfer) GetReferenceNumber() string`
@@ -543,16 +463,6 @@ SetReferenceNumber sets ReferenceNumber field to given value.
 
 HasReferenceNumber returns a boolean if a field has been set.
 
-### SetReferenceNumberNil
-
-`func (o *PaymentMethodBankTransfer) SetReferenceNumberNil(b bool)`
-
- SetReferenceNumberNil sets the value for ReferenceNumber to be an explicit nil
-
-### UnsetReferenceNumber
-`func (o *PaymentMethodBankTransfer) UnsetReferenceNumber()`
-
-UnsetReferenceNumber ensures that no value is present for ReferenceNumber, not even an explicit nil
 ### GetTrackingCode
 
 `func (o *PaymentMethodBankTransfer) GetTrackingCode() string`
@@ -578,16 +488,6 @@ SetTrackingCode sets TrackingCode field to given value.
 
 HasTrackingCode returns a boolean if a field has been set.
 
-### SetTrackingCodeNil
-
-`func (o *PaymentMethodBankTransfer) SetTrackingCodeNil(b bool)`
-
- SetTrackingCodeNil sets the value for TrackingCode to be an explicit nil
-
-### UnsetTrackingCode
-`func (o *PaymentMethodBankTransfer) UnsetTrackingCode()`
-
-UnsetTrackingCode ensures that no value is present for TrackingCode, not even an explicit nil
 ### GetCustomerIpAddress
 
 `func (o *PaymentMethodBankTransfer) GetCustomerIpAddress() string`

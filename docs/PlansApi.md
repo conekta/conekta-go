@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 ## GetPlans
 
-> GetPlansResponse GetPlans(ctx).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+> GetPlansResponse GetPlans(ctx).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Currency(currency).Frequency(frequency).Execute()
 
 Get A List of Plans
 
@@ -249,10 +249,12 @@ func main() {
 	search := "search_example" // string | General order search, e.g. by mail, reference etc. (optional)
 	next := "next_example" // string | next page (optional)
 	previous := "previous_example" // string | previous page (optional)
+	currency := "MXN" // string | currency of the object to be retrieved (optional)
+	frequency := int32(1) // int32 | frequency of the object to be retrieved (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PlansAPI.GetPlans(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+	resp, r, err := apiClient.PlansAPI.GetPlans(context.Background()).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Currency(currency).Frequency(frequency).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlansAPI.GetPlans``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -279,6 +281,8 @@ Name | Type | Description  | Notes
  **search** | **string** | General order search, e.g. by mail, reference etc. | 
  **next** | **string** | next page | 
  **previous** | **string** | previous page | 
+ **currency** | **string** | currency of the object to be retrieved | 
+ **frequency** | **int32** | frequency of the object to be retrieved | 
 
 ### Return type
 
@@ -300,7 +304,7 @@ Name | Type | Description  | Notes
 
 ## UpdatePlan
 
-> PlanResponse UpdatePlan(ctx, id).PlanUpdateRequest(planUpdateRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> PlanResponse UpdatePlan(ctx, id).UpdatePlan(updatePlan).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update Plan
 
@@ -318,13 +322,13 @@ import (
 
 func main() {
 	id := "6307a60c41de27127515a575" // string | Identifier of the resource
-	planUpdateRequest := *openapiclient.NewPlanUpdateRequest() // PlanUpdateRequest | requested field for plan
+	updatePlan := *openapiclient.NewUpdatePlan() // UpdatePlan | requested field for plan
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PlansAPI.UpdatePlan(context.Background(), id).PlanUpdateRequest(planUpdateRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	resp, r, err := apiClient.PlansAPI.UpdatePlan(context.Background(), id).UpdatePlan(updatePlan).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlansAPI.UpdatePlan``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -350,7 +354,7 @@ Other parameters are passed through a pointer to a apiUpdatePlanRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **planUpdateRequest** | [**PlanUpdateRequest**](PlanUpdateRequest.md) | requested field for plan | 
+ **updatePlan** | [**UpdatePlan**](UpdatePlan.md) | requested field for plan | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
  **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 

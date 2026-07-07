@@ -343,6 +343,7 @@ func (a *CompaniesAPIService) GetCompaniesExecute(r ApiGetCompaniesRequest) (*Ge
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
 		r.limit = &defaultValue
 	}
 	if r.search != nil {

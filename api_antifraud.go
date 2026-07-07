@@ -108,13 +108,13 @@ type AntifraudAPIService service
 type ApiCreateRuleBlacklistRequest struct {
 	ctx context.Context
 	ApiService AntifraudAPI
-	createRiskRulesData *CreateRiskRulesData
+	createRuleWhitelistRequest *CreateRuleWhitelistRequest
 	acceptLanguage *string
 }
 
 // requested field for blacklist rule
-func (r ApiCreateRuleBlacklistRequest) CreateRiskRulesData(createRiskRulesData CreateRiskRulesData) ApiCreateRuleBlacklistRequest {
-	r.createRiskRulesData = &createRiskRulesData
+func (r ApiCreateRuleBlacklistRequest) CreateRuleWhitelistRequest(createRuleWhitelistRequest CreateRuleWhitelistRequest) ApiCreateRuleBlacklistRequest {
+	r.createRuleWhitelistRequest = &createRuleWhitelistRequest
 	return r
 }
 
@@ -161,8 +161,8 @@ func (a *AntifraudAPIService) CreateRuleBlacklistExecute(r ApiCreateRuleBlacklis
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createRiskRulesData == nil {
-		return localVarReturnValue, nil, reportError("createRiskRulesData is required and must be specified")
+	if r.createRuleWhitelistRequest == nil {
+		return localVarReturnValue, nil, reportError("createRuleWhitelistRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -186,7 +186,7 @@ func (a *AntifraudAPIService) CreateRuleBlacklistExecute(r ApiCreateRuleBlacklis
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.createRiskRulesData
+	localVarPostBody = r.createRuleWhitelistRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -249,7 +249,7 @@ type ApiCreateRuleWhitelistRequest struct {
 	ctx context.Context
 	ApiService AntifraudAPI
 	acceptLanguage *string
-	createRiskRulesData *CreateRiskRulesData
+	createRuleWhitelistRequest *CreateRuleWhitelistRequest
 }
 
 // Use for knowing which language to use
@@ -258,8 +258,8 @@ func (r ApiCreateRuleWhitelistRequest) AcceptLanguage(acceptLanguage string) Api
 	return r
 }
 
-func (r ApiCreateRuleWhitelistRequest) CreateRiskRulesData(createRiskRulesData CreateRiskRulesData) ApiCreateRuleWhitelistRequest {
-	r.createRiskRulesData = &createRiskRulesData
+func (r ApiCreateRuleWhitelistRequest) CreateRuleWhitelistRequest(createRuleWhitelistRequest CreateRuleWhitelistRequest) ApiCreateRuleWhitelistRequest {
+	r.createRuleWhitelistRequest = &createRuleWhitelistRequest
 	return r
 }
 
@@ -322,7 +322,7 @@ func (a *AntifraudAPIService) CreateRuleWhitelistExecute(r ApiCreateRuleWhitelis
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.createRiskRulesData
+	localVarPostBody = r.createRuleWhitelistRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

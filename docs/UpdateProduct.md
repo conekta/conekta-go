@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AntifraudInfo** | Pointer to **map[string]map[string]interface{}** |  | [optional] 
+**AntifraudInfo** | Pointer to  |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Sku** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Quantity** | Pointer to **int32** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Brand** | Pointer to **string** |  | [optional] 
-**Metadata** | Pointer to **map[string]string** |  | [optional] 
+**Metadata** | Pointer to  |  | [optional] 
 
 ## Methods
 
@@ -58,6 +58,16 @@ SetAntifraudInfo sets AntifraudInfo field to given value.
 
 HasAntifraudInfo returns a boolean if a field has been set.
 
+### SetAntifraudInfoNil
+
+`func (o *UpdateProduct) SetAntifraudInfoNil(b bool)`
+
+ SetAntifraudInfoNil sets the value for AntifraudInfo to be an explicit nil
+
+### UnsetAntifraudInfo
+`func (o *UpdateProduct) UnsetAntifraudInfo()`
+
+UnsetAntifraudInfo ensures that no value is present for AntifraudInfo, not even an explicit nil
 ### GetDescription
 
 `func (o *UpdateProduct) GetDescription() string`
@@ -258,6 +268,16 @@ SetMetadata sets Metadata field to given value.
 
 HasMetadata returns a boolean if a field has been set.
 
+### SetMetadataNil
+
+`func (o *UpdateProduct) SetMetadataNil(b bool)`
+
+ SetMetadataNil sets the value for Metadata to be an explicit nil
+
+### UnsetMetadata
+`func (o *UpdateProduct) UnsetMetadata()`
+
+UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

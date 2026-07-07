@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AntifraudInfo** | Pointer to [**NullableCustomerAntifraudInfo**](CustomerAntifraudInfo.md) |  | [optional] 
+**AntifraudInfo** | Pointer to [**CustomerAntifraudInfo**](CustomerAntifraudInfo.md) |  | [optional] 
 **Corporate** | Pointer to **bool** | It is a value that allows identifying if the email is corporate or not. | [optional] [default to false]
 **CustomReference** | Pointer to **string** | It is an undefined value. | [optional] 
 **DateOfBirth** | Pointer to **string** | It is a parameter that allows to identify the date of birth of the client. | [optional] 
 **Email** | **string** | An email address is a series of customizable characters followed by a universal Internet symbol, the at symbol (@), the name of a host server, and a web domain ending (.mx, .com, .org, . net, etc). | 
 **DefaultPaymentSourceId** | Pointer to **string** | It is a parameter that allows to identify in the response, the Conekta ID of a payment method (payment_id) | [optional] 
 **DefaultShippingContactId** | Pointer to **string** | It is a parameter that allows to identify in the response, the Conekta ID of the shipping address (shipping_contact) | [optional] 
-**FiscalEntities** | Pointer to [**[]CustomerFiscalEntitiesRequest**](CustomerFiscalEntitiesRequest.md) |  | [optional] 
+**FiscalEntities** | Pointer to [**[]FiscalEntityRequest**](FiscalEntityRequest.md) |  | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Name** | **string** | Client&#39;s name | 
 **NationalId** | Pointer to **string** | It is a parameter that allows to identify the national identification number of the client. | [optional] 
 **PaymentSources** | Pointer to [**[]CustomerPaymentMethodsRequest**](CustomerPaymentMethodsRequest.md) | Contains details of the payment methods that the customer has active or has used in Conekta | [optional] 
 **Phone** | **string** | Is the customer&#39;s phone number | 
 **PlanId** | Pointer to **string** | Contains the ID of a plan, which could together with name, email and phone create a client directly to a subscription | [optional] 
-**ShippingContacts** | Pointer to [**[]CustomerShippingContacts**](CustomerShippingContacts.md) | Contains the detail of the shipping addresses that the client has active or has used in Conekta | [optional] 
+**ShippingContacts** | Pointer to [**[]CustomerShippingContactsRequest**](CustomerShippingContactsRequest.md) | Contains the detail of the shipping addresses that the client has active or has used in Conekta | [optional] 
 **Subscription** | Pointer to [**SubscriptionRequest**](SubscriptionRequest.md) |  | [optional] 
 
 ## Methods
@@ -65,16 +65,6 @@ SetAntifraudInfo sets AntifraudInfo field to given value.
 
 HasAntifraudInfo returns a boolean if a field has been set.
 
-### SetAntifraudInfoNil
-
-`func (o *Customer) SetAntifraudInfoNil(b bool)`
-
- SetAntifraudInfoNil sets the value for AntifraudInfo to be an explicit nil
-
-### UnsetAntifraudInfo
-`func (o *Customer) UnsetAntifraudInfo()`
-
-UnsetAntifraudInfo ensures that no value is present for AntifraudInfo, not even an explicit nil
 ### GetCorporate
 
 `func (o *Customer) GetCorporate() bool`
@@ -222,20 +212,20 @@ HasDefaultShippingContactId returns a boolean if a field has been set.
 
 ### GetFiscalEntities
 
-`func (o *Customer) GetFiscalEntities() []CustomerFiscalEntitiesRequest`
+`func (o *Customer) GetFiscalEntities() []FiscalEntityRequest`
 
 GetFiscalEntities returns the FiscalEntities field if non-nil, zero value otherwise.
 
 ### GetFiscalEntitiesOk
 
-`func (o *Customer) GetFiscalEntitiesOk() (*[]CustomerFiscalEntitiesRequest, bool)`
+`func (o *Customer) GetFiscalEntitiesOk() (*[]FiscalEntityRequest, bool)`
 
 GetFiscalEntitiesOk returns a tuple with the FiscalEntities field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFiscalEntities
 
-`func (o *Customer) SetFiscalEntities(v []CustomerFiscalEntitiesRequest)`
+`func (o *Customer) SetFiscalEntities(v []FiscalEntityRequest)`
 
 SetFiscalEntities sets FiscalEntities field to given value.
 
@@ -387,20 +377,20 @@ HasPlanId returns a boolean if a field has been set.
 
 ### GetShippingContacts
 
-`func (o *Customer) GetShippingContacts() []CustomerShippingContacts`
+`func (o *Customer) GetShippingContacts() []CustomerShippingContactsRequest`
 
 GetShippingContacts returns the ShippingContacts field if non-nil, zero value otherwise.
 
 ### GetShippingContactsOk
 
-`func (o *Customer) GetShippingContactsOk() (*[]CustomerShippingContacts, bool)`
+`func (o *Customer) GetShippingContactsOk() (*[]CustomerShippingContactsRequest, bool)`
 
 GetShippingContactsOk returns a tuple with the ShippingContacts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetShippingContacts
 
-`func (o *Customer) SetShippingContacts(v []CustomerShippingContacts)`
+`func (o *Customer) SetShippingContacts(v []CustomerShippingContactsRequest)`
 
 SetShippingContacts sets ShippingContacts field to given value.
 

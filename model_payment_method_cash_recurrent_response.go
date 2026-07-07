@@ -26,7 +26,7 @@ type PaymentMethodCashRecurrentResponse struct {
 	Object string `json:"object"`
 	CreatedAt int64 `json:"created_at"`
 	ParentId *string `json:"parent_id,omitempty"`
-	Agreements []PaymentMethodCashResponseAllOfAgreements `json:"agreements,omitempty"`
+	Agreements []CashAgreementsResponse `json:"agreements,omitempty"`
 	Reference *string `json:"reference,omitempty"`
 	Barcode *string `json:"barcode,omitempty"`
 	// URL to the barcode image, reference is the same as barcode
@@ -188,9 +188,9 @@ func (o *PaymentMethodCashRecurrentResponse) SetParentId(v string) {
 }
 
 // GetAgreements returns the Agreements field value if set, zero value otherwise.
-func (o *PaymentMethodCashRecurrentResponse) GetAgreements() []PaymentMethodCashResponseAllOfAgreements {
+func (o *PaymentMethodCashRecurrentResponse) GetAgreements() []CashAgreementsResponse {
 	if o == nil || IsNil(o.Agreements) {
-		var ret []PaymentMethodCashResponseAllOfAgreements
+		var ret []CashAgreementsResponse
 		return ret
 	}
 	return o.Agreements
@@ -198,7 +198,7 @@ func (o *PaymentMethodCashRecurrentResponse) GetAgreements() []PaymentMethodCash
 
 // GetAgreementsOk returns a tuple with the Agreements field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethodCashRecurrentResponse) GetAgreementsOk() ([]PaymentMethodCashResponseAllOfAgreements, bool) {
+func (o *PaymentMethodCashRecurrentResponse) GetAgreementsOk() ([]CashAgreementsResponse, bool) {
 	if o == nil || IsNil(o.Agreements) {
 		return nil, false
 	}
@@ -214,8 +214,8 @@ func (o *PaymentMethodCashRecurrentResponse) HasAgreements() bool {
 	return false
 }
 
-// SetAgreements gets a reference to the given []PaymentMethodCashResponseAllOfAgreements and assigns it to the Agreements field.
-func (o *PaymentMethodCashRecurrentResponse) SetAgreements(v []PaymentMethodCashResponseAllOfAgreements) {
+// SetAgreements gets a reference to the given []CashAgreementsResponse and assigns it to the Agreements field.
+func (o *PaymentMethodCashRecurrentResponse) SetAgreements(v []CashAgreementsResponse) {
 	o.Agreements = v
 }
 

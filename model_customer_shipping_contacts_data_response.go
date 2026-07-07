@@ -27,10 +27,10 @@ type CustomerShippingContactsDataResponse struct {
 	Receiver *string `json:"receiver,omitempty"`
 	// The street names between which the order will be delivered.
 	BetweenStreets *string `json:"between_streets,omitempty"`
-	Address CustomerShippingContactsAddress `json:"address"`
+	Address CustomerShippingContactsRequestAddress `json:"address"`
 	ParentId *string `json:"parent_id,omitempty"`
-	Default NullableBool `json:"default,omitempty"`
-	Deleted NullableBool `json:"deleted,omitempty"`
+	Default *bool `json:"default,omitempty"`
+	Deleted *bool `json:"deleted,omitempty"`
 	// Metadata associated with the shipping contact
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	Id string `json:"id"`
@@ -45,7 +45,7 @@ type _CustomerShippingContactsDataResponse CustomerShippingContactsDataResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustomerShippingContactsDataResponse(address CustomerShippingContactsAddress, id string, object string, createdAt int64) *CustomerShippingContactsDataResponse {
+func NewCustomerShippingContactsDataResponse(address CustomerShippingContactsRequestAddress, id string, object string, createdAt int64) *CustomerShippingContactsDataResponse {
 	this := CustomerShippingContactsDataResponse{}
 	this.Address = address
 	this.Id = id
@@ -159,9 +159,9 @@ func (o *CustomerShippingContactsDataResponse) SetBetweenStreets(v string) {
 }
 
 // GetAddress returns the Address field value
-func (o *CustomerShippingContactsDataResponse) GetAddress() CustomerShippingContactsAddress {
+func (o *CustomerShippingContactsDataResponse) GetAddress() CustomerShippingContactsRequestAddress {
 	if o == nil {
-		var ret CustomerShippingContactsAddress
+		var ret CustomerShippingContactsRequestAddress
 		return ret
 	}
 
@@ -170,7 +170,7 @@ func (o *CustomerShippingContactsDataResponse) GetAddress() CustomerShippingCont
 
 // GetAddressOk returns a tuple with the Address field value
 // and a boolean to check if the value has been set.
-func (o *CustomerShippingContactsDataResponse) GetAddressOk() (*CustomerShippingContactsAddress, bool) {
+func (o *CustomerShippingContactsDataResponse) GetAddressOk() (*CustomerShippingContactsRequestAddress, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -178,7 +178,7 @@ func (o *CustomerShippingContactsDataResponse) GetAddressOk() (*CustomerShipping
 }
 
 // SetAddress sets field value
-func (o *CustomerShippingContactsDataResponse) SetAddress(v CustomerShippingContactsAddress) {
+func (o *CustomerShippingContactsDataResponse) SetAddress(v CustomerShippingContactsRequestAddress) {
 	o.Address = v
 }
 
@@ -214,88 +214,68 @@ func (o *CustomerShippingContactsDataResponse) SetParentId(v string) {
 	o.ParentId = &v
 }
 
-// GetDefault returns the Default field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetDefault returns the Default field value if set, zero value otherwise.
 func (o *CustomerShippingContactsDataResponse) GetDefault() bool {
-	if o == nil || IsNil(o.Default.Get()) {
+	if o == nil || IsNil(o.Default) {
 		var ret bool
 		return ret
 	}
-	return *o.Default.Get()
+	return *o.Default
 }
 
 // GetDefaultOk returns a tuple with the Default field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CustomerShippingContactsDataResponse) GetDefaultOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Default) {
 		return nil, false
 	}
-	return o.Default.Get(), o.Default.IsSet()
+	return o.Default, true
 }
 
 // HasDefault returns a boolean if a field has been set.
 func (o *CustomerShippingContactsDataResponse) HasDefault() bool {
-	if o != nil && o.Default.IsSet() {
+	if o != nil && !IsNil(o.Default) {
 		return true
 	}
 
 	return false
 }
 
-// SetDefault gets a reference to the given NullableBool and assigns it to the Default field.
+// SetDefault gets a reference to the given bool and assigns it to the Default field.
 func (o *CustomerShippingContactsDataResponse) SetDefault(v bool) {
-	o.Default.Set(&v)
-}
-// SetDefaultNil sets the value for Default to be an explicit nil
-func (o *CustomerShippingContactsDataResponse) SetDefaultNil() {
-	o.Default.Set(nil)
+	o.Default = &v
 }
 
-// UnsetDefault ensures that no value is present for Default, not even an explicit nil
-func (o *CustomerShippingContactsDataResponse) UnsetDefault() {
-	o.Default.Unset()
-}
-
-// GetDeleted returns the Deleted field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetDeleted returns the Deleted field value if set, zero value otherwise.
 func (o *CustomerShippingContactsDataResponse) GetDeleted() bool {
-	if o == nil || IsNil(o.Deleted.Get()) {
+	if o == nil || IsNil(o.Deleted) {
 		var ret bool
 		return ret
 	}
-	return *o.Deleted.Get()
+	return *o.Deleted
 }
 
 // GetDeletedOk returns a tuple with the Deleted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CustomerShippingContactsDataResponse) GetDeletedOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Deleted) {
 		return nil, false
 	}
-	return o.Deleted.Get(), o.Deleted.IsSet()
+	return o.Deleted, true
 }
 
 // HasDeleted returns a boolean if a field has been set.
 func (o *CustomerShippingContactsDataResponse) HasDeleted() bool {
-	if o != nil && o.Deleted.IsSet() {
+	if o != nil && !IsNil(o.Deleted) {
 		return true
 	}
 
 	return false
 }
 
-// SetDeleted gets a reference to the given NullableBool and assigns it to the Deleted field.
+// SetDeleted gets a reference to the given bool and assigns it to the Deleted field.
 func (o *CustomerShippingContactsDataResponse) SetDeleted(v bool) {
-	o.Deleted.Set(&v)
-}
-// SetDeletedNil sets the value for Deleted to be an explicit nil
-func (o *CustomerShippingContactsDataResponse) SetDeletedNil() {
-	o.Deleted.Set(nil)
-}
-
-// UnsetDeleted ensures that no value is present for Deleted, not even an explicit nil
-func (o *CustomerShippingContactsDataResponse) UnsetDeleted() {
-	o.Deleted.Unset()
+	o.Deleted = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -425,11 +405,11 @@ func (o CustomerShippingContactsDataResponse) ToMap() (map[string]interface{}, e
 	if !IsNil(o.ParentId) {
 		toSerialize["parent_id"] = o.ParentId
 	}
-	if o.Default.IsSet() {
-		toSerialize["default"] = o.Default.Get()
+	if !IsNil(o.Default) {
+		toSerialize["default"] = o.Default
 	}
-	if o.Deleted.IsSet() {
-		toSerialize["deleted"] = o.Deleted.Get()
+	if !IsNil(o.Deleted) {
+		toSerialize["deleted"] = o.Deleted
 	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata

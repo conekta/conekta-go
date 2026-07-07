@@ -23,20 +23,20 @@ var _ MappedNullable = &OrderFiscalEntityResponse{}
 type OrderFiscalEntityResponse struct {
 	Address OrderFiscalEntityAddressResponse `json:"address"`
 	// Email of the fiscal entity
-	Email NullableString `json:"email,omitempty"`
+	Email *string `json:"email,omitempty"`
 	// Metadata associated with the fiscal entity
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// Name of the fiscal entity
-	Name NullableString `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	// Tax ID of the fiscal entity
-	TaxId NullableString `json:"tax_id,omitempty"`
+	TaxId *string `json:"tax_id,omitempty"`
 	// ID of the fiscal entity
 	Id string `json:"id"`
 	// The time at which the object was created in seconds since the Unix epoch
 	CreatedAt int64 `json:"created_at"`
 	Object string `json:"object"`
 	// Phone of the fiscal entity
-	Phone NullableString `json:"phone,omitempty"`
+	Phone *string `json:"phone,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -87,46 +87,36 @@ func (o *OrderFiscalEntityResponse) SetAddress(v OrderFiscalEntityAddressRespons
 	o.Address = v
 }
 
-// GetEmail returns the Email field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetEmail returns the Email field value if set, zero value otherwise.
 func (o *OrderFiscalEntityResponse) GetEmail() string {
-	if o == nil || IsNil(o.Email.Get()) {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
-	return *o.Email.Get()
+	return *o.Email
 }
 
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OrderFiscalEntityResponse) GetEmailOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
-	return o.Email.Get(), o.Email.IsSet()
+	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *OrderFiscalEntityResponse) HasEmail() bool {
-	if o != nil && o.Email.IsSet() {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
 	return false
 }
 
-// SetEmail gets a reference to the given NullableString and assigns it to the Email field.
+// SetEmail gets a reference to the given string and assigns it to the Email field.
 func (o *OrderFiscalEntityResponse) SetEmail(v string) {
-	o.Email.Set(&v)
-}
-// SetEmailNil sets the value for Email to be an explicit nil
-func (o *OrderFiscalEntityResponse) SetEmailNil() {
-	o.Email.Set(nil)
-}
-
-// UnsetEmail ensures that no value is present for Email, not even an explicit nil
-func (o *OrderFiscalEntityResponse) UnsetEmail() {
-	o.Email.Unset()
+	o.Email = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -161,88 +151,68 @@ func (o *OrderFiscalEntityResponse) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *OrderFiscalEntityResponse) GetName() string {
-	if o == nil || IsNil(o.Name.Get()) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.Name.Get()
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OrderFiscalEntityResponse) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return o.Name.Get(), o.Name.IsSet()
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *OrderFiscalEntityResponse) HasName() bool {
-	if o != nil && o.Name.IsSet() {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *OrderFiscalEntityResponse) SetName(v string) {
-	o.Name.Set(&v)
-}
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *OrderFiscalEntityResponse) SetNameNil() {
-	o.Name.Set(nil)
+	o.Name = &v
 }
 
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *OrderFiscalEntityResponse) UnsetName() {
-	o.Name.Unset()
-}
-
-// GetTaxId returns the TaxId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetTaxId returns the TaxId field value if set, zero value otherwise.
 func (o *OrderFiscalEntityResponse) GetTaxId() string {
-	if o == nil || IsNil(o.TaxId.Get()) {
+	if o == nil || IsNil(o.TaxId) {
 		var ret string
 		return ret
 	}
-	return *o.TaxId.Get()
+	return *o.TaxId
 }
 
 // GetTaxIdOk returns a tuple with the TaxId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OrderFiscalEntityResponse) GetTaxIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TaxId) {
 		return nil, false
 	}
-	return o.TaxId.Get(), o.TaxId.IsSet()
+	return o.TaxId, true
 }
 
 // HasTaxId returns a boolean if a field has been set.
 func (o *OrderFiscalEntityResponse) HasTaxId() bool {
-	if o != nil && o.TaxId.IsSet() {
+	if o != nil && !IsNil(o.TaxId) {
 		return true
 	}
 
 	return false
 }
 
-// SetTaxId gets a reference to the given NullableString and assigns it to the TaxId field.
+// SetTaxId gets a reference to the given string and assigns it to the TaxId field.
 func (o *OrderFiscalEntityResponse) SetTaxId(v string) {
-	o.TaxId.Set(&v)
-}
-// SetTaxIdNil sets the value for TaxId to be an explicit nil
-func (o *OrderFiscalEntityResponse) SetTaxIdNil() {
-	o.TaxId.Set(nil)
-}
-
-// UnsetTaxId ensures that no value is present for TaxId, not even an explicit nil
-func (o *OrderFiscalEntityResponse) UnsetTaxId() {
-	o.TaxId.Unset()
+	o.TaxId = &v
 }
 
 // GetId returns the Id field value
@@ -317,46 +287,36 @@ func (o *OrderFiscalEntityResponse) SetObject(v string) {
 	o.Object = v
 }
 
-// GetPhone returns the Phone field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPhone returns the Phone field value if set, zero value otherwise.
 func (o *OrderFiscalEntityResponse) GetPhone() string {
-	if o == nil || IsNil(o.Phone.Get()) {
+	if o == nil || IsNil(o.Phone) {
 		var ret string
 		return ret
 	}
-	return *o.Phone.Get()
+	return *o.Phone
 }
 
 // GetPhoneOk returns a tuple with the Phone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OrderFiscalEntityResponse) GetPhoneOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Phone) {
 		return nil, false
 	}
-	return o.Phone.Get(), o.Phone.IsSet()
+	return o.Phone, true
 }
 
 // HasPhone returns a boolean if a field has been set.
 func (o *OrderFiscalEntityResponse) HasPhone() bool {
-	if o != nil && o.Phone.IsSet() {
+	if o != nil && !IsNil(o.Phone) {
 		return true
 	}
 
 	return false
 }
 
-// SetPhone gets a reference to the given NullableString and assigns it to the Phone field.
+// SetPhone gets a reference to the given string and assigns it to the Phone field.
 func (o *OrderFiscalEntityResponse) SetPhone(v string) {
-	o.Phone.Set(&v)
-}
-// SetPhoneNil sets the value for Phone to be an explicit nil
-func (o *OrderFiscalEntityResponse) SetPhoneNil() {
-	o.Phone.Set(nil)
-}
-
-// UnsetPhone ensures that no value is present for Phone, not even an explicit nil
-func (o *OrderFiscalEntityResponse) UnsetPhone() {
-	o.Phone.Unset()
+	o.Phone = &v
 }
 
 func (o OrderFiscalEntityResponse) MarshalJSON() ([]byte, error) {
@@ -370,23 +330,23 @@ func (o OrderFiscalEntityResponse) MarshalJSON() ([]byte, error) {
 func (o OrderFiscalEntityResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["address"] = o.Address
-	if o.Email.IsSet() {
-		toSerialize["email"] = o.Email.Get()
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
 	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if o.TaxId.IsSet() {
-		toSerialize["tax_id"] = o.TaxId.Get()
+	if !IsNil(o.TaxId) {
+		toSerialize["tax_id"] = o.TaxId
 	}
 	toSerialize["id"] = o.Id
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["object"] = o.Object
-	if o.Phone.IsSet() {
-		toSerialize["phone"] = o.Phone.Get()
+	if !IsNil(o.Phone) {
+		toSerialize["phone"] = o.Phone
 	}
 
 	for key, value := range o.AdditionalProperties {

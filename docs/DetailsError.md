@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Code** | Pointer to **string** |  | [optional] 
-**Param** | Pointer to **NullableString** |  | [optional] 
+**Param** | Pointer to **string** |  | [optional] 
 **Message** | Pointer to **string** |  | [optional] 
 **DebugMessage** | Pointer to **string** |  | [optional] 
 
@@ -78,16 +78,6 @@ SetParam sets Param field to given value.
 
 HasParam returns a boolean if a field has been set.
 
-### SetParamNil
-
-`func (o *DetailsError) SetParamNil(b bool)`
-
- SetParamNil sets the value for Param to be an explicit nil
-
-### UnsetParam
-`func (o *DetailsError) UnsetParam()`
-
-UnsetParam ensures that no value is present for Param, not even an explicit nil
 ### GetMessage
 
 `func (o *DetailsError) GetMessage() string`

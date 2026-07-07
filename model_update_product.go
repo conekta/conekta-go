@@ -28,7 +28,7 @@ type UpdateProduct struct {
 	Quantity *int32 `json:"quantity,omitempty"`
 	Tags []string `json:"tags,omitempty"`
 	Brand *string `json:"brand,omitempty"`
-	Metadata *map[string]string `json:"metadata,omitempty"`
+	Metadata map[string]string `json:"metadata,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -51,9 +51,9 @@ func NewUpdateProductWithDefaults() *UpdateProduct {
 	return &this
 }
 
-// GetAntifraudInfo returns the AntifraudInfo field value if set, zero value otherwise.
+// GetAntifraudInfo returns the AntifraudInfo field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateProduct) GetAntifraudInfo() map[string]map[string]interface{} {
-	if o == nil || IsNil(o.AntifraudInfo) {
+	if o == nil {
 		var ret map[string]map[string]interface{}
 		return ret
 	}
@@ -62,11 +62,12 @@ func (o *UpdateProduct) GetAntifraudInfo() map[string]map[string]interface{} {
 
 // GetAntifraudInfoOk returns a tuple with the AntifraudInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProduct) GetAntifraudInfoOk() (map[string]map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateProduct) GetAntifraudInfoOk() (*map[string]map[string]interface{}, bool) {
 	if o == nil || IsNil(o.AntifraudInfo) {
-		return map[string]map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.AntifraudInfo, true
+	return &o.AntifraudInfo, true
 }
 
 // HasAntifraudInfo returns a boolean if a field has been set.
@@ -307,22 +308,23 @@ func (o *UpdateProduct) SetBrand(v string) {
 	o.Brand = &v
 }
 
-// GetMetadata returns the Metadata field value if set, zero value otherwise.
+// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateProduct) GetMetadata() map[string]string {
-	if o == nil || IsNil(o.Metadata) {
+	if o == nil {
 		var ret map[string]string
 		return ret
 	}
-	return *o.Metadata
+	return o.Metadata
 }
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateProduct) GetMetadataOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.Metadata) {
 		return nil, false
 	}
-	return o.Metadata, true
+	return &o.Metadata, true
 }
 
 // HasMetadata returns a boolean if a field has been set.
@@ -336,7 +338,7 @@ func (o *UpdateProduct) HasMetadata() bool {
 
 // SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
 func (o *UpdateProduct) SetMetadata(v map[string]string) {
-	o.Metadata = &v
+	o.Metadata = v
 }
 
 func (o UpdateProduct) MarshalJSON() ([]byte, error) {
@@ -349,7 +351,7 @@ func (o UpdateProduct) MarshalJSON() ([]byte, error) {
 
 func (o UpdateProduct) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AntifraudInfo) {
+	if o.AntifraudInfo != nil {
 		toSerialize["antifraud_info"] = o.AntifraudInfo
 	}
 	if !IsNil(o.Description) {
@@ -373,7 +375,7 @@ func (o UpdateProduct) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Brand) {
 		toSerialize["brand"] = o.Brand
 	}
-	if !IsNil(o.Metadata) {
+	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
 

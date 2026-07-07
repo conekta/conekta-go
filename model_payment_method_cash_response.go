@@ -26,7 +26,7 @@ type PaymentMethodCashResponse struct {
 	Object string `json:"object"`
 	CreatedAt int64 `json:"created_at"`
 	ParentId *string `json:"parent_id,omitempty"`
-	Agreements []PaymentMethodCashResponseAllOfAgreements `json:"agreements,omitempty"`
+	Agreements []CashAgreementsResponse `json:"agreements,omitempty"`
 	Reference *string `json:"reference,omitempty"`
 	Barcode *string `json:"barcode,omitempty"`
 	// URL to the barcode image, reference is the same as barcode
@@ -188,9 +188,9 @@ func (o *PaymentMethodCashResponse) SetParentId(v string) {
 }
 
 // GetAgreements returns the Agreements field value if set, zero value otherwise.
-func (o *PaymentMethodCashResponse) GetAgreements() []PaymentMethodCashResponseAllOfAgreements {
+func (o *PaymentMethodCashResponse) GetAgreements() []CashAgreementsResponse {
 	if o == nil || IsNil(o.Agreements) {
-		var ret []PaymentMethodCashResponseAllOfAgreements
+		var ret []CashAgreementsResponse
 		return ret
 	}
 	return o.Agreements
@@ -198,7 +198,7 @@ func (o *PaymentMethodCashResponse) GetAgreements() []PaymentMethodCashResponseA
 
 // GetAgreementsOk returns a tuple with the Agreements field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethodCashResponse) GetAgreementsOk() ([]PaymentMethodCashResponseAllOfAgreements, bool) {
+func (o *PaymentMethodCashResponse) GetAgreementsOk() ([]CashAgreementsResponse, bool) {
 	if o == nil || IsNil(o.Agreements) {
 		return nil, false
 	}
@@ -214,8 +214,8 @@ func (o *PaymentMethodCashResponse) HasAgreements() bool {
 	return false
 }
 
-// SetAgreements gets a reference to the given []PaymentMethodCashResponseAllOfAgreements and assigns it to the Agreements field.
-func (o *PaymentMethodCashResponse) SetAgreements(v []PaymentMethodCashResponseAllOfAgreements) {
+// SetAgreements gets a reference to the given []CashAgreementsResponse and assigns it to the Agreements field.
+func (o *PaymentMethodCashResponse) SetAgreements(v []CashAgreementsResponse) {
 	o.Agreements = v
 }
 

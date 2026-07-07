@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Data** | [**[]OrderResponse**](OrderResponse.md) |  | 
 **HasMore** | **bool** | Indicates if there are more pages to be requested | 
 **Object** | **string** | Object type, in this case is list | 
-**NextPageUrl** | Pointer to **NullableString** | URL of the next page. | [optional] 
-**PreviousPageUrl** | Pointer to **NullableString** | Url of the previous page. | [optional] 
+**NextPageUrl** | Pointer to **string** | URL of the next page. | [optional] 
+**PreviousPageUrl** | Pointer to **string** | Url of the previous page. | [optional] 
 
 ## Methods
 
@@ -114,16 +114,6 @@ SetNextPageUrl sets NextPageUrl field to given value.
 
 HasNextPageUrl returns a boolean if a field has been set.
 
-### SetNextPageUrlNil
-
-`func (o *GetOrdersResponse) SetNextPageUrlNil(b bool)`
-
- SetNextPageUrlNil sets the value for NextPageUrl to be an explicit nil
-
-### UnsetNextPageUrl
-`func (o *GetOrdersResponse) UnsetNextPageUrl()`
-
-UnsetNextPageUrl ensures that no value is present for NextPageUrl, not even an explicit nil
 ### GetPreviousPageUrl
 
 `func (o *GetOrdersResponse) GetPreviousPageUrl() string`
@@ -149,16 +139,6 @@ SetPreviousPageUrl sets PreviousPageUrl field to given value.
 
 HasPreviousPageUrl returns a boolean if a field has been set.
 
-### SetPreviousPageUrlNil
-
-`func (o *GetOrdersResponse) SetPreviousPageUrlNil(b bool)`
-
- SetPreviousPageUrlNil sets the value for PreviousPageUrl to be an explicit nil
-
-### UnsetPreviousPageUrl
-`func (o *GetOrdersResponse) UnsetPreviousPageUrl()`
-
-UnsetPreviousPageUrl ensures that no value is present for PreviousPageUrl, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

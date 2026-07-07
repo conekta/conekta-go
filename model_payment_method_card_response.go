@@ -32,6 +32,8 @@ type PaymentMethodCardResponse struct {
 	ExpMonth *string `json:"exp_month,omitempty"`
 	ExpYear *string `json:"exp_year,omitempty"`
 	Brand *string `json:"brand,omitempty"`
+	// Name of the institution that issued the card
+	Issuer *string `json:"issuer,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Default *bool `json:"default,omitempty"`
 	VisibleOnCheckout *bool `json:"visible_on_checkout,omitempty"`
@@ -382,6 +384,38 @@ func (o *PaymentMethodCardResponse) SetBrand(v string) {
 	o.Brand = &v
 }
 
+// GetIssuer returns the Issuer field value if set, zero value otherwise.
+func (o *PaymentMethodCardResponse) GetIssuer() string {
+	if o == nil || IsNil(o.Issuer) {
+		var ret string
+		return ret
+	}
+	return *o.Issuer
+}
+
+// GetIssuerOk returns a tuple with the Issuer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaymentMethodCardResponse) GetIssuerOk() (*string, bool) {
+	if o == nil || IsNil(o.Issuer) {
+		return nil, false
+	}
+	return o.Issuer, true
+}
+
+// HasIssuer returns a boolean if a field has been set.
+func (o *PaymentMethodCardResponse) HasIssuer() bool {
+	if o != nil && !IsNil(o.Issuer) {
+		return true
+	}
+
+	return false
+}
+
+// SetIssuer gets a reference to the given string and assigns it to the Issuer field.
+func (o *PaymentMethodCardResponse) SetIssuer(v string) {
+	o.Issuer = &v
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PaymentMethodCardResponse) GetName() string {
 	if o == nil || IsNil(o.Name) {
@@ -545,6 +579,9 @@ func (o PaymentMethodCardResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Brand) {
 		toSerialize["brand"] = o.Brand
 	}
+	if !IsNil(o.Issuer) {
+		toSerialize["issuer"] = o.Issuer
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -614,6 +651,7 @@ func (o *PaymentMethodCardResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "exp_month")
 		delete(additionalProperties, "exp_year")
 		delete(additionalProperties, "brand")
+		delete(additionalProperties, "issuer")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "default")
 		delete(additionalProperties, "visible_on_checkout")

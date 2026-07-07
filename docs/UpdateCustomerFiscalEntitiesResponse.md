@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | [**CustomerAddress**](CustomerAddress.md) |  | 
+**Address** | [**FiscalEntityRequestAddress**](FiscalEntityRequestAddress.md) |  | 
 **TaxId** | Pointer to **string** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
 **Phone** | Pointer to **string** |  | [optional] 
-**Metadata** | Pointer to **map[string]map[string]interface{}** |  | [optional] 
+**Metadata** | Pointer to  |  | [optional] 
 **CompanyName** | Pointer to **string** |  | [optional] 
 **Id** | **string** |  | 
 **Object** | **string** |  | 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewUpdateCustomerFiscalEntitiesResponse
 
-`func NewUpdateCustomerFiscalEntitiesResponse(address CustomerAddress, id string, object string, createdAt int64, ) *UpdateCustomerFiscalEntitiesResponse`
+`func NewUpdateCustomerFiscalEntitiesResponse(address FiscalEntityRequestAddress, id string, object string, createdAt int64, ) *UpdateCustomerFiscalEntitiesResponse`
 
 NewUpdateCustomerFiscalEntitiesResponse instantiates a new UpdateCustomerFiscalEntitiesResponse object
 This constructor will assign default values to properties that have it defined,
@@ -37,20 +37,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAddress
 
-`func (o *UpdateCustomerFiscalEntitiesResponse) GetAddress() CustomerAddress`
+`func (o *UpdateCustomerFiscalEntitiesResponse) GetAddress() FiscalEntityRequestAddress`
 
 GetAddress returns the Address field if non-nil, zero value otherwise.
 
 ### GetAddressOk
 
-`func (o *UpdateCustomerFiscalEntitiesResponse) GetAddressOk() (*CustomerAddress, bool)`
+`func (o *UpdateCustomerFiscalEntitiesResponse) GetAddressOk() (*FiscalEntityRequestAddress, bool)`
 
 GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddress
 
-`func (o *UpdateCustomerFiscalEntitiesResponse) SetAddress(v CustomerAddress)`
+`func (o *UpdateCustomerFiscalEntitiesResponse) SetAddress(v FiscalEntityRequestAddress)`
 
 SetAddress sets Address field to given value.
 
@@ -155,6 +155,16 @@ SetMetadata sets Metadata field to given value.
 
 HasMetadata returns a boolean if a field has been set.
 
+### SetMetadataNil
+
+`func (o *UpdateCustomerFiscalEntitiesResponse) SetMetadataNil(b bool)`
+
+ SetMetadataNil sets the value for Metadata to be an explicit nil
+
+### UnsetMetadata
+`func (o *UpdateCustomerFiscalEntitiesResponse) UnsetMetadata()`
+
+UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetCompanyName
 
 `func (o *UpdateCustomerFiscalEntitiesResponse) GetCompanyName() string`

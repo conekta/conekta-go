@@ -35,8 +35,8 @@ type LogsAPI interface {
 	GetLogById(ctx context.Context, id string) ApiGetLogByIdRequest
 
 	// GetLogByIdExecute executes the request
-	//  @return LogResponse
-	GetLogByIdExecute(r ApiGetLogByIdRequest) (*LogResponse, *http.Response, error)
+	//  @return LogResponseForRequest
+	GetLogByIdExecute(r ApiGetLogByIdRequest) (*LogResponseForRequest, *http.Response, error)
 
 	/*
 	GetLogs Get List Of Logs
@@ -49,8 +49,8 @@ type LogsAPI interface {
 	GetLogs(ctx context.Context) ApiGetLogsRequest
 
 	// GetLogsExecute executes the request
-	//  @return LogsResponse
-	GetLogsExecute(r ApiGetLogsRequest) (*LogsResponse, *http.Response, error)
+	//  @return LogsResponseForRequest
+	GetLogsExecute(r ApiGetLogsRequest) (*LogsResponseForRequest, *http.Response, error)
 }
 
 // LogsAPIService LogsAPI service
@@ -76,7 +76,7 @@ func (r ApiGetLogByIdRequest) XChildCompanyId(xChildCompanyId string) ApiGetLogB
 	return r
 }
 
-func (r ApiGetLogByIdRequest) Execute() (*LogResponse, *http.Response, error) {
+func (r ApiGetLogByIdRequest) Execute() (*LogResponseForRequest, *http.Response, error) {
 	return r.ApiService.GetLogByIdExecute(r)
 }
 
@@ -98,13 +98,13 @@ func (a *LogsAPIService) GetLogById(ctx context.Context, id string) ApiGetLogByI
 }
 
 // Execute executes the request
-//  @return LogResponse
-func (a *LogsAPIService) GetLogByIdExecute(r ApiGetLogByIdRequest) (*LogResponse, *http.Response, error) {
+//  @return LogResponseForRequest
+func (a *LogsAPIService) GetLogByIdExecute(r ApiGetLogByIdRequest) (*LogResponseForRequest, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *LogResponse
+		localVarReturnValue  *LogResponseForRequest
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsAPIService.GetLogById")
@@ -258,7 +258,7 @@ func (r ApiGetLogsRequest) Previous(previous string) ApiGetLogsRequest {
 	return r
 }
 
-func (r ApiGetLogsRequest) Execute() (*LogsResponse, *http.Response, error) {
+func (r ApiGetLogsRequest) Execute() (*LogsResponseForRequest, *http.Response, error) {
 	return r.ApiService.GetLogsExecute(r)
 }
 
@@ -278,13 +278,13 @@ func (a *LogsAPIService) GetLogs(ctx context.Context) ApiGetLogsRequest {
 }
 
 // Execute executes the request
-//  @return LogsResponse
-func (a *LogsAPIService) GetLogsExecute(r ApiGetLogsRequest) (*LogsResponse, *http.Response, error) {
+//  @return LogsResponseForRequest
+func (a *LogsAPIService) GetLogsExecute(r ApiGetLogsRequest) (*LogsResponseForRequest, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *LogsResponse
+		localVarReturnValue  *LogsResponseForRequest
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsAPIService.GetLogs")
@@ -302,6 +302,7 @@ func (a *LogsAPIService) GetLogsExecute(r ApiGetLogsRequest) (*LogsResponse, *ht
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
 		r.limit = &defaultValue
 	}
 	if r.search != nil {

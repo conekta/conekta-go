@@ -30,11 +30,11 @@ type CompanyResponse struct {
 	// The current status of the company's account.
 	AccountStatus string `json:"account_status"`
 	// The identifier of the parent company, if any.
-	ParentCompanyId NullableString `json:"parent_company_id,omitempty"`
+	ParentCompanyId *string `json:"parent_company_id,omitempty"`
 	// The current status of the company's onboarding process.
 	OnboardingStatus string `json:"onboarding_status"`
 	// A list of documents related to the company.
-	Documents []CompanyResponseDocumentsInner `json:"documents"`
+	Documents []CompanyDocumentResponse `json:"documents"`
 	// Timestamp of when the company was created.
 	CreatedAt int64 `json:"created_at"`
 	// The type of object, typically \"company\".
@@ -42,7 +42,7 @@ type CompanyResponse struct {
 	// Indicates if 3DS authentication is enabled for the company.
 	ThreeDsEnabled *bool `json:"three_ds_enabled,omitempty"`
 	// The 3DS mode for the company, either 'smart' or 'strict'. This property is only applicable when three_ds_enabled is true. When three_ds_enabled is false, this field will be null.
-	ThreeDsMode NullableString `json:"three_ds_mode,omitempty"`
+	ThreeDsMode *string `json:"three_ds_mode,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -52,7 +52,7 @@ type _CompanyResponse CompanyResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCompanyResponse(id string, name string, active bool, accountStatus string, onboardingStatus string, documents []CompanyResponseDocumentsInner, createdAt int64, object string) *CompanyResponse {
+func NewCompanyResponse(id string, name string, active bool, accountStatus string, onboardingStatus string, documents []CompanyDocumentResponse, createdAt int64, object string) *CompanyResponse {
 	this := CompanyResponse{}
 	this.Id = id
 	this.Name = name
@@ -169,46 +169,36 @@ func (o *CompanyResponse) SetAccountStatus(v string) {
 	o.AccountStatus = v
 }
 
-// GetParentCompanyId returns the ParentCompanyId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetParentCompanyId returns the ParentCompanyId field value if set, zero value otherwise.
 func (o *CompanyResponse) GetParentCompanyId() string {
-	if o == nil || IsNil(o.ParentCompanyId.Get()) {
+	if o == nil || IsNil(o.ParentCompanyId) {
 		var ret string
 		return ret
 	}
-	return *o.ParentCompanyId.Get()
+	return *o.ParentCompanyId
 }
 
 // GetParentCompanyIdOk returns a tuple with the ParentCompanyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CompanyResponse) GetParentCompanyIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ParentCompanyId) {
 		return nil, false
 	}
-	return o.ParentCompanyId.Get(), o.ParentCompanyId.IsSet()
+	return o.ParentCompanyId, true
 }
 
 // HasParentCompanyId returns a boolean if a field has been set.
 func (o *CompanyResponse) HasParentCompanyId() bool {
-	if o != nil && o.ParentCompanyId.IsSet() {
+	if o != nil && !IsNil(o.ParentCompanyId) {
 		return true
 	}
 
 	return false
 }
 
-// SetParentCompanyId gets a reference to the given NullableString and assigns it to the ParentCompanyId field.
+// SetParentCompanyId gets a reference to the given string and assigns it to the ParentCompanyId field.
 func (o *CompanyResponse) SetParentCompanyId(v string) {
-	o.ParentCompanyId.Set(&v)
-}
-// SetParentCompanyIdNil sets the value for ParentCompanyId to be an explicit nil
-func (o *CompanyResponse) SetParentCompanyIdNil() {
-	o.ParentCompanyId.Set(nil)
-}
-
-// UnsetParentCompanyId ensures that no value is present for ParentCompanyId, not even an explicit nil
-func (o *CompanyResponse) UnsetParentCompanyId() {
-	o.ParentCompanyId.Unset()
+	o.ParentCompanyId = &v
 }
 
 // GetOnboardingStatus returns the OnboardingStatus field value
@@ -236,9 +226,9 @@ func (o *CompanyResponse) SetOnboardingStatus(v string) {
 }
 
 // GetDocuments returns the Documents field value
-func (o *CompanyResponse) GetDocuments() []CompanyResponseDocumentsInner {
+func (o *CompanyResponse) GetDocuments() []CompanyDocumentResponse {
 	if o == nil {
-		var ret []CompanyResponseDocumentsInner
+		var ret []CompanyDocumentResponse
 		return ret
 	}
 
@@ -247,7 +237,7 @@ func (o *CompanyResponse) GetDocuments() []CompanyResponseDocumentsInner {
 
 // GetDocumentsOk returns a tuple with the Documents field value
 // and a boolean to check if the value has been set.
-func (o *CompanyResponse) GetDocumentsOk() ([]CompanyResponseDocumentsInner, bool) {
+func (o *CompanyResponse) GetDocumentsOk() ([]CompanyDocumentResponse, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -255,7 +245,7 @@ func (o *CompanyResponse) GetDocumentsOk() ([]CompanyResponseDocumentsInner, boo
 }
 
 // SetDocuments sets field value
-func (o *CompanyResponse) SetDocuments(v []CompanyResponseDocumentsInner) {
+func (o *CompanyResponse) SetDocuments(v []CompanyDocumentResponse) {
 	o.Documents = v
 }
 
@@ -339,46 +329,36 @@ func (o *CompanyResponse) SetThreeDsEnabled(v bool) {
 	o.ThreeDsEnabled = &v
 }
 
-// GetThreeDsMode returns the ThreeDsMode field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetThreeDsMode returns the ThreeDsMode field value if set, zero value otherwise.
 func (o *CompanyResponse) GetThreeDsMode() string {
-	if o == nil || IsNil(o.ThreeDsMode.Get()) {
+	if o == nil || IsNil(o.ThreeDsMode) {
 		var ret string
 		return ret
 	}
-	return *o.ThreeDsMode.Get()
+	return *o.ThreeDsMode
 }
 
 // GetThreeDsModeOk returns a tuple with the ThreeDsMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CompanyResponse) GetThreeDsModeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ThreeDsMode) {
 		return nil, false
 	}
-	return o.ThreeDsMode.Get(), o.ThreeDsMode.IsSet()
+	return o.ThreeDsMode, true
 }
 
 // HasThreeDsMode returns a boolean if a field has been set.
 func (o *CompanyResponse) HasThreeDsMode() bool {
-	if o != nil && o.ThreeDsMode.IsSet() {
+	if o != nil && !IsNil(o.ThreeDsMode) {
 		return true
 	}
 
 	return false
 }
 
-// SetThreeDsMode gets a reference to the given NullableString and assigns it to the ThreeDsMode field.
+// SetThreeDsMode gets a reference to the given string and assigns it to the ThreeDsMode field.
 func (o *CompanyResponse) SetThreeDsMode(v string) {
-	o.ThreeDsMode.Set(&v)
-}
-// SetThreeDsModeNil sets the value for ThreeDsMode to be an explicit nil
-func (o *CompanyResponse) SetThreeDsModeNil() {
-	o.ThreeDsMode.Set(nil)
-}
-
-// UnsetThreeDsMode ensures that no value is present for ThreeDsMode, not even an explicit nil
-func (o *CompanyResponse) UnsetThreeDsMode() {
-	o.ThreeDsMode.Unset()
+	o.ThreeDsMode = &v
 }
 
 func (o CompanyResponse) MarshalJSON() ([]byte, error) {
@@ -395,8 +375,8 @@ func (o CompanyResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["active"] = o.Active
 	toSerialize["account_status"] = o.AccountStatus
-	if o.ParentCompanyId.IsSet() {
-		toSerialize["parent_company_id"] = o.ParentCompanyId.Get()
+	if !IsNil(o.ParentCompanyId) {
+		toSerialize["parent_company_id"] = o.ParentCompanyId
 	}
 	toSerialize["onboarding_status"] = o.OnboardingStatus
 	toSerialize["documents"] = o.Documents
@@ -405,8 +385,8 @@ func (o CompanyResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ThreeDsEnabled) {
 		toSerialize["three_ds_enabled"] = o.ThreeDsEnabled
 	}
-	if o.ThreeDsMode.IsSet() {
-		toSerialize["three_ds_mode"] = o.ThreeDsMode.Get()
+	if !IsNil(o.ThreeDsMode) {
+		toSerialize["three_ds_mode"] = o.ThreeDsMode
 	}
 
 	for key, value := range o.AdditionalProperties {

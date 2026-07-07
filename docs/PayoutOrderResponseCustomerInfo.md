@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CustomerCustomReference** | Pointer to **NullableString** | Custom reference | [optional] 
+**Id** | **string** | The id of the customer. | 
+**CustomerCustomReference** | Pointer to **string** | Custom reference | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
 **Phone** | Pointer to **string** |  | [optional] 
 **Corporate** | Pointer to **bool** |  | [optional] [default to false]
 **Object** | Pointer to **string** |  | [optional] 
-**Id** | **string** | The id of the customer. | 
 
 ## Methods
 
@@ -30,6 +30,26 @@ will change when the set of required properties is changed
 NewPayoutOrderResponseCustomerInfoWithDefaults instantiates a new PayoutOrderResponseCustomerInfo object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetId
+
+`func (o *PayoutOrderResponseCustomerInfo) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *PayoutOrderResponseCustomerInfo) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *PayoutOrderResponseCustomerInfo) SetId(v string)`
+
+SetId sets Id field to given value.
+
 
 ### GetCustomerCustomReference
 
@@ -56,16 +76,6 @@ SetCustomerCustomReference sets CustomerCustomReference field to given value.
 
 HasCustomerCustomReference returns a boolean if a field has been set.
 
-### SetCustomerCustomReferenceNil
-
-`func (o *PayoutOrderResponseCustomerInfo) SetCustomerCustomReferenceNil(b bool)`
-
- SetCustomerCustomReferenceNil sets the value for CustomerCustomReference to be an explicit nil
-
-### UnsetCustomerCustomReference
-`func (o *PayoutOrderResponseCustomerInfo) UnsetCustomerCustomReference()`
-
-UnsetCustomerCustomReference ensures that no value is present for CustomerCustomReference, not even an explicit nil
 ### GetName
 
 `func (o *PayoutOrderResponseCustomerInfo) GetName() string`
@@ -190,26 +200,6 @@ SetObject sets Object field to given value.
 `func (o *PayoutOrderResponseCustomerInfo) HasObject() bool`
 
 HasObject returns a boolean if a field has been set.
-
-### GetId
-
-`func (o *PayoutOrderResponseCustomerInfo) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *PayoutOrderResponseCustomerInfo) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *PayoutOrderResponseCustomerInfo) SetId(v string)`
-
-SetId sets Id field to given value.
-
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

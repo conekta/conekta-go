@@ -4,40 +4,41 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AllowedPaymentMethods** | Pointer to **[]string** | Are the payment methods available for this link | [optional] 
+**AllowedPaymentMethods** | **[]string** | Are the payment methods available for this link | 
 **CanNotExpire** | Pointer to **bool** |  | [optional] 
 **EmailsSent** | Pointer to **int32** |  | [optional] 
-**ExcludeCardNetworks** | Pointer to **[]map[string]interface{}** |  | [optional] 
+**ExcludeCardNetworks** | Pointer to **[]string** |  | [optional] 
 **ExpiresAt** | Pointer to **int64** |  | [optional] 
 **FailureUrl** | Pointer to **string** |  | [optional] 
 **Force3dsFlow** | Pointer to **bool** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**ForceSaveCard** | Pointer to **bool** | Indicates whether the card used for the payment should be saved for future purchases. This field is only applicable for card payments. | [optional] 
+**Id** | **string** |  | 
 **IsRedirectOnFailure** | Pointer to **bool** |  | [optional] 
 **Livemode** | Pointer to **bool** |  | [optional] 
-**MaxFailedRetries** | Pointer to **NullableInt32** | Number of retries allowed before the checkout is marked as failed | [optional] 
+**MaxFailedRetries** | Pointer to **int32** | Number of retries allowed before the checkout is marked as failed | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 **MonthlyInstallmentsEnabled** | Pointer to **bool** |  | [optional] 
 **MonthlyInstallmentsOptions** | Pointer to **[]int32** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
+**Name** | **string** |  | 
 **NeedsShippingContact** | Pointer to **bool** |  | [optional] 
-**Object** | Pointer to **string** |  | [optional] 
-**OnDemandEnabled** | Pointer to **NullableBool** |  | [optional] 
+**Object** | **string** |  | 
+**OnDemandEnabled** | Pointer to **bool** |  | [optional] 
 **PaidPaymentsCount** | Pointer to **int32** |  | [optional] 
 **Recurrent** | Pointer to **bool** |  | [optional] 
-**RedirectionTime** | Pointer to **NullableInt32** | number of seconds to wait before redirecting to the success_url | [optional] 
+**RedirectionTime** | Pointer to **int32** | number of seconds to wait before redirecting to the success_url | [optional] 
 **Slug** | Pointer to **string** |  | [optional] 
 **SmsSent** | Pointer to **int32** |  | [optional] 
-**SuccessUrl** | Pointer to **string** |  | [optional] 
+**SuccessUrl** | Pointer to **string** | Redirection url back to the site in case of successful payment, applies only to HostedPayment | [optional] 
 **StartsAt** | Pointer to **int32** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**Url** | Pointer to **string** |  | [optional] 
+**Type** | **string** | This field represents the type of checkout, which determines the user experience during the payment process. &#39;HostedPayment&#39; will redirect the customer to a Conekta-hosted page to complete the payment, while &#39;Integration&#39; allows the payment process to be handled entirely on your site using Conekta&#39;s APIs and SDKs. | 
+**Url** | Pointer to **string** | Indicate the url of the Conekta component to complete the payment. For HostedPayment, this will be a Conekta-hosted page | [optional] 
 
 ## Methods
 
 ### NewOrderResponseCheckout
 
-`func NewOrderResponseCheckout() *OrderResponseCheckout`
+`func NewOrderResponseCheckout(allowedPaymentMethods []string, id string, name string, object string, type_ string, ) *OrderResponseCheckout`
 
 NewOrderResponseCheckout instantiates a new OrderResponseCheckout object
 This constructor will assign default values to properties that have it defined,
@@ -71,11 +72,6 @@ and a boolean to check if the value has been set.
 
 SetAllowedPaymentMethods sets AllowedPaymentMethods field to given value.
 
-### HasAllowedPaymentMethods
-
-`func (o *OrderResponseCheckout) HasAllowedPaymentMethods() bool`
-
-HasAllowedPaymentMethods returns a boolean if a field has been set.
 
 ### GetCanNotExpire
 
@@ -129,20 +125,20 @@ HasEmailsSent returns a boolean if a field has been set.
 
 ### GetExcludeCardNetworks
 
-`func (o *OrderResponseCheckout) GetExcludeCardNetworks() []map[string]interface{}`
+`func (o *OrderResponseCheckout) GetExcludeCardNetworks() []string`
 
 GetExcludeCardNetworks returns the ExcludeCardNetworks field if non-nil, zero value otherwise.
 
 ### GetExcludeCardNetworksOk
 
-`func (o *OrderResponseCheckout) GetExcludeCardNetworksOk() (*[]map[string]interface{}, bool)`
+`func (o *OrderResponseCheckout) GetExcludeCardNetworksOk() (*[]string, bool)`
 
 GetExcludeCardNetworksOk returns a tuple with the ExcludeCardNetworks field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExcludeCardNetworks
 
-`func (o *OrderResponseCheckout) SetExcludeCardNetworks(v []map[string]interface{})`
+`func (o *OrderResponseCheckout) SetExcludeCardNetworks(v []string)`
 
 SetExcludeCardNetworks sets ExcludeCardNetworks field to given value.
 
@@ -227,6 +223,31 @@ SetForce3dsFlow sets Force3dsFlow field to given value.
 
 HasForce3dsFlow returns a boolean if a field has been set.
 
+### GetForceSaveCard
+
+`func (o *OrderResponseCheckout) GetForceSaveCard() bool`
+
+GetForceSaveCard returns the ForceSaveCard field if non-nil, zero value otherwise.
+
+### GetForceSaveCardOk
+
+`func (o *OrderResponseCheckout) GetForceSaveCardOk() (*bool, bool)`
+
+GetForceSaveCardOk returns a tuple with the ForceSaveCard field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetForceSaveCard
+
+`func (o *OrderResponseCheckout) SetForceSaveCard(v bool)`
+
+SetForceSaveCard sets ForceSaveCard field to given value.
+
+### HasForceSaveCard
+
+`func (o *OrderResponseCheckout) HasForceSaveCard() bool`
+
+HasForceSaveCard returns a boolean if a field has been set.
+
 ### GetId
 
 `func (o *OrderResponseCheckout) GetId() string`
@@ -246,11 +267,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *OrderResponseCheckout) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetIsRedirectOnFailure
 
@@ -327,16 +343,6 @@ SetMaxFailedRetries sets MaxFailedRetries field to given value.
 
 HasMaxFailedRetries returns a boolean if a field has been set.
 
-### SetMaxFailedRetriesNil
-
-`func (o *OrderResponseCheckout) SetMaxFailedRetriesNil(b bool)`
-
- SetMaxFailedRetriesNil sets the value for MaxFailedRetries to be an explicit nil
-
-### UnsetMaxFailedRetries
-`func (o *OrderResponseCheckout) UnsetMaxFailedRetries()`
-
-UnsetMaxFailedRetries ensures that no value is present for MaxFailedRetries, not even an explicit nil
 ### GetMetadata
 
 `func (o *OrderResponseCheckout) GetMetadata() map[string]interface{}`
@@ -431,11 +437,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *OrderResponseCheckout) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetNeedsShippingContact
 
@@ -481,11 +482,6 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
-### HasObject
-
-`func (o *OrderResponseCheckout) HasObject() bool`
-
-HasObject returns a boolean if a field has been set.
 
 ### GetOnDemandEnabled
 
@@ -512,16 +508,6 @@ SetOnDemandEnabled sets OnDemandEnabled field to given value.
 
 HasOnDemandEnabled returns a boolean if a field has been set.
 
-### SetOnDemandEnabledNil
-
-`func (o *OrderResponseCheckout) SetOnDemandEnabledNil(b bool)`
-
- SetOnDemandEnabledNil sets the value for OnDemandEnabled to be an explicit nil
-
-### UnsetOnDemandEnabled
-`func (o *OrderResponseCheckout) UnsetOnDemandEnabled()`
-
-UnsetOnDemandEnabled ensures that no value is present for OnDemandEnabled, not even an explicit nil
 ### GetPaidPaymentsCount
 
 `func (o *OrderResponseCheckout) GetPaidPaymentsCount() int32`
@@ -597,16 +583,6 @@ SetRedirectionTime sets RedirectionTime field to given value.
 
 HasRedirectionTime returns a boolean if a field has been set.
 
-### SetRedirectionTimeNil
-
-`func (o *OrderResponseCheckout) SetRedirectionTimeNil(b bool)`
-
- SetRedirectionTimeNil sets the value for RedirectionTime to be an explicit nil
-
-### UnsetRedirectionTime
-`func (o *OrderResponseCheckout) UnsetRedirectionTime()`
-
-UnsetRedirectionTime ensures that no value is present for RedirectionTime, not even an explicit nil
 ### GetSlug
 
 `func (o *OrderResponseCheckout) GetSlug() string`
@@ -751,11 +727,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *OrderResponseCheckout) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetUrl
 

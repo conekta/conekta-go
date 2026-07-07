@@ -313,6 +313,7 @@ func (a *EventsAPIService) GetEventsExecute(r ApiGetEventsRequest) (*GetEventsRe
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
 		r.limit = &defaultValue
 	}
 	if r.search != nil {
@@ -409,13 +410,13 @@ type ApiResendEventRequest struct {
 	ctx context.Context
 	ApiService EventsAPI
 	eventId string
-	resendRequest *ResendRequest
+	resendEventRequest *ResendEventRequest
 	acceptLanguage *string
 }
 
 // requested fields for resend an event
-func (r ApiResendEventRequest) ResendRequest(resendRequest ResendRequest) ApiResendEventRequest {
-	r.resendRequest = &resendRequest
+func (r ApiResendEventRequest) ResendEventRequest(resendEventRequest ResendEventRequest) ApiResendEventRequest {
+	r.resendEventRequest = &resendEventRequest
 	return r
 }
 
@@ -467,8 +468,8 @@ func (a *EventsAPIService) ResendEventExecute(r ApiResendEventRequest) (*EventsR
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.resendRequest == nil {
-		return localVarReturnValue, nil, reportError("resendRequest is required and must be specified")
+	if r.resendEventRequest == nil {
+		return localVarReturnValue, nil, reportError("resendEventRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -492,7 +493,7 @@ func (a *EventsAPIService) ResendEventExecute(r ApiResendEventRequest) (*EventsR
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.resendRequest
+	localVarPostBody = r.resendEventRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

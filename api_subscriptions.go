@@ -1747,6 +1747,7 @@ func (a *SubscriptionsAPIService) SubscriptionEventsExecute(r ApiSubscriptionEve
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
 		r.limit = &defaultValue
 	}
 	if r.search != nil {
@@ -1945,6 +1946,7 @@ func (a *SubscriptionsAPIService) SubscriptionListExecute(r ApiSubscriptionListR
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
 		r.limit = &defaultValue
 	}
 	if r.search != nil {
@@ -2371,14 +2373,14 @@ type ApiSubscriptionUpdateRequest struct {
 	ApiService SubscriptionsAPI
 	customerId string
 	id string
-	subscriptionUpdateRequest *SubscriptionUpdateRequest
+	updatesASubscription *UpdatesASubscription
 	acceptLanguage *string
 	xChildCompanyId *string
 }
 
 // requested field for update a subscription
-func (r ApiSubscriptionUpdateRequest) SubscriptionUpdateRequest(subscriptionUpdateRequest SubscriptionUpdateRequest) ApiSubscriptionUpdateRequest {
-	r.subscriptionUpdateRequest = &subscriptionUpdateRequest
+func (r ApiSubscriptionUpdateRequest) UpdatesASubscription(updatesASubscription UpdatesASubscription) ApiSubscriptionUpdateRequest {
+	r.updatesASubscription = &updatesASubscription
 	return r
 }
 
@@ -2439,8 +2441,8 @@ func (a *SubscriptionsAPIService) SubscriptionUpdateExecute(r ApiSubscriptionUpd
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.subscriptionUpdateRequest == nil {
-		return localVarReturnValue, nil, reportError("subscriptionUpdateRequest is required and must be specified")
+	if r.updatesASubscription == nil {
+		return localVarReturnValue, nil, reportError("updatesASubscription is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2467,7 +2469,7 @@ func (a *SubscriptionsAPIService) SubscriptionUpdateExecute(r ApiSubscriptionUpd
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.subscriptionUpdateRequest
+	localVarPostBody = r.updatesASubscription
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2819,6 +2821,17 @@ func (a *SubscriptionsAPIService) SubscriptionsRetryExecute(r ApiSubscriptionsRe
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2831,17 +2844,6 @@ func (a *SubscriptionsAPIService) SubscriptionsRetryExecute(r ApiSubscriptionsRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
 			var v ModelError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2881,14 +2883,14 @@ type ApiUpdateSubscriptionRequest struct {
 	ctx context.Context
 	ApiService SubscriptionsAPI
 	id string
-	subscriptionUpdateRequest *SubscriptionUpdateRequest
+	updatesASubscription *UpdatesASubscription
 	acceptLanguage *string
 	xChildCompanyId *string
 }
 
 // requested field for update a subscription
-func (r ApiUpdateSubscriptionRequest) SubscriptionUpdateRequest(subscriptionUpdateRequest SubscriptionUpdateRequest) ApiUpdateSubscriptionRequest {
-	r.subscriptionUpdateRequest = &subscriptionUpdateRequest
+func (r ApiUpdateSubscriptionRequest) UpdatesASubscription(updatesASubscription UpdatesASubscription) ApiUpdateSubscriptionRequest {
+	r.updatesASubscription = &updatesASubscription
 	return r
 }
 
@@ -2949,8 +2951,8 @@ func (a *SubscriptionsAPIService) UpdateSubscriptionExecute(r ApiUpdateSubscript
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.subscriptionUpdateRequest == nil {
-		return localVarReturnValue, nil, reportError("subscriptionUpdateRequest is required and must be specified")
+	if r.updatesASubscription == nil {
+		return localVarReturnValue, nil, reportError("updatesASubscription is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2977,7 +2979,7 @@ func (a *SubscriptionsAPIService) UpdateSubscriptionExecute(r ApiUpdateSubscript
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.subscriptionUpdateRequest
+	localVarPostBody = r.updatesASubscription
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
