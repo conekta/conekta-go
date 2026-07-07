@@ -21,7 +21,7 @@ var _ MappedNullable = &UpdateCustomerFiscalEntitiesResponse{}
 
 // UpdateCustomerFiscalEntitiesResponse struct for UpdateCustomerFiscalEntitiesResponse
 type UpdateCustomerFiscalEntitiesResponse struct {
-	Address CustomerAddress `json:"address"`
+	Address FiscalEntityRequestAddress `json:"address"`
 	TaxId *string `json:"tax_id,omitempty"`
 	Email *string `json:"email,omitempty"`
 	Phone *string `json:"phone,omitempty"`
@@ -41,7 +41,7 @@ type _UpdateCustomerFiscalEntitiesResponse UpdateCustomerFiscalEntitiesResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateCustomerFiscalEntitiesResponse(address CustomerAddress, id string, object string, createdAt int64) *UpdateCustomerFiscalEntitiesResponse {
+func NewUpdateCustomerFiscalEntitiesResponse(address FiscalEntityRequestAddress, id string, object string, createdAt int64) *UpdateCustomerFiscalEntitiesResponse {
 	this := UpdateCustomerFiscalEntitiesResponse{}
 	this.Address = address
 	this.Id = id
@@ -59,9 +59,9 @@ func NewUpdateCustomerFiscalEntitiesResponseWithDefaults() *UpdateCustomerFiscal
 }
 
 // GetAddress returns the Address field value
-func (o *UpdateCustomerFiscalEntitiesResponse) GetAddress() CustomerAddress {
+func (o *UpdateCustomerFiscalEntitiesResponse) GetAddress() FiscalEntityRequestAddress {
 	if o == nil {
-		var ret CustomerAddress
+		var ret FiscalEntityRequestAddress
 		return ret
 	}
 
@@ -70,7 +70,7 @@ func (o *UpdateCustomerFiscalEntitiesResponse) GetAddress() CustomerAddress {
 
 // GetAddressOk returns a tuple with the Address field value
 // and a boolean to check if the value has been set.
-func (o *UpdateCustomerFiscalEntitiesResponse) GetAddressOk() (*CustomerAddress, bool) {
+func (o *UpdateCustomerFiscalEntitiesResponse) GetAddressOk() (*FiscalEntityRequestAddress, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -78,7 +78,7 @@ func (o *UpdateCustomerFiscalEntitiesResponse) GetAddressOk() (*CustomerAddress,
 }
 
 // SetAddress sets field value
-func (o *UpdateCustomerFiscalEntitiesResponse) SetAddress(v CustomerAddress) {
+func (o *UpdateCustomerFiscalEntitiesResponse) SetAddress(v FiscalEntityRequestAddress) {
 	o.Address = v
 }
 
@@ -178,9 +178,9 @@ func (o *UpdateCustomerFiscalEntitiesResponse) SetPhone(v string) {
 	o.Phone = &v
 }
 
-// GetMetadata returns the Metadata field value if set, zero value otherwise.
+// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateCustomerFiscalEntitiesResponse) GetMetadata() map[string]map[string]interface{} {
-	if o == nil || IsNil(o.Metadata) {
+	if o == nil {
 		var ret map[string]map[string]interface{}
 		return ret
 	}
@@ -189,11 +189,12 @@ func (o *UpdateCustomerFiscalEntitiesResponse) GetMetadata() map[string]map[stri
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCustomerFiscalEntitiesResponse) GetMetadataOk() (map[string]map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateCustomerFiscalEntitiesResponse) GetMetadataOk() (*map[string]map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Metadata) {
-		return map[string]map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Metadata, true
+	return &o.Metadata, true
 }
 
 // HasMetadata returns a boolean if a field has been set.
@@ -398,7 +399,7 @@ func (o UpdateCustomerFiscalEntitiesResponse) ToMap() (map[string]interface{}, e
 	if !IsNil(o.Phone) {
 		toSerialize["phone"] = o.Phone
 	}
-	if !IsNil(o.Metadata) {
+	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
 	if !IsNil(o.CompanyName) {

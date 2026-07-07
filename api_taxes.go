@@ -35,8 +35,8 @@ type TaxesAPI interface {
 	OrdersCreateTaxes(ctx context.Context, id string) ApiOrdersCreateTaxesRequest
 
 	// OrdersCreateTaxesExecute executes the request
-	//  @return UpdateOrderTaxResponse
-	OrdersCreateTaxesExecute(r ApiOrdersCreateTaxesRequest) (*UpdateOrderTaxResponse, *http.Response, error)
+	//  @return OrderTaxResponse
+	OrdersCreateTaxesExecute(r ApiOrdersCreateTaxesRequest) (*OrderTaxResponse, *http.Response, error)
 
 	/*
 	OrdersDeleteTaxes Delete Tax
@@ -51,8 +51,8 @@ type TaxesAPI interface {
 	OrdersDeleteTaxes(ctx context.Context, id string, taxId string) ApiOrdersDeleteTaxesRequest
 
 	// OrdersDeleteTaxesExecute executes the request
-	//  @return UpdateOrderTaxResponse
-	OrdersDeleteTaxesExecute(r ApiOrdersDeleteTaxesRequest) (*UpdateOrderTaxResponse, *http.Response, error)
+	//  @return OrderTaxResponse
+	OrdersDeleteTaxesExecute(r ApiOrdersDeleteTaxesRequest) (*OrderTaxResponse, *http.Response, error)
 
 	/*
 	OrdersUpdateTaxes Update Tax
@@ -67,8 +67,8 @@ type TaxesAPI interface {
 	OrdersUpdateTaxes(ctx context.Context, id string, taxId string) ApiOrdersUpdateTaxesRequest
 
 	// OrdersUpdateTaxesExecute executes the request
-	//  @return UpdateOrderTaxResponse
-	OrdersUpdateTaxesExecute(r ApiOrdersUpdateTaxesRequest) (*UpdateOrderTaxResponse, *http.Response, error)
+	//  @return OrderTaxResponse
+	OrdersUpdateTaxesExecute(r ApiOrdersUpdateTaxesRequest) (*OrderTaxResponse, *http.Response, error)
 }
 
 // TaxesAPIService TaxesAPI service
@@ -101,7 +101,7 @@ func (r ApiOrdersCreateTaxesRequest) XChildCompanyId(xChildCompanyId string) Api
 	return r
 }
 
-func (r ApiOrdersCreateTaxesRequest) Execute() (*UpdateOrderTaxResponse, *http.Response, error) {
+func (r ApiOrdersCreateTaxesRequest) Execute() (*OrderTaxResponse, *http.Response, error) {
 	return r.ApiService.OrdersCreateTaxesExecute(r)
 }
 
@@ -123,13 +123,13 @@ func (a *TaxesAPIService) OrdersCreateTaxes(ctx context.Context, id string) ApiO
 }
 
 // Execute executes the request
-//  @return UpdateOrderTaxResponse
-func (a *TaxesAPIService) OrdersCreateTaxesExecute(r ApiOrdersCreateTaxesRequest) (*UpdateOrderTaxResponse, *http.Response, error) {
+//  @return OrderTaxResponse
+func (a *TaxesAPIService) OrdersCreateTaxesExecute(r ApiOrdersCreateTaxesRequest) (*OrderTaxResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *UpdateOrderTaxResponse
+		localVarReturnValue  *OrderTaxResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaxesAPIService.OrdersCreateTaxes")
@@ -262,7 +262,7 @@ func (r ApiOrdersDeleteTaxesRequest) XChildCompanyId(xChildCompanyId string) Api
 	return r
 }
 
-func (r ApiOrdersDeleteTaxesRequest) Execute() (*UpdateOrderTaxResponse, *http.Response, error) {
+func (r ApiOrdersDeleteTaxesRequest) Execute() (*OrderTaxResponse, *http.Response, error) {
 	return r.ApiService.OrdersDeleteTaxesExecute(r)
 }
 
@@ -286,13 +286,13 @@ func (a *TaxesAPIService) OrdersDeleteTaxes(ctx context.Context, id string, taxI
 }
 
 // Execute executes the request
-//  @return UpdateOrderTaxResponse
-func (a *TaxesAPIService) OrdersDeleteTaxesExecute(r ApiOrdersDeleteTaxesRequest) (*UpdateOrderTaxResponse, *http.Response, error) {
+//  @return OrderTaxResponse
+func (a *TaxesAPIService) OrdersDeleteTaxesExecute(r ApiOrdersDeleteTaxesRequest) (*OrderTaxResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *UpdateOrderTaxResponse
+		localVarReturnValue  *OrderTaxResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaxesAPIService.OrdersDeleteTaxes")
@@ -416,14 +416,14 @@ type ApiOrdersUpdateTaxesRequest struct {
 	ApiService TaxesAPI
 	id string
 	taxId string
-	updateOrderTaxRequest *UpdateOrderTaxRequest
+	ordersUpdateTaxesRequest *OrdersUpdateTaxesRequest
 	acceptLanguage *string
 	xChildCompanyId *string
 }
 
 // requested field for taxes
-func (r ApiOrdersUpdateTaxesRequest) UpdateOrderTaxRequest(updateOrderTaxRequest UpdateOrderTaxRequest) ApiOrdersUpdateTaxesRequest {
-	r.updateOrderTaxRequest = &updateOrderTaxRequest
+func (r ApiOrdersUpdateTaxesRequest) OrdersUpdateTaxesRequest(ordersUpdateTaxesRequest OrdersUpdateTaxesRequest) ApiOrdersUpdateTaxesRequest {
+	r.ordersUpdateTaxesRequest = &ordersUpdateTaxesRequest
 	return r
 }
 
@@ -439,7 +439,7 @@ func (r ApiOrdersUpdateTaxesRequest) XChildCompanyId(xChildCompanyId string) Api
 	return r
 }
 
-func (r ApiOrdersUpdateTaxesRequest) Execute() (*UpdateOrderTaxResponse, *http.Response, error) {
+func (r ApiOrdersUpdateTaxesRequest) Execute() (*OrderTaxResponse, *http.Response, error) {
 	return r.ApiService.OrdersUpdateTaxesExecute(r)
 }
 
@@ -463,13 +463,13 @@ func (a *TaxesAPIService) OrdersUpdateTaxes(ctx context.Context, id string, taxI
 }
 
 // Execute executes the request
-//  @return UpdateOrderTaxResponse
-func (a *TaxesAPIService) OrdersUpdateTaxesExecute(r ApiOrdersUpdateTaxesRequest) (*UpdateOrderTaxResponse, *http.Response, error) {
+//  @return OrderTaxResponse
+func (a *TaxesAPIService) OrdersUpdateTaxesExecute(r ApiOrdersUpdateTaxesRequest) (*OrderTaxResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *UpdateOrderTaxResponse
+		localVarReturnValue  *OrderTaxResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaxesAPIService.OrdersUpdateTaxes")
@@ -484,8 +484,8 @@ func (a *TaxesAPIService) OrdersUpdateTaxesExecute(r ApiOrdersUpdateTaxesRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateOrderTaxRequest == nil {
-		return localVarReturnValue, nil, reportError("updateOrderTaxRequest is required and must be specified")
+	if r.ordersUpdateTaxesRequest == nil {
+		return localVarReturnValue, nil, reportError("ordersUpdateTaxesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -512,7 +512,7 @@ func (a *TaxesAPIService) OrdersUpdateTaxesExecute(r ApiOrdersUpdateTaxesRequest
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.updateOrderTaxRequest
+	localVarPostBody = r.ordersUpdateTaxesRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

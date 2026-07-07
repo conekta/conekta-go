@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | **bool** | Indicates if there are more pages to be requested | 
 **Object** | **string** | Object type, in this case is list | 
+**NextPageUrl** | Pointer to **string** | URL of the next page. | [optional] 
+**PreviousPageUrl** | Pointer to **string** | Url of the previous page. | [optional] 
 **Data** | Pointer to [**[]DiscountLinesDataResponse**](DiscountLinesDataResponse.md) |  | [optional] 
 
 ## Methods
@@ -66,6 +68,56 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+
+### GetNextPageUrl
+
+`func (o *OrderDiscountLinesResponse) GetNextPageUrl() string`
+
+GetNextPageUrl returns the NextPageUrl field if non-nil, zero value otherwise.
+
+### GetNextPageUrlOk
+
+`func (o *OrderDiscountLinesResponse) GetNextPageUrlOk() (*string, bool)`
+
+GetNextPageUrlOk returns a tuple with the NextPageUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNextPageUrl
+
+`func (o *OrderDiscountLinesResponse) SetNextPageUrl(v string)`
+
+SetNextPageUrl sets NextPageUrl field to given value.
+
+### HasNextPageUrl
+
+`func (o *OrderDiscountLinesResponse) HasNextPageUrl() bool`
+
+HasNextPageUrl returns a boolean if a field has been set.
+
+### GetPreviousPageUrl
+
+`func (o *OrderDiscountLinesResponse) GetPreviousPageUrl() string`
+
+GetPreviousPageUrl returns the PreviousPageUrl field if non-nil, zero value otherwise.
+
+### GetPreviousPageUrlOk
+
+`func (o *OrderDiscountLinesResponse) GetPreviousPageUrlOk() (*string, bool)`
+
+GetPreviousPageUrlOk returns a tuple with the PreviousPageUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPreviousPageUrl
+
+`func (o *OrderDiscountLinesResponse) SetPreviousPageUrl(v string)`
+
+SetPreviousPageUrl sets PreviousPageUrl field to given value.
+
+### HasPreviousPageUrl
+
+`func (o *OrderDiscountLinesResponse) HasPreviousPageUrl() bool`
+
+HasPreviousPageUrl returns a boolean if a field has been set.
 
 ### GetData
 

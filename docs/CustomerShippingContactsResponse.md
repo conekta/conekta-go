@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Phone** | Pointer to **string** |  | [optional] 
 **Receiver** | Pointer to **string** |  | [optional] 
-**BetweenStreets** | Pointer to **NullableString** |  | [optional] 
-**Address** | Pointer to [**CustomerShippingContactsResponseAddress**](CustomerShippingContactsResponseAddress.md) |  | [optional] 
+**BetweenStreets** | Pointer to **string** |  | [optional] 
+**Address** | Pointer to [**CustomerShippingContactsAddress**](CustomerShippingContactsAddress.md) |  | [optional] 
 **ParentId** | Pointer to **string** |  | [optional] 
 **Default** | Pointer to **bool** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
@@ -110,32 +110,22 @@ SetBetweenStreets sets BetweenStreets field to given value.
 
 HasBetweenStreets returns a boolean if a field has been set.
 
-### SetBetweenStreetsNil
-
-`func (o *CustomerShippingContactsResponse) SetBetweenStreetsNil(b bool)`
-
- SetBetweenStreetsNil sets the value for BetweenStreets to be an explicit nil
-
-### UnsetBetweenStreets
-`func (o *CustomerShippingContactsResponse) UnsetBetweenStreets()`
-
-UnsetBetweenStreets ensures that no value is present for BetweenStreets, not even an explicit nil
 ### GetAddress
 
-`func (o *CustomerShippingContactsResponse) GetAddress() CustomerShippingContactsResponseAddress`
+`func (o *CustomerShippingContactsResponse) GetAddress() CustomerShippingContactsAddress`
 
 GetAddress returns the Address field if non-nil, zero value otherwise.
 
 ### GetAddressOk
 
-`func (o *CustomerShippingContactsResponse) GetAddressOk() (*CustomerShippingContactsResponseAddress, bool)`
+`func (o *CustomerShippingContactsResponse) GetAddressOk() (*CustomerShippingContactsAddress, bool)`
 
 GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddress
 
-`func (o *CustomerShippingContactsResponse) SetAddress(v CustomerShippingContactsResponseAddress)`
+`func (o *CustomerShippingContactsResponse) SetAddress(v CustomerShippingContactsAddress)`
 
 SetAddress sets Address field to given value.
 

@@ -25,7 +25,7 @@ type TokensAPI interface {
 	/*
 	CreateToken Create Token
 
-	Generate a payment token, to associate it with a card
+	Generate a payment token, to associate it with a card, Endpoint could be use directly only for PCI compliance account
 
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -44,13 +44,13 @@ type TokensAPIService service
 type ApiCreateTokenRequest struct {
 	ctx context.Context
 	ApiService TokensAPI
-	token *Token
+	tokenRequest *TokenRequest
 	acceptLanguage *string
 }
 
 // requested field for token
-func (r ApiCreateTokenRequest) Token(token Token) ApiCreateTokenRequest {
-	r.token = &token
+func (r ApiCreateTokenRequest) TokenRequest(tokenRequest TokenRequest) ApiCreateTokenRequest {
+	r.tokenRequest = &tokenRequest
 	return r
 }
 
@@ -67,7 +67,7 @@ func (r ApiCreateTokenRequest) Execute() (*TokenResponse, *http.Response, error)
 /*
 CreateToken Create Token
 
-Generate a payment token, to associate it with a card
+Generate a payment token, to associate it with a card, Endpoint could be use directly only for PCI compliance account
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -100,8 +100,8 @@ func (a *TokensAPIService) CreateTokenExecute(r ApiCreateTokenRequest) (*TokenRe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.token == nil {
-		return localVarReturnValue, nil, reportError("token is required and must be specified")
+	if r.tokenRequest == nil {
+		return localVarReturnValue, nil, reportError("tokenRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -125,7 +125,7 @@ func (a *TokensAPIService) CreateTokenExecute(r ApiCreateTokenRequest) (*TokenRe
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.token
+	localVarPostBody = r.tokenRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

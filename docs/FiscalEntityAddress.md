@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Street1** | **string** | Street name and number | 
-**Street2** | Pointer to **NullableString** | Street name and number | [optional] 
+**Street2** | Pointer to **string** | Street name and number | [optional] 
 **PostalCode** | **string** | Postal code | 
 **City** | **string** | City | 
 **State** | Pointer to **string** | State | [optional] 
@@ -76,16 +76,6 @@ SetStreet2 sets Street2 field to given value.
 
 HasStreet2 returns a boolean if a field has been set.
 
-### SetStreet2Nil
-
-`func (o *FiscalEntityAddress) SetStreet2Nil(b bool)`
-
- SetStreet2Nil sets the value for Street2 to be an explicit nil
-
-### UnsetStreet2
-`func (o *FiscalEntityAddress) UnsetStreet2()`
-
-UnsetStreet2 ensures that no value is present for Street2, not even an explicit nil
 ### GetPostalCode
 
 `func (o *FiscalEntityAddress) GetPostalCode() string`

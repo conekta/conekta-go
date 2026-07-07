@@ -94,6 +94,8 @@ type APIClient struct {
 
 	SubscriptionsAPI SubscriptionsAPI
 
+	SubscriptionsCustomerPortalAPI SubscriptionsCustomerPortalAPI
+
 	TaxesAPI TaxesAPI
 
 	TokensAPI TokensAPI
@@ -114,7 +116,7 @@ func init() {
 
 func initUserAgent() {
 	data := map[string]string{
-		"bindings_version": "7.0.6",
+		"bindings_version": "7.1.0",
 		"lang":             "go",
 		"lang_version":     runtime.Version(),
 		"publisher":        "conekta",
@@ -179,6 +181,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ShippingContactsAPI = (*ShippingContactsAPIService)(&c.common)
 	c.ShippingsAPI = (*ShippingsAPIService)(&c.common)
 	c.SubscriptionsAPI = (*SubscriptionsAPIService)(&c.common)
+	c.SubscriptionsCustomerPortalAPI = (*SubscriptionsCustomerPortalAPIService)(&c.common)
 	c.TaxesAPI = (*TaxesAPIService)(&c.common)
 	c.TokensAPI = (*TokensAPIService)(&c.common)
 	c.TransactionsAPI = (*TransactionsAPIService)(&c.common)

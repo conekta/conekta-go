@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | [**OrderFiscalEntityAddressResponse**](OrderFiscalEntityAddressResponse.md) |  | 
-**Email** | Pointer to **NullableString** | Email of the fiscal entity | [optional] 
+**Email** | Pointer to **string** | Email of the fiscal entity | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** | Metadata associated with the fiscal entity | [optional] 
-**Name** | Pointer to **NullableString** | Name of the fiscal entity | [optional] 
-**TaxId** | Pointer to **NullableString** | Tax ID of the fiscal entity | [optional] 
+**Name** | Pointer to **string** | Name of the fiscal entity | [optional] 
+**TaxId** | Pointer to **string** | Tax ID of the fiscal entity | [optional] 
 **Id** | **string** | ID of the fiscal entity | 
 **CreatedAt** | **int64** | The time at which the object was created in seconds since the Unix epoch | 
 **Object** | **string** |  | 
-**Phone** | Pointer to **NullableString** | Phone of the fiscal entity | [optional] 
+**Phone** | Pointer to **string** | Phone of the fiscal entity | [optional] 
 
 ## Methods
 
@@ -78,16 +78,6 @@ SetEmail sets Email field to given value.
 
 HasEmail returns a boolean if a field has been set.
 
-### SetEmailNil
-
-`func (o *OrderFiscalEntityResponse) SetEmailNil(b bool)`
-
- SetEmailNil sets the value for Email to be an explicit nil
-
-### UnsetEmail
-`func (o *OrderFiscalEntityResponse) UnsetEmail()`
-
-UnsetEmail ensures that no value is present for Email, not even an explicit nil
 ### GetMetadata
 
 `func (o *OrderFiscalEntityResponse) GetMetadata() map[string]interface{}`
@@ -138,16 +128,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *OrderFiscalEntityResponse) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *OrderFiscalEntityResponse) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetTaxId
 
 `func (o *OrderFiscalEntityResponse) GetTaxId() string`
@@ -173,16 +153,6 @@ SetTaxId sets TaxId field to given value.
 
 HasTaxId returns a boolean if a field has been set.
 
-### SetTaxIdNil
-
-`func (o *OrderFiscalEntityResponse) SetTaxIdNil(b bool)`
-
- SetTaxIdNil sets the value for TaxId to be an explicit nil
-
-### UnsetTaxId
-`func (o *OrderFiscalEntityResponse) UnsetTaxId()`
-
-UnsetTaxId ensures that no value is present for TaxId, not even an explicit nil
 ### GetId
 
 `func (o *OrderFiscalEntityResponse) GetId() string`
@@ -268,16 +238,6 @@ SetPhone sets Phone field to given value.
 
 HasPhone returns a boolean if a field has been set.
 
-### SetPhoneNil
-
-`func (o *OrderFiscalEntityResponse) SetPhoneNil(b bool)`
-
- SetPhoneNil sets the value for Phone to be an explicit nil
-
-### UnsetPhone
-`func (o *OrderFiscalEntityResponse) UnsetPhone()`
-
-UnsetPhone ensures that no value is present for Phone, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

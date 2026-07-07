@@ -8,13 +8,13 @@ Name | Type | Description | Notes
 **Object** | **string** |  | 
 **Agreement** | Pointer to **string** | Agreement ID | [optional] 
 **AuthCode** | Pointer to **string** |  | [optional] 
-**CashierId** | Pointer to **NullableString** |  | [optional] 
+**CashierId** | Pointer to **string** |  | [optional] 
 **Reference** | **string** | Reference for the payment | 
 **BarcodeUrl** | Pointer to **string** |  | [optional] 
 **ExpiresAt** | **int64** | Expiration date of the charge | 
 **ProductType** | **string** | Product type of the charge | 
 **ServiceName** | Pointer to **string** |  | [optional] 
-**Store** | Pointer to **NullableString** |  | [optional] 
+**Store** | Pointer to **string** |  | [optional] 
 **StoreName** | Pointer to **string** |  | [optional] 
 **CustomerIpAddress** | Pointer to **string** |  | [optional] 
 **AccountType** | Pointer to **string** | Account type of the card | [optional] 
@@ -23,25 +23,25 @@ Name | Type | Description | Notes
 **Country** | Pointer to **string** | Country of the card | [optional] 
 **ExpMonth** | Pointer to **string** | Expiration month of the card | [optional] 
 **ExpYear** | Pointer to **string** | Expiration year of the card | [optional] 
-**FraudIndicators** | Pointer to **[]map[string]interface{}** |  | [optional] 
+**FraudIndicators** | Pointer to **[]interface{}** |  | [optional] 
 **Issuer** | Pointer to **string** | Issuer of the card | [optional] 
 **Last4** | Pointer to **string** | Last 4 digits of the card | [optional] 
 **Name** | Pointer to **string** | Name of the cardholder | [optional] 
 **Bank** | Pointer to **string** |  | [optional] 
 **Clabe** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **NullableString** |  | [optional] 
-**ExecutedAt** | Pointer to **NullableString** |  | [optional] 
-**IssuingAccountBank** | Pointer to **NullableString** |  | [optional] 
-**IssuingAccountNumber** | Pointer to **NullableString** |  | [optional] 
-**IssuingAccountHolderName** | Pointer to **NullableString** |  | [optional] 
-**IssuingAccountTaxId** | Pointer to **NullableString** |  | [optional] 
-**PaymentAttempts** | Pointer to **[]map[string]interface{}** |  | [optional] 
-**ReceivingAccountHolderName** | Pointer to **NullableString** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**ExecutedAt** | Pointer to **string** |  | [optional] 
+**IssuingAccountBank** | Pointer to **string** |  | [optional] 
+**IssuingAccountNumber** | Pointer to **string** |  | [optional] 
+**IssuingAccountHolderName** | Pointer to **string** |  | [optional] 
+**IssuingAccountTaxId** | Pointer to **string** |  | [optional] 
+**PaymentAttempts** | Pointer to **[]interface{}** |  | [optional] 
+**ReceivingAccountHolderName** | Pointer to **string** |  | [optional] 
 **ReceivingAccountNumber** | Pointer to **string** |  | [optional] 
 **ReceivingAccountBank** | Pointer to **string** |  | [optional] 
-**ReceivingAccountTaxId** | Pointer to **NullableString** |  | [optional] 
-**ReferenceNumber** | Pointer to **NullableString** |  | [optional] 
-**TrackingCode** | Pointer to **NullableString** |  | [optional] 
+**ReceivingAccountTaxId** | Pointer to **string** |  | [optional] 
+**ReferenceNumber** | Pointer to **string** |  | [optional] 
+**TrackingCode** | Pointer to **string** |  | [optional] 
 **CancelUrl** | Pointer to **string** | URL to redirect the customer after a canceled payment | [optional] 
 **FailureUrl** | Pointer to **string** | URL to redirect the customer after a failed payment | [optional] 
 **RedirectUrl** | **string** | URL to redirect the customer to complete the payment | 
@@ -187,16 +187,6 @@ SetCashierId sets CashierId field to given value.
 
 HasCashierId returns a boolean if a field has been set.
 
-### SetCashierIdNil
-
-`func (o *ChargeOrderResponsePaymentMethod) SetCashierIdNil(b bool)`
-
- SetCashierIdNil sets the value for CashierId to be an explicit nil
-
-### UnsetCashierId
-`func (o *ChargeOrderResponsePaymentMethod) UnsetCashierId()`
-
-UnsetCashierId ensures that no value is present for CashierId, not even an explicit nil
 ### GetReference
 
 `func (o *ChargeOrderResponsePaymentMethod) GetReference() string`
@@ -332,16 +322,6 @@ SetStore sets Store field to given value.
 
 HasStore returns a boolean if a field has been set.
 
-### SetStoreNil
-
-`func (o *ChargeOrderResponsePaymentMethod) SetStoreNil(b bool)`
-
- SetStoreNil sets the value for Store to be an explicit nil
-
-### UnsetStore
-`func (o *ChargeOrderResponsePaymentMethod) UnsetStore()`
-
-UnsetStore ensures that no value is present for Store, not even an explicit nil
 ### GetStoreName
 
 `func (o *ChargeOrderResponsePaymentMethod) GetStoreName() string`
@@ -544,20 +524,20 @@ HasExpYear returns a boolean if a field has been set.
 
 ### GetFraudIndicators
 
-`func (o *ChargeOrderResponsePaymentMethod) GetFraudIndicators() []map[string]interface{}`
+`func (o *ChargeOrderResponsePaymentMethod) GetFraudIndicators() []interface{}`
 
 GetFraudIndicators returns the FraudIndicators field if non-nil, zero value otherwise.
 
 ### GetFraudIndicatorsOk
 
-`func (o *ChargeOrderResponsePaymentMethod) GetFraudIndicatorsOk() (*[]map[string]interface{}, bool)`
+`func (o *ChargeOrderResponsePaymentMethod) GetFraudIndicatorsOk() (*[]interface{}, bool)`
 
 GetFraudIndicatorsOk returns a tuple with the FraudIndicators field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFraudIndicators
 
-`func (o *ChargeOrderResponsePaymentMethod) SetFraudIndicators(v []map[string]interface{})`
+`func (o *ChargeOrderResponsePaymentMethod) SetFraudIndicators(v []interface{})`
 
 SetFraudIndicators sets FraudIndicators field to given value.
 
@@ -717,16 +697,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### SetDescriptionNil
-
-`func (o *ChargeOrderResponsePaymentMethod) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *ChargeOrderResponsePaymentMethod) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetExecutedAt
 
 `func (o *ChargeOrderResponsePaymentMethod) GetExecutedAt() string`
@@ -752,16 +722,6 @@ SetExecutedAt sets ExecutedAt field to given value.
 
 HasExecutedAt returns a boolean if a field has been set.
 
-### SetExecutedAtNil
-
-`func (o *ChargeOrderResponsePaymentMethod) SetExecutedAtNil(b bool)`
-
- SetExecutedAtNil sets the value for ExecutedAt to be an explicit nil
-
-### UnsetExecutedAt
-`func (o *ChargeOrderResponsePaymentMethod) UnsetExecutedAt()`
-
-UnsetExecutedAt ensures that no value is present for ExecutedAt, not even an explicit nil
 ### GetIssuingAccountBank
 
 `func (o *ChargeOrderResponsePaymentMethod) GetIssuingAccountBank() string`
@@ -787,16 +747,6 @@ SetIssuingAccountBank sets IssuingAccountBank field to given value.
 
 HasIssuingAccountBank returns a boolean if a field has been set.
 
-### SetIssuingAccountBankNil
-
-`func (o *ChargeOrderResponsePaymentMethod) SetIssuingAccountBankNil(b bool)`
-
- SetIssuingAccountBankNil sets the value for IssuingAccountBank to be an explicit nil
-
-### UnsetIssuingAccountBank
-`func (o *ChargeOrderResponsePaymentMethod) UnsetIssuingAccountBank()`
-
-UnsetIssuingAccountBank ensures that no value is present for IssuingAccountBank, not even an explicit nil
 ### GetIssuingAccountNumber
 
 `func (o *ChargeOrderResponsePaymentMethod) GetIssuingAccountNumber() string`
@@ -822,16 +772,6 @@ SetIssuingAccountNumber sets IssuingAccountNumber field to given value.
 
 HasIssuingAccountNumber returns a boolean if a field has been set.
 
-### SetIssuingAccountNumberNil
-
-`func (o *ChargeOrderResponsePaymentMethod) SetIssuingAccountNumberNil(b bool)`
-
- SetIssuingAccountNumberNil sets the value for IssuingAccountNumber to be an explicit nil
-
-### UnsetIssuingAccountNumber
-`func (o *ChargeOrderResponsePaymentMethod) UnsetIssuingAccountNumber()`
-
-UnsetIssuingAccountNumber ensures that no value is present for IssuingAccountNumber, not even an explicit nil
 ### GetIssuingAccountHolderName
 
 `func (o *ChargeOrderResponsePaymentMethod) GetIssuingAccountHolderName() string`
@@ -857,16 +797,6 @@ SetIssuingAccountHolderName sets IssuingAccountHolderName field to given value.
 
 HasIssuingAccountHolderName returns a boolean if a field has been set.
 
-### SetIssuingAccountHolderNameNil
-
-`func (o *ChargeOrderResponsePaymentMethod) SetIssuingAccountHolderNameNil(b bool)`
-
- SetIssuingAccountHolderNameNil sets the value for IssuingAccountHolderName to be an explicit nil
-
-### UnsetIssuingAccountHolderName
-`func (o *ChargeOrderResponsePaymentMethod) UnsetIssuingAccountHolderName()`
-
-UnsetIssuingAccountHolderName ensures that no value is present for IssuingAccountHolderName, not even an explicit nil
 ### GetIssuingAccountTaxId
 
 `func (o *ChargeOrderResponsePaymentMethod) GetIssuingAccountTaxId() string`
@@ -892,32 +822,22 @@ SetIssuingAccountTaxId sets IssuingAccountTaxId field to given value.
 
 HasIssuingAccountTaxId returns a boolean if a field has been set.
 
-### SetIssuingAccountTaxIdNil
-
-`func (o *ChargeOrderResponsePaymentMethod) SetIssuingAccountTaxIdNil(b bool)`
-
- SetIssuingAccountTaxIdNil sets the value for IssuingAccountTaxId to be an explicit nil
-
-### UnsetIssuingAccountTaxId
-`func (o *ChargeOrderResponsePaymentMethod) UnsetIssuingAccountTaxId()`
-
-UnsetIssuingAccountTaxId ensures that no value is present for IssuingAccountTaxId, not even an explicit nil
 ### GetPaymentAttempts
 
-`func (o *ChargeOrderResponsePaymentMethod) GetPaymentAttempts() []map[string]interface{}`
+`func (o *ChargeOrderResponsePaymentMethod) GetPaymentAttempts() []interface{}`
 
 GetPaymentAttempts returns the PaymentAttempts field if non-nil, zero value otherwise.
 
 ### GetPaymentAttemptsOk
 
-`func (o *ChargeOrderResponsePaymentMethod) GetPaymentAttemptsOk() (*[]map[string]interface{}, bool)`
+`func (o *ChargeOrderResponsePaymentMethod) GetPaymentAttemptsOk() (*[]interface{}, bool)`
 
 GetPaymentAttemptsOk returns a tuple with the PaymentAttempts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPaymentAttempts
 
-`func (o *ChargeOrderResponsePaymentMethod) SetPaymentAttempts(v []map[string]interface{})`
+`func (o *ChargeOrderResponsePaymentMethod) SetPaymentAttempts(v []interface{})`
 
 SetPaymentAttempts sets PaymentAttempts field to given value.
 
@@ -952,16 +872,6 @@ SetReceivingAccountHolderName sets ReceivingAccountHolderName field to given val
 
 HasReceivingAccountHolderName returns a boolean if a field has been set.
 
-### SetReceivingAccountHolderNameNil
-
-`func (o *ChargeOrderResponsePaymentMethod) SetReceivingAccountHolderNameNil(b bool)`
-
- SetReceivingAccountHolderNameNil sets the value for ReceivingAccountHolderName to be an explicit nil
-
-### UnsetReceivingAccountHolderName
-`func (o *ChargeOrderResponsePaymentMethod) UnsetReceivingAccountHolderName()`
-
-UnsetReceivingAccountHolderName ensures that no value is present for ReceivingAccountHolderName, not even an explicit nil
 ### GetReceivingAccountNumber
 
 `func (o *ChargeOrderResponsePaymentMethod) GetReceivingAccountNumber() string`
@@ -1037,16 +947,6 @@ SetReceivingAccountTaxId sets ReceivingAccountTaxId field to given value.
 
 HasReceivingAccountTaxId returns a boolean if a field has been set.
 
-### SetReceivingAccountTaxIdNil
-
-`func (o *ChargeOrderResponsePaymentMethod) SetReceivingAccountTaxIdNil(b bool)`
-
- SetReceivingAccountTaxIdNil sets the value for ReceivingAccountTaxId to be an explicit nil
-
-### UnsetReceivingAccountTaxId
-`func (o *ChargeOrderResponsePaymentMethod) UnsetReceivingAccountTaxId()`
-
-UnsetReceivingAccountTaxId ensures that no value is present for ReceivingAccountTaxId, not even an explicit nil
 ### GetReferenceNumber
 
 `func (o *ChargeOrderResponsePaymentMethod) GetReferenceNumber() string`
@@ -1072,16 +972,6 @@ SetReferenceNumber sets ReferenceNumber field to given value.
 
 HasReferenceNumber returns a boolean if a field has been set.
 
-### SetReferenceNumberNil
-
-`func (o *ChargeOrderResponsePaymentMethod) SetReferenceNumberNil(b bool)`
-
- SetReferenceNumberNil sets the value for ReferenceNumber to be an explicit nil
-
-### UnsetReferenceNumber
-`func (o *ChargeOrderResponsePaymentMethod) UnsetReferenceNumber()`
-
-UnsetReferenceNumber ensures that no value is present for ReferenceNumber, not even an explicit nil
 ### GetTrackingCode
 
 `func (o *ChargeOrderResponsePaymentMethod) GetTrackingCode() string`
@@ -1107,16 +997,6 @@ SetTrackingCode sets TrackingCode field to given value.
 
 HasTrackingCode returns a boolean if a field has been set.
 
-### SetTrackingCodeNil
-
-`func (o *ChargeOrderResponsePaymentMethod) SetTrackingCodeNil(b bool)`
-
- SetTrackingCodeNil sets the value for TrackingCode to be an explicit nil
-
-### UnsetTrackingCode
-`func (o *ChargeOrderResponsePaymentMethod) UnsetTrackingCode()`
-
-UnsetTrackingCode ensures that no value is present for TrackingCode, not even an explicit nil
 ### GetCancelUrl
 
 `func (o *ChargeOrderResponsePaymentMethod) GetCancelUrl() string`

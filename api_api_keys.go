@@ -654,6 +654,7 @@ func (a *ApiKeysAPIService) GetApiKeysExecute(r ApiGetApiKeysRequest) (*GetApiKe
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
 		r.limit = &defaultValue
 	}
 	if r.next != nil {

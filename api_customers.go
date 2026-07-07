@@ -313,14 +313,14 @@ type ApiCreateCustomerFiscalEntitiesRequest struct {
 	ctx context.Context
 	ApiService CustomersAPI
 	id string
-	customerFiscalEntitiesRequest *CustomerFiscalEntitiesRequest
+	fiscalEntityRequest *FiscalEntityRequest
 	acceptLanguage *string
 	xChildCompanyId *string
 }
 
 // requested field for customer fiscal entities
-func (r ApiCreateCustomerFiscalEntitiesRequest) CustomerFiscalEntitiesRequest(customerFiscalEntitiesRequest CustomerFiscalEntitiesRequest) ApiCreateCustomerFiscalEntitiesRequest {
-	r.customerFiscalEntitiesRequest = &customerFiscalEntitiesRequest
+func (r ApiCreateCustomerFiscalEntitiesRequest) FiscalEntityRequest(fiscalEntityRequest FiscalEntityRequest) ApiCreateCustomerFiscalEntitiesRequest {
+	r.fiscalEntityRequest = &fiscalEntityRequest
 	return r
 }
 
@@ -378,8 +378,8 @@ func (a *CustomersAPIService) CreateCustomerFiscalEntitiesExecute(r ApiCreateCus
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.customerFiscalEntitiesRequest == nil {
-		return localVarReturnValue, nil, reportError("customerFiscalEntitiesRequest is required and must be specified")
+	if r.fiscalEntityRequest == nil {
+		return localVarReturnValue, nil, reportError("fiscalEntityRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -406,7 +406,7 @@ func (a *CustomersAPIService) CreateCustomerFiscalEntitiesExecute(r ApiCreateCus
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.customerFiscalEntitiesRequest
+	localVarPostBody = r.fiscalEntityRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -899,6 +899,7 @@ func (a *CustomersAPIService) GetCustomersExecute(r ApiGetCustomersRequest) (*Cu
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
 		r.limit = &defaultValue
 	}
 	if r.search != nil {
@@ -1174,14 +1175,14 @@ type ApiUpdateCustomerFiscalEntitiesRequest struct {
 	ApiService CustomersAPI
 	id string
 	fiscalEntitiesId string
-	customerUpdateFiscalEntitiesRequest *CustomerUpdateFiscalEntitiesRequest
+	updateFiscalEntityRequest *UpdateFiscalEntityRequest
 	acceptLanguage *string
 	xChildCompanyId *string
 }
 
 // requested field for customer update fiscal entities
-func (r ApiUpdateCustomerFiscalEntitiesRequest) CustomerUpdateFiscalEntitiesRequest(customerUpdateFiscalEntitiesRequest CustomerUpdateFiscalEntitiesRequest) ApiUpdateCustomerFiscalEntitiesRequest {
-	r.customerUpdateFiscalEntitiesRequest = &customerUpdateFiscalEntitiesRequest
+func (r ApiUpdateCustomerFiscalEntitiesRequest) UpdateFiscalEntityRequest(updateFiscalEntityRequest UpdateFiscalEntityRequest) ApiUpdateCustomerFiscalEntitiesRequest {
+	r.updateFiscalEntityRequest = &updateFiscalEntityRequest
 	return r
 }
 
@@ -1242,8 +1243,8 @@ func (a *CustomersAPIService) UpdateCustomerFiscalEntitiesExecute(r ApiUpdateCus
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.customerUpdateFiscalEntitiesRequest == nil {
-		return localVarReturnValue, nil, reportError("customerUpdateFiscalEntitiesRequest is required and must be specified")
+	if r.updateFiscalEntityRequest == nil {
+		return localVarReturnValue, nil, reportError("updateFiscalEntityRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1270,7 +1271,7 @@ func (a *CustomersAPIService) UpdateCustomerFiscalEntitiesExecute(r ApiUpdateCus
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.customerUpdateFiscalEntitiesRequest
+	localVarPostBody = r.updateFiscalEntityRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

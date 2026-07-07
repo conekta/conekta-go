@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AuthenticationToken** | Pointer to **string** | It is occupied as a user when authenticated with basic authentication, with a blank password. This value will only appear once, in the request to create a new key. Copy and save it in a safe place. | [optional] 
 **Active** | Pointer to **bool** | Indicates if the api key is active | [optional] 
 **CreatedAt** | Pointer to **int64** | Unix timestamp in seconds of when the api key was created | [optional] 
 **UpdatedAt** | Pointer to **int64** | Unix timestamp in seconds of when the api key was last updated | [optional] 
-**DeactivatedAt** | Pointer to **NullableInt64** | Unix timestamp in seconds of when the api key was deleted | [optional] 
-**LastUsedAt** | Pointer to **NullableInt64** | Unix timestamp in seconds with the api key was used | [optional] 
+**DeactivatedAt** | Pointer to **int64** | Unix timestamp in seconds of when the api key was deleted | [optional] 
+**LastUsedAt** | Pointer to **int64** | Unix timestamp in seconds with the api key was used | [optional] 
 **Description** | Pointer to **string** | A name or brief explanation of what this api key is used for | [optional] 
 **Id** | Pointer to **string** | Unique identifier of the api key | [optional] 
 **Livemode** | Pointer to **bool** | Indicates if the api key is in production | [optional] 
 **Object** | Pointer to **string** | Object name, value is &#39;api_key&#39; | [optional] 
 **Prefix** | Pointer to **string** | The first few characters of the authentication_token | [optional] 
 **Role** | Pointer to **string** | Indicates if the api key is private or public | [optional] 
-**AuthenticationToken** | Pointer to **string** | It is occupied as a user when authenticated with basic authentication, with a blank password. This value will only appear once, in the request to create a new key. Copy and save it in a safe place. | [optional] 
 
 ## Methods
 
@@ -35,6 +35,31 @@ will change when the set of required properties is changed
 NewApiKeyCreateResponseWithDefaults instantiates a new ApiKeyCreateResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAuthenticationToken
+
+`func (o *ApiKeyCreateResponse) GetAuthenticationToken() string`
+
+GetAuthenticationToken returns the AuthenticationToken field if non-nil, zero value otherwise.
+
+### GetAuthenticationTokenOk
+
+`func (o *ApiKeyCreateResponse) GetAuthenticationTokenOk() (*string, bool)`
+
+GetAuthenticationTokenOk returns a tuple with the AuthenticationToken field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticationToken
+
+`func (o *ApiKeyCreateResponse) SetAuthenticationToken(v string)`
+
+SetAuthenticationToken sets AuthenticationToken field to given value.
+
+### HasAuthenticationToken
+
+`func (o *ApiKeyCreateResponse) HasAuthenticationToken() bool`
+
+HasAuthenticationToken returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -136,16 +161,6 @@ SetDeactivatedAt sets DeactivatedAt field to given value.
 
 HasDeactivatedAt returns a boolean if a field has been set.
 
-### SetDeactivatedAtNil
-
-`func (o *ApiKeyCreateResponse) SetDeactivatedAtNil(b bool)`
-
- SetDeactivatedAtNil sets the value for DeactivatedAt to be an explicit nil
-
-### UnsetDeactivatedAt
-`func (o *ApiKeyCreateResponse) UnsetDeactivatedAt()`
-
-UnsetDeactivatedAt ensures that no value is present for DeactivatedAt, not even an explicit nil
 ### GetLastUsedAt
 
 `func (o *ApiKeyCreateResponse) GetLastUsedAt() int64`
@@ -171,16 +186,6 @@ SetLastUsedAt sets LastUsedAt field to given value.
 
 HasLastUsedAt returns a boolean if a field has been set.
 
-### SetLastUsedAtNil
-
-`func (o *ApiKeyCreateResponse) SetLastUsedAtNil(b bool)`
-
- SetLastUsedAtNil sets the value for LastUsedAt to be an explicit nil
-
-### UnsetLastUsedAt
-`func (o *ApiKeyCreateResponse) UnsetLastUsedAt()`
-
-UnsetLastUsedAt ensures that no value is present for LastUsedAt, not even an explicit nil
 ### GetDescription
 
 `func (o *ApiKeyCreateResponse) GetDescription() string`
@@ -330,31 +335,6 @@ SetRole sets Role field to given value.
 `func (o *ApiKeyCreateResponse) HasRole() bool`
 
 HasRole returns a boolean if a field has been set.
-
-### GetAuthenticationToken
-
-`func (o *ApiKeyCreateResponse) GetAuthenticationToken() string`
-
-GetAuthenticationToken returns the AuthenticationToken field if non-nil, zero value otherwise.
-
-### GetAuthenticationTokenOk
-
-`func (o *ApiKeyCreateResponse) GetAuthenticationTokenOk() (*string, bool)`
-
-GetAuthenticationTokenOk returns a tuple with the AuthenticationToken field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAuthenticationToken
-
-`func (o *ApiKeyCreateResponse) SetAuthenticationToken(v string)`
-
-SetAuthenticationToken sets AuthenticationToken field to given value.
-
-### HasAuthenticationToken
-
-`func (o *ApiKeyCreateResponse) HasAuthenticationToken() bool`
-
-HasAuthenticationToken returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

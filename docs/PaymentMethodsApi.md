@@ -248,7 +248,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomerPaymentMethods
 
-> UpdateCustomerPaymentMethodsResponse UpdateCustomerPaymentMethods(ctx, id, paymentMethodId).UpdatePaymentMethods(updatePaymentMethods).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> UpdateCustomerPaymentMethodsResponse UpdateCustomerPaymentMethods(ctx, id, paymentMethodId).UpdatePaymentMethodsCard(updatePaymentMethodsCard).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update Payment Method
 
@@ -269,13 +269,13 @@ import (
 func main() {
 	id := "6307a60c41de27127515a575" // string | Identifier of the resource
 	paymentMethodId := "src_2tQ974hSHcsdeSZHG" // string | Identifier of the payment method
-	updatePaymentMethods := *openapiclient.NewUpdatePaymentMethods() // UpdatePaymentMethods | requested field for customer payment methods
+	updatePaymentMethodsCard := *openapiclient.NewUpdatePaymentMethodsCard() // UpdatePaymentMethodsCard | requested field for customer payment methods
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PaymentMethodsAPI.UpdateCustomerPaymentMethods(context.Background(), id, paymentMethodId).UpdatePaymentMethods(updatePaymentMethods).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	resp, r, err := apiClient.PaymentMethodsAPI.UpdateCustomerPaymentMethods(context.Background(), id, paymentMethodId).UpdatePaymentMethodsCard(updatePaymentMethodsCard).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PaymentMethodsAPI.UpdateCustomerPaymentMethods``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -303,7 +303,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updatePaymentMethods** | [**UpdatePaymentMethods**](UpdatePaymentMethods.md) | requested field for customer payment methods | 
+ **updatePaymentMethodsCard** | [**UpdatePaymentMethodsCard**](UpdatePaymentMethodsCard.md) | requested field for customer payment methods | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
  **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 

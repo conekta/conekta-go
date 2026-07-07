@@ -792,6 +792,7 @@ func (a *OrdersAPIService) GetOrdersExecute(r ApiGetOrdersRequest) (*GetOrdersRe
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
 		r.limit = &defaultValue
 	}
 	if r.search != nil {
@@ -1454,13 +1455,13 @@ type ApiUpdateOrderRequest struct {
 	ctx context.Context
 	ApiService OrdersAPI
 	id string
-	orderUpdateRequest *OrderUpdateRequest
+	orderUpdate *OrderUpdate
 	acceptLanguage *string
 }
 
 // requested field for an order
-func (r ApiUpdateOrderRequest) OrderUpdateRequest(orderUpdateRequest OrderUpdateRequest) ApiUpdateOrderRequest {
-	r.orderUpdateRequest = &orderUpdateRequest
+func (r ApiUpdateOrderRequest) OrderUpdate(orderUpdate OrderUpdate) ApiUpdateOrderRequest {
+	r.orderUpdate = &orderUpdate
 	return r
 }
 
@@ -1512,8 +1513,8 @@ func (a *OrdersAPIService) UpdateOrderExecute(r ApiUpdateOrderRequest) (*OrderRe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.orderUpdateRequest == nil {
-		return localVarReturnValue, nil, reportError("orderUpdateRequest is required and must be specified")
+	if r.orderUpdate == nil {
+		return localVarReturnValue, nil, reportError("orderUpdate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1537,7 +1538,7 @@ func (a *OrdersAPIService) UpdateOrderExecute(r ApiUpdateOrderRequest) (*OrderRe
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.orderUpdateRequest
+	localVarPostBody = r.orderUpdate
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

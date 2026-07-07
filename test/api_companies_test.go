@@ -14,17 +14,15 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/conekta/conekta-go"
 )
 
 func Test_conekta_CompaniesAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test CompaniesAPIService GetCompanies", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("mock response is missing the required 'active' property that the v5 model requires (mock/model mismatch)")
 
 		resp, httpRes, err := apiClient.CompaniesAPI.GetCompanies(context.Background()).Execute()
 
@@ -36,9 +34,9 @@ func Test_conekta_CompaniesAPIService(t *testing.T) {
 
 	t.Run("Test CompaniesAPIService GetCompany", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("mock response is missing the required 'active' property that the v5 model requires (mock/model mismatch)")
 
-		var id string
+		id := "6441bb27659a060465da7335"
 
 		resp, httpRes, err := apiClient.CompaniesAPI.GetCompany(context.Background(), id).Execute()
 

@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Active** | Pointer to **bool** | Indicates if the api key is active | [optional] 
 **CreatedAt** | Pointer to **int64** | Unix timestamp in seconds of when the api key was created | [optional] 
 **UpdatedAt** | Pointer to **int64** | Unix timestamp in seconds of when the api key was last updated | [optional] 
-**DeactivatedAt** | Pointer to **NullableInt64** | Unix timestamp in seconds of when the api key was deleted | [optional] 
-**LastUsedAt** | Pointer to **NullableInt64** | Unix timestamp in seconds with the api key was used | [optional] 
+**DeactivatedAt** | Pointer to **int64** | Unix timestamp in seconds of when the api key was deleted | [optional] 
+**LastUsedAt** | Pointer to **int64** | Unix timestamp in seconds with the api key was used | [optional] 
 **Description** | Pointer to **string** | A name or brief explanation of what this api key is used for | [optional] 
 **Id** | Pointer to **string** | Unique identifier of the api key | [optional] 
 **Livemode** | Pointer to **bool** | Indicates if the api key is in production | [optional] 
@@ -135,16 +135,6 @@ SetDeactivatedAt sets DeactivatedAt field to given value.
 
 HasDeactivatedAt returns a boolean if a field has been set.
 
-### SetDeactivatedAtNil
-
-`func (o *ApiKeyResponse) SetDeactivatedAtNil(b bool)`
-
- SetDeactivatedAtNil sets the value for DeactivatedAt to be an explicit nil
-
-### UnsetDeactivatedAt
-`func (o *ApiKeyResponse) UnsetDeactivatedAt()`
-
-UnsetDeactivatedAt ensures that no value is present for DeactivatedAt, not even an explicit nil
 ### GetLastUsedAt
 
 `func (o *ApiKeyResponse) GetLastUsedAt() int64`
@@ -170,16 +160,6 @@ SetLastUsedAt sets LastUsedAt field to given value.
 
 HasLastUsedAt returns a boolean if a field has been set.
 
-### SetLastUsedAtNil
-
-`func (o *ApiKeyResponse) SetLastUsedAtNil(b bool)`
-
- SetLastUsedAtNil sets the value for LastUsedAt to be an explicit nil
-
-### UnsetLastUsedAt
-`func (o *ApiKeyResponse) UnsetLastUsedAt()`
-
-UnsetLastUsedAt ensures that no value is present for LastUsedAt, not even an explicit nil
 ### GetDescription
 
 `func (o *ApiKeyResponse) GetDescription() string`

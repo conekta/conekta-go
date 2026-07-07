@@ -233,13 +233,13 @@ func (a *PayoutOrdersAPIService) CancelPayoutOrderByIdExecute(r ApiCancelPayoutO
 type ApiCreatePayoutOrderRequest struct {
 	ctx context.Context
 	ApiService PayoutOrdersAPI
-	payoutOrder *PayoutOrder
+	payoutOrderRequest *PayoutOrderRequest
 	acceptLanguage *string
 }
 
 // requested field for payout order
-func (r ApiCreatePayoutOrderRequest) PayoutOrder(payoutOrder PayoutOrder) ApiCreatePayoutOrderRequest {
-	r.payoutOrder = &payoutOrder
+func (r ApiCreatePayoutOrderRequest) PayoutOrderRequest(payoutOrderRequest PayoutOrderRequest) ApiCreatePayoutOrderRequest {
+	r.payoutOrderRequest = &payoutOrderRequest
 	return r
 }
 
@@ -288,8 +288,8 @@ func (a *PayoutOrdersAPIService) CreatePayoutOrderExecute(r ApiCreatePayoutOrder
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.payoutOrder == nil {
-		return localVarReturnValue, nil, reportError("payoutOrder is required and must be specified")
+	if r.payoutOrderRequest == nil {
+		return localVarReturnValue, nil, reportError("payoutOrderRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -313,7 +313,7 @@ func (a *PayoutOrdersAPIService) CreatePayoutOrderExecute(r ApiCreatePayoutOrder
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.payoutOrder
+	localVarPostBody = r.payoutOrderRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -634,6 +634,7 @@ func (a *PayoutOrdersAPIService) GetPayoutOrdersExecute(r ApiGetPayoutOrdersRequ
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
 		r.limit = &defaultValue
 	}
 	if r.search != nil {

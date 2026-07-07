@@ -14,19 +14,15 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/conekta/conekta-go"
 )
 
 func Test_conekta_TransfersAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test TransfersAPIService GetTransfer", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "64462930651b2600017b6d43"
 
 		resp, httpRes, err := apiClient.TransfersAPI.GetTransfer(context.Background(), id).Execute()
 
@@ -38,9 +34,7 @@ func Test_conekta_TransfersAPIService(t *testing.T) {
 
 	t.Run("Test TransfersAPIService GetTransfers", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.TransfersAPI.GetTransfers(context.Background()).Execute()
+		resp, httpRes, err := apiClient.TransfersAPI.GetTransfers(context.Background()).Limit(5).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -27,7 +27,7 @@ type CheckoutResponse struct {
 	PlanIds []string `json:"plan_ids,omitempty"`
 	CanNotExpire *bool `json:"can_not_expire,omitempty"`
 	EmailsSent *int32 `json:"emails_sent,omitempty"`
-	ExcludeCardNetworks []map[string]interface{} `json:"exclude_card_networks,omitempty"`
+	ExcludeCardNetworks []string `json:"exclude_card_networks,omitempty"`
 	ExpiresAt *int64 `json:"expires_at,omitempty"`
 	FailureUrl *string `json:"failure_url,omitempty"`
 	Force3dsFlow *bool `json:"force_3ds_flow,omitempty"`
@@ -41,12 +41,13 @@ type CheckoutResponse struct {
 	NeedsShippingContact *bool `json:"needs_shipping_contact,omitempty"`
 	Object string `json:"object"`
 	PaidPaymentsCount *int32 `json:"paid_payments_count,omitempty"`
-	PaymentsLimitCount NullableInt32 `json:"payments_limit_count,omitempty"`
+	PaymentsLimitCount *int32 `json:"payments_limit_count,omitempty"`
 	Recurrent *bool `json:"recurrent,omitempty"`
 	Slug *string `json:"slug,omitempty"`
 	SmsSent *int32 `json:"sms_sent,omitempty"`
 	StartsAt *int32 `json:"starts_at,omitempty"`
 	Status *string `json:"status,omitempty"`
+	// The URL to redirect to after a successful payment.
 	SuccessUrl *string `json:"success_url,omitempty"`
 	Type *string `json:"type,omitempty"`
 	Url *string `json:"url,omitempty"`
@@ -205,9 +206,9 @@ func (o *CheckoutResponse) SetEmailsSent(v int32) {
 }
 
 // GetExcludeCardNetworks returns the ExcludeCardNetworks field value if set, zero value otherwise.
-func (o *CheckoutResponse) GetExcludeCardNetworks() []map[string]interface{} {
+func (o *CheckoutResponse) GetExcludeCardNetworks() []string {
 	if o == nil || IsNil(o.ExcludeCardNetworks) {
-		var ret []map[string]interface{}
+		var ret []string
 		return ret
 	}
 	return o.ExcludeCardNetworks
@@ -215,7 +216,7 @@ func (o *CheckoutResponse) GetExcludeCardNetworks() []map[string]interface{} {
 
 // GetExcludeCardNetworksOk returns a tuple with the ExcludeCardNetworks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CheckoutResponse) GetExcludeCardNetworksOk() ([]map[string]interface{}, bool) {
+func (o *CheckoutResponse) GetExcludeCardNetworksOk() ([]string, bool) {
 	if o == nil || IsNil(o.ExcludeCardNetworks) {
 		return nil, false
 	}
@@ -231,8 +232,8 @@ func (o *CheckoutResponse) HasExcludeCardNetworks() bool {
 	return false
 }
 
-// SetExcludeCardNetworks gets a reference to the given []map[string]interface{} and assigns it to the ExcludeCardNetworks field.
-func (o *CheckoutResponse) SetExcludeCardNetworks(v []map[string]interface{}) {
+// SetExcludeCardNetworks gets a reference to the given []string and assigns it to the ExcludeCardNetworks field.
+func (o *CheckoutResponse) SetExcludeCardNetworks(v []string) {
 	o.ExcludeCardNetworks = v
 }
 
@@ -588,46 +589,36 @@ func (o *CheckoutResponse) SetPaidPaymentsCount(v int32) {
 	o.PaidPaymentsCount = &v
 }
 
-// GetPaymentsLimitCount returns the PaymentsLimitCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPaymentsLimitCount returns the PaymentsLimitCount field value if set, zero value otherwise.
 func (o *CheckoutResponse) GetPaymentsLimitCount() int32 {
-	if o == nil || IsNil(o.PaymentsLimitCount.Get()) {
+	if o == nil || IsNil(o.PaymentsLimitCount) {
 		var ret int32
 		return ret
 	}
-	return *o.PaymentsLimitCount.Get()
+	return *o.PaymentsLimitCount
 }
 
 // GetPaymentsLimitCountOk returns a tuple with the PaymentsLimitCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CheckoutResponse) GetPaymentsLimitCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PaymentsLimitCount) {
 		return nil, false
 	}
-	return o.PaymentsLimitCount.Get(), o.PaymentsLimitCount.IsSet()
+	return o.PaymentsLimitCount, true
 }
 
 // HasPaymentsLimitCount returns a boolean if a field has been set.
 func (o *CheckoutResponse) HasPaymentsLimitCount() bool {
-	if o != nil && o.PaymentsLimitCount.IsSet() {
+	if o != nil && !IsNil(o.PaymentsLimitCount) {
 		return true
 	}
 
 	return false
 }
 
-// SetPaymentsLimitCount gets a reference to the given NullableInt32 and assigns it to the PaymentsLimitCount field.
+// SetPaymentsLimitCount gets a reference to the given int32 and assigns it to the PaymentsLimitCount field.
 func (o *CheckoutResponse) SetPaymentsLimitCount(v int32) {
-	o.PaymentsLimitCount.Set(&v)
-}
-// SetPaymentsLimitCountNil sets the value for PaymentsLimitCount to be an explicit nil
-func (o *CheckoutResponse) SetPaymentsLimitCountNil() {
-	o.PaymentsLimitCount.Set(nil)
-}
-
-// UnsetPaymentsLimitCount ensures that no value is present for PaymentsLimitCount, not even an explicit nil
-func (o *CheckoutResponse) UnsetPaymentsLimitCount() {
-	o.PaymentsLimitCount.Unset()
+	o.PaymentsLimitCount = &v
 }
 
 // GetRecurrent returns the Recurrent field value if set, zero value otherwise.
@@ -939,8 +930,8 @@ func (o CheckoutResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PaidPaymentsCount) {
 		toSerialize["paid_payments_count"] = o.PaidPaymentsCount
 	}
-	if o.PaymentsLimitCount.IsSet() {
-		toSerialize["payments_limit_count"] = o.PaymentsLimitCount.Get()
+	if !IsNil(o.PaymentsLimitCount) {
+		toSerialize["payments_limit_count"] = o.PaymentsLimitCount
 	}
 	if !IsNil(o.Recurrent) {
 		toSerialize["recurrent"] = o.Recurrent

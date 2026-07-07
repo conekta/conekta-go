@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **ExpMonth** | Pointer to **string** |  | [optional] 
 **ExpYear** | Pointer to **string** |  | [optional] 
 **Brand** | Pointer to **string** |  | [optional] 
+**Issuer** | Pointer to **string** | Name of the institution that issued the card | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Default** | Pointer to **bool** |  | [optional] 
 **VisibleOnCheckout** | Pointer to **bool** |  | [optional] 
@@ -293,6 +294,31 @@ SetBrand sets Brand field to given value.
 `func (o *PaymentMethodCardResponse) HasBrand() bool`
 
 HasBrand returns a boolean if a field has been set.
+
+### GetIssuer
+
+`func (o *PaymentMethodCardResponse) GetIssuer() string`
+
+GetIssuer returns the Issuer field if non-nil, zero value otherwise.
+
+### GetIssuerOk
+
+`func (o *PaymentMethodCardResponse) GetIssuerOk() (*string, bool)`
+
+GetIssuerOk returns a tuple with the Issuer field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIssuer
+
+`func (o *PaymentMethodCardResponse) SetIssuer(v string)`
+
+SetIssuer sets Issuer field to given value.
+
+### HasIssuer
+
+`func (o *PaymentMethodCardResponse) HasIssuer() bool`
+
+HasIssuer returns a boolean if a field has been set.
 
 ### GetName
 

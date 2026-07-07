@@ -25,20 +25,20 @@ type PaymentMethodBankTransfer struct {
 	Object string `json:"object"`
 	Bank *string `json:"bank,omitempty"`
 	Clabe *string `json:"clabe,omitempty"`
-	Description NullableString `json:"description,omitempty"`
-	ExecutedAt NullableString `json:"executed_at,omitempty"`
+	Description *string `json:"description,omitempty"`
+	ExecutedAt *string `json:"executed_at,omitempty"`
 	ExpiresAt *int64 `json:"expires_at,omitempty"`
-	IssuingAccountBank NullableString `json:"issuing_account_bank,omitempty"`
-	IssuingAccountNumber NullableString `json:"issuing_account_number,omitempty"`
-	IssuingAccountHolderName NullableString `json:"issuing_account_holder_name,omitempty"`
-	IssuingAccountTaxId NullableString `json:"issuing_account_tax_id,omitempty"`
+	IssuingAccountBank *string `json:"issuing_account_bank,omitempty"`
+	IssuingAccountNumber *string `json:"issuing_account_number,omitempty"`
+	IssuingAccountHolderName *string `json:"issuing_account_holder_name,omitempty"`
+	IssuingAccountTaxId *string `json:"issuing_account_tax_id,omitempty"`
 	PaymentAttempts []interface{} `json:"payment_attempts,omitempty"`
-	ReceivingAccountHolderName NullableString `json:"receiving_account_holder_name,omitempty"`
+	ReceivingAccountHolderName *string `json:"receiving_account_holder_name,omitempty"`
 	ReceivingAccountNumber *string `json:"receiving_account_number,omitempty"`
 	ReceivingAccountBank *string `json:"receiving_account_bank,omitempty"`
-	ReceivingAccountTaxId NullableString `json:"receiving_account_tax_id,omitempty"`
-	ReferenceNumber NullableString `json:"reference_number,omitempty"`
-	TrackingCode NullableString `json:"tracking_code,omitempty"`
+	ReceivingAccountTaxId *string `json:"receiving_account_tax_id,omitempty"`
+	ReferenceNumber *string `json:"reference_number,omitempty"`
+	TrackingCode *string `json:"tracking_code,omitempty"`
 	CustomerIpAddress *string `json:"customer_ip_address,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -183,88 +183,68 @@ func (o *PaymentMethodBankTransfer) SetClabe(v string) {
 	o.Clabe = &v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetDescription returns the Description field value if set, zero value otherwise.
 func (o *PaymentMethodBankTransfer) GetDescription() string {
-	if o == nil || IsNil(o.Description.Get()) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
-	return *o.Description.Get()
+	return *o.Description
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PaymentMethodBankTransfer) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
-	return o.Description.Get(), o.Description.IsSet()
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *PaymentMethodBankTransfer) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
 	return false
 }
 
-// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+// SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *PaymentMethodBankTransfer) SetDescription(v string) {
-	o.Description.Set(&v)
-}
-// SetDescriptionNil sets the value for Description to be an explicit nil
-func (o *PaymentMethodBankTransfer) SetDescriptionNil() {
-	o.Description.Set(nil)
+	o.Description = &v
 }
 
-// UnsetDescription ensures that no value is present for Description, not even an explicit nil
-func (o *PaymentMethodBankTransfer) UnsetDescription() {
-	o.Description.Unset()
-}
-
-// GetExecutedAt returns the ExecutedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetExecutedAt returns the ExecutedAt field value if set, zero value otherwise.
 func (o *PaymentMethodBankTransfer) GetExecutedAt() string {
-	if o == nil || IsNil(o.ExecutedAt.Get()) {
+	if o == nil || IsNil(o.ExecutedAt) {
 		var ret string
 		return ret
 	}
-	return *o.ExecutedAt.Get()
+	return *o.ExecutedAt
 }
 
 // GetExecutedAtOk returns a tuple with the ExecutedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PaymentMethodBankTransfer) GetExecutedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExecutedAt) {
 		return nil, false
 	}
-	return o.ExecutedAt.Get(), o.ExecutedAt.IsSet()
+	return o.ExecutedAt, true
 }
 
 // HasExecutedAt returns a boolean if a field has been set.
 func (o *PaymentMethodBankTransfer) HasExecutedAt() bool {
-	if o != nil && o.ExecutedAt.IsSet() {
+	if o != nil && !IsNil(o.ExecutedAt) {
 		return true
 	}
 
 	return false
 }
 
-// SetExecutedAt gets a reference to the given NullableString and assigns it to the ExecutedAt field.
+// SetExecutedAt gets a reference to the given string and assigns it to the ExecutedAt field.
 func (o *PaymentMethodBankTransfer) SetExecutedAt(v string) {
-	o.ExecutedAt.Set(&v)
-}
-// SetExecutedAtNil sets the value for ExecutedAt to be an explicit nil
-func (o *PaymentMethodBankTransfer) SetExecutedAtNil() {
-	o.ExecutedAt.Set(nil)
-}
-
-// UnsetExecutedAt ensures that no value is present for ExecutedAt, not even an explicit nil
-func (o *PaymentMethodBankTransfer) UnsetExecutedAt() {
-	o.ExecutedAt.Unset()
+	o.ExecutedAt = &v
 }
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
@@ -299,172 +279,132 @@ func (o *PaymentMethodBankTransfer) SetExpiresAt(v int64) {
 	o.ExpiresAt = &v
 }
 
-// GetIssuingAccountBank returns the IssuingAccountBank field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetIssuingAccountBank returns the IssuingAccountBank field value if set, zero value otherwise.
 func (o *PaymentMethodBankTransfer) GetIssuingAccountBank() string {
-	if o == nil || IsNil(o.IssuingAccountBank.Get()) {
+	if o == nil || IsNil(o.IssuingAccountBank) {
 		var ret string
 		return ret
 	}
-	return *o.IssuingAccountBank.Get()
+	return *o.IssuingAccountBank
 }
 
 // GetIssuingAccountBankOk returns a tuple with the IssuingAccountBank field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PaymentMethodBankTransfer) GetIssuingAccountBankOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IssuingAccountBank) {
 		return nil, false
 	}
-	return o.IssuingAccountBank.Get(), o.IssuingAccountBank.IsSet()
+	return o.IssuingAccountBank, true
 }
 
 // HasIssuingAccountBank returns a boolean if a field has been set.
 func (o *PaymentMethodBankTransfer) HasIssuingAccountBank() bool {
-	if o != nil && o.IssuingAccountBank.IsSet() {
+	if o != nil && !IsNil(o.IssuingAccountBank) {
 		return true
 	}
 
 	return false
 }
 
-// SetIssuingAccountBank gets a reference to the given NullableString and assigns it to the IssuingAccountBank field.
+// SetIssuingAccountBank gets a reference to the given string and assigns it to the IssuingAccountBank field.
 func (o *PaymentMethodBankTransfer) SetIssuingAccountBank(v string) {
-	o.IssuingAccountBank.Set(&v)
-}
-// SetIssuingAccountBankNil sets the value for IssuingAccountBank to be an explicit nil
-func (o *PaymentMethodBankTransfer) SetIssuingAccountBankNil() {
-	o.IssuingAccountBank.Set(nil)
+	o.IssuingAccountBank = &v
 }
 
-// UnsetIssuingAccountBank ensures that no value is present for IssuingAccountBank, not even an explicit nil
-func (o *PaymentMethodBankTransfer) UnsetIssuingAccountBank() {
-	o.IssuingAccountBank.Unset()
-}
-
-// GetIssuingAccountNumber returns the IssuingAccountNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetIssuingAccountNumber returns the IssuingAccountNumber field value if set, zero value otherwise.
 func (o *PaymentMethodBankTransfer) GetIssuingAccountNumber() string {
-	if o == nil || IsNil(o.IssuingAccountNumber.Get()) {
+	if o == nil || IsNil(o.IssuingAccountNumber) {
 		var ret string
 		return ret
 	}
-	return *o.IssuingAccountNumber.Get()
+	return *o.IssuingAccountNumber
 }
 
 // GetIssuingAccountNumberOk returns a tuple with the IssuingAccountNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PaymentMethodBankTransfer) GetIssuingAccountNumberOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IssuingAccountNumber) {
 		return nil, false
 	}
-	return o.IssuingAccountNumber.Get(), o.IssuingAccountNumber.IsSet()
+	return o.IssuingAccountNumber, true
 }
 
 // HasIssuingAccountNumber returns a boolean if a field has been set.
 func (o *PaymentMethodBankTransfer) HasIssuingAccountNumber() bool {
-	if o != nil && o.IssuingAccountNumber.IsSet() {
+	if o != nil && !IsNil(o.IssuingAccountNumber) {
 		return true
 	}
 
 	return false
 }
 
-// SetIssuingAccountNumber gets a reference to the given NullableString and assigns it to the IssuingAccountNumber field.
+// SetIssuingAccountNumber gets a reference to the given string and assigns it to the IssuingAccountNumber field.
 func (o *PaymentMethodBankTransfer) SetIssuingAccountNumber(v string) {
-	o.IssuingAccountNumber.Set(&v)
-}
-// SetIssuingAccountNumberNil sets the value for IssuingAccountNumber to be an explicit nil
-func (o *PaymentMethodBankTransfer) SetIssuingAccountNumberNil() {
-	o.IssuingAccountNumber.Set(nil)
+	o.IssuingAccountNumber = &v
 }
 
-// UnsetIssuingAccountNumber ensures that no value is present for IssuingAccountNumber, not even an explicit nil
-func (o *PaymentMethodBankTransfer) UnsetIssuingAccountNumber() {
-	o.IssuingAccountNumber.Unset()
-}
-
-// GetIssuingAccountHolderName returns the IssuingAccountHolderName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetIssuingAccountHolderName returns the IssuingAccountHolderName field value if set, zero value otherwise.
 func (o *PaymentMethodBankTransfer) GetIssuingAccountHolderName() string {
-	if o == nil || IsNil(o.IssuingAccountHolderName.Get()) {
+	if o == nil || IsNil(o.IssuingAccountHolderName) {
 		var ret string
 		return ret
 	}
-	return *o.IssuingAccountHolderName.Get()
+	return *o.IssuingAccountHolderName
 }
 
 // GetIssuingAccountHolderNameOk returns a tuple with the IssuingAccountHolderName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PaymentMethodBankTransfer) GetIssuingAccountHolderNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IssuingAccountHolderName) {
 		return nil, false
 	}
-	return o.IssuingAccountHolderName.Get(), o.IssuingAccountHolderName.IsSet()
+	return o.IssuingAccountHolderName, true
 }
 
 // HasIssuingAccountHolderName returns a boolean if a field has been set.
 func (o *PaymentMethodBankTransfer) HasIssuingAccountHolderName() bool {
-	if o != nil && o.IssuingAccountHolderName.IsSet() {
+	if o != nil && !IsNil(o.IssuingAccountHolderName) {
 		return true
 	}
 
 	return false
 }
 
-// SetIssuingAccountHolderName gets a reference to the given NullableString and assigns it to the IssuingAccountHolderName field.
+// SetIssuingAccountHolderName gets a reference to the given string and assigns it to the IssuingAccountHolderName field.
 func (o *PaymentMethodBankTransfer) SetIssuingAccountHolderName(v string) {
-	o.IssuingAccountHolderName.Set(&v)
-}
-// SetIssuingAccountHolderNameNil sets the value for IssuingAccountHolderName to be an explicit nil
-func (o *PaymentMethodBankTransfer) SetIssuingAccountHolderNameNil() {
-	o.IssuingAccountHolderName.Set(nil)
+	o.IssuingAccountHolderName = &v
 }
 
-// UnsetIssuingAccountHolderName ensures that no value is present for IssuingAccountHolderName, not even an explicit nil
-func (o *PaymentMethodBankTransfer) UnsetIssuingAccountHolderName() {
-	o.IssuingAccountHolderName.Unset()
-}
-
-// GetIssuingAccountTaxId returns the IssuingAccountTaxId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetIssuingAccountTaxId returns the IssuingAccountTaxId field value if set, zero value otherwise.
 func (o *PaymentMethodBankTransfer) GetIssuingAccountTaxId() string {
-	if o == nil || IsNil(o.IssuingAccountTaxId.Get()) {
+	if o == nil || IsNil(o.IssuingAccountTaxId) {
 		var ret string
 		return ret
 	}
-	return *o.IssuingAccountTaxId.Get()
+	return *o.IssuingAccountTaxId
 }
 
 // GetIssuingAccountTaxIdOk returns a tuple with the IssuingAccountTaxId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PaymentMethodBankTransfer) GetIssuingAccountTaxIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IssuingAccountTaxId) {
 		return nil, false
 	}
-	return o.IssuingAccountTaxId.Get(), o.IssuingAccountTaxId.IsSet()
+	return o.IssuingAccountTaxId, true
 }
 
 // HasIssuingAccountTaxId returns a boolean if a field has been set.
 func (o *PaymentMethodBankTransfer) HasIssuingAccountTaxId() bool {
-	if o != nil && o.IssuingAccountTaxId.IsSet() {
+	if o != nil && !IsNil(o.IssuingAccountTaxId) {
 		return true
 	}
 
 	return false
 }
 
-// SetIssuingAccountTaxId gets a reference to the given NullableString and assigns it to the IssuingAccountTaxId field.
+// SetIssuingAccountTaxId gets a reference to the given string and assigns it to the IssuingAccountTaxId field.
 func (o *PaymentMethodBankTransfer) SetIssuingAccountTaxId(v string) {
-	o.IssuingAccountTaxId.Set(&v)
-}
-// SetIssuingAccountTaxIdNil sets the value for IssuingAccountTaxId to be an explicit nil
-func (o *PaymentMethodBankTransfer) SetIssuingAccountTaxIdNil() {
-	o.IssuingAccountTaxId.Set(nil)
-}
-
-// UnsetIssuingAccountTaxId ensures that no value is present for IssuingAccountTaxId, not even an explicit nil
-func (o *PaymentMethodBankTransfer) UnsetIssuingAccountTaxId() {
-	o.IssuingAccountTaxId.Unset()
+	o.IssuingAccountTaxId = &v
 }
 
 // GetPaymentAttempts returns the PaymentAttempts field value if set, zero value otherwise.
@@ -499,46 +439,36 @@ func (o *PaymentMethodBankTransfer) SetPaymentAttempts(v []interface{}) {
 	o.PaymentAttempts = v
 }
 
-// GetReceivingAccountHolderName returns the ReceivingAccountHolderName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetReceivingAccountHolderName returns the ReceivingAccountHolderName field value if set, zero value otherwise.
 func (o *PaymentMethodBankTransfer) GetReceivingAccountHolderName() string {
-	if o == nil || IsNil(o.ReceivingAccountHolderName.Get()) {
+	if o == nil || IsNil(o.ReceivingAccountHolderName) {
 		var ret string
 		return ret
 	}
-	return *o.ReceivingAccountHolderName.Get()
+	return *o.ReceivingAccountHolderName
 }
 
 // GetReceivingAccountHolderNameOk returns a tuple with the ReceivingAccountHolderName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PaymentMethodBankTransfer) GetReceivingAccountHolderNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ReceivingAccountHolderName) {
 		return nil, false
 	}
-	return o.ReceivingAccountHolderName.Get(), o.ReceivingAccountHolderName.IsSet()
+	return o.ReceivingAccountHolderName, true
 }
 
 // HasReceivingAccountHolderName returns a boolean if a field has been set.
 func (o *PaymentMethodBankTransfer) HasReceivingAccountHolderName() bool {
-	if o != nil && o.ReceivingAccountHolderName.IsSet() {
+	if o != nil && !IsNil(o.ReceivingAccountHolderName) {
 		return true
 	}
 
 	return false
 }
 
-// SetReceivingAccountHolderName gets a reference to the given NullableString and assigns it to the ReceivingAccountHolderName field.
+// SetReceivingAccountHolderName gets a reference to the given string and assigns it to the ReceivingAccountHolderName field.
 func (o *PaymentMethodBankTransfer) SetReceivingAccountHolderName(v string) {
-	o.ReceivingAccountHolderName.Set(&v)
-}
-// SetReceivingAccountHolderNameNil sets the value for ReceivingAccountHolderName to be an explicit nil
-func (o *PaymentMethodBankTransfer) SetReceivingAccountHolderNameNil() {
-	o.ReceivingAccountHolderName.Set(nil)
-}
-
-// UnsetReceivingAccountHolderName ensures that no value is present for ReceivingAccountHolderName, not even an explicit nil
-func (o *PaymentMethodBankTransfer) UnsetReceivingAccountHolderName() {
-	o.ReceivingAccountHolderName.Unset()
+	o.ReceivingAccountHolderName = &v
 }
 
 // GetReceivingAccountNumber returns the ReceivingAccountNumber field value if set, zero value otherwise.
@@ -605,130 +535,100 @@ func (o *PaymentMethodBankTransfer) SetReceivingAccountBank(v string) {
 	o.ReceivingAccountBank = &v
 }
 
-// GetReceivingAccountTaxId returns the ReceivingAccountTaxId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetReceivingAccountTaxId returns the ReceivingAccountTaxId field value if set, zero value otherwise.
 func (o *PaymentMethodBankTransfer) GetReceivingAccountTaxId() string {
-	if o == nil || IsNil(o.ReceivingAccountTaxId.Get()) {
+	if o == nil || IsNil(o.ReceivingAccountTaxId) {
 		var ret string
 		return ret
 	}
-	return *o.ReceivingAccountTaxId.Get()
+	return *o.ReceivingAccountTaxId
 }
 
 // GetReceivingAccountTaxIdOk returns a tuple with the ReceivingAccountTaxId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PaymentMethodBankTransfer) GetReceivingAccountTaxIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ReceivingAccountTaxId) {
 		return nil, false
 	}
-	return o.ReceivingAccountTaxId.Get(), o.ReceivingAccountTaxId.IsSet()
+	return o.ReceivingAccountTaxId, true
 }
 
 // HasReceivingAccountTaxId returns a boolean if a field has been set.
 func (o *PaymentMethodBankTransfer) HasReceivingAccountTaxId() bool {
-	if o != nil && o.ReceivingAccountTaxId.IsSet() {
+	if o != nil && !IsNil(o.ReceivingAccountTaxId) {
 		return true
 	}
 
 	return false
 }
 
-// SetReceivingAccountTaxId gets a reference to the given NullableString and assigns it to the ReceivingAccountTaxId field.
+// SetReceivingAccountTaxId gets a reference to the given string and assigns it to the ReceivingAccountTaxId field.
 func (o *PaymentMethodBankTransfer) SetReceivingAccountTaxId(v string) {
-	o.ReceivingAccountTaxId.Set(&v)
-}
-// SetReceivingAccountTaxIdNil sets the value for ReceivingAccountTaxId to be an explicit nil
-func (o *PaymentMethodBankTransfer) SetReceivingAccountTaxIdNil() {
-	o.ReceivingAccountTaxId.Set(nil)
+	o.ReceivingAccountTaxId = &v
 }
 
-// UnsetReceivingAccountTaxId ensures that no value is present for ReceivingAccountTaxId, not even an explicit nil
-func (o *PaymentMethodBankTransfer) UnsetReceivingAccountTaxId() {
-	o.ReceivingAccountTaxId.Unset()
-}
-
-// GetReferenceNumber returns the ReferenceNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetReferenceNumber returns the ReferenceNumber field value if set, zero value otherwise.
 func (o *PaymentMethodBankTransfer) GetReferenceNumber() string {
-	if o == nil || IsNil(o.ReferenceNumber.Get()) {
+	if o == nil || IsNil(o.ReferenceNumber) {
 		var ret string
 		return ret
 	}
-	return *o.ReferenceNumber.Get()
+	return *o.ReferenceNumber
 }
 
 // GetReferenceNumberOk returns a tuple with the ReferenceNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PaymentMethodBankTransfer) GetReferenceNumberOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ReferenceNumber) {
 		return nil, false
 	}
-	return o.ReferenceNumber.Get(), o.ReferenceNumber.IsSet()
+	return o.ReferenceNumber, true
 }
 
 // HasReferenceNumber returns a boolean if a field has been set.
 func (o *PaymentMethodBankTransfer) HasReferenceNumber() bool {
-	if o != nil && o.ReferenceNumber.IsSet() {
+	if o != nil && !IsNil(o.ReferenceNumber) {
 		return true
 	}
 
 	return false
 }
 
-// SetReferenceNumber gets a reference to the given NullableString and assigns it to the ReferenceNumber field.
+// SetReferenceNumber gets a reference to the given string and assigns it to the ReferenceNumber field.
 func (o *PaymentMethodBankTransfer) SetReferenceNumber(v string) {
-	o.ReferenceNumber.Set(&v)
-}
-// SetReferenceNumberNil sets the value for ReferenceNumber to be an explicit nil
-func (o *PaymentMethodBankTransfer) SetReferenceNumberNil() {
-	o.ReferenceNumber.Set(nil)
+	o.ReferenceNumber = &v
 }
 
-// UnsetReferenceNumber ensures that no value is present for ReferenceNumber, not even an explicit nil
-func (o *PaymentMethodBankTransfer) UnsetReferenceNumber() {
-	o.ReferenceNumber.Unset()
-}
-
-// GetTrackingCode returns the TrackingCode field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetTrackingCode returns the TrackingCode field value if set, zero value otherwise.
 func (o *PaymentMethodBankTransfer) GetTrackingCode() string {
-	if o == nil || IsNil(o.TrackingCode.Get()) {
+	if o == nil || IsNil(o.TrackingCode) {
 		var ret string
 		return ret
 	}
-	return *o.TrackingCode.Get()
+	return *o.TrackingCode
 }
 
 // GetTrackingCodeOk returns a tuple with the TrackingCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PaymentMethodBankTransfer) GetTrackingCodeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TrackingCode) {
 		return nil, false
 	}
-	return o.TrackingCode.Get(), o.TrackingCode.IsSet()
+	return o.TrackingCode, true
 }
 
 // HasTrackingCode returns a boolean if a field has been set.
 func (o *PaymentMethodBankTransfer) HasTrackingCode() bool {
-	if o != nil && o.TrackingCode.IsSet() {
+	if o != nil && !IsNil(o.TrackingCode) {
 		return true
 	}
 
 	return false
 }
 
-// SetTrackingCode gets a reference to the given NullableString and assigns it to the TrackingCode field.
+// SetTrackingCode gets a reference to the given string and assigns it to the TrackingCode field.
 func (o *PaymentMethodBankTransfer) SetTrackingCode(v string) {
-	o.TrackingCode.Set(&v)
-}
-// SetTrackingCodeNil sets the value for TrackingCode to be an explicit nil
-func (o *PaymentMethodBankTransfer) SetTrackingCodeNil() {
-	o.TrackingCode.Set(nil)
-}
-
-// UnsetTrackingCode ensures that no value is present for TrackingCode, not even an explicit nil
-func (o *PaymentMethodBankTransfer) UnsetTrackingCode() {
-	o.TrackingCode.Unset()
+	o.TrackingCode = &v
 }
 
 // GetCustomerIpAddress returns the CustomerIpAddress field value if set, zero value otherwise.
@@ -783,32 +683,32 @@ func (o PaymentMethodBankTransfer) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Clabe) {
 		toSerialize["clabe"] = o.Clabe
 	}
-	if o.Description.IsSet() {
-		toSerialize["description"] = o.Description.Get()
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
 	}
-	if o.ExecutedAt.IsSet() {
-		toSerialize["executed_at"] = o.ExecutedAt.Get()
+	if !IsNil(o.ExecutedAt) {
+		toSerialize["executed_at"] = o.ExecutedAt
 	}
 	if !IsNil(o.ExpiresAt) {
 		toSerialize["expires_at"] = o.ExpiresAt
 	}
-	if o.IssuingAccountBank.IsSet() {
-		toSerialize["issuing_account_bank"] = o.IssuingAccountBank.Get()
+	if !IsNil(o.IssuingAccountBank) {
+		toSerialize["issuing_account_bank"] = o.IssuingAccountBank
 	}
-	if o.IssuingAccountNumber.IsSet() {
-		toSerialize["issuing_account_number"] = o.IssuingAccountNumber.Get()
+	if !IsNil(o.IssuingAccountNumber) {
+		toSerialize["issuing_account_number"] = o.IssuingAccountNumber
 	}
-	if o.IssuingAccountHolderName.IsSet() {
-		toSerialize["issuing_account_holder_name"] = o.IssuingAccountHolderName.Get()
+	if !IsNil(o.IssuingAccountHolderName) {
+		toSerialize["issuing_account_holder_name"] = o.IssuingAccountHolderName
 	}
-	if o.IssuingAccountTaxId.IsSet() {
-		toSerialize["issuing_account_tax_id"] = o.IssuingAccountTaxId.Get()
+	if !IsNil(o.IssuingAccountTaxId) {
+		toSerialize["issuing_account_tax_id"] = o.IssuingAccountTaxId
 	}
 	if !IsNil(o.PaymentAttempts) {
 		toSerialize["payment_attempts"] = o.PaymentAttempts
 	}
-	if o.ReceivingAccountHolderName.IsSet() {
-		toSerialize["receiving_account_holder_name"] = o.ReceivingAccountHolderName.Get()
+	if !IsNil(o.ReceivingAccountHolderName) {
+		toSerialize["receiving_account_holder_name"] = o.ReceivingAccountHolderName
 	}
 	if !IsNil(o.ReceivingAccountNumber) {
 		toSerialize["receiving_account_number"] = o.ReceivingAccountNumber
@@ -816,14 +716,14 @@ func (o PaymentMethodBankTransfer) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ReceivingAccountBank) {
 		toSerialize["receiving_account_bank"] = o.ReceivingAccountBank
 	}
-	if o.ReceivingAccountTaxId.IsSet() {
-		toSerialize["receiving_account_tax_id"] = o.ReceivingAccountTaxId.Get()
+	if !IsNil(o.ReceivingAccountTaxId) {
+		toSerialize["receiving_account_tax_id"] = o.ReceivingAccountTaxId
 	}
-	if o.ReferenceNumber.IsSet() {
-		toSerialize["reference_number"] = o.ReferenceNumber.Get()
+	if !IsNil(o.ReferenceNumber) {
+		toSerialize["reference_number"] = o.ReferenceNumber
 	}
-	if o.TrackingCode.IsSet() {
-		toSerialize["tracking_code"] = o.TrackingCode.Get()
+	if !IsNil(o.TrackingCode) {
+		toSerialize["tracking_code"] = o.TrackingCode
 	}
 	if !IsNil(o.CustomerIpAddress) {
 		toSerialize["customer_ip_address"] = o.CustomerIpAddress

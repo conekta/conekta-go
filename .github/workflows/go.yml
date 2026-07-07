@@ -12,12 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-go@v6
         with:
           go-version: ${{ matrix.sdk }}
       - name: Run Mockoon CLI
-        uses: mockoon/cli-action@v2
+        uses: mockoon/cli-action@v3
         with:
           version: 'latest'
           data-file: 'https://raw.githubusercontent.com/conekta/openapi/main/mocks/conekta_api.json'

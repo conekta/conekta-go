@@ -21,25 +21,25 @@ var _ MappedNullable = &BalanceResponse{}
 // BalanceResponse balance model
 type BalanceResponse struct {
 	// The balance's available
-	Available []BalanceCommonField `json:"available,omitempty"`
+	Available []BalanceCommonFielsResponse `json:"available,omitempty"`
 	// The balance's cashout retention amount
-	CashoutRetentionAmount []BalanceCommonField `json:"cashout_retention_amount,omitempty"`
+	CashoutRetentionAmount []BalanceCommonFielsResponse `json:"cashout_retention_amount,omitempty"`
 	// The balance's conekta retention
-	ConektaRetention []BalanceCommonField `json:"conekta_retention,omitempty"`
+	ConektaRetention []BalanceCommonFielsResponse `json:"conekta_retention,omitempty"`
 	// The balance's gateway
-	Gateway []BalanceCommonField `json:"gateway,omitempty"`
+	Gateway []BalanceCommonFielsResponse `json:"gateway,omitempty"`
 	// The balance's pending
-	Pending []BalanceCommonField `json:"pending,omitempty"`
+	Pending []BalanceCommonFielsResponse `json:"pending,omitempty"`
 	// The balance's retained
-	Retained []BalanceCommonField `json:"retained,omitempty"`
+	Retained []BalanceCommonFielsResponse `json:"retained,omitempty"`
 	// The balance's retention amount
-	RetentionAmount []BalanceCommonField `json:"retention_amount,omitempty"`
+	RetentionAmount []BalanceCommonFielsResponse `json:"retention_amount,omitempty"`
 	// The balance's target collateral amount
 	TargetCollateralAmount map[string]interface{} `json:"target_collateral_amount,omitempty"`
 	// The balance's target retention amount
-	TargetRetentionAmount []BalanceCommonField `json:"target_retention_amount,omitempty"`
+	TargetRetentionAmount []BalanceCommonFielsResponse `json:"target_retention_amount,omitempty"`
 	// The balance's temporarily retained
-	TemporarilyRetained []BalanceCommonField `json:"temporarily_retained,omitempty"`
+	TemporarilyRetained []BalanceCommonFielsResponse `json:"temporarily_retained,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -63,9 +63,9 @@ func NewBalanceResponseWithDefaults() *BalanceResponse {
 }
 
 // GetAvailable returns the Available field value if set, zero value otherwise.
-func (o *BalanceResponse) GetAvailable() []BalanceCommonField {
+func (o *BalanceResponse) GetAvailable() []BalanceCommonFielsResponse {
 	if o == nil || IsNil(o.Available) {
-		var ret []BalanceCommonField
+		var ret []BalanceCommonFielsResponse
 		return ret
 	}
 	return o.Available
@@ -73,7 +73,7 @@ func (o *BalanceResponse) GetAvailable() []BalanceCommonField {
 
 // GetAvailableOk returns a tuple with the Available field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BalanceResponse) GetAvailableOk() ([]BalanceCommonField, bool) {
+func (o *BalanceResponse) GetAvailableOk() ([]BalanceCommonFielsResponse, bool) {
 	if o == nil || IsNil(o.Available) {
 		return nil, false
 	}
@@ -89,15 +89,15 @@ func (o *BalanceResponse) HasAvailable() bool {
 	return false
 }
 
-// SetAvailable gets a reference to the given []BalanceCommonField and assigns it to the Available field.
-func (o *BalanceResponse) SetAvailable(v []BalanceCommonField) {
+// SetAvailable gets a reference to the given []BalanceCommonFielsResponse and assigns it to the Available field.
+func (o *BalanceResponse) SetAvailable(v []BalanceCommonFielsResponse) {
 	o.Available = v
 }
 
 // GetCashoutRetentionAmount returns the CashoutRetentionAmount field value if set, zero value otherwise.
-func (o *BalanceResponse) GetCashoutRetentionAmount() []BalanceCommonField {
+func (o *BalanceResponse) GetCashoutRetentionAmount() []BalanceCommonFielsResponse {
 	if o == nil || IsNil(o.CashoutRetentionAmount) {
-		var ret []BalanceCommonField
+		var ret []BalanceCommonFielsResponse
 		return ret
 	}
 	return o.CashoutRetentionAmount
@@ -105,7 +105,7 @@ func (o *BalanceResponse) GetCashoutRetentionAmount() []BalanceCommonField {
 
 // GetCashoutRetentionAmountOk returns a tuple with the CashoutRetentionAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BalanceResponse) GetCashoutRetentionAmountOk() ([]BalanceCommonField, bool) {
+func (o *BalanceResponse) GetCashoutRetentionAmountOk() ([]BalanceCommonFielsResponse, bool) {
 	if o == nil || IsNil(o.CashoutRetentionAmount) {
 		return nil, false
 	}
@@ -121,15 +121,15 @@ func (o *BalanceResponse) HasCashoutRetentionAmount() bool {
 	return false
 }
 
-// SetCashoutRetentionAmount gets a reference to the given []BalanceCommonField and assigns it to the CashoutRetentionAmount field.
-func (o *BalanceResponse) SetCashoutRetentionAmount(v []BalanceCommonField) {
+// SetCashoutRetentionAmount gets a reference to the given []BalanceCommonFielsResponse and assigns it to the CashoutRetentionAmount field.
+func (o *BalanceResponse) SetCashoutRetentionAmount(v []BalanceCommonFielsResponse) {
 	o.CashoutRetentionAmount = v
 }
 
 // GetConektaRetention returns the ConektaRetention field value if set, zero value otherwise.
-func (o *BalanceResponse) GetConektaRetention() []BalanceCommonField {
+func (o *BalanceResponse) GetConektaRetention() []BalanceCommonFielsResponse {
 	if o == nil || IsNil(o.ConektaRetention) {
-		var ret []BalanceCommonField
+		var ret []BalanceCommonFielsResponse
 		return ret
 	}
 	return o.ConektaRetention
@@ -137,7 +137,7 @@ func (o *BalanceResponse) GetConektaRetention() []BalanceCommonField {
 
 // GetConektaRetentionOk returns a tuple with the ConektaRetention field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BalanceResponse) GetConektaRetentionOk() ([]BalanceCommonField, bool) {
+func (o *BalanceResponse) GetConektaRetentionOk() ([]BalanceCommonFielsResponse, bool) {
 	if o == nil || IsNil(o.ConektaRetention) {
 		return nil, false
 	}
@@ -153,15 +153,15 @@ func (o *BalanceResponse) HasConektaRetention() bool {
 	return false
 }
 
-// SetConektaRetention gets a reference to the given []BalanceCommonField and assigns it to the ConektaRetention field.
-func (o *BalanceResponse) SetConektaRetention(v []BalanceCommonField) {
+// SetConektaRetention gets a reference to the given []BalanceCommonFielsResponse and assigns it to the ConektaRetention field.
+func (o *BalanceResponse) SetConektaRetention(v []BalanceCommonFielsResponse) {
 	o.ConektaRetention = v
 }
 
 // GetGateway returns the Gateway field value if set, zero value otherwise.
-func (o *BalanceResponse) GetGateway() []BalanceCommonField {
+func (o *BalanceResponse) GetGateway() []BalanceCommonFielsResponse {
 	if o == nil || IsNil(o.Gateway) {
-		var ret []BalanceCommonField
+		var ret []BalanceCommonFielsResponse
 		return ret
 	}
 	return o.Gateway
@@ -169,7 +169,7 @@ func (o *BalanceResponse) GetGateway() []BalanceCommonField {
 
 // GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BalanceResponse) GetGatewayOk() ([]BalanceCommonField, bool) {
+func (o *BalanceResponse) GetGatewayOk() ([]BalanceCommonFielsResponse, bool) {
 	if o == nil || IsNil(o.Gateway) {
 		return nil, false
 	}
@@ -185,15 +185,15 @@ func (o *BalanceResponse) HasGateway() bool {
 	return false
 }
 
-// SetGateway gets a reference to the given []BalanceCommonField and assigns it to the Gateway field.
-func (o *BalanceResponse) SetGateway(v []BalanceCommonField) {
+// SetGateway gets a reference to the given []BalanceCommonFielsResponse and assigns it to the Gateway field.
+func (o *BalanceResponse) SetGateway(v []BalanceCommonFielsResponse) {
 	o.Gateway = v
 }
 
 // GetPending returns the Pending field value if set, zero value otherwise.
-func (o *BalanceResponse) GetPending() []BalanceCommonField {
+func (o *BalanceResponse) GetPending() []BalanceCommonFielsResponse {
 	if o == nil || IsNil(o.Pending) {
-		var ret []BalanceCommonField
+		var ret []BalanceCommonFielsResponse
 		return ret
 	}
 	return o.Pending
@@ -201,7 +201,7 @@ func (o *BalanceResponse) GetPending() []BalanceCommonField {
 
 // GetPendingOk returns a tuple with the Pending field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BalanceResponse) GetPendingOk() ([]BalanceCommonField, bool) {
+func (o *BalanceResponse) GetPendingOk() ([]BalanceCommonFielsResponse, bool) {
 	if o == nil || IsNil(o.Pending) {
 		return nil, false
 	}
@@ -217,15 +217,15 @@ func (o *BalanceResponse) HasPending() bool {
 	return false
 }
 
-// SetPending gets a reference to the given []BalanceCommonField and assigns it to the Pending field.
-func (o *BalanceResponse) SetPending(v []BalanceCommonField) {
+// SetPending gets a reference to the given []BalanceCommonFielsResponse and assigns it to the Pending field.
+func (o *BalanceResponse) SetPending(v []BalanceCommonFielsResponse) {
 	o.Pending = v
 }
 
 // GetRetained returns the Retained field value if set, zero value otherwise.
-func (o *BalanceResponse) GetRetained() []BalanceCommonField {
+func (o *BalanceResponse) GetRetained() []BalanceCommonFielsResponse {
 	if o == nil || IsNil(o.Retained) {
-		var ret []BalanceCommonField
+		var ret []BalanceCommonFielsResponse
 		return ret
 	}
 	return o.Retained
@@ -233,7 +233,7 @@ func (o *BalanceResponse) GetRetained() []BalanceCommonField {
 
 // GetRetainedOk returns a tuple with the Retained field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BalanceResponse) GetRetainedOk() ([]BalanceCommonField, bool) {
+func (o *BalanceResponse) GetRetainedOk() ([]BalanceCommonFielsResponse, bool) {
 	if o == nil || IsNil(o.Retained) {
 		return nil, false
 	}
@@ -249,15 +249,15 @@ func (o *BalanceResponse) HasRetained() bool {
 	return false
 }
 
-// SetRetained gets a reference to the given []BalanceCommonField and assigns it to the Retained field.
-func (o *BalanceResponse) SetRetained(v []BalanceCommonField) {
+// SetRetained gets a reference to the given []BalanceCommonFielsResponse and assigns it to the Retained field.
+func (o *BalanceResponse) SetRetained(v []BalanceCommonFielsResponse) {
 	o.Retained = v
 }
 
 // GetRetentionAmount returns the RetentionAmount field value if set, zero value otherwise.
-func (o *BalanceResponse) GetRetentionAmount() []BalanceCommonField {
+func (o *BalanceResponse) GetRetentionAmount() []BalanceCommonFielsResponse {
 	if o == nil || IsNil(o.RetentionAmount) {
-		var ret []BalanceCommonField
+		var ret []BalanceCommonFielsResponse
 		return ret
 	}
 	return o.RetentionAmount
@@ -265,7 +265,7 @@ func (o *BalanceResponse) GetRetentionAmount() []BalanceCommonField {
 
 // GetRetentionAmountOk returns a tuple with the RetentionAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BalanceResponse) GetRetentionAmountOk() ([]BalanceCommonField, bool) {
+func (o *BalanceResponse) GetRetentionAmountOk() ([]BalanceCommonFielsResponse, bool) {
 	if o == nil || IsNil(o.RetentionAmount) {
 		return nil, false
 	}
@@ -281,8 +281,8 @@ func (o *BalanceResponse) HasRetentionAmount() bool {
 	return false
 }
 
-// SetRetentionAmount gets a reference to the given []BalanceCommonField and assigns it to the RetentionAmount field.
-func (o *BalanceResponse) SetRetentionAmount(v []BalanceCommonField) {
+// SetRetentionAmount gets a reference to the given []BalanceCommonFielsResponse and assigns it to the RetentionAmount field.
+func (o *BalanceResponse) SetRetentionAmount(v []BalanceCommonFielsResponse) {
 	o.RetentionAmount = v
 }
 
@@ -319,9 +319,9 @@ func (o *BalanceResponse) SetTargetCollateralAmount(v map[string]interface{}) {
 }
 
 // GetTargetRetentionAmount returns the TargetRetentionAmount field value if set, zero value otherwise.
-func (o *BalanceResponse) GetTargetRetentionAmount() []BalanceCommonField {
+func (o *BalanceResponse) GetTargetRetentionAmount() []BalanceCommonFielsResponse {
 	if o == nil || IsNil(o.TargetRetentionAmount) {
-		var ret []BalanceCommonField
+		var ret []BalanceCommonFielsResponse
 		return ret
 	}
 	return o.TargetRetentionAmount
@@ -329,7 +329,7 @@ func (o *BalanceResponse) GetTargetRetentionAmount() []BalanceCommonField {
 
 // GetTargetRetentionAmountOk returns a tuple with the TargetRetentionAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BalanceResponse) GetTargetRetentionAmountOk() ([]BalanceCommonField, bool) {
+func (o *BalanceResponse) GetTargetRetentionAmountOk() ([]BalanceCommonFielsResponse, bool) {
 	if o == nil || IsNil(o.TargetRetentionAmount) {
 		return nil, false
 	}
@@ -345,15 +345,15 @@ func (o *BalanceResponse) HasTargetRetentionAmount() bool {
 	return false
 }
 
-// SetTargetRetentionAmount gets a reference to the given []BalanceCommonField and assigns it to the TargetRetentionAmount field.
-func (o *BalanceResponse) SetTargetRetentionAmount(v []BalanceCommonField) {
+// SetTargetRetentionAmount gets a reference to the given []BalanceCommonFielsResponse and assigns it to the TargetRetentionAmount field.
+func (o *BalanceResponse) SetTargetRetentionAmount(v []BalanceCommonFielsResponse) {
 	o.TargetRetentionAmount = v
 }
 
 // GetTemporarilyRetained returns the TemporarilyRetained field value if set, zero value otherwise.
-func (o *BalanceResponse) GetTemporarilyRetained() []BalanceCommonField {
+func (o *BalanceResponse) GetTemporarilyRetained() []BalanceCommonFielsResponse {
 	if o == nil || IsNil(o.TemporarilyRetained) {
-		var ret []BalanceCommonField
+		var ret []BalanceCommonFielsResponse
 		return ret
 	}
 	return o.TemporarilyRetained
@@ -361,7 +361,7 @@ func (o *BalanceResponse) GetTemporarilyRetained() []BalanceCommonField {
 
 // GetTemporarilyRetainedOk returns a tuple with the TemporarilyRetained field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BalanceResponse) GetTemporarilyRetainedOk() ([]BalanceCommonField, bool) {
+func (o *BalanceResponse) GetTemporarilyRetainedOk() ([]BalanceCommonFielsResponse, bool) {
 	if o == nil || IsNil(o.TemporarilyRetained) {
 		return nil, false
 	}
@@ -377,8 +377,8 @@ func (o *BalanceResponse) HasTemporarilyRetained() bool {
 	return false
 }
 
-// SetTemporarilyRetained gets a reference to the given []BalanceCommonField and assigns it to the TemporarilyRetained field.
-func (o *BalanceResponse) SetTemporarilyRetained(v []BalanceCommonField) {
+// SetTemporarilyRetained gets a reference to the given []BalanceCommonFielsResponse and assigns it to the TemporarilyRetained field.
+func (o *BalanceResponse) SetTemporarilyRetained(v []BalanceCommonFielsResponse) {
 	o.TemporarilyRetained = v
 }
 

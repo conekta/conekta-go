@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## CreateCustomerFiscalEntities
 
-> CreateCustomerFiscalEntitiesResponse CreateCustomerFiscalEntities(ctx, id).CustomerFiscalEntitiesRequest(customerFiscalEntitiesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> CreateCustomerFiscalEntitiesResponse CreateCustomerFiscalEntities(ctx, id).FiscalEntityRequest(fiscalEntityRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Create Fiscal Entity
 
@@ -106,13 +106,13 @@ import (
 
 func main() {
 	id := "6307a60c41de27127515a575" // string | Identifier of the resource
-	customerFiscalEntitiesRequest := *openapiclient.NewCustomerFiscalEntitiesRequest(*openapiclient.NewCustomerAddress("Nuevo Leon 254", "06100", "Ciudad de Mexico")) // CustomerFiscalEntitiesRequest | requested field for customer fiscal entities
+	fiscalEntityRequest := *openapiclient.NewFiscalEntityRequest(*openapiclient.NewFiscalEntityRequestAddress("Nuevo Leon 254", "06100", "Ciudad de Mexico")) // FiscalEntityRequest | requested field for customer fiscal entities
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomersAPI.CreateCustomerFiscalEntities(context.Background(), id).CustomerFiscalEntitiesRequest(customerFiscalEntitiesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	resp, r, err := apiClient.CustomersAPI.CreateCustomerFiscalEntities(context.Background(), id).FiscalEntityRequest(fiscalEntityRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomersAPI.CreateCustomerFiscalEntities``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -138,7 +138,7 @@ Other parameters are passed through a pointer to a apiCreateCustomerFiscalEntiti
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **customerFiscalEntitiesRequest** | [**CustomerFiscalEntitiesRequest**](CustomerFiscalEntitiesRequest.md) | requested field for customer fiscal entities | 
+ **fiscalEntityRequest** | [**FiscalEntityRequest**](FiscalEntityRequest.md) | requested field for customer fiscal entities | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
  **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
@@ -462,7 +462,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomerFiscalEntities
 
-> UpdateCustomerFiscalEntitiesResponse UpdateCustomerFiscalEntities(ctx, id, fiscalEntitiesId).CustomerUpdateFiscalEntitiesRequest(customerUpdateFiscalEntitiesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> UpdateCustomerFiscalEntitiesResponse UpdateCustomerFiscalEntities(ctx, id, fiscalEntitiesId).UpdateFiscalEntityRequest(updateFiscalEntityRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update  Fiscal Entity
 
@@ -483,13 +483,13 @@ import (
 func main() {
 	id := "6307a60c41de27127515a575" // string | Identifier of the resource
 	fiscalEntitiesId := "fis_ent_2tQ8HkkfbauaKP9Ho" // string | identifier
-	customerUpdateFiscalEntitiesRequest := *openapiclient.NewCustomerUpdateFiscalEntitiesRequest() // CustomerUpdateFiscalEntitiesRequest | requested field for customer update fiscal entities
+	updateFiscalEntityRequest := *openapiclient.NewUpdateFiscalEntityRequest() // UpdateFiscalEntityRequest | requested field for customer update fiscal entities
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomersAPI.UpdateCustomerFiscalEntities(context.Background(), id, fiscalEntitiesId).CustomerUpdateFiscalEntitiesRequest(customerUpdateFiscalEntitiesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	resp, r, err := apiClient.CustomersAPI.UpdateCustomerFiscalEntities(context.Background(), id, fiscalEntitiesId).UpdateFiscalEntityRequest(updateFiscalEntityRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomersAPI.UpdateCustomerFiscalEntities``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -517,7 +517,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **customerUpdateFiscalEntitiesRequest** | [**CustomerUpdateFiscalEntitiesRequest**](CustomerUpdateFiscalEntitiesRequest.md) | requested field for customer update fiscal entities | 
+ **updateFiscalEntityRequest** | [**UpdateFiscalEntityRequest**](UpdateFiscalEntityRequest.md) | requested field for customer update fiscal entities | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
  **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 

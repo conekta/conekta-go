@@ -5,16 +5,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AllowedPaymentMethods** | **[]string** | Those are the payment methods that will be available for the link | 
-**ExpiresAt** | **int64** | It is the time when the link will expire. It is expressed in seconds since the Unix epoch. The valid range is from 2 to 365 days (the valid range will be taken from the next day of the creation date at 00:01 hrs)  | 
+**ExcludeCardNetworks** | Pointer to **[]string** | List of card networks to exclude from the checkout. This field is only applicable for card payments. | [optional] 
+**ExpiresAt** | **int64** | It is the time when the link will expire.  It is expressed in seconds since the Unix epoch. The valid range is from 5 minutes to 365 days from the creation date.  | 
 **MonthlyInstallmentsEnabled** | Pointer to **bool** | This flag allows you to specify if months without interest will be active. | [optional] 
 **MonthlyInstallmentsOptions** | Pointer to **[]int32** | This field allows you to specify the number of months without interest. | [optional] 
-**ThreeDsMode** | Pointer to **NullableString** | Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null. | [optional] 
+**ThreeDsMode** | Pointer to **string** | Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null. | [optional] 
 **Name** | **string** | Reason for charge | 
 **NeedsShippingContact** | Pointer to **bool** | This flag allows you to fill in the shipping information at checkout. | [optional] 
-**OnDemandEnabled** | Pointer to **NullableBool** | This flag allows you to specify if the link will be on demand. | [optional] 
+**OnDemandEnabled** | Pointer to **bool** | This flag allows you to specify if the link will be on demand. | [optional] 
 **PlanIds** | Pointer to **[]string** | It is a list of plan IDs that will be associated with the order. | [optional] 
 **OrderTemplate** | [**CheckoutOrderTemplate**](CheckoutOrderTemplate.md) |  | 
 **PaymentsLimitCount** | Pointer to **int32** | It is the number of payments that can be made through the link. | [optional] 
+**SuccessUrl** | Pointer to **string** | The URL to redirect to after a successful payment. | [optional] 
 **Recurrent** | **bool** | false: single use. true: multiple payments | 
 **Type** | **string** | It is the type of link that will be created. It must be a valid type. | 
 
@@ -56,6 +58,31 @@ and a boolean to check if the value has been set.
 
 SetAllowedPaymentMethods sets AllowedPaymentMethods field to given value.
 
+
+### GetExcludeCardNetworks
+
+`func (o *Checkout) GetExcludeCardNetworks() []string`
+
+GetExcludeCardNetworks returns the ExcludeCardNetworks field if non-nil, zero value otherwise.
+
+### GetExcludeCardNetworksOk
+
+`func (o *Checkout) GetExcludeCardNetworksOk() (*[]string, bool)`
+
+GetExcludeCardNetworksOk returns a tuple with the ExcludeCardNetworks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExcludeCardNetworks
+
+`func (o *Checkout) SetExcludeCardNetworks(v []string)`
+
+SetExcludeCardNetworks sets ExcludeCardNetworks field to given value.
+
+### HasExcludeCardNetworks
+
+`func (o *Checkout) HasExcludeCardNetworks() bool`
+
+HasExcludeCardNetworks returns a boolean if a field has been set.
 
 ### GetExpiresAt
 
@@ -152,16 +179,6 @@ SetThreeDsMode sets ThreeDsMode field to given value.
 
 HasThreeDsMode returns a boolean if a field has been set.
 
-### SetThreeDsModeNil
-
-`func (o *Checkout) SetThreeDsModeNil(b bool)`
-
- SetThreeDsModeNil sets the value for ThreeDsMode to be an explicit nil
-
-### UnsetThreeDsMode
-`func (o *Checkout) UnsetThreeDsMode()`
-
-UnsetThreeDsMode ensures that no value is present for ThreeDsMode, not even an explicit nil
 ### GetName
 
 `func (o *Checkout) GetName() string`
@@ -232,16 +249,6 @@ SetOnDemandEnabled sets OnDemandEnabled field to given value.
 
 HasOnDemandEnabled returns a boolean if a field has been set.
 
-### SetOnDemandEnabledNil
-
-`func (o *Checkout) SetOnDemandEnabledNil(b bool)`
-
- SetOnDemandEnabledNil sets the value for OnDemandEnabled to be an explicit nil
-
-### UnsetOnDemandEnabled
-`func (o *Checkout) UnsetOnDemandEnabled()`
-
-UnsetOnDemandEnabled ensures that no value is present for OnDemandEnabled, not even an explicit nil
 ### GetPlanIds
 
 `func (o *Checkout) GetPlanIds() []string`
@@ -311,6 +318,31 @@ SetPaymentsLimitCount sets PaymentsLimitCount field to given value.
 `func (o *Checkout) HasPaymentsLimitCount() bool`
 
 HasPaymentsLimitCount returns a boolean if a field has been set.
+
+### GetSuccessUrl
+
+`func (o *Checkout) GetSuccessUrl() string`
+
+GetSuccessUrl returns the SuccessUrl field if non-nil, zero value otherwise.
+
+### GetSuccessUrlOk
+
+`func (o *Checkout) GetSuccessUrlOk() (*string, bool)`
+
+GetSuccessUrlOk returns a tuple with the SuccessUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSuccessUrl
+
+`func (o *Checkout) SetSuccessUrl(v string)`
+
+SetSuccessUrl sets SuccessUrl field to given value.
+
+### HasSuccessUrl
+
+`func (o *Checkout) HasSuccessUrl() bool`
+
+HasSuccessUrl returns a boolean if a field has been set.
 
 ### GetRecurrent
 

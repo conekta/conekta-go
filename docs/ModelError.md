@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Details** | Pointer to [**[]DetailsError**](DetailsError.md) |  | [optional] 
-**LogId** | Pointer to **NullableString** | log id | [optional] 
+**LogId** | Pointer to **string** | log id | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **Object** | Pointer to **string** |  | [optional] 
 
@@ -78,16 +78,6 @@ SetLogId sets LogId field to given value.
 
 HasLogId returns a boolean if a field has been set.
 
-### SetLogIdNil
-
-`func (o *ModelError) SetLogIdNil(b bool)`
-
- SetLogIdNil sets the value for LogId to be an explicit nil
-
-### UnsetLogId
-`func (o *ModelError) UnsetLogId()`
-
-UnsetLogId ensures that no value is present for LogId, not even an explicit nil
 ### GetType
 
 `func (o *ModelError) GetType() string`

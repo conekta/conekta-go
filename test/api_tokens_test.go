@@ -19,14 +19,11 @@ import (
 
 func Test_conekta_TokensAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test TokensAPIService CreateToken", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.TokensAPI.CreateToken(context.Background()).Execute()
+		resp, httpRes, err := apiClient.TokensAPI.CreateToken(context.Background()).TokenRequest(openapiclient.TokenRequest{Card: &openapiclient.TokenRequestCard{Number: "5475040095304607", Name: "Test", ExpMonth: "12", ExpYear: "30", Cvc: "123"}}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

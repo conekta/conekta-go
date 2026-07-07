@@ -19,7 +19,7 @@ import (
 // OrderRequestCustomerInfo - Customer information
 type OrderRequestCustomerInfo struct {
 	CustomerInfo *CustomerInfo
-	CustomerInfoJustCustomerId *CustomerInfoJustCustomerId
+	CustomerInfoCustomerId *CustomerInfoCustomerId
 }
 
 // CustomerInfoAsOrderRequestCustomerInfo is a convenience function that returns CustomerInfo wrapped in OrderRequestCustomerInfo
@@ -29,10 +29,10 @@ func CustomerInfoAsOrderRequestCustomerInfo(v *CustomerInfo) OrderRequestCustome
 	}
 }
 
-// CustomerInfoJustCustomerIdAsOrderRequestCustomerInfo is a convenience function that returns CustomerInfoJustCustomerId wrapped in OrderRequestCustomerInfo
-func CustomerInfoJustCustomerIdAsOrderRequestCustomerInfo(v *CustomerInfoJustCustomerId) OrderRequestCustomerInfo {
+// CustomerInfoCustomerIdAsOrderRequestCustomerInfo is a convenience function that returns CustomerInfoCustomerId wrapped in OrderRequestCustomerInfo
+func CustomerInfoCustomerIdAsOrderRequestCustomerInfo(v *CustomerInfoCustomerId) OrderRequestCustomerInfo {
 	return OrderRequestCustomerInfo{
-		CustomerInfoJustCustomerId: v,
+		CustomerInfoCustomerId: v,
 	}
 }
 
@@ -54,23 +54,23 @@ func (dst *OrderRequestCustomerInfo) UnmarshalJSON(data []byte) error {
 		dst.CustomerInfo = nil
 	}
 
-	// try to unmarshal data into CustomerInfoJustCustomerId
-	err = json.Unmarshal(data, &dst.CustomerInfoJustCustomerId)
+	// try to unmarshal data into CustomerInfoCustomerId
+	err = json.Unmarshal(data, &dst.CustomerInfoCustomerId)
 	if err == nil {
-		jsonCustomerInfoJustCustomerId, _ := json.Marshal(dst.CustomerInfoJustCustomerId)
-		if string(jsonCustomerInfoJustCustomerId) == "{}" { // empty struct
-			dst.CustomerInfoJustCustomerId = nil
+		jsonCustomerInfoCustomerId, _ := json.Marshal(dst.CustomerInfoCustomerId)
+		if string(jsonCustomerInfoCustomerId) == "{}" { // empty struct
+			dst.CustomerInfoCustomerId = nil
 		} else {
 			match++
 		}
 	} else {
-		dst.CustomerInfoJustCustomerId = nil
+		dst.CustomerInfoCustomerId = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.CustomerInfo = nil
-		dst.CustomerInfoJustCustomerId = nil
+		dst.CustomerInfoCustomerId = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(OrderRequestCustomerInfo)")
 	} else if match == 1 {
@@ -86,8 +86,8 @@ func (src OrderRequestCustomerInfo) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.CustomerInfo)
 	}
 
-	if src.CustomerInfoJustCustomerId != nil {
-		return json.Marshal(&src.CustomerInfoJustCustomerId)
+	if src.CustomerInfoCustomerId != nil {
+		return json.Marshal(&src.CustomerInfoCustomerId)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -102,8 +102,8 @@ func (obj *OrderRequestCustomerInfo) GetActualInstance() (interface{}) {
 		return obj.CustomerInfo
 	}
 
-	if obj.CustomerInfoJustCustomerId != nil {
-		return obj.CustomerInfoJustCustomerId
+	if obj.CustomerInfoCustomerId != nil {
+		return obj.CustomerInfoCustomerId
 	}
 
 	// all schemas are nil
@@ -116,8 +116,8 @@ func (obj OrderRequestCustomerInfo) GetActualInstanceValue() (interface{}) {
 		return *obj.CustomerInfo
 	}
 
-	if obj.CustomerInfoJustCustomerId != nil {
-		return *obj.CustomerInfoJustCustomerId
+	if obj.CustomerInfoCustomerId != nil {
+		return *obj.CustomerInfoCustomerId
 	}
 
 	// all schemas are nil

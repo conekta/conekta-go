@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Object** | **string** |  | 
 **CreatedAt** | **int64** |  | 
 **ParentId** | Pointer to **string** |  | [optional] 
-**Agreements** | Pointer to [**[]PaymentMethodCashResponseAllOfAgreements**](PaymentMethodCashResponseAllOfAgreements.md) |  | [optional] 
+**Agreements** | Pointer to [**[]CashAgreementsResponse**](CashAgreementsResponse.md) |  | [optional] 
 **Reference** | Pointer to **string** |  | [optional] 
 **Barcode** | Pointer to **string** |  | [optional] 
 **BarcodeUrl** | Pointer to **string** | URL to the barcode image, reference is the same as barcode | [optional] 
@@ -142,20 +142,20 @@ HasParentId returns a boolean if a field has been set.
 
 ### GetAgreements
 
-`func (o *PaymentMethodCashRecurrentResponse) GetAgreements() []PaymentMethodCashResponseAllOfAgreements`
+`func (o *PaymentMethodCashRecurrentResponse) GetAgreements() []CashAgreementsResponse`
 
 GetAgreements returns the Agreements field if non-nil, zero value otherwise.
 
 ### GetAgreementsOk
 
-`func (o *PaymentMethodCashRecurrentResponse) GetAgreementsOk() (*[]PaymentMethodCashResponseAllOfAgreements, bool)`
+`func (o *PaymentMethodCashRecurrentResponse) GetAgreementsOk() (*[]CashAgreementsResponse, bool)`
 
 GetAgreementsOk returns a tuple with the Agreements field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAgreements
 
-`func (o *PaymentMethodCashRecurrentResponse) SetAgreements(v []PaymentMethodCashResponseAllOfAgreements)`
+`func (o *PaymentMethodCashRecurrentResponse) SetAgreements(v []CashAgreementsResponse)`
 
 SetAgreements sets Agreements field to given value.
 

@@ -19,14 +19,11 @@ import (
 
 func Test_conekta_WebhookKeysAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test WebhookKeysAPIService CreateWebhookKey", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.WebhookKeysAPI.CreateWebhookKey(context.Background()).Execute()
+		resp, httpRes, err := apiClient.WebhookKeysAPI.CreateWebhookKey(context.Background()).WebhookKeyRequest(openapiclient.WebhookKeyRequest{Active: openapiclient.PtrBool(true)}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,9 +33,7 @@ func Test_conekta_WebhookKeysAPIService(t *testing.T) {
 
 	t.Run("Test WebhookKeysAPIService DeleteWebhookKey", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "645a59da22e7da0001cad283"
 
 		resp, httpRes, err := apiClient.WebhookKeysAPI.DeleteWebhookKey(context.Background(), id).Execute()
 
@@ -50,9 +45,7 @@ func Test_conekta_WebhookKeysAPIService(t *testing.T) {
 
 	t.Run("Test WebhookKeysAPIService GetWebhookKey", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "645a5eb022e7da0001cad2a4"
 
 		resp, httpRes, err := apiClient.WebhookKeysAPI.GetWebhookKey(context.Background(), id).Execute()
 
@@ -64,9 +57,7 @@ func Test_conekta_WebhookKeysAPIService(t *testing.T) {
 
 	t.Run("Test WebhookKeysAPIService GetWebhookKeys", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.WebhookKeysAPI.GetWebhookKeys(context.Background()).Execute()
+		resp, httpRes, err := apiClient.WebhookKeysAPI.GetWebhookKeys(context.Background()).Limit(2).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -76,11 +67,9 @@ func Test_conekta_WebhookKeysAPIService(t *testing.T) {
 
 	t.Run("Test WebhookKeysAPIService UpdateWebhookKey", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "645a613622e7da0001cad882"
 
-		var id string
-
-		resp, httpRes, err := apiClient.WebhookKeysAPI.UpdateWebhookKey(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.WebhookKeysAPI.UpdateWebhookKey(context.Background(), id).WebhookKeyUpdateRequest(openapiclient.WebhookKeyUpdateRequest{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

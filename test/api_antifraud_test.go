@@ -19,14 +19,11 @@ import (
 
 func Test_conekta_AntifraudAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test AntifraudAPIService CreateRuleBlacklist", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.AntifraudAPI.CreateRuleBlacklist(context.Background()).Execute()
+		resp, httpRes, err := apiClient.AntifraudAPI.CreateRuleBlacklist(context.Background()).CreateRuleWhitelistRequest(openapiclient.CreateRuleWhitelistRequest{Description: "test", Field: "email", Value: "fcarrero_black@gmail.com"}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,9 +33,7 @@ func Test_conekta_AntifraudAPIService(t *testing.T) {
 
 	t.Run("Test AntifraudAPIService CreateRuleWhitelist", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.AntifraudAPI.CreateRuleWhitelist(context.Background()).Execute()
+		resp, httpRes, err := apiClient.AntifraudAPI.CreateRuleWhitelist(context.Background()).CreateRuleWhitelistRequest(openapiclient.CreateRuleWhitelistRequest{Description: "test", Field: "email", Value: "fcarrero@gmail.com"}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -48,9 +43,7 @@ func Test_conekta_AntifraudAPIService(t *testing.T) {
 
 	t.Run("Test AntifraudAPIService DeleteRuleBlacklist", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "618c3f30db8b8da9be376b1e"
 
 		resp, httpRes, err := apiClient.AntifraudAPI.DeleteRuleBlacklist(context.Background(), id).Execute()
 
@@ -62,9 +55,7 @@ func Test_conekta_AntifraudAPIService(t *testing.T) {
 
 	t.Run("Test AntifraudAPIService DeleteRuleWhitelist", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "618c3f2fdb8b8da9be376afe"
 
 		resp, httpRes, err := apiClient.AntifraudAPI.DeleteRuleWhitelist(context.Background(), id).Execute()
 
@@ -76,8 +67,6 @@ func Test_conekta_AntifraudAPIService(t *testing.T) {
 
 	t.Run("Test AntifraudAPIService GetRuleBlacklist", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
 		resp, httpRes, err := apiClient.AntifraudAPI.GetRuleBlacklist(context.Background()).Execute()
 
 		require.Nil(t, err)
@@ -87,8 +76,6 @@ func Test_conekta_AntifraudAPIService(t *testing.T) {
 	})
 
 	t.Run("Test AntifraudAPIService GetRuleWhitelist", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.AntifraudAPI.GetRuleWhitelist(context.Background()).Execute()
 

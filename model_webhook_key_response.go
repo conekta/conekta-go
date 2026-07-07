@@ -27,7 +27,7 @@ type WebhookKeyResponse struct {
 	// Unix timestamp in seconds with the creation date of the webhook key
 	CreatedAt *int64 `json:"created_at,omitempty"`
 	// Unix timestamp in seconds with the deactivation date of the webhook key
-	DeactivatedAt NullableInt64 `json:"deactivated_at,omitempty"`
+	DeactivatedAt *int64 `json:"deactivated_at,omitempty"`
 	// Public key to be used in the webhook
 	PublicKey *string `json:"public_key,omitempty"`
 	// Indicates if the webhook key is in live mode
@@ -152,46 +152,36 @@ func (o *WebhookKeyResponse) SetCreatedAt(v int64) {
 	o.CreatedAt = &v
 }
 
-// GetDeactivatedAt returns the DeactivatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetDeactivatedAt returns the DeactivatedAt field value if set, zero value otherwise.
 func (o *WebhookKeyResponse) GetDeactivatedAt() int64 {
-	if o == nil || IsNil(o.DeactivatedAt.Get()) {
+	if o == nil || IsNil(o.DeactivatedAt) {
 		var ret int64
 		return ret
 	}
-	return *o.DeactivatedAt.Get()
+	return *o.DeactivatedAt
 }
 
 // GetDeactivatedAtOk returns a tuple with the DeactivatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WebhookKeyResponse) GetDeactivatedAtOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DeactivatedAt) {
 		return nil, false
 	}
-	return o.DeactivatedAt.Get(), o.DeactivatedAt.IsSet()
+	return o.DeactivatedAt, true
 }
 
 // HasDeactivatedAt returns a boolean if a field has been set.
 func (o *WebhookKeyResponse) HasDeactivatedAt() bool {
-	if o != nil && o.DeactivatedAt.IsSet() {
+	if o != nil && !IsNil(o.DeactivatedAt) {
 		return true
 	}
 
 	return false
 }
 
-// SetDeactivatedAt gets a reference to the given NullableInt64 and assigns it to the DeactivatedAt field.
+// SetDeactivatedAt gets a reference to the given int64 and assigns it to the DeactivatedAt field.
 func (o *WebhookKeyResponse) SetDeactivatedAt(v int64) {
-	o.DeactivatedAt.Set(&v)
-}
-// SetDeactivatedAtNil sets the value for DeactivatedAt to be an explicit nil
-func (o *WebhookKeyResponse) SetDeactivatedAtNil() {
-	o.DeactivatedAt.Set(nil)
-}
-
-// UnsetDeactivatedAt ensures that no value is present for DeactivatedAt, not even an explicit nil
-func (o *WebhookKeyResponse) UnsetDeactivatedAt() {
-	o.DeactivatedAt.Unset()
+	o.DeactivatedAt = &v
 }
 
 // GetPublicKey returns the PublicKey field value if set, zero value otherwise.
@@ -309,8 +299,8 @@ func (o WebhookKeyResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.DeactivatedAt.IsSet() {
-		toSerialize["deactivated_at"] = o.DeactivatedAt.Get()
+	if !IsNil(o.DeactivatedAt) {
+		toSerialize["deactivated_at"] = o.DeactivatedAt
 	}
 	if !IsNil(o.PublicKey) {
 		toSerialize["public_key"] = o.PublicKey

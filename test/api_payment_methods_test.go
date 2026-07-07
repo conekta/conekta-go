@@ -19,16 +19,13 @@ import (
 
 func Test_conekta_PaymentMethodsAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test PaymentMethodsAPIService CreateCustomerPaymentMethods", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "cus_2tXyF9BwPG14UMkkg"
 
-		var id string
-
-		resp, httpRes, err := apiClient.PaymentMethodsAPI.CreateCustomerPaymentMethods(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.PaymentMethodsAPI.CreateCustomerPaymentMethods(context.Background(), id).CreateCustomerPaymentMethodsRequest(openapiclient.CreateCustomerPaymentMethodsRequest{PaymentMethodCashRequest: &openapiclient.PaymentMethodCashRequest{Type: "cash_recurrent"}}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -38,10 +35,8 @@ func Test_conekta_PaymentMethodsAPIService(t *testing.T) {
 
 	t.Run("Test PaymentMethodsAPIService DeleteCustomerPaymentMethods", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-		var paymentMethodId string
+		id := "cus_2tZWxbTPtQgGJGh8P"
+		paymentMethodId := "src_2tZWxbTPtQgGJGh8R"
 
 		resp, httpRes, err := apiClient.PaymentMethodsAPI.DeleteCustomerPaymentMethods(context.Background(), id, paymentMethodId).Execute()
 
@@ -53,9 +48,7 @@ func Test_conekta_PaymentMethodsAPIService(t *testing.T) {
 
 	t.Run("Test PaymentMethodsAPIService GetCustomerPaymentMethods", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "src_2tbd5Bgy67RL9oycM"
 
 		resp, httpRes, err := apiClient.PaymentMethodsAPI.GetCustomerPaymentMethods(context.Background(), id).Execute()
 
@@ -67,12 +60,10 @@ func Test_conekta_PaymentMethodsAPIService(t *testing.T) {
 
 	t.Run("Test PaymentMethodsAPIService UpdateCustomerPaymentMethods", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "cus_2tZWxbTPtQgGJGh8P"
+		paymentMethodId := "src_2tZWxbTPtQgGJGh8R"
 
-		var id string
-		var paymentMethodId string
-
-		resp, httpRes, err := apiClient.PaymentMethodsAPI.UpdateCustomerPaymentMethods(context.Background(), id, paymentMethodId).Execute()
+		resp, httpRes, err := apiClient.PaymentMethodsAPI.UpdateCustomerPaymentMethods(context.Background(), id, paymentMethodId).UpdatePaymentMethodsCard(openapiclient.UpdatePaymentMethodsCard{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

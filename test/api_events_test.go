@@ -19,14 +19,11 @@ import (
 
 func Test_conekta_EventsAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test EventsAPIService GetEvent", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "63fe3d2ddf70970001cfb41a"
 
 		resp, httpRes, err := apiClient.EventsAPI.GetEvent(context.Background(), id).Execute()
 
@@ -38,8 +35,6 @@ func Test_conekta_EventsAPIService(t *testing.T) {
 
 	t.Run("Test EventsAPIService GetEvents", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
 		resp, httpRes, err := apiClient.EventsAPI.GetEvents(context.Background()).Execute()
 
 		require.Nil(t, err)
@@ -50,11 +45,9 @@ func Test_conekta_EventsAPIService(t *testing.T) {
 
 	t.Run("Test EventsAPIService ResendEvent", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		eventId := "6463d6e35a4c3e001819e761"
 
-		var eventId string
-
-		resp, httpRes, err := apiClient.EventsAPI.ResendEvent(context.Background(), eventId).Execute()
+		resp, httpRes, err := apiClient.EventsAPI.ResendEvent(context.Background(), eventId).ResendEventRequest(openapiclient.ResendEventRequest{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

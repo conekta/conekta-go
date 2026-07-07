@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## CreateCustomerShippingContacts
 
-> CustomerShippingContactsResponse CreateCustomerShippingContacts(ctx, id).CustomerShippingContacts(customerShippingContacts).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> CustomerShippingContactsResponse CreateCustomerShippingContacts(ctx, id).CustomerShippingContactsRequest(customerShippingContactsRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Create a shipping contacts
 
@@ -32,13 +32,13 @@ import (
 
 func main() {
 	id := "6307a60c41de27127515a575" // string | Identifier of the resource
-	customerShippingContacts := *openapiclient.NewCustomerShippingContacts(*openapiclient.NewCustomerShippingContactsAddress()) // CustomerShippingContacts | requested field for customer shippings contacts
+	customerShippingContactsRequest := *openapiclient.NewCustomerShippingContactsRequest(*openapiclient.NewCustomerShippingContactsRequestAddress()) // CustomerShippingContactsRequest | requested field for customer shippings contacts
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ShippingContactsAPI.CreateCustomerShippingContacts(context.Background(), id).CustomerShippingContacts(customerShippingContacts).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	resp, r, err := apiClient.ShippingContactsAPI.CreateCustomerShippingContacts(context.Background(), id).CustomerShippingContactsRequest(customerShippingContactsRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ShippingContactsAPI.CreateCustomerShippingContacts``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -64,7 +64,7 @@ Other parameters are passed through a pointer to a apiCreateCustomerShippingCont
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **customerShippingContacts** | [**CustomerShippingContacts**](CustomerShippingContacts.md) | requested field for customer shippings contacts | 
+ **customerShippingContactsRequest** | [**CustomerShippingContactsRequest**](CustomerShippingContactsRequest.md) | requested field for customer shippings contacts | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
  **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomerShippingContacts
 
-> CustomerShippingContactsResponse UpdateCustomerShippingContacts(ctx, id, shippingContactsId).CustomerUpdateShippingContacts(customerUpdateShippingContacts).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> CustomerShippingContactsResponse UpdateCustomerShippingContacts(ctx, id, shippingContactsId).CustomerUpdateShippingContactsRequest(customerUpdateShippingContactsRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update shipping contacts
 
@@ -186,13 +186,13 @@ import (
 func main() {
 	id := "6307a60c41de27127515a575" // string | Identifier of the resource
 	shippingContactsId := "6307a60c41de27127515a575" // string | identifier
-	customerUpdateShippingContacts := *openapiclient.NewCustomerUpdateShippingContacts() // CustomerUpdateShippingContacts | requested field for customer update shippings contacts
+	customerUpdateShippingContactsRequest := *openapiclient.NewCustomerUpdateShippingContactsRequest() // CustomerUpdateShippingContactsRequest | requested field for customer update shippings contacts
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ShippingContactsAPI.UpdateCustomerShippingContacts(context.Background(), id, shippingContactsId).CustomerUpdateShippingContacts(customerUpdateShippingContacts).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	resp, r, err := apiClient.ShippingContactsAPI.UpdateCustomerShippingContacts(context.Background(), id, shippingContactsId).CustomerUpdateShippingContactsRequest(customerUpdateShippingContactsRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ShippingContactsAPI.UpdateCustomerShippingContacts``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **customerUpdateShippingContacts** | [**CustomerUpdateShippingContacts**](CustomerUpdateShippingContacts.md) | requested field for customer update shippings contacts | 
+ **customerUpdateShippingContactsRequest** | [**CustomerUpdateShippingContactsRequest**](CustomerUpdateShippingContactsRequest.md) | requested field for customer update shippings contacts | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
  **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 

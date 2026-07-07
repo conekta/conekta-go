@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Object** | **string** |  | 
 **CreatedAt** | **int64** |  | 
 **ParentId** | Pointer to **string** |  | [optional] 
-**Agreements** | Pointer to [**[]PaymentMethodCashResponseAllOfAgreements**](PaymentMethodCashResponseAllOfAgreements.md) |  | [optional] 
+**Agreements** | Pointer to [**[]CashAgreementsResponse**](CashAgreementsResponse.md) |  | [optional] 
 **Reference** | Pointer to **string** |  | [optional] 
 **Barcode** | Pointer to **string** |  | [optional] 
 **BarcodeUrl** | Pointer to **string** | URL to the barcode image, reference is the same as barcode | [optional] 
@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **ExpMonth** | Pointer to **string** |  | [optional] 
 **ExpYear** | Pointer to **string** |  | [optional] 
 **Brand** | Pointer to **string** |  | [optional] 
+**Issuer** | Pointer to **string** | Name of the institution that issued the card | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Default** | Pointer to **bool** |  | [optional] 
 **VisibleOnCheckout** | Pointer to **bool** |  | [optional] 
@@ -153,20 +154,20 @@ HasParentId returns a boolean if a field has been set.
 
 ### GetAgreements
 
-`func (o *GetCustomerPaymentMethodDataResponse) GetAgreements() []PaymentMethodCashResponseAllOfAgreements`
+`func (o *GetCustomerPaymentMethodDataResponse) GetAgreements() []CashAgreementsResponse`
 
 GetAgreements returns the Agreements field if non-nil, zero value otherwise.
 
 ### GetAgreementsOk
 
-`func (o *GetCustomerPaymentMethodDataResponse) GetAgreementsOk() (*[]PaymentMethodCashResponseAllOfAgreements, bool)`
+`func (o *GetCustomerPaymentMethodDataResponse) GetAgreementsOk() (*[]CashAgreementsResponse, bool)`
 
 GetAgreementsOk returns a tuple with the Agreements field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAgreements
 
-`func (o *GetCustomerPaymentMethodDataResponse) SetAgreements(v []PaymentMethodCashResponseAllOfAgreements)`
+`func (o *GetCustomerPaymentMethodDataResponse) SetAgreements(v []CashAgreementsResponse)`
 
 SetAgreements sets Agreements field to given value.
 
@@ -450,6 +451,31 @@ SetBrand sets Brand field to given value.
 `func (o *GetCustomerPaymentMethodDataResponse) HasBrand() bool`
 
 HasBrand returns a boolean if a field has been set.
+
+### GetIssuer
+
+`func (o *GetCustomerPaymentMethodDataResponse) GetIssuer() string`
+
+GetIssuer returns the Issuer field if non-nil, zero value otherwise.
+
+### GetIssuerOk
+
+`func (o *GetCustomerPaymentMethodDataResponse) GetIssuerOk() (*string, bool)`
+
+GetIssuerOk returns a tuple with the Issuer field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIssuer
+
+`func (o *GetCustomerPaymentMethodDataResponse) SetIssuer(v string)`
+
+SetIssuer sets Issuer field to given value.
+
+### HasIssuer
+
+`func (o *GetCustomerPaymentMethodDataResponse) HasIssuer() bool`
+
+HasIssuer returns a boolean if a field has been set.
 
 ### GetName
 

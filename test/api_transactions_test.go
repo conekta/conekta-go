@@ -14,19 +14,15 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/conekta/conekta-go"
 )
 
 func Test_conekta_TransactionsAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test TransactionsAPIService GetTransaction", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "6456b6dfac0fd40001a64eb8"
 
 		resp, httpRes, err := apiClient.TransactionsAPI.GetTransaction(context.Background(), id).Execute()
 
@@ -38,9 +34,7 @@ func Test_conekta_TransactionsAPIService(t *testing.T) {
 
 	t.Run("Test TransactionsAPIService GetTransactions", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.TransactionsAPI.GetTransactions(context.Background()).Execute()
+		resp, httpRes, err := apiClient.TransactionsAPI.GetTransactions(context.Background()).Limit(2).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

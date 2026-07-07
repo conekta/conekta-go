@@ -20,6 +20,8 @@ var _ MappedNullable = &ApiKeyCreateResponse{}
 
 // ApiKeyCreateResponse struct for ApiKeyCreateResponse
 type ApiKeyCreateResponse struct {
+	// It is occupied as a user when authenticated with basic authentication, with a blank password. This value will only appear once, in the request to create a new key. Copy and save it in a safe place.
+	AuthenticationToken *string `json:"authentication_token,omitempty"`
 	// Indicates if the api key is active
 	Active *bool `json:"active,omitempty"`
 	// Unix timestamp in seconds of when the api key was created
@@ -27,9 +29,9 @@ type ApiKeyCreateResponse struct {
 	// Unix timestamp in seconds of when the api key was last updated
 	UpdatedAt *int64 `json:"updated_at,omitempty"`
 	// Unix timestamp in seconds of when the api key was deleted
-	DeactivatedAt NullableInt64 `json:"deactivated_at,omitempty"`
+	DeactivatedAt *int64 `json:"deactivated_at,omitempty"`
 	// Unix timestamp in seconds with the api key was used
-	LastUsedAt NullableInt64 `json:"last_used_at,omitempty"`
+	LastUsedAt *int64 `json:"last_used_at,omitempty"`
 	// A name or brief explanation of what this api key is used for
 	Description *string `json:"description,omitempty"`
 	// Unique identifier of the api key
@@ -42,8 +44,6 @@ type ApiKeyCreateResponse struct {
 	Prefix *string `json:"prefix,omitempty"`
 	// Indicates if the api key is private or public
 	Role *string `json:"role,omitempty"`
-	// It is occupied as a user when authenticated with basic authentication, with a blank password. This value will only appear once, in the request to create a new key. Copy and save it in a safe place.
-	AuthenticationToken *string `json:"authentication_token,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -64,6 +64,38 @@ func NewApiKeyCreateResponse() *ApiKeyCreateResponse {
 func NewApiKeyCreateResponseWithDefaults() *ApiKeyCreateResponse {
 	this := ApiKeyCreateResponse{}
 	return &this
+}
+
+// GetAuthenticationToken returns the AuthenticationToken field value if set, zero value otherwise.
+func (o *ApiKeyCreateResponse) GetAuthenticationToken() string {
+	if o == nil || IsNil(o.AuthenticationToken) {
+		var ret string
+		return ret
+	}
+	return *o.AuthenticationToken
+}
+
+// GetAuthenticationTokenOk returns a tuple with the AuthenticationToken field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ApiKeyCreateResponse) GetAuthenticationTokenOk() (*string, bool) {
+	if o == nil || IsNil(o.AuthenticationToken) {
+		return nil, false
+	}
+	return o.AuthenticationToken, true
+}
+
+// HasAuthenticationToken returns a boolean if a field has been set.
+func (o *ApiKeyCreateResponse) HasAuthenticationToken() bool {
+	if o != nil && !IsNil(o.AuthenticationToken) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthenticationToken gets a reference to the given string and assigns it to the AuthenticationToken field.
+func (o *ApiKeyCreateResponse) SetAuthenticationToken(v string) {
+	o.AuthenticationToken = &v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
@@ -162,88 +194,68 @@ func (o *ApiKeyCreateResponse) SetUpdatedAt(v int64) {
 	o.UpdatedAt = &v
 }
 
-// GetDeactivatedAt returns the DeactivatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetDeactivatedAt returns the DeactivatedAt field value if set, zero value otherwise.
 func (o *ApiKeyCreateResponse) GetDeactivatedAt() int64 {
-	if o == nil || IsNil(o.DeactivatedAt.Get()) {
+	if o == nil || IsNil(o.DeactivatedAt) {
 		var ret int64
 		return ret
 	}
-	return *o.DeactivatedAt.Get()
+	return *o.DeactivatedAt
 }
 
 // GetDeactivatedAtOk returns a tuple with the DeactivatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ApiKeyCreateResponse) GetDeactivatedAtOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DeactivatedAt) {
 		return nil, false
 	}
-	return o.DeactivatedAt.Get(), o.DeactivatedAt.IsSet()
+	return o.DeactivatedAt, true
 }
 
 // HasDeactivatedAt returns a boolean if a field has been set.
 func (o *ApiKeyCreateResponse) HasDeactivatedAt() bool {
-	if o != nil && o.DeactivatedAt.IsSet() {
+	if o != nil && !IsNil(o.DeactivatedAt) {
 		return true
 	}
 
 	return false
 }
 
-// SetDeactivatedAt gets a reference to the given NullableInt64 and assigns it to the DeactivatedAt field.
+// SetDeactivatedAt gets a reference to the given int64 and assigns it to the DeactivatedAt field.
 func (o *ApiKeyCreateResponse) SetDeactivatedAt(v int64) {
-	o.DeactivatedAt.Set(&v)
-}
-// SetDeactivatedAtNil sets the value for DeactivatedAt to be an explicit nil
-func (o *ApiKeyCreateResponse) SetDeactivatedAtNil() {
-	o.DeactivatedAt.Set(nil)
+	o.DeactivatedAt = &v
 }
 
-// UnsetDeactivatedAt ensures that no value is present for DeactivatedAt, not even an explicit nil
-func (o *ApiKeyCreateResponse) UnsetDeactivatedAt() {
-	o.DeactivatedAt.Unset()
-}
-
-// GetLastUsedAt returns the LastUsedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLastUsedAt returns the LastUsedAt field value if set, zero value otherwise.
 func (o *ApiKeyCreateResponse) GetLastUsedAt() int64 {
-	if o == nil || IsNil(o.LastUsedAt.Get()) {
+	if o == nil || IsNil(o.LastUsedAt) {
 		var ret int64
 		return ret
 	}
-	return *o.LastUsedAt.Get()
+	return *o.LastUsedAt
 }
 
 // GetLastUsedAtOk returns a tuple with the LastUsedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ApiKeyCreateResponse) GetLastUsedAtOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastUsedAt) {
 		return nil, false
 	}
-	return o.LastUsedAt.Get(), o.LastUsedAt.IsSet()
+	return o.LastUsedAt, true
 }
 
 // HasLastUsedAt returns a boolean if a field has been set.
 func (o *ApiKeyCreateResponse) HasLastUsedAt() bool {
-	if o != nil && o.LastUsedAt.IsSet() {
+	if o != nil && !IsNil(o.LastUsedAt) {
 		return true
 	}
 
 	return false
 }
 
-// SetLastUsedAt gets a reference to the given NullableInt64 and assigns it to the LastUsedAt field.
+// SetLastUsedAt gets a reference to the given int64 and assigns it to the LastUsedAt field.
 func (o *ApiKeyCreateResponse) SetLastUsedAt(v int64) {
-	o.LastUsedAt.Set(&v)
-}
-// SetLastUsedAtNil sets the value for LastUsedAt to be an explicit nil
-func (o *ApiKeyCreateResponse) SetLastUsedAtNil() {
-	o.LastUsedAt.Set(nil)
-}
-
-// UnsetLastUsedAt ensures that no value is present for LastUsedAt, not even an explicit nil
-func (o *ApiKeyCreateResponse) UnsetLastUsedAt() {
-	o.LastUsedAt.Unset()
+	o.LastUsedAt = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -438,38 +450,6 @@ func (o *ApiKeyCreateResponse) SetRole(v string) {
 	o.Role = &v
 }
 
-// GetAuthenticationToken returns the AuthenticationToken field value if set, zero value otherwise.
-func (o *ApiKeyCreateResponse) GetAuthenticationToken() string {
-	if o == nil || IsNil(o.AuthenticationToken) {
-		var ret string
-		return ret
-	}
-	return *o.AuthenticationToken
-}
-
-// GetAuthenticationTokenOk returns a tuple with the AuthenticationToken field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ApiKeyCreateResponse) GetAuthenticationTokenOk() (*string, bool) {
-	if o == nil || IsNil(o.AuthenticationToken) {
-		return nil, false
-	}
-	return o.AuthenticationToken, true
-}
-
-// HasAuthenticationToken returns a boolean if a field has been set.
-func (o *ApiKeyCreateResponse) HasAuthenticationToken() bool {
-	if o != nil && !IsNil(o.AuthenticationToken) {
-		return true
-	}
-
-	return false
-}
-
-// SetAuthenticationToken gets a reference to the given string and assigns it to the AuthenticationToken field.
-func (o *ApiKeyCreateResponse) SetAuthenticationToken(v string) {
-	o.AuthenticationToken = &v
-}
-
 func (o ApiKeyCreateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -480,6 +460,9 @@ func (o ApiKeyCreateResponse) MarshalJSON() ([]byte, error) {
 
 func (o ApiKeyCreateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AuthenticationToken) {
+		toSerialize["authentication_token"] = o.AuthenticationToken
+	}
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
@@ -489,11 +472,11 @@ func (o ApiKeyCreateResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if o.DeactivatedAt.IsSet() {
-		toSerialize["deactivated_at"] = o.DeactivatedAt.Get()
+	if !IsNil(o.DeactivatedAt) {
+		toSerialize["deactivated_at"] = o.DeactivatedAt
 	}
-	if o.LastUsedAt.IsSet() {
-		toSerialize["last_used_at"] = o.LastUsedAt.Get()
+	if !IsNil(o.LastUsedAt) {
+		toSerialize["last_used_at"] = o.LastUsedAt
 	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -512,9 +495,6 @@ func (o ApiKeyCreateResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Role) {
 		toSerialize["role"] = o.Role
-	}
-	if !IsNil(o.AuthenticationToken) {
-		toSerialize["authentication_token"] = o.AuthenticationToken
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -538,6 +518,7 @@ func (o *ApiKeyCreateResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "authentication_token")
 		delete(additionalProperties, "active")
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "updated_at")
@@ -549,7 +530,6 @@ func (o *ApiKeyCreateResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "object")
 		delete(additionalProperties, "prefix")
 		delete(additionalProperties, "role")
-		delete(additionalProperties, "authentication_token")
 		o.AdditionalProperties = additionalProperties
 	}
 

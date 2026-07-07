@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Data** | Pointer to [**[]PayoutOrderResponse**](PayoutOrderResponse.md) |  | [optional] 
 **HasMore** | **bool** | Indicates if there are more pages to be requested | 
 **Object** | **string** | Object type, in this case is list | 
-**NextPageUrl** | Pointer to **NullableString** | URL of the next page. | [optional] 
-**PreviousPageUrl** | Pointer to **NullableString** | Url of the previous page. | [optional] 
-**Data** | Pointer to [**[]PayoutOrderResponse**](PayoutOrderResponse.md) |  | [optional] 
+**NextPageUrl** | Pointer to **string** | URL of the next page. | [optional] 
+**PreviousPageUrl** | Pointer to **string** | Url of the previous page. | [optional] 
 
 ## Methods
 
@@ -28,6 +28,31 @@ will change when the set of required properties is changed
 NewPayoutOrdersResponseWithDefaults instantiates a new PayoutOrdersResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetData
+
+`func (o *PayoutOrdersResponse) GetData() []PayoutOrderResponse`
+
+GetData returns the Data field if non-nil, zero value otherwise.
+
+### GetDataOk
+
+`func (o *PayoutOrdersResponse) GetDataOk() (*[]PayoutOrderResponse, bool)`
+
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetData
+
+`func (o *PayoutOrdersResponse) SetData(v []PayoutOrderResponse)`
+
+SetData sets Data field to given value.
+
+### HasData
+
+`func (o *PayoutOrdersResponse) HasData() bool`
+
+HasData returns a boolean if a field has been set.
 
 ### GetHasMore
 
@@ -94,16 +119,6 @@ SetNextPageUrl sets NextPageUrl field to given value.
 
 HasNextPageUrl returns a boolean if a field has been set.
 
-### SetNextPageUrlNil
-
-`func (o *PayoutOrdersResponse) SetNextPageUrlNil(b bool)`
-
- SetNextPageUrlNil sets the value for NextPageUrl to be an explicit nil
-
-### UnsetNextPageUrl
-`func (o *PayoutOrdersResponse) UnsetNextPageUrl()`
-
-UnsetNextPageUrl ensures that no value is present for NextPageUrl, not even an explicit nil
 ### GetPreviousPageUrl
 
 `func (o *PayoutOrdersResponse) GetPreviousPageUrl() string`
@@ -128,41 +143,6 @@ SetPreviousPageUrl sets PreviousPageUrl field to given value.
 `func (o *PayoutOrdersResponse) HasPreviousPageUrl() bool`
 
 HasPreviousPageUrl returns a boolean if a field has been set.
-
-### SetPreviousPageUrlNil
-
-`func (o *PayoutOrdersResponse) SetPreviousPageUrlNil(b bool)`
-
- SetPreviousPageUrlNil sets the value for PreviousPageUrl to be an explicit nil
-
-### UnsetPreviousPageUrl
-`func (o *PayoutOrdersResponse) UnsetPreviousPageUrl()`
-
-UnsetPreviousPageUrl ensures that no value is present for PreviousPageUrl, not even an explicit nil
-### GetData
-
-`func (o *PayoutOrdersResponse) GetData() []PayoutOrderResponse`
-
-GetData returns the Data field if non-nil, zero value otherwise.
-
-### GetDataOk
-
-`func (o *PayoutOrdersResponse) GetDataOk() (*[]PayoutOrderResponse, bool)`
-
-GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetData
-
-`func (o *PayoutOrdersResponse) SetData(v []PayoutOrderResponse)`
-
-SetData sets Data field to given value.
-
-### HasData
-
-`func (o *PayoutOrdersResponse) HasData() bool`
-
-HasData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

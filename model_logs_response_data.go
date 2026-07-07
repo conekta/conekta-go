@@ -24,16 +24,16 @@ type LogsResponseData struct {
 	Id *string `json:"id,omitempty"`
 	IpAddress *string `json:"ip_address,omitempty"`
 	Livemode *bool `json:"livemode,omitempty"`
-	LoggableId NullableString `json:"loggable_id,omitempty"`
-	LoggableType NullableString `json:"loggable_type,omitempty"`
+	LoggableId *string `json:"loggable_id,omitempty"`
+	LoggableType *string `json:"loggable_type,omitempty"`
 	Method *string `json:"method,omitempty"`
-	OauthTokenId NullableString `json:"oauth_token_id,omitempty"`
+	OauthTokenId *string `json:"oauth_token_id,omitempty"`
 	QueryString map[string]interface{} `json:"query_string,omitempty"`
 	Related *string `json:"related,omitempty"`
 	RequestBody map[string]interface{} `json:"request_body,omitempty"`
-	RequestHeaders *map[string]string `json:"request_headers,omitempty"`
+	RequestHeaders map[string]string `json:"request_headers,omitempty"`
 	ResponseBody map[string]interface{} `json:"response_body,omitempty"`
-	ResponseHeaders *map[string]string `json:"response_headers,omitempty"`
+	ResponseHeaders map[string]string `json:"response_headers,omitempty"`
 	SearchableTags []string `json:"searchable_tags,omitempty"`
 	Status *string `json:"status,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
@@ -190,88 +190,68 @@ func (o *LogsResponseData) SetLivemode(v bool) {
 	o.Livemode = &v
 }
 
-// GetLoggableId returns the LoggableId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLoggableId returns the LoggableId field value if set, zero value otherwise.
 func (o *LogsResponseData) GetLoggableId() string {
-	if o == nil || IsNil(o.LoggableId.Get()) {
+	if o == nil || IsNil(o.LoggableId) {
 		var ret string
 		return ret
 	}
-	return *o.LoggableId.Get()
+	return *o.LoggableId
 }
 
 // GetLoggableIdOk returns a tuple with the LoggableId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LogsResponseData) GetLoggableIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LoggableId) {
 		return nil, false
 	}
-	return o.LoggableId.Get(), o.LoggableId.IsSet()
+	return o.LoggableId, true
 }
 
 // HasLoggableId returns a boolean if a field has been set.
 func (o *LogsResponseData) HasLoggableId() bool {
-	if o != nil && o.LoggableId.IsSet() {
+	if o != nil && !IsNil(o.LoggableId) {
 		return true
 	}
 
 	return false
 }
 
-// SetLoggableId gets a reference to the given NullableString and assigns it to the LoggableId field.
+// SetLoggableId gets a reference to the given string and assigns it to the LoggableId field.
 func (o *LogsResponseData) SetLoggableId(v string) {
-	o.LoggableId.Set(&v)
-}
-// SetLoggableIdNil sets the value for LoggableId to be an explicit nil
-func (o *LogsResponseData) SetLoggableIdNil() {
-	o.LoggableId.Set(nil)
+	o.LoggableId = &v
 }
 
-// UnsetLoggableId ensures that no value is present for LoggableId, not even an explicit nil
-func (o *LogsResponseData) UnsetLoggableId() {
-	o.LoggableId.Unset()
-}
-
-// GetLoggableType returns the LoggableType field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLoggableType returns the LoggableType field value if set, zero value otherwise.
 func (o *LogsResponseData) GetLoggableType() string {
-	if o == nil || IsNil(o.LoggableType.Get()) {
+	if o == nil || IsNil(o.LoggableType) {
 		var ret string
 		return ret
 	}
-	return *o.LoggableType.Get()
+	return *o.LoggableType
 }
 
 // GetLoggableTypeOk returns a tuple with the LoggableType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LogsResponseData) GetLoggableTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LoggableType) {
 		return nil, false
 	}
-	return o.LoggableType.Get(), o.LoggableType.IsSet()
+	return o.LoggableType, true
 }
 
 // HasLoggableType returns a boolean if a field has been set.
 func (o *LogsResponseData) HasLoggableType() bool {
-	if o != nil && o.LoggableType.IsSet() {
+	if o != nil && !IsNil(o.LoggableType) {
 		return true
 	}
 
 	return false
 }
 
-// SetLoggableType gets a reference to the given NullableString and assigns it to the LoggableType field.
+// SetLoggableType gets a reference to the given string and assigns it to the LoggableType field.
 func (o *LogsResponseData) SetLoggableType(v string) {
-	o.LoggableType.Set(&v)
-}
-// SetLoggableTypeNil sets the value for LoggableType to be an explicit nil
-func (o *LogsResponseData) SetLoggableTypeNil() {
-	o.LoggableType.Set(nil)
-}
-
-// UnsetLoggableType ensures that no value is present for LoggableType, not even an explicit nil
-func (o *LogsResponseData) UnsetLoggableType() {
-	o.LoggableType.Unset()
+	o.LoggableType = &v
 }
 
 // GetMethod returns the Method field value if set, zero value otherwise.
@@ -306,46 +286,36 @@ func (o *LogsResponseData) SetMethod(v string) {
 	o.Method = &v
 }
 
-// GetOauthTokenId returns the OauthTokenId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOauthTokenId returns the OauthTokenId field value if set, zero value otherwise.
 func (o *LogsResponseData) GetOauthTokenId() string {
-	if o == nil || IsNil(o.OauthTokenId.Get()) {
+	if o == nil || IsNil(o.OauthTokenId) {
 		var ret string
 		return ret
 	}
-	return *o.OauthTokenId.Get()
+	return *o.OauthTokenId
 }
 
 // GetOauthTokenIdOk returns a tuple with the OauthTokenId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LogsResponseData) GetOauthTokenIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OauthTokenId) {
 		return nil, false
 	}
-	return o.OauthTokenId.Get(), o.OauthTokenId.IsSet()
+	return o.OauthTokenId, true
 }
 
 // HasOauthTokenId returns a boolean if a field has been set.
 func (o *LogsResponseData) HasOauthTokenId() bool {
-	if o != nil && o.OauthTokenId.IsSet() {
+	if o != nil && !IsNil(o.OauthTokenId) {
 		return true
 	}
 
 	return false
 }
 
-// SetOauthTokenId gets a reference to the given NullableString and assigns it to the OauthTokenId field.
+// SetOauthTokenId gets a reference to the given string and assigns it to the OauthTokenId field.
 func (o *LogsResponseData) SetOauthTokenId(v string) {
-	o.OauthTokenId.Set(&v)
-}
-// SetOauthTokenIdNil sets the value for OauthTokenId to be an explicit nil
-func (o *LogsResponseData) SetOauthTokenIdNil() {
-	o.OauthTokenId.Set(nil)
-}
-
-// UnsetOauthTokenId ensures that no value is present for OauthTokenId, not even an explicit nil
-func (o *LogsResponseData) UnsetOauthTokenId() {
-	o.OauthTokenId.Unset()
+	o.OauthTokenId = &v
 }
 
 // GetQueryString returns the QueryString field value if set, zero value otherwise.
@@ -444,22 +414,23 @@ func (o *LogsResponseData) SetRequestBody(v map[string]interface{}) {
 	o.RequestBody = v
 }
 
-// GetRequestHeaders returns the RequestHeaders field value if set, zero value otherwise.
+// GetRequestHeaders returns the RequestHeaders field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogsResponseData) GetRequestHeaders() map[string]string {
-	if o == nil || IsNil(o.RequestHeaders) {
+	if o == nil {
 		var ret map[string]string
 		return ret
 	}
-	return *o.RequestHeaders
+	return o.RequestHeaders
 }
 
 // GetRequestHeadersOk returns a tuple with the RequestHeaders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LogsResponseData) GetRequestHeadersOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.RequestHeaders) {
 		return nil, false
 	}
-	return o.RequestHeaders, true
+	return &o.RequestHeaders, true
 }
 
 // HasRequestHeaders returns a boolean if a field has been set.
@@ -473,7 +444,7 @@ func (o *LogsResponseData) HasRequestHeaders() bool {
 
 // SetRequestHeaders gets a reference to the given map[string]string and assigns it to the RequestHeaders field.
 func (o *LogsResponseData) SetRequestHeaders(v map[string]string) {
-	o.RequestHeaders = &v
+	o.RequestHeaders = v
 }
 
 // GetResponseBody returns the ResponseBody field value if set, zero value otherwise.
@@ -508,22 +479,23 @@ func (o *LogsResponseData) SetResponseBody(v map[string]interface{}) {
 	o.ResponseBody = v
 }
 
-// GetResponseHeaders returns the ResponseHeaders field value if set, zero value otherwise.
+// GetResponseHeaders returns the ResponseHeaders field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogsResponseData) GetResponseHeaders() map[string]string {
-	if o == nil || IsNil(o.ResponseHeaders) {
+	if o == nil {
 		var ret map[string]string
 		return ret
 	}
-	return *o.ResponseHeaders
+	return o.ResponseHeaders
 }
 
 // GetResponseHeadersOk returns a tuple with the ResponseHeaders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LogsResponseData) GetResponseHeadersOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.ResponseHeaders) {
 		return nil, false
 	}
-	return o.ResponseHeaders, true
+	return &o.ResponseHeaders, true
 }
 
 // HasResponseHeaders returns a boolean if a field has been set.
@@ -537,7 +509,7 @@ func (o *LogsResponseData) HasResponseHeaders() bool {
 
 // SetResponseHeaders gets a reference to the given map[string]string and assigns it to the ResponseHeaders field.
 func (o *LogsResponseData) SetResponseHeaders(v map[string]string) {
-	o.ResponseHeaders = &v
+	o.ResponseHeaders = v
 }
 
 // GetSearchableTags returns the SearchableTags field value if set, zero value otherwise.
@@ -754,17 +726,17 @@ func (o LogsResponseData) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Livemode) {
 		toSerialize["livemode"] = o.Livemode
 	}
-	if o.LoggableId.IsSet() {
-		toSerialize["loggable_id"] = o.LoggableId.Get()
+	if !IsNil(o.LoggableId) {
+		toSerialize["loggable_id"] = o.LoggableId
 	}
-	if o.LoggableType.IsSet() {
-		toSerialize["loggable_type"] = o.LoggableType.Get()
+	if !IsNil(o.LoggableType) {
+		toSerialize["loggable_type"] = o.LoggableType
 	}
 	if !IsNil(o.Method) {
 		toSerialize["method"] = o.Method
 	}
-	if o.OauthTokenId.IsSet() {
-		toSerialize["oauth_token_id"] = o.OauthTokenId.Get()
+	if !IsNil(o.OauthTokenId) {
+		toSerialize["oauth_token_id"] = o.OauthTokenId
 	}
 	if !IsNil(o.QueryString) {
 		toSerialize["query_string"] = o.QueryString
@@ -775,13 +747,13 @@ func (o LogsResponseData) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RequestBody) {
 		toSerialize["request_body"] = o.RequestBody
 	}
-	if !IsNil(o.RequestHeaders) {
+	if o.RequestHeaders != nil {
 		toSerialize["request_headers"] = o.RequestHeaders
 	}
 	if !IsNil(o.ResponseBody) {
 		toSerialize["response_body"] = o.ResponseBody
 	}
-	if !IsNil(o.ResponseHeaders) {
+	if o.ResponseHeaders != nil {
 		toSerialize["response_headers"] = o.ResponseHeaders
 	}
 	if !IsNil(o.SearchableTags) {

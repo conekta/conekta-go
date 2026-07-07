@@ -19,14 +19,11 @@ import (
 
 func Test_conekta_WebhooksAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test WebhooksAPIService CreateWebhook", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.WebhooksAPI.CreateWebhook(context.Background()).Execute()
+		resp, httpRes, err := apiClient.WebhooksAPI.CreateWebhook(context.Background()).WebhookRequest(openapiclient.WebhookRequest{Url: "https://webhook.site/0b8c9fa8-92c3-4a04-beea-a7ec037f6466"}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,9 +33,7 @@ func Test_conekta_WebhooksAPIService(t *testing.T) {
 
 	t.Run("Test WebhooksAPIService DeleteWebhook", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "641b1d5662d7e00001eaa46b"
 
 		resp, httpRes, err := apiClient.WebhooksAPI.DeleteWebhook(context.Background(), id).Execute()
 
@@ -50,9 +45,7 @@ func Test_conekta_WebhooksAPIService(t *testing.T) {
 
 	t.Run("Test WebhooksAPIService GetWebhook", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "641b1d5662d7e00001eaa46b"
 
 		resp, httpRes, err := apiClient.WebhooksAPI.GetWebhook(context.Background(), id).Execute()
 
@@ -64,8 +57,6 @@ func Test_conekta_WebhooksAPIService(t *testing.T) {
 
 	t.Run("Test WebhooksAPIService GetWebhooks", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
 		resp, httpRes, err := apiClient.WebhooksAPI.GetWebhooks(context.Background()).Execute()
 
 		require.Nil(t, err)
@@ -76,9 +67,7 @@ func Test_conekta_WebhooksAPIService(t *testing.T) {
 
 	t.Run("Test WebhooksAPIService TestWebhook", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "641b1d5662d7e00001eaa46b"
 
 		resp, httpRes, err := apiClient.WebhooksAPI.TestWebhook(context.Background(), id).Execute()
 
@@ -90,11 +79,9 @@ func Test_conekta_WebhooksAPIService(t *testing.T) {
 
 	t.Run("Test WebhooksAPIService UpdateWebhook", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "641b1d5662d7e00001eaa46b"
 
-		var id string
-
-		resp, httpRes, err := apiClient.WebhooksAPI.UpdateWebhook(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.WebhooksAPI.UpdateWebhook(context.Background(), id).UpdateWebhook(openapiclient.UpdateWebhook{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

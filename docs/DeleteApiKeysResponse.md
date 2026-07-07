@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Prefix** | Pointer to **string** | The first few characters of the authentication_token | [optional] 
 **Id** | Pointer to **string** | Unique identifier of the api key | [optional] 
 **Object** | Pointer to **string** | Object name, value is &#39;api_key&#39; | [optional] 
-**LastUsedAt** | Pointer to **NullableInt64** | Unix timestamp in seconds with the api key was used | [optional] 
+**LastUsedAt** | Pointer to **int64** | Unix timestamp in seconds with the api key was used | [optional] 
 **Role** | Pointer to **string** | Indicates if the api key is private or public | [optional] 
 **Deleted** | Pointer to **bool** |  | [optional] 
 
@@ -234,16 +234,6 @@ SetLastUsedAt sets LastUsedAt field to given value.
 
 HasLastUsedAt returns a boolean if a field has been set.
 
-### SetLastUsedAtNil
-
-`func (o *DeleteApiKeysResponse) SetLastUsedAtNil(b bool)`
-
- SetLastUsedAtNil sets the value for LastUsedAt to be an explicit nil
-
-### UnsetLastUsedAt
-`func (o *DeleteApiKeysResponse) UnsetLastUsedAt()`
-
-UnsetLastUsedAt ensures that no value is present for LastUsedAt, not even an explicit nil
 ### GetRole
 
 `func (o *DeleteApiKeysResponse) GetRole() string`

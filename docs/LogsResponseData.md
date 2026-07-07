@@ -8,16 +8,16 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **IpAddress** | Pointer to **string** |  | [optional] 
 **Livemode** | Pointer to **bool** |  | [optional] 
-**LoggableId** | Pointer to **NullableString** |  | [optional] 
-**LoggableType** | Pointer to **NullableString** |  | [optional] 
+**LoggableId** | Pointer to **string** |  | [optional] 
+**LoggableType** | Pointer to **string** |  | [optional] 
 **Method** | Pointer to **string** |  | [optional] 
-**OauthTokenId** | Pointer to **NullableString** |  | [optional] 
+**OauthTokenId** | Pointer to **string** |  | [optional] 
 **QueryString** | Pointer to **map[string]interface{}** |  | [optional] 
 **Related** | Pointer to **string** |  | [optional] 
 **RequestBody** | Pointer to **map[string]interface{}** |  | [optional] 
-**RequestHeaders** | Pointer to **map[string]string** |  | [optional] 
+**RequestHeaders** | Pointer to  |  | [optional] 
 **ResponseBody** | Pointer to **map[string]interface{}** |  | [optional] 
-**ResponseHeaders** | Pointer to **map[string]string** |  | [optional] 
+**ResponseHeaders** | Pointer to  |  | [optional] 
 **SearchableTags** | Pointer to **[]string** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
@@ -169,16 +169,6 @@ SetLoggableId sets LoggableId field to given value.
 
 HasLoggableId returns a boolean if a field has been set.
 
-### SetLoggableIdNil
-
-`func (o *LogsResponseData) SetLoggableIdNil(b bool)`
-
- SetLoggableIdNil sets the value for LoggableId to be an explicit nil
-
-### UnsetLoggableId
-`func (o *LogsResponseData) UnsetLoggableId()`
-
-UnsetLoggableId ensures that no value is present for LoggableId, not even an explicit nil
 ### GetLoggableType
 
 `func (o *LogsResponseData) GetLoggableType() string`
@@ -204,16 +194,6 @@ SetLoggableType sets LoggableType field to given value.
 
 HasLoggableType returns a boolean if a field has been set.
 
-### SetLoggableTypeNil
-
-`func (o *LogsResponseData) SetLoggableTypeNil(b bool)`
-
- SetLoggableTypeNil sets the value for LoggableType to be an explicit nil
-
-### UnsetLoggableType
-`func (o *LogsResponseData) UnsetLoggableType()`
-
-UnsetLoggableType ensures that no value is present for LoggableType, not even an explicit nil
 ### GetMethod
 
 `func (o *LogsResponseData) GetMethod() string`
@@ -264,16 +244,6 @@ SetOauthTokenId sets OauthTokenId field to given value.
 
 HasOauthTokenId returns a boolean if a field has been set.
 
-### SetOauthTokenIdNil
-
-`func (o *LogsResponseData) SetOauthTokenIdNil(b bool)`
-
- SetOauthTokenIdNil sets the value for OauthTokenId to be an explicit nil
-
-### UnsetOauthTokenId
-`func (o *LogsResponseData) UnsetOauthTokenId()`
-
-UnsetOauthTokenId ensures that no value is present for OauthTokenId, not even an explicit nil
 ### GetQueryString
 
 `func (o *LogsResponseData) GetQueryString() map[string]interface{}`
@@ -374,6 +344,16 @@ SetRequestHeaders sets RequestHeaders field to given value.
 
 HasRequestHeaders returns a boolean if a field has been set.
 
+### SetRequestHeadersNil
+
+`func (o *LogsResponseData) SetRequestHeadersNil(b bool)`
+
+ SetRequestHeadersNil sets the value for RequestHeaders to be an explicit nil
+
+### UnsetRequestHeaders
+`func (o *LogsResponseData) UnsetRequestHeaders()`
+
+UnsetRequestHeaders ensures that no value is present for RequestHeaders, not even an explicit nil
 ### GetResponseBody
 
 `func (o *LogsResponseData) GetResponseBody() map[string]interface{}`
@@ -424,6 +404,16 @@ SetResponseHeaders sets ResponseHeaders field to given value.
 
 HasResponseHeaders returns a boolean if a field has been set.
 
+### SetResponseHeadersNil
+
+`func (o *LogsResponseData) SetResponseHeadersNil(b bool)`
+
+ SetResponseHeadersNil sets the value for ResponseHeaders to be an explicit nil
+
+### UnsetResponseHeaders
+`func (o *LogsResponseData) UnsetResponseHeaders()`
+
+UnsetResponseHeaders ensures that no value is present for ResponseHeaders, not even an explicit nil
 ### GetSearchableTags
 
 `func (o *LogsResponseData) GetSearchableTags() []string`
