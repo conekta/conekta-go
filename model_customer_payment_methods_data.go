@@ -18,10 +18,10 @@ import (
 
 // CustomerPaymentMethodsData - struct for CustomerPaymentMethodsData
 type CustomerPaymentMethodsData struct {
-	PaymentMethodCardResponse          *PaymentMethodCardResponse
+	PaymentMethodCardResponse *PaymentMethodCardResponse
 	PaymentMethodCashRecurrentResponse *PaymentMethodCashRecurrentResponse
-	PaymentMethodCashResponse          *PaymentMethodCashResponse
-	PaymentMethodSpeiRecurrent         *PaymentMethodSpeiRecurrent
+	PaymentMethodCashResponse *PaymentMethodCashResponse
+	PaymentMethodSpeiRecurrentResponse *PaymentMethodSpeiRecurrentResponse
 }
 
 // PaymentMethodCardResponseAsCustomerPaymentMethodsData is a convenience function that returns PaymentMethodCardResponse wrapped in CustomerPaymentMethodsData
@@ -45,12 +45,13 @@ func PaymentMethodCashResponseAsCustomerPaymentMethodsData(v *PaymentMethodCashR
 	}
 }
 
-// PaymentMethodSpeiRecurrentAsCustomerPaymentMethodsData is a convenience function that returns PaymentMethodSpeiRecurrent wrapped in CustomerPaymentMethodsData
-func PaymentMethodSpeiRecurrentAsCustomerPaymentMethodsData(v *PaymentMethodSpeiRecurrent) CustomerPaymentMethodsData {
+// PaymentMethodSpeiRecurrentResponseAsCustomerPaymentMethodsData is a convenience function that returns PaymentMethodSpeiRecurrentResponse wrapped in CustomerPaymentMethodsData
+func PaymentMethodSpeiRecurrentResponseAsCustomerPaymentMethodsData(v *PaymentMethodSpeiRecurrentResponse) CustomerPaymentMethodsData {
 	return CustomerPaymentMethodsData{
-		PaymentMethodSpeiRecurrent: v,
+		PaymentMethodSpeiRecurrentResponse: v,
 	}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *CustomerPaymentMethodsData) UnmarshalJSON(data []byte) error {
@@ -100,13 +101,13 @@ func (dst *CustomerPaymentMethodsData) UnmarshalJSON(data []byte) error {
 
 	// check if the discriminator value is 'spei_recurrent'
 	if jsonDict["type"] == "spei_recurrent" {
-		// try to unmarshal JSON data into PaymentMethodSpeiRecurrent
-		err = json.Unmarshal(data, &dst.PaymentMethodSpeiRecurrent)
+		// try to unmarshal JSON data into PaymentMethodSpeiRecurrentResponse
+		err = json.Unmarshal(data, &dst.PaymentMethodSpeiRecurrentResponse)
 		if err == nil {
-			return nil // data stored in dst.PaymentMethodSpeiRecurrent, return on the first match
+			return nil // data stored in dst.PaymentMethodSpeiRecurrentResponse, return on the first match
 		} else {
-			dst.PaymentMethodSpeiRecurrent = nil
-			return fmt.Errorf("failed to unmarshal CustomerPaymentMethodsData as PaymentMethodSpeiRecurrent: %s", err.Error())
+			dst.PaymentMethodSpeiRecurrentResponse = nil
+			return fmt.Errorf("failed to unmarshal CustomerPaymentMethodsData as PaymentMethodSpeiRecurrentResponse: %s", err.Error())
 		}
 	}
 
@@ -127,15 +128,15 @@ func (src CustomerPaymentMethodsData) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.PaymentMethodCashResponse)
 	}
 
-	if src.PaymentMethodSpeiRecurrent != nil {
-		return json.Marshal(&src.PaymentMethodSpeiRecurrent)
+	if src.PaymentMethodSpeiRecurrentResponse != nil {
+		return json.Marshal(&src.PaymentMethodSpeiRecurrentResponse)
 	}
 
 	return nil, nil // no data in oneOf schemas
 }
 
 // Get the actual instance
-func (obj *CustomerPaymentMethodsData) GetActualInstance() interface{} {
+func (obj *CustomerPaymentMethodsData) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -151,8 +152,8 @@ func (obj *CustomerPaymentMethodsData) GetActualInstance() interface{} {
 		return obj.PaymentMethodCashResponse
 	}
 
-	if obj.PaymentMethodSpeiRecurrent != nil {
-		return obj.PaymentMethodSpeiRecurrent
+	if obj.PaymentMethodSpeiRecurrentResponse != nil {
+		return obj.PaymentMethodSpeiRecurrentResponse
 	}
 
 	// all schemas are nil
@@ -160,7 +161,7 @@ func (obj *CustomerPaymentMethodsData) GetActualInstance() interface{} {
 }
 
 // Get the actual instance value
-func (obj CustomerPaymentMethodsData) GetActualInstanceValue() interface{} {
+func (obj CustomerPaymentMethodsData) GetActualInstanceValue() (interface{}) {
 	if obj.PaymentMethodCardResponse != nil {
 		return *obj.PaymentMethodCardResponse
 	}
@@ -173,8 +174,8 @@ func (obj CustomerPaymentMethodsData) GetActualInstanceValue() interface{} {
 		return *obj.PaymentMethodCashResponse
 	}
 
-	if obj.PaymentMethodSpeiRecurrent != nil {
-		return *obj.PaymentMethodSpeiRecurrent
+	if obj.PaymentMethodSpeiRecurrentResponse != nil {
+		return *obj.PaymentMethodSpeiRecurrentResponse
 	}
 
 	// all schemas are nil
@@ -216,3 +217,5 @@ func (v *NullableCustomerPaymentMethodsData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -11,24 +11,22 @@ package conekta
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/conekta/conekta-go/v7"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/conekta/conekta-go"
 )
 
 func Test_conekta_DiscountsAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test DiscountsAPIService OrdersCreateDiscountLine", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "ord_2tVyWPnCPWbrV37mW"
 
-		var id string
-
-		resp, httpRes, err := apiClient.DiscountsAPI.OrdersCreateDiscountLine(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DiscountsAPI.OrdersCreateDiscountLine(context.Background(), id).OrderDiscountLinesRequest(openapiclient.OrderDiscountLinesRequest{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -38,10 +36,8 @@ func Test_conekta_DiscountsAPIService(t *testing.T) {
 
 	t.Run("Test DiscountsAPIService OrdersDeleteDiscountLines", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-		var discountLinesId string
+		id := "ord_2tVyWPnCPWbrV37mW"
+		discountLinesId := "dis_lin_2tVyahK8Nts7rKRMZ"
 
 		resp, httpRes, err := apiClient.DiscountsAPI.OrdersDeleteDiscountLines(context.Background(), id, discountLinesId).Execute()
 
@@ -53,10 +49,8 @@ func Test_conekta_DiscountsAPIService(t *testing.T) {
 
 	t.Run("Test DiscountsAPIService OrdersGetDiscountLine", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-		var discountLinesId string
+		id := "ord_2tkwrBmcvGnA9zdU9"
+		discountLinesId := "dis_lin_2tkwrBmcvGnA9zdU6"
 
 		resp, httpRes, err := apiClient.DiscountsAPI.OrdersGetDiscountLine(context.Background(), id, discountLinesId).Execute()
 
@@ -68,9 +62,7 @@ func Test_conekta_DiscountsAPIService(t *testing.T) {
 
 	t.Run("Test DiscountsAPIService OrdersGetDiscountLines", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "ord_2tVyWPnCPWbrV37mW"
 
 		resp, httpRes, err := apiClient.DiscountsAPI.OrdersGetDiscountLines(context.Background(), id).Execute()
 
@@ -82,12 +74,10 @@ func Test_conekta_DiscountsAPIService(t *testing.T) {
 
 	t.Run("Test DiscountsAPIService OrdersUpdateDiscountLines", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "ord_2tVyWPnCPWbrV37mW"
+		discountLinesId := "dis_lin_2tVyahK8Nts7rKRMZ"
 
-		var id string
-		var discountLinesId string
-
-		resp, httpRes, err := apiClient.DiscountsAPI.OrdersUpdateDiscountLines(context.Background(), id, discountLinesId).Execute()
+		resp, httpRes, err := apiClient.DiscountsAPI.OrdersUpdateDiscountLines(context.Background(), id, discountLinesId).UpdateOrderDiscountLinesRequest(openapiclient.UpdateOrderDiscountLinesRequest{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

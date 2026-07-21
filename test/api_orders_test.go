@@ -11,25 +11,20 @@ package conekta
 
 import (
 	"context"
-	"fmt"
-	"os"
 	"testing"
 
-	"github.com/conekta/conekta-go"
+	"github.com/conekta/conekta-go/v7"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
 func Test_conekta_OrdersAPIService(t *testing.T) {
 
-	configuration := conekta.NewConfiguration()
-	apiClient := conekta.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test OrdersAPIService CancelOrder", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
-
-		var id string
+		id := "ord_2tqaGQYZyvBsMKEgs"
 
 		resp, httpRes, err := apiClient.OrdersAPI.CancelOrder(context.Background(), id).Execute()
 
@@ -39,68 +34,7 @@ func Test_conekta_OrdersAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test OrdersAPIService CreateOrder", func(t *testing.T) {
-		t.Skip("skip test") // remove to run test
-		configuration := conekta.NewConfiguration()
-		ctx := context.WithValue(context.TODO(), conekta.ContextAccessToken, os.Getenv("CONEKTA_PRIVATE_KEY"))
-		apiClient := conekta.NewAPIClient(configuration)
-		phone := "31431590545"
-		name := "fran carrero"
-		OrderRequest := conekta.OrderRequest{
-			Charges: []conekta.ChargeRequest{
-				{
-					PaymentMethod: conekta.ChargeRequestPaymentMethod{PaymentMethodBnplRequest: &conekta.PaymentMethodBnplRequest{
-						Type:        "bnpl",
-						CancelUrl:   "https://example.com/cancel",
-						FailureUrl:  "https://example.com/failure",
-						ProductType: "creditea_bnpl",
-						SuccessUrl:  "https://example.com/success",
-					}},
-				},
-			},
-			Currency:     "MXN",
-			CustomerInfo: conekta.OrderRequestCustomerInfo{},
-			LineItems: []conekta.Product{
-				{
-					UnitPrice: 5000,
-					Quantity:  1,
-					Name:      "Test Product",
-					Tags:      []string{"test", "product"},
-				},
-			},
-			ShippingContact: &conekta.CustomerShippingContacts{
-				Phone:    &phone,
-				Receiver: &name,
-				Address: conekta.CustomerShippingContactsAddress{
-					Street1:    conekta.PtrString("123 Main St"),
-					Street2:    conekta.PtrString("Apt 4B"),
-					City:       conekta.PtrString("Mexico City"),
-					State:      conekta.PtrString("CDMX"),
-					PostalCode: conekta.PtrString("01234"),
-					Country:    conekta.PtrString("MX"),
-				},
-			},
-			ShippingLines: []conekta.ShippingRequest{
-				{
-					Carrier:        conekta.PtrString("DHL"),
-					TrackingNumber: conekta.PtrString("123456789"),
-					Amount:         1000,
-				},
-			},
-		}
-		resp, _, _ := apiClient.OrdersAPI.CreateOrder(ctx).OrderRequest(OrderRequest).AcceptLanguage("es").Execute()
-
-		fmt.Println(resp)
-		fmt.Println("order id:", resp.Id)
-		fmt.Println("redirect_url:", resp.Charges.Data[0].PaymentMethod.PaymentMethodBnplPayment.RedirectUrl)
-		fmt.Println("type:", resp.Charges.Data[0].PaymentMethod.PaymentMethodBnplPayment.Type)
-
-	})
 	t.Run("Test OrdersAPIService Create pbb Order", func(t *testing.T) {
-		t.Skip("skip test") // remove to run test
-		configuration := conekta.NewConfiguration()
-		ctx := context.WithValue(context.TODO(), conekta.ContextAccessToken, os.Getenv("CONEKTA_PRIVATE_KEY"))
-		apiClient := conekta.NewAPIClient(configuration)
 		phone := "31431590545"
 		name := "fran carrero"
 		OrderRequest := conekta.OrderRequest{
@@ -116,6 +50,10 @@ func Test_conekta_OrdersAPIService(t *testing.T) {
 			CustomerInfo: conekta.OrderRequestCustomerInfo{
 				CustomerInfo: conekta.NewCustomerInfo("fran carrer", "mm@gmail.com", "31431590545"),
 			},
+			FiscalEntity: &conekta.OrderFiscalEntityRequest{
+				Metadata: map[string]interface{}{"internal_number": "123"},
+				Address:  conekta.FiscalEntityAddress{},
+			},
 			LineItems: []conekta.Product{
 				{
 					UnitPrice: 5000,
@@ -124,10 +62,11 @@ func Test_conekta_OrdersAPIService(t *testing.T) {
 					Tags:      []string{"test", "product"},
 				},
 			},
-			ShippingContact: &conekta.CustomerShippingContacts{
+			ShippingContact: &conekta.CustomerShippingContactsRequest{
 				Phone:    &phone,
 				Receiver: &name,
-				Address: conekta.CustomerShippingContactsAddress{
+				Metadata: map[string]interface{}{"internal_number": "123"},
+				Address: conekta.CustomerShippingContactsRequestAddress{
 					Street1:    conekta.PtrString("123 Main St"),
 					Street2:    conekta.PtrString("Apt 4B"),
 					City:       conekta.PtrString("Mexico City"),
@@ -144,22 +83,17 @@ func Test_conekta_OrdersAPIService(t *testing.T) {
 				},
 			},
 		}
-		resp, _, err := apiClient.OrdersAPI.CreateOrder(ctx).OrderRequest(OrderRequest).AcceptLanguage("es").Execute()
+		resp, httpRes, err := apiClient.OrdersAPI.CreateOrder(context.Background()).OrderRequest(OrderRequest).AcceptLanguage("es").Execute()
 
-		assert.NoError(t, err)
-		fmt.Println(resp)
-		fmt.Println("order id:", resp.Id)
-		fmt.Println("redirect_url:", resp.Charges.Data[0].PaymentMethod.PaymentMethodPbbPayment.RedirectUrl)
-		fmt.Println("redirect_url:", resp.Charges.Data[0].PaymentMethod.PaymentMethodPbbPayment.GetDeepLink())
-		fmt.Println("type:", resp.Charges.Data[0].PaymentMethod.PaymentMethodPbbPayment.Type)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
 	t.Run("Test OrdersAPIService GetOrderById", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
-
-		var id string
+		id := "ord_2tUyGSk9TNWUcyvjn"
 
 		resp, httpRes, err := apiClient.OrdersAPI.GetOrderById(context.Background(), id).Execute()
 
@@ -171,8 +105,6 @@ func Test_conekta_OrdersAPIService(t *testing.T) {
 
 	t.Run("Test OrdersAPIService GetOrders", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
-
 		resp, httpRes, err := apiClient.OrdersAPI.GetOrders(context.Background()).Execute()
 
 		require.Nil(t, err)
@@ -183,10 +115,8 @@ func Test_conekta_OrdersAPIService(t *testing.T) {
 
 	t.Run("Test OrdersAPIService OrderCancelRefund", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
-
-		var id string
-		var refundId string
+		id := "ord_2tV52JvSom2w3E8bX"
+		refundId := "ref_123"
 
 		resp, httpRes, err := apiClient.OrdersAPI.OrderCancelRefund(context.Background(), id, refundId).Execute()
 
@@ -198,11 +128,9 @@ func Test_conekta_OrdersAPIService(t *testing.T) {
 
 	t.Run("Test OrdersAPIService OrderRefund", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		id := "ord_2tV52JvSom2w3E8bX"
 
-		var id string
-
-		resp, httpRes, err := apiClient.OrdersAPI.OrderRefund(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.OrdersAPI.OrderRefund(context.Background(), id).OrderRefundRequest(conekta.OrderRefundRequest{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -212,11 +140,9 @@ func Test_conekta_OrdersAPIService(t *testing.T) {
 
 	t.Run("Test OrdersAPIService OrdersCreateCapture", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		id := "ord_2tVKoTd79XK1GqJme"
 
-		var id string
-
-		resp, httpRes, err := apiClient.OrdersAPI.OrdersCreateCapture(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.OrdersAPI.OrdersCreateCapture(context.Background(), id).OrderCaptureRequest(conekta.OrderCaptureRequest{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -226,11 +152,9 @@ func Test_conekta_OrdersAPIService(t *testing.T) {
 
 	t.Run("Test OrdersAPIService UpdateOrder", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		id := "ord_2tVPCGRXnMXKdvcsj"
 
-		var id string
-
-		resp, httpRes, err := apiClient.OrdersAPI.UpdateOrder(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.OrdersAPI.UpdateOrder(context.Background(), id).OrderUpdate(conekta.OrderUpdate{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

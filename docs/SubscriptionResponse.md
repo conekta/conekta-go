@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BillingCycleStart** | Pointer to **NullableInt64** |  | [optional] 
-**BillingCycleEnd** | Pointer to **NullableInt64** |  | [optional] 
-**CanceledAt** | Pointer to **NullableInt64** |  | [optional] 
+**BillingCycleStart** | Pointer to **int64** |  | [optional] 
+**BillingCycleEnd** | Pointer to **int64** |  | [optional] 
+**CanceledAt** | Pointer to **int64** |  | [optional] 
 **CanceledReason** | Pointer to **string** | Reason for cancellation. This field appears when the subscription status is &#39;canceled&#39;. | [optional] 
 **CardId** | Pointer to **string** |  | [optional] 
-**ChargeId** | Pointer to **NullableString** |  | [optional] 
+**ChargeId** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **int64** |  | [optional] 
 **CustomerCustomReference** | Pointer to **string** |  | [optional] 
 **CustomerId** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **LastBillingCycleOrderId** | Pointer to **string** |  | [optional] 
 **Object** | Pointer to **string** |  | [optional] 
-**PausedAt** | Pointer to **NullableInt64** |  | [optional] 
+**PausedAt** | Pointer to **int64** |  | [optional] 
 **PlanId** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **SubscriptionStart** | Pointer to **int32** |  | [optional] 
-**TrialStart** | Pointer to **NullableInt64** |  | [optional] 
-**TrialEnd** | Pointer to **NullableInt64** |  | [optional] 
+**TrialStart** | Pointer to **int64** |  | [optional] 
+**TrialEnd** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -67,16 +67,6 @@ SetBillingCycleStart sets BillingCycleStart field to given value.
 
 HasBillingCycleStart returns a boolean if a field has been set.
 
-### SetBillingCycleStartNil
-
-`func (o *SubscriptionResponse) SetBillingCycleStartNil(b bool)`
-
- SetBillingCycleStartNil sets the value for BillingCycleStart to be an explicit nil
-
-### UnsetBillingCycleStart
-`func (o *SubscriptionResponse) UnsetBillingCycleStart()`
-
-UnsetBillingCycleStart ensures that no value is present for BillingCycleStart, not even an explicit nil
 ### GetBillingCycleEnd
 
 `func (o *SubscriptionResponse) GetBillingCycleEnd() int64`
@@ -102,16 +92,6 @@ SetBillingCycleEnd sets BillingCycleEnd field to given value.
 
 HasBillingCycleEnd returns a boolean if a field has been set.
 
-### SetBillingCycleEndNil
-
-`func (o *SubscriptionResponse) SetBillingCycleEndNil(b bool)`
-
- SetBillingCycleEndNil sets the value for BillingCycleEnd to be an explicit nil
-
-### UnsetBillingCycleEnd
-`func (o *SubscriptionResponse) UnsetBillingCycleEnd()`
-
-UnsetBillingCycleEnd ensures that no value is present for BillingCycleEnd, not even an explicit nil
 ### GetCanceledAt
 
 `func (o *SubscriptionResponse) GetCanceledAt() int64`
@@ -137,16 +117,6 @@ SetCanceledAt sets CanceledAt field to given value.
 
 HasCanceledAt returns a boolean if a field has been set.
 
-### SetCanceledAtNil
-
-`func (o *SubscriptionResponse) SetCanceledAtNil(b bool)`
-
- SetCanceledAtNil sets the value for CanceledAt to be an explicit nil
-
-### UnsetCanceledAt
-`func (o *SubscriptionResponse) UnsetCanceledAt()`
-
-UnsetCanceledAt ensures that no value is present for CanceledAt, not even an explicit nil
 ### GetCanceledReason
 
 `func (o *SubscriptionResponse) GetCanceledReason() string`
@@ -222,16 +192,6 @@ SetChargeId sets ChargeId field to given value.
 
 HasChargeId returns a boolean if a field has been set.
 
-### SetChargeIdNil
-
-`func (o *SubscriptionResponse) SetChargeIdNil(b bool)`
-
- SetChargeIdNil sets the value for ChargeId to be an explicit nil
-
-### UnsetChargeId
-`func (o *SubscriptionResponse) UnsetChargeId()`
-
-UnsetChargeId ensures that no value is present for ChargeId, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *SubscriptionResponse) GetCreatedAt() int64`
@@ -407,16 +367,6 @@ SetPausedAt sets PausedAt field to given value.
 
 HasPausedAt returns a boolean if a field has been set.
 
-### SetPausedAtNil
-
-`func (o *SubscriptionResponse) SetPausedAtNil(b bool)`
-
- SetPausedAtNil sets the value for PausedAt to be an explicit nil
-
-### UnsetPausedAt
-`func (o *SubscriptionResponse) UnsetPausedAt()`
-
-UnsetPausedAt ensures that no value is present for PausedAt, not even an explicit nil
 ### GetPlanId
 
 `func (o *SubscriptionResponse) GetPlanId() string`
@@ -517,16 +467,6 @@ SetTrialStart sets TrialStart field to given value.
 
 HasTrialStart returns a boolean if a field has been set.
 
-### SetTrialStartNil
-
-`func (o *SubscriptionResponse) SetTrialStartNil(b bool)`
-
- SetTrialStartNil sets the value for TrialStart to be an explicit nil
-
-### UnsetTrialStart
-`func (o *SubscriptionResponse) UnsetTrialStart()`
-
-UnsetTrialStart ensures that no value is present for TrialStart, not even an explicit nil
 ### GetTrialEnd
 
 `func (o *SubscriptionResponse) GetTrialEnd() int64`
@@ -552,16 +492,6 @@ SetTrialEnd sets TrialEnd field to given value.
 
 HasTrialEnd returns a boolean if a field has been set.
 
-### SetTrialEndNil
-
-`func (o *SubscriptionResponse) SetTrialEndNil(b bool)`
-
- SetTrialEndNil sets the value for TrialEnd to be an explicit nil
-
-### UnsetTrialEnd
-`func (o *SubscriptionResponse) UnsetTrialEnd()`
-
-UnsetTrialEnd ensures that no value is present for TrialEnd, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

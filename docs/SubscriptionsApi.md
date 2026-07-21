@@ -40,7 +40,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -114,7 +114,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -190,7 +190,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -262,7 +262,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -336,7 +336,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -410,7 +410,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -484,7 +484,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -561,7 +561,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -637,7 +637,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -722,7 +722,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -804,7 +804,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -881,7 +881,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -943,7 +943,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionUpdate
 
-> SubscriptionResponse SubscriptionUpdate(ctx, customerId, id).SubscriptionUpdateRequest(subscriptionUpdateRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse SubscriptionUpdate(ctx, customerId, id).UpdatesASubscription(updatesASubscription).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update Subscription
 
@@ -958,19 +958,19 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
 	customerId := "cus_2tGzG1GxtDAZHEGPH" // string | Identifier of the customer resource
 	id := "sub_2tGzG1GxtDAZHEGPH" // string | Identifier of the subscription resource
-	subscriptionUpdateRequest := *openapiclient.NewSubscriptionUpdateRequest() // SubscriptionUpdateRequest | requested field for update a subscription
+	updatesASubscription := *openapiclient.NewUpdatesASubscription() // UpdatesASubscription | requested field for update a subscription
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SubscriptionsAPI.SubscriptionUpdate(context.Background(), customerId, id).SubscriptionUpdateRequest(subscriptionUpdateRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	resp, r, err := apiClient.SubscriptionsAPI.SubscriptionUpdate(context.Background(), customerId, id).UpdatesASubscription(updatesASubscription).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -998,7 +998,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **subscriptionUpdateRequest** | [**SubscriptionUpdateRequest**](SubscriptionUpdateRequest.md) | requested field for update a subscription | 
+ **updatesASubscription** | [**UpdatesASubscription**](UpdatesASubscription.md) | requested field for update a subscription | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
  **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
@@ -1037,7 +1037,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -1114,7 +1114,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -1176,7 +1176,7 @@ Name | Type | Description  | Notes
 
 ## UpdateSubscription
 
-> SubscriptionResponse UpdateSubscription(ctx, id).SubscriptionUpdateRequest(subscriptionUpdateRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse UpdateSubscription(ctx, id).UpdatesASubscription(updatesASubscription).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update Subscription [Deprecated]
 
@@ -1191,18 +1191,18 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
 	id := "6307a60c41de27127515a575" // string | Identifier of the resource
-	subscriptionUpdateRequest := *openapiclient.NewSubscriptionUpdateRequest() // SubscriptionUpdateRequest | requested field for update a subscription
+	updatesASubscription := *openapiclient.NewUpdatesASubscription() // UpdatesASubscription | requested field for update a subscription
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SubscriptionsAPI.UpdateSubscription(context.Background(), id).SubscriptionUpdateRequest(subscriptionUpdateRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	resp, r, err := apiClient.SubscriptionsAPI.UpdateSubscription(context.Background(), id).UpdatesASubscription(updatesASubscription).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.UpdateSubscription``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1228,7 +1228,7 @@ Other parameters are passed through a pointer to a apiUpdateSubscriptionRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **subscriptionUpdateRequest** | [**SubscriptionUpdateRequest**](SubscriptionUpdateRequest.md) | requested field for update a subscription | 
+ **updatesASubscription** | [**UpdatesASubscription**](UpdatesASubscription.md) | requested field for update a subscription | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
  **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 

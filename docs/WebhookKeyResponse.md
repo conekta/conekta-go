@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** | Unique identifier of the webhook key | [optional] 
 **Active** | Pointer to **bool** | Indicates if the webhook key is active | [optional] 
 **CreatedAt** | Pointer to **int64** | Unix timestamp in seconds with the creation date of the webhook key | [optional] 
-**DeactivatedAt** | Pointer to **NullableInt64** | Unix timestamp in seconds with the deactivation date of the webhook key | [optional] 
+**DeactivatedAt** | Pointer to **int64** | Unix timestamp in seconds with the deactivation date of the webhook key | [optional] 
 **PublicKey** | Pointer to **string** | Public key to be used in the webhook | [optional] 
 **Livemode** | Pointer to **bool** | Indicates if the webhook key is in live mode | [optional] 
 **Object** | Pointer to **string** | Object name, value is webhook_key | [optional] 
@@ -131,16 +131,6 @@ SetDeactivatedAt sets DeactivatedAt field to given value.
 
 HasDeactivatedAt returns a boolean if a field has been set.
 
-### SetDeactivatedAtNil
-
-`func (o *WebhookKeyResponse) SetDeactivatedAtNil(b bool)`
-
- SetDeactivatedAtNil sets the value for DeactivatedAt to be an explicit nil
-
-### UnsetDeactivatedAt
-`func (o *WebhookKeyResponse) UnsetDeactivatedAt()`
-
-UnsetDeactivatedAt ensures that no value is present for DeactivatedAt, not even an explicit nil
 ### GetPublicKey
 
 `func (o *WebhookKeyResponse) GetPublicKey() string`

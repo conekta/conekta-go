@@ -27,7 +27,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -99,7 +99,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## ResendEvent
 
-> EventsResendResponse ResendEvent(ctx, eventId).ResendRequest(resendRequest).AcceptLanguage(acceptLanguage).Execute()
+> EventsResendResponse ResendEvent(ctx, eventId).ResendEventRequest(resendEventRequest).AcceptLanguage(acceptLanguage).Execute()
 
 Resend Event
 
@@ -175,17 +175,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
 	eventId := "6463d6e35a4c3e001819e760" // string | event identifier
-	resendRequest := *openapiclient.NewResendRequest([]string{"WebhooksIds_example"}) // ResendRequest | requested fields for resend an event
+	resendEventRequest := *openapiclient.NewResendEventRequest([]string{"WebhooksIds_example"}) // ResendEventRequest | requested fields for resend an event
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EventsAPI.ResendEvent(context.Background(), eventId).ResendRequest(resendRequest).AcceptLanguage(acceptLanguage).Execute()
+	resp, r, err := apiClient.EventsAPI.ResendEvent(context.Background(), eventId).ResendEventRequest(resendEventRequest).AcceptLanguage(acceptLanguage).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.ResendEvent``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -211,7 +211,7 @@ Other parameters are passed through a pointer to a apiResendEventRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **resendRequest** | [**ResendRequest**](ResendRequest.md) | requested fields for resend an event | 
+ **resendEventRequest** | [**ResendEventRequest**](ResendEventRequest.md) | requested fields for resend an event | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
 
 ### Return type

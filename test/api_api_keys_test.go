@@ -11,22 +11,20 @@ package conekta
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/conekta/conekta-go/v7"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/conekta/conekta-go"
 )
 
 func Test_conekta_ApiKeysAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test ApiKeysAPIService CreateApiKey", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.ApiKeysAPI.CreateApiKey(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ApiKeysAPI.CreateApiKey(context.Background()).ApiKeyRequest(openapiclient.ApiKeyRequest{}).AcceptLanguage("es").Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,11 +34,9 @@ func Test_conekta_ApiKeysAPIService(t *testing.T) {
 
 	t.Run("Test ApiKeysAPIService DeleteApiKey", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "64625cc9f3e02c00163f5e4d"
 
-		var id string
-
-		resp, httpRes, err := apiClient.ApiKeysAPI.DeleteApiKey(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ApiKeysAPI.DeleteApiKey(context.Background(), id).AcceptLanguage("es").Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -50,11 +46,9 @@ func Test_conekta_ApiKeysAPIService(t *testing.T) {
 
 	t.Run("Test ApiKeysAPIService GetApiKey", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "64625cc9f3e02c00163f5e4d"
 
-		var id string
-
-		resp, httpRes, err := apiClient.ApiKeysAPI.GetApiKey(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ApiKeysAPI.GetApiKey(context.Background(), id).AcceptLanguage("es").Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -64,9 +58,7 @@ func Test_conekta_ApiKeysAPIService(t *testing.T) {
 
 	t.Run("Test ApiKeysAPIService GetApiKeys", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.ApiKeysAPI.GetApiKeys(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ApiKeysAPI.GetApiKeys(context.Background()).Limit(20).AcceptLanguage("es").Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -76,11 +68,9 @@ func Test_conekta_ApiKeysAPIService(t *testing.T) {
 
 	t.Run("Test ApiKeysAPIService UpdateApiKey", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "64625cc9f3e02c00163f5e4d"
 
-		var id string
-
-		resp, httpRes, err := apiClient.ApiKeysAPI.UpdateApiKey(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ApiKeysAPI.UpdateApiKey(context.Background(), id).ApiKeyUpdateRequest(openapiclient.ApiKeyUpdateRequest{}).AcceptLanguage("es").Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

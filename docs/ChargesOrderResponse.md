@@ -6,7 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | **bool** | Indicates if there are more pages to be requested | 
 **Object** | **string** | Object type, in this case is list | 
-**Data** | Pointer to [**[]ChargesOrderResponseAllOfData**](ChargesOrderResponseAllOfData.md) |  | [optional] 
+**NextPageUrl** | Pointer to **string** | URL of the next page. | [optional] 
+**PreviousPageUrl** | Pointer to **string** | Url of the previous page. | [optional] 
+**Data** | Pointer to [**[]ChargeResponse**](ChargeResponse.md) |  | [optional] 
 
 ## Methods
 
@@ -67,22 +69,72 @@ and a boolean to check if the value has been set.
 SetObject sets Object field to given value.
 
 
+### GetNextPageUrl
+
+`func (o *ChargesOrderResponse) GetNextPageUrl() string`
+
+GetNextPageUrl returns the NextPageUrl field if non-nil, zero value otherwise.
+
+### GetNextPageUrlOk
+
+`func (o *ChargesOrderResponse) GetNextPageUrlOk() (*string, bool)`
+
+GetNextPageUrlOk returns a tuple with the NextPageUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNextPageUrl
+
+`func (o *ChargesOrderResponse) SetNextPageUrl(v string)`
+
+SetNextPageUrl sets NextPageUrl field to given value.
+
+### HasNextPageUrl
+
+`func (o *ChargesOrderResponse) HasNextPageUrl() bool`
+
+HasNextPageUrl returns a boolean if a field has been set.
+
+### GetPreviousPageUrl
+
+`func (o *ChargesOrderResponse) GetPreviousPageUrl() string`
+
+GetPreviousPageUrl returns the PreviousPageUrl field if non-nil, zero value otherwise.
+
+### GetPreviousPageUrlOk
+
+`func (o *ChargesOrderResponse) GetPreviousPageUrlOk() (*string, bool)`
+
+GetPreviousPageUrlOk returns a tuple with the PreviousPageUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPreviousPageUrl
+
+`func (o *ChargesOrderResponse) SetPreviousPageUrl(v string)`
+
+SetPreviousPageUrl sets PreviousPageUrl field to given value.
+
+### HasPreviousPageUrl
+
+`func (o *ChargesOrderResponse) HasPreviousPageUrl() bool`
+
+HasPreviousPageUrl returns a boolean if a field has been set.
+
 ### GetData
 
-`func (o *ChargesOrderResponse) GetData() []ChargesOrderResponseAllOfData`
+`func (o *ChargesOrderResponse) GetData() []ChargeResponse`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *ChargesOrderResponse) GetDataOk() (*[]ChargesOrderResponseAllOfData, bool)`
+`func (o *ChargesOrderResponse) GetDataOk() (*[]ChargeResponse, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *ChargesOrderResponse) SetData(v []ChargesOrderResponseAllOfData)`
+`func (o *ChargesOrderResponse) SetData(v []ChargeResponse)`
 
 SetData sets Data field to given value.
 

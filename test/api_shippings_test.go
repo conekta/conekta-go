@@ -11,24 +11,22 @@ package conekta
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/conekta/conekta-go/v7"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/conekta/conekta-go"
 )
 
 func Test_conekta_ShippingsAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test ShippingsAPIService OrdersCreateShipping", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "ord_2tVyWPnCPWbrV37mW"
 
-		var id string
-
-		resp, httpRes, err := apiClient.ShippingsAPI.OrdersCreateShipping(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ShippingsAPI.OrdersCreateShipping(context.Background(), id).ShippingRequest(openapiclient.ShippingRequest{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -38,10 +36,8 @@ func Test_conekta_ShippingsAPIService(t *testing.T) {
 
 	t.Run("Test ShippingsAPIService OrdersDeleteShipping", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-		var shippingId string
+		id := "ord_2tVyWPnCPWbrV37mW"
+		shippingId := "ship_lin_2tVzNuDGSaDwreMg6"
 
 		resp, httpRes, err := apiClient.ShippingsAPI.OrdersDeleteShipping(context.Background(), id, shippingId).Execute()
 
@@ -53,12 +49,10 @@ func Test_conekta_ShippingsAPIService(t *testing.T) {
 
 	t.Run("Test ShippingsAPIService OrdersUpdateShipping", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "ord_2tVyWPnCPWbrV37mW"
+		shippingId := "ship_lin_2tVzNuDGSaDwreMg6"
 
-		var id string
-		var shippingId string
-
-		resp, httpRes, err := apiClient.ShippingsAPI.OrdersUpdateShipping(context.Background(), id, shippingId).Execute()
+		resp, httpRes, err := apiClient.ShippingsAPI.OrdersUpdateShipping(context.Background(), id, shippingId).ShippingRequest(openapiclient.ShippingRequest{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

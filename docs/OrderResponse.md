@@ -13,7 +13,9 @@ Name | Type | Description | Notes
 **Currency** | Pointer to **string** | The three-letter ISO 4217 currency code. The currency of the order. | [optional] 
 **CustomerInfo** | Pointer to [**OrderResponseCustomerInfo**](OrderResponseCustomerInfo.md) |  | [optional] 
 **DiscountLines** | Pointer to [**OrderDiscountLinesResponse**](OrderDiscountLinesResponse.md) |  | [optional] 
-**FiscalEntity** | Pointer to [**NullableOrderFiscalEntityResponse**](OrderFiscalEntityResponse.md) |  | [optional] 
+**TaxLines** | Pointer to [**OrderTaxLinesResponse**](OrderTaxLinesResponse.md) |  | [optional] 
+**ShippingLines** | Pointer to [**OrderShippingLinesResponse**](OrderShippingLinesResponse.md) |  | [optional] 
+**FiscalEntity** | Pointer to [**OrderFiscalEntityResponse**](OrderFiscalEntityResponse.md) |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **IsRefundable** | Pointer to **bool** |  | [optional] 
 **LineItems** | Pointer to [**OrderResponseProducts**](OrderResponseProducts.md) |  | [optional] 
@@ -270,6 +272,56 @@ SetDiscountLines sets DiscountLines field to given value.
 
 HasDiscountLines returns a boolean if a field has been set.
 
+### GetTaxLines
+
+`func (o *OrderResponse) GetTaxLines() OrderTaxLinesResponse`
+
+GetTaxLines returns the TaxLines field if non-nil, zero value otherwise.
+
+### GetTaxLinesOk
+
+`func (o *OrderResponse) GetTaxLinesOk() (*OrderTaxLinesResponse, bool)`
+
+GetTaxLinesOk returns a tuple with the TaxLines field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTaxLines
+
+`func (o *OrderResponse) SetTaxLines(v OrderTaxLinesResponse)`
+
+SetTaxLines sets TaxLines field to given value.
+
+### HasTaxLines
+
+`func (o *OrderResponse) HasTaxLines() bool`
+
+HasTaxLines returns a boolean if a field has been set.
+
+### GetShippingLines
+
+`func (o *OrderResponse) GetShippingLines() OrderShippingLinesResponse`
+
+GetShippingLines returns the ShippingLines field if non-nil, zero value otherwise.
+
+### GetShippingLinesOk
+
+`func (o *OrderResponse) GetShippingLinesOk() (*OrderShippingLinesResponse, bool)`
+
+GetShippingLinesOk returns a tuple with the ShippingLines field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetShippingLines
+
+`func (o *OrderResponse) SetShippingLines(v OrderShippingLinesResponse)`
+
+SetShippingLines sets ShippingLines field to given value.
+
+### HasShippingLines
+
+`func (o *OrderResponse) HasShippingLines() bool`
+
+HasShippingLines returns a boolean if a field has been set.
+
 ### GetFiscalEntity
 
 `func (o *OrderResponse) GetFiscalEntity() OrderFiscalEntityResponse`
@@ -295,16 +347,6 @@ SetFiscalEntity sets FiscalEntity field to given value.
 
 HasFiscalEntity returns a boolean if a field has been set.
 
-### SetFiscalEntityNil
-
-`func (o *OrderResponse) SetFiscalEntityNil(b bool)`
-
- SetFiscalEntityNil sets the value for FiscalEntity to be an explicit nil
-
-### UnsetFiscalEntity
-`func (o *OrderResponse) UnsetFiscalEntity()`
-
-UnsetFiscalEntity ensures that no value is present for FiscalEntity, not even an explicit nil
 ### GetId
 
 `func (o *OrderResponse) GetId() string`

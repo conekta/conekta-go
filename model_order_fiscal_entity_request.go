@@ -27,11 +27,11 @@ type OrderFiscalEntityRequest struct {
 	// Metadata associated with the fiscal entity
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// Name of the fiscal entity
-	Name NullableString `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	// Phone of the fiscal entity
 	Phone *string `json:"phone,omitempty"`
 	// Tax ID of the fiscal entity
-	TaxId NullableString `json:"tax_id,omitempty"`
+	TaxId *string `json:"tax_id,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -143,46 +143,36 @@ func (o *OrderFiscalEntityRequest) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *OrderFiscalEntityRequest) GetName() string {
-	if o == nil || IsNil(o.Name.Get()) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.Name.Get()
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OrderFiscalEntityRequest) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return o.Name.Get(), o.Name.IsSet()
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *OrderFiscalEntityRequest) HasName() bool {
-	if o != nil && o.Name.IsSet() {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *OrderFiscalEntityRequest) SetName(v string) {
-	o.Name.Set(&v)
-}
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *OrderFiscalEntityRequest) SetNameNil() {
-	o.Name.Set(nil)
-}
-
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *OrderFiscalEntityRequest) UnsetName() {
-	o.Name.Unset()
+	o.Name = &v
 }
 
 // GetPhone returns the Phone field value if set, zero value otherwise.
@@ -217,46 +207,36 @@ func (o *OrderFiscalEntityRequest) SetPhone(v string) {
 	o.Phone = &v
 }
 
-// GetTaxId returns the TaxId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetTaxId returns the TaxId field value if set, zero value otherwise.
 func (o *OrderFiscalEntityRequest) GetTaxId() string {
-	if o == nil || IsNil(o.TaxId.Get()) {
+	if o == nil || IsNil(o.TaxId) {
 		var ret string
 		return ret
 	}
-	return *o.TaxId.Get()
+	return *o.TaxId
 }
 
 // GetTaxIdOk returns a tuple with the TaxId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OrderFiscalEntityRequest) GetTaxIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TaxId) {
 		return nil, false
 	}
-	return o.TaxId.Get(), o.TaxId.IsSet()
+	return o.TaxId, true
 }
 
 // HasTaxId returns a boolean if a field has been set.
 func (o *OrderFiscalEntityRequest) HasTaxId() bool {
-	if o != nil && o.TaxId.IsSet() {
+	if o != nil && !IsNil(o.TaxId) {
 		return true
 	}
 
 	return false
 }
 
-// SetTaxId gets a reference to the given NullableString and assigns it to the TaxId field.
+// SetTaxId gets a reference to the given string and assigns it to the TaxId field.
 func (o *OrderFiscalEntityRequest) SetTaxId(v string) {
-	o.TaxId.Set(&v)
-}
-// SetTaxIdNil sets the value for TaxId to be an explicit nil
-func (o *OrderFiscalEntityRequest) SetTaxIdNil() {
-	o.TaxId.Set(nil)
-}
-
-// UnsetTaxId ensures that no value is present for TaxId, not even an explicit nil
-func (o *OrderFiscalEntityRequest) UnsetTaxId() {
-	o.TaxId.Unset()
+	o.TaxId = &v
 }
 
 func (o OrderFiscalEntityRequest) MarshalJSON() ([]byte, error) {
@@ -276,14 +256,14 @@ func (o OrderFiscalEntityRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	if !IsNil(o.Phone) {
 		toSerialize["phone"] = o.Phone
 	}
-	if o.TaxId.IsSet() {
-		toSerialize["tax_id"] = o.TaxId.Get()
+	if !IsNil(o.TaxId) {
+		toSerialize["tax_id"] = o.TaxId
 	}
 
 	for key, value := range o.AdditionalProperties {

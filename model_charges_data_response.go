@@ -37,12 +37,13 @@ type ChargesDataResponse struct {
 	Object string `json:"object"`
 	// Order ID
 	OrderId string `json:"order_id"`
-	// Payment date
-	PaidAt NullableInt64 `json:"paid_at,omitempty"`
+	// charge Payment date
+	PaidAt *int64 `json:"paid_at,omitempty"`
 	PaymentMethod *ChargeResponsePaymentMethod `json:"payment_method,omitempty"`
 	// Reference ID of the charge
-	ReferenceId NullableString `json:"reference_id,omitempty"`
-	Refunds NullableChargeResponseRefunds `json:"refunds,omitempty"`
+	ReferenceId *string `json:"reference_id,omitempty"`
+	Refunds *ChargeResponseRefunds `json:"refunds,omitempty"`
+	Chargeback *ChargebackResponse `json:"chargeback,omitempty"`
 	// Charge status
 	Status string `json:"status"`
 	AdditionalProperties map[string]interface{}
@@ -435,46 +436,36 @@ func (o *ChargesDataResponse) SetOrderId(v string) {
 	o.OrderId = v
 }
 
-// GetPaidAt returns the PaidAt field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPaidAt returns the PaidAt field value if set, zero value otherwise.
 func (o *ChargesDataResponse) GetPaidAt() int64 {
-	if o == nil || IsNil(o.PaidAt.Get()) {
+	if o == nil || IsNil(o.PaidAt) {
 		var ret int64
 		return ret
 	}
-	return *o.PaidAt.Get()
+	return *o.PaidAt
 }
 
 // GetPaidAtOk returns a tuple with the PaidAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ChargesDataResponse) GetPaidAtOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PaidAt) {
 		return nil, false
 	}
-	return o.PaidAt.Get(), o.PaidAt.IsSet()
+	return o.PaidAt, true
 }
 
 // HasPaidAt returns a boolean if a field has been set.
 func (o *ChargesDataResponse) HasPaidAt() bool {
-	if o != nil && o.PaidAt.IsSet() {
+	if o != nil && !IsNil(o.PaidAt) {
 		return true
 	}
 
 	return false
 }
 
-// SetPaidAt gets a reference to the given NullableInt64 and assigns it to the PaidAt field.
+// SetPaidAt gets a reference to the given int64 and assigns it to the PaidAt field.
 func (o *ChargesDataResponse) SetPaidAt(v int64) {
-	o.PaidAt.Set(&v)
-}
-// SetPaidAtNil sets the value for PaidAt to be an explicit nil
-func (o *ChargesDataResponse) SetPaidAtNil() {
-	o.PaidAt.Set(nil)
-}
-
-// UnsetPaidAt ensures that no value is present for PaidAt, not even an explicit nil
-func (o *ChargesDataResponse) UnsetPaidAt() {
-	o.PaidAt.Unset()
+	o.PaidAt = &v
 }
 
 // GetPaymentMethod returns the PaymentMethod field value if set, zero value otherwise.
@@ -509,88 +500,100 @@ func (o *ChargesDataResponse) SetPaymentMethod(v ChargeResponsePaymentMethod) {
 	o.PaymentMethod = &v
 }
 
-// GetReferenceId returns the ReferenceId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetReferenceId returns the ReferenceId field value if set, zero value otherwise.
 func (o *ChargesDataResponse) GetReferenceId() string {
-	if o == nil || IsNil(o.ReferenceId.Get()) {
+	if o == nil || IsNil(o.ReferenceId) {
 		var ret string
 		return ret
 	}
-	return *o.ReferenceId.Get()
+	return *o.ReferenceId
 }
 
 // GetReferenceIdOk returns a tuple with the ReferenceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ChargesDataResponse) GetReferenceIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ReferenceId) {
 		return nil, false
 	}
-	return o.ReferenceId.Get(), o.ReferenceId.IsSet()
+	return o.ReferenceId, true
 }
 
 // HasReferenceId returns a boolean if a field has been set.
 func (o *ChargesDataResponse) HasReferenceId() bool {
-	if o != nil && o.ReferenceId.IsSet() {
+	if o != nil && !IsNil(o.ReferenceId) {
 		return true
 	}
 
 	return false
 }
 
-// SetReferenceId gets a reference to the given NullableString and assigns it to the ReferenceId field.
+// SetReferenceId gets a reference to the given string and assigns it to the ReferenceId field.
 func (o *ChargesDataResponse) SetReferenceId(v string) {
-	o.ReferenceId.Set(&v)
-}
-// SetReferenceIdNil sets the value for ReferenceId to be an explicit nil
-func (o *ChargesDataResponse) SetReferenceIdNil() {
-	o.ReferenceId.Set(nil)
+	o.ReferenceId = &v
 }
 
-// UnsetReferenceId ensures that no value is present for ReferenceId, not even an explicit nil
-func (o *ChargesDataResponse) UnsetReferenceId() {
-	o.ReferenceId.Unset()
-}
-
-// GetRefunds returns the Refunds field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetRefunds returns the Refunds field value if set, zero value otherwise.
 func (o *ChargesDataResponse) GetRefunds() ChargeResponseRefunds {
-	if o == nil || IsNil(o.Refunds.Get()) {
+	if o == nil || IsNil(o.Refunds) {
 		var ret ChargeResponseRefunds
 		return ret
 	}
-	return *o.Refunds.Get()
+	return *o.Refunds
 }
 
 // GetRefundsOk returns a tuple with the Refunds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ChargesDataResponse) GetRefundsOk() (*ChargeResponseRefunds, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Refunds) {
 		return nil, false
 	}
-	return o.Refunds.Get(), o.Refunds.IsSet()
+	return o.Refunds, true
 }
 
 // HasRefunds returns a boolean if a field has been set.
 func (o *ChargesDataResponse) HasRefunds() bool {
-	if o != nil && o.Refunds.IsSet() {
+	if o != nil && !IsNil(o.Refunds) {
 		return true
 	}
 
 	return false
 }
 
-// SetRefunds gets a reference to the given NullableChargeResponseRefunds and assigns it to the Refunds field.
+// SetRefunds gets a reference to the given ChargeResponseRefunds and assigns it to the Refunds field.
 func (o *ChargesDataResponse) SetRefunds(v ChargeResponseRefunds) {
-	o.Refunds.Set(&v)
-}
-// SetRefundsNil sets the value for Refunds to be an explicit nil
-func (o *ChargesDataResponse) SetRefundsNil() {
-	o.Refunds.Set(nil)
+	o.Refunds = &v
 }
 
-// UnsetRefunds ensures that no value is present for Refunds, not even an explicit nil
-func (o *ChargesDataResponse) UnsetRefunds() {
-	o.Refunds.Unset()
+// GetChargeback returns the Chargeback field value if set, zero value otherwise.
+func (o *ChargesDataResponse) GetChargeback() ChargebackResponse {
+	if o == nil || IsNil(o.Chargeback) {
+		var ret ChargebackResponse
+		return ret
+	}
+	return *o.Chargeback
+}
+
+// GetChargebackOk returns a tuple with the Chargeback field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChargesDataResponse) GetChargebackOk() (*ChargebackResponse, bool) {
+	if o == nil || IsNil(o.Chargeback) {
+		return nil, false
+	}
+	return o.Chargeback, true
+}
+
+// HasChargeback returns a boolean if a field has been set.
+func (o *ChargesDataResponse) HasChargeback() bool {
+	if o != nil && !IsNil(o.Chargeback) {
+		return true
+	}
+
+	return false
+}
+
+// SetChargeback gets a reference to the given ChargebackResponse and assigns it to the Chargeback field.
+func (o *ChargesDataResponse) SetChargeback(v ChargebackResponse) {
+	o.Chargeback = &v
 }
 
 // GetStatus returns the Status field value
@@ -652,17 +655,20 @@ func (o ChargesDataResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["livemode"] = o.Livemode
 	toSerialize["object"] = o.Object
 	toSerialize["order_id"] = o.OrderId
-	if o.PaidAt.IsSet() {
-		toSerialize["paid_at"] = o.PaidAt.Get()
+	if !IsNil(o.PaidAt) {
+		toSerialize["paid_at"] = o.PaidAt
 	}
 	if !IsNil(o.PaymentMethod) {
 		toSerialize["payment_method"] = o.PaymentMethod
 	}
-	if o.ReferenceId.IsSet() {
-		toSerialize["reference_id"] = o.ReferenceId.Get()
+	if !IsNil(o.ReferenceId) {
+		toSerialize["reference_id"] = o.ReferenceId
 	}
-	if o.Refunds.IsSet() {
-		toSerialize["refunds"] = o.Refunds.Get()
+	if !IsNil(o.Refunds) {
+		toSerialize["refunds"] = o.Refunds
+	}
+	if !IsNil(o.Chargeback) {
+		toSerialize["chargeback"] = o.Chargeback
 	}
 	toSerialize["status"] = o.Status
 
@@ -732,6 +738,7 @@ func (o *ChargesDataResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "payment_method")
 		delete(additionalProperties, "reference_id")
 		delete(additionalProperties, "refunds")
+		delete(additionalProperties, "chargeback")
 		delete(additionalProperties, "status")
 		o.AdditionalProperties = additionalProperties
 	}

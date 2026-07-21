@@ -20,16 +20,17 @@ import (
 	"strings"
 )
 
+
 type ShippingContactsAPI interface {
 
 	/*
-		CreateCustomerShippingContacts Create a shipping contacts
+	CreateCustomerShippingContacts Create a shipping contacts
 
-		Create a shipping contacts for a customer.
+	Create a shipping contacts for a customer.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiCreateCustomerShippingContactsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiCreateCustomerShippingContactsRequest
 	*/
 	CreateCustomerShippingContacts(ctx context.Context, id string) ApiCreateCustomerShippingContactsRequest
 
@@ -38,14 +39,14 @@ type ShippingContactsAPI interface {
 	CreateCustomerShippingContactsExecute(r ApiCreateCustomerShippingContactsRequest) (*CustomerShippingContactsResponse, *http.Response, error)
 
 	/*
-		DeleteCustomerShippingContacts Delete shipping contacts
+	DeleteCustomerShippingContacts Delete shipping contacts
 
-		Delete shipping contact that corresponds to a customer ID.
+	Delete shipping contact that corresponds to a customer ID.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@param shippingContactsId identifier
-		@return ApiDeleteCustomerShippingContactsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@param shippingContactsId identifier
+	@return ApiDeleteCustomerShippingContactsRequest
 	*/
 	DeleteCustomerShippingContacts(ctx context.Context, id string, shippingContactsId string) ApiDeleteCustomerShippingContactsRequest
 
@@ -54,14 +55,14 @@ type ShippingContactsAPI interface {
 	DeleteCustomerShippingContactsExecute(r ApiDeleteCustomerShippingContactsRequest) (*CustomerShippingContactsResponse, *http.Response, error)
 
 	/*
-		UpdateCustomerShippingContacts Update shipping contacts
+	UpdateCustomerShippingContacts Update shipping contacts
 
-		Update shipping contact that corresponds to a customer ID.
+	Update shipping contact that corresponds to a customer ID.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@param shippingContactsId identifier
-		@return ApiUpdateCustomerShippingContactsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@param shippingContactsId identifier
+	@return ApiUpdateCustomerShippingContactsRequest
 	*/
 	UpdateCustomerShippingContacts(ctx context.Context, id string, shippingContactsId string) ApiUpdateCustomerShippingContactsRequest
 
@@ -74,17 +75,17 @@ type ShippingContactsAPI interface {
 type ShippingContactsAPIService service
 
 type ApiCreateCustomerShippingContactsRequest struct {
-	ctx                      context.Context
-	ApiService               ShippingContactsAPI
-	id                       string
-	customerShippingContacts *CustomerShippingContacts
-	acceptLanguage           *string
-	xChildCompanyId          *string
+	ctx context.Context
+	ApiService ShippingContactsAPI
+	id string
+	customerShippingContactsRequest *CustomerShippingContactsRequest
+	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for customer shippings contacts
-func (r ApiCreateCustomerShippingContactsRequest) CustomerShippingContacts(customerShippingContacts CustomerShippingContacts) ApiCreateCustomerShippingContactsRequest {
-	r.customerShippingContacts = &customerShippingContacts
+func (r ApiCreateCustomerShippingContactsRequest) CustomerShippingContactsRequest(customerShippingContactsRequest CustomerShippingContactsRequest) ApiCreateCustomerShippingContactsRequest {
+	r.customerShippingContactsRequest = &customerShippingContactsRequest
 	return r
 }
 
@@ -116,8 +117,8 @@ Create a shipping contacts for a customer.
 func (a *ShippingContactsAPIService) CreateCustomerShippingContacts(ctx context.Context, id string) ApiCreateCustomerShippingContactsRequest {
 	return ApiCreateCustomerShippingContactsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -125,10 +126,10 @@ func (a *ShippingContactsAPIService) CreateCustomerShippingContacts(ctx context.
 //  @return CustomerShippingContactsResponse
 func (a *ShippingContactsAPIService) CreateCustomerShippingContactsExecute(r ApiCreateCustomerShippingContactsRequest) (*CustomerShippingContactsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *CustomerShippingContactsResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CustomerShippingContactsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShippingContactsAPIService.CreateCustomerShippingContacts")
@@ -142,8 +143,8 @@ func (a *ShippingContactsAPIService) CreateCustomerShippingContactsExecute(r Api
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.customerShippingContacts == nil {
-		return localVarReturnValue, nil, reportError("customerShippingContacts is required and must be specified")
+	if r.customerShippingContactsRequest == nil {
+		return localVarReturnValue, nil, reportError("customerShippingContactsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -170,7 +171,7 @@ func (a *ShippingContactsAPIService) CreateCustomerShippingContactsExecute(r Api
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.customerShippingContacts
+	localVarPostBody = r.customerShippingContactsRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -200,8 +201,8 @@ func (a *ShippingContactsAPIService) CreateCustomerShippingContactsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -211,8 +212,8 @@ func (a *ShippingContactsAPIService) CreateCustomerShippingContactsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -222,8 +223,8 @@ func (a *ShippingContactsAPIService) CreateCustomerShippingContactsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -233,8 +234,8 @@ func (a *ShippingContactsAPIService) CreateCustomerShippingContactsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -252,12 +253,12 @@ func (a *ShippingContactsAPIService) CreateCustomerShippingContactsExecute(r Api
 }
 
 type ApiDeleteCustomerShippingContactsRequest struct {
-	ctx                context.Context
-	ApiService         ShippingContactsAPI
-	id                 string
+	ctx context.Context
+	ApiService ShippingContactsAPI
+	id string
 	shippingContactsId string
-	acceptLanguage     *string
-	xChildCompanyId    *string
+	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // Use for knowing which language to use
@@ -288,9 +289,9 @@ Delete shipping contact that corresponds to a customer ID.
 */
 func (a *ShippingContactsAPIService) DeleteCustomerShippingContacts(ctx context.Context, id string, shippingContactsId string) ApiDeleteCustomerShippingContactsRequest {
 	return ApiDeleteCustomerShippingContactsRequest{
-		ApiService:         a,
-		ctx:                ctx,
-		id:                 id,
+		ApiService: a,
+		ctx: ctx,
+		id: id,
 		shippingContactsId: shippingContactsId,
 	}
 }
@@ -299,10 +300,10 @@ func (a *ShippingContactsAPIService) DeleteCustomerShippingContacts(ctx context.
 //  @return CustomerShippingContactsResponse
 func (a *ShippingContactsAPIService) DeleteCustomerShippingContactsExecute(r ApiDeleteCustomerShippingContactsRequest) (*CustomerShippingContactsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodDelete
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *CustomerShippingContactsResponse
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CustomerShippingContactsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShippingContactsAPIService.DeleteCustomerShippingContacts")
@@ -370,8 +371,8 @@ func (a *ShippingContactsAPIService) DeleteCustomerShippingContactsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -381,8 +382,8 @@ func (a *ShippingContactsAPIService) DeleteCustomerShippingContactsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -392,8 +393,8 @@ func (a *ShippingContactsAPIService) DeleteCustomerShippingContactsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -403,8 +404,8 @@ func (a *ShippingContactsAPIService) DeleteCustomerShippingContactsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -422,18 +423,18 @@ func (a *ShippingContactsAPIService) DeleteCustomerShippingContactsExecute(r Api
 }
 
 type ApiUpdateCustomerShippingContactsRequest struct {
-	ctx                            context.Context
-	ApiService                     ShippingContactsAPI
-	id                             string
-	shippingContactsId             string
-	customerUpdateShippingContacts *CustomerUpdateShippingContacts
-	acceptLanguage                 *string
-	xChildCompanyId                *string
+	ctx context.Context
+	ApiService ShippingContactsAPI
+	id string
+	shippingContactsId string
+	customerUpdateShippingContactsRequest *CustomerUpdateShippingContactsRequest
+	acceptLanguage *string
+	xChildCompanyId *string
 }
 
 // requested field for customer update shippings contacts
-func (r ApiUpdateCustomerShippingContactsRequest) CustomerUpdateShippingContacts(customerUpdateShippingContacts CustomerUpdateShippingContacts) ApiUpdateCustomerShippingContactsRequest {
-	r.customerUpdateShippingContacts = &customerUpdateShippingContacts
+func (r ApiUpdateCustomerShippingContactsRequest) CustomerUpdateShippingContactsRequest(customerUpdateShippingContactsRequest CustomerUpdateShippingContactsRequest) ApiUpdateCustomerShippingContactsRequest {
+	r.customerUpdateShippingContactsRequest = &customerUpdateShippingContactsRequest
 	return r
 }
 
@@ -465,9 +466,9 @@ Update shipping contact that corresponds to a customer ID.
 */
 func (a *ShippingContactsAPIService) UpdateCustomerShippingContacts(ctx context.Context, id string, shippingContactsId string) ApiUpdateCustomerShippingContactsRequest {
 	return ApiUpdateCustomerShippingContactsRequest{
-		ApiService:         a,
-		ctx:                ctx,
-		id:                 id,
+		ApiService: a,
+		ctx: ctx,
+		id: id,
 		shippingContactsId: shippingContactsId,
 	}
 }
@@ -476,10 +477,10 @@ func (a *ShippingContactsAPIService) UpdateCustomerShippingContacts(ctx context.
 //  @return CustomerShippingContactsResponse
 func (a *ShippingContactsAPIService) UpdateCustomerShippingContactsExecute(r ApiUpdateCustomerShippingContactsRequest) (*CustomerShippingContactsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *CustomerShippingContactsResponse
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CustomerShippingContactsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShippingContactsAPIService.UpdateCustomerShippingContacts")
@@ -494,8 +495,8 @@ func (a *ShippingContactsAPIService) UpdateCustomerShippingContactsExecute(r Api
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.customerUpdateShippingContacts == nil {
-		return localVarReturnValue, nil, reportError("customerUpdateShippingContacts is required and must be specified")
+	if r.customerUpdateShippingContactsRequest == nil {
+		return localVarReturnValue, nil, reportError("customerUpdateShippingContactsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -522,7 +523,7 @@ func (a *ShippingContactsAPIService) UpdateCustomerShippingContactsExecute(r Api
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Child-Company-Id", r.xChildCompanyId, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.customerUpdateShippingContacts
+	localVarPostBody = r.customerUpdateShippingContactsRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -552,8 +553,8 @@ func (a *ShippingContactsAPIService) UpdateCustomerShippingContactsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -563,8 +564,8 @@ func (a *ShippingContactsAPIService) UpdateCustomerShippingContactsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -574,8 +575,8 @@ func (a *ShippingContactsAPIService) UpdateCustomerShippingContactsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -585,8 +586,8 @@ func (a *ShippingContactsAPIService) UpdateCustomerShippingContactsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

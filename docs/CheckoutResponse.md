@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **PlanIds** | Pointer to **[]string** | List of plan IDs that are available for subscription | [optional] 
 **CanNotExpire** | Pointer to **bool** |  | [optional] 
 **EmailsSent** | Pointer to **int32** |  | [optional] 
-**ExcludeCardNetworks** | Pointer to **[]map[string]interface{}** |  | [optional] 
+**ExcludeCardNetworks** | Pointer to **[]string** |  | [optional] 
 **ExpiresAt** | Pointer to **int64** |  | [optional] 
 **FailureUrl** | Pointer to **string** |  | [optional] 
 **Force3dsFlow** | Pointer to **bool** |  | [optional] 
@@ -21,13 +21,13 @@ Name | Type | Description | Notes
 **NeedsShippingContact** | Pointer to **bool** |  | [optional] 
 **Object** | **string** |  | 
 **PaidPaymentsCount** | Pointer to **int32** |  | [optional] 
-**PaymentsLimitCount** | Pointer to **NullableInt32** |  | [optional] 
+**PaymentsLimitCount** | Pointer to **int32** |  | [optional] 
 **Recurrent** | Pointer to **bool** |  | [optional] 
 **Slug** | Pointer to **string** |  | [optional] 
 **SmsSent** | Pointer to **int32** |  | [optional] 
 **StartsAt** | Pointer to **int32** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
-**SuccessUrl** | Pointer to **string** |  | [optional] 
+**SuccessUrl** | Pointer to **string** | The URL to redirect to after a successful payment. | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **Url** | Pointer to **string** |  | [optional] 
 
@@ -152,20 +152,20 @@ HasEmailsSent returns a boolean if a field has been set.
 
 ### GetExcludeCardNetworks
 
-`func (o *CheckoutResponse) GetExcludeCardNetworks() []map[string]interface{}`
+`func (o *CheckoutResponse) GetExcludeCardNetworks() []string`
 
 GetExcludeCardNetworks returns the ExcludeCardNetworks field if non-nil, zero value otherwise.
 
 ### GetExcludeCardNetworksOk
 
-`func (o *CheckoutResponse) GetExcludeCardNetworksOk() (*[]map[string]interface{}, bool)`
+`func (o *CheckoutResponse) GetExcludeCardNetworksOk() (*[]string, bool)`
 
 GetExcludeCardNetworksOk returns a tuple with the ExcludeCardNetworks field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExcludeCardNetworks
 
-`func (o *CheckoutResponse) SetExcludeCardNetworks(v []map[string]interface{})`
+`func (o *CheckoutResponse) SetExcludeCardNetworks(v []string)`
 
 SetExcludeCardNetworks sets ExcludeCardNetworks field to given value.
 
@@ -480,16 +480,6 @@ SetPaymentsLimitCount sets PaymentsLimitCount field to given value.
 
 HasPaymentsLimitCount returns a boolean if a field has been set.
 
-### SetPaymentsLimitCountNil
-
-`func (o *CheckoutResponse) SetPaymentsLimitCountNil(b bool)`
-
- SetPaymentsLimitCountNil sets the value for PaymentsLimitCount to be an explicit nil
-
-### UnsetPaymentsLimitCount
-`func (o *CheckoutResponse) UnsetPaymentsLimitCount()`
-
-UnsetPaymentsLimitCount ensures that no value is present for PaymentsLimitCount, not even an explicit nil
 ### GetRecurrent
 
 `func (o *CheckoutResponse) GetRecurrent() bool`

@@ -24,14 +24,14 @@ type PayoutOrderResponse struct {
 	// The payout methods that are allowed for the payout order.
 	AllowedPayoutMethods []string `json:"allowed_payout_methods"`
 	// The amount of the payout order.
-	Amount int32 `json:"amount"`
+	Amount int64 `json:"amount"`
 	// The creation date of the payout order.
 	CreatedAt int64 `json:"created_at"`
 	// The currency in which the payout order is made.
 	Currency string `json:"currency"`
 	CustomerInfo PayoutOrderResponseCustomerInfo `json:"customer_info"`
 	// The expiration date of the payout order.
-	ExpiresAt *int64 `json:"expires_at,omitempty"`
+	ExpiresAt int64 `json:"expires_at"`
 	// The id of the payout order.
 	Id string `json:"id"`
 	// The live mode of the payout order.
@@ -45,7 +45,7 @@ type PayoutOrderResponse struct {
 	// The reason for the payout order.
 	Reason string `json:"reason"`
 	// The status of the payout order.
-	Status *string `json:"status,omitempty"`
+	Status string `json:"status"`
 	// The update date of the payout order.
 	UpdatedAt int64 `json:"updated_at"`
 	AdditionalProperties map[string]interface{}
@@ -57,18 +57,20 @@ type _PayoutOrderResponse PayoutOrderResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPayoutOrderResponse(allowedPayoutMethods []string, amount int32, createdAt int64, currency string, customerInfo PayoutOrderResponseCustomerInfo, id string, livemode bool, object string, payouts []PayoutOrderPayoutsItem, reason string, updatedAt int64) *PayoutOrderResponse {
+func NewPayoutOrderResponse(allowedPayoutMethods []string, amount int64, createdAt int64, currency string, customerInfo PayoutOrderResponseCustomerInfo, expiresAt int64, id string, livemode bool, object string, payouts []PayoutOrderPayoutsItem, reason string, status string, updatedAt int64) *PayoutOrderResponse {
 	this := PayoutOrderResponse{}
 	this.AllowedPayoutMethods = allowedPayoutMethods
 	this.Amount = amount
 	this.CreatedAt = createdAt
 	this.Currency = currency
 	this.CustomerInfo = customerInfo
+	this.ExpiresAt = expiresAt
 	this.Id = id
 	this.Livemode = livemode
 	this.Object = object
 	this.Payouts = payouts
 	this.Reason = reason
+	this.Status = status
 	this.UpdatedAt = updatedAt
 	return &this
 }
@@ -108,9 +110,9 @@ func (o *PayoutOrderResponse) SetAllowedPayoutMethods(v []string) {
 }
 
 // GetAmount returns the Amount field value
-func (o *PayoutOrderResponse) GetAmount() int32 {
+func (o *PayoutOrderResponse) GetAmount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -119,7 +121,7 @@ func (o *PayoutOrderResponse) GetAmount() int32 {
 
 // GetAmountOk returns a tuple with the Amount field value
 // and a boolean to check if the value has been set.
-func (o *PayoutOrderResponse) GetAmountOk() (*int32, bool) {
+func (o *PayoutOrderResponse) GetAmountOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -127,7 +129,7 @@ func (o *PayoutOrderResponse) GetAmountOk() (*int32, bool) {
 }
 
 // SetAmount sets field value
-func (o *PayoutOrderResponse) SetAmount(v int32) {
+func (o *PayoutOrderResponse) SetAmount(v int64) {
 	o.Amount = v
 }
 
@@ -203,36 +205,28 @@ func (o *PayoutOrderResponse) SetCustomerInfo(v PayoutOrderResponseCustomerInfo)
 	o.CustomerInfo = v
 }
 
-// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
+// GetExpiresAt returns the ExpiresAt field value
 func (o *PayoutOrderResponse) GetExpiresAt() int64 {
-	if o == nil || IsNil(o.ExpiresAt) {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.ExpiresAt
+
+	return o.ExpiresAt
 }
 
-// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value
 // and a boolean to check if the value has been set.
 func (o *PayoutOrderResponse) GetExpiresAtOk() (*int64, bool) {
-	if o == nil || IsNil(o.ExpiresAt) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ExpiresAt, true
+	return &o.ExpiresAt, true
 }
 
-// HasExpiresAt returns a boolean if a field has been set.
-func (o *PayoutOrderResponse) HasExpiresAt() bool {
-	if o != nil && !IsNil(o.ExpiresAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetExpiresAt gets a reference to the given int64 and assigns it to the ExpiresAt field.
+// SetExpiresAt sets field value
 func (o *PayoutOrderResponse) SetExpiresAt(v int64) {
-	o.ExpiresAt = &v
+	o.ExpiresAt = v
 }
 
 // GetId returns the Id field value
@@ -387,36 +381,28 @@ func (o *PayoutOrderResponse) SetReason(v string) {
 	o.Reason = v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
+// GetStatus returns the Status field value
 func (o *PayoutOrderResponse) GetStatus() string {
-	if o == nil || IsNil(o.Status) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Status
+
+	return o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
 func (o *PayoutOrderResponse) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Status, true
+	return &o.Status, true
 }
 
-// HasStatus returns a boolean if a field has been set.
-func (o *PayoutOrderResponse) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given string and assigns it to the Status field.
+// SetStatus sets field value
 func (o *PayoutOrderResponse) SetStatus(v string) {
-	o.Status = &v
+	o.Status = v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value
@@ -458,9 +444,7 @@ func (o PayoutOrderResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["currency"] = o.Currency
 	toSerialize["customer_info"] = o.CustomerInfo
-	if !IsNil(o.ExpiresAt) {
-		toSerialize["expires_at"] = o.ExpiresAt
-	}
+	toSerialize["expires_at"] = o.ExpiresAt
 	toSerialize["id"] = o.Id
 	toSerialize["livemode"] = o.Livemode
 	toSerialize["object"] = o.Object
@@ -469,9 +453,7 @@ func (o PayoutOrderResponse) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["payouts"] = o.Payouts
 	toSerialize["reason"] = o.Reason
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
+	toSerialize["status"] = o.Status
 	toSerialize["updated_at"] = o.UpdatedAt
 
 	for key, value := range o.AdditionalProperties {
@@ -491,11 +473,13 @@ func (o *PayoutOrderResponse) UnmarshalJSON(data []byte) (err error) {
 		"created_at",
 		"currency",
 		"customer_info",
+		"expires_at",
 		"id",
 		"livemode",
 		"object",
 		"payouts",
 		"reason",
+		"status",
 		"updated_at",
 	}
 

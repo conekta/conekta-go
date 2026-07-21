@@ -22,7 +22,7 @@ var _ MappedNullable = &ModelError{}
 type ModelError struct {
 	Details []DetailsError `json:"details,omitempty"`
 	// log id
-	LogId NullableString `json:"log_id,omitempty"`
+	LogId *string `json:"log_id,omitempty"`
 	Type *string `json:"type,omitempty"`
 	Object *string `json:"object,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -79,46 +79,36 @@ func (o *ModelError) SetDetails(v []DetailsError) {
 	o.Details = v
 }
 
-// GetLogId returns the LogId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLogId returns the LogId field value if set, zero value otherwise.
 func (o *ModelError) GetLogId() string {
-	if o == nil || IsNil(o.LogId.Get()) {
+	if o == nil || IsNil(o.LogId) {
 		var ret string
 		return ret
 	}
-	return *o.LogId.Get()
+	return *o.LogId
 }
 
 // GetLogIdOk returns a tuple with the LogId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ModelError) GetLogIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LogId) {
 		return nil, false
 	}
-	return o.LogId.Get(), o.LogId.IsSet()
+	return o.LogId, true
 }
 
 // HasLogId returns a boolean if a field has been set.
 func (o *ModelError) HasLogId() bool {
-	if o != nil && o.LogId.IsSet() {
+	if o != nil && !IsNil(o.LogId) {
 		return true
 	}
 
 	return false
 }
 
-// SetLogId gets a reference to the given NullableString and assigns it to the LogId field.
+// SetLogId gets a reference to the given string and assigns it to the LogId field.
 func (o *ModelError) SetLogId(v string) {
-	o.LogId.Set(&v)
-}
-// SetLogIdNil sets the value for LogId to be an explicit nil
-func (o *ModelError) SetLogIdNil() {
-	o.LogId.Set(nil)
-}
-
-// UnsetLogId ensures that no value is present for LogId, not even an explicit nil
-func (o *ModelError) UnsetLogId() {
-	o.LogId.Unset()
+	o.LogId = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
@@ -198,8 +188,8 @@ func (o ModelError) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
-	if o.LogId.IsSet() {
-		toSerialize["log_id"] = o.LogId.Get()
+	if !IsNil(o.LogId) {
+		toSerialize["log_id"] = o.LogId
 	}
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type

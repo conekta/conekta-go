@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## GetLogById
 
-> LogResponse GetLogById(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> LogResponseForRequest GetLogById(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Get Log
 
@@ -26,7 +26,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -41,7 +41,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsAPI.GetLogById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetLogById`: LogResponse
+	// response from `GetLogById`: LogResponseForRequest
 	fmt.Fprintf(os.Stdout, "Response from `LogsAPI.GetLogById`: %v\n", resp)
 }
 ```
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LogResponse**](LogResponse.md)
+[**LogResponseForRequest**](LogResponseForRequest.md)
 
 ### Authorization
 
@@ -85,7 +85,7 @@ Name | Type | Description  | Notes
 
 ## GetLogs
 
-> LogsResponse GetLogs(ctx).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+> LogsResponseForRequest GetLogs(ctx).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
 
 Get List Of Logs
 
@@ -100,7 +100,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -118,7 +118,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsAPI.GetLogs``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetLogs`: LogsResponse
+	// response from `GetLogs`: LogsResponseForRequest
 	fmt.Fprintf(os.Stdout, "Response from `LogsAPI.GetLogs`: %v\n", resp)
 }
 ```
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LogsResponse**](LogsResponse.md)
+[**LogsResponseForRequest**](LogsResponseForRequest.md)
 
 ### Authorization
 

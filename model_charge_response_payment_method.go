@@ -19,10 +19,10 @@ import (
 // ChargeResponsePaymentMethod - struct for ChargeResponsePaymentMethod
 type ChargeResponsePaymentMethod struct {
 	PaymentMethodBankTransfer *PaymentMethodBankTransfer
-	PaymentMethodBnplPayment  *PaymentMethodBnplPayment
-	PaymentMethodCard         *PaymentMethodCard
-	PaymentMethodCash         *PaymentMethodCash
-	PaymentMethodPbbPayment   *PaymentMethodPbbPayment
+	PaymentMethodBnplPayment *PaymentMethodBnplPayment
+	PaymentMethodCard *PaymentMethodCard
+	PaymentMethodCash *PaymentMethodCash
+	PaymentMethodPbbPayment *PaymentMethodPbbPayment
 }
 
 // PaymentMethodBankTransferAsChargeResponsePaymentMethod is a convenience function that returns PaymentMethodBankTransfer wrapped in ChargeResponsePaymentMethod
@@ -59,6 +59,7 @@ func PaymentMethodPbbPaymentAsChargeResponsePaymentMethod(v *PaymentMethodPbbPay
 		PaymentMethodPbbPayment: v,
 	}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ChargeResponsePaymentMethod) UnmarshalJSON(data []byte) error {
@@ -159,7 +160,7 @@ func (src ChargeResponsePaymentMethod) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *ChargeResponsePaymentMethod) GetActualInstance() interface{} {
+func (obj *ChargeResponsePaymentMethod) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -188,7 +189,7 @@ func (obj *ChargeResponsePaymentMethod) GetActualInstance() interface{} {
 }
 
 // Get the actual instance value
-func (obj ChargeResponsePaymentMethod) GetActualInstanceValue() interface{} {
+func (obj ChargeResponsePaymentMethod) GetActualInstanceValue() (interface{}) {
 	if obj.PaymentMethodBankTransfer != nil {
 		return *obj.PaymentMethodBankTransfer
 	}
@@ -248,3 +249,5 @@ func (v *NullableChargeResponsePaymentMethod) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

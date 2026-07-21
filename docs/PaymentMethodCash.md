@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 **Type** | Pointer to **string** |  | [optional] 
 **Object** | **string** |  | 
 **Agreement** | Pointer to **string** | Agreement ID | [optional] 
-**AuthCode** | Pointer to **NullableInt32** |  | [optional] 
-**CashierId** | Pointer to **NullableString** |  | [optional] 
+**AuthCode** | Pointer to **int32** |  | [optional] 
+**CashierId** | Pointer to **string** |  | [optional] 
 **Reference** | Pointer to **string** |  | [optional] 
 **BarcodeUrl** | Pointer to **string** |  | [optional] 
 **ExpiresAt** | Pointer to **int64** |  | [optional] 
 **ProductType** | Pointer to **string** | Product type, e.g. bbva_cash_in, cash_in, pespay_cash_in, etc. | [optional] 
 **ServiceName** | Pointer to **string** |  | [optional] 
-**Store** | Pointer to **NullableString** |  | [optional] 
+**Store** | Pointer to **string** |  | [optional] 
 **StoreName** | Pointer to **string** |  | [optional] 
 **CustomerIpAddress** | Pointer to **string** |  | [optional] 
 
@@ -132,16 +132,6 @@ SetAuthCode sets AuthCode field to given value.
 
 HasAuthCode returns a boolean if a field has been set.
 
-### SetAuthCodeNil
-
-`func (o *PaymentMethodCash) SetAuthCodeNil(b bool)`
-
- SetAuthCodeNil sets the value for AuthCode to be an explicit nil
-
-### UnsetAuthCode
-`func (o *PaymentMethodCash) UnsetAuthCode()`
-
-UnsetAuthCode ensures that no value is present for AuthCode, not even an explicit nil
 ### GetCashierId
 
 `func (o *PaymentMethodCash) GetCashierId() string`
@@ -167,16 +157,6 @@ SetCashierId sets CashierId field to given value.
 
 HasCashierId returns a boolean if a field has been set.
 
-### SetCashierIdNil
-
-`func (o *PaymentMethodCash) SetCashierIdNil(b bool)`
-
- SetCashierIdNil sets the value for CashierId to be an explicit nil
-
-### UnsetCashierId
-`func (o *PaymentMethodCash) UnsetCashierId()`
-
-UnsetCashierId ensures that no value is present for CashierId, not even an explicit nil
 ### GetReference
 
 `func (o *PaymentMethodCash) GetReference() string`
@@ -327,16 +307,6 @@ SetStore sets Store field to given value.
 
 HasStore returns a boolean if a field has been set.
 
-### SetStoreNil
-
-`func (o *PaymentMethodCash) SetStoreNil(b bool)`
-
- SetStoreNil sets the value for Store to be an explicit nil
-
-### UnsetStore
-`func (o *PaymentMethodCash) UnsetStore()`
-
-UnsetStore ensures that no value is present for Store, not even an explicit nil
 ### GetStoreName
 
 `func (o *PaymentMethodCash) GetStoreName() string`

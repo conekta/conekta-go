@@ -19,16 +19,17 @@ import (
 	"net/url"
 )
 
+
 type TokensAPI interface {
 
 	/*
-		CreateToken Create Token
+	CreateToken Create Token
 
-		Generate a payment token, to associate it with a card
+	Generate a payment token, to associate it with a card, Endpoint could be use directly only for PCI compliance account
 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiCreateTokenRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateTokenRequest
 	*/
 	CreateToken(ctx context.Context) ApiCreateTokenRequest
 
@@ -41,15 +42,15 @@ type TokensAPI interface {
 type TokensAPIService service
 
 type ApiCreateTokenRequest struct {
-	ctx            context.Context
-	ApiService     TokensAPI
-	token          *Token
+	ctx context.Context
+	ApiService TokensAPI
+	tokenRequest *TokenRequest
 	acceptLanguage *string
 }
 
 // requested field for token
-func (r ApiCreateTokenRequest) Token(token Token) ApiCreateTokenRequest {
-	r.token = &token
+func (r ApiCreateTokenRequest) TokenRequest(tokenRequest TokenRequest) ApiCreateTokenRequest {
+	r.tokenRequest = &tokenRequest
 	return r
 }
 
@@ -66,7 +67,7 @@ func (r ApiCreateTokenRequest) Execute() (*TokenResponse, *http.Response, error)
 /*
 CreateToken Create Token
 
-Generate a payment token, to associate it with a card
+Generate a payment token, to associate it with a card, Endpoint could be use directly only for PCI compliance account
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -75,7 +76,7 @@ Generate a payment token, to associate it with a card
 func (a *TokensAPIService) CreateToken(ctx context.Context) ApiCreateTokenRequest {
 	return ApiCreateTokenRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -83,10 +84,10 @@ func (a *TokensAPIService) CreateToken(ctx context.Context) ApiCreateTokenReques
 //  @return TokenResponse
 func (a *TokensAPIService) CreateTokenExecute(r ApiCreateTokenRequest) (*TokenResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *TokenResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TokenResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensAPIService.CreateToken")
@@ -99,8 +100,8 @@ func (a *TokensAPIService) CreateTokenExecute(r ApiCreateTokenRequest) (*TokenRe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.token == nil {
-		return localVarReturnValue, nil, reportError("token is required and must be specified")
+	if r.tokenRequest == nil {
+		return localVarReturnValue, nil, reportError("tokenRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -124,7 +125,7 @@ func (a *TokensAPIService) CreateTokenExecute(r ApiCreateTokenRequest) (*TokenRe
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.token
+	localVarPostBody = r.tokenRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -154,8 +155,8 @@ func (a *TokensAPIService) CreateTokenExecute(r ApiCreateTokenRequest) (*TokenRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -165,8 +166,8 @@ func (a *TokensAPIService) CreateTokenExecute(r ApiCreateTokenRequest) (*TokenRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -176,8 +177,8 @@ func (a *TokensAPIService) CreateTokenExecute(r ApiCreateTokenRequest) (*TokenRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

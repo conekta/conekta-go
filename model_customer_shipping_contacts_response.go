@@ -22,8 +22,8 @@ var _ MappedNullable = &CustomerShippingContactsResponse{}
 type CustomerShippingContactsResponse struct {
 	Phone *string `json:"phone,omitempty"`
 	Receiver *string `json:"receiver,omitempty"`
-	BetweenStreets NullableString `json:"between_streets,omitempty"`
-	Address *CustomerShippingContactsResponseAddress `json:"address,omitempty"`
+	BetweenStreets *string `json:"between_streets,omitempty"`
+	Address *CustomerShippingContactsAddress `json:"address,omitempty"`
 	ParentId *string `json:"parent_id,omitempty"`
 	Default *bool `json:"default,omitempty"`
 	Id *string `json:"id,omitempty"`
@@ -118,52 +118,42 @@ func (o *CustomerShippingContactsResponse) SetReceiver(v string) {
 	o.Receiver = &v
 }
 
-// GetBetweenStreets returns the BetweenStreets field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetBetweenStreets returns the BetweenStreets field value if set, zero value otherwise.
 func (o *CustomerShippingContactsResponse) GetBetweenStreets() string {
-	if o == nil || IsNil(o.BetweenStreets.Get()) {
+	if o == nil || IsNil(o.BetweenStreets) {
 		var ret string
 		return ret
 	}
-	return *o.BetweenStreets.Get()
+	return *o.BetweenStreets
 }
 
 // GetBetweenStreetsOk returns a tuple with the BetweenStreets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CustomerShippingContactsResponse) GetBetweenStreetsOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.BetweenStreets) {
 		return nil, false
 	}
-	return o.BetweenStreets.Get(), o.BetweenStreets.IsSet()
+	return o.BetweenStreets, true
 }
 
 // HasBetweenStreets returns a boolean if a field has been set.
 func (o *CustomerShippingContactsResponse) HasBetweenStreets() bool {
-	if o != nil && o.BetweenStreets.IsSet() {
+	if o != nil && !IsNil(o.BetweenStreets) {
 		return true
 	}
 
 	return false
 }
 
-// SetBetweenStreets gets a reference to the given NullableString and assigns it to the BetweenStreets field.
+// SetBetweenStreets gets a reference to the given string and assigns it to the BetweenStreets field.
 func (o *CustomerShippingContactsResponse) SetBetweenStreets(v string) {
-	o.BetweenStreets.Set(&v)
-}
-// SetBetweenStreetsNil sets the value for BetweenStreets to be an explicit nil
-func (o *CustomerShippingContactsResponse) SetBetweenStreetsNil() {
-	o.BetweenStreets.Set(nil)
-}
-
-// UnsetBetweenStreets ensures that no value is present for BetweenStreets, not even an explicit nil
-func (o *CustomerShippingContactsResponse) UnsetBetweenStreets() {
-	o.BetweenStreets.Unset()
+	o.BetweenStreets = &v
 }
 
 // GetAddress returns the Address field value if set, zero value otherwise.
-func (o *CustomerShippingContactsResponse) GetAddress() CustomerShippingContactsResponseAddress {
+func (o *CustomerShippingContactsResponse) GetAddress() CustomerShippingContactsAddress {
 	if o == nil || IsNil(o.Address) {
-		var ret CustomerShippingContactsResponseAddress
+		var ret CustomerShippingContactsAddress
 		return ret
 	}
 	return *o.Address
@@ -171,7 +161,7 @@ func (o *CustomerShippingContactsResponse) GetAddress() CustomerShippingContacts
 
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerShippingContactsResponse) GetAddressOk() (*CustomerShippingContactsResponseAddress, bool) {
+func (o *CustomerShippingContactsResponse) GetAddressOk() (*CustomerShippingContactsAddress, bool) {
 	if o == nil || IsNil(o.Address) {
 		return nil, false
 	}
@@ -187,8 +177,8 @@ func (o *CustomerShippingContactsResponse) HasAddress() bool {
 	return false
 }
 
-// SetAddress gets a reference to the given CustomerShippingContactsResponseAddress and assigns it to the Address field.
-func (o *CustomerShippingContactsResponse) SetAddress(v CustomerShippingContactsResponseAddress) {
+// SetAddress gets a reference to the given CustomerShippingContactsAddress and assigns it to the Address field.
+func (o *CustomerShippingContactsResponse) SetAddress(v CustomerShippingContactsAddress) {
 	o.Address = &v
 }
 
@@ -432,8 +422,8 @@ func (o CustomerShippingContactsResponse) ToMap() (map[string]interface{}, error
 	if !IsNil(o.Receiver) {
 		toSerialize["receiver"] = o.Receiver
 	}
-	if o.BetweenStreets.IsSet() {
-		toSerialize["between_streets"] = o.BetweenStreets.Get()
+	if !IsNil(o.BetweenStreets) {
+		toSerialize["between_streets"] = o.BetweenStreets
 	}
 	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address

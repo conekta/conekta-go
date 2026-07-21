@@ -26,19 +26,19 @@ type ChargeOrderResponse struct {
 	Currency *string `json:"currency,omitempty"`
 	CustomerId *string `json:"customer_id,omitempty"`
 	Description *string `json:"description,omitempty"`
-	DeviceFingerprint NullableString `json:"device_fingerprint,omitempty"`
+	DeviceFingerprint *string `json:"device_fingerprint,omitempty"`
 	FailureCode *string `json:"failure_code,omitempty"`
 	FailureMessage *string `json:"failure_message,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Livemode *bool `json:"livemode,omitempty"`
-	MonthlyInstallments NullableInt32 `json:"monthly_installments,omitempty"`
+	MonthlyInstallments *int32 `json:"monthly_installments,omitempty"`
 	Object *string `json:"object,omitempty"`
 	OrderId *string `json:"order_id,omitempty"`
-	PaidAt NullableInt32 `json:"paid_at,omitempty"`
+	PaidAt *int32 `json:"paid_at,omitempty"`
 	PaymentMethod *ChargeOrderResponsePaymentMethod `json:"payment_method,omitempty"`
 	// Reference ID of the charge
-	ReferenceId NullableString `json:"reference_id,omitempty"`
-	Refunds []map[string]interface{} `json:"refunds,omitempty"`
+	ReferenceId *string `json:"reference_id,omitempty"`
+	Refunds []interface{} `json:"refunds,omitempty"`
 	Status *string `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -254,46 +254,36 @@ func (o *ChargeOrderResponse) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetDeviceFingerprint returns the DeviceFingerprint field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetDeviceFingerprint returns the DeviceFingerprint field value if set, zero value otherwise.
 func (o *ChargeOrderResponse) GetDeviceFingerprint() string {
-	if o == nil || IsNil(o.DeviceFingerprint.Get()) {
+	if o == nil || IsNil(o.DeviceFingerprint) {
 		var ret string
 		return ret
 	}
-	return *o.DeviceFingerprint.Get()
+	return *o.DeviceFingerprint
 }
 
 // GetDeviceFingerprintOk returns a tuple with the DeviceFingerprint field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ChargeOrderResponse) GetDeviceFingerprintOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DeviceFingerprint) {
 		return nil, false
 	}
-	return o.DeviceFingerprint.Get(), o.DeviceFingerprint.IsSet()
+	return o.DeviceFingerprint, true
 }
 
 // HasDeviceFingerprint returns a boolean if a field has been set.
 func (o *ChargeOrderResponse) HasDeviceFingerprint() bool {
-	if o != nil && o.DeviceFingerprint.IsSet() {
+	if o != nil && !IsNil(o.DeviceFingerprint) {
 		return true
 	}
 
 	return false
 }
 
-// SetDeviceFingerprint gets a reference to the given NullableString and assigns it to the DeviceFingerprint field.
+// SetDeviceFingerprint gets a reference to the given string and assigns it to the DeviceFingerprint field.
 func (o *ChargeOrderResponse) SetDeviceFingerprint(v string) {
-	o.DeviceFingerprint.Set(&v)
-}
-// SetDeviceFingerprintNil sets the value for DeviceFingerprint to be an explicit nil
-func (o *ChargeOrderResponse) SetDeviceFingerprintNil() {
-	o.DeviceFingerprint.Set(nil)
-}
-
-// UnsetDeviceFingerprint ensures that no value is present for DeviceFingerprint, not even an explicit nil
-func (o *ChargeOrderResponse) UnsetDeviceFingerprint() {
-	o.DeviceFingerprint.Unset()
+	o.DeviceFingerprint = &v
 }
 
 // GetFailureCode returns the FailureCode field value if set, zero value otherwise.
@@ -424,46 +414,36 @@ func (o *ChargeOrderResponse) SetLivemode(v bool) {
 	o.Livemode = &v
 }
 
-// GetMonthlyInstallments returns the MonthlyInstallments field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMonthlyInstallments returns the MonthlyInstallments field value if set, zero value otherwise.
 func (o *ChargeOrderResponse) GetMonthlyInstallments() int32 {
-	if o == nil || IsNil(o.MonthlyInstallments.Get()) {
+	if o == nil || IsNil(o.MonthlyInstallments) {
 		var ret int32
 		return ret
 	}
-	return *o.MonthlyInstallments.Get()
+	return *o.MonthlyInstallments
 }
 
 // GetMonthlyInstallmentsOk returns a tuple with the MonthlyInstallments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ChargeOrderResponse) GetMonthlyInstallmentsOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MonthlyInstallments) {
 		return nil, false
 	}
-	return o.MonthlyInstallments.Get(), o.MonthlyInstallments.IsSet()
+	return o.MonthlyInstallments, true
 }
 
 // HasMonthlyInstallments returns a boolean if a field has been set.
 func (o *ChargeOrderResponse) HasMonthlyInstallments() bool {
-	if o != nil && o.MonthlyInstallments.IsSet() {
+	if o != nil && !IsNil(o.MonthlyInstallments) {
 		return true
 	}
 
 	return false
 }
 
-// SetMonthlyInstallments gets a reference to the given NullableInt32 and assigns it to the MonthlyInstallments field.
+// SetMonthlyInstallments gets a reference to the given int32 and assigns it to the MonthlyInstallments field.
 func (o *ChargeOrderResponse) SetMonthlyInstallments(v int32) {
-	o.MonthlyInstallments.Set(&v)
-}
-// SetMonthlyInstallmentsNil sets the value for MonthlyInstallments to be an explicit nil
-func (o *ChargeOrderResponse) SetMonthlyInstallmentsNil() {
-	o.MonthlyInstallments.Set(nil)
-}
-
-// UnsetMonthlyInstallments ensures that no value is present for MonthlyInstallments, not even an explicit nil
-func (o *ChargeOrderResponse) UnsetMonthlyInstallments() {
-	o.MonthlyInstallments.Unset()
+	o.MonthlyInstallments = &v
 }
 
 // GetObject returns the Object field value if set, zero value otherwise.
@@ -530,46 +510,36 @@ func (o *ChargeOrderResponse) SetOrderId(v string) {
 	o.OrderId = &v
 }
 
-// GetPaidAt returns the PaidAt field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPaidAt returns the PaidAt field value if set, zero value otherwise.
 func (o *ChargeOrderResponse) GetPaidAt() int32 {
-	if o == nil || IsNil(o.PaidAt.Get()) {
+	if o == nil || IsNil(o.PaidAt) {
 		var ret int32
 		return ret
 	}
-	return *o.PaidAt.Get()
+	return *o.PaidAt
 }
 
 // GetPaidAtOk returns a tuple with the PaidAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ChargeOrderResponse) GetPaidAtOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PaidAt) {
 		return nil, false
 	}
-	return o.PaidAt.Get(), o.PaidAt.IsSet()
+	return o.PaidAt, true
 }
 
 // HasPaidAt returns a boolean if a field has been set.
 func (o *ChargeOrderResponse) HasPaidAt() bool {
-	if o != nil && o.PaidAt.IsSet() {
+	if o != nil && !IsNil(o.PaidAt) {
 		return true
 	}
 
 	return false
 }
 
-// SetPaidAt gets a reference to the given NullableInt32 and assigns it to the PaidAt field.
+// SetPaidAt gets a reference to the given int32 and assigns it to the PaidAt field.
 func (o *ChargeOrderResponse) SetPaidAt(v int32) {
-	o.PaidAt.Set(&v)
-}
-// SetPaidAtNil sets the value for PaidAt to be an explicit nil
-func (o *ChargeOrderResponse) SetPaidAtNil() {
-	o.PaidAt.Set(nil)
-}
-
-// UnsetPaidAt ensures that no value is present for PaidAt, not even an explicit nil
-func (o *ChargeOrderResponse) UnsetPaidAt() {
-	o.PaidAt.Unset()
+	o.PaidAt = &v
 }
 
 // GetPaymentMethod returns the PaymentMethod field value if set, zero value otherwise.
@@ -604,52 +574,42 @@ func (o *ChargeOrderResponse) SetPaymentMethod(v ChargeOrderResponsePaymentMetho
 	o.PaymentMethod = &v
 }
 
-// GetReferenceId returns the ReferenceId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetReferenceId returns the ReferenceId field value if set, zero value otherwise.
 func (o *ChargeOrderResponse) GetReferenceId() string {
-	if o == nil || IsNil(o.ReferenceId.Get()) {
+	if o == nil || IsNil(o.ReferenceId) {
 		var ret string
 		return ret
 	}
-	return *o.ReferenceId.Get()
+	return *o.ReferenceId
 }
 
 // GetReferenceIdOk returns a tuple with the ReferenceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ChargeOrderResponse) GetReferenceIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ReferenceId) {
 		return nil, false
 	}
-	return o.ReferenceId.Get(), o.ReferenceId.IsSet()
+	return o.ReferenceId, true
 }
 
 // HasReferenceId returns a boolean if a field has been set.
 func (o *ChargeOrderResponse) HasReferenceId() bool {
-	if o != nil && o.ReferenceId.IsSet() {
+	if o != nil && !IsNil(o.ReferenceId) {
 		return true
 	}
 
 	return false
 }
 
-// SetReferenceId gets a reference to the given NullableString and assigns it to the ReferenceId field.
+// SetReferenceId gets a reference to the given string and assigns it to the ReferenceId field.
 func (o *ChargeOrderResponse) SetReferenceId(v string) {
-	o.ReferenceId.Set(&v)
-}
-// SetReferenceIdNil sets the value for ReferenceId to be an explicit nil
-func (o *ChargeOrderResponse) SetReferenceIdNil() {
-	o.ReferenceId.Set(nil)
-}
-
-// UnsetReferenceId ensures that no value is present for ReferenceId, not even an explicit nil
-func (o *ChargeOrderResponse) UnsetReferenceId() {
-	o.ReferenceId.Unset()
+	o.ReferenceId = &v
 }
 
 // GetRefunds returns the Refunds field value if set, zero value otherwise.
-func (o *ChargeOrderResponse) GetRefunds() []map[string]interface{} {
+func (o *ChargeOrderResponse) GetRefunds() []interface{} {
 	if o == nil || IsNil(o.Refunds) {
-		var ret []map[string]interface{}
+		var ret []interface{}
 		return ret
 	}
 	return o.Refunds
@@ -657,7 +617,7 @@ func (o *ChargeOrderResponse) GetRefunds() []map[string]interface{} {
 
 // GetRefundsOk returns a tuple with the Refunds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChargeOrderResponse) GetRefundsOk() ([]map[string]interface{}, bool) {
+func (o *ChargeOrderResponse) GetRefundsOk() ([]interface{}, bool) {
 	if o == nil || IsNil(o.Refunds) {
 		return nil, false
 	}
@@ -673,8 +633,8 @@ func (o *ChargeOrderResponse) HasRefunds() bool {
 	return false
 }
 
-// SetRefunds gets a reference to the given []map[string]interface{} and assigns it to the Refunds field.
-func (o *ChargeOrderResponse) SetRefunds(v []map[string]interface{}) {
+// SetRefunds gets a reference to the given []interface{} and assigns it to the Refunds field.
+func (o *ChargeOrderResponse) SetRefunds(v []interface{}) {
 	o.Refunds = v
 }
 
@@ -738,8 +698,8 @@ func (o ChargeOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if o.DeviceFingerprint.IsSet() {
-		toSerialize["device_fingerprint"] = o.DeviceFingerprint.Get()
+	if !IsNil(o.DeviceFingerprint) {
+		toSerialize["device_fingerprint"] = o.DeviceFingerprint
 	}
 	if !IsNil(o.FailureCode) {
 		toSerialize["failure_code"] = o.FailureCode
@@ -753,8 +713,8 @@ func (o ChargeOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Livemode) {
 		toSerialize["livemode"] = o.Livemode
 	}
-	if o.MonthlyInstallments.IsSet() {
-		toSerialize["monthly_installments"] = o.MonthlyInstallments.Get()
+	if !IsNil(o.MonthlyInstallments) {
+		toSerialize["monthly_installments"] = o.MonthlyInstallments
 	}
 	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object
@@ -762,14 +722,14 @@ func (o ChargeOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OrderId) {
 		toSerialize["order_id"] = o.OrderId
 	}
-	if o.PaidAt.IsSet() {
-		toSerialize["paid_at"] = o.PaidAt.Get()
+	if !IsNil(o.PaidAt) {
+		toSerialize["paid_at"] = o.PaidAt
 	}
 	if !IsNil(o.PaymentMethod) {
 		toSerialize["payment_method"] = o.PaymentMethod
 	}
-	if o.ReferenceId.IsSet() {
-		toSerialize["reference_id"] = o.ReferenceId.Get()
+	if !IsNil(o.ReferenceId) {
+		toSerialize["reference_id"] = o.ReferenceId
 	}
 	if !IsNil(o.Refunds) {
 		toSerialize["refunds"] = o.Refunds

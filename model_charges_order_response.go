@@ -25,7 +25,11 @@ type ChargesOrderResponse struct {
 	HasMore bool `json:"has_more"`
 	// Object type, in this case is list
 	Object string `json:"object"`
-	Data []ChargesOrderResponseAllOfData `json:"data,omitempty"`
+	// URL of the next page.
+	NextPageUrl *string `json:"next_page_url,omitempty"`
+	// Url of the previous page.
+	PreviousPageUrl *string `json:"previous_page_url,omitempty"`
+	Data []ChargeResponse `json:"data,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -98,10 +102,74 @@ func (o *ChargesOrderResponse) SetObject(v string) {
 	o.Object = v
 }
 
+// GetNextPageUrl returns the NextPageUrl field value if set, zero value otherwise.
+func (o *ChargesOrderResponse) GetNextPageUrl() string {
+	if o == nil || IsNil(o.NextPageUrl) {
+		var ret string
+		return ret
+	}
+	return *o.NextPageUrl
+}
+
+// GetNextPageUrlOk returns a tuple with the NextPageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChargesOrderResponse) GetNextPageUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.NextPageUrl) {
+		return nil, false
+	}
+	return o.NextPageUrl, true
+}
+
+// HasNextPageUrl returns a boolean if a field has been set.
+func (o *ChargesOrderResponse) HasNextPageUrl() bool {
+	if o != nil && !IsNil(o.NextPageUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetNextPageUrl gets a reference to the given string and assigns it to the NextPageUrl field.
+func (o *ChargesOrderResponse) SetNextPageUrl(v string) {
+	o.NextPageUrl = &v
+}
+
+// GetPreviousPageUrl returns the PreviousPageUrl field value if set, zero value otherwise.
+func (o *ChargesOrderResponse) GetPreviousPageUrl() string {
+	if o == nil || IsNil(o.PreviousPageUrl) {
+		var ret string
+		return ret
+	}
+	return *o.PreviousPageUrl
+}
+
+// GetPreviousPageUrlOk returns a tuple with the PreviousPageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChargesOrderResponse) GetPreviousPageUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.PreviousPageUrl) {
+		return nil, false
+	}
+	return o.PreviousPageUrl, true
+}
+
+// HasPreviousPageUrl returns a boolean if a field has been set.
+func (o *ChargesOrderResponse) HasPreviousPageUrl() bool {
+	if o != nil && !IsNil(o.PreviousPageUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetPreviousPageUrl gets a reference to the given string and assigns it to the PreviousPageUrl field.
+func (o *ChargesOrderResponse) SetPreviousPageUrl(v string) {
+	o.PreviousPageUrl = &v
+}
+
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *ChargesOrderResponse) GetData() []ChargesOrderResponseAllOfData {
+func (o *ChargesOrderResponse) GetData() []ChargeResponse {
 	if o == nil || IsNil(o.Data) {
-		var ret []ChargesOrderResponseAllOfData
+		var ret []ChargeResponse
 		return ret
 	}
 	return o.Data
@@ -109,7 +177,7 @@ func (o *ChargesOrderResponse) GetData() []ChargesOrderResponseAllOfData {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChargesOrderResponse) GetDataOk() ([]ChargesOrderResponseAllOfData, bool) {
+func (o *ChargesOrderResponse) GetDataOk() ([]ChargeResponse, bool) {
 	if o == nil || IsNil(o.Data) {
 		return nil, false
 	}
@@ -125,8 +193,8 @@ func (o *ChargesOrderResponse) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given []ChargesOrderResponseAllOfData and assigns it to the Data field.
-func (o *ChargesOrderResponse) SetData(v []ChargesOrderResponseAllOfData) {
+// SetData gets a reference to the given []ChargeResponse and assigns it to the Data field.
+func (o *ChargesOrderResponse) SetData(v []ChargeResponse) {
 	o.Data = v
 }
 
@@ -142,6 +210,12 @@ func (o ChargesOrderResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["has_more"] = o.HasMore
 	toSerialize["object"] = o.Object
+	if !IsNil(o.NextPageUrl) {
+		toSerialize["next_page_url"] = o.NextPageUrl
+	}
+	if !IsNil(o.PreviousPageUrl) {
+		toSerialize["previous_page_url"] = o.PreviousPageUrl
+	}
 	if !IsNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
@@ -191,6 +265,8 @@ func (o *ChargesOrderResponse) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "has_more")
 		delete(additionalProperties, "object")
+		delete(additionalProperties, "next_page_url")
+		delete(additionalProperties, "previous_page_url")
 		delete(additionalProperties, "data")
 		o.AdditionalProperties = additionalProperties
 	}

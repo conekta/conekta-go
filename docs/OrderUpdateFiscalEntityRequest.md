@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | [**FiscalEntityAddress**](FiscalEntityAddress.md) |  | 
 **Email** | Pointer to **string** | Email of the fiscal entity | [optional] 
-**Name** | Pointer to **NullableString** | Name of the fiscal entity | [optional] 
+**Name** | Pointer to **string** | Name of the fiscal entity | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** | Metadata associated with the fiscal entity | [optional] 
 **Phone** | Pointer to **string** | Phone of the fiscal entity | [optional] 
-**TaxId** | Pointer to **NullableString** | Tax ID of the fiscal entity | [optional] 
+**TaxId** | Pointer to **string** | Tax ID of the fiscal entity | [optional] 
 
 ## Methods
 
@@ -100,16 +100,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *OrderUpdateFiscalEntityRequest) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *OrderUpdateFiscalEntityRequest) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetMetadata
 
 `func (o *OrderUpdateFiscalEntityRequest) GetMetadata() map[string]interface{}`
@@ -185,16 +175,6 @@ SetTaxId sets TaxId field to given value.
 
 HasTaxId returns a boolean if a field has been set.
 
-### SetTaxIdNil
-
-`func (o *OrderUpdateFiscalEntityRequest) SetTaxIdNil(b bool)`
-
- SetTaxIdNil sets the value for TaxId to be an explicit nil
-
-### UnsetTaxId
-`func (o *OrderUpdateFiscalEntityRequest) UnsetTaxId()`
-
-UnsetTaxId ensures that no value is present for TaxId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

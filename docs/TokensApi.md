@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## CreateToken
 
-> TokenResponse CreateToken(ctx).Token(token).AcceptLanguage(acceptLanguage).Execute()
+> TokenResponse CreateToken(ctx).TokenRequest(tokenRequest).AcceptLanguage(acceptLanguage).Execute()
 
 Create Token
 
@@ -25,16 +25,16 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
-	token := *openapiclient.NewToken() // Token | requested field for token
+	tokenRequest := *openapiclient.NewTokenRequest() // TokenRequest | requested field for token
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TokensAPI.CreateToken(context.Background()).Token(token).AcceptLanguage(acceptLanguage).Execute()
+	resp, r, err := apiClient.TokensAPI.CreateToken(context.Background()).TokenRequest(tokenRequest).AcceptLanguage(acceptLanguage).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TokensAPI.CreateToken``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,7 +55,7 @@ Other parameters are passed through a pointer to a apiCreateTokenRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **token** | [**Token**](Token.md) | requested field for token | 
+ **tokenRequest** | [**TokenRequest**](TokenRequest.md) | requested field for token | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
 
 ### Return type

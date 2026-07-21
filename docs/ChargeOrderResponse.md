@@ -10,18 +10,18 @@ Name | Type | Description | Notes
 **Currency** | Pointer to **string** |  | [optional] 
 **CustomerId** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
-**DeviceFingerprint** | Pointer to **NullableString** |  | [optional] 
+**DeviceFingerprint** | Pointer to **string** |  | [optional] 
 **FailureCode** | Pointer to **string** |  | [optional] 
 **FailureMessage** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Livemode** | Pointer to **bool** |  | [optional] 
-**MonthlyInstallments** | Pointer to **NullableInt32** |  | [optional] 
+**MonthlyInstallments** | Pointer to **int32** |  | [optional] 
 **Object** | Pointer to **string** |  | [optional] 
 **OrderId** | Pointer to **string** |  | [optional] 
-**PaidAt** | Pointer to **NullableInt32** |  | [optional] 
+**PaidAt** | Pointer to **int32** |  | [optional] 
 **PaymentMethod** | Pointer to [**ChargeOrderResponsePaymentMethod**](ChargeOrderResponsePaymentMethod.md) |  | [optional] 
-**ReferenceId** | Pointer to **NullableString** | Reference ID of the charge | [optional] 
-**Refunds** | Pointer to **[]map[string]interface{}** |  | [optional] 
+**ReferenceId** | Pointer to **string** | Reference ID of the charge | [optional] 
+**Refunds** | Pointer to **[]interface{}** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -218,16 +218,6 @@ SetDeviceFingerprint sets DeviceFingerprint field to given value.
 
 HasDeviceFingerprint returns a boolean if a field has been set.
 
-### SetDeviceFingerprintNil
-
-`func (o *ChargeOrderResponse) SetDeviceFingerprintNil(b bool)`
-
- SetDeviceFingerprintNil sets the value for DeviceFingerprint to be an explicit nil
-
-### UnsetDeviceFingerprint
-`func (o *ChargeOrderResponse) UnsetDeviceFingerprint()`
-
-UnsetDeviceFingerprint ensures that no value is present for DeviceFingerprint, not even an explicit nil
 ### GetFailureCode
 
 `func (o *ChargeOrderResponse) GetFailureCode() string`
@@ -353,16 +343,6 @@ SetMonthlyInstallments sets MonthlyInstallments field to given value.
 
 HasMonthlyInstallments returns a boolean if a field has been set.
 
-### SetMonthlyInstallmentsNil
-
-`func (o *ChargeOrderResponse) SetMonthlyInstallmentsNil(b bool)`
-
- SetMonthlyInstallmentsNil sets the value for MonthlyInstallments to be an explicit nil
-
-### UnsetMonthlyInstallments
-`func (o *ChargeOrderResponse) UnsetMonthlyInstallments()`
-
-UnsetMonthlyInstallments ensures that no value is present for MonthlyInstallments, not even an explicit nil
 ### GetObject
 
 `func (o *ChargeOrderResponse) GetObject() string`
@@ -438,16 +418,6 @@ SetPaidAt sets PaidAt field to given value.
 
 HasPaidAt returns a boolean if a field has been set.
 
-### SetPaidAtNil
-
-`func (o *ChargeOrderResponse) SetPaidAtNil(b bool)`
-
- SetPaidAtNil sets the value for PaidAt to be an explicit nil
-
-### UnsetPaidAt
-`func (o *ChargeOrderResponse) UnsetPaidAt()`
-
-UnsetPaidAt ensures that no value is present for PaidAt, not even an explicit nil
 ### GetPaymentMethod
 
 `func (o *ChargeOrderResponse) GetPaymentMethod() ChargeOrderResponsePaymentMethod`
@@ -498,32 +468,22 @@ SetReferenceId sets ReferenceId field to given value.
 
 HasReferenceId returns a boolean if a field has been set.
 
-### SetReferenceIdNil
-
-`func (o *ChargeOrderResponse) SetReferenceIdNil(b bool)`
-
- SetReferenceIdNil sets the value for ReferenceId to be an explicit nil
-
-### UnsetReferenceId
-`func (o *ChargeOrderResponse) UnsetReferenceId()`
-
-UnsetReferenceId ensures that no value is present for ReferenceId, not even an explicit nil
 ### GetRefunds
 
-`func (o *ChargeOrderResponse) GetRefunds() []map[string]interface{}`
+`func (o *ChargeOrderResponse) GetRefunds() []interface{}`
 
 GetRefunds returns the Refunds field if non-nil, zero value otherwise.
 
 ### GetRefundsOk
 
-`func (o *ChargeOrderResponse) GetRefundsOk() (*[]map[string]interface{}, bool)`
+`func (o *ChargeOrderResponse) GetRefundsOk() (*[]interface{}, bool)`
 
 GetRefundsOk returns a tuple with the Refunds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRefunds
 
-`func (o *ChargeOrderResponse) SetRefunds(v []map[string]interface{})`
+`func (o *ChargeOrderResponse) SetRefunds(v []interface{})`
 
 SetRefunds sets Refunds field to given value.
 

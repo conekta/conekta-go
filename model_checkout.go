@@ -23,23 +23,29 @@ var _ MappedNullable = &Checkout{}
 type Checkout struct {
 	// Those are the payment methods that will be available for the link
 	AllowedPaymentMethods []string `json:"allowed_payment_methods"`
-	// It is the time when the link will expire. It is expressed in seconds since the Unix epoch. The valid range is from 2 to 365 days (the valid range will be taken from the next day of the creation date at 00:01 hrs) 
+	// List of card networks to exclude from the checkout. This field is only applicable for card payments.
+	ExcludeCardNetworks []string `json:"exclude_card_networks,omitempty"`
+	// It is the time when the link will expire.  It is expressed in seconds since the Unix epoch. The valid range is from 5 minutes to 365 days from the creation date. 
 	ExpiresAt int64 `json:"expires_at"`
 	// This flag allows you to specify if months without interest will be active.
 	MonthlyInstallmentsEnabled *bool `json:"monthly_installments_enabled,omitempty"`
 	// This field allows you to specify the number of months without interest.
 	MonthlyInstallmentsOptions []int32 `json:"monthly_installments_options,omitempty"`
-	// Indicates the 3DS2 mode for the order, either smart or strict.
+	// Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null.
 	ThreeDsMode *string `json:"three_ds_mode,omitempty"`
 	// Reason for charge
 	Name string `json:"name"`
 	// This flag allows you to fill in the shipping information at checkout.
 	NeedsShippingContact *bool `json:"needs_shipping_contact,omitempty"`
 	// This flag allows you to specify if the link will be on demand.
-	OnDemandEnabled NullableBool `json:"on_demand_enabled,omitempty"`
+	OnDemandEnabled *bool `json:"on_demand_enabled,omitempty"`
+	// It is a list of plan IDs that will be associated with the order.
+	PlanIds []string `json:"plan_ids,omitempty"`
 	OrderTemplate CheckoutOrderTemplate `json:"order_template"`
 	// It is the number of payments that can be made through the link.
 	PaymentsLimitCount *int32 `json:"payments_limit_count,omitempty"`
+	// The URL to redirect to after a successful payment.
+	SuccessUrl *string `json:"success_url,omitempty"`
 	// false: single use. true: multiple payments
 	Recurrent bool `json:"recurrent"`
 	// It is the type of link that will be created. It must be a valid type.
@@ -94,6 +100,38 @@ func (o *Checkout) GetAllowedPaymentMethodsOk() ([]string, bool) {
 // SetAllowedPaymentMethods sets field value
 func (o *Checkout) SetAllowedPaymentMethods(v []string) {
 	o.AllowedPaymentMethods = v
+}
+
+// GetExcludeCardNetworks returns the ExcludeCardNetworks field value if set, zero value otherwise.
+func (o *Checkout) GetExcludeCardNetworks() []string {
+	if o == nil || IsNil(o.ExcludeCardNetworks) {
+		var ret []string
+		return ret
+	}
+	return o.ExcludeCardNetworks
+}
+
+// GetExcludeCardNetworksOk returns a tuple with the ExcludeCardNetworks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Checkout) GetExcludeCardNetworksOk() ([]string, bool) {
+	if o == nil || IsNil(o.ExcludeCardNetworks) {
+		return nil, false
+	}
+	return o.ExcludeCardNetworks, true
+}
+
+// HasExcludeCardNetworks returns a boolean if a field has been set.
+func (o *Checkout) HasExcludeCardNetworks() bool {
+	if o != nil && !IsNil(o.ExcludeCardNetworks) {
+		return true
+	}
+
+	return false
+}
+
+// SetExcludeCardNetworks gets a reference to the given []string and assigns it to the ExcludeCardNetworks field.
+func (o *Checkout) SetExcludeCardNetworks(v []string) {
+	o.ExcludeCardNetworks = v
 }
 
 // GetExpiresAt returns the ExpiresAt field value
@@ -272,46 +310,68 @@ func (o *Checkout) SetNeedsShippingContact(v bool) {
 	o.NeedsShippingContact = &v
 }
 
-// GetOnDemandEnabled returns the OnDemandEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOnDemandEnabled returns the OnDemandEnabled field value if set, zero value otherwise.
 func (o *Checkout) GetOnDemandEnabled() bool {
-	if o == nil || IsNil(o.OnDemandEnabled.Get()) {
+	if o == nil || IsNil(o.OnDemandEnabled) {
 		var ret bool
 		return ret
 	}
-	return *o.OnDemandEnabled.Get()
+	return *o.OnDemandEnabled
 }
 
 // GetOnDemandEnabledOk returns a tuple with the OnDemandEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Checkout) GetOnDemandEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OnDemandEnabled) {
 		return nil, false
 	}
-	return o.OnDemandEnabled.Get(), o.OnDemandEnabled.IsSet()
+	return o.OnDemandEnabled, true
 }
 
 // HasOnDemandEnabled returns a boolean if a field has been set.
 func (o *Checkout) HasOnDemandEnabled() bool {
-	if o != nil && o.OnDemandEnabled.IsSet() {
+	if o != nil && !IsNil(o.OnDemandEnabled) {
 		return true
 	}
 
 	return false
 }
 
-// SetOnDemandEnabled gets a reference to the given NullableBool and assigns it to the OnDemandEnabled field.
+// SetOnDemandEnabled gets a reference to the given bool and assigns it to the OnDemandEnabled field.
 func (o *Checkout) SetOnDemandEnabled(v bool) {
-	o.OnDemandEnabled.Set(&v)
-}
-// SetOnDemandEnabledNil sets the value for OnDemandEnabled to be an explicit nil
-func (o *Checkout) SetOnDemandEnabledNil() {
-	o.OnDemandEnabled.Set(nil)
+	o.OnDemandEnabled = &v
 }
 
-// UnsetOnDemandEnabled ensures that no value is present for OnDemandEnabled, not even an explicit nil
-func (o *Checkout) UnsetOnDemandEnabled() {
-	o.OnDemandEnabled.Unset()
+// GetPlanIds returns the PlanIds field value if set, zero value otherwise.
+func (o *Checkout) GetPlanIds() []string {
+	if o == nil || IsNil(o.PlanIds) {
+		var ret []string
+		return ret
+	}
+	return o.PlanIds
+}
+
+// GetPlanIdsOk returns a tuple with the PlanIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Checkout) GetPlanIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.PlanIds) {
+		return nil, false
+	}
+	return o.PlanIds, true
+}
+
+// HasPlanIds returns a boolean if a field has been set.
+func (o *Checkout) HasPlanIds() bool {
+	if o != nil && !IsNil(o.PlanIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetPlanIds gets a reference to the given []string and assigns it to the PlanIds field.
+func (o *Checkout) SetPlanIds(v []string) {
+	o.PlanIds = v
 }
 
 // GetOrderTemplate returns the OrderTemplate field value
@@ -368,6 +428,38 @@ func (o *Checkout) HasPaymentsLimitCount() bool {
 // SetPaymentsLimitCount gets a reference to the given int32 and assigns it to the PaymentsLimitCount field.
 func (o *Checkout) SetPaymentsLimitCount(v int32) {
 	o.PaymentsLimitCount = &v
+}
+
+// GetSuccessUrl returns the SuccessUrl field value if set, zero value otherwise.
+func (o *Checkout) GetSuccessUrl() string {
+	if o == nil || IsNil(o.SuccessUrl) {
+		var ret string
+		return ret
+	}
+	return *o.SuccessUrl
+}
+
+// GetSuccessUrlOk returns a tuple with the SuccessUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Checkout) GetSuccessUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.SuccessUrl) {
+		return nil, false
+	}
+	return o.SuccessUrl, true
+}
+
+// HasSuccessUrl returns a boolean if a field has been set.
+func (o *Checkout) HasSuccessUrl() bool {
+	if o != nil && !IsNil(o.SuccessUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetSuccessUrl gets a reference to the given string and assigns it to the SuccessUrl field.
+func (o *Checkout) SetSuccessUrl(v string) {
+	o.SuccessUrl = &v
 }
 
 // GetRecurrent returns the Recurrent field value
@@ -429,6 +521,9 @@ func (o Checkout) MarshalJSON() ([]byte, error) {
 func (o Checkout) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["allowed_payment_methods"] = o.AllowedPaymentMethods
+	if !IsNil(o.ExcludeCardNetworks) {
+		toSerialize["exclude_card_networks"] = o.ExcludeCardNetworks
+	}
 	toSerialize["expires_at"] = o.ExpiresAt
 	if !IsNil(o.MonthlyInstallmentsEnabled) {
 		toSerialize["monthly_installments_enabled"] = o.MonthlyInstallmentsEnabled
@@ -443,12 +538,18 @@ func (o Checkout) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NeedsShippingContact) {
 		toSerialize["needs_shipping_contact"] = o.NeedsShippingContact
 	}
-	if o.OnDemandEnabled.IsSet() {
-		toSerialize["on_demand_enabled"] = o.OnDemandEnabled.Get()
+	if !IsNil(o.OnDemandEnabled) {
+		toSerialize["on_demand_enabled"] = o.OnDemandEnabled
+	}
+	if !IsNil(o.PlanIds) {
+		toSerialize["plan_ids"] = o.PlanIds
 	}
 	toSerialize["order_template"] = o.OrderTemplate
 	if !IsNil(o.PaymentsLimitCount) {
 		toSerialize["payments_limit_count"] = o.PaymentsLimitCount
+	}
+	if !IsNil(o.SuccessUrl) {
+		toSerialize["success_url"] = o.SuccessUrl
 	}
 	toSerialize["recurrent"] = o.Recurrent
 	toSerialize["type"] = o.Type
@@ -501,6 +602,7 @@ func (o *Checkout) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "allowed_payment_methods")
+		delete(additionalProperties, "exclude_card_networks")
 		delete(additionalProperties, "expires_at")
 		delete(additionalProperties, "monthly_installments_enabled")
 		delete(additionalProperties, "monthly_installments_options")
@@ -508,8 +610,10 @@ func (o *Checkout) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "needs_shipping_contact")
 		delete(additionalProperties, "on_demand_enabled")
+		delete(additionalProperties, "plan_ids")
 		delete(additionalProperties, "order_template")
 		delete(additionalProperties, "payments_limit_count")
+		delete(additionalProperties, "success_url")
 		delete(additionalProperties, "recurrent")
 		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties

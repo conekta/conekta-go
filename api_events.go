@@ -20,16 +20,17 @@ import (
 	"strings"
 )
 
+
 type EventsAPI interface {
 
 	/*
-		GetEvent Get Event
+	GetEvent Get Event
 
-		Returns a single event
+	Returns a single event
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Identifier of the resource
-		@return ApiGetEventRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Identifier of the resource
+	@return ApiGetEventRequest
 	*/
 	GetEvent(ctx context.Context, id string) ApiGetEventRequest
 
@@ -38,10 +39,10 @@ type EventsAPI interface {
 	GetEventExecute(r ApiGetEventRequest) (*EventResponse, *http.Response, error)
 
 	/*
-		GetEvents Get list of Events
+	GetEvents Get list of Events
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetEventsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetEventsRequest
 	*/
 	GetEvents(ctx context.Context) ApiGetEventsRequest
 
@@ -50,13 +51,13 @@ type EventsAPI interface {
 	GetEventsExecute(r ApiGetEventsRequest) (*GetEventsResponse, *http.Response, error)
 
 	/*
-		ResendEvent Resend Event
+	ResendEvent Resend Event
 
-		Resend event to selected webhooks
+	Resend event to selected webhooks
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param eventId event identifier
-		@return ApiResendEventRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param eventId event identifier
+	@return ApiResendEventRequest
 	*/
 	ResendEvent(ctx context.Context, eventId string) ApiResendEventRequest
 
@@ -69,10 +70,10 @@ type EventsAPI interface {
 type EventsAPIService service
 
 type ApiGetEventRequest struct {
-	ctx             context.Context
-	ApiService      EventsAPI
-	id              string
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService EventsAPI
+	id string
+	acceptLanguage *string
 	xChildCompanyId *string
 }
 
@@ -104,8 +105,8 @@ Returns a single event
 func (a *EventsAPIService) GetEvent(ctx context.Context, id string) ApiGetEventRequest {
 	return ApiGetEventRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -113,10 +114,10 @@ func (a *EventsAPIService) GetEvent(ctx context.Context, id string) ApiGetEventR
 //  @return EventResponse
 func (a *EventsAPIService) GetEventExecute(r ApiGetEventRequest) (*EventResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *EventResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *EventResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.GetEvent")
@@ -183,8 +184,8 @@ func (a *EventsAPIService) GetEventExecute(r ApiGetEventRequest) (*EventResponse
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -194,8 +195,8 @@ func (a *EventsAPIService) GetEventExecute(r ApiGetEventRequest) (*EventResponse
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -205,8 +206,8 @@ func (a *EventsAPIService) GetEventExecute(r ApiGetEventRequest) (*EventResponse
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -224,14 +225,14 @@ func (a *EventsAPIService) GetEventExecute(r ApiGetEventRequest) (*EventResponse
 }
 
 type ApiGetEventsRequest struct {
-	ctx             context.Context
-	ApiService      EventsAPI
-	acceptLanguage  *string
+	ctx context.Context
+	ApiService EventsAPI
+	acceptLanguage *string
 	xChildCompanyId *string
-	limit           *int32
-	search          *string
-	next            *string
-	previous        *string
+	limit *int32
+	search *string
+	next *string
+	previous *string
 }
 
 // Use for knowing which language to use
@@ -283,7 +284,7 @@ GetEvents Get list of Events
 func (a *EventsAPIService) GetEvents(ctx context.Context) ApiGetEventsRequest {
 	return ApiGetEventsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -291,10 +292,10 @@ func (a *EventsAPIService) GetEvents(ctx context.Context) ApiGetEventsRequest {
 //  @return GetEventsResponse
 func (a *EventsAPIService) GetEventsExecute(r ApiGetEventsRequest) (*GetEventsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GetEventsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetEventsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.GetEvents")
@@ -312,6 +313,7 @@ func (a *EventsAPIService) GetEventsExecute(r ApiGetEventsRequest) (*GetEventsRe
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 20
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
 		r.limit = &defaultValue
 	}
 	if r.search != nil {
@@ -375,8 +377,8 @@ func (a *EventsAPIService) GetEventsExecute(r ApiGetEventsRequest) (*GetEventsRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -386,8 +388,8 @@ func (a *EventsAPIService) GetEventsExecute(r ApiGetEventsRequest) (*GetEventsRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -405,16 +407,16 @@ func (a *EventsAPIService) GetEventsExecute(r ApiGetEventsRequest) (*GetEventsRe
 }
 
 type ApiResendEventRequest struct {
-	ctx            context.Context
-	ApiService     EventsAPI
-	eventId        string
-	resendRequest  *ResendRequest
+	ctx context.Context
+	ApiService EventsAPI
+	eventId string
+	resendEventRequest *ResendEventRequest
 	acceptLanguage *string
 }
 
 // requested fields for resend an event
-func (r ApiResendEventRequest) ResendRequest(resendRequest ResendRequest) ApiResendEventRequest {
-	r.resendRequest = &resendRequest
+func (r ApiResendEventRequest) ResendEventRequest(resendEventRequest ResendEventRequest) ApiResendEventRequest {
+	r.resendEventRequest = &resendEventRequest
 	return r
 }
 
@@ -440,8 +442,8 @@ Resend event to selected webhooks
 func (a *EventsAPIService) ResendEvent(ctx context.Context, eventId string) ApiResendEventRequest {
 	return ApiResendEventRequest{
 		ApiService: a,
-		ctx:        ctx,
-		eventId:    eventId,
+		ctx: ctx,
+		eventId: eventId,
 	}
 }
 
@@ -449,10 +451,10 @@ func (a *EventsAPIService) ResendEvent(ctx context.Context, eventId string) ApiR
 //  @return EventsResendResponse
 func (a *EventsAPIService) ResendEventExecute(r ApiResendEventRequest) (*EventsResendResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *EventsResendResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *EventsResendResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.ResendEvent")
@@ -466,8 +468,8 @@ func (a *EventsAPIService) ResendEventExecute(r ApiResendEventRequest) (*EventsR
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.resendRequest == nil {
-		return localVarReturnValue, nil, reportError("resendRequest is required and must be specified")
+	if r.resendEventRequest == nil {
+		return localVarReturnValue, nil, reportError("resendEventRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -491,7 +493,7 @@ func (a *EventsAPIService) ResendEventExecute(r ApiResendEventRequest) (*EventsR
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "Accept-Language", r.acceptLanguage, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.resendRequest
+	localVarPostBody = r.resendEventRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -521,8 +523,8 @@ func (a *EventsAPIService) ResendEventExecute(r ApiResendEventRequest) (*EventsR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -532,8 +534,8 @@ func (a *EventsAPIService) ResendEventExecute(r ApiResendEventRequest) (*EventsR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -543,8 +545,8 @@ func (a *EventsAPIService) ResendEventExecute(r ApiResendEventRequest) (*EventsR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

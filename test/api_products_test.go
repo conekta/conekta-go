@@ -11,24 +11,22 @@ package conekta
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/conekta/conekta-go/v7"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/conekta/conekta-go"
 )
 
 func Test_conekta_ProductsAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test ProductsAPIService OrdersCreateProduct", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "ord_2tVyWPnCPWbrV37mW"
 
-		var id string
-
-		resp, httpRes, err := apiClient.ProductsAPI.OrdersCreateProduct(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ProductsAPI.OrdersCreateProduct(context.Background(), id).Product(openapiclient.Product{Name: "test", UnitPrice: 100, Quantity: 1}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -38,10 +36,8 @@ func Test_conekta_ProductsAPIService(t *testing.T) {
 
 	t.Run("Test ProductsAPIService OrdersDeleteProduct", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-		var lineItemId string
+		id := "ord_2tVyWPnCPWbrV37mW"
+		lineItemId := "line_item_2tVz8UkyWhSxLfUd7"
 
 		resp, httpRes, err := apiClient.ProductsAPI.OrdersDeleteProduct(context.Background(), id, lineItemId).Execute()
 
@@ -53,12 +49,10 @@ func Test_conekta_ProductsAPIService(t *testing.T) {
 
 	t.Run("Test ProductsAPIService OrdersUpdateProduct", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "ord_2tVyWPnCPWbrV37mW"
+		lineItemId := "line_item_2tVz8UkyWhSxLfUd7"
 
-		var id string
-		var lineItemId string
-
-		resp, httpRes, err := apiClient.ProductsAPI.OrdersUpdateProduct(context.Background(), id, lineItemId).Execute()
+		resp, httpRes, err := apiClient.ProductsAPI.OrdersUpdateProduct(context.Background(), id, lineItemId).UpdateProduct(openapiclient.UpdateProduct{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -21,18 +21,18 @@ var _ MappedNullable = &PaymentMethodCashRecurrentResponse{}
 
 // PaymentMethodCashRecurrentResponse Alias of cash response used when type=cash_recurrent
 type PaymentMethodCashRecurrentResponse struct {
-	Type       string                                     `json:"type"`
-	Id         string                                     `json:"id"`
-	Object     string                                     `json:"object"`
-	CreatedAt  int64                                      `json:"created_at"`
-	ParentId   *string                                    `json:"parent_id,omitempty"`
-	Agreements []PaymentMethodCashResponseAllOfAgreements `json:"agreements,omitempty"`
-	Reference  *string                                    `json:"reference,omitempty"`
-	Barcode    *string                                    `json:"barcode,omitempty"`
+	Type string `json:"type"`
+	Id string `json:"id"`
+	Object string `json:"object"`
+	CreatedAt int64 `json:"created_at"`
+	ParentId *string `json:"parent_id,omitempty"`
+	Agreements []CashAgreementsResponse `json:"agreements,omitempty"`
+	Reference *string `json:"reference,omitempty"`
+	Barcode *string `json:"barcode,omitempty"`
 	// URL to the barcode image, reference is the same as barcode
-	BarcodeUrl           *string `json:"barcode_url,omitempty"`
-	ExpiresAt            *int64  `json:"expires_at,omitempty"`
-	Provider             *string `json:"provider,omitempty"`
+	BarcodeUrl *string `json:"barcode_url,omitempty"`
+	ExpiresAt *int64 `json:"expires_at,omitempty"`
+	Provider *string `json:"provider,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -188,9 +188,9 @@ func (o *PaymentMethodCashRecurrentResponse) SetParentId(v string) {
 }
 
 // GetAgreements returns the Agreements field value if set, zero value otherwise.
-func (o *PaymentMethodCashRecurrentResponse) GetAgreements() []PaymentMethodCashResponseAllOfAgreements {
+func (o *PaymentMethodCashRecurrentResponse) GetAgreements() []CashAgreementsResponse {
 	if o == nil || IsNil(o.Agreements) {
-		var ret []PaymentMethodCashResponseAllOfAgreements
+		var ret []CashAgreementsResponse
 		return ret
 	}
 	return o.Agreements
@@ -198,7 +198,7 @@ func (o *PaymentMethodCashRecurrentResponse) GetAgreements() []PaymentMethodCash
 
 // GetAgreementsOk returns a tuple with the Agreements field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaymentMethodCashRecurrentResponse) GetAgreementsOk() ([]PaymentMethodCashResponseAllOfAgreements, bool) {
+func (o *PaymentMethodCashRecurrentResponse) GetAgreementsOk() ([]CashAgreementsResponse, bool) {
 	if o == nil || IsNil(o.Agreements) {
 		return nil, false
 	}
@@ -214,8 +214,8 @@ func (o *PaymentMethodCashRecurrentResponse) HasAgreements() bool {
 	return false
 }
 
-// SetAgreements gets a reference to the given []PaymentMethodCashResponseAllOfAgreements and assigns it to the Agreements field.
-func (o *PaymentMethodCashRecurrentResponse) SetAgreements(v []PaymentMethodCashResponseAllOfAgreements) {
+// SetAgreements gets a reference to the given []CashAgreementsResponse and assigns it to the Agreements field.
+func (o *PaymentMethodCashRecurrentResponse) SetAgreements(v []CashAgreementsResponse) {
 	o.Agreements = v
 }
 
@@ -380,7 +380,7 @@ func (o *PaymentMethodCashRecurrentResponse) SetProvider(v string) {
 }
 
 func (o PaymentMethodCashRecurrentResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -438,10 +438,10 @@ func (o *PaymentMethodCashRecurrentResponse) UnmarshalJSON(data []byte) (err err
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -512,3 +512,5 @@ func (v *NullablePaymentMethodCashRecurrentResponse) UnmarshalJSON(src []byte) e
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

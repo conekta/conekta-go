@@ -35,7 +35,7 @@ type DeleteApiKeysResponse struct {
 	// Object name, value is 'api_key'
 	Object *string `json:"object,omitempty"`
 	// Unix timestamp in seconds with the api key was used
-	LastUsedAt NullableInt64 `json:"last_used_at,omitempty"`
+	LastUsedAt *int64 `json:"last_used_at,omitempty"`
 	// Indicates if the api key is private or public
 	Role *string `json:"role,omitempty"`
 	Deleted *bool `json:"deleted,omitempty"`
@@ -285,46 +285,36 @@ func (o *DeleteApiKeysResponse) SetObject(v string) {
 	o.Object = &v
 }
 
-// GetLastUsedAt returns the LastUsedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLastUsedAt returns the LastUsedAt field value if set, zero value otherwise.
 func (o *DeleteApiKeysResponse) GetLastUsedAt() int64 {
-	if o == nil || IsNil(o.LastUsedAt.Get()) {
+	if o == nil || IsNil(o.LastUsedAt) {
 		var ret int64
 		return ret
 	}
-	return *o.LastUsedAt.Get()
+	return *o.LastUsedAt
 }
 
 // GetLastUsedAtOk returns a tuple with the LastUsedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DeleteApiKeysResponse) GetLastUsedAtOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastUsedAt) {
 		return nil, false
 	}
-	return o.LastUsedAt.Get(), o.LastUsedAt.IsSet()
+	return o.LastUsedAt, true
 }
 
 // HasLastUsedAt returns a boolean if a field has been set.
 func (o *DeleteApiKeysResponse) HasLastUsedAt() bool {
-	if o != nil && o.LastUsedAt.IsSet() {
+	if o != nil && !IsNil(o.LastUsedAt) {
 		return true
 	}
 
 	return false
 }
 
-// SetLastUsedAt gets a reference to the given NullableInt64 and assigns it to the LastUsedAt field.
+// SetLastUsedAt gets a reference to the given int64 and assigns it to the LastUsedAt field.
 func (o *DeleteApiKeysResponse) SetLastUsedAt(v int64) {
-	o.LastUsedAt.Set(&v)
-}
-// SetLastUsedAtNil sets the value for LastUsedAt to be an explicit nil
-func (o *DeleteApiKeysResponse) SetLastUsedAtNil() {
-	o.LastUsedAt.Set(nil)
-}
-
-// UnsetLastUsedAt ensures that no value is present for LastUsedAt, not even an explicit nil
-func (o *DeleteApiKeysResponse) UnsetLastUsedAt() {
-	o.LastUsedAt.Unset()
+	o.LastUsedAt = &v
 }
 
 // GetRole returns the Role field value if set, zero value otherwise.
@@ -422,8 +412,8 @@ func (o DeleteApiKeysResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Object) {
 		toSerialize["object"] = o.Object
 	}
-	if o.LastUsedAt.IsSet() {
-		toSerialize["last_used_at"] = o.LastUsedAt.Get()
+	if !IsNil(o.LastUsedAt) {
+		toSerialize["last_used_at"] = o.LastUsedAt
 	}
 	if !IsNil(o.Role) {
 		toSerialize["role"] = o.Role

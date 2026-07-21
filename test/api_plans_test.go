@@ -11,22 +11,20 @@ package conekta
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/conekta/conekta-go/v7"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/conekta/conekta-go"
 )
 
 func Test_conekta_PlansAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test PlansAPIService CreatePlan", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.PlansAPI.CreatePlan(context.Background()).Execute()
+		resp, httpRes, err := apiClient.PlansAPI.CreatePlan(context.Background()).PlanRequest(openapiclient.PlanRequest{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,9 +34,7 @@ func Test_conekta_PlansAPIService(t *testing.T) {
 
 	t.Run("Test PlansAPIService DeletePlan", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "plan_2tZb5q8Z3PYpg6SJd"
 
 		resp, httpRes, err := apiClient.PlansAPI.DeletePlan(context.Background(), id).Execute()
 
@@ -50,9 +46,7 @@ func Test_conekta_PlansAPIService(t *testing.T) {
 
 	t.Run("Test PlansAPIService GetPlan", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "plan_2tZb5q8Z3PYpg6SJd"
 
 		resp, httpRes, err := apiClient.PlansAPI.GetPlan(context.Background(), id).Execute()
 
@@ -64,8 +58,6 @@ func Test_conekta_PlansAPIService(t *testing.T) {
 
 	t.Run("Test PlansAPIService GetPlans", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
 		resp, httpRes, err := apiClient.PlansAPI.GetPlans(context.Background()).Execute()
 
 		require.Nil(t, err)
@@ -76,11 +68,9 @@ func Test_conekta_PlansAPIService(t *testing.T) {
 
 	t.Run("Test PlansAPIService UpdatePlan", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "plan_2tZb5q8Z3PYpg6SJd"
 
-		var id string
-
-		resp, httpRes, err := apiClient.PlansAPI.UpdatePlan(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.PlansAPI.UpdatePlan(context.Background(), id).UpdatePlan(openapiclient.UpdatePlan{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

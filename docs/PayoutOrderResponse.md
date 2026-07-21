@@ -5,25 +5,25 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AllowedPayoutMethods** | **[]string** | The payout methods that are allowed for the payout order. | 
-**Amount** | **int32** | The amount of the payout order. | 
+**Amount** | **int64** | The amount of the payout order. | 
 **CreatedAt** | **int64** | The creation date of the payout order. | 
 **Currency** | **string** | The currency in which the payout order is made. | [default to "MXN"]
 **CustomerInfo** | [**PayoutOrderResponseCustomerInfo**](PayoutOrderResponseCustomerInfo.md) |  | 
-**ExpiresAt** | Pointer to **int64** | The expiration date of the payout order. | [optional] 
+**ExpiresAt** | **int64** | The expiration date of the payout order. | 
 **Id** | **string** | The id of the payout order. | 
 **Livemode** | **bool** | The live mode of the payout order. | 
 **Object** | **string** | The object of the payout order. | 
 **Metadata** | Pointer to **map[string]interface{}** | The metadata of the payout order. | [optional] 
 **Payouts** | [**[]PayoutOrderPayoutsItem**](PayoutOrderPayoutsItem.md) | The payout information of the payout order. | 
 **Reason** | **string** | The reason for the payout order. | 
-**Status** | Pointer to **string** | The status of the payout order. | [optional] 
+**Status** | **string** | The status of the payout order. | 
 **UpdatedAt** | **int64** | The update date of the payout order. | 
 
 ## Methods
 
 ### NewPayoutOrderResponse
 
-`func NewPayoutOrderResponse(allowedPayoutMethods []string, amount int32, createdAt int64, currency string, customerInfo PayoutOrderResponseCustomerInfo, id string, livemode bool, object string, payouts []PayoutOrderPayoutsItem, reason string, updatedAt int64, ) *PayoutOrderResponse`
+`func NewPayoutOrderResponse(allowedPayoutMethods []string, amount int64, createdAt int64, currency string, customerInfo PayoutOrderResponseCustomerInfo, expiresAt int64, id string, livemode bool, object string, payouts []PayoutOrderPayoutsItem, reason string, status string, updatedAt int64, ) *PayoutOrderResponse`
 
 NewPayoutOrderResponse instantiates a new PayoutOrderResponse object
 This constructor will assign default values to properties that have it defined,
@@ -60,20 +60,20 @@ SetAllowedPayoutMethods sets AllowedPayoutMethods field to given value.
 
 ### GetAmount
 
-`func (o *PayoutOrderResponse) GetAmount() int32`
+`func (o *PayoutOrderResponse) GetAmount() int64`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *PayoutOrderResponse) GetAmountOk() (*int32, bool)`
+`func (o *PayoutOrderResponse) GetAmountOk() (*int64, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *PayoutOrderResponse) SetAmount(v int32)`
+`func (o *PayoutOrderResponse) SetAmount(v int64)`
 
 SetAmount sets Amount field to given value.
 
@@ -157,11 +157,6 @@ and a boolean to check if the value has been set.
 
 SetExpiresAt sets ExpiresAt field to given value.
 
-### HasExpiresAt
-
-`func (o *PayoutOrderResponse) HasExpiresAt() bool`
-
-HasExpiresAt returns a boolean if a field has been set.
 
 ### GetId
 
@@ -307,11 +302,6 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
-### HasStatus
-
-`func (o *PayoutOrderResponse) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

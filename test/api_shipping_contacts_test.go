@@ -11,24 +11,22 @@ package conekta
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/conekta/conekta-go/v7"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/conekta/conekta-go"
 )
 
 func Test_conekta_ShippingContactsAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test ShippingContactsAPIService CreateCustomerShippingContacts", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "cus_2tXyF9BwPG14UMkkg"
 
-		var id string
-
-		resp, httpRes, err := apiClient.ShippingContactsAPI.CreateCustomerShippingContacts(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ShippingContactsAPI.CreateCustomerShippingContacts(context.Background(), id).CustomerShippingContactsRequest(openapiclient.CustomerShippingContactsRequest{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -38,10 +36,8 @@ func Test_conekta_ShippingContactsAPIService(t *testing.T) {
 
 	t.Run("Test ShippingContactsAPIService DeleteCustomerShippingContacts", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-		var shippingContactsId string
+		id := "cus_2tZWxbTPtQgGJGh8P"
+		shippingContactsId := "ship_cont_2tZWzJPBf87C6TcoQ"
 
 		resp, httpRes, err := apiClient.ShippingContactsAPI.DeleteCustomerShippingContacts(context.Background(), id, shippingContactsId).Execute()
 
@@ -53,12 +49,10 @@ func Test_conekta_ShippingContactsAPIService(t *testing.T) {
 
 	t.Run("Test ShippingContactsAPIService UpdateCustomerShippingContacts", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "cus_2tZWxbTPtQgGJGh8P"
+		shippingContactsId := "ship_cont_2tZWzJPBf87C6TcoQ"
 
-		var id string
-		var shippingContactsId string
-
-		resp, httpRes, err := apiClient.ShippingContactsAPI.UpdateCustomerShippingContacts(context.Background(), id, shippingContactsId).Execute()
+		resp, httpRes, err := apiClient.ShippingContactsAPI.UpdateCustomerShippingContacts(context.Background(), id, shippingContactsId).CustomerUpdateShippingContactsRequest(openapiclient.CustomerUpdateShippingContactsRequest{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

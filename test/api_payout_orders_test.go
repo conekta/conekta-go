@@ -11,22 +11,22 @@ package conekta
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/conekta/conekta-go/v7"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/conekta/conekta-go"
 )
 
 func Test_conekta_PayoutOrdersAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test PayoutOrdersAPIService CancelPayoutOrderById", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("mock server (conekta_api.json) does not implement the cancel payout order endpoint")
 
-		var id string
+		id := "f2654d66-d740-457a-9a8c-f96b5196f44e"
 
 		resp, httpRes, err := apiClient.PayoutOrdersAPI.CancelPayoutOrderById(context.Background(), id).Execute()
 
@@ -38,9 +38,7 @@ func Test_conekta_PayoutOrdersAPIService(t *testing.T) {
 
 	t.Run("Test PayoutOrdersAPIService CreatePayoutOrder", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.PayoutOrdersAPI.CreatePayoutOrder(context.Background()).Execute()
+		resp, httpRes, err := apiClient.PayoutOrdersAPI.CreatePayoutOrder(context.Background()).PayoutOrderRequest(openapiclient.PayoutOrderRequest{Amount: 3000}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -50,9 +48,7 @@ func Test_conekta_PayoutOrdersAPIService(t *testing.T) {
 
 	t.Run("Test PayoutOrdersAPIService GetPayoutOrderById", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var id string
+		id := "f2654d66-d740-457a-9a8c-f96b5196f44e"
 
 		resp, httpRes, err := apiClient.PayoutOrdersAPI.GetPayoutOrderById(context.Background(), id).Execute()
 
@@ -64,9 +60,7 @@ func Test_conekta_PayoutOrdersAPIService(t *testing.T) {
 
 	t.Run("Test PayoutOrdersAPIService GetPayoutOrders", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.PayoutOrdersAPI.GetPayoutOrders(context.Background()).Execute()
+		resp, httpRes, err := apiClient.PayoutOrdersAPI.GetPayoutOrders(context.Background()).AcceptLanguage("es").Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

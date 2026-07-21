@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## OrdersCreateTaxes
 
-> UpdateOrderTaxResponse OrdersCreateTaxes(ctx, id).OrderTaxRequest(orderTaxRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> OrderTaxResponse OrdersCreateTaxes(ctx, id).OrderTaxRequest(orderTaxRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Create Tax
 
@@ -27,7 +27,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -43,7 +43,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TaxesAPI.OrdersCreateTaxes``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `OrdersCreateTaxes`: UpdateOrderTaxResponse
+	// response from `OrdersCreateTaxes`: OrderTaxResponse
 	fmt.Fprintf(os.Stdout, "Response from `TaxesAPI.OrdersCreateTaxes`: %v\n", resp)
 }
 ```
@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UpdateOrderTaxResponse**](UpdateOrderTaxResponse.md)
+[**OrderTaxResponse**](OrderTaxResponse.md)
 
 ### Authorization
 
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## OrdersDeleteTaxes
 
-> UpdateOrderTaxResponse OrdersDeleteTaxes(ctx, id, taxId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> OrderTaxResponse OrdersDeleteTaxes(ctx, id, taxId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Delete Tax
 
@@ -103,7 +103,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -119,7 +119,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TaxesAPI.OrdersDeleteTaxes``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `OrdersDeleteTaxes`: UpdateOrderTaxResponse
+	// response from `OrdersDeleteTaxes`: OrderTaxResponse
 	fmt.Fprintf(os.Stdout, "Response from `TaxesAPI.OrdersDeleteTaxes`: %v\n", resp)
 }
 ```
@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UpdateOrderTaxResponse**](UpdateOrderTaxResponse.md)
+[**OrderTaxResponse**](OrderTaxResponse.md)
 
 ### Authorization
 
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 
 ## OrdersUpdateTaxes
 
-> UpdateOrderTaxResponse OrdersUpdateTaxes(ctx, id, taxId).UpdateOrderTaxRequest(updateOrderTaxRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> OrderTaxResponse OrdersUpdateTaxes(ctx, id, taxId).OrdersUpdateTaxesRequest(ordersUpdateTaxesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update Tax
 
@@ -180,24 +180,24 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
 	id := "6307a60c41de27127515a575" // string | Identifier of the resource
 	taxId := "tax_lin_2tQ974hSHcsdeSZHG" // string | identifier
-	updateOrderTaxRequest := *openapiclient.NewUpdateOrderTaxRequest() // UpdateOrderTaxRequest | requested field for taxes
+	ordersUpdateTaxesRequest := *openapiclient.NewOrdersUpdateTaxesRequest() // OrdersUpdateTaxesRequest | requested field for taxes
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TaxesAPI.OrdersUpdateTaxes(context.Background(), id, taxId).UpdateOrderTaxRequest(updateOrderTaxRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+	resp, r, err := apiClient.TaxesAPI.OrdersUpdateTaxes(context.Background(), id, taxId).OrdersUpdateTaxesRequest(ordersUpdateTaxesRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TaxesAPI.OrdersUpdateTaxes``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `OrdersUpdateTaxes`: UpdateOrderTaxResponse
+	// response from `OrdersUpdateTaxes`: OrderTaxResponse
 	fmt.Fprintf(os.Stdout, "Response from `TaxesAPI.OrdersUpdateTaxes`: %v\n", resp)
 }
 ```
@@ -220,13 +220,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrderTaxRequest** | [**UpdateOrderTaxRequest**](UpdateOrderTaxRequest.md) | requested field for taxes | 
+ **ordersUpdateTaxesRequest** | [**OrdersUpdateTaxesRequest**](OrdersUpdateTaxesRequest.md) | requested field for taxes | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
  **xChildCompanyId** | **string** | In the case of a holding company, the company id of the child company to which will process the request. | 
 
 ### Return type
 
-[**UpdateOrderTaxResponse**](UpdateOrderTaxResponse.md)
+[**OrderTaxResponse**](OrderTaxResponse.md)
 
 ### Authorization
 

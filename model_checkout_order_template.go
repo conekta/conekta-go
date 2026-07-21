@@ -23,13 +23,15 @@ var _ MappedNullable = &CheckoutOrderTemplate{}
 type CheckoutOrderTemplate struct {
 	// It is the currency in which the order will be created. It must be a valid ISO 4217 currency code.
 	Currency string `json:"currency"`
-	CustomerInfo *CheckoutOrderTemplateCustomerInfo `json:"customer_info,omitempty"`
+	CustomerInfo *OrderRequestCustomerInfo `json:"customer_info,omitempty"`
 	// They are the products to buy. Each contains the \"unit price\" and \"quantity\" parameters that are used to calculate the total amount of the order.
 	LineItems []Product `json:"line_items"`
-	// It is a list of plan IDs that will be associated with the order.
-	PlanIds []string `json:"plan_ids,omitempty"`
 	// It is a set of key-value pairs that you can attach to the order. It can be used to store additional information about the order in a structured format.
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	// List of [taxes](https://developers.conekta.com/v2.2.0/reference/orderscreatetaxes) that are applied to the order.
+	TaxLines []OrderTaxRequest `json:"tax_lines,omitempty"`
+	// List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order.
+	DiscountLines []OrderDiscountLinesRequest `json:"discount_lines,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -79,9 +81,9 @@ func (o *CheckoutOrderTemplate) SetCurrency(v string) {
 }
 
 // GetCustomerInfo returns the CustomerInfo field value if set, zero value otherwise.
-func (o *CheckoutOrderTemplate) GetCustomerInfo() CheckoutOrderTemplateCustomerInfo {
+func (o *CheckoutOrderTemplate) GetCustomerInfo() OrderRequestCustomerInfo {
 	if o == nil || IsNil(o.CustomerInfo) {
-		var ret CheckoutOrderTemplateCustomerInfo
+		var ret OrderRequestCustomerInfo
 		return ret
 	}
 	return *o.CustomerInfo
@@ -89,7 +91,7 @@ func (o *CheckoutOrderTemplate) GetCustomerInfo() CheckoutOrderTemplateCustomerI
 
 // GetCustomerInfoOk returns a tuple with the CustomerInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CheckoutOrderTemplate) GetCustomerInfoOk() (*CheckoutOrderTemplateCustomerInfo, bool) {
+func (o *CheckoutOrderTemplate) GetCustomerInfoOk() (*OrderRequestCustomerInfo, bool) {
 	if o == nil || IsNil(o.CustomerInfo) {
 		return nil, false
 	}
@@ -105,8 +107,8 @@ func (o *CheckoutOrderTemplate) HasCustomerInfo() bool {
 	return false
 }
 
-// SetCustomerInfo gets a reference to the given CheckoutOrderTemplateCustomerInfo and assigns it to the CustomerInfo field.
-func (o *CheckoutOrderTemplate) SetCustomerInfo(v CheckoutOrderTemplateCustomerInfo) {
+// SetCustomerInfo gets a reference to the given OrderRequestCustomerInfo and assigns it to the CustomerInfo field.
+func (o *CheckoutOrderTemplate) SetCustomerInfo(v OrderRequestCustomerInfo) {
 	o.CustomerInfo = &v
 }
 
@@ -132,38 +134,6 @@ func (o *CheckoutOrderTemplate) GetLineItemsOk() ([]Product, bool) {
 // SetLineItems sets field value
 func (o *CheckoutOrderTemplate) SetLineItems(v []Product) {
 	o.LineItems = v
-}
-
-// GetPlanIds returns the PlanIds field value if set, zero value otherwise.
-func (o *CheckoutOrderTemplate) GetPlanIds() []string {
-	if o == nil || IsNil(o.PlanIds) {
-		var ret []string
-		return ret
-	}
-	return o.PlanIds
-}
-
-// GetPlanIdsOk returns a tuple with the PlanIds field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CheckoutOrderTemplate) GetPlanIdsOk() ([]string, bool) {
-	if o == nil || IsNil(o.PlanIds) {
-		return nil, false
-	}
-	return o.PlanIds, true
-}
-
-// HasPlanIds returns a boolean if a field has been set.
-func (o *CheckoutOrderTemplate) HasPlanIds() bool {
-	if o != nil && !IsNil(o.PlanIds) {
-		return true
-	}
-
-	return false
-}
-
-// SetPlanIds gets a reference to the given []string and assigns it to the PlanIds field.
-func (o *CheckoutOrderTemplate) SetPlanIds(v []string) {
-	o.PlanIds = v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -198,6 +168,70 @@ func (o *CheckoutOrderTemplate) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
 }
 
+// GetTaxLines returns the TaxLines field value if set, zero value otherwise.
+func (o *CheckoutOrderTemplate) GetTaxLines() []OrderTaxRequest {
+	if o == nil || IsNil(o.TaxLines) {
+		var ret []OrderTaxRequest
+		return ret
+	}
+	return o.TaxLines
+}
+
+// GetTaxLinesOk returns a tuple with the TaxLines field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CheckoutOrderTemplate) GetTaxLinesOk() ([]OrderTaxRequest, bool) {
+	if o == nil || IsNil(o.TaxLines) {
+		return nil, false
+	}
+	return o.TaxLines, true
+}
+
+// HasTaxLines returns a boolean if a field has been set.
+func (o *CheckoutOrderTemplate) HasTaxLines() bool {
+	if o != nil && !IsNil(o.TaxLines) {
+		return true
+	}
+
+	return false
+}
+
+// SetTaxLines gets a reference to the given []OrderTaxRequest and assigns it to the TaxLines field.
+func (o *CheckoutOrderTemplate) SetTaxLines(v []OrderTaxRequest) {
+	o.TaxLines = v
+}
+
+// GetDiscountLines returns the DiscountLines field value if set, zero value otherwise.
+func (o *CheckoutOrderTemplate) GetDiscountLines() []OrderDiscountLinesRequest {
+	if o == nil || IsNil(o.DiscountLines) {
+		var ret []OrderDiscountLinesRequest
+		return ret
+	}
+	return o.DiscountLines
+}
+
+// GetDiscountLinesOk returns a tuple with the DiscountLines field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CheckoutOrderTemplate) GetDiscountLinesOk() ([]OrderDiscountLinesRequest, bool) {
+	if o == nil || IsNil(o.DiscountLines) {
+		return nil, false
+	}
+	return o.DiscountLines, true
+}
+
+// HasDiscountLines returns a boolean if a field has been set.
+func (o *CheckoutOrderTemplate) HasDiscountLines() bool {
+	if o != nil && !IsNil(o.DiscountLines) {
+		return true
+	}
+
+	return false
+}
+
+// SetDiscountLines gets a reference to the given []OrderDiscountLinesRequest and assigns it to the DiscountLines field.
+func (o *CheckoutOrderTemplate) SetDiscountLines(v []OrderDiscountLinesRequest) {
+	o.DiscountLines = v
+}
+
 func (o CheckoutOrderTemplate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -213,11 +247,14 @@ func (o CheckoutOrderTemplate) ToMap() (map[string]interface{}, error) {
 		toSerialize["customer_info"] = o.CustomerInfo
 	}
 	toSerialize["line_items"] = o.LineItems
-	if !IsNil(o.PlanIds) {
-		toSerialize["plan_ids"] = o.PlanIds
-	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
+	}
+	if !IsNil(o.TaxLines) {
+		toSerialize["tax_lines"] = o.TaxLines
+	}
+	if !IsNil(o.DiscountLines) {
+		toSerialize["discount_lines"] = o.DiscountLines
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -266,8 +303,9 @@ func (o *CheckoutOrderTemplate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "currency")
 		delete(additionalProperties, "customer_info")
 		delete(additionalProperties, "line_items")
-		delete(additionalProperties, "plan_ids")
 		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "tax_lines")
+		delete(additionalProperties, "discount_lines")
 		o.AdditionalProperties = additionalProperties
 	}
 

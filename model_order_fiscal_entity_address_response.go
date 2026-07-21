@@ -24,7 +24,7 @@ type OrderFiscalEntityAddressResponse struct {
 	// Street name and number
 	Street1 string `json:"street1"`
 	// Street name and number
-	Street2 NullableString `json:"street2,omitempty"`
+	Street2 *string `json:"street2,omitempty"`
 	// Postal code
 	PostalCode string `json:"postal_code"`
 	// City
@@ -87,46 +87,36 @@ func (o *OrderFiscalEntityAddressResponse) SetStreet1(v string) {
 	o.Street1 = v
 }
 
-// GetStreet2 returns the Street2 field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetStreet2 returns the Street2 field value if set, zero value otherwise.
 func (o *OrderFiscalEntityAddressResponse) GetStreet2() string {
-	if o == nil || IsNil(o.Street2.Get()) {
+	if o == nil || IsNil(o.Street2) {
 		var ret string
 		return ret
 	}
-	return *o.Street2.Get()
+	return *o.Street2
 }
 
 // GetStreet2Ok returns a tuple with the Street2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OrderFiscalEntityAddressResponse) GetStreet2Ok() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Street2) {
 		return nil, false
 	}
-	return o.Street2.Get(), o.Street2.IsSet()
+	return o.Street2, true
 }
 
 // HasStreet2 returns a boolean if a field has been set.
 func (o *OrderFiscalEntityAddressResponse) HasStreet2() bool {
-	if o != nil && o.Street2.IsSet() {
+	if o != nil && !IsNil(o.Street2) {
 		return true
 	}
 
 	return false
 }
 
-// SetStreet2 gets a reference to the given NullableString and assigns it to the Street2 field.
+// SetStreet2 gets a reference to the given string and assigns it to the Street2 field.
 func (o *OrderFiscalEntityAddressResponse) SetStreet2(v string) {
-	o.Street2.Set(&v)
-}
-// SetStreet2Nil sets the value for Street2 to be an explicit nil
-func (o *OrderFiscalEntityAddressResponse) SetStreet2Nil() {
-	o.Street2.Set(nil)
-}
-
-// UnsetStreet2 ensures that no value is present for Street2, not even an explicit nil
-func (o *OrderFiscalEntityAddressResponse) UnsetStreet2() {
-	o.Street2.Unset()
+	o.Street2 = &v
 }
 
 // GetPostalCode returns the PostalCode field value
@@ -300,8 +290,8 @@ func (o OrderFiscalEntityAddressResponse) MarshalJSON() ([]byte, error) {
 func (o OrderFiscalEntityAddressResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["street1"] = o.Street1
-	if o.Street2.IsSet() {
-		toSerialize["street2"] = o.Street2.Get()
+	if !IsNil(o.Street2) {
+		toSerialize["street2"] = o.Street2
 	}
 	toSerialize["postal_code"] = o.PostalCode
 	toSerialize["city"] = o.City

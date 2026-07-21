@@ -20,17 +20,17 @@ var _ MappedNullable = &OrderResponseShippingContact{}
 
 // OrderResponseShippingContact struct for OrderResponseShippingContact
 type OrderResponseShippingContact struct {
+	CreatedAt *int64 `json:"created_at,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Object *string `json:"object,omitempty"`
 	Phone *string `json:"phone,omitempty"`
 	Receiver *string `json:"receiver,omitempty"`
-	BetweenStreets NullableString `json:"between_streets,omitempty"`
-	Address *CustomerShippingContactsResponseAddress `json:"address,omitempty"`
+	BetweenStreets *string `json:"between_streets,omitempty"`
+	Address *CustomerShippingContactsAddress `json:"address,omitempty"`
 	ParentId *string `json:"parent_id,omitempty"`
 	Default *bool `json:"default,omitempty"`
-	Id *string `json:"id,omitempty"`
-	CreatedAt *int64 `json:"created_at,omitempty"`
 	// Metadata associated with the shipping contact
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
-	Object *string `json:"object,omitempty"`
 	Deleted *bool `json:"deleted,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -52,6 +52,102 @@ func NewOrderResponseShippingContact() *OrderResponseShippingContact {
 func NewOrderResponseShippingContactWithDefaults() *OrderResponseShippingContact {
 	this := OrderResponseShippingContact{}
 	return &this
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *OrderResponseShippingContact) GetCreatedAt() int64 {
+	if o == nil || IsNil(o.CreatedAt) {
+		var ret int64
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderResponseShippingContact) GetCreatedAtOk() (*int64, bool) {
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *OrderResponseShippingContact) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
+func (o *OrderResponseShippingContact) SetCreatedAt(v int64) {
+	o.CreatedAt = &v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *OrderResponseShippingContact) GetId() string {
+	if o == nil || IsNil(o.Id) {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderResponseShippingContact) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *OrderResponseShippingContact) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *OrderResponseShippingContact) SetId(v string) {
+	o.Id = &v
+}
+
+// GetObject returns the Object field value if set, zero value otherwise.
+func (o *OrderResponseShippingContact) GetObject() string {
+	if o == nil || IsNil(o.Object) {
+		var ret string
+		return ret
+	}
+	return *o.Object
+}
+
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderResponseShippingContact) GetObjectOk() (*string, bool) {
+	if o == nil || IsNil(o.Object) {
+		return nil, false
+	}
+	return o.Object, true
+}
+
+// HasObject returns a boolean if a field has been set.
+func (o *OrderResponseShippingContact) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
+func (o *OrderResponseShippingContact) SetObject(v string) {
+	o.Object = &v
 }
 
 // GetPhone returns the Phone field value if set, zero value otherwise.
@@ -118,52 +214,42 @@ func (o *OrderResponseShippingContact) SetReceiver(v string) {
 	o.Receiver = &v
 }
 
-// GetBetweenStreets returns the BetweenStreets field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetBetweenStreets returns the BetweenStreets field value if set, zero value otherwise.
 func (o *OrderResponseShippingContact) GetBetweenStreets() string {
-	if o == nil || IsNil(o.BetweenStreets.Get()) {
+	if o == nil || IsNil(o.BetweenStreets) {
 		var ret string
 		return ret
 	}
-	return *o.BetweenStreets.Get()
+	return *o.BetweenStreets
 }
 
 // GetBetweenStreetsOk returns a tuple with the BetweenStreets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OrderResponseShippingContact) GetBetweenStreetsOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.BetweenStreets) {
 		return nil, false
 	}
-	return o.BetweenStreets.Get(), o.BetweenStreets.IsSet()
+	return o.BetweenStreets, true
 }
 
 // HasBetweenStreets returns a boolean if a field has been set.
 func (o *OrderResponseShippingContact) HasBetweenStreets() bool {
-	if o != nil && o.BetweenStreets.IsSet() {
+	if o != nil && !IsNil(o.BetweenStreets) {
 		return true
 	}
 
 	return false
 }
 
-// SetBetweenStreets gets a reference to the given NullableString and assigns it to the BetweenStreets field.
+// SetBetweenStreets gets a reference to the given string and assigns it to the BetweenStreets field.
 func (o *OrderResponseShippingContact) SetBetweenStreets(v string) {
-	o.BetweenStreets.Set(&v)
-}
-// SetBetweenStreetsNil sets the value for BetweenStreets to be an explicit nil
-func (o *OrderResponseShippingContact) SetBetweenStreetsNil() {
-	o.BetweenStreets.Set(nil)
-}
-
-// UnsetBetweenStreets ensures that no value is present for BetweenStreets, not even an explicit nil
-func (o *OrderResponseShippingContact) UnsetBetweenStreets() {
-	o.BetweenStreets.Unset()
+	o.BetweenStreets = &v
 }
 
 // GetAddress returns the Address field value if set, zero value otherwise.
-func (o *OrderResponseShippingContact) GetAddress() CustomerShippingContactsResponseAddress {
+func (o *OrderResponseShippingContact) GetAddress() CustomerShippingContactsAddress {
 	if o == nil || IsNil(o.Address) {
-		var ret CustomerShippingContactsResponseAddress
+		var ret CustomerShippingContactsAddress
 		return ret
 	}
 	return *o.Address
@@ -171,7 +257,7 @@ func (o *OrderResponseShippingContact) GetAddress() CustomerShippingContactsResp
 
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderResponseShippingContact) GetAddressOk() (*CustomerShippingContactsResponseAddress, bool) {
+func (o *OrderResponseShippingContact) GetAddressOk() (*CustomerShippingContactsAddress, bool) {
 	if o == nil || IsNil(o.Address) {
 		return nil, false
 	}
@@ -187,8 +273,8 @@ func (o *OrderResponseShippingContact) HasAddress() bool {
 	return false
 }
 
-// SetAddress gets a reference to the given CustomerShippingContactsResponseAddress and assigns it to the Address field.
-func (o *OrderResponseShippingContact) SetAddress(v CustomerShippingContactsResponseAddress) {
+// SetAddress gets a reference to the given CustomerShippingContactsAddress and assigns it to the Address field.
+func (o *OrderResponseShippingContact) SetAddress(v CustomerShippingContactsAddress) {
 	o.Address = &v
 }
 
@@ -256,70 +342,6 @@ func (o *OrderResponseShippingContact) SetDefault(v bool) {
 	o.Default = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *OrderResponseShippingContact) GetId() string {
-	if o == nil || IsNil(o.Id) {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OrderResponseShippingContact) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *OrderResponseShippingContact) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *OrderResponseShippingContact) SetId(v string) {
-	o.Id = &v
-}
-
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *OrderResponseShippingContact) GetCreatedAt() int64 {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret int64
-		return ret
-	}
-	return *o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OrderResponseShippingContact) GetCreatedAtOk() (*int64, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
-		return nil, false
-	}
-	return o.CreatedAt, true
-}
-
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *OrderResponseShippingContact) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
-func (o *OrderResponseShippingContact) SetCreatedAt(v int64) {
-	o.CreatedAt = &v
-}
-
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *OrderResponseShippingContact) GetMetadata() map[string]interface{} {
 	if o == nil || IsNil(o.Metadata) {
@@ -350,38 +372,6 @@ func (o *OrderResponseShippingContact) HasMetadata() bool {
 // SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
 func (o *OrderResponseShippingContact) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
-}
-
-// GetObject returns the Object field value if set, zero value otherwise.
-func (o *OrderResponseShippingContact) GetObject() string {
-	if o == nil || IsNil(o.Object) {
-		var ret string
-		return ret
-	}
-	return *o.Object
-}
-
-// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OrderResponseShippingContact) GetObjectOk() (*string, bool) {
-	if o == nil || IsNil(o.Object) {
-		return nil, false
-	}
-	return o.Object, true
-}
-
-// HasObject returns a boolean if a field has been set.
-func (o *OrderResponseShippingContact) HasObject() bool {
-	if o != nil && !IsNil(o.Object) {
-		return true
-	}
-
-	return false
-}
-
-// SetObject gets a reference to the given string and assigns it to the Object field.
-func (o *OrderResponseShippingContact) SetObject(v string) {
-	o.Object = &v
 }
 
 // GetDeleted returns the Deleted field value if set, zero value otherwise.
@@ -426,14 +416,23 @@ func (o OrderResponseShippingContact) MarshalJSON() ([]byte, error) {
 
 func (o OrderResponseShippingContact) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
+	}
 	if !IsNil(o.Phone) {
 		toSerialize["phone"] = o.Phone
 	}
 	if !IsNil(o.Receiver) {
 		toSerialize["receiver"] = o.Receiver
 	}
-	if o.BetweenStreets.IsSet() {
-		toSerialize["between_streets"] = o.BetweenStreets.Get()
+	if !IsNil(o.BetweenStreets) {
+		toSerialize["between_streets"] = o.BetweenStreets
 	}
 	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address
@@ -444,17 +443,8 @@ func (o OrderResponseShippingContact) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Default) {
 		toSerialize["default"] = o.Default
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["created_at"] = o.CreatedAt
-	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
-	}
-	if !IsNil(o.Object) {
-		toSerialize["object"] = o.Object
 	}
 	if !IsNil(o.Deleted) {
 		toSerialize["deleted"] = o.Deleted
@@ -481,16 +471,16 @@ func (o *OrderResponseShippingContact) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "object")
 		delete(additionalProperties, "phone")
 		delete(additionalProperties, "receiver")
 		delete(additionalProperties, "between_streets")
 		delete(additionalProperties, "address")
 		delete(additionalProperties, "parent_id")
 		delete(additionalProperties, "default")
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "metadata")
-		delete(additionalProperties, "object")
 		delete(additionalProperties, "deleted")
 		o.AdditionalProperties = additionalProperties
 	}

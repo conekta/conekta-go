@@ -28,7 +28,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -85,7 +85,7 @@ Name | Type | Description  | Notes
 
 ## CreatePayoutOrder
 
-> PayoutOrderResponse CreatePayoutOrder(ctx).PayoutOrder(payoutOrder).AcceptLanguage(acceptLanguage).Execute()
+> PayoutOrderResponse CreatePayoutOrder(ctx).PayoutOrderRequest(payoutOrderRequest).AcceptLanguage(acceptLanguage).Execute()
 
 Create payout order
 
@@ -100,16 +100,16 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
-	payoutOrder := *openapiclient.NewPayoutOrder([]string{"AllowedPayoutMethods_example"}, int32(100), "MXN", *openapiclient.NewCustomerInfoJustCustomerId("cus_23874283647"), *openapiclient.NewPayout(*openapiclient.NewPayoutMethod("cashout")), "Payout order for the customer") // PayoutOrder | requested field for payout order
+	payoutOrderRequest := *openapiclient.NewPayoutOrderRequest([]string{"AllowedPayoutMethods_example"}, int64(100), "MXN", *openapiclient.NewPayoutOrderRequestCustomerInfo("cus_23874283647"), int64(1700000000), *openapiclient.NewPayout(*openapiclient.NewPayoutMethod("cashout")), "Payout order for the customer") // PayoutOrderRequest | requested field for payout order
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PayoutOrdersAPI.CreatePayoutOrder(context.Background()).PayoutOrder(payoutOrder).AcceptLanguage(acceptLanguage).Execute()
+	resp, r, err := apiClient.PayoutOrdersAPI.CreatePayoutOrder(context.Background()).PayoutOrderRequest(payoutOrderRequest).AcceptLanguage(acceptLanguage).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PayoutOrdersAPI.CreatePayoutOrder``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,7 +130,7 @@ Other parameters are passed through a pointer to a apiCreatePayoutOrderRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payoutOrder** | [**PayoutOrder**](PayoutOrder.md) | requested field for payout order | 
+ **payoutOrderRequest** | [**PayoutOrderRequest**](PayoutOrderRequest.md) | requested field for payout order | 
  **acceptLanguage** | **string** | Use for knowing which language to use | [default to &quot;es&quot;]
 
 ### Return type
@@ -168,7 +168,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {
@@ -240,7 +240,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go"
+	openapiclient "github.com/conekta/conekta-go/v7"
 )
 
 func main() {

@@ -19,15 +19,16 @@ import (
 	"net/url"
 )
 
+
 type BalancesAPI interface {
 
 	/*
-		GetBalance Get a company's balance
+	GetBalance Get a company's balance
 
-		Get a company's balance
+	Get a company's balance
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetBalanceRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetBalanceRequest
 	*/
 	GetBalance(ctx context.Context) ApiGetBalanceRequest
 
@@ -40,8 +41,8 @@ type BalancesAPI interface {
 type BalancesAPIService service
 
 type ApiGetBalanceRequest struct {
-	ctx            context.Context
-	ApiService     BalancesAPI
+	ctx context.Context
+	ApiService BalancesAPI
 	acceptLanguage *string
 }
 
@@ -66,7 +67,7 @@ Get a company's balance
 func (a *BalancesAPIService) GetBalance(ctx context.Context) ApiGetBalanceRequest {
 	return ApiGetBalanceRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
@@ -74,10 +75,10 @@ func (a *BalancesAPIService) GetBalance(ctx context.Context) ApiGetBalanceReques
 //  @return BalanceResponse
 func (a *BalancesAPIService) GetBalanceExecute(r ApiGetBalanceRequest) (*BalanceResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *BalanceResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *BalanceResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BalancesAPIService.GetBalance")
@@ -140,8 +141,8 @@ func (a *BalancesAPIService) GetBalanceExecute(r ApiGetBalanceRequest) (*Balance
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -151,8 +152,8 @@ func (a *BalancesAPIService) GetBalanceExecute(r ApiGetBalanceRequest) (*Balance
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

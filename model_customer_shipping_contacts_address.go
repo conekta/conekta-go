@@ -18,16 +18,16 @@ import (
 // checks if the CustomerShippingContactsAddress type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CustomerShippingContactsAddress{}
 
-// CustomerShippingContactsAddress Address of the person who will receive the order
+// CustomerShippingContactsAddress struct for CustomerShippingContactsAddress
 type CustomerShippingContactsAddress struct {
+	Object *string `json:"object,omitempty"`
 	Street1 *string `json:"street1,omitempty"`
 	Street2 *string `json:"street2,omitempty"`
 	PostalCode *string `json:"postal_code,omitempty"`
 	City *string `json:"city,omitempty"`
 	State *string `json:"state,omitempty"`
-	// this field follows the [ISO 3166-1 alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
 	Country *string `json:"country,omitempty"`
-	Residential NullableBool `json:"residential,omitempty"`
+	Residential *bool `json:"residential,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -48,6 +48,38 @@ func NewCustomerShippingContactsAddress() *CustomerShippingContactsAddress {
 func NewCustomerShippingContactsAddressWithDefaults() *CustomerShippingContactsAddress {
 	this := CustomerShippingContactsAddress{}
 	return &this
+}
+
+// GetObject returns the Object field value if set, zero value otherwise.
+func (o *CustomerShippingContactsAddress) GetObject() string {
+	if o == nil || IsNil(o.Object) {
+		var ret string
+		return ret
+	}
+	return *o.Object
+}
+
+// GetObjectOk returns a tuple with the Object field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomerShippingContactsAddress) GetObjectOk() (*string, bool) {
+	if o == nil || IsNil(o.Object) {
+		return nil, false
+	}
+	return o.Object, true
+}
+
+// HasObject returns a boolean if a field has been set.
+func (o *CustomerShippingContactsAddress) HasObject() bool {
+	if o != nil && !IsNil(o.Object) {
+		return true
+	}
+
+	return false
+}
+
+// SetObject gets a reference to the given string and assigns it to the Object field.
+func (o *CustomerShippingContactsAddress) SetObject(v string) {
+	o.Object = &v
 }
 
 // GetStreet1 returns the Street1 field value if set, zero value otherwise.
@@ -242,46 +274,36 @@ func (o *CustomerShippingContactsAddress) SetCountry(v string) {
 	o.Country = &v
 }
 
-// GetResidential returns the Residential field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetResidential returns the Residential field value if set, zero value otherwise.
 func (o *CustomerShippingContactsAddress) GetResidential() bool {
-	if o == nil || IsNil(o.Residential.Get()) {
+	if o == nil || IsNil(o.Residential) {
 		var ret bool
 		return ret
 	}
-	return *o.Residential.Get()
+	return *o.Residential
 }
 
 // GetResidentialOk returns a tuple with the Residential field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CustomerShippingContactsAddress) GetResidentialOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Residential) {
 		return nil, false
 	}
-	return o.Residential.Get(), o.Residential.IsSet()
+	return o.Residential, true
 }
 
 // HasResidential returns a boolean if a field has been set.
 func (o *CustomerShippingContactsAddress) HasResidential() bool {
-	if o != nil && o.Residential.IsSet() {
+	if o != nil && !IsNil(o.Residential) {
 		return true
 	}
 
 	return false
 }
 
-// SetResidential gets a reference to the given NullableBool and assigns it to the Residential field.
+// SetResidential gets a reference to the given bool and assigns it to the Residential field.
 func (o *CustomerShippingContactsAddress) SetResidential(v bool) {
-	o.Residential.Set(&v)
-}
-// SetResidentialNil sets the value for Residential to be an explicit nil
-func (o *CustomerShippingContactsAddress) SetResidentialNil() {
-	o.Residential.Set(nil)
-}
-
-// UnsetResidential ensures that no value is present for Residential, not even an explicit nil
-func (o *CustomerShippingContactsAddress) UnsetResidential() {
-	o.Residential.Unset()
+	o.Residential = &v
 }
 
 func (o CustomerShippingContactsAddress) MarshalJSON() ([]byte, error) {
@@ -294,6 +316,9 @@ func (o CustomerShippingContactsAddress) MarshalJSON() ([]byte, error) {
 
 func (o CustomerShippingContactsAddress) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
+	}
 	if !IsNil(o.Street1) {
 		toSerialize["street1"] = o.Street1
 	}
@@ -312,8 +337,8 @@ func (o CustomerShippingContactsAddress) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.Country) {
 		toSerialize["country"] = o.Country
 	}
-	if o.Residential.IsSet() {
-		toSerialize["residential"] = o.Residential.Get()
+	if !IsNil(o.Residential) {
+		toSerialize["residential"] = o.Residential
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -337,6 +362,7 @@ func (o *CustomerShippingContactsAddress) UnmarshalJSON(data []byte) (err error)
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "object")
 		delete(additionalProperties, "street1")
 		delete(additionalProperties, "street2")
 		delete(additionalProperties, "postal_code")

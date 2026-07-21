@@ -33,7 +33,9 @@ type OrderResponse struct {
 	Currency *string `json:"currency,omitempty"`
 	CustomerInfo *OrderResponseCustomerInfo `json:"customer_info,omitempty"`
 	DiscountLines *OrderDiscountLinesResponse `json:"discount_lines,omitempty"`
-	FiscalEntity NullableOrderFiscalEntityResponse `json:"fiscal_entity,omitempty"`
+	TaxLines *OrderTaxLinesResponse `json:"tax_lines,omitempty"`
+	ShippingLines *OrderShippingLinesResponse `json:"shipping_lines,omitempty"`
+	FiscalEntity *OrderFiscalEntityResponse `json:"fiscal_entity,omitempty"`
 	Id *string `json:"id,omitempty"`
 	IsRefundable *bool `json:"is_refundable,omitempty"`
 	LineItems *OrderResponseProducts `json:"line_items,omitempty"`
@@ -361,46 +363,100 @@ func (o *OrderResponse) SetDiscountLines(v OrderDiscountLinesResponse) {
 	o.DiscountLines = &v
 }
 
-// GetFiscalEntity returns the FiscalEntity field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *OrderResponse) GetFiscalEntity() OrderFiscalEntityResponse {
-	if o == nil || IsNil(o.FiscalEntity.Get()) {
-		var ret OrderFiscalEntityResponse
+// GetTaxLines returns the TaxLines field value if set, zero value otherwise.
+func (o *OrderResponse) GetTaxLines() OrderTaxLinesResponse {
+	if o == nil || IsNil(o.TaxLines) {
+		var ret OrderTaxLinesResponse
 		return ret
 	}
-	return *o.FiscalEntity.Get()
+	return *o.TaxLines
 }
 
-// GetFiscalEntityOk returns a tuple with the FiscalEntity field value if set, nil otherwise
+// GetTaxLinesOk returns a tuple with the TaxLines field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *OrderResponse) GetFiscalEntityOk() (*OrderFiscalEntityResponse, bool) {
-	if o == nil {
+func (o *OrderResponse) GetTaxLinesOk() (*OrderTaxLinesResponse, bool) {
+	if o == nil || IsNil(o.TaxLines) {
 		return nil, false
 	}
-	return o.FiscalEntity.Get(), o.FiscalEntity.IsSet()
+	return o.TaxLines, true
 }
 
-// HasFiscalEntity returns a boolean if a field has been set.
-func (o *OrderResponse) HasFiscalEntity() bool {
-	if o != nil && o.FiscalEntity.IsSet() {
+// HasTaxLines returns a boolean if a field has been set.
+func (o *OrderResponse) HasTaxLines() bool {
+	if o != nil && !IsNil(o.TaxLines) {
 		return true
 	}
 
 	return false
 }
 
-// SetFiscalEntity gets a reference to the given NullableOrderFiscalEntityResponse and assigns it to the FiscalEntity field.
-func (o *OrderResponse) SetFiscalEntity(v OrderFiscalEntityResponse) {
-	o.FiscalEntity.Set(&v)
-}
-// SetFiscalEntityNil sets the value for FiscalEntity to be an explicit nil
-func (o *OrderResponse) SetFiscalEntityNil() {
-	o.FiscalEntity.Set(nil)
+// SetTaxLines gets a reference to the given OrderTaxLinesResponse and assigns it to the TaxLines field.
+func (o *OrderResponse) SetTaxLines(v OrderTaxLinesResponse) {
+	o.TaxLines = &v
 }
 
-// UnsetFiscalEntity ensures that no value is present for FiscalEntity, not even an explicit nil
-func (o *OrderResponse) UnsetFiscalEntity() {
-	o.FiscalEntity.Unset()
+// GetShippingLines returns the ShippingLines field value if set, zero value otherwise.
+func (o *OrderResponse) GetShippingLines() OrderShippingLinesResponse {
+	if o == nil || IsNil(o.ShippingLines) {
+		var ret OrderShippingLinesResponse
+		return ret
+	}
+	return *o.ShippingLines
+}
+
+// GetShippingLinesOk returns a tuple with the ShippingLines field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderResponse) GetShippingLinesOk() (*OrderShippingLinesResponse, bool) {
+	if o == nil || IsNil(o.ShippingLines) {
+		return nil, false
+	}
+	return o.ShippingLines, true
+}
+
+// HasShippingLines returns a boolean if a field has been set.
+func (o *OrderResponse) HasShippingLines() bool {
+	if o != nil && !IsNil(o.ShippingLines) {
+		return true
+	}
+
+	return false
+}
+
+// SetShippingLines gets a reference to the given OrderShippingLinesResponse and assigns it to the ShippingLines field.
+func (o *OrderResponse) SetShippingLines(v OrderShippingLinesResponse) {
+	o.ShippingLines = &v
+}
+
+// GetFiscalEntity returns the FiscalEntity field value if set, zero value otherwise.
+func (o *OrderResponse) GetFiscalEntity() OrderFiscalEntityResponse {
+	if o == nil || IsNil(o.FiscalEntity) {
+		var ret OrderFiscalEntityResponse
+		return ret
+	}
+	return *o.FiscalEntity
+}
+
+// GetFiscalEntityOk returns a tuple with the FiscalEntity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderResponse) GetFiscalEntityOk() (*OrderFiscalEntityResponse, bool) {
+	if o == nil || IsNil(o.FiscalEntity) {
+		return nil, false
+	}
+	return o.FiscalEntity, true
+}
+
+// HasFiscalEntity returns a boolean if a field has been set.
+func (o *OrderResponse) HasFiscalEntity() bool {
+	if o != nil && !IsNil(o.FiscalEntity) {
+		return true
+	}
+
+	return false
+}
+
+// SetFiscalEntity gets a reference to the given OrderFiscalEntityResponse and assigns it to the FiscalEntity field.
+func (o *OrderResponse) SetFiscalEntity(v OrderFiscalEntityResponse) {
+	o.FiscalEntity = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -792,8 +848,14 @@ func (o OrderResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DiscountLines) {
 		toSerialize["discount_lines"] = o.DiscountLines
 	}
-	if o.FiscalEntity.IsSet() {
-		toSerialize["fiscal_entity"] = o.FiscalEntity.Get()
+	if !IsNil(o.TaxLines) {
+		toSerialize["tax_lines"] = o.TaxLines
+	}
+	if !IsNil(o.ShippingLines) {
+		toSerialize["shipping_lines"] = o.ShippingLines
+	}
+	if !IsNil(o.FiscalEntity) {
+		toSerialize["fiscal_entity"] = o.FiscalEntity
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
@@ -859,6 +921,8 @@ func (o *OrderResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "currency")
 		delete(additionalProperties, "customer_info")
 		delete(additionalProperties, "discount_lines")
+		delete(additionalProperties, "tax_lines")
+		delete(additionalProperties, "shipping_lines")
 		delete(additionalProperties, "fiscal_entity")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "is_refundable")

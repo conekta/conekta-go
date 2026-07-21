@@ -11,22 +11,20 @@ package conekta
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/conekta/conekta-go/v7"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/conekta/conekta-go"
 )
 
 func Test_conekta_ChargesAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	apiClient := testClient()
 
 	t.Run("Test ChargesAPIService GetCharges", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.ChargesAPI.GetCharges(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ChargesAPI.GetCharges(context.Background()).Limit(20).AcceptLanguage("es").Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,11 +34,13 @@ func Test_conekta_ChargesAPIService(t *testing.T) {
 
 	t.Run("Test ChargesAPIService OrdersCreateCharge", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "ord_2uiGPHDV6Zzribeqy"
 
-		var id string
-
-		resp, httpRes, err := apiClient.ChargesAPI.OrdersCreateCharge(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ChargesAPI.OrdersCreateCharge(context.Background(), id).ChargeRequest(openapiclient.ChargeRequest{
+			PaymentMethod: openapiclient.ChargeRequestPaymentMethod{
+				PaymentMethodGeneralRequest: &openapiclient.PaymentMethodGeneralRequest{Type: "cash"},
+			},
+		}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -50,11 +50,13 @@ func Test_conekta_ChargesAPIService(t *testing.T) {
 
 	t.Run("Test ChargesAPIService OrdersCreateCharges", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "ord_2wrW9arie9fUG4MfD"
 
-		var id string
-
-		resp, httpRes, err := apiClient.ChargesAPI.OrdersCreateCharges(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ChargesAPI.OrdersCreateCharges(context.Background(), id).ChargeRequest(openapiclient.ChargeRequest{
+			PaymentMethod: openapiclient.ChargeRequestPaymentMethod{
+				PaymentMethodGeneralRequest: &openapiclient.PaymentMethodGeneralRequest{Type: "cash"},
+			},
+		}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -64,11 +66,9 @@ func Test_conekta_ChargesAPIService(t *testing.T) {
 
 	t.Run("Test ChargesAPIService UpdateCharge", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		id := "6524722f28c7ba0016a5b17d"
 
-		var id string
-
-		resp, httpRes, err := apiClient.ChargesAPI.UpdateCharge(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ChargesAPI.UpdateCharge(context.Background(), id).ChargeUpdateRequest(openapiclient.ChargeUpdateRequest{}).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
