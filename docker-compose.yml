@@ -1,7 +1,7 @@
 services:
   mockserver:
     restart: always
-    image: mockoon/cli:2.4.0
+    image: mockoon/cli:latest
     ports:
       - 3000:3000
     command: "-d https://raw.githubusercontent.com/conekta/openapi/main/mocks/conekta_api.json  -p 3000 --log-transaction"

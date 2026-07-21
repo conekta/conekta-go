@@ -12,6 +12,7 @@ package conekta
 import (
 	"context"
 	"testing"
+	"time"
 
 	openapiclient "github.com/conekta/conekta-go/v8"
 	"github.com/stretchr/testify/assert"
@@ -36,7 +37,15 @@ func Test_conekta_PaymentLinkAPIService(t *testing.T) {
 
 	t.Run("Test PaymentLinkAPIService CreateCheckout", func(t *testing.T) {
 
-		resp, httpRes, err := apiClient.PaymentLinkAPI.CreateCheckout(context.Background()).Checkout(openapiclient.Checkout{Type: "PaymentLink", Recurrent: false}).Execute()
+		checkout := openapiclient.Checkout{
+			Name:                  "Payment Link Test",
+			Type:                  "PaymentLink",
+			Recurrent:             false,
+			ExpiresAt:             time.Now().Add(72 * time.Hour).Unix(),
+			AllowedPaymentMethods: []string{"card", "cash", "bank_transfer"},
+		}
+
+		resp, httpRes, err := apiClient.PaymentLinkAPI.CreateCheckout(context.Background()).Checkout(checkout).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
