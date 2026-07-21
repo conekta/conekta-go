@@ -14,7 +14,7 @@ package conekta
 import (
 	"os"
 
-	conekta "github.com/conekta/conekta-go"
+	conekta "github.com/conekta/conekta-go/v7"
 )
 
 // testBasePath returns the host:port of the mock server.

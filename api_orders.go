@@ -503,6 +503,7 @@ type ApiGetOrderByIdRequest struct {
 	id string
 	acceptLanguage *string
 	xChildCompanyId *string
+	client *string
 }
 
 // Use for knowing which language to use
@@ -514,6 +515,12 @@ func (r ApiGetOrderByIdRequest) AcceptLanguage(acceptLanguage string) ApiGetOrde
 // In the case of a holding company, the company id of the child company to which will process the request.
 func (r ApiGetOrderByIdRequest) XChildCompanyId(xChildCompanyId string) ApiGetOrderByIdRequest {
 	r.xChildCompanyId = &xChildCompanyId
+	return r
+}
+
+// client of the object to be retrieved
+func (r ApiGetOrderByIdRequest) Client(client string) ApiGetOrderByIdRequest {
+	r.client = &client
 	return r
 }
 
@@ -560,6 +567,9 @@ func (a *OrdersAPIService) GetOrderByIdExecute(r ApiGetOrderByIdRequest) (*Order
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.client != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "client", r.client, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

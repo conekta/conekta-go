@@ -13,7 +13,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/conekta/conekta-go"
+	"github.com/conekta/conekta-go/v7"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

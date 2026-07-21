@@ -5881,6 +5881,18 @@ paths:
         schema:
           type: string
         style: simple
+      - description: client of the object to be retrieved
+        examples:
+          client:
+            summary: client of the object to be retrieved
+            value: checkout
+        explode: true
+        in: query
+        name: client
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:

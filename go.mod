@@ -1,4 +1,4 @@
-module github.com/conekta/conekta-go
+module github.com/conekta/conekta-go/v7
 
 go 1.16
 
