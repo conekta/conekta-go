@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -13,16 +13,17 @@ package conekta
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the OrderCheckoutRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &OrderCheckoutRequest{}
 
-// OrderCheckoutRequest [Checkout](https://developers.conekta.com/v2.2.0/reference/payment-link) details 
+// OrderCheckoutRequest [Checkout](https://developers.conekta.com/v2.3.0/reference/payment-link) details 
 type OrderCheckoutRequest struct {
-	// Are the payment methods available for this link. For subscriptions, only 'card' is allowed due to the recurring nature of the payments.
-	AllowedPaymentMethods []string `json:"allowed_payment_methods"`
+	// Are the payment methods available for this link. For subscriptions, only 'card' is allowed due to the recurring nature of the payments. This field is mutually exclusive with excluded_payment_methods.
+	AllowedPaymentMethods []string `json:"allowed_payment_methods,omitempty"`
+	// Payment methods to be excluded from the checkout. This field is mutually exclusive with allowed_payment_methods.
+	ExcludedPaymentMethods []string `json:"excluded_payment_methods,omitempty"`
 	// List of card networks to exclude from the checkout. This field is only applicable for card payments.
 	ExcludeCardNetworks []string `json:"exclude_card_networks,omitempty"`
 	// List of plan IDs that will be available for subscription. This field is required for subscription payments.
@@ -55,9 +56,8 @@ type _OrderCheckoutRequest OrderCheckoutRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrderCheckoutRequest(allowedPaymentMethods []string) *OrderCheckoutRequest {
+func NewOrderCheckoutRequest() *OrderCheckoutRequest {
 	this := OrderCheckoutRequest{}
-	this.AllowedPaymentMethods = allowedPaymentMethods
 	return &this
 }
 
@@ -69,28 +69,68 @@ func NewOrderCheckoutRequestWithDefaults() *OrderCheckoutRequest {
 	return &this
 }
 
-// GetAllowedPaymentMethods returns the AllowedPaymentMethods field value
+// GetAllowedPaymentMethods returns the AllowedPaymentMethods field value if set, zero value otherwise.
 func (o *OrderCheckoutRequest) GetAllowedPaymentMethods() []string {
-	if o == nil {
+	if o == nil || IsNil(o.AllowedPaymentMethods) {
 		var ret []string
 		return ret
 	}
-
 	return o.AllowedPaymentMethods
 }
 
-// GetAllowedPaymentMethodsOk returns a tuple with the AllowedPaymentMethods field value
+// GetAllowedPaymentMethodsOk returns a tuple with the AllowedPaymentMethods field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrderCheckoutRequest) GetAllowedPaymentMethodsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AllowedPaymentMethods) {
 		return nil, false
 	}
 	return o.AllowedPaymentMethods, true
 }
 
-// SetAllowedPaymentMethods sets field value
+// HasAllowedPaymentMethods returns a boolean if a field has been set.
+func (o *OrderCheckoutRequest) HasAllowedPaymentMethods() bool {
+	if o != nil && !IsNil(o.AllowedPaymentMethods) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowedPaymentMethods gets a reference to the given []string and assigns it to the AllowedPaymentMethods field.
 func (o *OrderCheckoutRequest) SetAllowedPaymentMethods(v []string) {
 	o.AllowedPaymentMethods = v
+}
+
+// GetExcludedPaymentMethods returns the ExcludedPaymentMethods field value if set, zero value otherwise.
+func (o *OrderCheckoutRequest) GetExcludedPaymentMethods() []string {
+	if o == nil || IsNil(o.ExcludedPaymentMethods) {
+		var ret []string
+		return ret
+	}
+	return o.ExcludedPaymentMethods
+}
+
+// GetExcludedPaymentMethodsOk returns a tuple with the ExcludedPaymentMethods field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderCheckoutRequest) GetExcludedPaymentMethodsOk() ([]string, bool) {
+	if o == nil || IsNil(o.ExcludedPaymentMethods) {
+		return nil, false
+	}
+	return o.ExcludedPaymentMethods, true
+}
+
+// HasExcludedPaymentMethods returns a boolean if a field has been set.
+func (o *OrderCheckoutRequest) HasExcludedPaymentMethods() bool {
+	if o != nil && !IsNil(o.ExcludedPaymentMethods) {
+		return true
+	}
+
+	return false
+}
+
+// SetExcludedPaymentMethods gets a reference to the given []string and assigns it to the ExcludedPaymentMethods field.
+func (o *OrderCheckoutRequest) SetExcludedPaymentMethods(v []string) {
+	o.ExcludedPaymentMethods = v
 }
 
 // GetExcludeCardNetworks returns the ExcludeCardNetworks field value if set, zero value otherwise.
@@ -519,7 +559,12 @@ func (o OrderCheckoutRequest) MarshalJSON() ([]byte, error) {
 
 func (o OrderCheckoutRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["allowed_payment_methods"] = o.AllowedPaymentMethods
+	if !IsNil(o.AllowedPaymentMethods) {
+		toSerialize["allowed_payment_methods"] = o.AllowedPaymentMethods
+	}
+	if !IsNil(o.ExcludedPaymentMethods) {
+		toSerialize["excluded_payment_methods"] = o.ExcludedPaymentMethods
+	}
 	if !IsNil(o.ExcludeCardNetworks) {
 		toSerialize["exclude_card_networks"] = o.ExcludeCardNetworks
 	}
@@ -568,27 +613,6 @@ func (o OrderCheckoutRequest) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *OrderCheckoutRequest) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"allowed_payment_methods",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varOrderCheckoutRequest := _OrderCheckoutRequest{}
 
 	err = json.Unmarshal(data, &varOrderCheckoutRequest)
@@ -603,6 +627,7 @@ func (o *OrderCheckoutRequest) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "allowed_payment_methods")
+		delete(additionalProperties, "excluded_payment_methods")
 		delete(additionalProperties, "exclude_card_networks")
 		delete(additionalProperties, "plan_ids")
 		delete(additionalProperties, "expires_at")

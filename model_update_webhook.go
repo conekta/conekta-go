@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -21,7 +21,7 @@ var _ MappedNullable = &UpdateWebhook{}
 // UpdateWebhook an updated webhook
 type UpdateWebhook struct {
 	// Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security.
-	Url *string `json:"url,omitempty" validate:"regexp=^(?!.*(localhost|127\\\\.0\\\\.0\\\\.1)).*$"`
+	Url *string `json:"url,omitempty" validate:"regexp=^(?!.*(localhost|127\\.0\\.0\\.1)).*$"`
 	// events that will be sent to the webhook
 	SubscribedEvents []string `json:"subscribed_events,omitempty"`
 	// whether the webhook is active or not

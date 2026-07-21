@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Currency** | **string** | It is the currency in which the order will be created. It must be a valid ISO 4217 currency code. | 
-**CustomerInfo** | Pointer to [**OrderRequestCustomerInfo**](OrderRequestCustomerInfo.md) |  | [optional] 
+**CustomerInfo** | Pointer to [**CheckoutOrderTemplateCustomerInfo**](CheckoutOrderTemplateCustomerInfo.md) |  | [optional] 
 **LineItems** | [**[]Product**](Product.md) | They are the products to buy. Each contains the \&quot;unit price\&quot; and \&quot;quantity\&quot; parameters that are used to calculate the total amount of the order. | 
 **Metadata** | Pointer to **map[string]interface{}** | It is a set of key-value pairs that you can attach to the order. It can be used to store additional information about the order in a structured format. | [optional] 
-**TaxLines** | Pointer to [**[]OrderTaxRequest**](OrderTaxRequest.md) | List of [taxes](https://developers.conekta.com/v2.2.0/reference/orderscreatetaxes) that are applied to the order. | [optional] 
-**DiscountLines** | Pointer to [**[]OrderDiscountLinesRequest**](OrderDiscountLinesRequest.md) | List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order. | [optional] 
+**TaxLines** | Pointer to [**[]OrderTaxRequest**](OrderTaxRequest.md) | List of [taxes](https://developers.conekta.com/v2.3.0/reference/orderscreatetaxes) that are applied to the order. | [optional] 
+**DiscountLines** | Pointer to [**[]OrderDiscountLinesRequest**](OrderDiscountLinesRequest.md) | List of [discounts](https://developers.conekta.com/v2.3.0/reference/orderscreatediscountline) that are applied to the order. | [optional] 
 
 ## Methods
 
@@ -52,20 +52,20 @@ SetCurrency sets Currency field to given value.
 
 ### GetCustomerInfo
 
-`func (o *CheckoutOrderTemplate) GetCustomerInfo() OrderRequestCustomerInfo`
+`func (o *CheckoutOrderTemplate) GetCustomerInfo() CheckoutOrderTemplateCustomerInfo`
 
 GetCustomerInfo returns the CustomerInfo field if non-nil, zero value otherwise.
 
 ### GetCustomerInfoOk
 
-`func (o *CheckoutOrderTemplate) GetCustomerInfoOk() (*OrderRequestCustomerInfo, bool)`
+`func (o *CheckoutOrderTemplate) GetCustomerInfoOk() (*CheckoutOrderTemplateCustomerInfo, bool)`
 
 GetCustomerInfoOk returns a tuple with the CustomerInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCustomerInfo
 
-`func (o *CheckoutOrderTemplate) SetCustomerInfo(v OrderRequestCustomerInfo)`
+`func (o *CheckoutOrderTemplate) SetCustomerInfo(v CheckoutOrderTemplateCustomerInfo)`
 
 SetCustomerInfo sets CustomerInfo field to given value.
 

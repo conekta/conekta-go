@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AllowedPaymentMethods** | **[]string** | Are the payment methods available for this link | 
+**AllowedPaymentMethods** | Pointer to **[]string** | Are the payment methods available for this link | [optional] 
+**ExcludedPaymentMethods** | Pointer to **[]string** | Payment methods excluded from the checkout. This field is only returned when excluded_payment_methods is provided in the request. | [optional] 
 **CanNotExpire** | Pointer to **bool** |  | [optional] 
 **EmailsSent** | Pointer to **int32** |  | [optional] 
 **ExcludeCardNetworks** | Pointer to **[]string** |  | [optional] 
@@ -14,7 +15,7 @@ Name | Type | Description | Notes
 **ForceSaveCard** | Pointer to **bool** | Indicates whether the card used for the payment should be saved for future purchases. This field is only applicable for card payments. | [optional] 
 **Id** | **string** |  | 
 **IsRedirectOnFailure** | Pointer to **bool** |  | [optional] 
-**Livemode** | Pointer to **bool** |  | [optional] 
+**Livemode** | **bool** |  | 
 **MaxFailedRetries** | Pointer to **int32** | Number of retries allowed before the checkout is marked as failed | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 **MonthlyInstallmentsEnabled** | Pointer to **bool** |  | [optional] 
@@ -38,7 +39,7 @@ Name | Type | Description | Notes
 
 ### NewOrderResponseCheckout
 
-`func NewOrderResponseCheckout(allowedPaymentMethods []string, id string, name string, object string, type_ string, ) *OrderResponseCheckout`
+`func NewOrderResponseCheckout(id string, livemode bool, name string, object string, type_ string, ) *OrderResponseCheckout`
 
 NewOrderResponseCheckout instantiates a new OrderResponseCheckout object
 This constructor will assign default values to properties that have it defined,
@@ -72,6 +73,36 @@ and a boolean to check if the value has been set.
 
 SetAllowedPaymentMethods sets AllowedPaymentMethods field to given value.
 
+### HasAllowedPaymentMethods
+
+`func (o *OrderResponseCheckout) HasAllowedPaymentMethods() bool`
+
+HasAllowedPaymentMethods returns a boolean if a field has been set.
+
+### GetExcludedPaymentMethods
+
+`func (o *OrderResponseCheckout) GetExcludedPaymentMethods() []string`
+
+GetExcludedPaymentMethods returns the ExcludedPaymentMethods field if non-nil, zero value otherwise.
+
+### GetExcludedPaymentMethodsOk
+
+`func (o *OrderResponseCheckout) GetExcludedPaymentMethodsOk() (*[]string, bool)`
+
+GetExcludedPaymentMethodsOk returns a tuple with the ExcludedPaymentMethods field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExcludedPaymentMethods
+
+`func (o *OrderResponseCheckout) SetExcludedPaymentMethods(v []string)`
+
+SetExcludedPaymentMethods sets ExcludedPaymentMethods field to given value.
+
+### HasExcludedPaymentMethods
+
+`func (o *OrderResponseCheckout) HasExcludedPaymentMethods() bool`
+
+HasExcludedPaymentMethods returns a boolean if a field has been set.
 
 ### GetCanNotExpire
 
@@ -312,11 +343,6 @@ and a boolean to check if the value has been set.
 
 SetLivemode sets Livemode field to given value.
 
-### HasLivemode
-
-`func (o *OrderResponseCheckout) HasLivemode() bool`
-
-HasLivemode returns a boolean if a field has been set.
 
 ### GetMaxFailedRetries
 

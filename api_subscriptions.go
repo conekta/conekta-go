@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -371,7 +371,7 @@ func (a *SubscriptionsAPIService) CancelSubscriptionExecute(r ApiCancelSubscript
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -539,7 +539,7 @@ func (a *SubscriptionsAPIService) CreateSubscriptionExecute(r ApiCreateSubscript
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -703,7 +703,7 @@ func (a *SubscriptionsAPIService) GetSubscriptionExecute(r ApiGetSubscriptionReq
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -858,7 +858,7 @@ func (a *SubscriptionsAPIService) GetSubscriptionEventsExecute(r ApiGetSubscript
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1038,7 +1038,7 @@ func (a *SubscriptionsAPIService) PauseSubscriptionExecute(r ApiPauseSubscriptio
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1207,7 +1207,7 @@ func (a *SubscriptionsAPIService) ResumeSubscriptionExecute(r ApiResumeSubscript
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1388,7 +1388,7 @@ func (a *SubscriptionsAPIService) SubscriptionCancelExecute(r ApiSubscriptionCan
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1553,7 +1553,7 @@ func (a *SubscriptionsAPIService) SubscriptionCreateExecute(r ApiSubscriptionCre
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1769,7 +1769,7 @@ func (a *SubscriptionsAPIService) SubscriptionEventsExecute(r ApiSubscriptionEve
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1968,7 +1968,7 @@ func (a *SubscriptionsAPIService) SubscriptionListExecute(r ApiSubscriptionListR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2127,7 +2127,7 @@ func (a *SubscriptionsAPIService) SubscriptionPauseExecute(r ApiSubscriptionPaus
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2286,7 +2286,7 @@ func (a *SubscriptionsAPIService) SubscriptionResumeExecute(r ApiSubscriptionRes
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2455,7 +2455,7 @@ func (a *SubscriptionsAPIService) SubscriptionUpdateExecute(r ApiSubscriptionUpd
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2627,7 +2627,7 @@ func (a *SubscriptionsAPIService) SubscriptionsGetExecute(r ApiSubscriptionsGetR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2786,7 +2786,7 @@ func (a *SubscriptionsAPIService) SubscriptionsRetryExecute(r ApiSubscriptionsRe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2965,7 +2965,7 @@ func (a *SubscriptionsAPIService) UpdateSubscriptionExecute(r ApiUpdateSubscript
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

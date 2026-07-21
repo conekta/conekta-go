@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -23,6 +23,8 @@ var _ MappedNullable = &CheckoutResponse{}
 type CheckoutResponse struct {
 	// Are the payment methods available for this link
 	AllowedPaymentMethods []string `json:"allowed_payment_methods,omitempty"`
+	// Payment methods excluded from the checkout. This field is only returned when excluded_payment_methods is provided in the request.
+	ExcludedPaymentMethods []string `json:"excluded_payment_methods,omitempty"`
 	// List of plan IDs that are available for subscription
 	PlanIds []string `json:"plan_ids,omitempty"`
 	CanNotExpire *bool `json:"can_not_expire,omitempty"`
@@ -107,6 +109,38 @@ func (o *CheckoutResponse) HasAllowedPaymentMethods() bool {
 // SetAllowedPaymentMethods gets a reference to the given []string and assigns it to the AllowedPaymentMethods field.
 func (o *CheckoutResponse) SetAllowedPaymentMethods(v []string) {
 	o.AllowedPaymentMethods = v
+}
+
+// GetExcludedPaymentMethods returns the ExcludedPaymentMethods field value if set, zero value otherwise.
+func (o *CheckoutResponse) GetExcludedPaymentMethods() []string {
+	if o == nil || IsNil(o.ExcludedPaymentMethods) {
+		var ret []string
+		return ret
+	}
+	return o.ExcludedPaymentMethods
+}
+
+// GetExcludedPaymentMethodsOk returns a tuple with the ExcludedPaymentMethods field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CheckoutResponse) GetExcludedPaymentMethodsOk() ([]string, bool) {
+	if o == nil || IsNil(o.ExcludedPaymentMethods) {
+		return nil, false
+	}
+	return o.ExcludedPaymentMethods, true
+}
+
+// HasExcludedPaymentMethods returns a boolean if a field has been set.
+func (o *CheckoutResponse) HasExcludedPaymentMethods() bool {
+	if o != nil && !IsNil(o.ExcludedPaymentMethods) {
+		return true
+	}
+
+	return false
+}
+
+// SetExcludedPaymentMethods gets a reference to the given []string and assigns it to the ExcludedPaymentMethods field.
+func (o *CheckoutResponse) SetExcludedPaymentMethods(v []string) {
+	o.ExcludedPaymentMethods = v
 }
 
 // GetPlanIds returns the PlanIds field value if set, zero value otherwise.
@@ -890,6 +924,9 @@ func (o CheckoutResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AllowedPaymentMethods) {
 		toSerialize["allowed_payment_methods"] = o.AllowedPaymentMethods
 	}
+	if !IsNil(o.ExcludedPaymentMethods) {
+		toSerialize["excluded_payment_methods"] = o.ExcludedPaymentMethods
+	}
 	if !IsNil(o.PlanIds) {
 		toSerialize["plan_ids"] = o.PlanIds
 	}
@@ -1004,6 +1041,7 @@ func (o *CheckoutResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "allowed_payment_methods")
+		delete(additionalProperties, "excluded_payment_methods")
 		delete(additionalProperties, "plan_ids")
 		delete(additionalProperties, "can_not_expire")
 		delete(additionalProperties, "emails_sent")

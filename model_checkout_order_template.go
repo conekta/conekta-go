@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -23,14 +23,14 @@ var _ MappedNullable = &CheckoutOrderTemplate{}
 type CheckoutOrderTemplate struct {
 	// It is the currency in which the order will be created. It must be a valid ISO 4217 currency code.
 	Currency string `json:"currency"`
-	CustomerInfo *OrderRequestCustomerInfo `json:"customer_info,omitempty"`
+	CustomerInfo *CheckoutOrderTemplateCustomerInfo `json:"customer_info,omitempty"`
 	// They are the products to buy. Each contains the \"unit price\" and \"quantity\" parameters that are used to calculate the total amount of the order.
 	LineItems []Product `json:"line_items"`
 	// It is a set of key-value pairs that you can attach to the order. It can be used to store additional information about the order in a structured format.
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
-	// List of [taxes](https://developers.conekta.com/v2.2.0/reference/orderscreatetaxes) that are applied to the order.
+	// List of [taxes](https://developers.conekta.com/v2.3.0/reference/orderscreatetaxes) that are applied to the order.
 	TaxLines []OrderTaxRequest `json:"tax_lines,omitempty"`
-	// List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order.
+	// List of [discounts](https://developers.conekta.com/v2.3.0/reference/orderscreatediscountline) that are applied to the order.
 	DiscountLines []OrderDiscountLinesRequest `json:"discount_lines,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -81,9 +81,9 @@ func (o *CheckoutOrderTemplate) SetCurrency(v string) {
 }
 
 // GetCustomerInfo returns the CustomerInfo field value if set, zero value otherwise.
-func (o *CheckoutOrderTemplate) GetCustomerInfo() OrderRequestCustomerInfo {
+func (o *CheckoutOrderTemplate) GetCustomerInfo() CheckoutOrderTemplateCustomerInfo {
 	if o == nil || IsNil(o.CustomerInfo) {
-		var ret OrderRequestCustomerInfo
+		var ret CheckoutOrderTemplateCustomerInfo
 		return ret
 	}
 	return *o.CustomerInfo
@@ -91,7 +91,7 @@ func (o *CheckoutOrderTemplate) GetCustomerInfo() OrderRequestCustomerInfo {
 
 // GetCustomerInfoOk returns a tuple with the CustomerInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CheckoutOrderTemplate) GetCustomerInfoOk() (*OrderRequestCustomerInfo, bool) {
+func (o *CheckoutOrderTemplate) GetCustomerInfoOk() (*CheckoutOrderTemplateCustomerInfo, bool) {
 	if o == nil || IsNil(o.CustomerInfo) {
 		return nil, false
 	}
@@ -107,8 +107,8 @@ func (o *CheckoutOrderTemplate) HasCustomerInfo() bool {
 	return false
 }
 
-// SetCustomerInfo gets a reference to the given OrderRequestCustomerInfo and assigns it to the CustomerInfo field.
-func (o *CheckoutOrderTemplate) SetCustomerInfo(v OrderRequestCustomerInfo) {
+// SetCustomerInfo gets a reference to the given CheckoutOrderTemplateCustomerInfo and assigns it to the CustomerInfo field.
+func (o *CheckoutOrderTemplate) SetCustomerInfo(v CheckoutOrderTemplateCustomerInfo) {
 	o.CustomerInfo = &v
 }
 

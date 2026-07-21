@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -49,7 +49,7 @@ type CustomerResponse struct {
 	// Customer's phone number
 	Phone *string `json:"phone,omitempty"`
 	ShippingContacts *CustomerResponseShippingContacts `json:"shipping_contacts,omitempty"`
-	Subscription *CustomerSubscriptionResponse `json:"subscription,omitempty"`
+	Subscription *SubscriptionResponse `json:"subscription,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -646,9 +646,9 @@ func (o *CustomerResponse) SetShippingContacts(v CustomerResponseShippingContact
 }
 
 // GetSubscription returns the Subscription field value if set, zero value otherwise.
-func (o *CustomerResponse) GetSubscription() CustomerSubscriptionResponse {
+func (o *CustomerResponse) GetSubscription() SubscriptionResponse {
 	if o == nil || IsNil(o.Subscription) {
-		var ret CustomerSubscriptionResponse
+		var ret SubscriptionResponse
 		return ret
 	}
 	return *o.Subscription
@@ -656,7 +656,7 @@ func (o *CustomerResponse) GetSubscription() CustomerSubscriptionResponse {
 
 // GetSubscriptionOk returns a tuple with the Subscription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerResponse) GetSubscriptionOk() (*CustomerSubscriptionResponse, bool) {
+func (o *CustomerResponse) GetSubscriptionOk() (*SubscriptionResponse, bool) {
 	if o == nil || IsNil(o.Subscription) {
 		return nil, false
 	}
@@ -672,8 +672,8 @@ func (o *CustomerResponse) HasSubscription() bool {
 	return false
 }
 
-// SetSubscription gets a reference to the given CustomerSubscriptionResponse and assigns it to the Subscription field.
-func (o *CustomerResponse) SetSubscription(v CustomerSubscriptionResponse) {
+// SetSubscription gets a reference to the given SubscriptionResponse and assigns it to the Subscription field.
+func (o *CustomerResponse) SetSubscription(v SubscriptionResponse) {
 	o.Subscription = &v
 }
 

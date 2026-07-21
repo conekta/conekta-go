@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -32,9 +32,9 @@ type OrderResponse struct {
 	// The three-letter ISO 4217 currency code. The currency of the order.
 	Currency *string `json:"currency,omitempty"`
 	CustomerInfo *OrderResponseCustomerInfo `json:"customer_info,omitempty"`
-	DiscountLines *OrderDiscountLinesResponse `json:"discount_lines,omitempty"`
-	TaxLines *OrderTaxLinesResponse `json:"tax_lines,omitempty"`
-	ShippingLines *OrderShippingLinesResponse `json:"shipping_lines,omitempty"`
+	DiscountLines *OrderResponseDiscountLines `json:"discount_lines,omitempty"`
+	TaxLines *OrderResponseTaxLines `json:"tax_lines,omitempty"`
+	ShippingLines *OrderResponseShippingLines `json:"shipping_lines,omitempty"`
 	FiscalEntity *OrderFiscalEntityResponse `json:"fiscal_entity,omitempty"`
 	Id *string `json:"id,omitempty"`
 	IsRefundable *bool `json:"is_refundable,omitempty"`
@@ -332,9 +332,9 @@ func (o *OrderResponse) SetCustomerInfo(v OrderResponseCustomerInfo) {
 }
 
 // GetDiscountLines returns the DiscountLines field value if set, zero value otherwise.
-func (o *OrderResponse) GetDiscountLines() OrderDiscountLinesResponse {
+func (o *OrderResponse) GetDiscountLines() OrderResponseDiscountLines {
 	if o == nil || IsNil(o.DiscountLines) {
-		var ret OrderDiscountLinesResponse
+		var ret OrderResponseDiscountLines
 		return ret
 	}
 	return *o.DiscountLines
@@ -342,7 +342,7 @@ func (o *OrderResponse) GetDiscountLines() OrderDiscountLinesResponse {
 
 // GetDiscountLinesOk returns a tuple with the DiscountLines field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderResponse) GetDiscountLinesOk() (*OrderDiscountLinesResponse, bool) {
+func (o *OrderResponse) GetDiscountLinesOk() (*OrderResponseDiscountLines, bool) {
 	if o == nil || IsNil(o.DiscountLines) {
 		return nil, false
 	}
@@ -358,15 +358,15 @@ func (o *OrderResponse) HasDiscountLines() bool {
 	return false
 }
 
-// SetDiscountLines gets a reference to the given OrderDiscountLinesResponse and assigns it to the DiscountLines field.
-func (o *OrderResponse) SetDiscountLines(v OrderDiscountLinesResponse) {
+// SetDiscountLines gets a reference to the given OrderResponseDiscountLines and assigns it to the DiscountLines field.
+func (o *OrderResponse) SetDiscountLines(v OrderResponseDiscountLines) {
 	o.DiscountLines = &v
 }
 
 // GetTaxLines returns the TaxLines field value if set, zero value otherwise.
-func (o *OrderResponse) GetTaxLines() OrderTaxLinesResponse {
+func (o *OrderResponse) GetTaxLines() OrderResponseTaxLines {
 	if o == nil || IsNil(o.TaxLines) {
-		var ret OrderTaxLinesResponse
+		var ret OrderResponseTaxLines
 		return ret
 	}
 	return *o.TaxLines
@@ -374,7 +374,7 @@ func (o *OrderResponse) GetTaxLines() OrderTaxLinesResponse {
 
 // GetTaxLinesOk returns a tuple with the TaxLines field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderResponse) GetTaxLinesOk() (*OrderTaxLinesResponse, bool) {
+func (o *OrderResponse) GetTaxLinesOk() (*OrderResponseTaxLines, bool) {
 	if o == nil || IsNil(o.TaxLines) {
 		return nil, false
 	}
@@ -390,15 +390,15 @@ func (o *OrderResponse) HasTaxLines() bool {
 	return false
 }
 
-// SetTaxLines gets a reference to the given OrderTaxLinesResponse and assigns it to the TaxLines field.
-func (o *OrderResponse) SetTaxLines(v OrderTaxLinesResponse) {
+// SetTaxLines gets a reference to the given OrderResponseTaxLines and assigns it to the TaxLines field.
+func (o *OrderResponse) SetTaxLines(v OrderResponseTaxLines) {
 	o.TaxLines = &v
 }
 
 // GetShippingLines returns the ShippingLines field value if set, zero value otherwise.
-func (o *OrderResponse) GetShippingLines() OrderShippingLinesResponse {
+func (o *OrderResponse) GetShippingLines() OrderResponseShippingLines {
 	if o == nil || IsNil(o.ShippingLines) {
-		var ret OrderShippingLinesResponse
+		var ret OrderResponseShippingLines
 		return ret
 	}
 	return *o.ShippingLines
@@ -406,7 +406,7 @@ func (o *OrderResponse) GetShippingLines() OrderShippingLinesResponse {
 
 // GetShippingLinesOk returns a tuple with the ShippingLines field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderResponse) GetShippingLinesOk() (*OrderShippingLinesResponse, bool) {
+func (o *OrderResponse) GetShippingLinesOk() (*OrderResponseShippingLines, bool) {
 	if o == nil || IsNil(o.ShippingLines) {
 		return nil, false
 	}
@@ -422,8 +422,8 @@ func (o *OrderResponse) HasShippingLines() bool {
 	return false
 }
 
-// SetShippingLines gets a reference to the given OrderShippingLinesResponse and assigns it to the ShippingLines field.
-func (o *OrderResponse) SetShippingLines(v OrderShippingLinesResponse) {
+// SetShippingLines gets a reference to the given OrderResponseShippingLines and assigns it to the ShippingLines field.
+func (o *OrderResponse) SetShippingLines(v OrderResponseShippingLines) {
 	o.ShippingLines = &v
 }
 
