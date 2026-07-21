@@ -59,6 +59,7 @@ docs/ChargesDataResponse.md
 docs/ChargesOrderResponse.md
 docs/Checkout.md
 docs/CheckoutOrderTemplate.md
+docs/CheckoutOrderTemplateCustomerInfo.md
 docs/CheckoutResponse.md
 docs/CheckoutsResponse.md
 docs/CompaniesAPI.md
@@ -205,7 +206,6 @@ docs/SubscriptionDetailsPlan.md
 docs/SubscriptionEventsResponse.md
 docs/SubscriptionRequest.md
 docs/SubscriptionResponse.md
-docs/SubscriptionResponse1.md
 docs/SubscriptionsAPI.md
 docs/SubscriptionsCustomerPortalAPI.md
 docs/TaxLinesDataResponse.md
@@ -269,6 +269,7 @@ model_charges_data_response.go
 model_charges_order_response.go
 model_checkout.go
 model_checkout_order_template.go
+model_checkout_order_template_customer_info.go
 model_checkout_response.go
 model_checkouts_response.go
 model_company_document_request.go
@@ -402,7 +403,6 @@ model_subscription_details_plan.go
 model_subscription_events_response.go
 model_subscription_request.go
 model_subscription_response.go
-model_subscription_response_1.go
 model_tax_lines_data_response.go
 model_token_request.go
 model_token_request_card.go

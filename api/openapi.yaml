@@ -17210,6 +17210,7 @@ components:
           format: int64
           type: integer
       title: customer_antifraud_info_response
+      nullable: true
     fiscal_entity_request_address:
       allOf:
       - properties:
@@ -17868,6 +17869,7 @@ components:
           example: 1485151007
           format: int64
           type: integer
+      nullable: true
     fiscal_entity_request:
       properties:
         address:
@@ -18094,6 +18096,7 @@ components:
         first_paid_at:
           example: 1485151007
           type: integer
+      nullable: true
     update_customer:
       description: update customer
       properties:
@@ -19450,6 +19453,7 @@ components:
       - id
       - object
       title: order_fiscal_entity_response
+      nullable: true
     product_data_response:
       allOf:
       - properties:
@@ -20903,6 +20907,12 @@ components:
             type: array
             default: null
       title: checkouts_response
+    checkout_order_template_customer_info:
+      description: It is the information of the customer who will be created when
+        receiving a new payment.
+      oneOf:
+      - $ref: "#/components/schemas/customer_info"
+      - $ref: "#/components/schemas/customer_info_customer_id"
     checkout_order_template:
       description: It maintains the attributes with which the order will be created
         when receiving a new payment.
@@ -20914,7 +20924,7 @@ components:
           maxLength: 3
           type: string
         customer_info:
-          $ref: "#/components/schemas/order_request_customer_info"
+          $ref: "#/components/schemas/checkout_order_template_customer_info"
         line_items:
           description: They are the products to buy. Each contains the "unit price"
             and "quantity" parameters that are used to calculate the total amount
@@ -21874,6 +21884,7 @@ components:
       - exp_year
       - name
       - number
+      nullable: true
     token_request_checkout:
       deprecated: true
       properties:
@@ -21881,6 +21892,7 @@ components:
           description: It is a value that allows identifying the returns control on.
           example: Token
           type: string
+      nullable: true
     token_request:
       description: a token
       properties:
@@ -21990,6 +22002,7 @@ components:
           description: Type of checkout.
           example: Integration
           type: string
+      nullable: true
     token_response:
       description: token response
       properties:

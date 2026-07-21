@@ -25,7 +25,7 @@ Method | HTTP request | Description
 
 ## CancelSubscription
 
-> SubscriptionResponse1 CancelSubscription(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse CancelSubscription(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Cancel Subscription [Deprecated]
 
@@ -55,7 +55,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.CancelSubscription``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CancelSubscription`: SubscriptionResponse1
+	// response from `CancelSubscription`: SubscriptionResponse
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.CancelSubscription`: %v\n", resp)
 }
 ```
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse1**](SubscriptionResponse1.md)
+[**SubscriptionResponse**](SubscriptionResponse.md)
 
 ### Authorization
 
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 ## CreateSubscription
 
-> SubscriptionResponse1 CreateSubscription(ctx, id).SubscriptionRequest(subscriptionRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse CreateSubscription(ctx, id).SubscriptionRequest(subscriptionRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Create Subscription [Deprecated]
 
@@ -130,7 +130,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.CreateSubscription``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateSubscription`: SubscriptionResponse1
+	// response from `CreateSubscription`: SubscriptionResponse
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.CreateSubscription`: %v\n", resp)
 }
 ```
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse1**](SubscriptionResponse1.md)
+[**SubscriptionResponse**](SubscriptionResponse.md)
 
 ### Authorization
 
@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 
 ## GetSubscription
 
-> SubscriptionResponse1 GetSubscription(ctx, id).AcceptLanguage(acceptLanguage).Execute()
+> SubscriptionResponse GetSubscription(ctx, id).AcceptLanguage(acceptLanguage).Execute()
 
 Get Subscription [Deprecated]
 
@@ -204,7 +204,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.GetSubscription``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetSubscription`: SubscriptionResponse1
+	// response from `GetSubscription`: SubscriptionResponse
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.GetSubscription`: %v\n", resp)
 }
 ```
@@ -229,7 +229,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse1**](SubscriptionResponse1.md)
+[**SubscriptionResponse**](SubscriptionResponse.md)
 
 ### Authorization
 
@@ -321,7 +321,7 @@ Name | Type | Description  | Notes
 
 ## PauseSubscription
 
-> SubscriptionResponse1 PauseSubscription(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse PauseSubscription(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Pause Subscription [Deprecated]
 
@@ -351,7 +351,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.PauseSubscription``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PauseSubscription`: SubscriptionResponse1
+	// response from `PauseSubscription`: SubscriptionResponse
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.PauseSubscription`: %v\n", resp)
 }
 ```
@@ -377,7 +377,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse1**](SubscriptionResponse1.md)
+[**SubscriptionResponse**](SubscriptionResponse.md)
 
 ### Authorization
 
@@ -395,7 +395,7 @@ Name | Type | Description  | Notes
 
 ## ResumeSubscription
 
-> SubscriptionResponse1 ResumeSubscription(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse ResumeSubscription(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Resume Subscription [Deprecated]
 
@@ -425,7 +425,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.ResumeSubscription``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ResumeSubscription`: SubscriptionResponse1
+	// response from `ResumeSubscription`: SubscriptionResponse
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.ResumeSubscription`: %v\n", resp)
 }
 ```
@@ -451,7 +451,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse1**](SubscriptionResponse1.md)
+[**SubscriptionResponse**](SubscriptionResponse.md)
 
 ### Authorization
 
@@ -469,7 +469,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionCancel
 
-> SubscriptionResponse1 SubscriptionCancel(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse SubscriptionCancel(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Cancel Subscription
 
@@ -500,7 +500,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionCancel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SubscriptionCancel`: SubscriptionResponse1
+	// response from `SubscriptionCancel`: SubscriptionResponse
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionCancel`: %v\n", resp)
 }
 ```
@@ -528,7 +528,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse1**](SubscriptionResponse1.md)
+[**SubscriptionResponse**](SubscriptionResponse.md)
 
 ### Authorization
 
@@ -546,7 +546,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionCreate
 
-> SubscriptionResponse1 SubscriptionCreate(ctx, customerId).SubscriptionRequest(subscriptionRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse SubscriptionCreate(ctx, customerId).SubscriptionRequest(subscriptionRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Create Subscription
 
@@ -577,7 +577,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SubscriptionCreate`: SubscriptionResponse1
+	// response from `SubscriptionCreate`: SubscriptionResponse
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionCreate`: %v\n", resp)
 }
 ```
@@ -604,7 +604,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse1**](SubscriptionResponse1.md)
+[**SubscriptionResponse**](SubscriptionResponse.md)
 
 ### Authorization
 
@@ -707,7 +707,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionList
 
-> SubscriptionResponse1 SubscriptionList(ctx, customerId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+> SubscriptionResponse SubscriptionList(ctx, customerId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
 
 List Subscriptions
 
@@ -741,7 +741,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SubscriptionList`: SubscriptionResponse1
+	// response from `SubscriptionList`: SubscriptionResponse
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionList`: %v\n", resp)
 }
 ```
@@ -771,7 +771,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse1**](SubscriptionResponse1.md)
+[**SubscriptionResponse**](SubscriptionResponse.md)
 
 ### Authorization
 
@@ -789,7 +789,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionPause
 
-> SubscriptionResponse1 SubscriptionPause(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse SubscriptionPause(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Pause Subscription
 
@@ -820,7 +820,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionPause``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SubscriptionPause`: SubscriptionResponse1
+	// response from `SubscriptionPause`: SubscriptionResponse
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionPause`: %v\n", resp)
 }
 ```
@@ -848,7 +848,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse1**](SubscriptionResponse1.md)
+[**SubscriptionResponse**](SubscriptionResponse.md)
 
 ### Authorization
 
@@ -866,7 +866,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionResume
 
-> SubscriptionResponse1 SubscriptionResume(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse SubscriptionResume(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Resume Subscription
 
@@ -897,7 +897,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionResume``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SubscriptionResume`: SubscriptionResponse1
+	// response from `SubscriptionResume`: SubscriptionResponse
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionResume`: %v\n", resp)
 }
 ```
@@ -925,7 +925,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse1**](SubscriptionResponse1.md)
+[**SubscriptionResponse**](SubscriptionResponse.md)
 
 ### Authorization
 
@@ -943,7 +943,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionUpdate
 
-> SubscriptionResponse1 SubscriptionUpdate(ctx, customerId, id).UpdatesASubscription(updatesASubscription).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse SubscriptionUpdate(ctx, customerId, id).UpdatesASubscription(updatesASubscription).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update Subscription
 
@@ -975,7 +975,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SubscriptionUpdate`: SubscriptionResponse1
+	// response from `SubscriptionUpdate`: SubscriptionResponse
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionUpdate`: %v\n", resp)
 }
 ```
@@ -1004,7 +1004,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse1**](SubscriptionResponse1.md)
+[**SubscriptionResponse**](SubscriptionResponse.md)
 
 ### Authorization
 
@@ -1022,7 +1022,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionsGet
 
-> SubscriptionResponse1 SubscriptionsGet(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse SubscriptionsGet(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Get Subscription
 
@@ -1053,7 +1053,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SubscriptionsGet`: SubscriptionResponse1
+	// response from `SubscriptionsGet`: SubscriptionResponse
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionsGet`: %v\n", resp)
 }
 ```
@@ -1081,7 +1081,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse1**](SubscriptionResponse1.md)
+[**SubscriptionResponse**](SubscriptionResponse.md)
 
 ### Authorization
 
@@ -1099,7 +1099,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionsRetry
 
-> SubscriptionResponse1 SubscriptionsRetry(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse SubscriptionsRetry(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Retry Failed Payment
 
@@ -1130,7 +1130,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionsRetry``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SubscriptionsRetry`: SubscriptionResponse1
+	// response from `SubscriptionsRetry`: SubscriptionResponse
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionsRetry`: %v\n", resp)
 }
 ```
@@ -1158,7 +1158,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse1**](SubscriptionResponse1.md)
+[**SubscriptionResponse**](SubscriptionResponse.md)
 
 ### Authorization
 
@@ -1176,7 +1176,7 @@ Name | Type | Description  | Notes
 
 ## UpdateSubscription
 
-> SubscriptionResponse1 UpdateSubscription(ctx, id).UpdatesASubscription(updatesASubscription).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse UpdateSubscription(ctx, id).UpdatesASubscription(updatesASubscription).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update Subscription [Deprecated]
 
@@ -1207,7 +1207,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.UpdateSubscription``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateSubscription`: SubscriptionResponse1
+	// response from `UpdateSubscription`: SubscriptionResponse
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.UpdateSubscription`: %v\n", resp)
 }
 ```
@@ -1234,7 +1234,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse1**](SubscriptionResponse1.md)
+[**SubscriptionResponse**](SubscriptionResponse.md)
 
 ### Authorization
 

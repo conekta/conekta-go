@@ -8,12 +8,15 @@
   "gitRepoId": "conekta-go/v8",
   "httpUserAgent": "Conekta/v2 GoBindings/8.0.0",
   "files": {
-    "/local/CODE_OF_CONDUCT.md" : {},
+    "/local/CODE_OF_CONDUCT.md": {},
     "/local/AUTHORS.md": {},
     "/local/LICENSE": {},
-    "/local/conekta.png" : {}
+    "/local/conekta.png": {}
+  },
+  "modelNameMappings": {
+    "subscription_response_1": "SubscriptionResponse"
   },
   "templateDir": "/local/templates/go",
   "useOneOfDiscriminatorLookup": true,
-  "withGoMod" : true
+  "withGoMod": true
 }
