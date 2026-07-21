@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -37,9 +37,9 @@ type SubscriptionsAPI interface {
 	CancelSubscription(ctx context.Context, id string) ApiCancelSubscriptionRequest
 
 	// CancelSubscriptionExecute executes the request
-	//  @return SubscriptionResponse
+	//  @return SubscriptionResponse1
 	// Deprecated
-	CancelSubscriptionExecute(r ApiCancelSubscriptionRequest) (*SubscriptionResponse, *http.Response, error)
+	CancelSubscriptionExecute(r ApiCancelSubscriptionRequest) (*SubscriptionResponse1, *http.Response, error)
 
 	/*
 	CreateSubscription Create Subscription [Deprecated]
@@ -55,9 +55,9 @@ type SubscriptionsAPI interface {
 	CreateSubscription(ctx context.Context, id string) ApiCreateSubscriptionRequest
 
 	// CreateSubscriptionExecute executes the request
-	//  @return SubscriptionResponse
+	//  @return SubscriptionResponse1
 	// Deprecated
-	CreateSubscriptionExecute(r ApiCreateSubscriptionRequest) (*SubscriptionResponse, *http.Response, error)
+	CreateSubscriptionExecute(r ApiCreateSubscriptionRequest) (*SubscriptionResponse1, *http.Response, error)
 
 	/*
 	GetSubscription Get Subscription [Deprecated]
@@ -73,9 +73,9 @@ type SubscriptionsAPI interface {
 	GetSubscription(ctx context.Context, id string) ApiGetSubscriptionRequest
 
 	// GetSubscriptionExecute executes the request
-	//  @return SubscriptionResponse
+	//  @return SubscriptionResponse1
 	// Deprecated
-	GetSubscriptionExecute(r ApiGetSubscriptionRequest) (*SubscriptionResponse, *http.Response, error)
+	GetSubscriptionExecute(r ApiGetSubscriptionRequest) (*SubscriptionResponse1, *http.Response, error)
 
 	/*
 	GetSubscriptionEvents Get Subscription Events [Deprecated]
@@ -109,9 +109,9 @@ type SubscriptionsAPI interface {
 	PauseSubscription(ctx context.Context, id string) ApiPauseSubscriptionRequest
 
 	// PauseSubscriptionExecute executes the request
-	//  @return SubscriptionResponse
+	//  @return SubscriptionResponse1
 	// Deprecated
-	PauseSubscriptionExecute(r ApiPauseSubscriptionRequest) (*SubscriptionResponse, *http.Response, error)
+	PauseSubscriptionExecute(r ApiPauseSubscriptionRequest) (*SubscriptionResponse1, *http.Response, error)
 
 	/*
 	ResumeSubscription Resume Subscription [Deprecated]
@@ -127,9 +127,9 @@ type SubscriptionsAPI interface {
 	ResumeSubscription(ctx context.Context, id string) ApiResumeSubscriptionRequest
 
 	// ResumeSubscriptionExecute executes the request
-	//  @return SubscriptionResponse
+	//  @return SubscriptionResponse1
 	// Deprecated
-	ResumeSubscriptionExecute(r ApiResumeSubscriptionRequest) (*SubscriptionResponse, *http.Response, error)
+	ResumeSubscriptionExecute(r ApiResumeSubscriptionRequest) (*SubscriptionResponse1, *http.Response, error)
 
 	/*
 	SubscriptionCancel Cancel Subscription
@@ -144,8 +144,8 @@ type SubscriptionsAPI interface {
 	SubscriptionCancel(ctx context.Context, customerId string, id string) ApiSubscriptionCancelRequest
 
 	// SubscriptionCancelExecute executes the request
-	//  @return SubscriptionResponse
-	SubscriptionCancelExecute(r ApiSubscriptionCancelRequest) (*SubscriptionResponse, *http.Response, error)
+	//  @return SubscriptionResponse1
+	SubscriptionCancelExecute(r ApiSubscriptionCancelRequest) (*SubscriptionResponse1, *http.Response, error)
 
 	/*
 	SubscriptionCreate Create Subscription
@@ -159,8 +159,8 @@ type SubscriptionsAPI interface {
 	SubscriptionCreate(ctx context.Context, customerId string) ApiSubscriptionCreateRequest
 
 	// SubscriptionCreateExecute executes the request
-	//  @return SubscriptionResponse
-	SubscriptionCreateExecute(r ApiSubscriptionCreateRequest) (*SubscriptionResponse, *http.Response, error)
+	//  @return SubscriptionResponse1
+	SubscriptionCreateExecute(r ApiSubscriptionCreateRequest) (*SubscriptionResponse1, *http.Response, error)
 
 	/*
 	SubscriptionEvents Get Subscription Events
@@ -190,8 +190,8 @@ type SubscriptionsAPI interface {
 	SubscriptionList(ctx context.Context, customerId string) ApiSubscriptionListRequest
 
 	// SubscriptionListExecute executes the request
-	//  @return SubscriptionResponse
-	SubscriptionListExecute(r ApiSubscriptionListRequest) (*SubscriptionResponse, *http.Response, error)
+	//  @return SubscriptionResponse1
+	SubscriptionListExecute(r ApiSubscriptionListRequest) (*SubscriptionResponse1, *http.Response, error)
 
 	/*
 	SubscriptionPause Pause Subscription
@@ -206,8 +206,8 @@ type SubscriptionsAPI interface {
 	SubscriptionPause(ctx context.Context, customerId string, id string) ApiSubscriptionPauseRequest
 
 	// SubscriptionPauseExecute executes the request
-	//  @return SubscriptionResponse
-	SubscriptionPauseExecute(r ApiSubscriptionPauseRequest) (*SubscriptionResponse, *http.Response, error)
+	//  @return SubscriptionResponse1
+	SubscriptionPauseExecute(r ApiSubscriptionPauseRequest) (*SubscriptionResponse1, *http.Response, error)
 
 	/*
 	SubscriptionResume Resume Subscription
@@ -222,8 +222,8 @@ type SubscriptionsAPI interface {
 	SubscriptionResume(ctx context.Context, customerId string, id string) ApiSubscriptionResumeRequest
 
 	// SubscriptionResumeExecute executes the request
-	//  @return SubscriptionResponse
-	SubscriptionResumeExecute(r ApiSubscriptionResumeRequest) (*SubscriptionResponse, *http.Response, error)
+	//  @return SubscriptionResponse1
+	SubscriptionResumeExecute(r ApiSubscriptionResumeRequest) (*SubscriptionResponse1, *http.Response, error)
 
 	/*
 	SubscriptionUpdate Update Subscription
@@ -238,8 +238,8 @@ type SubscriptionsAPI interface {
 	SubscriptionUpdate(ctx context.Context, customerId string, id string) ApiSubscriptionUpdateRequest
 
 	// SubscriptionUpdateExecute executes the request
-	//  @return SubscriptionResponse
-	SubscriptionUpdateExecute(r ApiSubscriptionUpdateRequest) (*SubscriptionResponse, *http.Response, error)
+	//  @return SubscriptionResponse1
+	SubscriptionUpdateExecute(r ApiSubscriptionUpdateRequest) (*SubscriptionResponse1, *http.Response, error)
 
 	/*
 	SubscriptionsGet Get Subscription
@@ -254,8 +254,8 @@ type SubscriptionsAPI interface {
 	SubscriptionsGet(ctx context.Context, customerId string, id string) ApiSubscriptionsGetRequest
 
 	// SubscriptionsGetExecute executes the request
-	//  @return SubscriptionResponse
-	SubscriptionsGetExecute(r ApiSubscriptionsGetRequest) (*SubscriptionResponse, *http.Response, error)
+	//  @return SubscriptionResponse1
+	SubscriptionsGetExecute(r ApiSubscriptionsGetRequest) (*SubscriptionResponse1, *http.Response, error)
 
 	/*
 	SubscriptionsRetry Retry Failed Payment
@@ -270,8 +270,8 @@ type SubscriptionsAPI interface {
 	SubscriptionsRetry(ctx context.Context, customerId string, id string) ApiSubscriptionsRetryRequest
 
 	// SubscriptionsRetryExecute executes the request
-	//  @return SubscriptionResponse
-	SubscriptionsRetryExecute(r ApiSubscriptionsRetryRequest) (*SubscriptionResponse, *http.Response, error)
+	//  @return SubscriptionResponse1
+	SubscriptionsRetryExecute(r ApiSubscriptionsRetryRequest) (*SubscriptionResponse1, *http.Response, error)
 
 	/*
 	UpdateSubscription Update Subscription [Deprecated]
@@ -287,9 +287,9 @@ type SubscriptionsAPI interface {
 	UpdateSubscription(ctx context.Context, id string) ApiUpdateSubscriptionRequest
 
 	// UpdateSubscriptionExecute executes the request
-	//  @return SubscriptionResponse
+	//  @return SubscriptionResponse1
 	// Deprecated
-	UpdateSubscriptionExecute(r ApiUpdateSubscriptionRequest) (*SubscriptionResponse, *http.Response, error)
+	UpdateSubscriptionExecute(r ApiUpdateSubscriptionRequest) (*SubscriptionResponse1, *http.Response, error)
 }
 
 // SubscriptionsAPIService SubscriptionsAPI service
@@ -315,7 +315,7 @@ func (r ApiCancelSubscriptionRequest) XChildCompanyId(xChildCompanyId string) Ap
 	return r
 }
 
-func (r ApiCancelSubscriptionRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+func (r ApiCancelSubscriptionRequest) Execute() (*SubscriptionResponse1, *http.Response, error) {
 	return r.ApiService.CancelSubscriptionExecute(r)
 }
 
@@ -339,14 +339,14 @@ func (a *SubscriptionsAPIService) CancelSubscription(ctx context.Context, id str
 }
 
 // Execute executes the request
-//  @return SubscriptionResponse
+//  @return SubscriptionResponse1
 // Deprecated
-func (a *SubscriptionsAPIService) CancelSubscriptionExecute(r ApiCancelSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
+func (a *SubscriptionsAPIService) CancelSubscriptionExecute(r ApiCancelSubscriptionRequest) (*SubscriptionResponse1, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarReturnValue  *SubscriptionResponse1
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.CancelSubscription")
@@ -371,7 +371,7 @@ func (a *SubscriptionsAPIService) CancelSubscriptionExecute(r ApiCancelSubscript
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -480,7 +480,7 @@ func (r ApiCreateSubscriptionRequest) XChildCompanyId(xChildCompanyId string) Ap
 	return r
 }
 
-func (r ApiCreateSubscriptionRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+func (r ApiCreateSubscriptionRequest) Execute() (*SubscriptionResponse1, *http.Response, error) {
 	return r.ApiService.CreateSubscriptionExecute(r)
 }
 
@@ -504,14 +504,14 @@ func (a *SubscriptionsAPIService) CreateSubscription(ctx context.Context, id str
 }
 
 // Execute executes the request
-//  @return SubscriptionResponse
+//  @return SubscriptionResponse1
 // Deprecated
-func (a *SubscriptionsAPIService) CreateSubscriptionExecute(r ApiCreateSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
+func (a *SubscriptionsAPIService) CreateSubscriptionExecute(r ApiCreateSubscriptionRequest) (*SubscriptionResponse1, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarReturnValue  *SubscriptionResponse1
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.CreateSubscription")
@@ -539,7 +539,7 @@ func (a *SubscriptionsAPIService) CreateSubscriptionExecute(r ApiCreateSubscript
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -647,7 +647,7 @@ func (r ApiGetSubscriptionRequest) AcceptLanguage(acceptLanguage string) ApiGetS
 	return r
 }
 
-func (r ApiGetSubscriptionRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+func (r ApiGetSubscriptionRequest) Execute() (*SubscriptionResponse1, *http.Response, error) {
 	return r.ApiService.GetSubscriptionExecute(r)
 }
 
@@ -671,14 +671,14 @@ func (a *SubscriptionsAPIService) GetSubscription(ctx context.Context, id string
 }
 
 // Execute executes the request
-//  @return SubscriptionResponse
+//  @return SubscriptionResponse1
 // Deprecated
-func (a *SubscriptionsAPIService) GetSubscriptionExecute(r ApiGetSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
+func (a *SubscriptionsAPIService) GetSubscriptionExecute(r ApiGetSubscriptionRequest) (*SubscriptionResponse1, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarReturnValue  *SubscriptionResponse1
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.GetSubscription")
@@ -703,7 +703,7 @@ func (a *SubscriptionsAPIService) GetSubscriptionExecute(r ApiGetSubscriptionReq
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -858,7 +858,7 @@ func (a *SubscriptionsAPIService) GetSubscriptionEventsExecute(r ApiGetSubscript
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -982,7 +982,7 @@ func (r ApiPauseSubscriptionRequest) XChildCompanyId(xChildCompanyId string) Api
 	return r
 }
 
-func (r ApiPauseSubscriptionRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+func (r ApiPauseSubscriptionRequest) Execute() (*SubscriptionResponse1, *http.Response, error) {
 	return r.ApiService.PauseSubscriptionExecute(r)
 }
 
@@ -1006,14 +1006,14 @@ func (a *SubscriptionsAPIService) PauseSubscription(ctx context.Context, id stri
 }
 
 // Execute executes the request
-//  @return SubscriptionResponse
+//  @return SubscriptionResponse1
 // Deprecated
-func (a *SubscriptionsAPIService) PauseSubscriptionExecute(r ApiPauseSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
+func (a *SubscriptionsAPIService) PauseSubscriptionExecute(r ApiPauseSubscriptionRequest) (*SubscriptionResponse1, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarReturnValue  *SubscriptionResponse1
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.PauseSubscription")
@@ -1038,7 +1038,7 @@ func (a *SubscriptionsAPIService) PauseSubscriptionExecute(r ApiPauseSubscriptio
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1151,7 +1151,7 @@ func (r ApiResumeSubscriptionRequest) XChildCompanyId(xChildCompanyId string) Ap
 	return r
 }
 
-func (r ApiResumeSubscriptionRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+func (r ApiResumeSubscriptionRequest) Execute() (*SubscriptionResponse1, *http.Response, error) {
 	return r.ApiService.ResumeSubscriptionExecute(r)
 }
 
@@ -1175,14 +1175,14 @@ func (a *SubscriptionsAPIService) ResumeSubscription(ctx context.Context, id str
 }
 
 // Execute executes the request
-//  @return SubscriptionResponse
+//  @return SubscriptionResponse1
 // Deprecated
-func (a *SubscriptionsAPIService) ResumeSubscriptionExecute(r ApiResumeSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
+func (a *SubscriptionsAPIService) ResumeSubscriptionExecute(r ApiResumeSubscriptionRequest) (*SubscriptionResponse1, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarReturnValue  *SubscriptionResponse1
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.ResumeSubscription")
@@ -1207,7 +1207,7 @@ func (a *SubscriptionsAPIService) ResumeSubscriptionExecute(r ApiResumeSubscript
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1332,7 +1332,7 @@ func (r ApiSubscriptionCancelRequest) XChildCompanyId(xChildCompanyId string) Ap
 	return r
 }
 
-func (r ApiSubscriptionCancelRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+func (r ApiSubscriptionCancelRequest) Execute() (*SubscriptionResponse1, *http.Response, error) {
 	return r.ApiService.SubscriptionCancelExecute(r)
 }
 
@@ -1356,13 +1356,13 @@ func (a *SubscriptionsAPIService) SubscriptionCancel(ctx context.Context, custom
 }
 
 // Execute executes the request
-//  @return SubscriptionResponse
-func (a *SubscriptionsAPIService) SubscriptionCancelExecute(r ApiSubscriptionCancelRequest) (*SubscriptionResponse, *http.Response, error) {
+//  @return SubscriptionResponse1
+func (a *SubscriptionsAPIService) SubscriptionCancelExecute(r ApiSubscriptionCancelRequest) (*SubscriptionResponse1, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarReturnValue  *SubscriptionResponse1
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionCancel")
@@ -1388,7 +1388,7 @@ func (a *SubscriptionsAPIService) SubscriptionCancelExecute(r ApiSubscriptionCan
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1497,7 +1497,7 @@ func (r ApiSubscriptionCreateRequest) XChildCompanyId(xChildCompanyId string) Ap
 	return r
 }
 
-func (r ApiSubscriptionCreateRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+func (r ApiSubscriptionCreateRequest) Execute() (*SubscriptionResponse1, *http.Response, error) {
 	return r.ApiService.SubscriptionCreateExecute(r)
 }
 
@@ -1519,13 +1519,13 @@ func (a *SubscriptionsAPIService) SubscriptionCreate(ctx context.Context, custom
 }
 
 // Execute executes the request
-//  @return SubscriptionResponse
-func (a *SubscriptionsAPIService) SubscriptionCreateExecute(r ApiSubscriptionCreateRequest) (*SubscriptionResponse, *http.Response, error) {
+//  @return SubscriptionResponse1
+func (a *SubscriptionsAPIService) SubscriptionCreateExecute(r ApiSubscriptionCreateRequest) (*SubscriptionResponse1, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarReturnValue  *SubscriptionResponse1
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionCreate")
@@ -1553,7 +1553,7 @@ func (a *SubscriptionsAPIService) SubscriptionCreateExecute(r ApiSubscriptionCre
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1769,7 +1769,7 @@ func (a *SubscriptionsAPIService) SubscriptionEventsExecute(r ApiSubscriptionEve
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1899,7 +1899,7 @@ func (r ApiSubscriptionListRequest) Previous(previous string) ApiSubscriptionLis
 	return r
 }
 
-func (r ApiSubscriptionListRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+func (r ApiSubscriptionListRequest) Execute() (*SubscriptionResponse1, *http.Response, error) {
 	return r.ApiService.SubscriptionListExecute(r)
 }
 
@@ -1921,13 +1921,13 @@ func (a *SubscriptionsAPIService) SubscriptionList(ctx context.Context, customer
 }
 
 // Execute executes the request
-//  @return SubscriptionResponse
-func (a *SubscriptionsAPIService) SubscriptionListExecute(r ApiSubscriptionListRequest) (*SubscriptionResponse, *http.Response, error) {
+//  @return SubscriptionResponse1
+func (a *SubscriptionsAPIService) SubscriptionListExecute(r ApiSubscriptionListRequest) (*SubscriptionResponse1, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarReturnValue  *SubscriptionResponse1
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionList")
@@ -1968,7 +1968,7 @@ func (a *SubscriptionsAPIService) SubscriptionListExecute(r ApiSubscriptionListR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2071,7 +2071,7 @@ func (r ApiSubscriptionPauseRequest) XChildCompanyId(xChildCompanyId string) Api
 	return r
 }
 
-func (r ApiSubscriptionPauseRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+func (r ApiSubscriptionPauseRequest) Execute() (*SubscriptionResponse1, *http.Response, error) {
 	return r.ApiService.SubscriptionPauseExecute(r)
 }
 
@@ -2095,13 +2095,13 @@ func (a *SubscriptionsAPIService) SubscriptionPause(ctx context.Context, custome
 }
 
 // Execute executes the request
-//  @return SubscriptionResponse
-func (a *SubscriptionsAPIService) SubscriptionPauseExecute(r ApiSubscriptionPauseRequest) (*SubscriptionResponse, *http.Response, error) {
+//  @return SubscriptionResponse1
+func (a *SubscriptionsAPIService) SubscriptionPauseExecute(r ApiSubscriptionPauseRequest) (*SubscriptionResponse1, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarReturnValue  *SubscriptionResponse1
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionPause")
@@ -2127,7 +2127,7 @@ func (a *SubscriptionsAPIService) SubscriptionPauseExecute(r ApiSubscriptionPaus
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2230,7 +2230,7 @@ func (r ApiSubscriptionResumeRequest) XChildCompanyId(xChildCompanyId string) Ap
 	return r
 }
 
-func (r ApiSubscriptionResumeRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+func (r ApiSubscriptionResumeRequest) Execute() (*SubscriptionResponse1, *http.Response, error) {
 	return r.ApiService.SubscriptionResumeExecute(r)
 }
 
@@ -2254,13 +2254,13 @@ func (a *SubscriptionsAPIService) SubscriptionResume(ctx context.Context, custom
 }
 
 // Execute executes the request
-//  @return SubscriptionResponse
-func (a *SubscriptionsAPIService) SubscriptionResumeExecute(r ApiSubscriptionResumeRequest) (*SubscriptionResponse, *http.Response, error) {
+//  @return SubscriptionResponse1
+func (a *SubscriptionsAPIService) SubscriptionResumeExecute(r ApiSubscriptionResumeRequest) (*SubscriptionResponse1, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarReturnValue  *SubscriptionResponse1
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionResume")
@@ -2286,7 +2286,7 @@ func (a *SubscriptionsAPIService) SubscriptionResumeExecute(r ApiSubscriptionRes
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2396,7 +2396,7 @@ func (r ApiSubscriptionUpdateRequest) XChildCompanyId(xChildCompanyId string) Ap
 	return r
 }
 
-func (r ApiSubscriptionUpdateRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+func (r ApiSubscriptionUpdateRequest) Execute() (*SubscriptionResponse1, *http.Response, error) {
 	return r.ApiService.SubscriptionUpdateExecute(r)
 }
 
@@ -2420,13 +2420,13 @@ func (a *SubscriptionsAPIService) SubscriptionUpdate(ctx context.Context, custom
 }
 
 // Execute executes the request
-//  @return SubscriptionResponse
-func (a *SubscriptionsAPIService) SubscriptionUpdateExecute(r ApiSubscriptionUpdateRequest) (*SubscriptionResponse, *http.Response, error) {
+//  @return SubscriptionResponse1
+func (a *SubscriptionsAPIService) SubscriptionUpdateExecute(r ApiSubscriptionUpdateRequest) (*SubscriptionResponse1, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarReturnValue  *SubscriptionResponse1
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionUpdate")
@@ -2455,7 +2455,7 @@ func (a *SubscriptionsAPIService) SubscriptionUpdateExecute(r ApiSubscriptionUpd
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2571,7 +2571,7 @@ func (r ApiSubscriptionsGetRequest) XChildCompanyId(xChildCompanyId string) ApiS
 	return r
 }
 
-func (r ApiSubscriptionsGetRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+func (r ApiSubscriptionsGetRequest) Execute() (*SubscriptionResponse1, *http.Response, error) {
 	return r.ApiService.SubscriptionsGetExecute(r)
 }
 
@@ -2595,13 +2595,13 @@ func (a *SubscriptionsAPIService) SubscriptionsGet(ctx context.Context, customer
 }
 
 // Execute executes the request
-//  @return SubscriptionResponse
-func (a *SubscriptionsAPIService) SubscriptionsGetExecute(r ApiSubscriptionsGetRequest) (*SubscriptionResponse, *http.Response, error) {
+//  @return SubscriptionResponse1
+func (a *SubscriptionsAPIService) SubscriptionsGetExecute(r ApiSubscriptionsGetRequest) (*SubscriptionResponse1, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarReturnValue  *SubscriptionResponse1
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionsGet")
@@ -2627,7 +2627,7 @@ func (a *SubscriptionsAPIService) SubscriptionsGetExecute(r ApiSubscriptionsGetR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2730,7 +2730,7 @@ func (r ApiSubscriptionsRetryRequest) XChildCompanyId(xChildCompanyId string) Ap
 	return r
 }
 
-func (r ApiSubscriptionsRetryRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+func (r ApiSubscriptionsRetryRequest) Execute() (*SubscriptionResponse1, *http.Response, error) {
 	return r.ApiService.SubscriptionsRetryExecute(r)
 }
 
@@ -2754,13 +2754,13 @@ func (a *SubscriptionsAPIService) SubscriptionsRetry(ctx context.Context, custom
 }
 
 // Execute executes the request
-//  @return SubscriptionResponse
-func (a *SubscriptionsAPIService) SubscriptionsRetryExecute(r ApiSubscriptionsRetryRequest) (*SubscriptionResponse, *http.Response, error) {
+//  @return SubscriptionResponse1
+func (a *SubscriptionsAPIService) SubscriptionsRetryExecute(r ApiSubscriptionsRetryRequest) (*SubscriptionResponse1, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarReturnValue  *SubscriptionResponse1
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionsRetry")
@@ -2786,7 +2786,7 @@ func (a *SubscriptionsAPIService) SubscriptionsRetryExecute(r ApiSubscriptionsRe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2906,7 +2906,7 @@ func (r ApiUpdateSubscriptionRequest) XChildCompanyId(xChildCompanyId string) Ap
 	return r
 }
 
-func (r ApiUpdateSubscriptionRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
+func (r ApiUpdateSubscriptionRequest) Execute() (*SubscriptionResponse1, *http.Response, error) {
 	return r.ApiService.UpdateSubscriptionExecute(r)
 }
 
@@ -2930,14 +2930,14 @@ func (a *SubscriptionsAPIService) UpdateSubscription(ctx context.Context, id str
 }
 
 // Execute executes the request
-//  @return SubscriptionResponse
+//  @return SubscriptionResponse1
 // Deprecated
-func (a *SubscriptionsAPIService) UpdateSubscriptionExecute(r ApiUpdateSubscriptionRequest) (*SubscriptionResponse, *http.Response, error) {
+func (a *SubscriptionsAPIService) UpdateSubscriptionExecute(r ApiUpdateSubscriptionRequest) (*SubscriptionResponse1, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SubscriptionResponse
+		localVarReturnValue  *SubscriptionResponse1
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.UpdateSubscription")
@@ -2965,7 +2965,7 @@ func (a *SubscriptionsAPIService) UpdateSubscriptionExecute(r ApiUpdateSubscript
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

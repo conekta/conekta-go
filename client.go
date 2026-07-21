@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -50,7 +50,7 @@ const (
 	UnknownPlatform string = "unknown platform"
 )
 
-// APIClient manages communication with the Conekta API API v2.2.0
+// APIClient manages communication with the Conekta API API v2.3.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -116,7 +116,7 @@ func init() {
 
 func initUserAgent() {
 	data := map[string]string{
-		"bindings_version": "7.1.1",
+		"bindings_version": "8.0.0",
 		"lang":             "go",
 		"lang_version":     runtime.Version(),
 		"publisher":        "conekta",

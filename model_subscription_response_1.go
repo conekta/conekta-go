@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -15,11 +15,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the CustomerSubscriptionResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CustomerSubscriptionResponse{}
+// checks if the SubscriptionResponse1 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SubscriptionResponse1{}
 
-// CustomerSubscriptionResponse subscription model
-type CustomerSubscriptionResponse struct {
+// SubscriptionResponse1 subscription model
+type SubscriptionResponse1 struct {
 	BillingCycleStart *int64 `json:"billing_cycle_start,omitempty"`
 	BillingCycleEnd *int64 `json:"billing_cycle_end,omitempty"`
 	CanceledAt *int64 `json:"canceled_at,omitempty"`
@@ -42,27 +42,27 @@ type CustomerSubscriptionResponse struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _CustomerSubscriptionResponse CustomerSubscriptionResponse
+type _SubscriptionResponse1 SubscriptionResponse1
 
-// NewCustomerSubscriptionResponse instantiates a new CustomerSubscriptionResponse object
+// NewSubscriptionResponse1 instantiates a new SubscriptionResponse1 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustomerSubscriptionResponse() *CustomerSubscriptionResponse {
-	this := CustomerSubscriptionResponse{}
+func NewSubscriptionResponse1() *SubscriptionResponse1 {
+	this := SubscriptionResponse1{}
 	return &this
 }
 
-// NewCustomerSubscriptionResponseWithDefaults instantiates a new CustomerSubscriptionResponse object
+// NewSubscriptionResponse1WithDefaults instantiates a new SubscriptionResponse1 object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCustomerSubscriptionResponseWithDefaults() *CustomerSubscriptionResponse {
-	this := CustomerSubscriptionResponse{}
+func NewSubscriptionResponse1WithDefaults() *SubscriptionResponse1 {
+	this := SubscriptionResponse1{}
 	return &this
 }
 
 // GetBillingCycleStart returns the BillingCycleStart field value if set, zero value otherwise.
-func (o *CustomerSubscriptionResponse) GetBillingCycleStart() int64 {
+func (o *SubscriptionResponse1) GetBillingCycleStart() int64 {
 	if o == nil || IsNil(o.BillingCycleStart) {
 		var ret int64
 		return ret
@@ -72,7 +72,7 @@ func (o *CustomerSubscriptionResponse) GetBillingCycleStart() int64 {
 
 // GetBillingCycleStartOk returns a tuple with the BillingCycleStart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerSubscriptionResponse) GetBillingCycleStartOk() (*int64, bool) {
+func (o *SubscriptionResponse1) GetBillingCycleStartOk() (*int64, bool) {
 	if o == nil || IsNil(o.BillingCycleStart) {
 		return nil, false
 	}
@@ -80,7 +80,7 @@ func (o *CustomerSubscriptionResponse) GetBillingCycleStartOk() (*int64, bool) {
 }
 
 // HasBillingCycleStart returns a boolean if a field has been set.
-func (o *CustomerSubscriptionResponse) HasBillingCycleStart() bool {
+func (o *SubscriptionResponse1) HasBillingCycleStart() bool {
 	if o != nil && !IsNil(o.BillingCycleStart) {
 		return true
 	}
@@ -89,12 +89,12 @@ func (o *CustomerSubscriptionResponse) HasBillingCycleStart() bool {
 }
 
 // SetBillingCycleStart gets a reference to the given int64 and assigns it to the BillingCycleStart field.
-func (o *CustomerSubscriptionResponse) SetBillingCycleStart(v int64) {
+func (o *SubscriptionResponse1) SetBillingCycleStart(v int64) {
 	o.BillingCycleStart = &v
 }
 
 // GetBillingCycleEnd returns the BillingCycleEnd field value if set, zero value otherwise.
-func (o *CustomerSubscriptionResponse) GetBillingCycleEnd() int64 {
+func (o *SubscriptionResponse1) GetBillingCycleEnd() int64 {
 	if o == nil || IsNil(o.BillingCycleEnd) {
 		var ret int64
 		return ret
@@ -104,7 +104,7 @@ func (o *CustomerSubscriptionResponse) GetBillingCycleEnd() int64 {
 
 // GetBillingCycleEndOk returns a tuple with the BillingCycleEnd field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerSubscriptionResponse) GetBillingCycleEndOk() (*int64, bool) {
+func (o *SubscriptionResponse1) GetBillingCycleEndOk() (*int64, bool) {
 	if o == nil || IsNil(o.BillingCycleEnd) {
 		return nil, false
 	}
@@ -112,7 +112,7 @@ func (o *CustomerSubscriptionResponse) GetBillingCycleEndOk() (*int64, bool) {
 }
 
 // HasBillingCycleEnd returns a boolean if a field has been set.
-func (o *CustomerSubscriptionResponse) HasBillingCycleEnd() bool {
+func (o *SubscriptionResponse1) HasBillingCycleEnd() bool {
 	if o != nil && !IsNil(o.BillingCycleEnd) {
 		return true
 	}
@@ -121,12 +121,12 @@ func (o *CustomerSubscriptionResponse) HasBillingCycleEnd() bool {
 }
 
 // SetBillingCycleEnd gets a reference to the given int64 and assigns it to the BillingCycleEnd field.
-func (o *CustomerSubscriptionResponse) SetBillingCycleEnd(v int64) {
+func (o *SubscriptionResponse1) SetBillingCycleEnd(v int64) {
 	o.BillingCycleEnd = &v
 }
 
 // GetCanceledAt returns the CanceledAt field value if set, zero value otherwise.
-func (o *CustomerSubscriptionResponse) GetCanceledAt() int64 {
+func (o *SubscriptionResponse1) GetCanceledAt() int64 {
 	if o == nil || IsNil(o.CanceledAt) {
 		var ret int64
 		return ret
@@ -136,7 +136,7 @@ func (o *CustomerSubscriptionResponse) GetCanceledAt() int64 {
 
 // GetCanceledAtOk returns a tuple with the CanceledAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerSubscriptionResponse) GetCanceledAtOk() (*int64, bool) {
+func (o *SubscriptionResponse1) GetCanceledAtOk() (*int64, bool) {
 	if o == nil || IsNil(o.CanceledAt) {
 		return nil, false
 	}
@@ -144,7 +144,7 @@ func (o *CustomerSubscriptionResponse) GetCanceledAtOk() (*int64, bool) {
 }
 
 // HasCanceledAt returns a boolean if a field has been set.
-func (o *CustomerSubscriptionResponse) HasCanceledAt() bool {
+func (o *SubscriptionResponse1) HasCanceledAt() bool {
 	if o != nil && !IsNil(o.CanceledAt) {
 		return true
 	}
@@ -153,12 +153,12 @@ func (o *CustomerSubscriptionResponse) HasCanceledAt() bool {
 }
 
 // SetCanceledAt gets a reference to the given int64 and assigns it to the CanceledAt field.
-func (o *CustomerSubscriptionResponse) SetCanceledAt(v int64) {
+func (o *SubscriptionResponse1) SetCanceledAt(v int64) {
 	o.CanceledAt = &v
 }
 
 // GetCanceledReason returns the CanceledReason field value if set, zero value otherwise.
-func (o *CustomerSubscriptionResponse) GetCanceledReason() string {
+func (o *SubscriptionResponse1) GetCanceledReason() string {
 	if o == nil || IsNil(o.CanceledReason) {
 		var ret string
 		return ret
@@ -168,7 +168,7 @@ func (o *CustomerSubscriptionResponse) GetCanceledReason() string {
 
 // GetCanceledReasonOk returns a tuple with the CanceledReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerSubscriptionResponse) GetCanceledReasonOk() (*string, bool) {
+func (o *SubscriptionResponse1) GetCanceledReasonOk() (*string, bool) {
 	if o == nil || IsNil(o.CanceledReason) {
 		return nil, false
 	}
@@ -176,7 +176,7 @@ func (o *CustomerSubscriptionResponse) GetCanceledReasonOk() (*string, bool) {
 }
 
 // HasCanceledReason returns a boolean if a field has been set.
-func (o *CustomerSubscriptionResponse) HasCanceledReason() bool {
+func (o *SubscriptionResponse1) HasCanceledReason() bool {
 	if o != nil && !IsNil(o.CanceledReason) {
 		return true
 	}
@@ -185,12 +185,12 @@ func (o *CustomerSubscriptionResponse) HasCanceledReason() bool {
 }
 
 // SetCanceledReason gets a reference to the given string and assigns it to the CanceledReason field.
-func (o *CustomerSubscriptionResponse) SetCanceledReason(v string) {
+func (o *SubscriptionResponse1) SetCanceledReason(v string) {
 	o.CanceledReason = &v
 }
 
 // GetCardId returns the CardId field value if set, zero value otherwise.
-func (o *CustomerSubscriptionResponse) GetCardId() string {
+func (o *SubscriptionResponse1) GetCardId() string {
 	if o == nil || IsNil(o.CardId) {
 		var ret string
 		return ret
@@ -200,7 +200,7 @@ func (o *CustomerSubscriptionResponse) GetCardId() string {
 
 // GetCardIdOk returns a tuple with the CardId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerSubscriptionResponse) GetCardIdOk() (*string, bool) {
+func (o *SubscriptionResponse1) GetCardIdOk() (*string, bool) {
 	if o == nil || IsNil(o.CardId) {
 		return nil, false
 	}
@@ -208,7 +208,7 @@ func (o *CustomerSubscriptionResponse) GetCardIdOk() (*string, bool) {
 }
 
 // HasCardId returns a boolean if a field has been set.
-func (o *CustomerSubscriptionResponse) HasCardId() bool {
+func (o *SubscriptionResponse1) HasCardId() bool {
 	if o != nil && !IsNil(o.CardId) {
 		return true
 	}
@@ -217,12 +217,12 @@ func (o *CustomerSubscriptionResponse) HasCardId() bool {
 }
 
 // SetCardId gets a reference to the given string and assigns it to the CardId field.
-func (o *CustomerSubscriptionResponse) SetCardId(v string) {
+func (o *SubscriptionResponse1) SetCardId(v string) {
 	o.CardId = &v
 }
 
 // GetChargeId returns the ChargeId field value if set, zero value otherwise.
-func (o *CustomerSubscriptionResponse) GetChargeId() string {
+func (o *SubscriptionResponse1) GetChargeId() string {
 	if o == nil || IsNil(o.ChargeId) {
 		var ret string
 		return ret
@@ -232,7 +232,7 @@ func (o *CustomerSubscriptionResponse) GetChargeId() string {
 
 // GetChargeIdOk returns a tuple with the ChargeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerSubscriptionResponse) GetChargeIdOk() (*string, bool) {
+func (o *SubscriptionResponse1) GetChargeIdOk() (*string, bool) {
 	if o == nil || IsNil(o.ChargeId) {
 		return nil, false
 	}
@@ -240,7 +240,7 @@ func (o *CustomerSubscriptionResponse) GetChargeIdOk() (*string, bool) {
 }
 
 // HasChargeId returns a boolean if a field has been set.
-func (o *CustomerSubscriptionResponse) HasChargeId() bool {
+func (o *SubscriptionResponse1) HasChargeId() bool {
 	if o != nil && !IsNil(o.ChargeId) {
 		return true
 	}
@@ -249,12 +249,12 @@ func (o *CustomerSubscriptionResponse) HasChargeId() bool {
 }
 
 // SetChargeId gets a reference to the given string and assigns it to the ChargeId field.
-func (o *CustomerSubscriptionResponse) SetChargeId(v string) {
+func (o *SubscriptionResponse1) SetChargeId(v string) {
 	o.ChargeId = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *CustomerSubscriptionResponse) GetCreatedAt() int64 {
+func (o *SubscriptionResponse1) GetCreatedAt() int64 {
 	if o == nil || IsNil(o.CreatedAt) {
 		var ret int64
 		return ret
@@ -264,7 +264,7 @@ func (o *CustomerSubscriptionResponse) GetCreatedAt() int64 {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerSubscriptionResponse) GetCreatedAtOk() (*int64, bool) {
+func (o *SubscriptionResponse1) GetCreatedAtOk() (*int64, bool) {
 	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
@@ -272,7 +272,7 @@ func (o *CustomerSubscriptionResponse) GetCreatedAtOk() (*int64, bool) {
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
-func (o *CustomerSubscriptionResponse) HasCreatedAt() bool {
+func (o *SubscriptionResponse1) HasCreatedAt() bool {
 	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
@@ -281,12 +281,12 @@ func (o *CustomerSubscriptionResponse) HasCreatedAt() bool {
 }
 
 // SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
-func (o *CustomerSubscriptionResponse) SetCreatedAt(v int64) {
+func (o *SubscriptionResponse1) SetCreatedAt(v int64) {
 	o.CreatedAt = &v
 }
 
 // GetCustomerCustomReference returns the CustomerCustomReference field value if set, zero value otherwise.
-func (o *CustomerSubscriptionResponse) GetCustomerCustomReference() string {
+func (o *SubscriptionResponse1) GetCustomerCustomReference() string {
 	if o == nil || IsNil(o.CustomerCustomReference) {
 		var ret string
 		return ret
@@ -296,7 +296,7 @@ func (o *CustomerSubscriptionResponse) GetCustomerCustomReference() string {
 
 // GetCustomerCustomReferenceOk returns a tuple with the CustomerCustomReference field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerSubscriptionResponse) GetCustomerCustomReferenceOk() (*string, bool) {
+func (o *SubscriptionResponse1) GetCustomerCustomReferenceOk() (*string, bool) {
 	if o == nil || IsNil(o.CustomerCustomReference) {
 		return nil, false
 	}
@@ -304,7 +304,7 @@ func (o *CustomerSubscriptionResponse) GetCustomerCustomReferenceOk() (*string, 
 }
 
 // HasCustomerCustomReference returns a boolean if a field has been set.
-func (o *CustomerSubscriptionResponse) HasCustomerCustomReference() bool {
+func (o *SubscriptionResponse1) HasCustomerCustomReference() bool {
 	if o != nil && !IsNil(o.CustomerCustomReference) {
 		return true
 	}
@@ -313,12 +313,12 @@ func (o *CustomerSubscriptionResponse) HasCustomerCustomReference() bool {
 }
 
 // SetCustomerCustomReference gets a reference to the given string and assigns it to the CustomerCustomReference field.
-func (o *CustomerSubscriptionResponse) SetCustomerCustomReference(v string) {
+func (o *SubscriptionResponse1) SetCustomerCustomReference(v string) {
 	o.CustomerCustomReference = &v
 }
 
 // GetCustomerId returns the CustomerId field value if set, zero value otherwise.
-func (o *CustomerSubscriptionResponse) GetCustomerId() string {
+func (o *SubscriptionResponse1) GetCustomerId() string {
 	if o == nil || IsNil(o.CustomerId) {
 		var ret string
 		return ret
@@ -328,7 +328,7 @@ func (o *CustomerSubscriptionResponse) GetCustomerId() string {
 
 // GetCustomerIdOk returns a tuple with the CustomerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerSubscriptionResponse) GetCustomerIdOk() (*string, bool) {
+func (o *SubscriptionResponse1) GetCustomerIdOk() (*string, bool) {
 	if o == nil || IsNil(o.CustomerId) {
 		return nil, false
 	}
@@ -336,7 +336,7 @@ func (o *CustomerSubscriptionResponse) GetCustomerIdOk() (*string, bool) {
 }
 
 // HasCustomerId returns a boolean if a field has been set.
-func (o *CustomerSubscriptionResponse) HasCustomerId() bool {
+func (o *SubscriptionResponse1) HasCustomerId() bool {
 	if o != nil && !IsNil(o.CustomerId) {
 		return true
 	}
@@ -345,12 +345,12 @@ func (o *CustomerSubscriptionResponse) HasCustomerId() bool {
 }
 
 // SetCustomerId gets a reference to the given string and assigns it to the CustomerId field.
-func (o *CustomerSubscriptionResponse) SetCustomerId(v string) {
+func (o *SubscriptionResponse1) SetCustomerId(v string) {
 	o.CustomerId = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *CustomerSubscriptionResponse) GetId() string {
+func (o *SubscriptionResponse1) GetId() string {
 	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
@@ -360,7 +360,7 @@ func (o *CustomerSubscriptionResponse) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerSubscriptionResponse) GetIdOk() (*string, bool) {
+func (o *SubscriptionResponse1) GetIdOk() (*string, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -368,7 +368,7 @@ func (o *CustomerSubscriptionResponse) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *CustomerSubscriptionResponse) HasId() bool {
+func (o *SubscriptionResponse1) HasId() bool {
 	if o != nil && !IsNil(o.Id) {
 		return true
 	}
@@ -377,12 +377,12 @@ func (o *CustomerSubscriptionResponse) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *CustomerSubscriptionResponse) SetId(v string) {
+func (o *SubscriptionResponse1) SetId(v string) {
 	o.Id = &v
 }
 
 // GetLastBillingCycleOrderId returns the LastBillingCycleOrderId field value if set, zero value otherwise.
-func (o *CustomerSubscriptionResponse) GetLastBillingCycleOrderId() string {
+func (o *SubscriptionResponse1) GetLastBillingCycleOrderId() string {
 	if o == nil || IsNil(o.LastBillingCycleOrderId) {
 		var ret string
 		return ret
@@ -392,7 +392,7 @@ func (o *CustomerSubscriptionResponse) GetLastBillingCycleOrderId() string {
 
 // GetLastBillingCycleOrderIdOk returns a tuple with the LastBillingCycleOrderId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerSubscriptionResponse) GetLastBillingCycleOrderIdOk() (*string, bool) {
+func (o *SubscriptionResponse1) GetLastBillingCycleOrderIdOk() (*string, bool) {
 	if o == nil || IsNil(o.LastBillingCycleOrderId) {
 		return nil, false
 	}
@@ -400,7 +400,7 @@ func (o *CustomerSubscriptionResponse) GetLastBillingCycleOrderIdOk() (*string, 
 }
 
 // HasLastBillingCycleOrderId returns a boolean if a field has been set.
-func (o *CustomerSubscriptionResponse) HasLastBillingCycleOrderId() bool {
+func (o *SubscriptionResponse1) HasLastBillingCycleOrderId() bool {
 	if o != nil && !IsNil(o.LastBillingCycleOrderId) {
 		return true
 	}
@@ -409,12 +409,12 @@ func (o *CustomerSubscriptionResponse) HasLastBillingCycleOrderId() bool {
 }
 
 // SetLastBillingCycleOrderId gets a reference to the given string and assigns it to the LastBillingCycleOrderId field.
-func (o *CustomerSubscriptionResponse) SetLastBillingCycleOrderId(v string) {
+func (o *SubscriptionResponse1) SetLastBillingCycleOrderId(v string) {
 	o.LastBillingCycleOrderId = &v
 }
 
 // GetObject returns the Object field value if set, zero value otherwise.
-func (o *CustomerSubscriptionResponse) GetObject() string {
+func (o *SubscriptionResponse1) GetObject() string {
 	if o == nil || IsNil(o.Object) {
 		var ret string
 		return ret
@@ -424,7 +424,7 @@ func (o *CustomerSubscriptionResponse) GetObject() string {
 
 // GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerSubscriptionResponse) GetObjectOk() (*string, bool) {
+func (o *SubscriptionResponse1) GetObjectOk() (*string, bool) {
 	if o == nil || IsNil(o.Object) {
 		return nil, false
 	}
@@ -432,7 +432,7 @@ func (o *CustomerSubscriptionResponse) GetObjectOk() (*string, bool) {
 }
 
 // HasObject returns a boolean if a field has been set.
-func (o *CustomerSubscriptionResponse) HasObject() bool {
+func (o *SubscriptionResponse1) HasObject() bool {
 	if o != nil && !IsNil(o.Object) {
 		return true
 	}
@@ -441,12 +441,12 @@ func (o *CustomerSubscriptionResponse) HasObject() bool {
 }
 
 // SetObject gets a reference to the given string and assigns it to the Object field.
-func (o *CustomerSubscriptionResponse) SetObject(v string) {
+func (o *SubscriptionResponse1) SetObject(v string) {
 	o.Object = &v
 }
 
 // GetPausedAt returns the PausedAt field value if set, zero value otherwise.
-func (o *CustomerSubscriptionResponse) GetPausedAt() int64 {
+func (o *SubscriptionResponse1) GetPausedAt() int64 {
 	if o == nil || IsNil(o.PausedAt) {
 		var ret int64
 		return ret
@@ -456,7 +456,7 @@ func (o *CustomerSubscriptionResponse) GetPausedAt() int64 {
 
 // GetPausedAtOk returns a tuple with the PausedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerSubscriptionResponse) GetPausedAtOk() (*int64, bool) {
+func (o *SubscriptionResponse1) GetPausedAtOk() (*int64, bool) {
 	if o == nil || IsNil(o.PausedAt) {
 		return nil, false
 	}
@@ -464,7 +464,7 @@ func (o *CustomerSubscriptionResponse) GetPausedAtOk() (*int64, bool) {
 }
 
 // HasPausedAt returns a boolean if a field has been set.
-func (o *CustomerSubscriptionResponse) HasPausedAt() bool {
+func (o *SubscriptionResponse1) HasPausedAt() bool {
 	if o != nil && !IsNil(o.PausedAt) {
 		return true
 	}
@@ -473,12 +473,12 @@ func (o *CustomerSubscriptionResponse) HasPausedAt() bool {
 }
 
 // SetPausedAt gets a reference to the given int64 and assigns it to the PausedAt field.
-func (o *CustomerSubscriptionResponse) SetPausedAt(v int64) {
+func (o *SubscriptionResponse1) SetPausedAt(v int64) {
 	o.PausedAt = &v
 }
 
 // GetPlanId returns the PlanId field value if set, zero value otherwise.
-func (o *CustomerSubscriptionResponse) GetPlanId() string {
+func (o *SubscriptionResponse1) GetPlanId() string {
 	if o == nil || IsNil(o.PlanId) {
 		var ret string
 		return ret
@@ -488,7 +488,7 @@ func (o *CustomerSubscriptionResponse) GetPlanId() string {
 
 // GetPlanIdOk returns a tuple with the PlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerSubscriptionResponse) GetPlanIdOk() (*string, bool) {
+func (o *SubscriptionResponse1) GetPlanIdOk() (*string, bool) {
 	if o == nil || IsNil(o.PlanId) {
 		return nil, false
 	}
@@ -496,7 +496,7 @@ func (o *CustomerSubscriptionResponse) GetPlanIdOk() (*string, bool) {
 }
 
 // HasPlanId returns a boolean if a field has been set.
-func (o *CustomerSubscriptionResponse) HasPlanId() bool {
+func (o *SubscriptionResponse1) HasPlanId() bool {
 	if o != nil && !IsNil(o.PlanId) {
 		return true
 	}
@@ -505,12 +505,12 @@ func (o *CustomerSubscriptionResponse) HasPlanId() bool {
 }
 
 // SetPlanId gets a reference to the given string and assigns it to the PlanId field.
-func (o *CustomerSubscriptionResponse) SetPlanId(v string) {
+func (o *SubscriptionResponse1) SetPlanId(v string) {
 	o.PlanId = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *CustomerSubscriptionResponse) GetStatus() string {
+func (o *SubscriptionResponse1) GetStatus() string {
 	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
@@ -520,7 +520,7 @@ func (o *CustomerSubscriptionResponse) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerSubscriptionResponse) GetStatusOk() (*string, bool) {
+func (o *SubscriptionResponse1) GetStatusOk() (*string, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -528,7 +528,7 @@ func (o *CustomerSubscriptionResponse) GetStatusOk() (*string, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *CustomerSubscriptionResponse) HasStatus() bool {
+func (o *SubscriptionResponse1) HasStatus() bool {
 	if o != nil && !IsNil(o.Status) {
 		return true
 	}
@@ -537,12 +537,12 @@ func (o *CustomerSubscriptionResponse) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *CustomerSubscriptionResponse) SetStatus(v string) {
+func (o *SubscriptionResponse1) SetStatus(v string) {
 	o.Status = &v
 }
 
 // GetSubscriptionStart returns the SubscriptionStart field value if set, zero value otherwise.
-func (o *CustomerSubscriptionResponse) GetSubscriptionStart() int32 {
+func (o *SubscriptionResponse1) GetSubscriptionStart() int32 {
 	if o == nil || IsNil(o.SubscriptionStart) {
 		var ret int32
 		return ret
@@ -552,7 +552,7 @@ func (o *CustomerSubscriptionResponse) GetSubscriptionStart() int32 {
 
 // GetSubscriptionStartOk returns a tuple with the SubscriptionStart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerSubscriptionResponse) GetSubscriptionStartOk() (*int32, bool) {
+func (o *SubscriptionResponse1) GetSubscriptionStartOk() (*int32, bool) {
 	if o == nil || IsNil(o.SubscriptionStart) {
 		return nil, false
 	}
@@ -560,7 +560,7 @@ func (o *CustomerSubscriptionResponse) GetSubscriptionStartOk() (*int32, bool) {
 }
 
 // HasSubscriptionStart returns a boolean if a field has been set.
-func (o *CustomerSubscriptionResponse) HasSubscriptionStart() bool {
+func (o *SubscriptionResponse1) HasSubscriptionStart() bool {
 	if o != nil && !IsNil(o.SubscriptionStart) {
 		return true
 	}
@@ -569,12 +569,12 @@ func (o *CustomerSubscriptionResponse) HasSubscriptionStart() bool {
 }
 
 // SetSubscriptionStart gets a reference to the given int32 and assigns it to the SubscriptionStart field.
-func (o *CustomerSubscriptionResponse) SetSubscriptionStart(v int32) {
+func (o *SubscriptionResponse1) SetSubscriptionStart(v int32) {
 	o.SubscriptionStart = &v
 }
 
 // GetTrialStart returns the TrialStart field value if set, zero value otherwise.
-func (o *CustomerSubscriptionResponse) GetTrialStart() int64 {
+func (o *SubscriptionResponse1) GetTrialStart() int64 {
 	if o == nil || IsNil(o.TrialStart) {
 		var ret int64
 		return ret
@@ -584,7 +584,7 @@ func (o *CustomerSubscriptionResponse) GetTrialStart() int64 {
 
 // GetTrialStartOk returns a tuple with the TrialStart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerSubscriptionResponse) GetTrialStartOk() (*int64, bool) {
+func (o *SubscriptionResponse1) GetTrialStartOk() (*int64, bool) {
 	if o == nil || IsNil(o.TrialStart) {
 		return nil, false
 	}
@@ -592,7 +592,7 @@ func (o *CustomerSubscriptionResponse) GetTrialStartOk() (*int64, bool) {
 }
 
 // HasTrialStart returns a boolean if a field has been set.
-func (o *CustomerSubscriptionResponse) HasTrialStart() bool {
+func (o *SubscriptionResponse1) HasTrialStart() bool {
 	if o != nil && !IsNil(o.TrialStart) {
 		return true
 	}
@@ -601,12 +601,12 @@ func (o *CustomerSubscriptionResponse) HasTrialStart() bool {
 }
 
 // SetTrialStart gets a reference to the given int64 and assigns it to the TrialStart field.
-func (o *CustomerSubscriptionResponse) SetTrialStart(v int64) {
+func (o *SubscriptionResponse1) SetTrialStart(v int64) {
 	o.TrialStart = &v
 }
 
 // GetTrialEnd returns the TrialEnd field value if set, zero value otherwise.
-func (o *CustomerSubscriptionResponse) GetTrialEnd() int64 {
+func (o *SubscriptionResponse1) GetTrialEnd() int64 {
 	if o == nil || IsNil(o.TrialEnd) {
 		var ret int64
 		return ret
@@ -616,7 +616,7 @@ func (o *CustomerSubscriptionResponse) GetTrialEnd() int64 {
 
 // GetTrialEndOk returns a tuple with the TrialEnd field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerSubscriptionResponse) GetTrialEndOk() (*int64, bool) {
+func (o *SubscriptionResponse1) GetTrialEndOk() (*int64, bool) {
 	if o == nil || IsNil(o.TrialEnd) {
 		return nil, false
 	}
@@ -624,7 +624,7 @@ func (o *CustomerSubscriptionResponse) GetTrialEndOk() (*int64, bool) {
 }
 
 // HasTrialEnd returns a boolean if a field has been set.
-func (o *CustomerSubscriptionResponse) HasTrialEnd() bool {
+func (o *SubscriptionResponse1) HasTrialEnd() bool {
 	if o != nil && !IsNil(o.TrialEnd) {
 		return true
 	}
@@ -633,11 +633,11 @@ func (o *CustomerSubscriptionResponse) HasTrialEnd() bool {
 }
 
 // SetTrialEnd gets a reference to the given int64 and assigns it to the TrialEnd field.
-func (o *CustomerSubscriptionResponse) SetTrialEnd(v int64) {
+func (o *SubscriptionResponse1) SetTrialEnd(v int64) {
 	o.TrialEnd = &v
 }
 
-func (o CustomerSubscriptionResponse) MarshalJSON() ([]byte, error) {
+func (o SubscriptionResponse1) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -645,7 +645,7 @@ func (o CustomerSubscriptionResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CustomerSubscriptionResponse) ToMap() (map[string]interface{}, error) {
+func (o SubscriptionResponse1) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.BillingCycleStart) {
 		toSerialize["billing_cycle_start"] = o.BillingCycleStart
@@ -709,16 +709,16 @@ func (o CustomerSubscriptionResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *CustomerSubscriptionResponse) UnmarshalJSON(data []byte) (err error) {
-	varCustomerSubscriptionResponse := _CustomerSubscriptionResponse{}
+func (o *SubscriptionResponse1) UnmarshalJSON(data []byte) (err error) {
+	varSubscriptionResponse1 := _SubscriptionResponse1{}
 
-	err = json.Unmarshal(data, &varCustomerSubscriptionResponse)
+	err = json.Unmarshal(data, &varSubscriptionResponse1)
 
 	if err != nil {
 		return err
 	}
 
-	*o = CustomerSubscriptionResponse(varCustomerSubscriptionResponse)
+	*o = SubscriptionResponse1(varSubscriptionResponse1)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -747,38 +747,38 @@ func (o *CustomerSubscriptionResponse) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableCustomerSubscriptionResponse struct {
-	value *CustomerSubscriptionResponse
+type NullableSubscriptionResponse1 struct {
+	value *SubscriptionResponse1
 	isSet bool
 }
 
-func (v NullableCustomerSubscriptionResponse) Get() *CustomerSubscriptionResponse {
+func (v NullableSubscriptionResponse1) Get() *SubscriptionResponse1 {
 	return v.value
 }
 
-func (v *NullableCustomerSubscriptionResponse) Set(val *CustomerSubscriptionResponse) {
+func (v *NullableSubscriptionResponse1) Set(val *SubscriptionResponse1) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCustomerSubscriptionResponse) IsSet() bool {
+func (v NullableSubscriptionResponse1) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCustomerSubscriptionResponse) Unset() {
+func (v *NullableSubscriptionResponse1) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCustomerSubscriptionResponse(val *CustomerSubscriptionResponse) *NullableCustomerSubscriptionResponse {
-	return &NullableCustomerSubscriptionResponse{value: val, isSet: true}
+func NewNullableSubscriptionResponse1(val *SubscriptionResponse1) *NullableSubscriptionResponse1 {
+	return &NullableSubscriptionResponse1{value: val, isSet: true}
 }
 
-func (v NullableCustomerSubscriptionResponse) MarshalJSON() ([]byte, error) {
+func (v NullableSubscriptionResponse1) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCustomerSubscriptionResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableSubscriptionResponse1) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

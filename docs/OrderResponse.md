@@ -12,9 +12,9 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **int64** | The time at which the object was created in seconds since the Unix epoch | [optional] 
 **Currency** | Pointer to **string** | The three-letter ISO 4217 currency code. The currency of the order. | [optional] 
 **CustomerInfo** | Pointer to [**OrderResponseCustomerInfo**](OrderResponseCustomerInfo.md) |  | [optional] 
-**DiscountLines** | Pointer to [**OrderDiscountLinesResponse**](OrderDiscountLinesResponse.md) |  | [optional] 
-**TaxLines** | Pointer to [**OrderTaxLinesResponse**](OrderTaxLinesResponse.md) |  | [optional] 
-**ShippingLines** | Pointer to [**OrderShippingLinesResponse**](OrderShippingLinesResponse.md) |  | [optional] 
+**DiscountLines** | Pointer to [**OrderResponseDiscountLines**](OrderResponseDiscountLines.md) |  | [optional] 
+**TaxLines** | Pointer to [**OrderResponseTaxLines**](OrderResponseTaxLines.md) |  | [optional] 
+**ShippingLines** | Pointer to [**OrderResponseShippingLines**](OrderResponseShippingLines.md) |  | [optional] 
 **FiscalEntity** | Pointer to [**OrderFiscalEntityResponse**](OrderFiscalEntityResponse.md) |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **IsRefundable** | Pointer to **bool** |  | [optional] 
@@ -249,20 +249,20 @@ HasCustomerInfo returns a boolean if a field has been set.
 
 ### GetDiscountLines
 
-`func (o *OrderResponse) GetDiscountLines() OrderDiscountLinesResponse`
+`func (o *OrderResponse) GetDiscountLines() OrderResponseDiscountLines`
 
 GetDiscountLines returns the DiscountLines field if non-nil, zero value otherwise.
 
 ### GetDiscountLinesOk
 
-`func (o *OrderResponse) GetDiscountLinesOk() (*OrderDiscountLinesResponse, bool)`
+`func (o *OrderResponse) GetDiscountLinesOk() (*OrderResponseDiscountLines, bool)`
 
 GetDiscountLinesOk returns a tuple with the DiscountLines field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDiscountLines
 
-`func (o *OrderResponse) SetDiscountLines(v OrderDiscountLinesResponse)`
+`func (o *OrderResponse) SetDiscountLines(v OrderResponseDiscountLines)`
 
 SetDiscountLines sets DiscountLines field to given value.
 
@@ -274,20 +274,20 @@ HasDiscountLines returns a boolean if a field has been set.
 
 ### GetTaxLines
 
-`func (o *OrderResponse) GetTaxLines() OrderTaxLinesResponse`
+`func (o *OrderResponse) GetTaxLines() OrderResponseTaxLines`
 
 GetTaxLines returns the TaxLines field if non-nil, zero value otherwise.
 
 ### GetTaxLinesOk
 
-`func (o *OrderResponse) GetTaxLinesOk() (*OrderTaxLinesResponse, bool)`
+`func (o *OrderResponse) GetTaxLinesOk() (*OrderResponseTaxLines, bool)`
 
 GetTaxLinesOk returns a tuple with the TaxLines field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTaxLines
 
-`func (o *OrderResponse) SetTaxLines(v OrderTaxLinesResponse)`
+`func (o *OrderResponse) SetTaxLines(v OrderResponseTaxLines)`
 
 SetTaxLines sets TaxLines field to given value.
 
@@ -299,20 +299,20 @@ HasTaxLines returns a boolean if a field has been set.
 
 ### GetShippingLines
 
-`func (o *OrderResponse) GetShippingLines() OrderShippingLinesResponse`
+`func (o *OrderResponse) GetShippingLines() OrderResponseShippingLines`
 
 GetShippingLines returns the ShippingLines field if non-nil, zero value otherwise.
 
 ### GetShippingLinesOk
 
-`func (o *OrderResponse) GetShippingLinesOk() (*OrderShippingLinesResponse, bool)`
+`func (o *OrderResponse) GetShippingLinesOk() (*OrderResponseShippingLines, bool)`
 
 GetShippingLinesOk returns a tuple with the ShippingLines field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetShippingLines
 
-`func (o *OrderResponse) SetShippingLines(v OrderShippingLinesResponse)`
+`func (o *OrderResponse) SetShippingLines(v OrderResponseShippingLines)`
 
 SetShippingLines sets ShippingLines field to given value.
 

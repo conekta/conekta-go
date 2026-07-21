@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -18,7 +18,7 @@ import (
 // checks if the CustomerUpdateShippingContactsRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CustomerUpdateShippingContactsRequest{}
 
-// CustomerUpdateShippingContactsRequest [Shipping](https://developers.conekta.com/v2.2.0/reference/createcustomershippingcontacts) details, required in case of sending a shipping. If we do not receive a shipping_contact on the order, the default shipping_contact of the customer will be used.
+// CustomerUpdateShippingContactsRequest [Shipping](https://developers.conekta.com/v2.3.0/reference/createcustomershippingcontacts) details, required in case of sending a shipping. If we do not receive a shipping_contact on the order, the default shipping_contact of the customer will be used.
 type CustomerUpdateShippingContactsRequest struct {
 	// Phone contact
 	Phone *string `json:"phone,omitempty"`

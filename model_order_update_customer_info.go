@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -76,7 +76,16 @@ func (dst *OrderUpdateCustomerInfo) UnmarshalJSON(data []byte) error {
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(OrderUpdateCustomerInfo)")
+        if err != nil {
+		   return fmt.Errorf("data failed to match schemas in oneOf(OrderUpdateCustomerInfo): %v", err)
+        } else {
+           return fmt.Errorf("data failed to match schemas in oneOf(OrderUpdateCustomerInfo)")
+        }
+        if err != nil {
+		   return fmt.Errorf("data failed to match schemas in oneOf(OrderUpdateCustomerInfo): %v", err)
+        } else {
+           return fmt.Errorf("data failed to match schemas in oneOf(OrderUpdateCustomerInfo)")
+        }
 	}
 }
 

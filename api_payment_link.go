@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -176,7 +176,7 @@ func (a *PaymentLinkAPIService) CancelCheckoutExecute(r ApiCancelCheckoutRequest
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -357,7 +357,7 @@ func (a *PaymentLinkAPIService) CreateCheckoutExecute(r ApiCreateCheckoutRequest
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -533,7 +533,7 @@ func (a *PaymentLinkAPIService) EmailCheckoutExecute(r ApiEmailCheckoutRequest) 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -710,7 +710,7 @@ func (a *PaymentLinkAPIService) GetCheckoutExecute(r ApiGetCheckoutRequest) (*Ch
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -927,7 +927,7 @@ func (a *PaymentLinkAPIService) GetCheckoutsExecute(r ApiGetCheckoutsRequest) (*
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1101,7 +1101,7 @@ func (a *PaymentLinkAPIService) SmsCheckoutExecute(r ApiSmsCheckoutRequest) (*Ch
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

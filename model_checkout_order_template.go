@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -28,9 +28,9 @@ type CheckoutOrderTemplate struct {
 	LineItems []Product `json:"line_items"`
 	// It is a set of key-value pairs that you can attach to the order. It can be used to store additional information about the order in a structured format.
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
-	// List of [taxes](https://developers.conekta.com/v2.2.0/reference/orderscreatetaxes) that are applied to the order.
+	// List of [taxes](https://developers.conekta.com/v2.3.0/reference/orderscreatetaxes) that are applied to the order.
 	TaxLines []OrderTaxRequest `json:"tax_lines,omitempty"`
-	// List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order.
+	// List of [discounts](https://developers.conekta.com/v2.3.0/reference/orderscreatediscountline) that are applied to the order.
 	DiscountLines []OrderDiscountLinesRequest `json:"discount_lines,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

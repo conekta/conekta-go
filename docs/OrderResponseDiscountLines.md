@@ -1,4 +1,4 @@
-# OrderTaxLinesResponse
+# OrderResponseDiscountLines
 
 ## Properties
 
@@ -8,139 +8,139 @@ Name | Type | Description | Notes
 **Object** | **string** | Object type, in this case is list | 
 **NextPageUrl** | Pointer to **string** | URL of the next page. | [optional] 
 **PreviousPageUrl** | Pointer to **string** | Url of the previous page. | [optional] 
-**Data** | Pointer to [**[]TaxLinesDataResponse**](TaxLinesDataResponse.md) |  | [optional] 
+**Data** | Pointer to [**[]DiscountLinesDataResponse**](DiscountLinesDataResponse.md) |  | [optional] 
 
 ## Methods
 
-### NewOrderTaxLinesResponse
+### NewOrderResponseDiscountLines
 
-`func NewOrderTaxLinesResponse(hasMore bool, object string, ) *OrderTaxLinesResponse`
+`func NewOrderResponseDiscountLines(hasMore bool, object string, ) *OrderResponseDiscountLines`
 
-NewOrderTaxLinesResponse instantiates a new OrderTaxLinesResponse object
+NewOrderResponseDiscountLines instantiates a new OrderResponseDiscountLines object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewOrderTaxLinesResponseWithDefaults
+### NewOrderResponseDiscountLinesWithDefaults
 
-`func NewOrderTaxLinesResponseWithDefaults() *OrderTaxLinesResponse`
+`func NewOrderResponseDiscountLinesWithDefaults() *OrderResponseDiscountLines`
 
-NewOrderTaxLinesResponseWithDefaults instantiates a new OrderTaxLinesResponse object
+NewOrderResponseDiscountLinesWithDefaults instantiates a new OrderResponseDiscountLines object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetHasMore
 
-`func (o *OrderTaxLinesResponse) GetHasMore() bool`
+`func (o *OrderResponseDiscountLines) GetHasMore() bool`
 
 GetHasMore returns the HasMore field if non-nil, zero value otherwise.
 
 ### GetHasMoreOk
 
-`func (o *OrderTaxLinesResponse) GetHasMoreOk() (*bool, bool)`
+`func (o *OrderResponseDiscountLines) GetHasMoreOk() (*bool, bool)`
 
 GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHasMore
 
-`func (o *OrderTaxLinesResponse) SetHasMore(v bool)`
+`func (o *OrderResponseDiscountLines) SetHasMore(v bool)`
 
 SetHasMore sets HasMore field to given value.
 
 
 ### GetObject
 
-`func (o *OrderTaxLinesResponse) GetObject() string`
+`func (o *OrderResponseDiscountLines) GetObject() string`
 
 GetObject returns the Object field if non-nil, zero value otherwise.
 
 ### GetObjectOk
 
-`func (o *OrderTaxLinesResponse) GetObjectOk() (*string, bool)`
+`func (o *OrderResponseDiscountLines) GetObjectOk() (*string, bool)`
 
 GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetObject
 
-`func (o *OrderTaxLinesResponse) SetObject(v string)`
+`func (o *OrderResponseDiscountLines) SetObject(v string)`
 
 SetObject sets Object field to given value.
 
 
 ### GetNextPageUrl
 
-`func (o *OrderTaxLinesResponse) GetNextPageUrl() string`
+`func (o *OrderResponseDiscountLines) GetNextPageUrl() string`
 
 GetNextPageUrl returns the NextPageUrl field if non-nil, zero value otherwise.
 
 ### GetNextPageUrlOk
 
-`func (o *OrderTaxLinesResponse) GetNextPageUrlOk() (*string, bool)`
+`func (o *OrderResponseDiscountLines) GetNextPageUrlOk() (*string, bool)`
 
 GetNextPageUrlOk returns a tuple with the NextPageUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNextPageUrl
 
-`func (o *OrderTaxLinesResponse) SetNextPageUrl(v string)`
+`func (o *OrderResponseDiscountLines) SetNextPageUrl(v string)`
 
 SetNextPageUrl sets NextPageUrl field to given value.
 
 ### HasNextPageUrl
 
-`func (o *OrderTaxLinesResponse) HasNextPageUrl() bool`
+`func (o *OrderResponseDiscountLines) HasNextPageUrl() bool`
 
 HasNextPageUrl returns a boolean if a field has been set.
 
 ### GetPreviousPageUrl
 
-`func (o *OrderTaxLinesResponse) GetPreviousPageUrl() string`
+`func (o *OrderResponseDiscountLines) GetPreviousPageUrl() string`
 
 GetPreviousPageUrl returns the PreviousPageUrl field if non-nil, zero value otherwise.
 
 ### GetPreviousPageUrlOk
 
-`func (o *OrderTaxLinesResponse) GetPreviousPageUrlOk() (*string, bool)`
+`func (o *OrderResponseDiscountLines) GetPreviousPageUrlOk() (*string, bool)`
 
 GetPreviousPageUrlOk returns a tuple with the PreviousPageUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPreviousPageUrl
 
-`func (o *OrderTaxLinesResponse) SetPreviousPageUrl(v string)`
+`func (o *OrderResponseDiscountLines) SetPreviousPageUrl(v string)`
 
 SetPreviousPageUrl sets PreviousPageUrl field to given value.
 
 ### HasPreviousPageUrl
 
-`func (o *OrderTaxLinesResponse) HasPreviousPageUrl() bool`
+`func (o *OrderResponseDiscountLines) HasPreviousPageUrl() bool`
 
 HasPreviousPageUrl returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *OrderTaxLinesResponse) GetData() []TaxLinesDataResponse`
+`func (o *OrderResponseDiscountLines) GetData() []DiscountLinesDataResponse`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *OrderTaxLinesResponse) GetDataOk() (*[]TaxLinesDataResponse, bool)`
+`func (o *OrderResponseDiscountLines) GetDataOk() (*[]DiscountLinesDataResponse, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *OrderTaxLinesResponse) SetData(v []TaxLinesDataResponse)`
+`func (o *OrderResponseDiscountLines) SetData(v []DiscountLinesDataResponse)`
 
 SetData sets Data field to given value.
 
 ### HasData
 
-`func (o *OrderTaxLinesResponse) HasData() bool`
+`func (o *OrderResponseDiscountLines) HasData() bool`
 
 HasData returns a boolean if a field has been set.
 

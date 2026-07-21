@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -120,7 +120,26 @@ func (dst *ChargeRequestPaymentMethod) UnmarshalJSON(data []byte) error {
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(ChargeRequestPaymentMethod)")
+        if err != nil {
+		   return fmt.Errorf("data failed to match schemas in oneOf(ChargeRequestPaymentMethod): %v", err)
+        } else {
+           return fmt.Errorf("data failed to match schemas in oneOf(ChargeRequestPaymentMethod)")
+        }
+        if err != nil {
+		   return fmt.Errorf("data failed to match schemas in oneOf(ChargeRequestPaymentMethod): %v", err)
+        } else {
+           return fmt.Errorf("data failed to match schemas in oneOf(ChargeRequestPaymentMethod)")
+        }
+        if err != nil {
+		   return fmt.Errorf("data failed to match schemas in oneOf(ChargeRequestPaymentMethod): %v", err)
+        } else {
+           return fmt.Errorf("data failed to match schemas in oneOf(ChargeRequestPaymentMethod)")
+        }
+        if err != nil {
+		   return fmt.Errorf("data failed to match schemas in oneOf(ChargeRequestPaymentMethod): %v", err)
+        } else {
+           return fmt.Errorf("data failed to match schemas in oneOf(ChargeRequestPaymentMethod)")
+        }
 	}
 }
 

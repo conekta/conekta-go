@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -142,7 +142,7 @@ func (a *EventsAPIService) GetEventExecute(r ApiGetEventRequest) (*EventResponse
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -335,7 +335,7 @@ func (a *EventsAPIService) GetEventsExecute(r ApiGetEventsRequest) (*GetEventsRe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -482,7 +482,7 @@ func (a *EventsAPIService) ResendEventExecute(r ApiResendEventRequest) (*EventsR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

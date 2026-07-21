@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **PaymentSources** | Pointer to [**CustomerPaymentMethodsResponse**](CustomerPaymentMethodsResponse.md) |  | [optional] 
 **Phone** | Pointer to **string** | Customer&#39;s phone number | [optional] 
 **ShippingContacts** | Pointer to [**CustomerResponseShippingContacts**](CustomerResponseShippingContacts.md) |  | [optional] 
-**Subscription** | Pointer to [**CustomerSubscriptionResponse**](CustomerSubscriptionResponse.md) |  | [optional] 
+**Subscription** | Pointer to [**SubscriptionResponse**](SubscriptionResponse.md) |  | [optional] 
 
 ## Methods
 
@@ -496,20 +496,20 @@ HasShippingContacts returns a boolean if a field has been set.
 
 ### GetSubscription
 
-`func (o *CustomerResponse) GetSubscription() CustomerSubscriptionResponse`
+`func (o *CustomerResponse) GetSubscription() SubscriptionResponse`
 
 GetSubscription returns the Subscription field if non-nil, zero value otherwise.
 
 ### GetSubscriptionOk
 
-`func (o *CustomerResponse) GetSubscriptionOk() (*CustomerSubscriptionResponse, bool)`
+`func (o *CustomerResponse) GetSubscriptionOk() (*SubscriptionResponse, bool)`
 
 GetSubscriptionOk returns a tuple with the Subscription field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubscription
 
-`func (o *CustomerResponse) SetSubscription(v CustomerSubscriptionResponse)`
+`func (o *CustomerResponse) SetSubscription(v SubscriptionResponse)`
 
 SetSubscription sets Subscription field to given value.
 

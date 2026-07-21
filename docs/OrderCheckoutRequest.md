@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AllowedPaymentMethods** | **[]string** | Are the payment methods available for this link. For subscriptions, only &#39;card&#39; is allowed due to the recurring nature of the payments. | 
+**AllowedPaymentMethods** | Pointer to **[]string** | Are the payment methods available for this link. For subscriptions, only &#39;card&#39; is allowed due to the recurring nature of the payments. This field is mutually exclusive with excluded_payment_methods. | [optional] 
+**ExcludedPaymentMethods** | Pointer to **[]string** | Payment methods to be excluded from the checkout. This field is mutually exclusive with allowed_payment_methods. | [optional] 
 **ExcludeCardNetworks** | Pointer to **[]string** | List of card networks to exclude from the checkout. This field is only applicable for card payments. | [optional] 
 **PlanIds** | Pointer to **[]string** | List of plan IDs that will be available for subscription. This field is required for subscription payments. | [optional] 
 **ExpiresAt** | Pointer to **int64** | It is the time when the link will expire.  It is expressed in seconds since the Unix epoch. The valid range is from 5 minutes to 365 days from the creation date.  | [optional] 
@@ -23,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewOrderCheckoutRequest
 
-`func NewOrderCheckoutRequest(allowedPaymentMethods []string, ) *OrderCheckoutRequest`
+`func NewOrderCheckoutRequest() *OrderCheckoutRequest`
 
 NewOrderCheckoutRequest instantiates a new OrderCheckoutRequest object
 This constructor will assign default values to properties that have it defined,
@@ -57,6 +58,36 @@ and a boolean to check if the value has been set.
 
 SetAllowedPaymentMethods sets AllowedPaymentMethods field to given value.
 
+### HasAllowedPaymentMethods
+
+`func (o *OrderCheckoutRequest) HasAllowedPaymentMethods() bool`
+
+HasAllowedPaymentMethods returns a boolean if a field has been set.
+
+### GetExcludedPaymentMethods
+
+`func (o *OrderCheckoutRequest) GetExcludedPaymentMethods() []string`
+
+GetExcludedPaymentMethods returns the ExcludedPaymentMethods field if non-nil, zero value otherwise.
+
+### GetExcludedPaymentMethodsOk
+
+`func (o *OrderCheckoutRequest) GetExcludedPaymentMethodsOk() (*[]string, bool)`
+
+GetExcludedPaymentMethodsOk returns a tuple with the ExcludedPaymentMethods field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExcludedPaymentMethods
+
+`func (o *OrderCheckoutRequest) SetExcludedPaymentMethods(v []string)`
+
+SetExcludedPaymentMethods sets ExcludedPaymentMethods field to given value.
+
+### HasExcludedPaymentMethods
+
+`func (o *OrderCheckoutRequest) HasExcludedPaymentMethods() bool`
+
+HasExcludedPaymentMethods returns a boolean if a field has been set.
 
 ### GetExcludeCardNetworks
 

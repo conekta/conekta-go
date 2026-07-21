@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -90,7 +90,7 @@ type Configuration struct {
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		DefaultHeader:    make(map[string]string),
-		UserAgent:        "Conekta/v2 GoBindings/7.1.1",
+		UserAgent:        "Conekta/v2 GoBindings/8.0.0",
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{

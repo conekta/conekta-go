@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -193,7 +193,7 @@ func (a *ChargesAPIService) GetChargesExecute(r ApiGetChargesRequest) (*GetCharg
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -347,7 +347,7 @@ func (a *ChargesAPIService) OrdersCreateChargeExecute(r ApiOrdersCreateChargeReq
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -525,7 +525,7 @@ func (a *ChargesAPIService) OrdersCreateChargesExecute(r ApiOrdersCreateChargesR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -701,7 +701,7 @@ func (a *ChargesAPIService) UpdateChargeExecute(r ApiUpdateChargeRequest) (*Char
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.2.0+json"}
+	localVarHTTPHeaderAccepts := []string{"application/vnd.conekta-v2.3.0+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

@@ -28,7 +28,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -100,11 +100,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
-	checkout := *openapiclient.NewCheckout([]string{"AllowedPaymentMethods_example"}, int64(1680397724), "Payment Link Name 1594138857", *openapiclient.NewCheckoutOrderTemplate("MXN", []openapiclient.Product{*openapiclient.NewProduct("Box of Cohiba S1s", int32(1), int32(20000))}), false, "PaymentLink") // Checkout | requested field for checkout
+	checkout := *openapiclient.NewCheckout(int64(1680397724), "Payment Link Name 1594138857", *openapiclient.NewCheckoutOrderTemplate("MXN", []openapiclient.Product{*openapiclient.NewProduct("Box of Cohiba S1s", int32(1), int32(20000))}), false, "PaymentLink") // Checkout | requested field for checkout
 	acceptLanguage := "es" // string | Use for knowing which language to use (optional) (default to "es")
 	xChildCompanyId := "6441b6376b60c3a638da80af" // string | In the case of a holding company, the company id of the child company to which will process the request. (optional)
 
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -168,7 +168,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -242,7 +242,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -292,7 +292,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -316,7 +316,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -368,7 +368,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -390,7 +390,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -442,7 +442,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

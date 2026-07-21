@@ -92,7 +92,6 @@ docs/CustomerShippingContactsDataResponse.md
 docs/CustomerShippingContactsRequest.md
 docs/CustomerShippingContactsRequestAddress.md
 docs/CustomerShippingContactsResponse.md
-docs/CustomerSubscriptionResponse.md
 docs/CustomerUpdateShippingContactsRequest.md
 docs/CustomersAPI.md
 docs/CustomersResponse.md
@@ -134,7 +133,6 @@ docs/OrderChannelResponse.md
 docs/OrderChargesResponse.md
 docs/OrderCheckoutRequest.md
 docs/OrderDiscountLinesRequest.md
-docs/OrderDiscountLinesResponse.md
 docs/OrderFiscalEntityAddressResponse.md
 docs/OrderFiscalEntityRequest.md
 docs/OrderFiscalEntityResponse.md
@@ -146,10 +144,11 @@ docs/OrderRequestCustomerInfo.md
 docs/OrderResponse.md
 docs/OrderResponseCheckout.md
 docs/OrderResponseCustomerInfo.md
+docs/OrderResponseDiscountLines.md
 docs/OrderResponseProducts.md
 docs/OrderResponseShippingContact.md
-docs/OrderShippingLinesResponse.md
-docs/OrderTaxLinesResponse.md
+docs/OrderResponseShippingLines.md
+docs/OrderResponseTaxLines.md
 docs/OrderTaxRequest.md
 docs/OrderTaxResponse.md
 docs/OrderUpdate.md
@@ -206,6 +205,7 @@ docs/SubscriptionDetailsPlan.md
 docs/SubscriptionEventsResponse.md
 docs/SubscriptionRequest.md
 docs/SubscriptionResponse.md
+docs/SubscriptionResponse1.md
 docs/SubscriptionsAPI.md
 docs/SubscriptionsCustomerPortalAPI.md
 docs/TaxLinesDataResponse.md
@@ -301,7 +301,6 @@ model_customer_shipping_contacts_data_response.go
 model_customer_shipping_contacts_request.go
 model_customer_shipping_contacts_request_address.go
 model_customer_shipping_contacts_response.go
-model_customer_subscription_response.go
 model_customer_update_shipping_contacts_request.go
 model_customers_response.go
 model_delete_api_keys_response.go
@@ -339,7 +338,6 @@ model_order_channel_response.go
 model_order_charges_response.go
 model_order_checkout_request.go
 model_order_discount_lines_request.go
-model_order_discount_lines_response.go
 model_order_fiscal_entity_address_response.go
 model_order_fiscal_entity_request.go
 model_order_fiscal_entity_response.go
@@ -351,10 +349,11 @@ model_order_request_customer_info.go
 model_order_response.go
 model_order_response_checkout.go
 model_order_response_customer_info.go
+model_order_response_discount_lines.go
 model_order_response_products.go
 model_order_response_shipping_contact.go
-model_order_shipping_lines_response.go
-model_order_tax_lines_response.go
+model_order_response_shipping_lines.go
+model_order_response_tax_lines.go
 model_order_tax_request.go
 model_order_tax_response.go
 model_order_update.go
@@ -403,6 +402,7 @@ model_subscription_details_plan.go
 model_subscription_events_response.go
 model_subscription_request.go
 model_subscription_response.go
+model_subscription_response_1.go
 model_tax_lines_data_response.go
 model_token_request.go
 model_token_request_card.go

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AllowedPaymentMethods** | Pointer to **[]string** | Are the payment methods available for this link | [optional] 
+**ExcludedPaymentMethods** | Pointer to **[]string** | Payment methods excluded from the checkout. This field is only returned when excluded_payment_methods is provided in the request. | [optional] 
 **PlanIds** | Pointer to **[]string** | List of plan IDs that are available for subscription | [optional] 
 **CanNotExpire** | Pointer to **bool** |  | [optional] 
 **EmailsSent** | Pointer to **int32** |  | [optional] 
@@ -74,6 +75,31 @@ SetAllowedPaymentMethods sets AllowedPaymentMethods field to given value.
 `func (o *CheckoutResponse) HasAllowedPaymentMethods() bool`
 
 HasAllowedPaymentMethods returns a boolean if a field has been set.
+
+### GetExcludedPaymentMethods
+
+`func (o *CheckoutResponse) GetExcludedPaymentMethods() []string`
+
+GetExcludedPaymentMethods returns the ExcludedPaymentMethods field if non-nil, zero value otherwise.
+
+### GetExcludedPaymentMethodsOk
+
+`func (o *CheckoutResponse) GetExcludedPaymentMethodsOk() (*[]string, bool)`
+
+GetExcludedPaymentMethodsOk returns a tuple with the ExcludedPaymentMethods field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExcludedPaymentMethods
+
+`func (o *CheckoutResponse) SetExcludedPaymentMethods(v []string)`
+
+SetExcludedPaymentMethods sets ExcludedPaymentMethods field to given value.
+
+### HasExcludedPaymentMethods
+
+`func (o *CheckoutResponse) HasExcludedPaymentMethods() bool`
+
+HasExcludedPaymentMethods returns a boolean if a field has been set.
 
 ### GetPlanIds
 

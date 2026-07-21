@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -22,7 +22,9 @@ var _ MappedNullable = &OrderResponseCheckout{}
 // OrderResponseCheckout struct for OrderResponseCheckout
 type OrderResponseCheckout struct {
 	// Are the payment methods available for this link
-	AllowedPaymentMethods []string `json:"allowed_payment_methods"`
+	AllowedPaymentMethods []string `json:"allowed_payment_methods,omitempty"`
+	// Payment methods excluded from the checkout. This field is only returned when excluded_payment_methods is provided in the request.
+	ExcludedPaymentMethods []string `json:"excluded_payment_methods,omitempty"`
 	CanNotExpire *bool `json:"can_not_expire,omitempty"`
 	EmailsSent *int32 `json:"emails_sent,omitempty"`
 	ExcludeCardNetworks []string `json:"exclude_card_networks,omitempty"`
@@ -33,7 +35,7 @@ type OrderResponseCheckout struct {
 	ForceSaveCard *bool `json:"force_save_card,omitempty"`
 	Id string `json:"id"`
 	IsRedirectOnFailure *bool `json:"is_redirect_on_failure,omitempty"`
-	Livemode *bool `json:"livemode,omitempty"`
+	Livemode bool `json:"livemode"`
 	// Number of retries allowed before the checkout is marked as failed
 	MaxFailedRetries *int32 `json:"max_failed_retries,omitempty"`
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
@@ -66,10 +68,10 @@ type _OrderResponseCheckout OrderResponseCheckout
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrderResponseCheckout(allowedPaymentMethods []string, id string, name string, object string, type_ string) *OrderResponseCheckout {
+func NewOrderResponseCheckout(id string, livemode bool, name string, object string, type_ string) *OrderResponseCheckout {
 	this := OrderResponseCheckout{}
-	this.AllowedPaymentMethods = allowedPaymentMethods
 	this.Id = id
+	this.Livemode = livemode
 	this.Name = name
 	this.Object = object
 	this.Type = type_
@@ -84,28 +86,68 @@ func NewOrderResponseCheckoutWithDefaults() *OrderResponseCheckout {
 	return &this
 }
 
-// GetAllowedPaymentMethods returns the AllowedPaymentMethods field value
+// GetAllowedPaymentMethods returns the AllowedPaymentMethods field value if set, zero value otherwise.
 func (o *OrderResponseCheckout) GetAllowedPaymentMethods() []string {
-	if o == nil {
+	if o == nil || IsNil(o.AllowedPaymentMethods) {
 		var ret []string
 		return ret
 	}
-
 	return o.AllowedPaymentMethods
 }
 
-// GetAllowedPaymentMethodsOk returns a tuple with the AllowedPaymentMethods field value
+// GetAllowedPaymentMethodsOk returns a tuple with the AllowedPaymentMethods field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrderResponseCheckout) GetAllowedPaymentMethodsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AllowedPaymentMethods) {
 		return nil, false
 	}
 	return o.AllowedPaymentMethods, true
 }
 
-// SetAllowedPaymentMethods sets field value
+// HasAllowedPaymentMethods returns a boolean if a field has been set.
+func (o *OrderResponseCheckout) HasAllowedPaymentMethods() bool {
+	if o != nil && !IsNil(o.AllowedPaymentMethods) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowedPaymentMethods gets a reference to the given []string and assigns it to the AllowedPaymentMethods field.
 func (o *OrderResponseCheckout) SetAllowedPaymentMethods(v []string) {
 	o.AllowedPaymentMethods = v
+}
+
+// GetExcludedPaymentMethods returns the ExcludedPaymentMethods field value if set, zero value otherwise.
+func (o *OrderResponseCheckout) GetExcludedPaymentMethods() []string {
+	if o == nil || IsNil(o.ExcludedPaymentMethods) {
+		var ret []string
+		return ret
+	}
+	return o.ExcludedPaymentMethods
+}
+
+// GetExcludedPaymentMethodsOk returns a tuple with the ExcludedPaymentMethods field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderResponseCheckout) GetExcludedPaymentMethodsOk() ([]string, bool) {
+	if o == nil || IsNil(o.ExcludedPaymentMethods) {
+		return nil, false
+	}
+	return o.ExcludedPaymentMethods, true
+}
+
+// HasExcludedPaymentMethods returns a boolean if a field has been set.
+func (o *OrderResponseCheckout) HasExcludedPaymentMethods() bool {
+	if o != nil && !IsNil(o.ExcludedPaymentMethods) {
+		return true
+	}
+
+	return false
+}
+
+// SetExcludedPaymentMethods gets a reference to the given []string and assigns it to the ExcludedPaymentMethods field.
+func (o *OrderResponseCheckout) SetExcludedPaymentMethods(v []string) {
+	o.ExcludedPaymentMethods = v
 }
 
 // GetCanNotExpire returns the CanNotExpire field value if set, zero value otherwise.
@@ -388,36 +430,28 @@ func (o *OrderResponseCheckout) SetIsRedirectOnFailure(v bool) {
 	o.IsRedirectOnFailure = &v
 }
 
-// GetLivemode returns the Livemode field value if set, zero value otherwise.
+// GetLivemode returns the Livemode field value
 func (o *OrderResponseCheckout) GetLivemode() bool {
-	if o == nil || IsNil(o.Livemode) {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Livemode
+
+	return o.Livemode
 }
 
-// GetLivemodeOk returns a tuple with the Livemode field value if set, nil otherwise
+// GetLivemodeOk returns a tuple with the Livemode field value
 // and a boolean to check if the value has been set.
 func (o *OrderResponseCheckout) GetLivemodeOk() (*bool, bool) {
-	if o == nil || IsNil(o.Livemode) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Livemode, true
+	return &o.Livemode, true
 }
 
-// HasLivemode returns a boolean if a field has been set.
-func (o *OrderResponseCheckout) HasLivemode() bool {
-	if o != nil && !IsNil(o.Livemode) {
-		return true
-	}
-
-	return false
-}
-
-// SetLivemode gets a reference to the given bool and assigns it to the Livemode field.
+// SetLivemode sets field value
 func (o *OrderResponseCheckout) SetLivemode(v bool) {
-	o.Livemode = &v
+	o.Livemode = v
 }
 
 // GetMaxFailedRetries returns the MaxFailedRetries field value if set, zero value otherwise.
@@ -982,7 +1016,12 @@ func (o OrderResponseCheckout) MarshalJSON() ([]byte, error) {
 
 func (o OrderResponseCheckout) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["allowed_payment_methods"] = o.AllowedPaymentMethods
+	if !IsNil(o.AllowedPaymentMethods) {
+		toSerialize["allowed_payment_methods"] = o.AllowedPaymentMethods
+	}
+	if !IsNil(o.ExcludedPaymentMethods) {
+		toSerialize["excluded_payment_methods"] = o.ExcludedPaymentMethods
+	}
 	if !IsNil(o.CanNotExpire) {
 		toSerialize["can_not_expire"] = o.CanNotExpire
 	}
@@ -1008,9 +1047,7 @@ func (o OrderResponseCheckout) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsRedirectOnFailure) {
 		toSerialize["is_redirect_on_failure"] = o.IsRedirectOnFailure
 	}
-	if !IsNil(o.Livemode) {
-		toSerialize["livemode"] = o.Livemode
-	}
+	toSerialize["livemode"] = o.Livemode
 	if !IsNil(o.MaxFailedRetries) {
 		toSerialize["max_failed_retries"] = o.MaxFailedRetries
 	}
@@ -1072,8 +1109,8 @@ func (o *OrderResponseCheckout) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"allowed_payment_methods",
 		"id",
+		"livemode",
 		"name",
 		"object",
 		"type",
@@ -1107,6 +1144,7 @@ func (o *OrderResponseCheckout) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "allowed_payment_methods")
+		delete(additionalProperties, "excluded_payment_methods")
 		delete(additionalProperties, "can_not_expire")
 		delete(additionalProperties, "emails_sent")
 		delete(additionalProperties, "exclude_card_networks")

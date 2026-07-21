@@ -3,7 +3,7 @@ Conekta API
 
 Conekta sdk
 
-API version: 2.2.0
+API version: 2.3.0
 Contact: engineering@conekta.com
 */
 
@@ -21,8 +21,10 @@ var _ MappedNullable = &Checkout{}
 
 // Checkout It is a sub-resource of the Order model that can be stipulated in order to configure its corresponding checkout
 type Checkout struct {
-	// Those are the payment methods that will be available for the link
-	AllowedPaymentMethods []string `json:"allowed_payment_methods"`
+	// Those are the payment methods that will be available for the link. This field is mutually exclusive with excluded_payment_methods.
+	AllowedPaymentMethods []string `json:"allowed_payment_methods,omitempty"`
+	// Payment methods to be excluded from the checkout. This field is mutually exclusive with allowed_payment_methods.
+	ExcludedPaymentMethods []string `json:"excluded_payment_methods,omitempty"`
 	// List of card networks to exclude from the checkout. This field is only applicable for card payments.
 	ExcludeCardNetworks []string `json:"exclude_card_networks,omitempty"`
 	// It is the time when the link will expire.  It is expressed in seconds since the Unix epoch. The valid range is from 5 minutes to 365 days from the creation date. 
@@ -59,9 +61,8 @@ type _Checkout Checkout
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCheckout(allowedPaymentMethods []string, expiresAt int64, name string, orderTemplate CheckoutOrderTemplate, recurrent bool, type_ string) *Checkout {
+func NewCheckout(expiresAt int64, name string, orderTemplate CheckoutOrderTemplate, recurrent bool, type_ string) *Checkout {
 	this := Checkout{}
-	this.AllowedPaymentMethods = allowedPaymentMethods
 	this.ExpiresAt = expiresAt
 	this.Name = name
 	this.OrderTemplate = orderTemplate
@@ -78,28 +79,68 @@ func NewCheckoutWithDefaults() *Checkout {
 	return &this
 }
 
-// GetAllowedPaymentMethods returns the AllowedPaymentMethods field value
+// GetAllowedPaymentMethods returns the AllowedPaymentMethods field value if set, zero value otherwise.
 func (o *Checkout) GetAllowedPaymentMethods() []string {
-	if o == nil {
+	if o == nil || IsNil(o.AllowedPaymentMethods) {
 		var ret []string
 		return ret
 	}
-
 	return o.AllowedPaymentMethods
 }
 
-// GetAllowedPaymentMethodsOk returns a tuple with the AllowedPaymentMethods field value
+// GetAllowedPaymentMethodsOk returns a tuple with the AllowedPaymentMethods field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Checkout) GetAllowedPaymentMethodsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AllowedPaymentMethods) {
 		return nil, false
 	}
 	return o.AllowedPaymentMethods, true
 }
 
-// SetAllowedPaymentMethods sets field value
+// HasAllowedPaymentMethods returns a boolean if a field has been set.
+func (o *Checkout) HasAllowedPaymentMethods() bool {
+	if o != nil && !IsNil(o.AllowedPaymentMethods) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowedPaymentMethods gets a reference to the given []string and assigns it to the AllowedPaymentMethods field.
 func (o *Checkout) SetAllowedPaymentMethods(v []string) {
 	o.AllowedPaymentMethods = v
+}
+
+// GetExcludedPaymentMethods returns the ExcludedPaymentMethods field value if set, zero value otherwise.
+func (o *Checkout) GetExcludedPaymentMethods() []string {
+	if o == nil || IsNil(o.ExcludedPaymentMethods) {
+		var ret []string
+		return ret
+	}
+	return o.ExcludedPaymentMethods
+}
+
+// GetExcludedPaymentMethodsOk returns a tuple with the ExcludedPaymentMethods field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Checkout) GetExcludedPaymentMethodsOk() ([]string, bool) {
+	if o == nil || IsNil(o.ExcludedPaymentMethods) {
+		return nil, false
+	}
+	return o.ExcludedPaymentMethods, true
+}
+
+// HasExcludedPaymentMethods returns a boolean if a field has been set.
+func (o *Checkout) HasExcludedPaymentMethods() bool {
+	if o != nil && !IsNil(o.ExcludedPaymentMethods) {
+		return true
+	}
+
+	return false
+}
+
+// SetExcludedPaymentMethods gets a reference to the given []string and assigns it to the ExcludedPaymentMethods field.
+func (o *Checkout) SetExcludedPaymentMethods(v []string) {
+	o.ExcludedPaymentMethods = v
 }
 
 // GetExcludeCardNetworks returns the ExcludeCardNetworks field value if set, zero value otherwise.
@@ -520,7 +561,12 @@ func (o Checkout) MarshalJSON() ([]byte, error) {
 
 func (o Checkout) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["allowed_payment_methods"] = o.AllowedPaymentMethods
+	if !IsNil(o.AllowedPaymentMethods) {
+		toSerialize["allowed_payment_methods"] = o.AllowedPaymentMethods
+	}
+	if !IsNil(o.ExcludedPaymentMethods) {
+		toSerialize["excluded_payment_methods"] = o.ExcludedPaymentMethods
+	}
 	if !IsNil(o.ExcludeCardNetworks) {
 		toSerialize["exclude_card_networks"] = o.ExcludeCardNetworks
 	}
@@ -566,7 +612,6 @@ func (o *Checkout) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"allowed_payment_methods",
 		"expires_at",
 		"name",
 		"order_template",
@@ -602,6 +647,7 @@ func (o *Checkout) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "allowed_payment_methods")
+		delete(additionalProperties, "excluded_payment_methods")
 		delete(additionalProperties, "exclude_card_networks")
 		delete(additionalProperties, "expires_at")
 		delete(additionalProperties, "monthly_installments_enabled")

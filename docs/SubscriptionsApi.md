@@ -25,7 +25,7 @@ Method | HTTP request | Description
 
 ## CancelSubscription
 
-> SubscriptionResponse CancelSubscription(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse1 CancelSubscription(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Cancel Subscription [Deprecated]
 
@@ -40,7 +40,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -55,7 +55,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.CancelSubscription``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CancelSubscription`: SubscriptionResponse
+	// response from `CancelSubscription`: SubscriptionResponse1
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.CancelSubscription`: %v\n", resp)
 }
 ```
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse**](SubscriptionResponse.md)
+[**SubscriptionResponse1**](SubscriptionResponse1.md)
 
 ### Authorization
 
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 ## CreateSubscription
 
-> SubscriptionResponse CreateSubscription(ctx, id).SubscriptionRequest(subscriptionRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse1 CreateSubscription(ctx, id).SubscriptionRequest(subscriptionRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Create Subscription [Deprecated]
 
@@ -114,7 +114,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -130,7 +130,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.CreateSubscription``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateSubscription`: SubscriptionResponse
+	// response from `CreateSubscription`: SubscriptionResponse1
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.CreateSubscription`: %v\n", resp)
 }
 ```
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse**](SubscriptionResponse.md)
+[**SubscriptionResponse1**](SubscriptionResponse1.md)
 
 ### Authorization
 
@@ -166,7 +166,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 
 ## GetSubscription
 
-> SubscriptionResponse GetSubscription(ctx, id).AcceptLanguage(acceptLanguage).Execute()
+> SubscriptionResponse1 GetSubscription(ctx, id).AcceptLanguage(acceptLanguage).Execute()
 
 Get Subscription [Deprecated]
 
@@ -190,7 +190,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -204,7 +204,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.GetSubscription``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetSubscription`: SubscriptionResponse
+	// response from `GetSubscription`: SubscriptionResponse1
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.GetSubscription`: %v\n", resp)
 }
 ```
@@ -229,7 +229,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse**](SubscriptionResponse.md)
+[**SubscriptionResponse1**](SubscriptionResponse1.md)
 
 ### Authorization
 
@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -262,7 +262,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -312,7 +312,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -321,7 +321,7 @@ Name | Type | Description  | Notes
 
 ## PauseSubscription
 
-> SubscriptionResponse PauseSubscription(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse1 PauseSubscription(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Pause Subscription [Deprecated]
 
@@ -336,7 +336,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -351,7 +351,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.PauseSubscription``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PauseSubscription`: SubscriptionResponse
+	// response from `PauseSubscription`: SubscriptionResponse1
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.PauseSubscription`: %v\n", resp)
 }
 ```
@@ -377,7 +377,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse**](SubscriptionResponse.md)
+[**SubscriptionResponse1**](SubscriptionResponse1.md)
 
 ### Authorization
 
@@ -386,7 +386,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -395,7 +395,7 @@ Name | Type | Description  | Notes
 
 ## ResumeSubscription
 
-> SubscriptionResponse ResumeSubscription(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse1 ResumeSubscription(ctx, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Resume Subscription [Deprecated]
 
@@ -410,7 +410,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -425,7 +425,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.ResumeSubscription``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ResumeSubscription`: SubscriptionResponse
+	// response from `ResumeSubscription`: SubscriptionResponse1
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.ResumeSubscription`: %v\n", resp)
 }
 ```
@@ -451,7 +451,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse**](SubscriptionResponse.md)
+[**SubscriptionResponse1**](SubscriptionResponse1.md)
 
 ### Authorization
 
@@ -460,7 +460,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -469,7 +469,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionCancel
 
-> SubscriptionResponse SubscriptionCancel(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse1 SubscriptionCancel(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Cancel Subscription
 
@@ -484,7 +484,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -500,7 +500,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionCancel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SubscriptionCancel`: SubscriptionResponse
+	// response from `SubscriptionCancel`: SubscriptionResponse1
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionCancel`: %v\n", resp)
 }
 ```
@@ -528,7 +528,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse**](SubscriptionResponse.md)
+[**SubscriptionResponse1**](SubscriptionResponse1.md)
 
 ### Authorization
 
@@ -537,7 +537,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -546,7 +546,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionCreate
 
-> SubscriptionResponse SubscriptionCreate(ctx, customerId).SubscriptionRequest(subscriptionRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse1 SubscriptionCreate(ctx, customerId).SubscriptionRequest(subscriptionRequest).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Create Subscription
 
@@ -561,7 +561,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -577,7 +577,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SubscriptionCreate`: SubscriptionResponse
+	// response from `SubscriptionCreate`: SubscriptionResponse1
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionCreate`: %v\n", resp)
 }
 ```
@@ -604,7 +604,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse**](SubscriptionResponse.md)
+[**SubscriptionResponse1**](SubscriptionResponse1.md)
 
 ### Authorization
 
@@ -613,7 +613,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -637,7 +637,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -698,7 +698,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -707,7 +707,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionList
 
-> SubscriptionResponse SubscriptionList(ctx, customerId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
+> SubscriptionResponse1 SubscriptionList(ctx, customerId).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Limit(limit).Search(search).Next(next).Previous(previous).Execute()
 
 List Subscriptions
 
@@ -722,7 +722,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -741,7 +741,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SubscriptionList`: SubscriptionResponse
+	// response from `SubscriptionList`: SubscriptionResponse1
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionList`: %v\n", resp)
 }
 ```
@@ -771,7 +771,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse**](SubscriptionResponse.md)
+[**SubscriptionResponse1**](SubscriptionResponse1.md)
 
 ### Authorization
 
@@ -780,7 +780,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -789,7 +789,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionPause
 
-> SubscriptionResponse SubscriptionPause(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse1 SubscriptionPause(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Pause Subscription
 
@@ -804,7 +804,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -820,7 +820,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionPause``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SubscriptionPause`: SubscriptionResponse
+	// response from `SubscriptionPause`: SubscriptionResponse1
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionPause`: %v\n", resp)
 }
 ```
@@ -848,7 +848,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse**](SubscriptionResponse.md)
+[**SubscriptionResponse1**](SubscriptionResponse1.md)
 
 ### Authorization
 
@@ -857,7 +857,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -866,7 +866,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionResume
 
-> SubscriptionResponse SubscriptionResume(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse1 SubscriptionResume(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Resume Subscription
 
@@ -881,7 +881,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -897,7 +897,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionResume``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SubscriptionResume`: SubscriptionResponse
+	// response from `SubscriptionResume`: SubscriptionResponse1
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionResume`: %v\n", resp)
 }
 ```
@@ -925,7 +925,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse**](SubscriptionResponse.md)
+[**SubscriptionResponse1**](SubscriptionResponse1.md)
 
 ### Authorization
 
@@ -934,7 +934,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -943,7 +943,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionUpdate
 
-> SubscriptionResponse SubscriptionUpdate(ctx, customerId, id).UpdatesASubscription(updatesASubscription).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse1 SubscriptionUpdate(ctx, customerId, id).UpdatesASubscription(updatesASubscription).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update Subscription
 
@@ -958,7 +958,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -975,7 +975,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SubscriptionUpdate`: SubscriptionResponse
+	// response from `SubscriptionUpdate`: SubscriptionResponse1
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionUpdate`: %v\n", resp)
 }
 ```
@@ -1004,7 +1004,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse**](SubscriptionResponse.md)
+[**SubscriptionResponse1**](SubscriptionResponse1.md)
 
 ### Authorization
 
@@ -1013,7 +1013,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1022,7 +1022,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionsGet
 
-> SubscriptionResponse SubscriptionsGet(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse1 SubscriptionsGet(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Get Subscription
 
@@ -1037,7 +1037,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -1053,7 +1053,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SubscriptionsGet`: SubscriptionResponse
+	// response from `SubscriptionsGet`: SubscriptionResponse1
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionsGet`: %v\n", resp)
 }
 ```
@@ -1081,7 +1081,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse**](SubscriptionResponse.md)
+[**SubscriptionResponse1**](SubscriptionResponse1.md)
 
 ### Authorization
 
@@ -1090,7 +1090,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1099,7 +1099,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionsRetry
 
-> SubscriptionResponse SubscriptionsRetry(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse1 SubscriptionsRetry(ctx, customerId, id).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Retry Failed Payment
 
@@ -1114,7 +1114,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -1130,7 +1130,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionsRetry``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SubscriptionsRetry`: SubscriptionResponse
+	// response from `SubscriptionsRetry`: SubscriptionResponse1
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionsRetry`: %v\n", resp)
 }
 ```
@@ -1158,7 +1158,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse**](SubscriptionResponse.md)
+[**SubscriptionResponse1**](SubscriptionResponse1.md)
 
 ### Authorization
 
@@ -1167,7 +1167,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1176,7 +1176,7 @@ Name | Type | Description  | Notes
 
 ## UpdateSubscription
 
-> SubscriptionResponse UpdateSubscription(ctx, id).UpdatesASubscription(updatesASubscription).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
+> SubscriptionResponse1 UpdateSubscription(ctx, id).UpdatesASubscription(updatesASubscription).AcceptLanguage(acceptLanguage).XChildCompanyId(xChildCompanyId).Execute()
 
 Update Subscription [Deprecated]
 
@@ -1191,7 +1191,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/conekta/conekta-go/v7"
+	openapiclient "github.com/conekta/conekta-go/v8"
 )
 
 func main() {
@@ -1207,7 +1207,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.UpdateSubscription``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateSubscription`: SubscriptionResponse
+	// response from `UpdateSubscription`: SubscriptionResponse1
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.UpdateSubscription`: %v\n", resp)
 }
 ```
@@ -1234,7 +1234,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionResponse**](SubscriptionResponse.md)
+[**SubscriptionResponse1**](SubscriptionResponse1.md)
 
 ### Authorization
 
@@ -1243,7 +1243,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.conekta-v2.2.0+json
+- **Accept**: application/vnd.conekta-v2.3.0+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
